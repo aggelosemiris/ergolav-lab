@@ -1,7 +1,17 @@
 import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
 import {analyzeMaterials,materialSnapshot,normalizeGeminiKey,requestGemini,MODEL,OPENAI_MODEL} from '../src/installation.js';
+// Enforce normal TLS verification in this service process.
+if(process.env.NODE_TLS_REJECT_UNAUTHORIZED==='0')delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+import {resolveProviderModel} from './provider-models.mjs';
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-export function createService({root=repo,stateFile=path.join(repo,'.service-data','lab.json'),fetchImpl=fetch,analyze=analyzeMaterials,probe=requestGemini}={}){
+export function createService({root=repo,stateFile=path.join(repo,'.service-data','lab.json'),fetchImpl=fetch,analyze=analyzeMaterials,probe=requestGemini,resolveModel=resolveProviderModel}={}){
+ let diagnostics=null;
+ async function providerFetch(url,options){
+  const started=Date.now(),requestUrl=new URL(url),provider=requestUrl.hostname==='api.openai.com'?'OpenAI':'Google';
+  diagnostics={provider,path:requestUrl.pathname,phase:'connecting',startedAt:new Date(started).toISOString()};
+  const record=(phase,extra={})=>{diagnostics={...diagnostics,phase,elapsedMs:Date.now()-started,...extra};console.info('provider-diagnostic '+JSON.stringify(diagnostics))};
+  try{const r=await fetchImpl(url,options);record('headers',{status:r.status});return {ok:r.ok,status:r.status,json:async()=>{const data=await r.json();record('complete');return data}}}catch(e){record('failed',{error:e.name,networkCode:e.cause?.code||null});throw e}
+ }
  let config=null,configuring=false;const jobs=new Map();let ledger={balance:5,completed:[]};
  if(stateFile&&fs.existsSync(stateFile)){try{ledger=JSON.parse(fs.readFileSync(stateFile,'utf8'));if(!Number.isInteger(ledger.balance)||ledger.balance<0||!Array.isArray(ledger.completed))throw Error()}catch{throw new Error('Μη έγκυρο αρχείο δοκιμαστικών μονάδων.')}}
  const persist=()=>{if(!stateFile)return;fs.mkdirSync(path.dirname(stateFile),{recursive:true});const temporary=stateFile+'.tmp';fs.writeFileSync(temporary,JSON.stringify(ledger),{mode:0o600});fs.renameSync(temporary,stateFile)};
@@ -17,12 +27,13 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
   if(req.method==='POST'&&(req.headers.origin!==origin||req.headers['content-type']?.split(';')[0]!=='application/json'))return json(res,403,{error:'Μη επιτρεπτή προέλευση αιτήματος.'});
   try{
    if(req.method==='GET'&&route==='/api/service/status')return json(res,200,status());
+   if(req.method==='GET'&&route==='/api/service/diagnostics')return json(res,200,{request:diagnostics});
    if(req.method==='POST'&&route==='/api/admin/configure'){
     if(configuring||jobs.size)return json(res,409,{error:'Περίμενε να ολοκληρωθεί η τρέχουσα εργασία.'});configuring=true;
     try{
      const p=await body(req);if(!['openai','gemini'].includes(p.provider))throw new Error('Επίλεξε υπηρεσία.');const key=normalizeGeminiKey(p.apiKey,p.provider),model=p.provider==='openai'?OPENAI_MODEL:MODEL;
      const controller=new AbortController();res.on('close',()=>{if(!res.writableEnded)controller.abort()});
-     const check=await probe(key,'Έλεγχος σύνδεσης. Επίστρεψε μόνο JSON με ok true.',{type:'object',properties:{ok:{type:'boolean'}},required:['ok'],additionalProperties:false},controller.signal,fetchImpl,{provider:p.provider,model,classification:true,timeoutMs:30000});
+     const check=await probe(key,'Έλεγχος σύνδεσης. Επίστρεψε μόνο JSON με ok true.',{type:'object',properties:{ok:{type:'boolean'}},required:['ok'],additionalProperties:false},controller.signal,providerFetch,{provider:p.provider,model,classification:true,timeoutMs:30000});
      if(check?.ok!==true)throw new Error('Η υπηρεσία δεν επιβεβαίωσε τη δοκιμή σύνδεσης.');config={provider:p.provider,key,model};return json(res,200,{...status(),message:'Η πραγματική δοκιμή API ολοκληρώθηκε επιτυχώς. Η υπηρεσία ενεργοποιήθηκε.'});
     }finally{configuring=false}
    }
@@ -34,12 +45,13 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
     if(status().available<1)return json(res,402,{error:'Δεν υπάρχουν διαθέσιμες δοκιμαστικές μονάδες.'});
     if([...jobs.values()].some(j=>j.status==='running'))return json(res,409,{error:'Υπάρχει ήδη ανάλυση σε εξέλιξη. Περίμενε ή πάτησε Διακοπή.'});
     const items=materialSnapshot((p.items||[]).map(x=>({desc:x.description,qty:x.quantity,unit:x.unit}))),id=crypto.randomUUID(),controller=new AbortController();
-    const j={status:'running',expires:Date.now()+1800000};jobs.set(id,j);const current=config||initial;
+    const j={status:'running',expires:Date.now()+1800000};jobs.set(id,j);let current=config||initial;
     res.writeHead(200,{'Content-Type':'application/x-ndjson; charset=utf-8','Cache-Control':'no-store','X-Accel-Buffering':'no'});
     const send=event=>{if(!res.destroyed)res.write(JSON.stringify(event)+'\n')};res.on('close',()=>{if(!res.writableEnded){controller.abort();jobs.delete(id)}});
     const heartbeat=setInterval(()=>send({type:'heartbeat'}),5000);
     try{
-     const report=await analyze(items,{provider:current.provider,model:current.model,apiKey:current.key,fetchImpl,signal:controller.signal,onProgress:message=>send({type:'progress',message})});
+     if(!config&&current.provider==='gemini'){send({type:'progress',message:'Έλεγχος διαθέσιμων μοντέλων Gemini…'});current=await resolveModel(current,{signal:controller.signal,fetchImpl:providerFetch});console.info('selected-provider-model '+JSON.stringify({provider:current.provider,model:current.model}))}
+     const report=await analyze(items,{provider:current.provider,model:current.model,apiKey:current.key,fetchImpl:providerFetch,signal:controller.signal,onProgress:message=>send({type:'progress',message})});
      if(controller.signal.aborted)return;if(!config)config=current;j.status='ready';j.report=report;j.expires=Date.now()+1800000;send({type:'result',report,jobId:id});
     }catch(e){jobs.delete(id);if(!controller.signal.aborted)send({type:'error',message:e.name==='AbortError'?'Η σύνδεση της υπηρεσίας διακόπηκε. Δεν αφαιρέθηκε μονάδα.':e.message})}
     finally{clearInterval(heartbeat);res.end()}return;
