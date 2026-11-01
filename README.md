@@ -168,3 +168,13 @@ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROMIUM_PATH=/path/to/chrome no
 Τεκμηρίωση API (έλεγχος 01/11/2026):
 - https://ai.google.dev/gemini-api/docs/models
 - https://ai.google.dev/gemini-api/docs/generate-content/structured-output
+
+
+### OpenAI ως εναλλακτική υπηρεσία
+Στο παράθυρο ανάλυσης υπάρχει επιλογή OpenAI (προεπιλεγμένη) ή Google Gemini. Για OpenAI χρησιμοποιείται το `gpt-5.4-mini` μέσω Responses API με strict JSON Schema, `store:false` και reasoning `none`. Το key δίνεται στη μνήμη του τοπικού browser και στέλνεται μόνο στον επιλεγμένο πάροχο· αλλαγή παρόχου ή κλείσιμο καθαρίζει το πεδίο. Η αποστολή υλικών παραμένει προαιρετική και δεν περιλαμβάνει στοιχεία πελάτη/επιχείρησης ή τιμές. Δεν μεταφέρονται αυτόματα αιτήματα σε δεύτερο πάροχο.
+
+Οι έλεγχοι χρησιμοποιούν προσομοιωμένες απαντήσεις και καμία πραγματική χρέωση API. `ERGOLAV_PROVIDER=openai` ή `gemini` επιλέγει τον πάροχο του browser test. Πραγματική επιβεβαίωση απαιτεί το API key του χρήστη στην εφαρμογή.
+
+Επίσημη τεκμηρίωση (01/11/2026):
+- https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses
+- https://developers.openai.com/api/docs/models/gpt-5.4-mini
