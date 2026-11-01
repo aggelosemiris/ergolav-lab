@@ -1,7 +1,7 @@
 export async function serviceStatus(){const r=await fetch('/api/service/status',{cache:'no-store'});if(!r.ok)throw new Error('Ο server της υπηρεσίας δεν είναι διαθέσιμος.');return r.json()}
-export async function serviceAnalysis(items,{signal,onProgress=()=>{}}={}){
+export async function serviceAnalysis(items,{signal,onProgress=()=>{},setup}={}){
  try{
-  const r=await fetch('/api/service/analysis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items}),signal});
+  const r=await fetch('/api/service/analysis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,...(setup?{setup}:{})}),signal});
   if(!r.ok){const e=await r.json();throw new Error(e.error||'Η υπηρεσία δεν είναι διαθέσιμη.')}
   if(!r.body)throw new Error('Ο browser δεν υποστηρίζει τη ροή της ανάλυσης.');
   const reader=r.body.getReader(),decoder=new TextDecoder();let buffer='',result;

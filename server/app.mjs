@@ -27,17 +27,20 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
     }finally{configuring=false}
    }
    if(req.method==='POST'&&route==='/api/service/analysis'){
-    if(!config)return json(res,503,{error:'Η υπηρεσία δεν έχει ενεργοποιηθεί από τον διαχειριστή. Άνοιξε τη Διαχείριση υπηρεσίας για έλεγχο σύνδεσης.'});
+    const p=await body(req);let initial=null;
+    if(!config&&p.setup){if(!['openai','gemini'].includes(p.setup.provider))throw new Error('Επίλεξε υπηρεσία.');initial={provider:p.setup.provider,key:normalizeGeminiKey(p.setup.apiKey,p.setup.provider),model:p.setup.provider==='openai'?OPENAI_MODEL:MODEL}}
+    if(!config&&!initial)return json(res,503,{error:'Για την πρώτη δοκιμή, συμπλήρωσε το key διαχειριστή μέσα στην έτοιμη προσφορά.'});
+    if(configuring)return json(res,409,{error:'Η υπηρεσία ρυθμίζεται. Δοκίμασε ξανά σε λίγο.'});
     if(status().available<1)return json(res,402,{error:'Δεν υπάρχουν διαθέσιμες δοκιμαστικές μονάδες.'});
     if([...jobs.values()].some(j=>j.status==='running'))return json(res,409,{error:'Υπάρχει ήδη ανάλυση σε εξέλιξη. Περίμενε ή πάτησε Διακοπή.'});
-    const p=await body(req),items=materialSnapshot((p.items||[]).map(x=>({desc:x.description,qty:x.quantity,unit:x.unit}))),id=crypto.randomUUID(),controller=new AbortController();
-    const j={status:'running',expires:Date.now()+1800000};jobs.set(id,j);const current=config;
+    const items=materialSnapshot((p.items||[]).map(x=>({desc:x.description,qty:x.quantity,unit:x.unit}))),id=crypto.randomUUID(),controller=new AbortController();
+    const j={status:'running',expires:Date.now()+1800000};jobs.set(id,j);const current=config||initial;
     res.writeHead(200,{'Content-Type':'application/x-ndjson; charset=utf-8','Cache-Control':'no-store','X-Accel-Buffering':'no'});
     const send=event=>{if(!res.destroyed)res.write(JSON.stringify(event)+'\n')};res.on('close',()=>{if(!res.writableEnded){controller.abort();jobs.delete(id)}});
     const heartbeat=setInterval(()=>send({type:'heartbeat'}),5000);
     try{
      const report=await analyze(items,{provider:current.provider,model:current.model,apiKey:current.key,fetchImpl,signal:controller.signal,onProgress:message=>send({type:'progress',message})});
-     if(controller.signal.aborted)return;j.status='ready';j.report=report;j.expires=Date.now()+1800000;send({type:'result',report,jobId:id});
+     if(controller.signal.aborted)return;if(!config)config=current;j.status='ready';j.report=report;j.expires=Date.now()+1800000;send({type:'result',report,jobId:id});
     }catch(e){jobs.delete(id);if(!controller.signal.aborted)send({type:'error',message:e.name==='AbortError'?'Η σύνδεση της υπηρεσίας διακόπηκε. Δεν αφαιρέθηκε μονάδα.':e.message})}
     finally{clearInterval(heartbeat);res.end()}return;
    }

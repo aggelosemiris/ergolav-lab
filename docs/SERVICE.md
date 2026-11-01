@@ -2,7 +2,7 @@
 
 Run `npm start` with Node 24. The service binds only to `127.0.0.1:8087`.
 
-Open `/owner.html` once to configure and verify the provider connection. The check makes a small real provider request. The credential remains only in server memory until restart. It is never written to Git or sent back in status responses.
+Create a quote and open its companion-PDF dialog. First-time setup is shown there and sends the actual material analysis request, not a standalone probe. After successful analysis, the credential remains only in server memory until restart. It is never written to Git or sent back in status responses.
 
 The technician requests the companion PDF without entering credentials. Material descriptions, quantities and units pass through the local server; customer and business profile data and quote prices do not.
 
@@ -15,3 +15,8 @@ Tests: `npm test`, and `node tests/browser/service.e2e.mjs` with the documented 
 References:
 - https://developers.openai.com/api/reference/overview
 - https://developers.openai.com/api/docs/guides/error-codes
+
+
+## Activation on an actual quote
+
+The first setup now appears inside the companion-PDF dialog of a completed quote. The owner selects a provider and supplies the credential there once. `/api/service/analysis` performs the real analysis of that quote, without a separate generic probe. Configuration becomes active only after the complete analysis succeeds; errors and cancellation leave it unconfigured. Following quotes do not ask for a credential again during the same server session. The standalone owner page only explains this flow and manages demo balance.
