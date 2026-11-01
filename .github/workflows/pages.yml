@@ -1,9 +1,9 @@
-# Δημοσίευση της εφαρμογής στο GitHub Pages (https://aggelosemiris.github.io/ergolav/).
+# Δημοσίευση της εφαρμογής στο GitHub Pages (https://aggelosemiris.github.io/ergolav-lab/).
 # Μία φορά: Settings → Pages → Build and deployment → Source: «GitHub Actions».
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [claude/microphone-real-time-l79e2p, main]
+    branches: [lab]
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,7 +31,7 @@ jobs:
         run: |
           V=${GITHUB_SHA::7}
           sed -i -E "s#src/app\.js\"#src/app.js?v=$V\"#; s#id=\"build\">dev<#id=\"build\">$V<#" _site/index.html
-          sed -i -E "s#(from '\./[a-z]+\.js)'#\1?v=$V'#" _site/src/*.js
+          sed -i -E "s#(from '\./[a-z-]+\.js)'#\1?v=$V'#" _site/src/*.js
           grep -n "v=$V" _site/index.html _site/src/*.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
