@@ -217,6 +217,9 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .stat{display:flex;justify-content:space-between;margin-top:14px;font-size:15px}
 
 .disclaimer{text-align:center;color:var(--dim);font-size:12px;padding:10px 20px calc(10px + env(safe-area-inset-bottom,0px))}
+[hidden]{display:none!important}
+.installation-entry{margin-top:24px}.installation-entry p{font-size:14px;line-height:1.6;margin:8px 0 12px}
+#installDialog{width:min(820px,calc(100% - 20px));max-height:92dvh;overflow:auto;border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--bg);color:var(--ink);font:inherit}#installDialog::backdrop{background:#0008}#installDialog h2{font-size:23px;margin:0 0 12px}#installDialog p{line-height:1.65}#installDialog label{display:block;margin:16px 0;font-size:14px}#installDialog input[type=password]{display:block;width:100%;margin-top:7px;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;font:inherit}#installDialog .install-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}#installDialog .primary{width:auto;padding:10px 18px;font-size:15px;min-height:44px}#installDialog button:disabled{opacity:.55}#installStatus{color:var(--pen);font-size:14px;white-space:pre-wrap}#installReport{font:13px Arial,sans-serif;line-height:1.65;padding:24px;background:white;color:#1a1d21;overflow-wrap:anywhere}#installReport h3{font-size:18px;border-bottom:1px solid #ccc;padding-bottom:6px;margin-top:25px;break-after:avoid}#installReport h4{font-size:14px;margin:16px 0 6px;break-after:avoid}#installReport li,#installReport p{break-inside:avoid}#installReport li{margin:6px 0;list-style-position:inside}#installReport ol,#installReport ul{padding-left:12px;margin-left:0}.install-notice{font-size:11px;color:#5e646b;border-top:1px solid #ddd;padding-top:10px}#installReviewed{width:auto;margin-right:8px}#installClose{margin-left:auto}@media(max-width:500px){#installDialog{padding:16px}#installReport{padding:16px}.install-actions{flex-direction:column}#installClose{margin-left:0}}
 </style>
 </head>
 <body>
@@ -309,6 +312,7 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
       <h1>Έτοιμη για τον πελάτη</h1>
       <p class="lede">Έτσι θα τη δει ο πελάτης στο κινητό του.</p>
       <div class="pdf" id="pdf"></div>
+      <div class="card installation-entry"><b>Περισσότερες λεπτομέρειες για τις εργασίες;</b><p>Το Gemini εξετάζει τα υλικά και ετοιμάζει ξεχωριστό PDF με την ανάλυση τοποθέτησης.</p><button class="ghost" id="installOpen">Ανάλυση εργασιών με Gemini</button></div>
     </section>
 
     <!-- 5 DONE -->
@@ -375,6 +379,7 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
   </div>
 </div>
 
+<dialog id="installDialog" aria-labelledby="installTitle"><h2 id="installTitle">Ανάλυση εργασιών τοποθέτησης</h2><p>Το Gemini θα αξιολογήσει κάθε υλικό και θα αναλύσει όσα χρειάζονται επιπλέον περιγραφή: προεργασία, εργαλεία, στάδια τοποθέτησης και ελέγχους.</p><p class="privacy">Με το «Δημιουργία ανάλυσης» στέλνονται στη Google μόνο οι περιγραφές, ποσότητες και μονάδες των υλικών. Δεν στέλνονται στοιχεία πελάτη, στοιχεία επιχείρησης ή τιμές. Ισχύουν τα όρια και οι χρεώσεις του API λογαριασμού σου. Στο δωρεάν επίπεδο τα δεδομένα ενδέχεται να χρησιμοποιηθούν για βελτίωση υπηρεσιών.</p><label>Gemini API key<input id="installKey" type="password" autocomplete="off" spellcheck="false" placeholder="Βάλε εδώ το Gemini API key σου"></label><p class="privacy">Το κλειδί μένει μόνο στη μνήμη αυτής της οθόνης και σβήνεται όταν την κλείσεις.</p><div class="install-actions"><button id="installGenerate" class="primary">Δημιουργία ανάλυσης</button><button id="installCancel" class="ghost" hidden>Διακοπή</button><button id="installClose" class="ghost">Κλείσιμο</button></div><p id="installStatus" role="status" aria-live="polite"></p><section id="installPreview" hidden><h3>Προεπισκόπηση συνοδευτικού PDF</h3><div id="installReport"></div><label><input id="installReviewed" type="checkbox">Διάβασα το προσχέδιο και θα το ελέγξει ο αρμόδιος τεχνικός πριν χρησιμοποιηθεί.</label><button id="installDownload" class="primary" disabled>Κατέβασμα ξεχωριστού PDF</button></section></dialog>
 <script type="module"src="src/app.js"></script>
 </body>
 </html>

@@ -7,6 +7,8 @@ import { parse, calcParts, lineFor } from './parse.js';
 import { createMic, micSupported } from './mic.js';
 import { readNotes, shrink, getKey, setKey, forgetKey, canRememberKey, isKeyRemembered, keyProvider } from './photo.js';
 import { makePdf, shareFile, download } from './share.js';
+import { mountInstallation } from './installation-ui.js';
+let installationPanel=null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
 import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo } from './profile.js';
@@ -715,6 +717,7 @@ function renderTotals(){
 
 // ─── 4 : PDF ─────────────────────────────────────────────────
 function buildPdf(){
+  installationPanel?.reset();
   // Χωρίς στοιχεία επιχείρησης δεν βγαίνει PDF: πρώτα η φόρμα, μετά το PDF.
   if(!PROFILE) return openProfile(buildPdf);
   if(quoteNo == null) quoteNo = takeQuoteNo();
@@ -805,3 +808,5 @@ function done(title, text){
 }
 $('resend').onclick = () => { if(pdfFile) sendPdf(); };
 $('again').onclick = ()=> location.reload();
+
+installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>({desc:l.desc,name:l.name,qty:l.qty,unit:l.unit}))}));
