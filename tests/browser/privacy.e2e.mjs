@@ -7,7 +7,7 @@
 //   PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.mjs node tests/browser/privacy.e2e.mjs
 import fs from 'node:fs';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const BASE = process.env.APP_URL || 'http://localhost:8080/';
+const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
 const results = [];
 const check = (name, pass, detail = '') => { results.push({name, pass}); console.log(`${pass ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
 

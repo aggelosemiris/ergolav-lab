@@ -1,18 +1,19 @@
-import {analyzeMaterials,materialSnapshot} from './installation.js';
+import {materialSnapshot} from './installation.js';
+import {serviceStatus,serviceAnalysis,completeJob,releaseJob} from './service-client.js';
 import {makePdf,download} from './share.js';
 const $=id=>document.getElementById(id);
 const element=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
 export function mountInstallation(getQuote){
- let controller=null,report=null,file=null,generation=0,progressTimer=null,phaseLabel='',phaseStarted=0;
- const provider=$('installProvider');
- const service=()=>provider.value==='openai'?'OpenAI':'Gemini';
- function providerChanged(){if(controller)return;$('installKey').value='';$('installKeyLabel').textContent=service()+' API key';$('installKey').placeholder='Βάλε εδώ το '+service()+' API key σου';$('installPrivacy').textContent='Με το «Δημιουργία ανάλυσης» στέλνονται στην '+(provider.value==='openai'?'OpenAI':'Google')+' μόνο οι περιγραφές, ποσότητες και μονάδες των υλικών. Δεν στέλνονται στοιχεία πελάτη, επιχείρησης ή τιμές. Ισχύουν τα όρια και οι χρεώσεις του API λογαριασμού σου.'+(provider.value==='gemini'?' Στο δωρεάν επίπεδο της Google τα δεδομένα ενδέχεται να χρησιμοποιηθούν για βελτίωση υπηρεσιών.':'');report=null;file=null;$('installPreview').hidden=true;save.disabled=true;status.textContent=''}
+ let controller=null,report=null,file=null,generation=0,progressTimer=null,phaseLabel='',phaseStarted=0,pdfBusy=false;
+ let serviceInfo=null;
+ async function refreshService(){try{serviceInfo=await serviceStatus();$('installServiceInfo').textContent=serviceInfo.configured?`Υπηρεσία ενεργή · ${serviceInfo.available} διαθέσιμες δοκιμαστικές μονάδες. Το PDF χρησιμοποιεί 1 μονάδα μόνο όταν δημιουργηθεί επιτυχώς.`:'Η υπηρεσία χρειάζεται ενεργοποίηση από τον διαχειριστή.';generate.disabled=!serviceInfo.configured||serviceInfo.available<1}catch(e){$('installServiceInfo').textContent=e.message;generate.disabled=true}}
+ function discard(){if(report?.jobId)releaseJob(report.jobId).catch(()=>{});report=null;file=null}
  const dialog=$('installDialog'),status=$('installStatus'),output=$('installReport'),generate=$('installGenerate'),save=$('installDownload'),review=$('installReviewed');
  function stopProgress(){clearInterval(progressTimer);progressTimer=null}
  function progress(text){phaseLabel=text;phaseStarted=Date.now();paintProgress()}
- function paintProgress(){const seconds=Math.floor((Date.now()-phaseStarted)/1000);status.textContent=phaseLabel+` · ${seconds} δευτ.`+(seconds>=20?`\nΠεριμένουμε απάντηση από ${service()}. Μπορείς να πατήσεις Διακοπή.`:'')}
- function reset(){provider.disabled=false;stopProgress();$('installCancel').hidden=true;generation++;controller?.abort();controller=null;report=null;file=null;output.replaceChildren();$('installPreview').hidden=true;review.checked=false;save.disabled=true;status.textContent='';generate.disabled=false;$('installKey').value='';dialog.close()}
- $('installOpen').onclick=()=>{if(controller)return;dialog.showModal();$('installKey').focus()};
+ function paintProgress(){const seconds=Math.floor((Date.now()-phaseStarted)/1000);status.textContent=phaseLabel+` · ${seconds} δευτ.`+(seconds>=20?`\nΠεριμένουμε απάντηση από την υπηρεσία ergolav. Μπορείς να πατήσεις Διακοπή.`:'')}
+ function reset(){if(pdfBusy)return;discard();stopProgress();$('installCancel').hidden=true;generation++;controller?.abort();controller=null;report=null;file=null;output.replaceChildren();$('installPreview').hidden=true;review.checked=false;save.disabled=true;status.textContent='';generate.disabled=false;dialog.close()}
+ $('installOpen').onclick=()=>{if(controller)return;dialog.showModal();refreshService()};
  $('installClose').onclick=reset;dialog.addEventListener('cancel',e=>{e.preventDefault();reset()});
  $('installCancel').onclick=()=>{controller?.abort()};
  review.onchange=()=>save.disabled=!review.checked||!report;
@@ -27,14 +28,14 @@ export function mountInstallation(getQuote){
   output.append(element('p',`Δημιουργία: ${data.provider==='openai'?'OpenAI':'Gemini'} (${data.model}). Οι τιμές και τα σύνολα της προσφοράς παραμένουν ανεξάρτητα από αυτό το έγγραφο.`,'install-notice'));
  }
  generate.onclick=async()=>{
-  if(controller)return;const run=++generation;controller=new AbortController();generate.disabled=true;save.disabled=true;report=null;file=null;review.checked=false;$('installPreview').hidden=true;$('installCancel').hidden=false;provider.disabled=true;progress('Σύνδεση με '+service()+'…');progressTimer=setInterval(paintProgress,1000);
-  try{const quote=getQuote(),items=materialSnapshot(quote.lines),key=$('installKey').value.trim();
-   const data=await analyzeMaterials(items,{apiKey:key,provider:provider.value,signal:controller.signal,onProgress:text=>{if(run===generation)progress(text)}});
+  if(controller||pdfBusy)return;const run=++generation;controller=new AbortController();generate.disabled=true;save.disabled=true;discard();review.checked=false;$('installPreview').hidden=true;$('installCancel').hidden=false;progress('Σύνδεση με την υπηρεσία ergolav…');progressTimer=setInterval(paintProgress,1000);
+  try{const quote=getQuote(),items=materialSnapshot(quote.lines);
+   const data=await serviceAnalysis(items,{signal:controller.signal,onProgress:text=>{if(run===generation)progress(text)}});
    if(run!==generation)return;stopProgress();report=data;renderReport(data,quote);$('installPreview').hidden=false;status.textContent=data.guides.length?`Έτοιμη η ανάλυση ${data.guides.length} υλικών. Διάβασέ την πριν κατεβάσεις το PDF.`:'Δεν επιλέχθηκαν υλικά για περαιτέρω ανάλυση. Δες τις αιτιολογήσεις.';
   }catch(e){if(run===generation)stopProgress();if(run===generation)status.textContent=e.name==='AbortError'?'Η ανάλυση ακυρώθηκε. Η προσφορά σου παραμένει διαθέσιμη.':e.message||'Η ανάλυση απέτυχε. Δοκίμασε ξανά.'}
-  finally{if(run===generation){stopProgress();provider.disabled=false;controller=null;generate.disabled=false;$('installCancel').hidden=true}}
+  finally{if(run===generation){stopProgress();controller=null;generate.disabled=false;$('installCancel').hidden=true}}
  };
- save.onclick=async()=>{if(!report||!review.checked)return;const run=generation;save.disabled=true;try{status.textContent='Ετοιμάζω το ξεχωριστό PDF…';file??=await makePdf(output,`Analysi-Ergasion-${getQuote().number}.pdf`);if(run!==generation)return;download(file);status.textContent='Το PDF ανάλυσης εργασιών κατέβηκε.'}catch(e){status.textContent=e.message||'Το PDF δεν δημιουργήθηκε. Δοκίμασε ξανά.'}finally{if(run===generation)save.disabled=!review.checked||!report}};
- provider.onchange=providerChanged;providerChanged();
+ save.onclick=async()=>{if(!report||!review.checked||pdfBusy)return;const run=generation;pdfBusy=true;$('installClose').disabled=true;generate.disabled=true;save.disabled=true;try{status.textContent='Ετοιμάζω το ξεχωριστό PDF…';file??=await makePdf(output,`Analysi-Ergasion-${getQuote().number}.pdf`);if(run!==generation)return;const balance=await completeJob(report.jobId);$('installServiceInfo').textContent=`Απομένουν ${balance.balance} δοκιμαστικές μονάδες.`;download(file);status.textContent='Το PDF ανάλυσης εργασιών κατέβηκε.'}catch(e){status.textContent=e.message||'Το PDF δεν δημιουργήθηκε. Δοκίμασε ξανά.'}finally{pdfBusy=false;$('installClose').disabled=false;generate.disabled=false;if(run===generation)save.disabled=!review.checked||!report}};
+
  return {reset};
 }

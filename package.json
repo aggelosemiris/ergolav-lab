@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "python3 -m http.server 8080",
+    "start": "node server/app.mjs",
     "test": "node --test test/*.test.js",
     "test:stress": "node tests/stress/run.mjs",
     "test:stress:scale": "node tests/stress/scale80k.mjs",

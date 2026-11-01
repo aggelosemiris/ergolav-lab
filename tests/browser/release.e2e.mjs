@@ -2,7 +2,7 @@
 // αποτυχίες δικτύου/αποθήκευσης, γρήγορα πατήματα, πολλές προσφορές στη σειρά. Καμία εξωτερική κλήση.
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/release.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const BASE = process.env.APP_URL || 'http://localhost:8080/';
+const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
 const results = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };

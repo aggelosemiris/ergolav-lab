@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 tests/stress/reports/
+
+.service-data/
+.env
+.env.*

@@ -103,7 +103,7 @@
 Το μικρόφωνο θέλει `https` ή `localhost`:
 
 ```sh
-npm start        # http://localhost:8080
+npm start        # http://127.0.0.1:8087
 npm test         # unit tests (parser, αριθμοί, key) + holdout της QA (test/holdout-number.test.js)
 npm run test:stress              # stress με mock provider
 npm run test:stress:live:dry     # live harness χωρίς πραγματικές κλήσεις
@@ -178,3 +178,6 @@ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs CHROMIUM_PATH=/path/to/chrome no
 Επίσημη τεκμηρίωση (01/11/2026):
 - https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses
 - https://developers.openai.com/api/docs/models/gpt-5.4-mini
+
+
+Current service workflow: see [docs/SERVICE.md](docs/SERVICE.md). Technician credentials are now configured once by the owner instead of entered per PDF.

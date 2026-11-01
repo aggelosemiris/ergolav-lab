@@ -35,7 +35,7 @@ async function dictate(page, text){
 const results = [];
 const ok = (name, cond, detail='') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
 
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await p.evaluate(() => localStorage.clear()); await p.reload();
 
 // ── Στοιχεία επιχείρησης: μία φορά, πριν από το μικρόφωνο ──
@@ -225,7 +225,7 @@ ok('#5 PDF φτιάχνεται με ενεργή CSP', await p.textContent('#ct
 
 if(PHOTO_ON){
   // #1 «θυμήσου» + «ξέχασε»
-  await p.goto('http://localhost:8080/');
+  await p.goto('http://127.0.0.1:8087/');
   await p.click('#photo');
   await p.fill('#keyInput', 'sk-ant-' + 'x'.repeat(40));
   await p.check('#keyRemember');
@@ -239,19 +239,19 @@ if(PHOTO_ON){
   await p.waitForSelector('#s-lines.on', {timeout: 20000}).catch(() => {});
   ok('#2 Claude μοντέλο claude-sonnet-5-5', claudeBody?.model === 'claude-sonnet-5-5', claudeBody?.model);
   ok('#2 fallbacks/effort στο αίτημα', claudeBody?.fallbacks === 'default' && claudeBody?.output_config?.effort === 'low');
-  await p.goto('http://localhost:8080/');
+  await p.goto('http://127.0.0.1:8087/');
   ok('#1 σύνδεσμος «Κλειδί ανάγνωσης» στην αρχική', await p.isVisible('#keySettings'));
   await p.click('#keySettings');
   ok('#1 «Ξέχασε το key» εμφανίζεται', await p.isVisible('#keyForget'));
   await p.click('#keyForget');
   ok('#1 «Ξέχασε» σβήνει το key', await p.evaluate(() => !localStorage.getItem('ergolav.apiKey')));
   ok('#1 μετά το «Ξέχασε» ζητάει ξανά key', (await p.click('#photo'), await p.isVisible('#keySheet.on')));
-  await p.goto('http://localhost:8080/');
+  await p.goto('http://127.0.0.1:8087/');
   ok('#1 μετά από reload δεν υπάρχει key', !(await p.isVisible('#keySettings')));
 }
 
 // ── Β. γραμμή μόνο εργασίας + νέα ανάλυση μηδενίζει την εργασία ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'αποξήλωση παλιών ειδών και δύο μπαταρίες νιπτήρα');
 await p.click('#ctaBtn');
 await p.waitForSelector('#s-lines.on');
@@ -272,7 +272,7 @@ ok('#P μετά την αλλαγή: πίσω στο PDF με τη νέα ειδ
 await p.waitForFunction(() => document.getElementById('ctaBtn').textContent === 'Στείλε στον πελάτη', null, {timeout: 30000}).catch(() => {});
 ok('#B PDF: γραμμή μόνο εργασίας γράφει «στην εργασία»', rows2.some(r => /Αποξήλωση/.test(r[0]) && r[1].trim() === 'στην εργασία'), JSON.stringify(rows2));
 // νέα ανάλυση: η εργασία ξαναρχίζει από την πρόταση
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'τρεις πρίζες');
 await p.click('#ctaBtn');
 await p.waitForSelector('#s-lines.on');
@@ -280,20 +280,20 @@ ok('#B νέα προσφορά: η εργασία ξαναρχίζει από τ
 ok('#A οι τιμές που έγραψε μένουν και στην επόμενη προσφορά (μνήμη ανά συσκευή)', await p.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('ergolav.prices') || '{}')).length > 0));
 
 // μόνο εκτός καταλόγου, με ποσότητα → κάρτες για απόφαση (πριν: σβήνονταν και έμενες στο κείμενο)
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'ένα κλιματιστικό και δύο ρίζες');
 await p.click('#ctaBtn');
 await p.waitForSelector('#s-lines.on');
 ok('#C μόνο εκτός καταλόγου: δύο γραμμές χωρίς τιμή, κουμπί κλειδωμένο', await p.locator('.ln:has-text("Δεν είναι στον κατάλογο")').count() === 2 && await p.locator('#ctaBtn').isDisabled());
 // τίποτα που να είναι υλικό (τηλέφωνο, όνομα) → μήνυμα, μένεις στο κείμενο
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'μπάνιο για τον κύριο Παπαδόπουλο στο 6912345678');
 await p.click('#ctaBtn');
 ok('#C τηλέφωνο / όνομα πελάτη δεν γίνονται κάρτες: μήνυμα, και μένεις στο κείμενο', await p.isVisible('#s-listen.on') && !(await p.isVisible('#s-lines.on')) && /κανένα υλικό/.test(await p.textContent('#notice')), await p.textContent('#notice'));
 
 // ── Μέγεθος: ό,τι υπάρχει στον κατάλογο μπαίνει· ό,τι δεν υπάρχει ρωτάει και κλειδώνει το κουμπί ──
 const lnSum = async loc => eurN(await loc.locator('.ln-sum').textContent());
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'θερμοσίφωνας 100 λίτρα και θερμοσίφωνας και θερμοσίφωνας 90 λίτρα');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 const h100 = p.locator('.ln:has(.ln-name:text-is("Θερμοσίφωνας 100 λ."))');
@@ -307,7 +307,7 @@ ok('#S «90 λίτρα» → «Είπες 90 λ. — ο κατάλογος έχ�
 ok('#S το κουμπί μένει κλειδωμένο', await p.locator('#ctaBtn').isDisabled() && /1 γραμμή/.test(await p.textContent('#ctaNote')), await p.textContent('#ctaNote'));
 await big.locator('[data-near]', {hasText: '100 λ.'}).click();
 ok('#S επιλογή «100 λ.» → γίνεται 100 λ. και ξεκλειδώνει', await p.locator('.ln.flag').count() === 0 && await p.locator('.ln:has(.ln-name:text-is("Θερμοσίφωνας 100 λ."))').count() === 2 && await p.locator('#ctaBtn').isEnabled());
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'έπιπλο 70 εκατοστά');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#S «έπιπλο 70» → ερώτηση 60/80', (await p.locator('[data-near]').allTextContents()).join('|') === '60 εκ.|80 εκ.');
@@ -328,7 +328,7 @@ await p.locator('.custom [data-a="cancel"]').click();
 ok('#S αφού έχει δική του τιμή, «Άκυρο» την κρατά (70 εκ., 250,00 €)', await p.locator('#ctaBtn').isEnabled() && /70 εκ\./.test(await p.textContent('.ln-name')) && /250,00/.test(await p.textContent('#lines')));
 
 // ── Τύπος από την κάρτα: αλλάζει όνομα, κωδικό, προτάσεις τιμής, σύνολα και PDF ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'θερμοσίφωνας');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 const hc = p.locator('.ln').first();
@@ -372,7 +372,7 @@ const pdfRows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr 
 ok('#T #D #Q το PDF: δική του περιγραφή, 2 τεμ., 680,00 €', pdfRows.length === 1 && /Θερμοσίφωνας Nobel 120 λ\./.test(pdfRows[0]) && /2 τεμ\./.test(pdfRows[0]) && /680,00/.test(pdfRows[0]), pdfRows.join(' | '));
 
 // ── Κατανάλωση: κόλλα / αρμόστοκος ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, '15 τετραγωνικά πλακάκι μάρμαρο');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 const gl = p.locator('.ln:has-text("Κόλλα πλακιδίων")'), gr = p.locator('.ln:has-text("Αρμόστοκος")');
@@ -405,7 +405,7 @@ const EXPECT = ['Σωλήνας πολυστρωματικός Φ20', 'Βάνα 
   'Λεκάνη κρεμαστή', 'Καζανάκι εντοιχισμού', 'Μηχανισμός καζανακιού', 'Σετ ντους απλό με μπάρα', 'Έπιπλο μπάνιου με νιπτήρα 80 εκ.',
   'Μπαταρία νιπτήρα αναμεικτική', 'Θερμοσίφωνας 100 λ.', 'Πλακάκι τοίχου 30×60 λευκό ματ', 'Στεγάνωση δαπέδου μπάνιου',
   'Φωτιστικό σποτ LED χωνευτό', 'Πρίζα σούκο χωνευτή', 'Καλώδιο ΝΥΜ 3×2,5'];   // + «3 σίτες» εκτός καταλόγου = 18
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, LONG);
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 const names = await p.$$eval('#lines .ln-name', els => els.map(e => e.textContent));
@@ -456,7 +456,7 @@ ok('#L PDF: 18 υλικά + κόλλα + αρμόστοκος = 20 γραμμέ�
 ok('#L PDF: εργασία 1.200,00 €, ΦΠΑ 24%', /Εργασία\s*1\.200,00 €/.test(await p.textContent('#pdf')) && /ΦΠΑ 24%/.test(await p.textContent('#pdf')));
 
 // ── «ντους» σκέτο → ρωτάει· επιλογή γίνεται το υλικό ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'ένα ντους');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#N σκέτο «ντους» → «Ντουζιέρα ή σετ ντους;», κουμπί κλειδωμένο', /Ντουζιέρα ή σετ ντους;/.test(await p.textContent('#lines')) && await p.locator('#ctaBtn').isDisabled());
@@ -464,7 +464,7 @@ await p.locator('[data-c]', {hasText: 'Σετ ντους'}).click();
 ok('#N επιλογή «Σετ ντους» → γραμμή σετ ντους με τύπους', await p.locator('.ln-name:text-is("Σετ ντους απλό με μπάρα")').count() === 1 && await p.locator('.tp').count() === 2 && await p.locator('#ctaBtn').isEnabled());
 
 // ── Εργασία: ασαφές ποσό από τη φωνή → δεν μπαίνει, ρωτάει ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'τρεις πρίζες, εργασία 1.5 ευρώ');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#E «εργασία 1.5 ευρώ» → δεν μπαίνει, «Γράψε το ποσό», κουμπί κλειδωμένο',
@@ -473,7 +473,7 @@ await p.locator('#laborBox [data-p="labor"]').fill('150');
 ok('#E με γραμμένο ποσό ξεκλειδώνει (Εργασία 150,00 €)', await p.locator('#ctaBtn').isEnabled() && /Εργασία\s*150,00 €/.test(await p.textContent('#totals')));
 
 // ── Ποσότητα 0: δεν μπαίνει στο PDF, κλειδώνει ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'πλακάκι λευκό');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 await p.locator('.ln:has-text("Κόλλα πλακιδίων") [data-a="keep"]').click();
@@ -486,7 +486,7 @@ ok('#Z μετά την αφαίρεση δεν μένει καμία γραμμ�
 
 // ════ Κάθε άγνωστο υλικό = γραμμή προϊόντος χωρίς τιμή (ποτέ σιωπηλά χαμένο) ════
 const ROP = 'ανακαίνιση μπάνιου 12 μέτρα σωλήνα, μία μπανιέρα, μία μπαταρία νιπτήρα, ροπ';
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, ROP);
 ok('#U ακρόαση: τσιπάκι «1 τεμ. Ροπ ?» με το χρώμα «θέλει έλεγχο»', (await p.locator('#chips .chip.q').allTextContents()).includes('1 τεμ. Ροπ ?'), (await p.locator('#chips .chip').allTextContents()).join(' | '));
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
@@ -509,7 +509,7 @@ await p.waitForFunction(() => document.getElementById('ctaBtn').textContent === 
 const ropRows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => tr.textContent.replace(/\s+/g, ' ')));
 ok('#U το «Ροπ» βγαίνει στο PDF (1 τεμ., 15,00 €)', ropRows.some(r => /Ροπ/.test(r) && /1 τεμ\./.test(r) && /15,00/.test(r)), ropRows.join(' | '));
 // δεύτερη προσφορά: η τιμή που έγραψε για το «Ροπ» προτείνεται (δεν μπαίνει μόνη της)· «Σβήσε» → φεύγει και ξεκλειδώνει
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, ROP);
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#U δεύτερη προσφορά: το autofill δείχνει 15,00 € για το «Ροπ» (όχι αυτόματα)', /15,00/.test(await rop.locator('.hist').textContent()) && await rop.locator('[data-p="cmat"]').inputValue() === '' && await p.locator('#ctaBtn').isDisabled());
@@ -522,12 +522,12 @@ await rop.locator('[data-p="cmat"]').fill('0');
 await rop.locator('.custom [data-a="keep"]').click();
 ok('#U τιμή 0 γραμμένη ρητά → «στην εργασία», ξεκλειδώνει', (await rop.locator('.ln-sum').textContent()).includes('στην εργασία') && await p.locator('#ctaBtn').isEnabled());
 // «3 μέτρα ροπ»
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, '3 μέτρα ροπ');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#U «3 μέτρα ροπ» → Ροπ 3 μ.', /3 μ\./.test(await rop.locator('[data-a="qty-edit"]').textContent()) && await rop.locator('select[data-p="unit"]').inputValue() === 'μ.');
 // προσωπικά στοιχεία: μόνο λεκάνη, τίποτα στο PDF
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'μπάνιο για τον κύριο Παπαδόπουλο στο 6912345678 στο Χαλάνδρι, λεκάνη');
 ok('#U ακρόαση: κανένα τσιπάκι για όνομα/τηλέφωνο/περιοχή', (await p.locator('#chips .chip').allTextContents()).join('|') === '1 τεμ. Λεκάνη κρεμαστή', (await p.locator('#chips .chip').allTextContents()).join(' | '));
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
@@ -537,13 +537,13 @@ ok('#U στο PDF κανένα όνομα/τηλέφωνο/περιοχή (τί�
   /Προσφορά: μπάνιο/.test(await p.textContent('#pdf h2')), await p.textContent('#pdf h2'));
 await p.waitForFunction(() => document.getElementById('ctaBtn').textContent === 'Στείλε στον πελάτη', null, {timeout: 30000}).catch(() => {});
 // γεμίσματα
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await dictate(p, 'θέλω λεκάνη και επίσης σιφόνι');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
 ok('#U «θέλω λεκάνη και επίσης σιφόνι» → 2 γραμμές', (await p.$$eval('#lines .ln-name', e => e.map(x => x.textContent))).join('|') === 'Λεκάνη κρεμαστή|Σιφόνι');
 
 // ── Πληκτρολόγιο: γράφω / διορθώνω το κείμενο ──
-await p.goto('http://localhost:8080/');
+await p.goto('http://127.0.0.1:8087/');
 await p.click('#mic');                                            // χωρίς φωνή (headless) → ανοίγει κατευθείαν για γράψιμο
 await p.waitForFunction(() => document.getElementById('transcript').contentEditable === 'true');
 await p.click('#transcript');
@@ -568,7 +568,7 @@ await p2.addInitScript(() => {
   window.SpeechRecognition = window.webkitSpeechRecognition = Fake;      // ο Chromium έχει και τα δύο ονόματα
 });
 await p2.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
-await p2.goto('http://localhost:8080/');
+await p2.goto('http://127.0.0.1:8087/');
 await p2.click('#mic');
 await p2.waitForFunction(() => /πρίζ/i.test(document.getElementById('chips').textContent));
 ok('#K ακούει: το κείμενο έχει γίνει επεξεργάσιμο ΜΟΝΟ μετά το άγγιγμα', await p2.getAttribute('#transcript', 'contenteditable') === 'false');
@@ -586,7 +586,7 @@ const p3 = await ctx.newPage();
 const errs3 = [];
 p3.on('pageerror', e => errs3.push(e.message));
 await p3.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
-await p3.goto('http://localhost:8080/');
+await p3.goto('http://127.0.0.1:8087/');
 await p3.evaluate(() => { localStorage.setItem('ergolav.profile', '{χαλασμένο'); localStorage.setItem('ergolav.quoteNo', 'abc'); });
 await p3.reload();
 ok('#P χαλασμένο localStorage: καμία εξαίρεση, ανοίγει η φόρμα', errs3.length === 0 && await p3.isVisible('#s-profile.on'), errs3.join(' | '));
