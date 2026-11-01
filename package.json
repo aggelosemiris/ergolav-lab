@@ -1,0 +1,14 @@
+{
+  "name": "ergolav",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test test/*.test.js",
+    "test:stress": "node tests/stress/run.mjs",
+    "test:stress:scale": "node tests/stress/scale80k.mjs",
+    "test:stress:live": "node tests/stress/run-live.mjs",
+    "test:stress:live:dry": "node tests/stress/run-live.mjs --dry",
+    "test:release": "node tests/stress/release.mjs --n 10000"
+  }
+}

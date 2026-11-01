@@ -1,0 +1,41 @@
+# Δημοσίευση της εφαρμογής στο GitHub Pages (https://aggelosemiris.github.io/ergolav/).
+# Μία φορά: Settings → Pages → Build and deployment → Source: «GitHub Actions».
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [claude/microphone-real-time-l79e2p, main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit tests
+        run: npm test
+      - name: Μόνο τα αρχεία της εφαρμογής (όχι tests/fixtures)
+        run: mkdir _site && cp -r index.html src vendor media .nojekyll _headers _site/
+      - name: Αριθμός έκδοσης στα αρχεία (οι browsers κρατούσαν παλιά αρχεία του κινητού)
+        run: |
+          V=${GITHUB_SHA::7}
+          sed -i -E "s#src/app\.js\"#src/app.js?v=$V\"#; s#id=\"build\">dev<#id=\"build\">$V<#" _site/index.html
+          sed -i -E "s#(from '\./[a-z]+\.js)'#\1?v=$V'#" _site/src/*.js
+          grep -n "v=$V" _site/index.html _site/src/*.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

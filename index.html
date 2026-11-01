@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Κώδικας μόνο από τον ίδιο server· δίκτυο μόνο προς Google Gemini / Anthropic. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com https://api.anthropic.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>ergolav — προσφορά επί τόπου</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6E7E3; --paper:#FBFBF9; --ink:#1A1D21; --dim:#5E646B; --line:#D3D5CF;
+  --pen:#2140A8; --pen-soft:#E3E8F7; --warn:#A35A00; --warn-soft:#FBEBD2; --ok:#1E7A4C; --err:#B3261E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171A; --paper:#1F2226; --ink:#EDEEEA; --dim:#A2A8AE; --line:#34383D;
+    --pen:#8FA6F2; --pen-soft:#243056; --warn:#F0B35C; --warn-soft:#3A2C16; --ok:#6CCB97; --err:#FF8A80;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171A; --paper:#1F2226; --ink:#EDEEEA; --dim:#A2A8AE; --line:#34383D;
+  --pen:#8FA6F2; --pen-soft:#243056; --warn:#F0B35C; --warn-soft:#3A2C16; --ok:#6CCB97; --err:#FF8A80;
+}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html,body{height:100%}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:Commissioner,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+#app{max-width:440px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;position:relative}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+button:focus-visible,input:focus-visible{outline:3px solid var(--pen);outline-offset:2px;border-radius:10px}
+.num{font-variant-numeric:tabular-nums}
+
+header{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;gap:10px;align-items:center;background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:44px}
+.logo{width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:.5px}
+.brand b{font-size:16px;font-weight:700;display:block;line-height:1.2}
+.brand span{font-size:13px;color:var(--dim)}
+.step{font-size:13px;color:var(--dim)}
+
+main{flex:1;padding:6px 20px 24px}
+.screen{display:none}
+.screen.on{display:block;animation:in .28s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen.on{animation:none}}
+
+h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:10px 0 6px}
+.lede{color:var(--dim);font-size:16px;max-width:34ch}
+
+.field{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.field label{font-size:13px;color:var(--dim);display:block}
+.field input{width:100%;border:none;background:none;font:inherit;color:var(--ink);font-size:18px;font-weight:600;padding-top:2px}
+.field input:focus{outline:none}
+
+.mic-wrap{display:flex;flex-direction:column;align-items:center;margin:42px 0 18px;gap:14px}
+.mic{width:132px;height:132px;border-radius:50%;background:var(--pen);color:#fff;display:grid;place-items:center;
+  box-shadow:0 0 0 10px var(--pen-soft);transition:transform .15s}
+.mic:active{transform:scale(.96)}
+.mic-note{font-size:13px;color:var(--dim);text-align:center;max-width:30ch}
+.mic svg{width:46px;height:46px}
+.mic-hint{font-size:16px;font-weight:600}
+.alt{display:flex;justify-content:center}
+.ghost{padding:12px 18px;border-radius:12px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:15px;min-height:44px}
+
+.wave{display:flex;gap:5px;align-items:center;justify-content:center;height:60px;margin:28px 0 8px}
+.wave i{width:5px;border-radius:3px;background:var(--pen);height:12px;animation:w 1s ease-in-out infinite}
+@keyframes w{50%{height:52px}}
+@media (prefers-reduced-motion:reduce){.wave i{animation:none;height:26px}}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:160px;
+  font-size:19px;line-height:1.55;font-weight:500}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--pen);vertical-align:-3px;margin-left:1px;animation:b 1s steps(1) infinite}
+@keyframes b{50%{opacity:0}}
+.listening{text-align:center;color:var(--dim);font-size:15px}
+.wave.live i{animation:none;transition:height .08s linear}
+.wave[hidden]{display:none}
+.interim{color:var(--dim)}
+.transcript[contenteditable="true"]{outline:none;border-color:var(--pen);box-shadow:0 0 0 3px var(--pen-soft);min-height:200px;margin-top:18px}
+.transcript:empty::before{content:attr(data-placeholder);color:var(--dim);font-weight:400}
+.notice{margin-top:14px;background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;min-height:34px}
+.chip{background:var(--pen-soft);color:var(--pen);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;animation:in .2s ease-out both}
+.chip.q{background:var(--warn-soft);color:var(--warn)}
+[hidden]{display:none!important}
+.linkbtn{font-size:14px;color:var(--pen);text-decoration:underline;min-height:44px;padding:0 8px}
+.row-alt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.shot{display:block;width:100%;max-height:260px;object-fit:contain;border-radius:14px;background:var(--paper);border:1px solid var(--line);margin:8px 0 12px}
+.shot.redact{touch-action:none;cursor:crosshair;max-height:none;height:auto}
+.privacy{font-size:13px;color:var(--dim);margin-top:4px}
+.vat{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--dim);margin-top:10px}
+.vat select{font:inherit;font-size:14px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);max-width:62%}
+.shot.reading{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.shot.redact{touch-action:none;cursor:crosshair;max-height:none;height:auto}
+.privacy{font-size:13px;color:var(--dim);margin-top:4px}
+.vat{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--dim);margin-top:10px}
+.vat select{font:inherit;font-size:14px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);max-width:62%}
+.shot.reading{animation:none}}
+.sheet p{color:var(--dim);font-size:14px;margin-bottom:12px}
+.sheet a{color:var(--pen)}
+.sheet .field{margin-top:0}
+.sheet{max-height:92vh;overflow-y:auto}
+.keyrow{display:flex;gap:8px;align-items:center}
+.keyrow input{flex:1;min-width:0}
+.keyrow .ghost{padding:8px 10px;min-height:36px;font-size:13px}
+.check{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:15px;font-weight:600}
+.check input{width:20px;height:20px}
+.sheet .small{font-size:13px;margin:6px 0 0}
+.sheet-btns{display:flex;gap:8px;margin-top:14px}
+.sheet-btns button{flex:1}
+
+.lines{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.ln{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;animation:in .25s ease-out both}
+.ln.flag{border-color:var(--warn);background:var(--warn-soft)}
+.ln-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.ln-name{font-weight:600;font-size:16px;line-height:1.3}
+.ln-sum{font-weight:700;font-size:16px;white-space:nowrap}
+.ln-meta{font-size:13px;color:var(--dim);margin-top:4px}
+.ln-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px}
+.qty{display:flex;align-items:center;gap:4px;background:var(--bg);border-radius:10px}
+.qty button{width:40px;height:40px;font-size:20px;font-weight:600;border-radius:10px}
+.qty span{min-width:48px;text-align:center;font-weight:700}
+.split{font-size:13px;color:var(--dim);text-align:right;line-height:1.35}
+.ask{margin-top:10px;font-size:14px;font-weight:600;color:var(--warn)}
+.opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.opt{text-align:left;padding:11px 12px;border-radius:10px;background:var(--paper);border:1px solid var(--line);
+  display:flex;justify-content:space-between;font-size:15px;min-height:44px;align-items:center}
+.prices{display:flex;gap:8px;margin-top:10px}
+.prices label{flex:1;font-size:13px;color:var(--dim);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+.prices input{display:block;width:100%;border:none;background:none;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding-top:2px}
+.prices input:focus{outline:none}
+.prices .for{font-weight:400;color:var(--dim)}
+.parsed{display:block;min-height:16px;margin-top:2px;font-size:12px;font-weight:600;color:var(--ok)}
+.parsed.err{color:var(--err)}
+.sug-act{display:flex;gap:8px;margin-top:10px}
+.sug-act button{flex:1;min-height:44px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--paper)}
+
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.tier{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:8px 10px;border-radius:10px;background:var(--paper);border:1px solid var(--line);font-size:13px;color:var(--dim);min-height:48px}
+.tier .num{font-size:15px;font-weight:700;color:var(--ink)}
+.tier small{font-weight:400;color:var(--dim);font-size:12px}
+.tier.on{border-color:var(--pen);box-shadow:0 0 0 2px var(--pen-soft);background:var(--pen-soft)}
+.custom{margin-top:6px}
+.types{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tp{padding:6px 10px;border-radius:10px;background:var(--paper);border:1px solid var(--line);font-size:14px;font-weight:600;min-height:40px}
+.tp.on{border-color:var(--pen);box-shadow:0 0 0 2px var(--pen-soft);background:var(--pen-soft)}
+.qty .qv{width:auto;min-width:64px;padding:0 6px;font-size:15px;font-weight:700;text-decoration:underline dotted;text-underline-offset:3px}
+.calc{margin-top:10px;font-size:14px;color:var(--ink)}
+.ln .hint{font-size:13px;color:var(--dim);margin-top:6px}
+.qty .rm{width:auto;padding:0 10px;font-size:14px;color:var(--warn)}
+.toast{display:flex;flex-wrap:wrap;overflow-wrap:anywhere;text-align:center;justify-content:center;align-items:center;gap:6px;font-size:14px;margin-bottom:8px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:4px 10px}
+.toast[hidden]{display:none}
+.labor .voice{color:var(--warn);font-weight:600}
+#pfSave{margin-top:22px}
+/* Μεγάλες λέξεις χωρίς κενά (ονόματα, περιγραφές, πελάτης) σπάνε — ποτέ οριζόντια κύλιση σε κινητό 320px */
+.ln-name,.ln-meta,.chip,.transcript,.brand b,.brand span,.pdf td,.pdf .who,.pdf h2,.pdf-head b{overflow-wrap:anywhere;min-width:0}
+.ln-top>.ln-name{flex:1}
+.ln-row{flex-wrap:wrap}
+.chip{max-width:100%}
+.ln-row .unit{font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.ln-row .unit select{font:inherit;font-size:14px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.field label small{font-size:12px}
+.hist{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.hist[hidden]{display:none}
+.hi{display:flex;justify-content:space-between;gap:10px;align-items:baseline;text-align:left;padding:10px 12px;border-radius:10px;border:1px dashed var(--line);background:var(--paper);font-size:13px;color:var(--dim);min-height:44px}
+.hi .num{font-size:15px;font-weight:700;color:var(--ink);white-space:nowrap}
+.hi b{color:var(--warn)}
+.labor{margin-top:14px}
+.labor .hint{font-size:13px;color:var(--dim);margin-top:6px}
+
+.totals{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.t{display:flex;justify-content:space-between;font-size:15px;color:var(--dim);padding:3px 0}
+.t.big{color:var(--ink);font-size:22px;font-weight:800;border-top:1px solid var(--line);margin-top:8px;padding-top:12px}
+
+.cta{position:sticky;bottom:0;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.primary{width:100%;min-height:54px;border-radius:14px;background:var(--pen);color:#fff;font-weight:700;font-size:17px}
+.primary:disabled{background:var(--line);color:var(--dim);cursor:not-allowed}
+.cta small{display:block;text-align:center;color:var(--warn);font-size:13px;margin-top:8px;font-weight:600}
+
+.pdf{background:#fff;color:#1A1D21;border-radius:6px;padding:22px 20px;box-shadow:0 1px 0 var(--line),0 10px 30px rgba(20,24,30,.12);font-size:13px;margin-top:10px}
+.pdf-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1A1D21;padding-bottom:12px}
+.pdf-head .logo{background:#1A1D21;color:#fff}
+.pdf h2{font-size:18px;font-weight:800;margin-top:14px}
+.pdf .who{color:#5E646B;margin-top:2px}
+.pdf table{width:100%;border-collapse:collapse;margin-top:14px}
+.pdf th{text-align:left;font-size:11px;color:#5E646B;font-weight:600;border-bottom:1px solid #D3D5CF;padding:6px 0}
+.pdf th.r,.pdf td.num{text-align:right;white-space:nowrap;padding-left:6px}
+.pdf table{font-size:12px}
+.pdf td .q{color:#5E646B;font-size:11px;margin-top:2px}
+.pdf td{padding:7px 0;border-bottom:1px solid #EEF0EC;vertical-align:top}
+.pdf .sum{margin-top:12px;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pdf .sum div{display:flex;gap:18px;justify-content:space-between;min-width:190px;color:#5E646B}
+.pdf .sum .g{color:#1A1D21;font-weight:800;font-size:16px;border-top:2px solid #1A1D21;padding-top:6px;margin-top:4px}
+.pdf .foot{margin-top:16px;color:#5E646B;font-size:11px;line-height:1.5}
+
+.sheet-veil{position:fixed;inset:0;background:rgba(10,12,15,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet-veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;width:100%;max-width:440px;transform:translate(-50%,105%);background:var(--paper);
+  border-radius:20px 20px 0 0;padding:18px 20px calc(24px + env(safe-area-inset-bottom,0px));transition:transform .26s cubic-bezier(.2,.8,.3,1)}
+.sheet.on{transform:translate(-50%,0)}
+.sheet h3{font-size:15px;font-weight:600;color:var(--dim);margin-bottom:14px}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;min-height:44px}
+.app i{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:800;color:#fff;font-size:15px}
+
+.done{text-align:center;padding-top:40px}
+.tick{width:84px;height:84px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;margin:0 auto 18px}
+.tick svg{width:40px;height:40px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:22px;text-align:left}
+.card b{display:block;font-size:16px}
+.card p{color:var(--dim);font-size:15px;margin-top:4px}
+.stat{display:flex;justify-content:space-between;margin-top:14px;font-size:15px}
+
+.disclaimer{text-align:center;color:var(--dim);font-size:12px;padding:10px 20px calc(10px + env(safe-area-inset-bottom,0px))}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <button class="brand" id="brand" type="button" aria-label="Τα στοιχεία σου">
+      <div class="logo" id="brandLogo"></div>
+      <div><b id="brandName">ergolav</b><span id="brandTrade"></span></div>
+    </button>
+    <div class="step" id="step">Νέα προσφορά</div>
+  </header>
+
+  <main>
+    <!-- 0 ΣΤΟΙΧΕΙΑ: την πρώτη φορά, και από την κεφαλίδα για αλλαγές -->
+    <section class="screen" id="s-profile">
+      <h1>Τα στοιχεία σου</h1>
+      <p class="lede">Μπαίνουν μία φορά και γράφονται σε κάθε προσφορά. Μένουν μόνο σε αυτή τη συσκευή.</p>
+      <div class="field"><label for="pfName">Όνομα επιχείρησης ή ονοματεπώνυμο</label>
+        <input id="pfName" autocomplete="organization" maxlength="80" required></div>
+      <div class="field"><label for="pfTrade">Ειδικότητα <small>(προαιρετικό)</small></label>
+        <input id="pfTrade" autocomplete="off" maxlength="80" placeholder="π.χ. Υδραυλικός"></div>
+      <div class="field"><label for="pfPhone">Τηλέφωνο <small>(προαιρετικό)</small></label>
+        <input id="pfPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30"></div>
+      <div class="notice" id="pfError" role="alert" hidden></div>
+      <button class="primary" id="pfSave" type="button">Αποθήκευση</button>
+    </section>
+
+    <!-- 1 START -->
+    <section class="screen on" id="s-start">
+      <h1>Πες τι χρειάζεται η δουλειά</h1>
+      <p class="lede">Όπως θα το έλεγες στον βοηθό σου. Τα υπόλοιπα τα βγάζω εγώ.</p>
+      <div class="field">
+        <label for="client">Πελάτης</label>
+        <input id="client" value="" placeholder="Όνομα πελάτη, περιοχή" autocomplete="off">
+      </div>
+      <div class="mic-wrap">
+        <button class="mic" id="mic" aria-label="Ξεκίνα να μιλάς">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>
+        </button>
+        <div class="mic-hint">Πάτα και μίλα</div>
+        <div class="mic-note" id="micNote">π.χ. «δώδεκα μέτρα σωλήνα, μια λεκάνη κρεμαστή και δέκα τετραγωνικά πλακάκι λευκό»</div>
+      </div>
+      <div class="alt"><button class="ghost" id="photo">📷 Ή φωτογράφισε τις σημειώσεις σου</button></div>
+      <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
+      <div class="alt" style="margin-top:10px"><button class="linkbtn" id="keySettings" hidden>🔑 Κλειδί ανάγνωσης: αλλαγή ή διαγραφή</button></div>
+    </section>
+
+    <!-- 2 LISTEN -->
+    <section class="screen" id="s-listen">
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <img class="shot" id="shot" alt="Η φωτογραφία των σημειώσεων" hidden>
+      <p class="listening" id="listenLabel">Ακούω…</p>
+      <div class="notice" id="notice" role="alert" hidden></div>
+      <div class="transcript" id="transcript" aria-live="polite" spellcheck="false"
+           data-placeholder="Γράψε ή πες τι χρειάζεται η δουλειά…"></div>
+      <div class="chips" id="chips" aria-live="polite"></div>
+      <div class="row-alt" id="listenAlt" hidden>
+        <button class="ghost" id="resume">🎙 Συνέχισε να μιλάς</button>
+        <button class="ghost" id="sample" hidden>Βάλε παράδειγμα</button>
+        <button class="ghost" id="changeKey" hidden>🔑 Άλλαξε key</button>
+      </div>
+    </section>
+
+    <!-- 2b ΠΡΙΝ ΣΤΑΛΕΙ Η ΦΩΤΟΓΡΑΦΙΑ -->
+    <section class="screen" id="s-redact">
+      <h1>Πριν σταλεί</h1>
+      <p class="lede">Σύρε το δάχτυλο πάνω σε ονόματα, τηλέφωνα ή διευθύνσεις για να τα καλύψεις. Στέλνεται μόνο ό,τι φαίνεται.</p>
+      <canvas id="redactCanvas" class="shot redact" aria-label="Φωτογραφία σημειώσεων — σύρε για να καλύψεις"></canvas>
+      <p class="privacy" id="privacyNote"></p>
+      <div class="row-alt">
+        <button class="ghost" id="redactUndo">Αναίρεση</button>
+        <button class="ghost" id="redactCancel">Άκυρο</button>
+      </div>
+    </section>
+
+    <!-- 3 LINES -->
+    <section class="screen" id="s-lines">
+      <h1>Έλεγξε και διόρθωσε</h1>
+      <p class="lede">Ενδεικτικές τιμές αγοράς (εκτίμηση, χωρίς ΦΠΑ) — όχι ακόμα από προμηθευτή. Έλεγξέ τες πριν τη στείλεις.</p>
+      <div class="notice" id="linesNotice" role="alert" hidden></div>
+      <div class="row-alt"><button class="ghost" id="editText">✏️ Διόρθωσε το κείμενο</button></div>
+      <p class="privacy" style="margin-top:6px">Αν γυρίσεις στο κείμενο, οι επιλογές τιμής αυτής της οθόνης ξαναρχίζουν.</p>
+      <div class="lines" id="lines"></div>
+      <div class="labor" id="laborBox"></div>
+      <div class="totals" id="totals"></div>
+    </section>
+
+    <!-- 4 PDF -->
+    <section class="screen" id="s-pdf">
+      <h1>Έτοιμη για τον πελάτη</h1>
+      <p class="lede">Έτσι θα τη δει ο πελάτης στο κινητό του.</p>
+      <div class="pdf" id="pdf"></div>
+    </section>
+
+    <!-- 5 DONE -->
+    <section class="screen" id="s-done">
+      <div class="done">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h1 id="doneTitle">Στάλθηκε</h1>
+        <p class="lede" style="margin:0 auto" id="sentTo"></p>
+      </div>
+      <div class="alt" style="margin-top:18px"><button class="ghost" id="resend">Στείλε το PDF ξανά</button></div>
+      <div class="card">
+        <b>Σύντομα: υπενθύμιση σε 8 μέρες</b>
+        <p>Θα σου λέμε αν ο πελάτης δεν έχει απαντήσει. Δεν λειτουργεί ακόμα.</p>
+      </div>
+      <div class="card">
+        <div class="stat"><span>Χρόνος προσφοράς</span><b class="num" id="elapsed"></b></div>
+        <div class="stat"><span>Γραμμές που έλεγξες</span><b class="num" id="checked"></b></div>
+      </div>
+      <div class="alt" style="margin-top:22px"><button class="ghost" id="again">Νέα προσφορά</button></div>
+    </section>
+  </main>
+
+  <div class="cta" id="cta" hidden>
+    <button class="primary" id="ctaBtn"></button>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <small id="ctaNote" hidden></small>
+  </div>
+
+  <p class="disclaimer">Ενδεικτικές τιμές. Έλεγξέ τες πριν στείλεις. Η φωνή μετατρέπεται σε κείμενο από την υπηρεσία του browser σου. <span style="white-space:nowrap">Έκδοση: <span id="build">dev</span></span></p>
+</div>
+
+<div class="sheet-veil" id="veil"></div>
+<div class="sheet" id="sheet" role="dialog" aria-label="Αποστολή">
+  <h3>Αποστολή PDF στον πελάτη</h3>
+  <p>Αυτός ο browser δεν στέλνει αρχεία απευθείας. Κατέβασε το PDF και επισύναψέ το στο μήνυμα.</p>
+  <div class="apps">
+    <button class="app" data-send="download"><i style="background:#1A1D21">⬇</i>Κατέβασμα PDF</button>
+    <button class="app" data-send="whatsapp"><i style="background:#25A35A">W</i>WhatsApp</button>
+    <button class="app" data-send="viber"><i style="background:#7360F2">V</i>Viber</button>
+    <button class="app" data-send="email"><i style="background:#4A5A70">@</i>Email</button>
+  </div>
+</div>
+
+<div class="sheet" id="keySheet" role="dialog" aria-label="Κλειδί ανάγνωσης">
+  <h3>Κλειδί για ανάγνωση φωτογραφιών</h3>
+  <div class="notice" id="keyError" role="alert" hidden style="margin:0 0 12px"></div>
+  <p><b>Google Gemini</b> — από το <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.
+    Έχει δωρεάν επίπεδο με όρια. Στο <b>δωρεάν</b> επίπεδο η Google μπορεί να χρησιμοποιεί τις φωτογραφίες για να
+    βελτιώνει τις υπηρεσίες της και να τις διαβάζουν άνθρωποι· στο πληρωμένο όχι.</p>
+  <p><b>Anthropic Claude</b> — από το <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>.
+    <b>Όχι δωρεάν:</b> χρέωση ανά χρήση με προπληρωμένα credits. Δεν χρησιμοποιεί τα δεδομένα για εκπαίδευση μοντέλων.</p>
+  <div class="field"><label for="keyInput">API key</label>
+    <div class="keyrow">
+      <input id="keyInput" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+             placeholder="AIza… ή sk-ant-…">
+      <button class="ghost" id="keyShow" type="button" aria-pressed="false">Εμφάνιση</button>
+    </div></div>
+  <label class="check"><input type="checkbox" id="keyRemember"> Να το θυμάται αυτή η συσκευή</label>
+  <p class="small" id="rememberNote"></p>
+  <div class="sheet-btns">
+    <button class="ghost" id="keyForget" hidden>Ξέχασε το key</button>
+    <button class="ghost" id="keyCancel">Άκυρο</button>
+    <button class="primary" id="keySave">Αποθήκευση</button>
+  </div>
+</div>
+
+<script type="module"src="src/app.js"></script>
+</body>
+</html>
