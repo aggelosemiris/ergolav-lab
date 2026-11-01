@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {materialSnapshot,validateDecisions,validateGuides,analyzeMaterials} from '../src/installation.js';
+import {normalizeGeminiKey,materialSnapshot,validateDecisions,validateGuides,analyzeMaterials} from '../src/installation.js';
 const items=materialSnapshot([{name:'Θερμοσίφωνας 80 λ.',qty:1,unit:'τεμ.',price:100,customer:'PRIVATE'},{desc:'Ταινία',qty:2,unit:'τεμ.'}]);
 const decisions={decisions:[{id:'item-1',selected:true,reason:'Σύνθετη εργασία'},{id:'item-2',selected:false,reason:'Αναλώσιμο'}]};
 const guide={id:'item-1',scope:'Εγκατάσταση από αρμόδιο τεχνικό',prerequisites:['Έλεγχος μοντέλου'],tools:['Κατάλληλα εργαλεία εγκατάστασης'],steps:['Έλεγχος θέσης και οδηγιών κατασκευαστή'],checks:['Έλεγχος παράδοσης'],missing:['Μοντέλο συσκευής'],specialist:'Αρμόδιος εγκαταστάτης και ηλεκτρολόγος'};
@@ -11,3 +11,7 @@ test('invalid API key sends no request',async()=>{await assert.rejects(analyzeMa
 test('blocked/truncated output never becomes a report',async()=>{await assert.rejects(analyzeMaterials(items,{apiKey:'AIza'+'x'.repeat(35),fetchImpl:async()=>({ok:true,json:async()=>({candidates:[{finishReason:'MAX_TOKENS'}]})})}),/ολοκληρωθεί/)});
 test('all skipped has full rationale and no second request',async()=>{let n=0;const out=await analyzeMaterials(items,{apiKey:'AIza'+'x'.repeat(35),fetchImpl:async()=>{n++;return response({decisions:decisions.decisions.map(x=>({...x,selected:false}))})}});assert.equal(n,1);assert.equal(out.guides.length,0)});
 test('cancelled request does not start networking',async()=>{const controller=new AbortController();controller.abort();await assert.rejects(analyzeMaterials(items,{apiKey:'AIza'+'x'.repeat(35),signal:controller.signal,fetchImpl:()=>assert.fail()}),{name:'AbortError'})});
+
+test('paste normalization: invisible characters, line wraps, quotes and named assignments',()=>{const key='AIza'+'x'.repeat(35);for(const pasted of ['  '+key+'  ','"'+key+'"','«'+key+'»',key.slice(0,12)+'\u200b\n'+key.slice(12),'GEMINI_API_KEY="'+key+'"','export GOOGLE_API_KEY="'+key+'"',"$env:GEMINI_API_KEY='"+key+"'"])assert.equal(normalizeGeminiKey(pasted),key)});
+test('opaque keys are validated by Google, not a hard-coded prefix',async()=>{let used='';await analyzeMaterials(items,{apiKey:'new_format_key_12345678901234567890',fetchImpl:async(url,init)=>{used=init.headers['x-goog-api-key'];return response({decisions:decisions.decisions.map(x=>({...x,selected:false}))})}});assert.equal(used,'new_format_key_12345678901234567890')});
+test('masked/truncated keys and pasted commands are rejected without exposing values',()=>{assert.throws(()=>normalizeGeminiKey('AIza123...xyz'),/κομμένο/);assert.throws(()=>normalizeGeminiKey('curl https://example.test -H key'),/επιπλέον κείμενο/)});

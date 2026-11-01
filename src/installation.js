@@ -32,8 +32,18 @@ async function ask(key,prompt,schema,signal,fetchImpl){
  }catch(e){if(e.name==='AbortError'){if(signal?.aborted)throw e;throw new Error('Η ανάλυση άργησε πολύ. Δοκίμασε ξανά.')}throw e}
  finally{clearTimeout(timeout);signal?.removeEventListener('abort',abort)}
 }
+// Clipboard formatting is not part of the credential. Google validates the actual key.
+export function normalizeGeminiKey(value){
+ let key=String(value??'').trim().replace(/[\u200B-\u200D\u2060\uFEFF]/g,'');
+ key=key.replace(/^(?:(?:export|set)\s+|\$env:)?(?:GEMINI_API_KEY|GOOGLE_API_KEY|API_KEY|API[ _]key)\s*[:=]\s*/i,'');
+ key=key.replace(/^[\s"'`«»“”‘’]+|[\s"'`«»“”‘’]+$/g,'').replace(/\s/g,'');
+ if(!key)throw new Error('Συμπλήρωσε έγκυρο Gemini API key.');
+ if(key.includes('…')||key.includes('...')||key.includes('*')||key.includes('•'))throw new Error('Το key φαίνεται κρυμμένο ή κομμένο. Αντέγραψε ολόκληρη την τιμή από το Google AI Studio.');
+ if(!/^[A-Za-z0-9._~-]{8,512}$/.test(key))throw new Error('Η επικόλληση περιέχει επιπλέον κείμενο. Βάλε μόνο την πλήρη τιμή του API key.');
+ return key;
+}
 export async function analyzeMaterials(items,{apiKey,signal,onProgress=()=>{},fetchImpl=fetch}={}){
- const key=String(apiKey||'').trim();if(!/^AIza[\w-]{30,}$/.test(key))throw new Error('Συμπλήρωσε έγκυρο Gemini API key.');
+ const key=normalizeGeminiKey(apiKey);
  let decisions=[];
  for(let i=0;i<items.length;i+=20){const batch=items.slice(i,i+20);onProgress('Αξιολόγηση υλικών…');const d=await ask(key,'Κρίνε κάθε γραμμή της προσφοράς: χρειάζεται ουσιαστική ανάλυση εργασίας τοποθέτησης; Επίλεξε εξοπλισμό, σύνθετα εξαρτήματα ή υλικά των οποίων η σωστή τοποθέτηση έχει σημαντικά στάδια ή ελέγχους. Απλά αναλώσιμα μπορούν να εξαιρεθούν με αιτιολογία ή να περιγραφούν στο πλαίσιο κύριου υλικού. Μην αποκλείεις κρίσιμες εργασίες επειδή έχουν κίνδυνο: εξήγησε τον αρμόδιο επαγγελματία. Επίστρεψε μία απόφαση ανά id, χωρίς νέα υλικά.\nΥΛΙΚΑ:\n'+JSON.stringify(batch),decisionSchema,signal,fetchImpl);decisions.push(...validateDecisions(d,batch))}
  const selected=items.filter(x=>decisions.find(d=>d.id===x.id).selected),guides=[];
