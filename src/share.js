@@ -26,23 +26,16 @@ export async function makePdf(el, filename){
   return new File([blob], filename, {type: 'application/pdf'});
 }
 
-export const canShareFile = file => !!navigator.canShare?.({files: [file]});
+export const canShareFiles = files => Array.isArray(files)&&files.length>0&&files.every(Boolean)&&!!navigator.canShare?.({files});
+export const canShareFile = file => canShareFiles([file]);
 
-/**
- * Ανοίγει το μενού κοινοποίησης του κινητού με το PDF.
- * Πρέπει να καλείται αμέσως μετά από πάτημα κουμπιού (αλλιώς ο browser το μπλοκάρει).
- * @returns 'shared' | 'cancelled' | 'unsupported'
- */
-export async function shareFile(file, {title, text}){
-  if(!canShareFile(file)) return 'unsupported';
-  try {
-    await navigator.share({files: [file], title, text});
-    return 'shared';
-  } catch (e) {
-    if(e.name === 'AbortError') return 'cancelled';
-    return 'unsupported'; // π.χ. NotAllowedError — πάμε στις εναλλακτικές
-  }
+/** Share already-prepared files immediately within the click gesture. */
+export async function shareFiles(files,{title,text}){
+ if(!canShareFiles(files))return 'unsupported';
+ try{await navigator.share({files,title,text});return 'shared'}
+ catch(e){return e.name==='AbortError'?'cancelled':'unsupported'}
 }
+export const shareFile = (file,meta) => shareFiles([file],meta);
 
 export function download(file){
   const a = document.createElement('a');

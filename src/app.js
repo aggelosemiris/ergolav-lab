@@ -6,7 +6,7 @@ if(window.top !== window.self){
 import { parse, calcParts, lineFor } from './parse.js';
 import { createMic, micSupported } from './mic.js';
 import { readNotes, shrink, getKey, setKey, forgetKey, canRememberKey, isKeyRemembered, keyProvider } from './photo.js';
-import { makePdf, shareFile, download } from './share.js';
+import { makePdf, shareFiles, download } from './share.js';
 import { mountInstallation } from './installation-ui.js';
 let installationPanel=null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
@@ -717,6 +717,7 @@ function renderTotals(){
 
 // ─── 4 : PDF ─────────────────────────────────────────────────
 function buildPdf(){
+  companionFile=null;shareSelection=[];
   installationPanel?.reset();
   // Χωρίς στοιχεία επιχείρησης δεν βγαίνει PDF: πρώτα η φόρμα, μετά το PDF.
   if(!PROFILE) return openProfile(buildPdf);
@@ -752,7 +753,7 @@ function buildPdf(){
 // ─── 5 : αποστολή ────────────────────────────────────────────
 // Το PDF φτιάχνεται μόλις ανοίξει η προεπισκόπηση, ώστε το «Στείλε» να ανοίγει αμέσως το μενού
 // κοινοποίησης (οι browsers το επιτρέπουν μόνο αμέσως μετά από πάτημα).
-let pdfFile = null;
+let pdfFile = null,companionFile=null,shareSelection=[];
 // Όνομα αρχείου με λατινικούς: κάποιοι browsers απορρίπτουν ελληνικά ονόματα στο κατέβασμα.
 const GR = {α:'a',β:'v',γ:'g',δ:'d',ε:'e',ζ:'z',η:'i',θ:'th',ι:'i',κ:'k',λ:'l',μ:'m',ν:'n',ξ:'x',ο:'o',π:'p',
   ρ:'r',σ:'s',ς:'s',τ:'t',υ:'y',φ:'f',χ:'ch',ψ:'ps',ω:'o'};
@@ -769,32 +770,40 @@ async function preparePdf(){
   const name = `Prosfora-${quoteNo}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf';
   try {
     pdfFile = await makePdf($('pdf'), name);
-    cta('Στείλε στον πελάτη', sendPdf);
+    cta(companionFile?'Στείλε και τα δύο PDF':'Στείλε στον πελάτη', sendPdf);
   } catch (e) {
     cta('Δοκίμασε ξανά', preparePdf, false, e.message || 'Δεν έγινε το PDF.');
   }
 }
 
 async function sendPdf(){
-  const res = await shareFile(pdfFile, {title: `Προσφορά ${quoteNo} — ${clientName()}`, text: shareText()});
-  if(res === 'shared') done('Στάλθηκε', `Η προσφορά έφυγε για ${clientName()}.`);
-  else if(res === 'unsupported') openSheet();
-  // 'cancelled': ο χρήστης έκλεισε το μενού — μένουμε στην προεπισκόπηση
+  if(!pdfFile)return;
+  shareSelection=companionFile?[pdfFile,companionFile]:[pdfFile];
+  const extra=shareSelection.length===2;
+  const res=await shareFiles(shareSelection,{title:`Προσφορά ${quoteNo} — ${clientName()}`,text:shareText()+(extra?' Μαζί επισυνάπτεται η αναλυτική περιγραφή εργασιών.':'')});
+  if(res==='shared')done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);
+  else if(res==='unsupported')openSheet();
 }
 
-function openSheet(){ $('veil').classList.add('on'); $('sheet').classList.add('on'); }
+function openSheet(){
+ const extra=shareSelection.length===2;
+ $('shareSheetTitle').textContent=extra?'Αποστολή δύο PDF στον πελάτη':'Αποστολή PDF στον πελάτη';
+ $('shareSheetNote').textContent=extra?'Αυτός ο browser δεν στέλνει και τα δύο αρχεία απευθείας. Κατέβασέ τα και επισύναψε και τα δύο στο ίδιο μήνυμα.':'Αυτός ο browser δεν στέλνει αρχεία απευθείας. Κατέβασε το PDF και επισύναψέ το στο μήνυμα.';
+ $('shareDownloadLabel').textContent=extra?'Κατέβασμα και των δύο PDF':'Κατέβασμα PDF';
+ $('shareSeparateDownloads').hidden=!extra;
+ $('veil').classList.add('on');$('sheet').classList.add('on');
+}
 function closeSheet(){ $('veil').classList.remove('on'); $('sheet').classList.remove('on'); }
 $('veil').onclick = () => { closeSheet(); closeKey(); };
 document.querySelectorAll('[data-send]').forEach(b => b.onclick = () => {
   closeSheet();
-  const how = b.dataset.send, text = encodeURIComponent(shareText());
-  download(pdfFile);
+  const files=shareSelection.length?shareSelection:[pdfFile],extra=files.length===2;
+  const how = b.dataset.send, text = encodeURIComponent(shareText()+(extra?' Επισυνάπτω και την αναλυτική περιγραφή εργασιών.':''));
+  files.forEach(download);
   if(how === 'whatsapp') window.open(`https://wa.me/?text=${text}`, '_blank');
   if(how === 'viber') location.href = `viber://forward?text=${text}`;
   if(how === 'email') location.href = `mailto:?subject=${encodeURIComponent(pdfFile.name.replace(/\.pdf$/, ''))}&body=${text}`;
-  done('Το PDF κατέβηκε', how === 'download'
-    ? 'Βρίσκεται στις Λήψεις. Στείλε το στον πελάτη από όποια εφαρμογή θέλεις.'
-    : 'Επισύναψε το PDF από τις Λήψεις στο μήνυμα που άνοιξε.');
+  done(extra?'Τα δύο PDF ετοιμάστηκαν για λήψη':'Το PDF κατέβηκε',extra?'Επισύναψε την προσφορά και την ανάλυση στο ίδιο μήνυμα. Αν ο browser μπλοκάρει τη δεύτερη λήψη, πάτησε αποστολή ξανά και κατέβασέ τα ένα-ένα.':how==='download'?'Βρίσκεται στις Λήψεις. Στείλε το στον πελάτη από όποια εφαρμογή θέλεις.':'Επισύναψε το PDF από τις Λήψεις στο μήνυμα που άνοιξε.');
 });
 
 function done(title, text){
@@ -809,4 +818,6 @@ function done(title, text){
 $('resend').onclick = () => { if(pdfFile) sendPdf(); };
 $('again').onclick = ()=> location.reload();
 
-installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>({desc:l.desc,name:l.name,qty:l.qty,unit:l.unit}))}));
+$('downloadOfferOnly').onclick=()=>{if(pdfFile)download(pdfFile)};
+$('downloadAnalysisOnly').onclick=()=>{if(companionFile)download(companionFile)};
+installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>({desc:l.desc,name:l.name,qty:l.qty,unit:l.unit}))}),{onReady:file=>{companionFile=file;if(pdfFile)cta('Στείλε και τα δύο PDF',sendPdf)},onDiscard:()=>{companionFile=null;if(pdfFile)cta('Στείλε στον πελάτη',sendPdf)},onShare:sendPdf});
