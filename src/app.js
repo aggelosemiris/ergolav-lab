@@ -12,6 +12,7 @@ let installationPanel=null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
 import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo } from './profile.js';
+import { listQuotes, getQuote, saveQuote, deleteQuote } from './history.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -85,7 +86,7 @@ $('brand').onclick = () => {
   const step = $('step').textContent, c = {hidden: $('cta').hidden, label: $('ctaBtn').textContent, fn: $('ctaBtn').onclick,
     disabled: $('ctaBtn').disabled, note: $('ctaNote').hidden ? '' : $('ctaNote').textContent};
   openProfile(() => {
-    if(cur === 's-pdf') return buildPdf();
+    if(cur === 's-pdf') return SHOWN?.fromHistory ? openSaved(SHOWN.no) : buildPdf();
     show(cur, step);
     if(c.hidden) cta(null); else cta(c.label, c.fn, c.disabled, c.note);
   });
@@ -716,39 +717,104 @@ function renderTotals(){
 }
 
 // ─── 4 : PDF ─────────────────────────────────────────────────
+// Η προσφορά που φαίνεται στην προεπισκόπηση (και στέλνεται): στιγμιότυπο, ίδιο με αυτό που μπαίνει στο ιστορικό,
+// ώστε από το ιστορικό να ξαναβγαίνει ακριβώς το PDF που πήρε ο πελάτης.
+let SHOWN = null;
+function quoteData(){
+  return {no: quoteNo, at: Date.now(), title: TITLE, client: $('client').value.trim(), vatRate, sum: sums(),
+    rows: okLines().map(l => ({name: l.desc || l.name, qty: l.qty, unit: l.unit, mat: matOf(l)})),
+    profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone}};
+}
+function renderPdf(q){
+  const s = q.sum, p = q.profile;
+  const contact = p.phone ? `Τηλ. ${p.phone}` : '';
+  $('pdf').innerHTML = `
+    <div class="pdf-head">
+      <div style="display:flex;gap:10px;align-items:center"><div class="logo">${esc(initials(p.name))}</div>
+        <div><b>${esc(p.name)}</b>${p.trade ? `<div style="color:#5E646B;font-size:12px">${esc(p.trade)}</div>` : ''}${contact ? `<div style="color:#5E646B;font-size:12px">${esc(contact)}</div>` : ''}</div></div>
+      <div style="text-align:right;color:#5E646B;font-size:12px">Αρ. <span class="qno">${q.no}</span><br>${new Date(q.at).toLocaleDateString('el-GR')}</div>
+    </div>
+    <h2>Προσφορά: ${esc(q.title)}</h2>
+    <div class="who">Προς: ${q.client ? esc(q.client) : '—'}</div>
+    <table>
+      <tr><th>Περιγραφή</th><th class="r">Υλικό</th></tr>
+      ${q.rows.map(r=>`<tr><td>${esc(r.name)}<div class="q">${fmtQty(r.qty)} ${esc(r.unit)}</div></td><td class="num">${r.mat > 0 ? eur(r.mat) : 'στην εργασία'}</td></tr>`).join('')}
+    </table>
+    <div class="sum num">
+      <div><span>Υλικά</span><span>${eur(s.mat)}</span></div>
+      <div><span>Εργασία</span><span>${eur(s.lab)}</span></div>
+      <div><span>Καθαρή αξία</span><span>${eur(s.net)}</span></div>
+      <div><span>ΦΠΑ ${q.vatRate}%</span><span>${eur(s.vat)}</span></div>
+      <div class="g"><span>Σύνολο</span><span>${eur(s.total)}</span></div>
+    </div>
+    <p class="foot">Η προσφορά ισχύει για 15 ημέρες. Περιλαμβάνει υλικά και εργασία τοποθέτησης.</p>`;
+}
+// Νέα προσφορά → PDF, και μπαίνει (ή ενημερώνεται, ίδιος αριθμός) στο ιστορικό.
 function buildPdf(){
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
   // Χωρίς στοιχεία επιχείρησης δεν βγαίνει PDF: πρώτα η φόρμα, μετά το PDF.
   if(!PROFILE) return openProfile(buildPdf);
   if(quoteNo == null) quoteNo = takeQuoteNo();
+  SHOWN = quoteData();
+  SHOWN.unsaved = !saveQuote(SHOWN);
   show('s-pdf','Προεπισκόπηση');
-  const s = sums();
-  const client = $('client').value.trim();
-  const today = new Date().toLocaleDateString('el-GR');
-  const contact = PROFILE.phone ? `Τηλ. ${PROFILE.phone}` : '';
-  $('pdf').innerHTML = `
-    <div class="pdf-head">
-      <div style="display:flex;gap:10px;align-items:center"><div class="logo">${esc(initials(PROFILE.name))}</div>
-        <div><b>${esc(PROFILE.name)}</b>${PROFILE.trade ? `<div style="color:#5E646B;font-size:12px">${esc(PROFILE.trade)}</div>` : ''}${contact ? `<div style="color:#5E646B;font-size:12px">${esc(contact)}</div>` : ''}</div></div>
-      <div style="text-align:right;color:#5E646B;font-size:12px">Αρ. <span class="qno">${quoteNo}</span><br>${today}</div>
-    </div>
-    <h2>Προσφορά: ${esc(TITLE)}</h2>
-    <div class="who">Προς: ${client ? esc(client) : '—'}</div>
-    <table>
-      <tr><th>Περιγραφή</th><th class="r">Υλικό</th></tr>
-      ${okLines().map(l=>`<tr><td>${esc(l.desc || l.name)}<div class="q">${fmtQty(l.qty)} ${esc(l.unit)}</div></td><td class="num">${l.mat > 0 ? eur(matOf(l)) : 'στην εργασία'}</td></tr>`).join('')}
-    </table>
-    <div class="sum num">
-      <div><span>Υλικά</span><span>${eur(s.mat)}</span></div>
-      <div><span>Εργασία</span><span>${eur(s.lab)}</span></div>
-      <div><span>Καθαρή αξία</span><span>${eur(s.net)}</span></div>
-      <div><span>ΦΠΑ ${vatRate}%</span><span>${eur(s.vat)}</span></div>
-      <div class="g"><span>Σύνολο</span><span>${eur(s.total)}</span></div>
-    </div>
-    <p class="foot">Η προσφορά ισχύει για 15 ημέρες. Περιλαμβάνει υλικά και εργασία τοποθέτησης.</p>`;
+  pdfMode(false);
+  renderPdf(SHOWN);
   preparePdf();
 }
+// Προσφορά από το ιστορικό: ίδιο PDF (ίδιος αριθμός, ημερομηνία, στοιχεία), για να το ξαναδεί ή να το ξαναστείλει.
+// Η «Ανάλυση εργασιών με AI» αφορά την προσφορά που φτιάχνεται τώρα, γι' αυτό εδώ δεν εμφανίζεται.
+function openSaved(no){
+  const q = getQuote(no);
+  if(!q) return openHistory();
+  companionFile=null;shareSelection=[];
+  installationPanel?.reset();
+  SHOWN = {...q, fromHistory: true};
+  show('s-pdf', `Προσφορά ${q.no}`);
+  pdfMode(true);
+  renderPdf(SHOWN);
+  preparePdf();
+}
+function pdfMode(fromHistory){
+  $('histBack').hidden = !fromHistory;
+  $('pdfTitle').textContent = fromHistory ? `Προσφορά Αρ. ${SHOWN.no}` : 'Έτοιμη για τον πελάτη';
+  document.querySelector('#s-pdf .installation-entry').hidden = fromHistory;
+}
+
+// ─── Ιστορικό: οι προσφορές της συσκευής ─────────────────────
+const syncHistoryButton = () => {
+  const n = listQuotes().length;
+  $('historyOpen').hidden = !n;
+  $('historyOpen').textContent = `📋 Οι προσφορές μου (${n})`;
+};
+function openHistory(){
+  const list = listQuotes();
+  $('histEmpty').hidden = list.length > 0;
+  $('histList').replaceChildren(...list.map(q => {
+    const el = document.createElement('div');
+    el.className = 'q-item';
+    el.innerHTML = `
+      <button class="q-open" data-no="${q.no}"><span><b>${q.client ? esc(q.client) : 'Χωρίς όνομα πελάτη'}</b>
+        <small>Αρ. ${q.no} · ${new Date(q.at).toLocaleDateString('el-GR')} · ${esc(q.title)}</small></span><span class="num">${eur(q.sum.total)}</span></button>
+      <button class="q-del" data-a="del" aria-label="Σβήσε την προσφορά ${q.no}">Σβήσε</button>`;
+    el.querySelector('.q-open').onclick = () => openSaved(q.no);
+    // Σβήσιμο σε δύο πατήματα (χωρίς παράθυρο): το πρώτο ρωτάει «Σίγουρα;».
+    const del = el.querySelector('[data-a="del"]');
+    del.onclick = () => {
+      if(!del.classList.contains('sure')){ del.classList.add('sure'); del.textContent = 'Σίγουρα;'; return; }
+      deleteQuote(q.no); openHistory();
+    };
+    return el;
+  }));
+  show('s-history', 'Οι προσφορές μου');
+  cta(null);
+  syncHistoryButton();
+}
+$('historyOpen').onclick = openHistory;
+$('histBack').onclick = openHistory;
+$('histNew').onclick = () => location.reload();
+syncHistoryButton();
 
 // ─── 5 : αποστολή ────────────────────────────────────────────
 // Το PDF φτιάχνεται μόλις ανοίξει η προεπισκόπηση, ώστε το «Στείλε» να ανοίγει αμέσως το μενού
@@ -760,17 +826,20 @@ const GR = {α:'a',β:'v',γ:'g',δ:'d',ε:'e',ζ:'z',η:'i',θ:'th',ι:'i',κ:'
 const greeklish = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '')
   .replace(/ου/g, 'ou').replace(/Ου/g, 'Ou').replace(/ΟΥ/g, 'OU')
   .replace(/./g, c => { const l = c.toLowerCase(), t = GR[l]; return t ? (c === l ? t : t[0].toUpperCase() + t.slice(1)) : c; });
-const clientName = () => $('client').value.split(',')[0].trim() || 'Πελάτης';
+// Όνομα, κείμενο και αριθμός από την προσφορά που φαίνεται (νέα ή από το ιστορικό).
+const clientName = () => (SHOWN?.client || '').split(',')[0].trim() || 'Πελάτης';
 const shareText = () =>
-  `Καλησπέρα σας, σας στέλνω την προσφορά για ${TITLE}. Σύνολο ${eur(sums().total)} με ΦΠΑ.`;
+  `Καλησπέρα σας, σας στέλνω την προσφορά για ${SHOWN.title}. Σύνολο ${eur(SHOWN.sum.total)} με ΦΠΑ.`;
 
 async function preparePdf(){
   pdfFile = null;
   cta('Ετοιμάζω το PDF…', null, true);
-  const name = `Prosfora-${quoteNo}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf';
+  const name = `Prosfora-${SHOWN.no}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf';
   try {
     pdfFile = await makePdf($('pdf'), name);
-    cta(companionFile?'Στείλε και τα δύο PDF':'Στείλε στον πελάτη', sendPdf);
+    // Η συσκευή δεν κράτησε την προσφορά (π.χ. ιδιωτική περιήγηση): το λέμε, δεν το κρύβουμε.
+    cta(companionFile?'Στείλε και τα δύο PDF':SHOWN.fromHistory?'Στείλε ξανά στον πελάτη':'Στείλε στον πελάτη', sendPdf, false,
+      SHOWN.unsaved ? 'Δεν αποθηκεύτηκε στο ιστορικό αυτής της συσκευής.' : '');
   } catch (e) {
     cta('Δοκίμασε ξανά', preparePdf, false, e.message || 'Δεν έγινε το PDF.');
   }
@@ -780,7 +849,7 @@ async function sendPdf(){
   if(!pdfFile)return;
   shareSelection=companionFile?[pdfFile,companionFile]:[pdfFile];
   const extra=shareSelection.length===2;
-  const res=await shareFiles(shareSelection,{title:`Προσφορά ${quoteNo} — ${clientName()}`,text:shareText()+(extra?' Μαζί επισυνάπτεται η αναλυτική περιγραφή εργασιών.':'')});
+  const res=await shareFiles(shareSelection,{title:`Προσφορά ${SHOWN.no} — ${clientName()}`,text:shareText()+(extra?' Μαζί επισυνάπτεται η αναλυτική περιγραφή εργασιών.':'')});
   if(res==='shared')done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);
   else if(res==='unsupported')openSheet();
 }
