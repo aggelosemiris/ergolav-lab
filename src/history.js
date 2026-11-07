@@ -20,7 +20,7 @@ function clean(q){
   const p = q.profile || {};
   return {no: q.no, at: q.at, title: str(q.title), client: str(q.client), rows,
     sum: {mat: s.mat, lab: s.lab, net: s.net, vat: s.vat, total: s.total}, vatRate: q.vatRate,
-    profile: {name: str(p.name, 80), trade: str(p.trade, 80), phone: str(p.phone, 30)}};
+    profile: {name: str(p.name, 80), trade: str(p.trade, 80), phone: str(p.phone, 30), ...(/^[0-9a-f]{8}$/.test(p.logo) && {logo: p.logo})}};
 }
 
 /** Όλες οι προσφορές, η νεότερη πρώτη. */

@@ -81,3 +81,44 @@ test('χαλασμένο localStorage δεν ρίχνει τίποτα', () => {
   delete globalThis.localStorage;
   assert.equal(m.loadProfile(), null, 'χωρίς localStorage καθόλου');
 });
+
+// ── Λογότυπο: αποθηκεύεται μία φορά, τα στοιχεία κρατούν μόνο id ──
+const PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+const JPG = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ==';
+test('λογότυπο: αποθήκευση με id, ανάκτηση, ίδια εικόνα = ίδιο id', () => {
+  const data = env();
+  const r = m.saveProfile({name: 'Νίκος', logo: PNG});
+  assert.match(r.profile.logo, /^[0-9a-f]{8}$/);
+  assert.equal(m.getLogo(r.profile.logo), PNG);
+  assert.doesNotMatch(data[m.PROFILE], /base64/, 'η εικόνα δεν μπαίνει μέσα στα στοιχεία');
+  assert.equal(m.loadProfile().logo, r.profile.logo);
+  assert.equal(m.saveProfile({name: 'Νίκος', logo: PNG}).profile.logo, r.profile.logo);
+  assert.equal(m.saveProfile({name: 'Νίκος', logo: r.profile.logo}).profile.logo, r.profile.logo, 'ξανά αποθήκευση χωρίς αλλαγή εικόνας');
+  assert.equal(m.saveProfile({name: 'Νίκος', logo: ''}).profile.logo, undefined, 'αφαίρεση');
+});
+
+test('λογότυπο: άκυρο ή τεράστιο απορρίπτεται με μήνυμα', () => {
+  env();
+  assert.equal(m.saveProfile({name: 'Α', logo: 'data:image/svg+xml;base64,PHN2Zz4='}).field, 'logo');
+  assert.equal(m.saveProfile({name: 'Α', logo: 'data:image/png;base64,<script>'}).field, 'logo');
+  assert.equal(m.saveProfile({name: 'Α', logo: 'data:image/png;base64,' + 'A'.repeat(m.MAX_LOGO_CHARS)}).field, 'logo');
+  assert.equal(m.saveProfile({name: 'Α', logo: 'javascript:alert(1)'}).profile.logo, undefined, 'ό,τι δεν είναι εικόνα/id αγνοείται');
+});
+
+test('λογότυπα: έως MAX_LOGOS (τα πιο πρόσφατα)· id που λείπει → χωρίς λογότυπο', () => {
+  env();
+  const ids = Array.from({length: m.MAX_LOGOS + 2}, (_, i) => m.rememberLogo(JPG.replace('==', `${'A'.repeat(i + 1)}==`), 1000 + i));
+  assert.equal(m.getLogo(ids[0]), '', 'το παλαιότερο έφυγε');
+  assert.ok(m.getLogo(ids.at(-1)));
+  env({[m.PROFILE]: JSON.stringify({name: 'Νίκος', logo: 'deadbeef'})});
+  assert.equal(m.loadProfile().logo, undefined);
+  env({[m.LOGOS]: '{χαλασμένο'});
+  assert.equal(m.getLogo('deadbeef'), '');
+});
+
+test('λογότυπο σε συσκευή που δεν το χωράει: στοιχεία χωρίς λογότυπο, με ένδειξη', () => {
+  const data = {};
+  globalThis.localStorage = {getItem: k => data[k] ?? null, setItem: (k, v) => { if(k === m.LOGOS) throw new Error('QuotaExceededError'); data[k] = String(v); }, removeItem: k => { delete data[k]; }};
+  const r = m.saveProfile({name: 'Νίκος', logo: PNG});
+  assert.deepEqual([r.saved, r.logoLost, r.profile.logo], [true, true, undefined]);
+});

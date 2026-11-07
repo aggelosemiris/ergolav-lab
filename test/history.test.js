@@ -71,3 +71,11 @@ test('μπλοκαρισμένο / γεμάτο localStorage: τίποτα δε�
   delete globalThis.localStorage;
   assert.deepEqual(h.listQuotes(), []);
 });
+
+test('το id του λογοτύπου κρατιέται στην προσφορά· οτιδήποτε άλλο όχι', () => {
+  env();
+  h.saveQuote(quote(1, {profile: {name: 'Ν', trade: '', phone: '', logo: 'a1b2c3d4'}}));
+  h.saveQuote(quote(2, {profile: {name: 'Ν', trade: '', phone: '', logo: 'data:image/png;base64,AAAA'}}));
+  assert.equal(h.getQuote(1).profile.logo, 'a1b2c3d4');
+  assert.equal(h.getQuote(2).profile.logo, undefined, 'εικόνα μέσα στην προσφορά δεν αποθηκεύεται (θα γέμιζε τη μνήμη)');
+});
