@@ -11,7 +11,8 @@ import { mountInstallation } from './installation-ui.js';
 let installationPanel=null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
 import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
-import { loadProfile, saveProfile, initials, takeQuoteNo } from './profile.js';
+import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
+import { fitImage } from './image.js';
 import { listQuotes, getQuote, saveQuote, deleteQuote } from './history.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
@@ -50,8 +51,11 @@ function notice(msg){ $('notice').hidden = !msg; $('notice').textContent = msg |
 // ─── 0 : στοιχεία επιχείρησης — μία φορά, μετά από την κεφαλίδα ─────
 // Αριθμός προσφοράς: δίνεται στο πρώτο PDF αυτής της προσφοράς (νέο PDF της ίδιας προσφοράς κρατά τον ίδιο).
 let PROFILE = loadProfile(), quoteNo = null, profileBack = null;
+// Λογότυπο: id αποθηκευμένου ή (μόνο στη μνήμη, αν η συσκευή δεν το χώρεσε) data URL· αλλιώς τα αρχικά.
+const logoSrc = v => typeof v === 'string' && v.startsWith('data:image/') ? v : getLogo(v);
+const logoHtml = (name, logo) => { const src = logoSrc(logo); return src ? `<img src="${esc(src)}" alt="">` : esc(initials(name)); };
 function renderBrand(){
-  $('brandLogo').textContent = PROFILE ? initials(PROFILE.name) : '';
+  $('brandLogo').innerHTML = PROFILE ? logoHtml(PROFILE.name, PROFILE.logo) : '';
   $('brandLogo').hidden = !PROFILE;
   $('brandName').textContent = PROFILE?.name || 'ergolav';
   $('brandTrade').textContent = PROFILE?.trade || '';
@@ -61,23 +65,48 @@ function openProfile(back){
   profileBack = back;
   const p = PROFILE || {};
   $('pfName').value = p.name || ''; $('pfTrade').value = p.trade || ''; $('pfPhone').value = p.phone || '';
+  pfLogo = p.logo || ''; syncLogoPreview();
   $('pfError').hidden = true;
   show('s-profile', 'Τα στοιχεία σου');
   cta(null);
 }
+// Λογότυπο στη φόρμα: '' = κανένα, id = το αποθηκευμένο, data URL = νέα εικόνα (μικραίνει στο κινητό, χωρίς EXIF).
+let pfLogo = '';
+function syncLogoPreview(){
+  $('pfLogoPreview').innerHTML = logoHtml($('pfName').value || '?', pfLogo);
+  $('pfLogoRemove').hidden = !pfLogo;
+  $('pfLogoPick').textContent = pfLogo ? 'Άλλαξε εικόνα' : 'Διάλεξε εικόνα';
+}
+$('pfLogoPick').onclick = () => $('pfLogoInput').click();
+$('pfLogoInput').onchange = async e => {
+  const file = e.target.files[0];
+  e.target.value = '';
+  if(!file) return;
+  try {
+    pfLogo = (await fitImage(file, {max: 320, type: file.type === 'image/png' ? 'image/png' : 'image/jpeg', quality: 0.85})).url;
+    $('pfError').hidden = true;
+  } catch(err) { $('pfError').hidden = false; $('pfError').textContent = err.message; }
+  syncLogoPreview();
+};
+$('pfLogoRemove').onclick = () => { pfLogo = ''; syncLogoPreview(); };
+$('pfName').addEventListener('input', () => { if(!pfLogo) syncLogoPreview(); });
 $('pfSave').onclick = () => {
-  const r = saveProfile({name: $('pfName').value, trade: $('pfTrade').value, phone: $('pfPhone').value});
+  const r = saveProfile({name: $('pfName').value, trade: $('pfTrade').value, phone: $('pfPhone').value, logo: pfLogo});
   if(r.error){
     $('pfError').hidden = false; $('pfError').textContent = r.error;
-    $({name: 'pfName', phone: 'pfPhone'}[r.field]).focus();
+    $({name: 'pfName', phone: 'pfPhone', logo: 'pfLogoPick'}[r.field]).focus();
     return;
   }
-  PROFILE = r.profile; renderBrand();
+  PROFILE = r.profile;
+  // Η συσκευή δεν χώρεσε το λογότυπο: ισχύει τώρα (μόνο στη μνήμη) και το λέμε.
+  if(r.logoLost) PROFILE.logo = pfLogo;
+  renderBrand();
   const back = profileBack; profileBack = null;
   if(back) back();
   else { show('s-start', 'Νέα προσφορά'); cta(null); }
   // Η συσκευή δεν τα κράτησε (π.χ. ιδιωτική περιήγηση): ισχύουν τώρα, θα ζητηθούν ξανά — το λέμε, δεν το κρύβουμε.
   if(!r.saved) $('micNote').textContent = 'Τα στοιχεία σου δεν αποθηκεύτηκαν σε αυτή τη συσκευή — ισχύουν μόνο μέχρι να κλείσει η σελίδα.';
+  else if(r.logoLost) $('micNote').textContent = 'Το λογότυπο δεν χώρεσε στη μνήμη της συσκευής — ισχύει μόνο μέχρι να κλείσει η σελίδα.';
 };
 // Πάτημα στην κεφαλίδα → ίδια φόρμα· μετά επιστροφή εκεί που ήταν (το PDF ξαναφτιάχνεται με τα νέα στοιχεία).
 $('brand').onclick = () => {
@@ -723,14 +752,14 @@ let SHOWN = null;
 function quoteData(){
   return {no: quoteNo, at: Date.now(), title: TITLE, client: $('client').value.trim(), vatRate, sum: sums(),
     rows: okLines().map(l => ({name: l.desc || l.name, qty: l.qty, unit: l.unit, mat: matOf(l)})),
-    profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone}};
+    profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone, ...(PROFILE.logo && {logo: PROFILE.logo})}};
 }
 function renderPdf(q){
   const s = q.sum, p = q.profile;
   const contact = p.phone ? `Τηλ. ${p.phone}` : '';
   $('pdf').innerHTML = `
     <div class="pdf-head">
-      <div style="display:flex;gap:10px;align-items:center"><div class="logo">${esc(initials(p.name))}</div>
+      <div style="display:flex;gap:10px;align-items:center"><div class="logo">${logoHtml(p.name, p.logo)}</div>
         <div><b>${esc(p.name)}</b>${p.trade ? `<div style="color:#5E646B;font-size:12px">${esc(p.trade)}</div>` : ''}${contact ? `<div style="color:#5E646B;font-size:12px">${esc(contact)}</div>` : ''}</div></div>
       <div style="text-align:right;color:#5E646B;font-size:12px">Αρ. <span class="qno">${q.no}</span><br>${new Date(q.at).toLocaleDateString('el-GR')}</div>
     </div>
