@@ -211,6 +211,14 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .done{text-align:center;padding-top:40px}
 .tick{width:84px;height:84px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;margin:0 auto 18px}
 .tick svg{width:40px;height:40px}
+.quotes{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.q-item{display:flex;gap:8px;align-items:stretch}
+.q-open{flex:1;min-width:0;display:flex;justify-content:space-between;gap:10px;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--paper);min-height:56px}
+.q-open b{display:block;font-size:15px;overflow-wrap:anywhere}
+.q-open small{display:block;color:var(--dim);font-size:13px;margin-top:2px;overflow-wrap:anywhere}
+.q-open .num{font-weight:700;white-space:nowrap;align-self:center}
+.q-del{min-width:44px;padding:0 10px;border-radius:14px;border:1px solid var(--line);background:var(--paper);color:var(--dim);font-size:13px}
+.q-del.sure{color:var(--warn);border-color:var(--warn);font-weight:700}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:22px;text-align:left}
 .card b{display:block;font-size:16px}
 .card p{color:var(--dim);font-size:15px;margin-top:4px}
@@ -265,6 +273,16 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
       <div class="alt"><button class="ghost" id="photo">📷 Ή φωτογράφισε τις σημειώσεις σου</button></div>
       <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
       <div class="alt" style="margin-top:10px"><button class="linkbtn" id="keySettings" hidden>🔑 Κλειδί ανάγνωσης: αλλαγή ή διαγραφή</button></div>
+      <div class="alt" style="margin-top:14px"><button class="ghost" id="historyOpen" hidden>📋 Οι προσφορές μου</button></div>
+    </section>
+
+    <!-- ΙΣΤΟΡΙΚΟ: οι προσφορές που έγιναν PDF σε αυτή τη συσκευή -->
+    <section class="screen" id="s-history">
+      <h1>Οι προσφορές μου</h1>
+      <p class="lede">Όσες έφτιαξες σε αυτή τη συσκευή. Πάτα μία για να τη δεις ή να την ξαναστείλεις.</p>
+      <div class="quotes" id="histList"></div>
+      <p class="privacy" id="histEmpty" hidden>Δεν υπάρχει ακόμα καμία προσφορά. Μόλις φτιάξεις την πρώτη, θα εμφανιστεί εδώ.</p>
+      <div class="alt" style="margin-top:22px"><button class="ghost" id="histNew">Νέα προσφορά</button></div>
     </section>
 
     <!-- 2 LISTEN -->
@@ -309,7 +327,8 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 
     <!-- 4 PDF -->
     <section class="screen" id="s-pdf">
-      <h1>Έτοιμη για τον πελάτη</h1>
+      <button class="linkbtn" id="histBack" hidden>← Όλες οι προσφορές</button>
+      <h1 id="pdfTitle">Έτοιμη για τον πελάτη</h1>
       <p class="lede">Έτσι θα τη δει ο πελάτης στο κινητό του.</p>
       <div class="pdf" id="pdf"></div>
       <div class="card installation-entry"><b>Περισσότερες λεπτομέρειες για τις εργασίες;</b><p>Ο βοηθός AI εξετάζει τα υλικά και ετοιμάζει ξεχωριστό PDF με την ανάλυση τοποθέτησης.</p><button class="ghost" id="installOpen">Ανάλυση εργασιών με AI</button></div>
