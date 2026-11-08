@@ -1,0 +1,52 @@
+// Κάθε είδος του καταλόγου της εφαρμογής (src/catalog.js) → μία εργασία της ταξινομίας.
+// Ανά είδος: task, ή options (ετικέτα τύπου → task) όταν οι τύποι έχουν άλλη τοποθέτηση.
+// consumable: αναλώσιμο που χρησιμοποιείται μέσα στην εργασία (π.χ. κόλλα → επικόλληση πλακιδίων).
+// also: άλλες εργασίες όπου μπαίνει το ίδιο αναλώσιμο (κόλλα και σε πλακάκι τοίχου, σπιράλ σε μπαταρίες και είδη υγιεινής).
+// service: υπηρεσία χωρίς προϊόν (η ανάλυση περιγράφει τη δουλειά).
+// qualifiers: λέξη στην περιγραφή της γραμμής που αλλάζει την εργασία (πλακάκι «τοίχου»).
+// Η γραμμή της προσφοράς βρίσκει την εργασία της από εδώ (src/tasks.js)· η ταξινομία (tools/catalog) το ίδιο.
+export const CATALOG_TASKS = {
+  pipe:       {options: {'πολυστρωματικός Φ26': 'plumb-water-network', 'πολυστρωματικός Φ20': 'plumb-water-network', 'πολυστρωματικός Φ16': 'plumb-water-network',
+                         'PPR Φ25': 'plumb-water-network', 'PPR Φ20': 'plumb-water-network',
+                         'αποχέτευσης PVC Φ110': 'plumb-drain-network', 'αποχέτευσης PVC Φ50': 'plumb-drain-network'}},
+  valve:      {options: {'γωνιακός': 'plumb-angle-valve', 'σφαιρικός κεντρικός 3/4"': 'plumb-main-valve', 'φωτός χωνευτός': 'elec-socket'}},
+  mixer:      {options: {'νιπτήρα αναμεικτική': 'plumb-mixer-basin', 'κουζίνας αναμεικτική': 'plumb-mixer-kitchen',
+                         'ντουζιέρας θερμοστατική': 'plumb-mixer-shower', 'μπανιέρας με τηλέφωνο': 'plumb-mixer-shower'}},
+  tap:        {task: 'plumb-tap'},
+  wc:         {options: {'κρεμαστή': 'plumb-wc-wall-hung', 'δαπέδου': 'plumb-wc-floor'}},
+  tank:       {options: {'εντοιχισμού': 'plumb-wc-wall-hung', 'εξωτερικό': 'plumb-cistern-external'}},
+  basin:      {task: 'plumb-basin'},
+  vanity:     {task: 'plumb-vanity'},
+  showerset:  {task: 'plumb-shower-column'},
+  showerask:  {task: null, why: 'Δεν είναι υλικό: ερώτηση επιλογής («ντουζιέρα ή σετ ντους;»). Η γραμμή παίρνει την εργασία του είδους που θα διαλέξει ο τεχνίτης.'},
+  shower:     {task: 'plumb-shower-tray'},
+  cabin:      {task: 'plumb-shower-enclosure'},
+  bathtub:    {task: 'plumb-bathtub'},
+  sink:       {task: 'plumb-sink'},
+  heater:     {task: 'plumb-water-heater'},
+  siphon:     {task: 'plumb-siphon'},
+  hose:       {task: 'plumb-angle-valve', consumable: true, also: ['plumb-mixer-basin', 'plumb-mixer-kitchen', 'plumb-basin', 'plumb-vanity', 'plumb-sink',
+                                                            'plumb-wc-floor', 'plumb-cistern-external', 'plumb-water-heater']},
+  float:      {task: 'plumb-cistern-repair'},
+  flush:      {task: 'plumb-cistern-repair'},
+  ballvalve:  {task: 'plumb-main-valve'},
+  elbow:      {task: 'plumb-water-network', consumable: true, also: ['plumb-manifold']},
+  coupling:   {task: 'plumb-water-network', consumable: true, also: ['plumb-manifold']},
+  tee:        {task: 'plumb-water-network', consumable: true, also: ['plumb-manifold']},
+  manifold:   {task: 'plumb-manifold'},
+  pressure:   {task: 'plumb-pressure-test', service: true},
+  demolition: {task: 'gen-demolition', service: true},
+  debris:     {task: 'gen-demolition', service: true},
+  tile:       {task: 'tile-floor', qualifiers: {'τοίχου': 'tile-wall', 'τοιχου': 'tile-wall'}},
+  glue:       {task: 'tile-floor', consumable: true, also: ['tile-wall']},
+  grout:      {task: 'tile-floor', consumable: true, also: ['tile-wall']},
+  waterproof: {task: 'ins-wet-room'},
+  screed:     {task: 'floor-screed'},
+  plaster:    {task: 'plaster-wall'},
+  drywall:    {task: 'drywall-ceiling'},
+  paint:      {task: 'paint-interior-walls'},
+  door:       {task: 'carp-interior-door'},
+  cable:      {task: 'elec-wiring'},
+  socket:     {task: 'elec-socket'},
+  light:      {task: 'elec-downlight'},
+};

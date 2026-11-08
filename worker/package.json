@@ -1,0 +1,17 @@
+{
+  "name": "ergolav-rewrite-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "prompt": "node build-prompt.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.6.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.2"
+  }
+}

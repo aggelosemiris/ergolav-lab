@@ -1,0 +1,4171 @@
+{
+ "generated": "2026-11-07",
+ "totals": {
+  "products": 109076,
+  "by_rules": 92702,
+  "by_claude": 0,
+  "unclassified": 16374,
+  "irrelevant": 24315,
+  "material_types": 131,
+  "tasks": 93
+ },
+ "trades": {
+  "υδραυλικός": {
+   "Είδη υγιεινής": {
+    "wc-wall-hung": {
+     "name": "Λεκάνη κρεμαστή",
+     "needs_analysis": true,
+     "task": "plumb-wc-wall-hung",
+     "task_title": "Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού",
+     "products": 200,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη κρεμαστή rimless Moon Scarabeo (50.5 cm) sand με κάλυμμα slim soft close"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη κρεμαστή rimless Moon Scarabeo (50.5 cm) sand με κάλυμμα slim soft close"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη Κρεμαστή Ηλεκτρονική με Κάλυμμα I LIFE E Ideal Standard"
+      }
+     ]
+    },
+    "cistern-concealed": {
+     "name": "Καζανάκι / σύστημα εντοιχισμού",
+     "needs_analysis": true,
+     "task": "plumb-wc-wall-hung",
+     "task_title": "Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού",
+     "products": 465,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Καζανάκι Εντοιχισμού Prosys80 8cm-Γυψοσανίδας Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Καζανάκι Εντοιχισμού Prosys80 8cm-Γυψοσανίδας Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Καζανάκι Εντοιχισμού Prosys80 8cm-Τούβλου Ideal Standard"
+      }
+     ]
+    },
+    "wc-floor": {
+     "name": "Λεκάνη δαπέδου",
+     "needs_analysis": true,
+     "task": "plumb-wc-floor",
+     "task_title": "Τοποθέτηση λεκάνης δαπέδου",
+     "products": 251,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σετ μετατροπής Rondo (για λειτουργία σε Χαμηλής Πίεσης Λεκάνη)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη PACK ΑΜΕΑ ECO Χαμηλής Πίεσης"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-ANGELA 17-8834 RIMLESS- KAZANAKI KAI MHX/ΣMOΣ – netto"
+      }
+     ]
+    },
+    "cistern-external": {
+     "name": "Καζανάκι εξωτερικό",
+     "needs_analysis": true,
+     "task": "plumb-cistern-external",
+     "task_title": "Αντικατάσταση εξωτερικού καζανακιού",
+     "products": 140,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη Υψηλής Πίεσης Πισωστόμια GSI Classic με Καζανάκι & Ξύλινο Μασίφ Κάλυμμα"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη Υψηλής Πίεσης Πισωστόμια GSI Classic με Καζανάκι & Μαύρο Κάλυμμα Βακελίτη Soft Close"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λεκάνη Υψηλής Πίεσης Πισωστόμια GSI Classic με Καζανάκι & Ξύλινο Μασίφ Κάλυμμα"
+      }
+     ]
+    },
+    "wc-seat": {
+     "name": "Κάλυμμα λεκάνης",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 327,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Κάλυμμα Λεκάνης Dolce Vita Sandwich Soft Close Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κάλυμμα Λεκάνης Dolce Vita Sandwich Soft Close Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κάλυμμα Λεκάνης ΑΜΕΑ Mαια Sandwich Ideal Standard"
+      }
+     ]
+    },
+    "basin": {
+     "name": "Νιπτήρας",
+     "needs_analysis": true,
+     "task": "plumb-basin",
+     "task_title": "Τοποθέτηση νιπτήρα",
+     "products": 2382,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Νιπτήρας ελ. τοποθέτησης Glam Φ39 Sand Scarabeo"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Νιπτήρας ελ. τοποθέτησης Glam Φ39 Sand Scarabeo"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Νιπτήρας Ελ.Τοποθέτησης I Life B Χωρίς Οπή 38X38 Ideal Standard"
+      }
+     ]
+    },
+    "bathtub": {
+     "name": "Μπανιέρα",
+     "needs_analysis": true,
+     "task": "plumb-bathtub",
+     "task_title": "Τοποθέτηση μπανιέρας",
+     "products": 470,
+     "examples": [
+      {
+       "site": "homeville",
+       "name": "Πλατό μπανιέρας Seli pakoworld bamboo φυσικό 15x70x4,5εκ"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΠΡΟΦΙΛ ΜΠΑΝΙΕΡΑΣ PVC ΛΕΥΚΟ 2.5M"
+      },
+      {
+       "site": "mafou",
+       "name": "Στόμιο εκροής μπανιέρας Grohe Atrio GR-13487DC0 Supersteel"
+      }
+     ]
+    }
+   },
+   "Ανταλλακτικά υγιεινής": {
+    "cistern-mechanism": {
+     "name": "Μηχανισμός / φλοτέρ καζανακιού",
+     "needs_analysis": true,
+     "task": "plumb-cistern-repair",
+     "task_title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+     "products": 127,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Φλοτέρ Εντοιχισμού 3/8\" Type 383 (246.191.00.5) Geberit"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Φλοτέρ Εντοιχισμού 3/8\" Type 383 (246.191.00.5) Geberit"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μηχανισμός Αέρος Spek Νο2 Β.Τ. Χωρίς Φλοτέρ"
+      }
+     ]
+    },
+    "basin-waste": {
+     "name": "Βαλβίδα νιπτήρα / μπανιέρας",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 231,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Βαλβίδα Νιπτήρος Κλικ-Κλακ χωρίς υπερχείλιση Black Mat"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Βαλβίδα Νιπτήρος Κλικ-Κλακ Universal Black Mat"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Βαλβίδα Νιπτήρος Κλικ-Κλακ με Υπερχείλιση"
+      }
+     ]
+    },
+    "mixer-parts": {
+     "name": "Ανταλλακτικά μπαταρίας (ρουξούνι, κεφαλή, μανέτα)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 54,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σπιράλ Μαύρο για Μπαταρία Κουζίνας Remer K47 (ανταλλακτικό) Α-Θ 120cm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σπιράλ Μαύρο για Μπαταρία Κουζίνας Remer K47 (ανταλλακτικό) Α-Θ 120cm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ανταλακτικό Σπιράλ Τηλεφώνου Remer (K66FLNY) για μπαταρία κομμωτηρίου"
+      }
+     ]
+    }
+   },
+   "Έπιπλα μπάνιου": {
+    "vanity": {
+     "name": "Έπιπλο μπάνιου (με νιπτήρα)",
+     "needs_analysis": true,
+     "task": "plumb-vanity",
+     "task_title": "Τοποθέτηση επίπλου μπάνιου με νιπτήρα",
+     "products": 3284,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Έπιπλο Sado 80cm Λευκό (με Νιπτήρα)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Έπιπλο Sado 80cm Hera (με Νιπτήρα)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Έπιπλο Sado 60cm Λευκό (με Νιπτήρα)"
+      }
+     ]
+    }
+   },
+   "Μπαταρίες & ντους": {
+    "mixer-concealed": {
+     "name": "Μπαταρία εντοιχισμού",
+     "needs_analysis": true,
+     "task": "plumb-mixer-concealed",
+     "task_title": "Τοποθέτηση εντοιχιζόμενης μπαταρίας ντους",
+     "products": 538,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "V-TAC 6608 Αισθητήρας Κίνησης Μπαταρίας με Εμβέλεια 8m Χωνευτός Οροφής Max 400W σε Λευκό Χρώμα"
+      },
+      {
+       "site": "mafou",
+       "name": "Μπαταρία νιπτήρος εντοιχισμού Grohe Eurosmart GR-36376000 Χρωμέ"
+      },
+      {
+       "site": "mafou",
+       "name": "Μπαταρία νιπτήρος εντοιχισμού Grohe Eurosmart GR-36335SD0 Χρωμέ"
+      }
+     ]
+    },
+    "mixer-kitchen": {
+     "name": "Μπαταρία κουζίνας",
+     "needs_analysis": true,
+     "task": "plumb-mixer-kitchen",
+     "task_title": "Τοποθέτηση μπαταρίας κουζίνας",
+     "products": 1160,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Νεροχύτη Τοίχου ΑΜΕΑ Remer (Κ45)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Νεροχύτη Πάγκου ΑΜΕΑ Remer (Κ44)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Κουζίνας Σπιράλ/Κορμό Λευκό REMER (SR544B)"
+      }
+     ]
+    },
+    "mixer-basin": {
+     "name": "Μπαταρία νιπτήρα",
+     "needs_analysis": true,
+     "task": "plumb-mixer-basin",
+     "task_title": "Τοποθέτηση μπαταρίας νιπτήρα",
+     "products": 1455,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Νιπτήρος με Ψηλό Ρουξούνι Μαύρη New Fan"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Νιπτήρος με Ψηλό Ρουξούνι Χρωμέ New Fan"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Νιπτήρος Χρωμέ New Fan"
+      }
+     ]
+    },
+    "mixer-shower": {
+     "name": "Μπαταρία ντουζιέρας / μπανιέρας",
+     "needs_analysis": true,
+     "task": "plumb-mixer-shower",
+     "task_title": "Τοποθέτηση εξωτερικής μπαταρίας ντουζιέρας ή μπανιέρας",
+     "products": 699,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Λουτρού Χρωμέ New Fan"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Λουτρού Μαύρη New Fan"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Λουτρού ΑΜΕΑ Remer (K39LL)"
+      }
+     ]
+    },
+    "mixer-other": {
+     "name": "Μπαταρία (γενική)",
+     "needs_analysis": true,
+     "task": "plumb-mixer-basin",
+     "task_title": "Τοποθέτηση μπαταρίας νιπτήρα",
+     "products": 84,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία κομωτηρίου Remer (K66) σε ξεχωριστή οπή η Μπαταρία απο το Τηλέφωνο"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Εστιατορίου με Βρυσάκι Inox (304) NEW FAN"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπαταρία Εστιατορίου Inox (304) NEW FAN"
+      }
+     ]
+    },
+    "shower-column": {
+     "name": "Στήλη / σετ ντους",
+     "needs_analysis": true,
+     "task": "plumb-shower-column",
+     "task_title": "Τοποθέτηση στήλης ή σετ ντους",
+     "products": 695,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Στήλη Ντους Roma 3 Εξόδων (53252) Χρωμέ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Στήλη Ντους Roma 3 Εξόδων (53252) Χρωμέ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Στήλη Ντουζ Dolce Vita Χρωμέ Ideal Standard"
+      }
+     ]
+    },
+    "shower-handset": {
+     "name": "Τηλέφωνο / σπιράλ ντους",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 420,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Τηλέφωνο Ντουζ 2 Λειτουργιών Idealrain ALU+ Silk Black Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Τηλέφωνο Ντουζ Jacolino (Κροκόδειλος) Hansgrohe"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Τηλέφωνο Ντουζ Vernis Blend Vario (9,7l/m) Χρωμέ Hansgrohe"
+      }
+     ]
+    }
+   },
+   "Ντουζιέρες": {
+    "shower-enclosure": {
+     "name": "Καμπίνα / διαχωριστικό ντουζιέρας",
+     "needs_analysis": true,
+     "task": "plumb-shower-enclosure",
+     "task_title": "Τοποθέτηση καμπίνας ή διαχωριστικού ντουζιέρας",
+     "products": 3342,
+     "examples": [
+      {
+       "site": "fabricashop",
+       "name": "F-DORIAN 60-1280 ΚΑΜΠΙΝΑ 120×80 ΓΡΑΜΜΕΣ ΣΚΕΤΗ – netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-DUE ANTE 81-9192 ΠΟΡΤΑ ΚΑΜΠΙΝΑΣ 116-120 ΣΚΕΤΗ – netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-ELEN 90-8838 ΚΑΜΠΙΝΑ 90Χ90 ΤΕΤΡ.ΔΙΑΦΑΝΗ – netto"
+      }
+     ]
+    },
+    "shower-tray": {
+     "name": "Βάση ντουζιέρας",
+     "needs_analysis": true,
+     "task": "plumb-shower-tray",
+     "task_title": "Τοποθέτηση βάσης ντουζιέρας",
+     "products": 323,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Ντουζιέρα Τετράγωνη Πορσελάνης 80x80x9 cm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ντουζιέρα Ημικυκλική Πορσελάνης 80x80x9 cm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ντουζιέρα Τετράγωνη Πορσελάνης 72x72x9 cm (SI 7070)"
+      }
+     ]
+    }
+   },
+   "Κουζίνα": {
+    "sink": {
+     "name": "Νεροχύτης",
+     "needs_analysis": true,
+     "task": "plumb-sink",
+     "task_title": "Τοποθέτηση νεροχύτη κουζίνας",
+     "products": 884,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Νεροχύτης Κουζίνας 60x45 Ιnox Μαύρο Ματ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Νεροχύτης Κουζίνας Multi Lux 80x45 Inox Χρωμέ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Νεροχύτης Κουζίνας Multi Lux 80x45 Inox Μαύρο Ματ"
+      }
+     ]
+    }
+   },
+   "Θερμοσίφωνες": {
+    "water-heater-electric": {
+     "name": "Θερμοσίφωνας ηλεκτρικός",
+     "needs_analysis": true,
+     "task": "plumb-water-heater",
+     "task_title": "Τοποθέτηση ή αντικατάσταση ηλεκτρικού θερμοσίφωνα",
+     "products": 94,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Θερμοστάτης Αντιστάσεων 4 Επαφών 230V 20Α (Κ/Ο) για Θερμοσίφωνες & Μπόιλερ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Αντίσταση Θερμοσιφώνου Φ120 8 Οπών 1500W"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Θερμοσίφωνο DA-5 80lt (Οριζόντιο) Τοίχου EuroGlass"
+      }
+     ]
+    },
+    "heater-element": {
+     "name": "Αντίσταση θερμοσίφωνα",
+     "needs_analysis": true,
+     "task": "plumb-heater-element",
+     "task_title": "Αντικατάσταση αντίστασης θερμοσίφωνα",
+     "products": 80,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Αντίσταση Ηλιακού Μετατροπής ΙΙ-ΙΙΙ Φ140 82cm 3500W 8ΤΡΠ."
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Αντίσταση Ηλιακού Μετατροπής Φ120 72cm 4000W"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Αντίσταση Μετατροπής Ηλιακού Φ120 4000W"
+      }
+     ]
+    },
+    "instant-heater": {
+     "name": "Ταχυθερμαντήρας",
+     "needs_analysis": true,
+     "task": "plumb-water-heater",
+     "task_title": "Τοποθέτηση ή αντικατάσταση ηλεκτρικού θερμοσίφωνα",
+     "products": 37,
+     "examples": [
+      {
+       "site": "mafou",
+       "name": "Ταχυθερμαντήρας WIJAS Perfect 4000 4kW Κάτω Πάγκου"
+      },
+      {
+       "site": "mafou",
+       "name": "Ταχυθερμαντήρας WIJAS Perfect 500/210 5kW Άνω Πάγκου"
+      },
+      {
+       "site": "mafou",
+       "name": "Ταχυθερμαντήρας WIJAS Perfect 450/210 4,5kW Άνω Πάγκου"
+      }
+     ]
+    }
+   },
+   "Δίκτυα νερού": {
+    "angle-valve": {
+     "name": "Γωνιακός διακόπτης",
+     "needs_analysis": true,
+     "task": "plumb-angle-valve",
+     "task_title": "Αντικατάσταση γωνιακών διακοπτών και σπιράλ σύνδεσης",
+     "products": 32,
+     "examples": [
+      {
+       "site": "mafou",
+       "name": "Διακόπτης γωνιακός μαύρος 1/2&#8243;Χ1/2&#8243; FERRO"
+      },
+      {
+       "site": "mafou",
+       "name": "Διακόπτης γωνιακός μαύρος 1/2&#8243;Χ1/2&#8243; FERRO"
+      },
+      {
+       "site": "mafou",
+       "name": "Διακόπτης γωνιακός χρωμέ 1/2&#8243;Χ1/2&#8243; FERRO"
+      }
+     ]
+    },
+    "flex-hose": {
+     "name": "Σπιράλ σύνδεσης",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 91,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "V-TAC 10279 24W ελαφρύς εύκαμπτος σωλήνας 2M CCT των οδηγήσεων μαγνητικής τροχιάς: μαύρο σώμα 3000K "
+      },
+      {
+       "site": "el-shop",
+       "name": "Φωτιστικό Σπιράλ 3Φ Brad Μεταλλικό Λευκό 955BRAD3/WH"
+      },
+      {
+       "site": "el-shop",
+       "name": "Φωτιστικό Σπιράλ 3Φ Brad Μεταλλικό Μαύρο 955BRAD3/BK"
+      }
+     ]
+    },
+    "ball-valve": {
+     "name": "Βάνα / κεντρικός διακόπτης",
+     "needs_analysis": true,
+     "task": "plumb-main-valve",
+     "task_title": "Αντικατάσταση κεντρικού διακόπτη ή βάνας νερού",
+     "products": 180,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σφαιρική βάνα εναλλαγής VBI60.20-16T Siemens 3-όδη, PN40, DN20, kvs 49"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σφαιρική βάνα εναλλαγής VBI60.15-12T Siemens 3-όδη, PN40, DN15, kvs 12"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Δίοδη Σφαιρική Βάνα 3/4\" VAI60.20-22 Siemens"
+      }
+     ]
+    },
+    "garden-tap": {
+     "name": "Βρύση απλή",
+     "needs_analysis": true,
+     "task": "plumb-tap",
+     "task_title": "Τοποθέτηση απλής βρύσης (κήπου ή πλυντηρίου)",
+     "products": 14,
+     "examples": [
+      {
+       "site": "toolcase",
+       "name": "Βρύση μπαλκονιού αντιπαγωτική 1/2&#8243; σφαιρική με ρακόρ RIDA"
+      },
+      {
+       "site": "toolcase",
+       "name": "Βρύση Μπαλκονιού 1&#8243; Σφαιρική με ρακόρ CIMBERIO"
+      },
+      {
+       "site": "toolcase",
+       "name": "Βρύση μπαλκονιού αντιπαγωτική 1/2&#8243; σφαιρική με ρακόρ XTR"
+      }
+     ]
+    },
+    "pipe-multilayer": {
+     "name": "Σωλήνας πολυστρωματικός",
+     "needs_analysis": true,
+     "task": "plumb-water-network",
+     "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+     "products": 85,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Pex-Al-Pex 20x2.00 με Μόνωση 13mm ComoPex Interplast 50m"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Pex-Al-Pex 20x2.00 με Μόνωση 10mm ComoPex Interplast 50m"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Pex-Al-Pex 20x2.0 ComoPex Interplast 100m"
+      }
+     ]
+    },
+    "pipe-ppr": {
+     "name": "Σωλήνας PPR",
+     "needs_analysis": true,
+     "task": "plumb-water-network",
+     "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+     "products": 106,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Φ25x3.5 5ης Γενιάς με Υαλόνημα - SDR 7.4 PPR Aquaplus"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Φ20x2.8 5ης Γενιάς με Υαλόνημα - SDR 7.4 PPR Aquaplus"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Φ90x8.2 (Μπλε) Φράγμα Οξυγόνου - SDR 11 PPR Aquaplus"
+      }
+     ]
+    },
+    "pipe-fittings": {
+     "name": "Εξαρτήματα σωλήνων (γωνίες, ταυ, ρακόρ)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 1096,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Θερμοστατικός Διακόπτης Γωνιακός VEN220 3/4\" Siemens PN10, DN20, kvs 0.31...1.41"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Συλλέκτης Πλαστικός 1 1/4\"x3/4\" 3 Παροχών SET Με Ρακόρ Σύνδεσης"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Βάνα με Θηλυκό Ρακορ 3/4\" Werteco (Κόκκινο)"
+      }
+     ]
+    },
+    "manifold": {
+     "name": "Συλλέκτης ύδρευσης",
+     "needs_analysis": true,
+     "task": "plumb-manifold",
+     "task_title": "Τοποθέτηση συλλέκτη ύδρευσης",
+     "products": 127,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Συλλέκτης Πλαστικός 1 1/4\"x3/4\" 3 Παροχών SET"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Συλλέκτης Πλαστικός 1 1/4\"x3/4\" 2 Παροχών SET"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Συλλέκτης / Κολλεκτέρ Herz Inox 11 Παροχών 0-6lt/min 1\" (set)"
+      }
+     ]
+    },
+    "water-pump": {
+     "name": "Πιεστικό συγκρότημα νερού",
+     "needs_analysis": true,
+     "task": "plumb-water-pump",
+     "task_title": "Τοποθέτηση πιεστικού συγκροτήματος νερού",
+     "products": 1,
+     "examples": [
+      {
+       "site": "mafou",
+       "name": "Πιεστικό συγκρότημα με Press Control Maverick Jet 1100 1100W (1.4HP)"
+      }
+     ]
+    }
+   },
+   "Αποχέτευση": {
+    "siphon": {
+     "name": "Σιφόνι",
+     "needs_analysis": true,
+     "task": "plumb-siphon",
+     "task_title": "Αντικατάσταση σιφωνιού",
+     "products": 132,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σετ Βαλβίδας (Σιφώνι) για Νιπτήρα DURO Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σετ Βαλβίδας (Σιφώνι) για Νιπτήρα DURO Ideal Standard"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σιφώνι Νιπτήρος Τετράγωνο Black Mat (L300N)"
+      }
+     ]
+    },
+    "floor-drain": {
+     "name": "Σιφόνι δαπέδου / κανάλι ντους",
+     "needs_analysis": true,
+     "task": "plumb-floor-drain",
+     "task_title": "Τοποθέτηση σιφωνιού δαπέδου ή καναλιού ντους",
+     "products": 272,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Σιφώνι Δαπέδου Φ40 Inox Στρόγγυλο TECE"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κάλυμμα Φρεατίου 90x90 25.tn Χυτοσίδηρο"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κάλυμμα Φρεατίου 70x70 25.tn Χυτοσίδηρο"
+      }
+     ]
+    },
+    "pipe-drain": {
+     "name": "Σωλήνας αποχέτευσης PVC",
+     "needs_analysis": true,
+     "task": "plumb-drain-network",
+     "task_title": "Κατασκευή ή αντικατάσταση δικτύου αποχέτευσης",
+     "products": 179,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Αντάπτορας Εξόδου για Σωλήνες Φ32-40 Tecnosystemi"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ταφ Αποχέτευσης Κλιματιστικού Φ18-20-18 Tecnosystemi"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σωλήνα Αποχέτευσης Κλιματισμού Διπλής Επένδυσης Φ18/20 (50mt) Tecnosystemi"
+      }
+     ]
+    }
+   },
+   "Αξεσουάρ μπάνιου": {
+    "bath-accessory": {
+     "name": "Αξεσουάρ μπάνιου",
+     "needs_analysis": true,
+     "task": "bath-accessories",
+     "task_title": "Τοποθέτηση αξεσουάρ μπάνιου",
+     "products": 7425,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Πετσετοκρεμάστρα Planet Μαύρη Ματ (PL18804N)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "ΧΑΡΤΟΔΟΧΕΙΟ ΣΤΡΟΓΓΥΛΟ V5 Black Mat 5lit"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Χαρτοδοχείο Ορθογώνιο V8 Black mat 8lit"
+      }
+     ]
+    },
+    "bath-mirror": {
+     "name": "Καθρέπτης / ντουλάπι μπάνιου",
+     "needs_analysis": true,
+     "task": "bath-cabinet-mirror",
+     "task_title": "Τοποθέτηση καθρέπτη ή ντουλαπιού μπάνιου",
+     "products": 3328,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Κυφοντούλαπο MC8060 με LED Καθρέφτη 80x60 cm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Στρογγυλός Καθρέφτης Μπάνιου LED Φ60 με Εμπρόσθιο Φωτισμό & Κουμπί Αφής (6000-1)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κάθετος Καθρέφτης Μπάνιου LED Interceramic 50x70 cm με Αντιθαμβωτική Λειτουργία & Διακόπτη Αφής (ICL"
+      }
+     ]
+    },
+    "bath-curtain": {
+     "name": "Κουρτίνα μπάνιου",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 212,
+     "examples": [
+      {
+       "site": "praktiker",
+       "name": "Κουρτίνα Μπάνιου Gedy Biglie 200x180cm"
+      },
+      {
+       "site": "praktiker",
+       "name": "Κουρτίνα Μπάνιου Gedy Frame 200x180cm"
+      },
+      {
+       "site": "praktiker",
+       "name": "Κουρτίνα Μπάνιου Υφασμάτινη Cyclops Petrol 240x180cm"
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα": {
+    "plumb-sealing": {
+     "name": "Αναλώσιμα υδραυλικών (τεφλόν, κάνναβη, σιλικόνη)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 249,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Chromodomi Cover Sil Ακρυλικο Σιλικονουχο..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Σιλικονούχο ακρυλικό αστάρι VIVEDUR MULTI..."
+      },
+      {
+       "site": "balamoti",
+       "name": "VIVECRYL PRIMER ΣΙΛΙΚΟΝΟΥΧΟ ΑΚΡΥΛΙΚΟ ΑΣΤΑ..."
+      }
+     ]
+    }
+   }
+  },
+  "θερμοϋδραυλικός": {
+   "Σώματα καλοριφέρ": {
+    "radiator": {
+     "name": "Σώμα καλοριφέρ",
+     "needs_analysis": true,
+     "task": "heat-radiator",
+     "task_title": "Τοποθέτηση ή αντικατάσταση σώματος καλοριφέρ",
+     "products": 388,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Θερμαντικό Σώμα Λουτρού Μasif 1000x500 Μαύρο Ματ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Θερμαντικό Σώμα Λουτρού Masif 800x500 Μαύρο Ματ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Θερμαντικό Σώμα Λουτρού Masif 800x400 Μαύρο Ματ"
+      }
+     ]
+    },
+    "radiator-valve": {
+     "name": "Διακόπτης / θερμοστατική κεφαλή καλοριφέρ",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 63,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Ταφ Σύνδεσης για Αντίσταση Σωμάτων 1/2\" Χρωμέ HEATQ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ταφ Σύνδεσης για Αντίσταση Σωμάτων 1/2\" Μαύρο Ματ HEATQ"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ταφ Σύνδεσης για Αντίσταση Σωμάτων 1/2\" Λευκό HEATQ"
+      }
+     ]
+    }
+   },
+   "Λέβητες": {
+    "boiler-gas": {
+     "name": "Λέβητας φυσικού αερίου",
+     "needs_analysis": true,
+     "task": "heat-gas-boiler",
+     "task_title": "Εγκατάσταση λέβητα φυσικού αερίου",
+     "products": 115,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "Ατομικός λέβητας KITURAMI TURBO HI FIN 20"
+      },
+      {
+       "site": "climaver",
+       "name": "Ατομικός λέβητας KITURAMI TURBO PLUS 30s"
+      },
+      {
+       "site": "climaver",
+       "name": "Ατομικός λέβητας KITURAMI TURBO PLUS 21s"
+      }
+     ]
+    },
+    "boiler-oil": {
+     "name": "Λέβητας πετρελαίου",
+     "needs_analysis": true,
+     "task": "heat-oil-boiler",
+     "task_title": "Εγκατάσταση λέβητα πετρελαίου",
+     "products": 39,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας πετρελαίου SIME 2R9 OF Superior"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας πετρελαίου SIME 2R6 OF Superior"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας πετρελαίου SIME 2R15 OF Superior"
+      }
+     ]
+    },
+    "boiler-solid": {
+     "name": "Λέβητας στερεών καυσίμων / pellet",
+     "needs_analysis": true,
+     "task": "heat-solid-boiler",
+     "task_title": "Εγκατάσταση λέβητα στερεών καυσίμων ή pellet",
+     "products": 48,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας στερεών καυσίμων (Ξύλου - Pellet) Centrometal ΕΚΟ CKS-300"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας στερεών καυσίμων (Ξύλου - Pellet) Centrometal ΕΚΟ CKS-150"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Λέβητας Στερεών καυσίμων Πυρόλυσης Centrometal ΒΙΟ-TEC 35"
+      }
+     ]
+    },
+    "burner": {
+     "name": "Καυστήρας",
+     "needs_analysis": true,
+     "task": "heat-burner",
+     "task_title": "Αντικατάσταση καυστήρα",
+     "products": 90,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Καυστήρας Πετρελαίου Elco Vectron 3 VL 4.460 Duo (Διβάθμιος) KN (κοντή μπούκα)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Καυστήρας Πετρελαίου Elco Vectron 3 VL 3.290 Duo (Διβάθμιος) ΚL (μακρυά μπούκα)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Καυστήρας Πετρελαίου Elco Vectron 3 VL 1.105 ΚΝ (κοντή μπούκα)"
+      }
+     ]
+    },
+    "burner-parts": {
+     "name": "Ανταλλακτικά καυστήρα",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 40,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Μπεκ καυστήρα πετρελαίου 0.65/80ο Η Danfoss"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπεκ καυστήρα πετρελαίου 6.00/60ο S Danfoss"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Μπεκ καυστήρα πετρελαίου 5.50/60ο S Danfoss"
+      }
+     ]
+    }
+   },
+   "Αντλίες θερμότητας": {
+    "heat-pump": {
+     "name": "Αντλία θερμότητας",
+     "needs_analysis": true,
+     "task": "heat-heat-pump",
+     "task_title": "Εγκατάσταση αντλίας θερμότητας",
+     "products": 196,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Αντλία Θερμοτήτας LG HM143HFS Therma V R290 Monobloc S 14kw (380V)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Αντλία Θερμοτήτας LG HM41HFS Therma V R290 Monobloc S 14kw (230V)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Αντλία Θερμοτήτας LG HM161HFS Therma V R290 Monobloc S 16kw (230V)"
+      }
+     ]
+    }
+   },
+   "Δίκτυα θέρμανσης": {
+    "circulator": {
+     "name": "Κυκλοφορητής",
+     "needs_analysis": true,
+     "task": "heat-circulator",
+     "task_title": "Αντικατάσταση κυκλοφορητή",
+     "products": 91,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Υδραυλικό Group με Κυκλοφορητή 50kw-70kw"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κυκλοφορητής Evoplus Lite 80/250 DN40 DAB"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κυκλοφορητής Evoplus Lite 80/180 (DN32) 11/4\" DAB"
+      }
+     ]
+    },
+    "expansion-vessel": {
+     "name": "Δοχείο διαστολής",
+     "needs_analysis": true,
+     "task": "heat-expansion-vessel",
+     "task_title": "Αντικατάσταση δοχείου διαστολής",
+     "products": 173,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Αδρανείας επιτοίχιο Sime EDEA HYBRID WALL"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Διαστολής 80 Lt με Πόδια EcoDoro 3/4\""
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Διαστολής 50Lt με Πόδια EcoDoro 3/4\""
+      }
+     ]
+    },
+    "heat-safety": {
+     "name": "Βαλβίδα ασφαλείας / αυτόματος πλήρωσης",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 87,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Τρίοδη Βάνα Έδρας VBF21.125 DN125 (5\") Siemens φλατζωτή, PN6, DN125, kvs 550"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Τρίοδη βάνα έδρα VBF21.150 DN150 (6\") SIEMENS φλατζωτή, PN6, DN150, kvs 820"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Τριοδή βάνα έδρας VBF21.100 DN100 (4\") SIEMENS φλατζωτή, PN6, DN100, kvs 160"
+      }
+     ]
+    }
+   },
+   "Ζεστό νερό": {
+    "boiler-tank": {
+     "name": "Μπόιλερ λεβητοστασίου",
+     "needs_analysis": true,
+     "task": "heat-boiler-tank",
+     "task_title": "Τοποθέτηση μπόιλερ ζεστού νερού λεβητοστασίου",
+     "products": 160,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Ηλιακού 200Lt (με πόδια) Solar (Υδραυλ. Παροχή 1\")"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Ηλιακού 150Lt (με πόδια) Solar (Υδραυλ. Παροχή 1\")"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Δοχείο Ηλιακού 80Lt (με πόδια) Solar (Υδραυλ. Παροχή 1\")"
+      }
+     ]
+    },
+    "solar-heater": {
+     "name": "Ηλιακός θερμοσίφωνας",
+     "needs_analysis": true,
+     "task": "heat-solar",
+     "task_title": "Τοποθέτηση ηλιακού θερμοσίφωνα",
+     "products": 164,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "ΚΟΡΥΦΗΣ LED ΗΛΙΑΚΟ 300W 6000K Spotlight 6787"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 2893 Φωτιστικό Τοίχου Ηλιακό 2W LED Μαύρο Σώμα 3000K+6000K IP44"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 9869 Προβολέας LED ηλιακός 10W φυσικό λευκό 4000K μαύρο σώμα με ανιχνευτή"
+      }
+     ]
+    }
+   },
+   "Ενδοδαπέδια": {
+    "underfloor": {
+     "name": "Σωλήνας / συλλέκτης ενδοδαπέδιας",
+     "needs_analysis": true,
+     "task": "heat-underfloor",
+     "task_title": "Εγκατάσταση ενδοδαπέδιας θέρμανσης",
+     "products": 44,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Yπόστρωμμα 3mm XPS για ενδοδαπέδια θέρμανση"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σπιράλ Προστασίας για Ενδοδαπέδια Φ23 Μαύρο (εσωτερικο Φ18)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Σπιράλ Προστασίας για Ενδοδαπέδια Φ23 Μαύρο (εσωτερικο Φ18)"
+      }
+     ]
+    }
+   },
+   "Αυτοματισμοί θέρμανσης": {
+    "room-thermostat": {
+     "name": "Θερμοστάτης χώρου",
+     "needs_analysis": true,
+     "task": "heat-thermostat",
+     "task_title": "Τοποθέτηση θερμοστάτη χώρου",
+     "products": 23,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "Ηλεκτρονικός Θερμοστάτης XR80CH DIXELL παγολεκάνη 220VOLT"
+      },
+      {
+       "site": "climaver",
+       "name": "Ηλεκτρονικός θερμοστάτης ψυγείων φορτηγών LAE AH1-5B14L-AG"
+      },
+      {
+       "site": "climaver",
+       "name": "Ηλεκτρονικός θερμοστάτης ψυγείων LAE AT1-5AS5E-G"
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα": {
+    "heat-antifreeze": {
+     "name": "Αντιψυκτικό / χημικά θέρμανσης",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 10,
+     "examples": [
+      {
+       "site": "mafou",
+       "name": "Αντιψυκτικό υγρό Gento Antifreeze 1lt"
+      },
+      {
+       "site": "toolcase",
+       "name": "Μετρητής αντιψυκτικού υγρού γυάλινος OEM"
+      },
+      {
+       "site": "toolcase",
+       "name": "Μαγνητικός αποσκληρυντής κατά των αλάτων 3/4&#8243; MAG 2 MF ATLAS FILTRI"
+      }
+     ]
+    }
+   }
+  },
+  "ηλεκτρολόγος": {
+   "Πίνακες & ασφάλειες": {
+    "el-panel": {
+     "name": "Ηλεκτρολογικός πίνακας / ερμάριο",
+     "needs_analysis": true,
+     "task": "elec-panel",
+     "task_title": "Αντικατάσταση ή αναβάθμιση ηλεκτρολογικού πίνακα",
+     "products": 81,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "Hager Volta Ηλεκτρολογικός Πίνακας Χωνευτός 1 Σειράς 12 Στοιχείων VU12G"
+      },
+      {
+       "site": "el-shop",
+       "name": "Hager Vector Ηλεκτρολογικός Πίνακας Επιτοίχιος Στεγανός 4 Σειρών VE412N"
+      },
+      {
+       "site": "el-shop",
+       "name": "Hager Golf Ηλεκτρολογικός Πίνακας Χωνευτός 1 Σειράς 12 Στοιχείων VF112TA"
+      }
+     ]
+    },
+    "el-breaker": {
+     "name": "Αυτόματη ασφάλεια / ρελέ διαρροής",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 557,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "HYPERSEAL®-25LM-S ΦΥΣΙΓΓΑ ΜΑΣΤΙΧΗ 300ml 0..."
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Φύσιγγα FIS VL 410 C (410ml)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Φύσιγγα FIS P PLUS 300 T (300ml)"
+      }
+     ]
+    }
+   },
+   "Πρίζες & διακόπτες": {
+    "el-socket": {
+     "name": "Πρίζα / διακόπτης",
+     "needs_analysis": true,
+     "task": "elec-socket",
+     "task_title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+     "products": 2114,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Έξυπνη Πρίζα SCH030ZB Siemens"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 23402 Εξωτερική Πρίζα Δαπέδου με Σούκο Ασφαλείας 2 Θέσεων Ανθρακί Σώμα IP44"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 23466 Κρυφός διακόπτης αφής με Dimmer για LED Strip Light Μαύρο σώμα"
+      }
+     ]
+    }
+   },
+   "Καλώδια & σωληνώσεις": {
+    "el-cable": {
+     "name": "Καλώδιο εγκατάστασης",
+     "needs_analysis": true,
+     "task": "elec-wiring",
+     "task_title": "Νέα γραμμή ή αντικατάσταση καλωδίωσης",
+     "products": 193,
+     "examples": [
+      {
+       "site": "meidanis",
+       "name": "Καλώδιο NYA ruNeasy H07V­U 1.5 mm2 Μπλε 100m"
+      },
+      {
+       "site": "meidanis",
+       "name": "Καλώδιο Εύκαμπτο NYMHY 3X1.5mm2 H05Vv-F Λευκό"
+      },
+      {
+       "site": "meidanis",
+       "name": "Καλώδιο NYA ruNeasy H07V­U 1.5 mm2 Κίτρινο­Πράσινο 100m"
+      }
+     ]
+    },
+    "el-conduit": {
+     "name": "Σωλήνας / κανάλι καλωδίων",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 615,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "Μονωτική Ταινία Φαρδιά"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ανοξείδωτη σωλήνα AISI 316L DN25 0.3mm Bisolar ΙΙ Μονωμένη Pes Grey 13mm (με καλώδιο)"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ανοξείδωτη σωλήνα AISI 316L DN20 0.2mm Bisolar ΙΙ Μονωμένη Pes Grey 13mm (με καλώδιο)"
+      }
+     ]
+    }
+   },
+   "Φωτισμός": {
+    "el-downlight": {
+     "name": "Σποτ χωνευτό",
+     "needs_analysis": true,
+     "task": "elec-downlight",
+     "task_title": "Τοποθέτηση χωνευτών σποτ",
+     "products": 595,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "STELLAR ARCHAR ΣΠΟΤ LED GU10 3X5.5W ΧΡΩΜΙΟ"
+      },
+      {
+       "site": "el-shop",
+       "name": "STELLAR VRANA ΣΠΟΤ LED GU10 4X5.5W ΜΑΥΡΟ"
+      },
+      {
+       "site": "el-shop",
+       "name": "STELLAR ARDA ΣΠΟΤ LED GU10 3X5.5W ΝΙΚΕΛ ΜΑΤ"
+      }
+     ]
+    },
+    "el-led-strip": {
+     "name": "Ταινία LED",
+     "needs_analysis": true,
+     "task": "elec-led-strip",
+     "task_title": "Τοποθέτηση ταινίας LED",
+     "products": 816,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "V-TAC 23609 Ταινία LED 2835 120 10W 24V 6500K Ψυχρό Λευκό Φως Μήκους 10 Μέτρων"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 23608 Ταινία LED 2835 120 10W 24V 4000K Φυσικό Λευκό Φως Μήκους 10 Μέτρων"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 23607 Ταινία LED 2835 120 10W 24V 3000K σε Θερμό Λευκό Φως Μήκος 10 Μέτρα"
+      }
+     ]
+    },
+    "el-floodlight": {
+     "name": "Προβολέας / φωτιστικό εξωτερικού",
+     "needs_analysis": true,
+     "task": "elec-floodlight",
+     "task_title": "Τοποθέτηση φωτιστικού ή προβολέα εξωτερικού χώρου",
+     "products": 1476,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "VEGA50 50W LED ΠΡΟΒΟΛΕΑΣ 5000-5500K"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC Προβολέας LED SMD 10W 730lm IP65 Μαύρο Σώμα 4000K 23972"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC Προβολέας LED SMD 10W 730lm IP65 Μαύρο Σώμα 6400K 23974"
+      }
+     ]
+    },
+    "el-track": {
+     "name": "Φωτιστικό / ράγα",
+     "needs_analysis": true,
+     "task": "elec-track-light",
+     "task_title": "Τοποθέτηση ράγας με φωτιστικά",
+     "products": 565,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "V-TAC 10276 Εύκαμπτο Μαγνητικό Φωτιστικό Ράγας LED Smart WiFi 48V DC 23W 2810lm 200° IP20 CCT 3σε1 Μ"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 10275 Εύκαμπτο Μαγνητικό Φωτιστικό Ράγας LED Smart WiFi 48V DC 11W 1270lm 200° IP20 CCT 3σε1 Μ"
+      },
+      {
+       "site": "el-shop",
+       "name": "V-TAC 10265 LED μαγνητικό κρεμαστό φωτιστικό ράγας 48V 15W SMD 6400K ψυχρό λευκό μαύρο σώμα"
+      }
+     ]
+    },
+    "el-light-fixture": {
+     "name": "Φωτιστικό οροφής / τοίχου",
+     "needs_analysis": true,
+     "task": "elec-light-fixture",
+     "task_title": "Τοποθέτηση φωτιστικού οροφής ή τοίχου",
+     "products": 4893,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "TUBES ΠΟΛΥΦΩΤΟ VI"
+      },
+      {
+       "site": "el-shop",
+       "name": "YVONNE ΚΡΕΜΑΣΤΟ ΦΩΤΙΣΤΙΚΟ 3XE27 D350 ΚΑΦΕ"
+      },
+      {
+       "site": "el-shop",
+       "name": "YVONNE ΚΡΕΜΑΣΤΟ ΦΩΤΙΣΤΙΚΟ 3XE27 D350 ΜΑΥΡΟ"
+      }
+     ]
+    },
+    "el-lamp": {
+     "name": "Λάμπα / λαμπτήρας",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 2310,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "LED ΛΑΜΠΤΗΡΑΣ LEDCOB 5W GU5,3 12V AC/DC ΛΕΥΚΟ"
+      },
+      {
+       "site": "el-shop",
+       "name": "LED ΛΑΜΠΤΗΡΑΣ LEDMR11 1,5W G4 12V AC/DC ΛΕΥΚΟ ΘΕΡΜΟ"
+      },
+      {
+       "site": "el-shop",
+       "name": "LED ΛΑΜΠΤΗΡΑΣ LEDPLC 10W G24D 230V ΛΕΥΚΟ ΘΕΡΜΟ"
+      }
+     ]
+    },
+    "el-ceiling-fan": {
+     "name": "Ανεμιστήρας οροφής",
+     "needs_analysis": true,
+     "task": "elec-ceiling-fan",
+     "task_title": "Τοποθέτηση ανεμιστήρα οροφής",
+     "products": 51,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "Ανεμιστήρας οροφής με φως Led και τηλεχειριστήριο 20-0107-14-188 SunLight"
+      },
+      {
+       "site": "el-shop",
+       "name": "Ανεμιστήρας Οροφής με Φως και Τηλεχειριστήριο 5028-GY SunLight"
+      },
+      {
+       "site": "el-shop",
+       "name": "Ανεμιστήρας Οροφής με Φως και τηλεχειριστήριο 20-1107-81-188 SunLight"
+      }
+     ]
+    }
+   },
+   "Ασθενή ρεύματα": {
+    "el-intercom": {
+     "name": "Θυροτηλέφωνο / κουδούνι",
+     "needs_analysis": true,
+     "task": "elec-intercom",
+     "task_title": "Τοποθέτηση θυροτηλεφώνου ή κουδουνιού",
+     "products": 272,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "Smart Ηλιακό Θυροτηλέφωνο Με Κουδούνι και Κάμερα TUYA VIDEO EL-IP09 195084 Elmark"
+      },
+      {
+       "site": "el-shop",
+       "name": "Smart Θυροτηλέφωνο Με Κουδούνι και Κάμερα TUYA VIDEO EL-IP11 195083 Elmark"
+      },
+      {
+       "site": "el-shop",
+       "name": "Smart EL-IP10 Ασύρματο Κουδούνι Πόρτας με Κάμερα TUYA Elmark 195082"
+      }
+     ]
+    }
+   },
+   "Αυτοματισμοί": {
+    "el-sensor": {
+     "name": "Ανιχνευτής κίνησης / χρονοδιακόπτης",
+     "needs_analysis": true,
+     "task": "elec-sensor",
+     "task_title": "Τοποθέτηση ανιχνευτή κίνησης ή χρονοδιακόπτη",
+     "products": 124,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Ανιχνευτής Κίνησης SCH010ZB Siemens"
+      },
+      {
+       "site": "el-shop",
+       "name": "Ανιχνευτής Κίνησης Χωνευτός"
+      },
+      {
+       "site": "el-shop",
+       "name": "CITY Ανιχνευτής Κίνησης 400W Χωνευτός Ανθρακίτης-Μαύρο Elmark 193771"
+      }
+     ]
+    }
+   }
+  },
+  "πλακάς": {
+   "Πλακάκια": {
+    "tile-mosaic": {
+     "name": "Ψηφίδα",
+     "needs_analysis": true,
+     "task": "tile-mosaic",
+     "task_title": "Τοποθέτηση ψηφίδας",
+     "products": 183,
+     "examples": [
+      {
+       "site": "fabricashop",
+       "name": "F-COMPACT MIX BONE 60X120 μωσαικο-netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-YS PURE BUBBLE μωσαικο 60X120(ΕΜΠΟΡ.ΔΙΑΛ)-netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "TANTICOLORI ACQUAMAR.M TC.0111N netto"
+      }
+     ]
+    },
+    "tile-wall": {
+     "name": "Πλακάκι τοίχου",
+     "needs_analysis": true,
+     "task": "tile-wall",
+     "task_title": "Επικόλληση πλακιδίων τοίχου",
+     "products": 608,
+     "examples": [
+      {
+       "site": "fabricashop",
+       "name": "F-AMARELO 20×20 M252 RB11483 ***-netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-ANTRACITE 20X20 M470 RB2053***netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-ASPEN WHITE MAXITECH 60X120 6mm RECT-netto"
+      }
+     ]
+    },
+    "tile-floor": {
+     "name": "Πλακάκι δαπέδου (πορσελανάτο / γρανίτης / κεραμικό)",
+     "needs_analysis": true,
+     "task": "tile-floor",
+     "task_title": "Επικόλληση πλακιδίων δαπέδου",
+     "products": 3742,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "NERO K - ΣΤΡΩΣΗ ΑΠΟ ΠΛΑΚΙΔΙΑ ΓΥΑΛΙΣΜΕΝΟΥ ΓΡΑΝΙΤΗ 40Χ40Χ1 cm"
+      },
+      {
+       "site": "fabricashop",
+       "name": "EVERSTONE GREY 100X100 EN5U-netto"
+      },
+      {
+       "site": "fabricashop",
+       "name": "F-APACHE BEIGE 30.8X61.5 – netto 9KI0118"
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα πλακιδίων": {
+    "tile-trim": {
+     "name": "Λιστέλο / προφίλ / ντεκόρ πλακιδίων",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 469,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "ΧΩΝΕΥΤΟ ΓΡΑΜΜΙΚΟ ΠΡΟΦΙΛ ΑΛΟΥΜΙΝΙΟΥ Spotlight 6761"
+      },
+      {
+       "site": "el-shop",
+       "name": "ΕΞΩΤΕΡΙΚΟ ΓΡΑΜΜΙΚΟ ΠΡΟΦΙΛ ΑΛΟΥΜΙΝΙΟΥ Spotlight 6762"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΠΡΟΦΙΛ ΑΛΟΥΜΙΝΙΟΥ ΜΑΤ ASJ100AS 10MM 2,7M"
+      }
+     ]
+    },
+    "tile-adhesive": {
+     "name": "Κόλλα πλακιδίων",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 120,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "MAPEI - KERASET C1 ΛΕΥΚΗ ΚΟΛΛΑ ΠΛΑΚΙΔΙΩΝ 25kg"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Κόλλα Πλακιδίων Isomat AK-24 Crystal Gel Λευκή C2TES1 25kg"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Κόλλα Πλακιδίων Isomat AK-18 Crystal Gel Λευκή C2TE 25kg"
+      }
+     ]
+    },
+    "tile-grout": {
+     "name": "Αρμόστοκος",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 172,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "DURO STICK STUCOFIX ELASTIC PUTTY ΑΡΜΟΣΤΟΚΟΣ ΕΛΑΣΤΟΜΕΡΗΣ ΑΡΜΩΝ,ΡΩΓΜΩΝ ΚΑΙ ΕΞΟΜΑΛΥΝΣΗΣ 1Κg"
+      },
+      {
+       "site": "kaxiris",
+       "name": "DURO STICK STUCOFIX ELASTIC PUTTY ΑΡΜΟΣΤΟΚΟΣ ΕΛΑΣΤΟΜΕΡΗΣ ΑΡΜΩΝ,ΡΩΓΜΩΝ ΚΑΙ ΕΞΟΜΑΛΥΝΣΗΣ 5Κg"
+      },
+      {
+       "site": "kaxiris",
+       "name": "DURO STICK STUCOFIX ELASTIC PUTTY ΑΡΜΟΣΤΟΚΟΣ ΕΛΑΣΤΟΜΕΡΗΣ ΑΡΜΩΝ,ΡΩΓΜΩΝ ΚΑΙ ΕΞΟΜΑΛΥΝΣΗΣ 15Κg"
+      }
+     ]
+    },
+    "tile-spacers": {
+     "name": "Σταυρουδάκια / σφήνες",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 17,
+     "examples": [
+      {
+       "site": "praktiker",
+       "name": "Σύστημα Τοποθέτησης Πλακιδίων Σφήνες Lux 100 Τεμάχια"
+      },
+      {
+       "site": "praktiker",
+       "name": "Σφήνες&Κλιπ Τοποθέτησης Πλακιδίων ( 50+50 Τεμάχια )"
+      },
+      {
+       "site": "vrontinos",
+       "name": "ΣΤΑΥΡΟΥΔΑΚΙ ΑΡΜΩΝ 5mm 70τμχ KUBALA 1857"
+      }
+     ]
+    }
+   }
+  },
+  "ελαιοχρωματιστής": {
+   "Χρώματα": {
+    "paint-epoxy-floor": {
+     "name": "Εποξειδικό χρώμα δαπέδου",
+     "needs_analysis": true,
+     "task": "paint-floor-epoxy",
+     "task_title": "Βαφή δαπέδου με εποξειδικό χρώμα",
+     "products": 9,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Neotex Neopox Pool Εποξειδικό Χρώμα Πισίν..."
+      },
+      {
+       "site": "papasideris",
+       "name": "Εποξειδικό χρώμα 2 συστατικών Durostick Duroepoxy 4kg"
+      },
+      {
+       "site": "praktiker",
+       "name": "Χρώμα Δαπέδων Ακρυλικό Vechro Dulisol Hydro Σκούρο Γκρι 2.5lt"
+      }
+     ]
+    },
+    "paint-exterior": {
+     "name": "Ακρυλικό χρώμα εξωτερικών",
+     "needs_analysis": true,
+     "task": "paint-exterior",
+     "task_title": "Βάψιμο εξωτερικών επιφανειών με ακρυλικό χρώμα",
+     "products": 153,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "COVER ACRYL ΛΕΥΚΟ ΑΚΡΥΛΙΚΟ ΧΡΩΜΟΔΟΜΗ 9Lt ..."
+      },
+      {
+       "site": "balamoti",
+       "name": "ΒΙΒΕ ΑΚΡΥΛΙΚΟ ΧΡΩΜΑ ΛΕΥΚΟ 9L 5202565170159"
+      },
+      {
+       "site": "balamoti",
+       "name": "ΑΚΡΥΛΙΚΟ ΧΡΩΜΑ ΛΕΥΚΟ XTRA 9LT"
+      }
+     ]
+    },
+    "paint-interior": {
+     "name": "Πλαστικό χρώμα εσωτερικών",
+     "needs_analysis": true,
+     "task": "paint-interior-walls",
+     "task_title": "Βάψιμο εσωτερικών τοίχων και οροφών με πλαστικό χρώμα",
+     "products": 296,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Sigmatex Superlatex Matt"
+      },
+      {
+       "site": "balamoti",
+       "name": "NATURA LATEX ΠΛΑΣΤΙΚΟ ΧΡΩΜΑ ΧΡΩΜΟΔΟΜΗ 10l..."
+      },
+      {
+       "site": "balamoti",
+       "name": "ΠΛΑΣΤΙΚΟ ΧΡΩΜΑ VIVE ECO ΛΕΥΚΟ 9LT 5202565..."
+      }
+     ]
+    },
+    "paint-spray": {
+     "name": "Σπρέι βαφής",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 228,
+     "examples": [
+      {
+       "site": "kostelidis",
+       "name": "Σπρέι κόλλας MORRIS"
+      },
+      {
+       "site": "kostelidis",
+       "name": "Morris Σπρέι Βαφής Heat Resistant Lacquer 800‎°C Υψηλής Θερμοκρασίας με Ματ Εφέ Μαύρο 400ml"
+      },
+      {
+       "site": "kostelidis",
+       "name": "Σπρέι αλουμινίων λευκό 200ml"
+      }
+     ]
+    }
+   },
+   "Βερνίκια": {
+    "paint-wood": {
+     "name": "Βερνίκι / συντηρητικό ξύλου",
+     "needs_analysis": true,
+     "task": "paint-wood",
+     "task_title": "Βάψιμο ή βερνίκωμα ξύλινων επιφανειών",
+     "products": 473,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Χρώμα κιμωλίας νερού Deco Chalk Paint 750..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Χρώμα κιμωλίας νερού Deco Chalk Paint 750..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Χρώμα κιμωλίας νερού Deco Chalk Paint 750..."
+      }
+     ]
+    },
+    "paint-metal": {
+     "name": "Ριπολίνη / βερνικόχρωμα / αντισκωριακό",
+     "needs_analysis": true,
+     "task": "paint-metal",
+     "task_title": "Βάψιμο μεταλλικών επιφανειών (κάγκελα, πόρτες)",
+     "products": 1138,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "EXTRA NEOCHROM 750ml 5202565213245"
+      },
+      {
+       "site": "balamoti",
+       "name": "ΒΕΡΝΙΚΟΧΡΩΜΑ VIVEMETAL 750ml 5202565203291"
+      },
+      {
+       "site": "balamoti",
+       "name": "PELLACHROM AQUARUST 750ml αντισκωριακό ασ..."
+      }
+     ]
+    }
+   },
+   "Αστάρια & στόκοι": {
+    "paint-primer": {
+     "name": "Αστάρι",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 243,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Primer One 10lt Αστάρι Γυψοσανίδων"
+      },
+      {
+       "site": "balamoti",
+       "name": "Αστάρι Γυψοσανίδων Eco 9lt Vivechrom"
+      },
+      {
+       "site": "balamoti",
+       "name": "Αστάρι ακρυλικό100% VITEX 10lt"
+      }
+     ]
+    },
+    "paint-filler": {
+     "name": "Στόκος",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 182,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "ΑΦΡΟΣΤΟΚΟΣ PGP LITE FILLER 750ml 52056371..."
+      },
+      {
+       "site": "balamoti",
+       "name": "BETON FILLER PGP 1Kg 5205637151599"
+      },
+      {
+       "site": "balamoti",
+       "name": "ΑΦΡΟΣΤΟΚΟΣ DUROSTICK ULTRA PUTTY 1lt 5204..."
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα βαφής": {
+    "paint-consumable": {
+     "name": "Αναλώσιμα βαφής (μουσαμάς, χαρτοταινία, διαλυτικό)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 117,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "NEOTEX PU 0413 ΔΙΑΛΥΤΙΚΟ ΠΟΛΥΟΥΡΕΘΑΝΙΚΩΝ ΧΡΩΜΑΤΩΝ 1lt"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Hyperdesmo Solvent-01 Ειδικό Ισχυρό Διαλυτικό 17 Κιλών Προιόντων"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Hyperdesmo Solvent-01 Ειδικό Ισχυρό Διαλυτικό 4 Κιλών Προιόντων"
+      }
+     ]
+    }
+   }
+  },
+  "γυψοσανιδάς": {
+   "Ξηρά δόμηση": {
+    "cement-board": {
+     "name": "Τσιμεντοσανίδα",
+     "needs_analysis": true,
+     "task": "drywall-cement-board",
+     "task_title": "Κατασκευή με τσιμεντοσανίδα",
+     "products": 12,
+     "examples": [
+      {
+       "site": "doukas",
+       "name": "[Guard]ex Knauf"
+      },
+      {
+       "site": "doukas",
+       "name": "Aquapanel Knauf"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΒΙΔΑ ΤΣΙΜΕΝΤΟΣΑΝΙΔΑΣ ΚΕΡΑΜΙΚΗ ΑΥΤΟΠΡΟΩΘΟΥΜΕΝΗ 4Χ30mm AKIFIX 1000 ΤΜΧ"
+      }
+     ]
+    },
+    "drywall-ceiling": {
+     "name": "Υλικά ψευδοροφής (ανάρτηση, κανάλι οροφής)",
+     "needs_analysis": true,
+     "task": "drywall-ceiling",
+     "task_title": "Κατασκευή ψευδοροφής από γυψοσανίδα",
+     "products": 82,
+     "examples": [
+      {
+       "site": "doukas",
+       "name": "Επισκέψιμες Οροφές – Ορυκτές Ίνες"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Στριφώνι - Ντίζα M8x160mm"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Στριφώνι - Ντίζα M8x110mm"
+      }
+     ]
+    },
+    "drywall-board": {
+     "name": "Γυψοσανίδα",
+     "needs_analysis": true,
+     "task": "drywall-partition",
+     "task_title": "Κατασκευή τοίχου από γυψοσανίδα",
+     "products": 115,
+     "examples": [
+      {
+       "site": "el-shop",
+       "name": "ΓΥΨΙΝΑ ΦΩΤΙΣΤΙΚΑ-ΦΩΤΙΣΤΙΚΑ ΓΥΨΟΣΑΝΙΔΑΣ – ΚΩΔ. 11001-C1 R10 SunLight"
+      },
+      {
+       "site": "el-shop",
+       "name": "ΓΥΨΙΝΑ ΦΩΤΙΣΤΙΚΑ-ΦΩΤΙΣΤΙΚΑ ΓΥΨΟΣΑΝΙΔΑΣ – ΚΩΔ. 11001-C1 SQ10 SunLight"
+      },
+      {
+       "site": "el-shop",
+       "name": "ΓΥΨΙΝΑ ΦΩΤΙΣΤΙΚΑ-ΓΥΨΟΣΑΝΙΔΑΣ – ΚΩΔ. MW-9431 SunLight"
+      }
+     ]
+    },
+    "drywall-profile": {
+     "name": "Προφίλ γυψοσανίδας (ορθοστάτης, στρωτήρας)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 35,
+     "examples": [
+      {
+       "site": "doukas",
+       "name": "Μεταλλικά Προφίλ Knauf 0,6 (DIN)"
+      },
+      {
+       "site": "doukas",
+       "name": "Μεταλλικά Προφίλ Amfil 0,5"
+      },
+      {
+       "site": "el-shop",
+       "name": "Ορθοστάτης με Σπαστό Βραχίονα 45017 Χρώμιο για λάμπα Ιωδίνης R7S ύψους 187cm με Ρεοστάτη 300W"
+      }
+     ]
+    },
+    "drywall-consumable": {
+     "name": "Αναλώσιμα γυψοσανίδας (βίδες, ταινία, στόκος αρμών)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 34,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ISOMAT ΣΤΕΓΑΝΩΤΙΚΗ ΤΑΙΝΙΑ ΣΥΝΑΡΜΟΓΩΝ AR P10 /12CM X 10M"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΥΑΛΟΤΑΙΝΙΑ ΑΡΜΟΥ 25M AKIFIX NAF04001"
+      },
+      {
+       "site": "kostelidis",
+       "name": "Στεγανωτική ταινία συναρμογών ISOMAT P50 – 12cm"
+      }
+     ]
+    }
+   }
+  },
+  "ψυκτικός": {
+   "Κλιματιστικά": {
+    "ac-multi": {
+     "name": "Κλιματιστικό multi / εσωτερική μονάδα",
+     "needs_analysis": true,
+     "task": "hvac-multi",
+     "task_title": "Εγκατάσταση πολυδιαιρούμενου κλιματιστικού (multi)",
+     "products": 97,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου Multi Bosch Climate 5000iM CN-26E"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου Multi Bosch Climate 5000iM CN-35E"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου Multi Bosch Climate 5000iM CN-26E"
+      }
+     ]
+    },
+    "ac-floor": {
+     "name": "Κλιματιστικό δαπέδου / οροφής / κασέτα",
+     "needs_analysis": true,
+     "task": "hvac-floor-console",
+     "task_title": "Εγκατάσταση κλιματιστικού δαπέδου, οροφής ή κασέτας",
+     "products": 7,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου CL5000iM CN-50E Bosch"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου CL5000iM CN-50E Bosch"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Κονσόλα Δαπέδου CL5000iM CN-50E Bosch"
+      }
+     ]
+    },
+    "ac-split": {
+     "name": "Κλιματιστικό τοίχου",
+     "needs_analysis": true,
+     "task": "hvac-split",
+     "task_title": "Εγκατάσταση κλιματιστικού τοίχου",
+     "products": 251,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "TOYOTOMI KENZO KTN/KTG-09CH"
+      },
+      {
+       "site": "climaver",
+       "name": "Daikin Sensira FTXC50D / RXC50D Κλιματιστικό Inverter 18000 BTU A++/A+"
+      },
+      {
+       "site": "climaver",
+       "name": "Daikin Sensira FTXC35D / RXC35D Κλιματιστικό Inverter 12000 BTU A++/A+"
+      }
+     ]
+    }
+   },
+   "Υλικά εγκατάστασης": {
+    "ac-install-material": {
+     "name": "Υλικά εγκατάστασης κλιματιστικού (χαλκοσωλήνες, βάσεις, μόνωση)",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 135,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "ΒΑΣΗ ΚΛΙΜΑΤΙΣΤΙΚΟΥ ΓΙΑ ΘΕΡΜΟΜΟΝΩΣΗ"
+      },
+      {
+       "site": "climaver",
+       "name": "Βάση κλιματιστικού 18-24btu"
+      },
+      {
+       "site": "climaver",
+       "name": "Βάση κλιματιστικού μικρή 9-12btu"
+      }
+     ]
+    }
+   },
+   "Ανταλλακτικά": {
+    "ac-parts": {
+     "name": "Ανταλλακτικά / καθαριστικά κλιματιστικών",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 58,
+     "examples": [
+      {
+       "site": "climaver",
+       "name": "ΦΙΛΤΡΑ ΕΝΕΡΓΟΥ ΑΝΘΡΑΚΑ ΓΙΑ ΚΛΙΜΑΤΙΣΤΙΚΑ"
+      },
+      {
+       "site": "climaver",
+       "name": "Καθαριστικό Naturalizer me NCH 1LT για κλιματιστικά"
+      },
+      {
+       "site": "climaver",
+       "name": "Μοτέρ Q Επαγγελματικών Ψυγείων 230V AC ΜΕ Διπλή Βάση 25watt"
+      }
+     ]
+    }
+   }
+  },
+  "μονωτής": {
+   "Στεγανωτικά": {
+    "wp-cementitious": {
+     "name": "Τσιμεντοειδές στεγανωτικό (υγρών χώρων)",
+     "needs_analysis": true,
+     "task": "ins-wet-room",
+     "task_title": "Στεγάνωση δαπέδου και τοίχων μπάνιου",
+     "products": 9,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ΣΤΕΓΑΝΩΤΙΚΗ ΤΑΙΝΙΑ BAUER AQUA TAPE 12cm x 10m"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ISOMAT AQUAMAT-SUPERELASTIC Εξαιρετικά εύκαμπτο, ρητινούχο, επαλειφόμενο στεγανωτικό τσιμεντοκονίαμα"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ISOMAT - 5kg ΛΕΥΚΟ AQUAMAT ΕΠΑΛΕΙΦΟΜΕΝΟ ΣΤΕΓΑΝΩΤΙΚΟ ΤΣΙΜΕΝΤΟΚΟΝΙΑΜΑ"
+      }
+     ]
+    },
+    "wp-roof-liquid": {
+     "name": "Στεγανωτικό ταράτσας (επαλειφόμενο)",
+     "needs_analysis": true,
+     "task": "ins-roof-liquid",
+     "task_title": "Στεγάνωση ταράτσας με επαλειφόμενο στεγανωτικό",
+     "products": 73,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "NEOROOF YΒΡΙΔΙΚΟ ΣΤΕΓΑΝΩΤΙΚΟ ΤΑΡΑΤΣΩΝ 5kg..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Μονωτικό Ακρυλικό Στεγανωτικό Ταράτσας NE..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Durostick Eλαστομερές στεγανωτικό ταρατσώ..."
+      }
+     ]
+    },
+    "wp-membrane": {
+     "name": "Ασφαλτική μεμβράνη",
+     "needs_analysis": true,
+     "task": "ins-roof-membrane",
+     "task_title": "Στεγάνωση ταράτσας με ασφαλτική μεμβράνη",
+     "products": 6,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Sika Hellas ΑΣΦΑΛΤΟΠΑΝΟ SIKA BITUSEAL T-2..."
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΑΣΦΑΛΤΟΠΑΝΟ PETROGUM 4.5Kg -5 PF MIN WHITE 1x10m"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΑΣΦΑΛΤΟΠΑΝΟ SIKASHIELD P35 PE RT 4kg -5 ΑΝΤΙΡΙΖΙΚΟ1x10m"
+      }
+     ]
+    },
+    "wp-tape": {
+     "name": "Ασφαλτική / στεγανωτική ταινία",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 28,
+     "examples": [
+      {
+       "site": "e-dimakis",
+       "name": "Ταινία Μονωτική P.V.C Wonder (Λευκή) 38mmx20Y air condition"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "Ταινία Μονωτική P.V.C Wonder (Μαύρη) 38mmx20Y air condition"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ISOMAT BUTYL-TAPE ALU 20cm x 10m"
+      }
+     ]
+    }
+   },
+   "Στέγες": {
+    "ins-shingles": {
+     "name": "Ασφαλτικό κεραμίδι",
+     "needs_analysis": true,
+     "task": "ins-roof-shingles",
+     "task_title": "Τοποθέτηση ασφαλτικών κεραμιδιών",
+     "products": 9,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "SmartRoof Hexagonal Grey"
+      },
+      {
+       "site": "kaxiris",
+       "name": "SmartRoof - Exagon Red"
+      },
+      {
+       "site": "kaxiris",
+       "name": "SmartRoof - TR Red"
+      }
+     ]
+    }
+   },
+   "Θερμομόνωση": {
+    "ins-etics": {
+     "name": "Υλικά θερμοπρόσοψης (πλάκες, βύσματα, υαλόπλεγμα)",
+     "needs_analysis": true,
+     "task": "ins-etics",
+     "task_title": "Θερμοπρόσοψη (εξωτερική θερμομόνωση τοίχων)",
+     "products": 101,
+     "examples": [
+      {
+       "site": "doukas",
+       "name": "Thermoprosopsis Fine"
+      },
+      {
+       "site": "doukas",
+       "name": "Thermoprosopsis Organic"
+      },
+      {
+       "site": "doukas",
+       "name": "Thermoprosopsis Flex"
+      }
+     ]
+    },
+    "ins-xps-eps": {
+     "name": "Πολυστερίνη (εξηλασμένη / διογκωμένη)",
+     "needs_analysis": true,
+     "task": "ins-roof-thermal",
+     "task_title": "Θερμομόνωση ταράτσας με πλάκες",
+     "products": 224,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Θερμομονωτικό Υπόστρωμα XPS 5mm Thermoacoustic"
+      },
+      {
+       "site": "doukas",
+       "name": "Αφρώδη Μονωτικά EPS-ETICS"
+      },
+      {
+       "site": "e-dimakis",
+       "name": "ΠΛΑΣΤΙΚΑ ΚΛΙΠΣ ΣΤΕΡΕΩΣΗΣ ΠΕΡΙΜΕΤΡΙΚΗ ΣΩΛΗΝΑΣ ΣΕ EPS"
+      }
+     ]
+    }
+   },
+   "Θερμο-ηχομόνωση": {
+    "ins-mineral-wool": {
+     "name": "Πετροβάμβακας / υαλοβάμβακας",
+     "needs_analysis": true,
+     "task": "ins-mineral-wool",
+     "task_title": "Θερμο-ηχομόνωση με πετροβάμβακα ή υαλοβάμβακα",
+     "products": 40,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "EARTHWOOL 040 TI312 RA 1200X12000X8cm (14.4m2)"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΟΡΥΚΤΟΒΑΜΒΑΚΑΣ ULTRACOUSTIC P 1200x600x7cm KNAUF"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΟΡΥΚΤΟΒΑΜΒΑΚΑΣ ULTRACOUSTIC PM 1200x600x45mm 11,52m2 KNAUF"
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα": {
+    "ins-foam": {
+     "name": "Αφρός πολυουρεθάνης / σφραγιστικά",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 77,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Σφραγιστικό πολυουρεθάνης (σαλάμι) Elasto..."
+      },
+      {
+       "site": "kaxiris",
+       "name": "SIKA BOOM 420 FIRE ΠΥΡΑΝΤΟΧΟΣ ΑΦΡΟΣ ΠΟΛΥΟΥΡΕΘΑΝΗΣ ΧΕΙΡΟΣ-ΠΙΣΤΟΛΙΟΥ 750ML"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Elastotet Lastofoam Styrene Adhesive Αφρός Πολυουρεθάνης Πιστολιού Χαμηλής Διόγκωσης 830ml"
+      }
+     ]
+    },
+    "ins-additive": {
+     "name": "Πρόσμικτο / αδιαβροχοποιητικό",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 24,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "MONOLASTIC"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Durostick D-42 ONE COAT ΣΟΒΑΣ ΜΙΑΣ ΣΤΡΩΣΗΣ ΥΔΑΤΑΠΩΘΗΤΙΚΟΣ 25kg"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Isomat Marmocryl Fine 2.00mm 25 kg Ακρυλικός Υδαταπωθητικός Σοβάς"
+      }
+     ]
+    }
+   }
+  },
+  "δαπεδοστρώτης": {
+   "Δάπεδα": {
+    "floor-vinyl": {
+     "name": "Βινυλικό δάπεδο (SPC / LVT)",
+     "needs_analysis": true,
+     "task": "floor-vinyl",
+     "task_title": "Τοποθέτηση βινυλικού δαπέδου (SPC/LVT)",
+     "products": 355,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο Βινυλικό SPC CEL-004 Natural Oak 5+1mm"
+      },
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο SPC Falquon Herringbone P6002 York Oak 6mm"
+      },
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο SPC Falquon Herringbone P6001 Toscon Oak 6mm"
+      }
+     ]
+    },
+    "floor-laminate": {
+     "name": "Δάπεδο laminate",
+     "needs_analysis": true,
+     "task": "floor-laminate",
+     "task_title": "Τοποθέτηση δαπέδου laminate",
+     "products": 811,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο Laminate Solid Waterproof Summer Oak Sand D99402 8mm AC4/32"
+      },
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο Laminate Solid Waterproof Summer Oak Sand D99392 8mm AC4/32"
+      },
+      {
+       "site": "dapeda",
+       "name": "Δάπεδο Laminate Solid Waterproof Vincent Oak Beige D91692 8mm AC4/32"
+      }
+     ]
+    },
+    "floor-wood": {
+     "name": "Ξύλινο προγυαλισμένο πάτωμα",
+     "needs_analysis": true,
+     "task": "floor-wood",
+     "task_title": "Τοποθέτηση προγυαλισμένου ξύλινου δαπέδου",
+     "products": 1120,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Προγυαλισμένο δάπεδο 11mm Oak Δρυς Natur 140Χ1200ΜΜ"
+      },
+      {
+       "site": "dapeda",
+       "name": "Προγυαλισμένο δάπεδο 14mm Oak Δρυς Natur"
+      },
+      {
+       "site": "dapeda",
+       "name": "Προγυαλισμένο δάπεδο 11mm Oak Δρυς Natur"
+      }
+     ]
+    },
+    "floor-skirting": {
+     "name": "Σοβατεπί δαπέδου",
+     "needs_analysis": true,
+     "task": "floor-skirting",
+     "task_title": "Τοποθέτηση σοβατεπί",
+     "products": 123,
+     "examples": [
+      {
+       "site": "dapeda",
+       "name": "Σοβατεπί Δαπέδου Laminate MDF Gri 5,5cm"
+      },
+      {
+       "site": "dapeda",
+       "name": "Σοβατεπί Δαπέδου Laminate MDF Duz 5,5cm"
+      },
+      {
+       "site": "dapeda",
+       "name": "Σοβατεπί Δαπέδου Laminate MDF Meric 5,5cm"
+      }
+     ]
+    }
+   },
+   "Αναλώσιμα δαπέδων": {
+    "floor-underlay": {
+     "name": "Υπόστρωμα / προφίλ δαπέδου",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 68,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Monox 10lt Μονωτικό υπόστρωμα για δύσκολε..."
+      },
+      {
+       "site": "dapeda",
+       "name": "Υπόστρωμα laminate PE Foam Ρολό 2mm 25μ2"
+      },
+      {
+       "site": "dapeda",
+       "name": "Hxoμονωτικό Υπόστρωμα Basewood ρολό 4,5mm 20dB"
+      }
+     ]
+    }
+   }
+  },
+  "σοβατζής": {
+   "Κονιάματα": {
+    "self-leveling": {
+     "name": "Αυτοεπιπεδούμενο κονίαμα",
+     "needs_analysis": true,
+     "task": "floor-screed",
+     "task_title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα",
+     "products": 7,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ΚΟΝΙΑΜΑ ΔΑΠΕΔΩΝ ΑΥΤΟΕΠΙΠΕΔΟΥΜΕΝΟ KNAUF FE60 Magic 25Kg"
+      },
+      {
+       "site": "kostelidis",
+       "name": "Αυτοεπιπεδούμενο τσιμεντοκονίαμα Isomat Flowcret 1-10 25Kg"
+      },
+      {
+       "site": "papasideris",
+       "name": "Αυτοεπιπεδούμενο τσιμεντοειδές κονίαμα εξομάλυνσης δαπέδων Sikafloor-200 Level 25kg"
+      }
+     ]
+    },
+    "repair-mortar": {
+     "name": "Επισκευαστικό κονίαμα",
+     "needs_analysis": true,
+     "task": "plaster-repair",
+     "task_title": "Επισκευή σοβάδων και ρωγμών",
+     "products": 47,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ΤΑΧΥΠΗΚΤΟΣ ΕΠΙΣΚΕΥΑΣΤΙΚΟΣ ΣΟΒΑΣ ΜΙΑΣ ΣΤΡΩΣΗΣ 25kg FINOFIX RP3000"
+      },
+      {
+       "site": "kaxiris",
+       "name": "Isomat Unicret-Fast 5 kg Ταχύπηκτος Λευκός Επισκευαστικός Σοβάς"
+      },
+      {
+       "site": "kaxiris",
+       "name": "DUROCRET ΛΕΥΚΟ 5KG Ρητινούχο επισκευαστικο τσιμεντοκονίαμα"
+      }
+     ]
+    },
+    "plaster": {
+     "name": "Σοβάς (έτοιμος / ακρυλικός)",
+     "needs_analysis": true,
+     "task": "plaster-wall",
+     "task_title": "Σοβάτισμα τοίχων",
+     "products": 110,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ΚΟΛΛΑ-ΣΟΒΑΣ ΙΝΟΠΛΙΣΜΕΝΟΣ THRAKON THC 410 25KG ΛΕΥΚΟ"
+      },
+      {
+       "site": "kaxiris",
+       "name": "KAPAFLEX COARSE 1.5mm 25Kg BAUER - ΑΚΡΥΛΙΚΟΣ ΕΛΑΣΤΙΚΟΣ ΣΟΒΑΣ"
+      },
+      {
+       "site": "kaxiris",
+       "name": "KAPAFLEX COARSE 1.2mm 25Kg BAUER - ΑΚΡΥΛΙΚΟΣ ΕΛΑΣΤΙΚΟΣ ΣΟΒΑΣ"
+      }
+     ]
+    }
+   },
+   "Τοιχοποιία": {
+    "bricks": {
+     "name": "Τούβλα / πορομπετόν / τσιμεντόλιθοι",
+     "needs_analysis": true,
+     "task": "masonry-wall",
+     "task_title": "Κατασκευή τοιχοποιίας (τούβλο ή πορομπετόν)",
+     "products": 187,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "ΥΑΛΟΤΟΥΒΛΟ ΤΕΡΜΑΤΙΚΟ ΔΙΠΛΟ ΣΥΝΝΕΦΟ ΤΣΕΧΙΑΣ 19x19x8cm"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΗΡΑΚΛΗΣ MASTERBLOCK ΠΟΡΟΜΠΕΤΟΝ 60x25x30cm"
+      },
+      {
+       "site": "kaxiris",
+       "name": "ΗΡΑΚΛΗΣ MASTERBLOCK ΠΟΡΟΜΠΕΤΟΝ 60x25x27,5cm"
+      }
+     ]
+    }
+   },
+   "Δομικά υλικά": {
+    "cement-sand": {
+     "name": "Τσιμέντο / άμμος / ασβέστης",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 687,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "VITO 9lt ΛΕΥΚΟ Ακρυλικό τσιμεντόχρωμα νερού"
+      },
+      {
+       "site": "balamoti",
+       "name": "HYDROSTOP ROOF Εύκαμπτο λευκό τσιμεντοειδ..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Ultra Smpaltoplast Fix Vechro Τσιμεντοειδ..."
+      }
+     ]
+    },
+    "plaster-accessory": {
+     "name": "Γωνιόκρανα / πλέγμα σοβά",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 1,
+     "examples": [
+      {
+       "site": "kaxiris",
+       "name": "KERAKOLL ΠΛΕΓΜΑ ΟΠΛΙΣΜΟΥ AQUASTOP AR1 50m"
+      }
+     ]
+    }
+   }
+  },
+  "ξυλουργός": {
+   "Πόρτες": {
+    "door-interior": {
+     "name": "Πόρτα εσωτερική",
+     "needs_analysis": true,
+     "task": "carp-interior-door",
+     "task_title": "Τοποθέτηση εσωτερικής πόρτας",
+     "products": 23,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "ΑΥΤΟΜΑΤΗ ΑΝΑΔΙΠΛΟΥΜΕΝΗ ΠΟΡΤΑ ΠΤΥΣΣΟΜΕΝΗ Δ..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Πόρτα εσωτερική με κάσα Viometale Laminat..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Πόρτα εσωτερική με κάσα Viometale Laminat..."
+      }
+     ]
+    }
+   },
+   "Κουζίνες": {
+    "kitchen-unit": {
+     "name": "Ντουλάπια / μονάδες κουζίνας",
+     "needs_analysis": true,
+     "task": "carp-kitchen",
+     "task_title": "Τοποθέτηση επίπλων κουζίνας",
+     "products": 1299,
+     "examples": [
+      {
+       "site": "homeville",
+       "name": "Ντουλάπια κουζίνας Defne pakoworld σε λευκή απόχρωση 89&#215;37.5&#215;160εκ"
+      },
+      {
+       "site": "homeville",
+       "name": "Ντουλάπι Κουζίνας Επιτοίχιο με Ράφια Ανοξείδωτο Ατσάλι"
+      },
+      {
+       "site": "homeville",
+       "name": "Ντουλάπι Κουζίνας Επιτοίχιο με Ράφια Ανοξείδωτο Ατσάλι"
+      }
+     ]
+    },
+    "countertop": {
+     "name": "Πάγκος κουζίνας (laminate / ξύλο)",
+     "needs_analysis": true,
+     "task": "carp-countertop",
+     "task_title": "Τοποθέτηση πάγκου κουζίνας (laminate ή ξύλο)",
+     "products": 299,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "LG HI-MACS STEEL GREY - ΠΑΓΚΟΣ ΚΟΥΖΙΝΑΣ BY MARMARA-BILLIS.GR"
+      },
+      {
+       "site": "billis",
+       "name": "SAMSUNG STARON IVORY - ΠΑΓΚΟΙ ΚΟΥΖΙΝΑΣ BILLIS"
+      },
+      {
+       "site": "billis",
+       "name": "NERO ANTHRACITE LUX - ΜΑΥΡΟΣ ΑΝΘΡΑΚΙ ΓΥΑΛΙΣΤΕΡΟΣ ΠΑΓΚΟΣ ΚΟΥΖΙΝΑΣ ΓΥΑΛΙΣΜΕΝΟΣ"
+      }
+     ]
+    },
+    "kitchen-backsplash": {
+     "name": "Πλάτη / πάνελ κουζίνας",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 627,
+     "examples": [
+      {
+       "site": "homeville",
+       "name": "Πλάτη κουζίνας 2 τεμ. Λευκό 90 x 60 cm σκληρυμένο γυαλί"
+      },
+      {
+       "site": "homeville",
+       "name": "Πλάτη κουζίνας Μαύρο 70 x 60 cm σκληρυμένο γυαλί"
+      },
+      {
+       "site": "homeville",
+       "name": "Πλάτη κουζίνας 2 τεμ. Μαύρο 70 x 60 cm σκληρυμένο γυαλί"
+      }
+     ]
+    }
+   },
+   "Ντουλάπες": {
+    "wardrobe": {
+     "name": "Ντουλάπα",
+     "needs_analysis": true,
+     "task": "carp-wardrobe",
+     "task_title": "Συναρμολόγηση και τοποθέτηση ντουλάπας",
+     "products": 4163,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Ντουλάπα CONCERT C100/092 610011"
+      },
+      {
+       "site": "balamoti",
+       "name": "Ντουλάπα πλαστική Artplast Concert C100/1..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Ντουλάπα Δίφυλλη Μεταλ. + 3 Ράφια 326250"
+      }
+     ]
+    }
+   },
+   "Σιδηρικά": {
+    "lock": {
+     "name": "Κλειδαριά / αφαλός",
+     "needs_analysis": true,
+     "task": "carp-lock",
+     "task_title": "Αντικατάσταση κλειδαριάς πόρτας",
+     "products": 65,
+     "examples": [
+      {
+       "site": "e-metallon",
+       "name": "ΑΝΤΙΚΡΙΣΜΑ ΚΛΕΙΔΑΡΙΑΣ DOMUS ΡΥΘΜΙΖΟΜΕΝΗ 90185"
+      },
+      {
+       "site": "e-metallon",
+       "name": "ΚΛΕΙΔΑΡΙΑ EXPORT DOMUS 45MM ΜΕ ΚΥΛΙΝΔΡΟ 90845"
+      },
+      {
+       "site": "e-metallon",
+       "name": "ΚΛΕΙΔΑΡΙΑ ΑΣΦΑΛΕΙΑΣ ΓΑΝΤΖΟΥ DOMUS 16MM ΜΕ ΚΥΛΙΝΔΡΟ 95016"
+      }
+     ]
+    },
+    "cabinet-hardware": {
+     "name": "Μεντεσέδες / χερούλια / μηχανισμοί επίπλων",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 427,
+     "examples": [
+      {
+       "site": "balamoti",
+       "name": "Viometale Πόμολο Μεσόπορτας με Πλάκα 06.4..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Viometale Πόμολο Μεσόπορτας με Πλάκα 06.4..."
+      },
+      {
+       "site": "balamoti",
+       "name": "Viometale Πόμολο Μεσόπορτας με Ροζέτα 06...."
+      }
+     ]
+    }
+   },
+   "Ράφια": {
+    "shelves": {
+     "name": "Ράφι / ραφιέρα τοίχου",
+     "needs_analysis": true,
+     "task": "carp-shelves",
+     "task_title": "Τοποθέτηση ραφιών τοίχου",
+     "products": 281,
+     "examples": [
+      {
+       "site": "epipla1",
+       "name": "Ράφι τοίχου Sole 105"
+      },
+      {
+       "site": "epipla1",
+       "name": "Ράφι τοίχου Sole 110"
+      },
+      {
+       "site": "epipla1",
+       "name": "Ράφι τοίχου Retro White 125"
+      }
+     ]
+    }
+   },
+   "Ξυλεία": {
+    "wood-panels": {
+     "name": "Ξυλεία / μοριοσανίδα / MDF",
+     "needs_analysis": false,
+     "task": null,
+     "task_title": null,
+     "products": 258,
+     "examples": [
+      {
+       "site": "fabricashop",
+       "name": "F-CINDY 56-5845 ΠΑΓΚΟΣ MDF ΣΧΕΤΟΣ 58*48 – CURRY"
+      },
+      {
+       "site": "homeville",
+       "name": "Σανίδα Κοπής 40 x 60 x 1,5 εκ. από Μπαμπού"
+      },
+      {
+       "site": "homeville",
+       "name": "Σανίδα Κοπής 40x30x1,5 εκ. από Μπαμπού"
+      }
+     ]
+    }
+   }
+  },
+  "μαρμαράς": {
+   "Πάγκοι": {
+    "marble-countertop": {
+     "name": "Πάγκος κουζίνας μάρμαρο / γρανίτης / χαλαζίας",
+     "needs_analysis": true,
+     "task": "marble-countertop",
+     "task_title": "Τοποθέτηση πάγκου κουζίνας από μάρμαρο, γρανίτη ή χαλαζία",
+     "products": 71,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "CAROLA 5114 - ΠΑΓΚΟΣ ΚΟΥΖΙΝΑΣ ΧΑΛΑΖΙΑ BELENCO"
+      },
+      {
+       "site": "billis",
+       "name": "NARCISSUS - ΛΕΥΚΟΣ ΠΑΓΚΟΣ ΚΟΥΖΙΝΑΣ ΧΑΛΑΖΙΑ COANTE"
+      },
+      {
+       "site": "billis",
+       "name": "DARK ELEGANT GREY - ΠΑΓΚΟΣ ΚΟΥΖΙΝΑΣ ΧΑΛΑΖΙΑ-ΤΕΧΝΟΓΡΑΝΙΤΗ ΠΑΧΟΥΣ 2cm"
+      }
+     ]
+    },
+    "marble-bath-top": {
+     "name": "Πάγκος μπάνιου (μάρμαρο / χαλαζίας)",
+     "needs_analysis": true,
+     "task": "marble-bath-top",
+     "task_title": "Τοποθέτηση μαρμάρινου πάγκου μπάνιου",
+     "products": 32,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "ΠΑΓΚΟΣ ΜΠΑΝΙΟΥ ΑΠΟ ΛΕΥΚΟ ΜΑΡΜΑΡΟ ΔΙΟΝΥΣΟΥ 100X60CM ΠΑΧΟΥΣ 3CM"
+      },
+      {
+       "site": "billis",
+       "name": "ΠΑΓΚΟΣ ΜΠΑΝΙΟΥ ΑΠΟ ΜΑΡΜΑΡΟ ΚΑΛΙΦΟΡΝΙΑ (CALIFORNIA) 100X60CM ΠΑΧΟΥΣ 3CM"
+      },
+      {
+       "site": "billis",
+       "name": "ΠΑΓΚΟΣ ΜΠΑΝΙΟΥ ΑΠΟ ΛΕΥΚΟ ΜΑΡΜΑΡΟ ΝΑΞΟΥ 100X60CM ΠΑΧΟΥΣ 3CM"
+      }
+     ]
+    }
+   },
+   "Ποδιές & κατωκάσια": {
+    "marble-sill": {
+     "name": "Ποδιά / κατωκάσι μαρμάρου",
+     "needs_analysis": true,
+     "task": "marble-sills",
+     "task_title": "Τοποθέτηση μαρμάρινων ποδιών και κατωκασιών",
+     "products": 34,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "ΜΑΡΜΑΡΑ STANDARD - ΜΑΡΜΑΡΟΠΟΔΙΕΣ (ΠΟΔΙΕΣ ΜΑΡΜΑΡΟΥ ΜΑΡΜΑΡΑ 2cm)"
+      },
+      {
+       "site": "billis",
+       "name": "ΚΑΒΑΛΑΣ STANDARD - ΜΑΡΜΑΡΟΠΟΔΙΕΣ (ΠΟΔΙΕΣ ΜΑΡΜΑΡΟΥ ΚΑΒΑΛΑΣ 2cm)"
+      },
+      {
+       "site": "billis",
+       "name": "DIONYSSOS STANDARD - ΜΑΡΜΑΡΟΠΟΔΙΕΣ (ΠΟΔΙΕΣ ΛΕΥΚΟΥ ΜΑΡΜΑΡΟΥ ΔΙΟΝΥΣΟΥ 2cm)"
+      }
+     ]
+    }
+   },
+   "Σκάλες": {
+    "marble-stair": {
+     "name": "Σκαλοπάτι / σκάλα μαρμάρου",
+     "needs_analysis": true,
+     "task": "marble-stairs",
+     "task_title": "Επένδυση σκάλας με μάρμαρο",
+     "products": 51,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "ΚΑΒΑΛΑΣ PREMIUM - ΜΑΡΜΑΡΙΝΗ ΣΚΑΛΑ (ΠΑΤΗΜΑ 3cm + ΡΙΧΤΥ 2cm)"
+      },
+      {
+       "site": "billis",
+       "name": "ΜΑΡΜΑΡΑ PREMIUM - ΜΑΡΜΑΡΙΝΗ ΣΚΑΛΑ (ΠΑΤΗΜΑ 3cm + ΡΙΧΤΥ 2cm)"
+      },
+      {
+       "site": "billis",
+       "name": "VRATSA - ΣΚΑΛΑ ΑΠΟ ΜΑΡΜΑΡΟ ΒΡΑΤΣΑ (ΠΑΤΗΜΑ 3cm + ΡΙΧΤΥ 2cm)"
+      }
+     ]
+    }
+   },
+   "Δάπεδα": {
+    "marble-floor": {
+     "name": "Δάπεδο μαρμάρου",
+     "needs_analysis": true,
+     "task": "marble-floor",
+     "task_title": "Τοποθέτηση μαρμάρινου δαπέδου",
+     "products": 10,
+     "examples": [
+      {
+       "site": "billis",
+       "name": "ΔΙΟΝΥΣΟΥ - ΣΤΡΩΣΗ ΑΠΟ ΜΑΡΜΑΡΟ ΔΙΟΝΥΣΟΥ 2cm"
+      },
+      {
+       "site": "billis",
+       "name": "ΙΩΑΝΝΙΝΩΝ ΣΠΕΣΙΑΛ - ΣΤΡΩΣΗ ΑΠΟ ΜΑΡΜΑΡΟ"
+      },
+      {
+       "site": "billis",
+       "name": "ΙΩΑΝΝΙΝΩΝ ΡΙΓΩΤΟ (14άρι) - ΣΤΡΩΣΗ ΑΠΟ ΜΑΡΜΑΡΟ"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "tasks": {
+  "bath-accessories": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση αξεσουάρ μπάνιου",
+   "types": [
+    "bath-accessory"
+   ],
+   "products": 7425,
+   "catalog": []
+  },
+  "bath-cabinet-mirror": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση καθρέπτη ή ντουλαπιού μπάνιου",
+   "types": [
+    "bath-mirror"
+   ],
+   "products": 3328,
+   "catalog": []
+  },
+  "carp-countertop": {
+   "trade": "ξυλουργός",
+   "title": "Τοποθέτηση πάγκου κουζίνας (laminate ή ξύλο)",
+   "types": [
+    "countertop"
+   ],
+   "products": 299,
+   "catalog": []
+  },
+  "carp-interior-door": {
+   "trade": "ξυλουργός",
+   "title": "Τοποθέτηση εσωτερικής πόρτας",
+   "types": [
+    "door-interior"
+   ],
+   "products": 23,
+   "catalog": [
+    "door"
+   ]
+  },
+  "carp-kitchen": {
+   "trade": "ξυλουργός",
+   "title": "Τοποθέτηση επίπλων κουζίνας",
+   "types": [
+    "kitchen-unit"
+   ],
+   "products": 1299,
+   "catalog": []
+  },
+  "carp-lock": {
+   "trade": "ξυλουργός",
+   "title": "Αντικατάσταση κλειδαριάς πόρτας",
+   "types": [
+    "lock"
+   ],
+   "products": 65,
+   "catalog": []
+  },
+  "carp-shelves": {
+   "trade": "ξυλουργός",
+   "title": "Τοποθέτηση ραφιών τοίχου",
+   "types": [
+    "shelves"
+   ],
+   "products": 281,
+   "catalog": []
+  },
+  "carp-wardrobe": {
+   "trade": "ξυλουργός",
+   "title": "Συναρμολόγηση και τοποθέτηση ντουλάπας",
+   "types": [
+    "wardrobe"
+   ],
+   "products": 4163,
+   "catalog": []
+  },
+  "drywall-ceiling": {
+   "trade": "γυψοσανιδάς",
+   "title": "Κατασκευή ψευδοροφής από γυψοσανίδα",
+   "types": [
+    "drywall-ceiling"
+   ],
+   "products": 82,
+   "catalog": [
+    "drywall"
+   ]
+  },
+  "drywall-cement-board": {
+   "trade": "γυψοσανιδάς",
+   "title": "Κατασκευή με τσιμεντοσανίδα",
+   "types": [
+    "cement-board"
+   ],
+   "products": 12,
+   "catalog": []
+  },
+  "drywall-partition": {
+   "trade": "γυψοσανιδάς",
+   "title": "Κατασκευή τοίχου από γυψοσανίδα",
+   "types": [
+    "drywall-board"
+   ],
+   "products": 115,
+   "catalog": []
+  },
+  "elec-ceiling-fan": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση ανεμιστήρα οροφής",
+   "licensed": true,
+   "types": [
+    "el-ceiling-fan"
+   ],
+   "products": 51,
+   "catalog": []
+  },
+  "elec-downlight": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση χωνευτών σποτ",
+   "licensed": true,
+   "types": [
+    "el-downlight"
+   ],
+   "products": 595,
+   "catalog": [
+    "light"
+   ]
+  },
+  "elec-floodlight": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση φωτιστικού ή προβολέα εξωτερικού χώρου",
+   "licensed": true,
+   "types": [
+    "el-floodlight"
+   ],
+   "products": 1476,
+   "catalog": []
+  },
+  "elec-intercom": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση θυροτηλεφώνου ή κουδουνιού",
+   "licensed": true,
+   "types": [
+    "el-intercom"
+   ],
+   "products": 272,
+   "catalog": []
+  },
+  "elec-led-strip": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση ταινίας LED",
+   "licensed": true,
+   "types": [
+    "el-led-strip"
+   ],
+   "products": 816,
+   "catalog": []
+  },
+  "elec-light-fixture": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση φωτιστικού οροφής ή τοίχου",
+   "licensed": true,
+   "types": [
+    "el-light-fixture"
+   ],
+   "products": 4893,
+   "catalog": []
+  },
+  "elec-panel": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Αντικατάσταση ή αναβάθμιση ηλεκτρολογικού πίνακα",
+   "licensed": true,
+   "types": [
+    "el-panel"
+   ],
+   "products": 81,
+   "catalog": []
+  },
+  "elec-sensor": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση ανιχνευτή κίνησης ή χρονοδιακόπτη",
+   "licensed": true,
+   "types": [
+    "el-sensor"
+   ],
+   "products": 124,
+   "catalog": []
+  },
+  "elec-socket": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+   "licensed": true,
+   "types": [
+    "el-socket"
+   ],
+   "products": 2114,
+   "catalog": [
+    "valve:φωτός χωνευτός",
+    "socket"
+   ]
+  },
+  "elec-track-light": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Τοποθέτηση ράγας με φωτιστικά",
+   "licensed": true,
+   "types": [
+    "el-track"
+   ],
+   "products": 565,
+   "catalog": []
+  },
+  "elec-wiring": {
+   "trade": "ηλεκτρολόγος",
+   "title": "Νέα γραμμή ή αντικατάσταση καλωδίωσης",
+   "licensed": true,
+   "types": [
+    "el-cable"
+   ],
+   "products": 193,
+   "catalog": [
+    "cable"
+   ]
+  },
+  "floor-laminate": {
+   "trade": "δαπεδοστρώτης",
+   "title": "Τοποθέτηση δαπέδου laminate",
+   "types": [
+    "floor-laminate"
+   ],
+   "products": 811,
+   "catalog": []
+  },
+  "floor-screed": {
+   "trade": "σοβατζής",
+   "title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα",
+   "types": [
+    "self-leveling"
+   ],
+   "products": 7,
+   "catalog": [
+    "screed"
+   ]
+  },
+  "floor-skirting": {
+   "trade": "δαπεδοστρώτης",
+   "title": "Τοποθέτηση σοβατεπί",
+   "types": [
+    "floor-skirting"
+   ],
+   "products": 123,
+   "catalog": []
+  },
+  "floor-vinyl": {
+   "trade": "δαπεδοστρώτης",
+   "title": "Τοποθέτηση βινυλικού δαπέδου (SPC/LVT)",
+   "types": [
+    "floor-vinyl"
+   ],
+   "products": 355,
+   "catalog": []
+  },
+  "floor-wood": {
+   "trade": "δαπεδοστρώτης",
+   "title": "Τοποθέτηση προγυαλισμένου ξύλινου δαπέδου",
+   "types": [
+    "floor-wood"
+   ],
+   "products": 1120,
+   "catalog": []
+  },
+  "gen-demolition": {
+   "trade": "σοβατζής",
+   "title": "Αποξήλωση παλιών ειδών και πλακιδίων, απομάκρυνση μπαζών",
+   "types": [],
+   "products": 0,
+   "catalog": [
+    "demolition",
+    "debris"
+   ]
+  },
+  "heat-boiler-tank": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Τοποθέτηση μπόιλερ ζεστού νερού λεβητοστασίου",
+   "types": [
+    "boiler-tank"
+   ],
+   "products": 160,
+   "catalog": []
+  },
+  "heat-burner": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Αντικατάσταση καυστήρα",
+   "licensed": true,
+   "types": [
+    "burner"
+   ],
+   "products": 90,
+   "catalog": []
+  },
+  "heat-circulator": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Αντικατάσταση κυκλοφορητή",
+   "types": [
+    "circulator"
+   ],
+   "products": 91,
+   "catalog": []
+  },
+  "heat-expansion-vessel": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Αντικατάσταση δοχείου διαστολής",
+   "types": [
+    "expansion-vessel"
+   ],
+   "products": 173,
+   "catalog": []
+  },
+  "heat-gas-boiler": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Εγκατάσταση λέβητα φυσικού αερίου",
+   "licensed": true,
+   "types": [
+    "boiler-gas"
+   ],
+   "products": 115,
+   "catalog": []
+  },
+  "heat-heat-pump": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Εγκατάσταση αντλίας θερμότητας",
+   "licensed": true,
+   "types": [
+    "heat-pump"
+   ],
+   "products": 196,
+   "catalog": []
+  },
+  "heat-oil-boiler": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Εγκατάσταση λέβητα πετρελαίου",
+   "licensed": true,
+   "types": [
+    "boiler-oil"
+   ],
+   "products": 39,
+   "catalog": []
+  },
+  "heat-radiator": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Τοποθέτηση ή αντικατάσταση σώματος καλοριφέρ",
+   "types": [
+    "radiator"
+   ],
+   "products": 388,
+   "catalog": []
+  },
+  "heat-solar": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Τοποθέτηση ηλιακού θερμοσίφωνα",
+   "types": [
+    "solar-heater"
+   ],
+   "products": 164,
+   "catalog": []
+  },
+  "heat-solid-boiler": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Εγκατάσταση λέβητα στερεών καυσίμων ή pellet",
+   "types": [
+    "boiler-solid"
+   ],
+   "products": 48,
+   "catalog": []
+  },
+  "heat-thermostat": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Τοποθέτηση θερμοστάτη χώρου",
+   "types": [
+    "room-thermostat"
+   ],
+   "products": 23,
+   "catalog": []
+  },
+  "heat-underfloor": {
+   "trade": "θερμοϋδραυλικός",
+   "title": "Εγκατάσταση ενδοδαπέδιας θέρμανσης",
+   "types": [
+    "underfloor"
+   ],
+   "products": 44,
+   "catalog": []
+  },
+  "hvac-floor-console": {
+   "trade": "ψυκτικός",
+   "title": "Εγκατάσταση κλιματιστικού δαπέδου, οροφής ή κασέτας",
+   "licensed": true,
+   "types": [
+    "ac-floor"
+   ],
+   "products": 7,
+   "catalog": []
+  },
+  "hvac-multi": {
+   "trade": "ψυκτικός",
+   "title": "Εγκατάσταση πολυδιαιρούμενου κλιματιστικού (multi)",
+   "licensed": true,
+   "types": [
+    "ac-multi"
+   ],
+   "products": 97,
+   "catalog": []
+  },
+  "hvac-split": {
+   "trade": "ψυκτικός",
+   "title": "Εγκατάσταση κλιματιστικού τοίχου",
+   "licensed": true,
+   "types": [
+    "ac-split"
+   ],
+   "products": 251,
+   "catalog": []
+  },
+  "ins-etics": {
+   "trade": "μονωτής",
+   "title": "Θερμοπρόσοψη (εξωτερική θερμομόνωση τοίχων)",
+   "types": [
+    "ins-etics"
+   ],
+   "products": 101,
+   "catalog": []
+  },
+  "ins-mineral-wool": {
+   "trade": "μονωτής",
+   "title": "Θερμο-ηχομόνωση με πετροβάμβακα ή υαλοβάμβακα",
+   "types": [
+    "ins-mineral-wool"
+   ],
+   "products": 40,
+   "catalog": []
+  },
+  "ins-roof-liquid": {
+   "trade": "μονωτής",
+   "title": "Στεγάνωση ταράτσας με επαλειφόμενο στεγανωτικό",
+   "types": [
+    "wp-roof-liquid"
+   ],
+   "products": 73,
+   "catalog": []
+  },
+  "ins-roof-membrane": {
+   "trade": "μονωτής",
+   "title": "Στεγάνωση ταράτσας με ασφαλτική μεμβράνη",
+   "types": [
+    "wp-membrane"
+   ],
+   "products": 6,
+   "catalog": []
+  },
+  "ins-roof-shingles": {
+   "trade": "μονωτής",
+   "title": "Τοποθέτηση ασφαλτικών κεραμιδιών",
+   "types": [
+    "ins-shingles"
+   ],
+   "products": 9,
+   "catalog": []
+  },
+  "ins-roof-thermal": {
+   "trade": "μονωτής",
+   "title": "Θερμομόνωση ταράτσας με πλάκες",
+   "types": [
+    "ins-xps-eps"
+   ],
+   "products": 224,
+   "catalog": []
+  },
+  "ins-wet-room": {
+   "trade": "μονωτής",
+   "title": "Στεγάνωση δαπέδου και τοίχων μπάνιου",
+   "types": [
+    "wp-cementitious"
+   ],
+   "products": 9,
+   "catalog": [
+    "waterproof"
+   ]
+  },
+  "marble-bath-top": {
+   "trade": "μαρμαράς",
+   "title": "Τοποθέτηση μαρμάρινου πάγκου μπάνιου",
+   "types": [
+    "marble-bath-top"
+   ],
+   "products": 32,
+   "catalog": []
+  },
+  "marble-countertop": {
+   "trade": "μαρμαράς",
+   "title": "Τοποθέτηση πάγκου κουζίνας από μάρμαρο, γρανίτη ή χαλαζία",
+   "types": [
+    "marble-countertop"
+   ],
+   "products": 71,
+   "catalog": []
+  },
+  "marble-floor": {
+   "trade": "μαρμαράς",
+   "title": "Τοποθέτηση μαρμάρινου δαπέδου",
+   "types": [
+    "marble-floor"
+   ],
+   "products": 10,
+   "catalog": []
+  },
+  "marble-sills": {
+   "trade": "μαρμαράς",
+   "title": "Τοποθέτηση μαρμάρινων ποδιών και κατωκασιών",
+   "types": [
+    "marble-sill"
+   ],
+   "products": 34,
+   "catalog": []
+  },
+  "marble-stairs": {
+   "trade": "μαρμαράς",
+   "title": "Επένδυση σκάλας με μάρμαρο",
+   "types": [
+    "marble-stair"
+   ],
+   "products": 51,
+   "catalog": []
+  },
+  "masonry-wall": {
+   "trade": "σοβατζής",
+   "title": "Κατασκευή τοιχοποιίας (τούβλο ή πορομπετόν)",
+   "types": [
+    "bricks"
+   ],
+   "products": 187,
+   "catalog": []
+  },
+  "paint-exterior": {
+   "trade": "ελαιοχρωματιστής",
+   "title": "Βάψιμο εξωτερικών επιφανειών με ακρυλικό χρώμα",
+   "types": [
+    "paint-exterior"
+   ],
+   "products": 153,
+   "catalog": []
+  },
+  "paint-floor-epoxy": {
+   "trade": "ελαιοχρωματιστής",
+   "title": "Βαφή δαπέδου με εποξειδικό χρώμα",
+   "types": [
+    "paint-epoxy-floor"
+   ],
+   "products": 9,
+   "catalog": []
+  },
+  "paint-interior-walls": {
+   "trade": "ελαιοχρωματιστής",
+   "title": "Βάψιμο εσωτερικών τοίχων και οροφών με πλαστικό χρώμα",
+   "types": [
+    "paint-interior"
+   ],
+   "products": 296,
+   "catalog": [
+    "paint"
+   ]
+  },
+  "paint-metal": {
+   "trade": "ελαιοχρωματιστής",
+   "title": "Βάψιμο μεταλλικών επιφανειών (κάγκελα, πόρτες)",
+   "types": [
+    "paint-metal"
+   ],
+   "products": 1138,
+   "catalog": []
+  },
+  "paint-wood": {
+   "trade": "ελαιοχρωματιστής",
+   "title": "Βάψιμο ή βερνίκωμα ξύλινων επιφανειών",
+   "types": [
+    "paint-wood"
+   ],
+   "products": 473,
+   "catalog": []
+  },
+  "plaster-repair": {
+   "trade": "σοβατζής",
+   "title": "Επισκευή σοβάδων και ρωγμών",
+   "types": [
+    "repair-mortar"
+   ],
+   "products": 47,
+   "catalog": []
+  },
+  "plaster-wall": {
+   "trade": "σοβατζής",
+   "title": "Σοβάτισμα τοίχων",
+   "types": [
+    "plaster"
+   ],
+   "products": 110,
+   "catalog": [
+    "plaster"
+   ]
+  },
+  "plumb-angle-valve": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση γωνιακών διακοπτών και σπιράλ σύνδεσης",
+   "types": [
+    "angle-valve"
+   ],
+   "products": 32,
+   "catalog": [
+    "valve:γωνιακός",
+    "hose"
+   ]
+  },
+  "plumb-basin": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση νιπτήρα",
+   "types": [
+    "basin"
+   ],
+   "products": 2382,
+   "catalog": [
+    "basin"
+   ]
+  },
+  "plumb-bathtub": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση μπανιέρας",
+   "types": [
+    "bathtub"
+   ],
+   "products": 470,
+   "catalog": [
+    "bathtub"
+   ]
+  },
+  "plumb-cistern-external": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση εξωτερικού καζανακιού",
+   "types": [
+    "cistern-external"
+   ],
+   "products": 140,
+   "catalog": [
+    "tank:εξωτερικό"
+   ]
+  },
+  "plumb-cistern-repair": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "types": [
+    "cistern-mechanism"
+   ],
+   "products": 127,
+   "catalog": [
+    "float",
+    "flush"
+   ]
+  },
+  "plumb-drain-network": {
+   "trade": "υδραυλικός",
+   "title": "Κατασκευή ή αντικατάσταση δικτύου αποχέτευσης",
+   "types": [
+    "pipe-drain"
+   ],
+   "products": 179,
+   "catalog": [
+    "pipe:αποχέτευσης PVC Φ110",
+    "pipe:αποχέτευσης PVC Φ50"
+   ]
+  },
+  "plumb-floor-drain": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση σιφωνιού δαπέδου ή καναλιού ντους",
+   "types": [
+    "floor-drain"
+   ],
+   "products": 272,
+   "catalog": []
+  },
+  "plumb-heater-element": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση αντίστασης θερμοσίφωνα",
+   "types": [
+    "heater-element"
+   ],
+   "products": 80,
+   "catalog": []
+  },
+  "plumb-main-valve": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση κεντρικού διακόπτη ή βάνας νερού",
+   "types": [
+    "ball-valve"
+   ],
+   "products": 180,
+   "catalog": [
+    "valve:σφαιρικός κεντρικός 3/4\"",
+    "ballvalve"
+   ]
+  },
+  "plumb-manifold": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση συλλέκτη ύδρευσης",
+   "types": [
+    "manifold"
+   ],
+   "products": 127,
+   "catalog": [
+    "manifold"
+   ]
+  },
+  "plumb-mixer-basin": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση μπαταρίας νιπτήρα",
+   "types": [
+    "mixer-basin",
+    "mixer-other"
+   ],
+   "products": 1539,
+   "catalog": [
+    "mixer:νιπτήρα αναμεικτική"
+   ]
+  },
+  "plumb-mixer-concealed": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση εντοιχιζόμενης μπαταρίας ντους",
+   "types": [
+    "mixer-concealed"
+   ],
+   "products": 538,
+   "catalog": []
+  },
+  "plumb-mixer-kitchen": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση μπαταρίας κουζίνας",
+   "types": [
+    "mixer-kitchen"
+   ],
+   "products": 1160,
+   "catalog": [
+    "mixer:κουζίνας αναμεικτική"
+   ]
+  },
+  "plumb-mixer-shower": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση εξωτερικής μπαταρίας ντουζιέρας ή μπανιέρας",
+   "types": [
+    "mixer-shower"
+   ],
+   "products": 699,
+   "catalog": [
+    "mixer:ντουζιέρας θερμοστατική",
+    "mixer:μπανιέρας με τηλέφωνο"
+   ]
+  },
+  "plumb-pressure-test": {
+   "trade": "υδραυλικός",
+   "title": "Δοκιμή πίεσης δικτύου ύδρευσης",
+   "types": [],
+   "products": 0,
+   "catalog": [
+    "pressure"
+   ]
+  },
+  "plumb-shower-column": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση στήλης ή σετ ντους",
+   "types": [
+    "shower-column"
+   ],
+   "products": 695,
+   "catalog": [
+    "showerset"
+   ]
+  },
+  "plumb-shower-enclosure": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση καμπίνας ή διαχωριστικού ντουζιέρας",
+   "types": [
+    "shower-enclosure"
+   ],
+   "products": 3342,
+   "catalog": [
+    "cabin"
+   ]
+  },
+  "plumb-shower-tray": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση βάσης ντουζιέρας",
+   "types": [
+    "shower-tray"
+   ],
+   "products": 323,
+   "catalog": [
+    "shower"
+   ]
+  },
+  "plumb-sink": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση νεροχύτη κουζίνας",
+   "types": [
+    "sink"
+   ],
+   "products": 884,
+   "catalog": [
+    "sink"
+   ]
+  },
+  "plumb-siphon": {
+   "trade": "υδραυλικός",
+   "title": "Αντικατάσταση σιφωνιού",
+   "types": [
+    "siphon"
+   ],
+   "products": 132,
+   "catalog": [
+    "siphon"
+   ]
+  },
+  "plumb-tap": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση απλής βρύσης (κήπου ή πλυντηρίου)",
+   "types": [
+    "garden-tap"
+   ],
+   "products": 14,
+   "catalog": [
+    "tap"
+   ]
+  },
+  "plumb-vanity": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση επίπλου μπάνιου με νιπτήρα",
+   "types": [
+    "vanity"
+   ],
+   "products": 3284,
+   "catalog": [
+    "vanity"
+   ]
+  },
+  "plumb-water-heater": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση ή αντικατάσταση ηλεκτρικού θερμοσίφωνα",
+   "types": [
+    "water-heater-electric",
+    "instant-heater"
+   ],
+   "products": 131,
+   "catalog": [
+    "heater"
+   ]
+  },
+  "plumb-water-network": {
+   "trade": "υδραυλικός",
+   "title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+   "types": [
+    "pipe-multilayer",
+    "pipe-ppr"
+   ],
+   "products": 191,
+   "catalog": [
+    "pipe:πολυστρωματικός Φ26",
+    "pipe:πολυστρωματικός Φ20",
+    "pipe:πολυστρωματικός Φ16",
+    "pipe:PPR Φ25",
+    "pipe:PPR Φ20",
+    "elbow",
+    "coupling",
+    "tee"
+   ]
+  },
+  "plumb-water-pump": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση πιεστικού συγκροτήματος νερού",
+   "types": [
+    "water-pump"
+   ],
+   "products": 1,
+   "catalog": []
+  },
+  "plumb-wc-floor": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση λεκάνης δαπέδου",
+   "types": [
+    "wc-floor"
+   ],
+   "products": 251,
+   "catalog": [
+    "wc:δαπέδου"
+   ]
+  },
+  "plumb-wc-wall-hung": {
+   "trade": "υδραυλικός",
+   "title": "Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού",
+   "types": [
+    "wc-wall-hung",
+    "cistern-concealed"
+   ],
+   "products": 665,
+   "catalog": [
+    "wc:κρεμαστή",
+    "tank:εντοιχισμού"
+   ]
+  },
+  "tile-floor": {
+   "trade": "πλακάς",
+   "title": "Επικόλληση πλακιδίων δαπέδου",
+   "types": [
+    "tile-floor"
+   ],
+   "products": 3742,
+   "catalog": [
+    "tile",
+    "glue",
+    "grout"
+   ]
+  },
+  "tile-mosaic": {
+   "trade": "πλακάς",
+   "title": "Τοποθέτηση ψηφίδας",
+   "types": [
+    "tile-mosaic"
+   ],
+   "products": 183,
+   "catalog": []
+  },
+  "tile-wall": {
+   "trade": "πλακάς",
+   "title": "Επικόλληση πλακιδίων τοίχου",
+   "types": [
+    "tile-wall"
+   ],
+   "products": 608,
+   "catalog": []
+  }
+ },
+ "catalog": [
+  {
+   "id": "pipe",
+   "option": "πολυστρωματικός Φ26",
+   "name": "Σωλήνας πολυστρωματικός Φ26",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "πολυστρωματικός Φ20",
+   "name": "Σωλήνας πολυστρωματικός Φ20",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "πολυστρωματικός Φ16",
+   "name": "Σωλήνας πολυστρωματικός Φ16",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "PPR Φ25",
+   "name": "Σωλήνας PPR Φ25",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "PPR Φ20",
+   "name": "Σωλήνας PPR Φ20",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "αποχέτευσης PVC Φ110",
+   "name": "Σωλήνας αποχέτευσης PVC Φ110",
+   "task": "plumb-drain-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου αποχέτευσης"
+  },
+  {
+   "id": "pipe",
+   "option": "αποχέτευσης PVC Φ50",
+   "name": "Σωλήνας αποχέτευσης PVC Φ50",
+   "task": "plumb-drain-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου αποχέτευσης"
+  },
+  {
+   "id": "valve",
+   "option": "γωνιακός",
+   "name": "Διακόπτης γωνιακός",
+   "task": "plumb-angle-valve",
+   "task_title": "Αντικατάσταση γωνιακών διακοπτών και σπιράλ σύνδεσης"
+  },
+  {
+   "id": "valve",
+   "option": "σφαιρικός κεντρικός 3/4\"",
+   "name": "Διακόπτης σφαιρικός κεντρικός 3/4\"",
+   "task": "plumb-main-valve",
+   "task_title": "Αντικατάσταση κεντρικού διακόπτη ή βάνας νερού"
+  },
+  {
+   "id": "valve",
+   "option": "φωτός χωνευτός",
+   "name": "Διακόπτης φωτός χωνευτός",
+   "task": "elec-socket",
+   "task_title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη"
+  },
+  {
+   "id": "mixer",
+   "option": "νιπτήρα αναμεικτική",
+   "name": "Μπαταρία νιπτήρα αναμεικτική",
+   "task": "plumb-mixer-basin",
+   "task_title": "Τοποθέτηση μπαταρίας νιπτήρα"
+  },
+  {
+   "id": "mixer",
+   "option": "κουζίνας αναμεικτική",
+   "name": "Μπαταρία κουζίνας αναμεικτική",
+   "task": "plumb-mixer-kitchen",
+   "task_title": "Τοποθέτηση μπαταρίας κουζίνας"
+  },
+  {
+   "id": "mixer",
+   "option": "ντουζιέρας θερμοστατική",
+   "name": "Μπαταρία ντουζιέρας θερμοστατική",
+   "task": "plumb-mixer-shower",
+   "task_title": "Τοποθέτηση εξωτερικής μπαταρίας ντουζιέρας ή μπανιέρας"
+  },
+  {
+   "id": "mixer",
+   "option": "μπανιέρας με τηλέφωνο",
+   "name": "Μπαταρία μπανιέρας με τηλέφωνο",
+   "task": "plumb-mixer-shower",
+   "task_title": "Τοποθέτηση εξωτερικής μπαταρίας ντουζιέρας ή μπανιέρας"
+  },
+  {
+   "id": "tap",
+   "name": "Βρύση απλή (κήπου/πλυντηρίου)",
+   "task": "plumb-tap",
+   "task_title": "Τοποθέτηση απλής βρύσης (κήπου ή πλυντηρίου)"
+  },
+  {
+   "id": "wc",
+   "option": "κρεμαστή",
+   "name": "Λεκάνη κρεμαστή",
+   "task": "plumb-wc-wall-hung",
+   "task_title": "Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού"
+  },
+  {
+   "id": "wc",
+   "option": "δαπέδου",
+   "name": "Λεκάνη δαπέδου",
+   "task": "plumb-wc-floor",
+   "task_title": "Τοποθέτηση λεκάνης δαπέδου"
+  },
+  {
+   "id": "tank",
+   "option": "εντοιχισμού",
+   "name": "Καζανάκι εντοιχισμού",
+   "task": "plumb-wc-wall-hung",
+   "task_title": "Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού"
+  },
+  {
+   "id": "tank",
+   "option": "εξωτερικό",
+   "name": "Καζανάκι εξωτερικό",
+   "task": "plumb-cistern-external",
+   "task_title": "Αντικατάσταση εξωτερικού καζανακιού"
+  },
+  {
+   "id": "basin",
+   "name": "Νιπτήρας πορσελάνης",
+   "task": "plumb-basin",
+   "task_title": "Τοποθέτηση νιπτήρα"
+  },
+  {
+   "id": "vanity",
+   "name": "Έπιπλο μπάνιου με νιπτήρα",
+   "task": "plumb-vanity",
+   "task_title": "Τοποθέτηση επίπλου μπάνιου με νιπτήρα"
+  },
+  {
+   "id": "showerset",
+   "name": "Σετ ντους",
+   "task": "plumb-shower-column",
+   "task_title": "Τοποθέτηση στήλης ή σετ ντους"
+  },
+  {
+   "id": "shower",
+   "name": "Ντουζιέρα",
+   "task": "plumb-shower-tray",
+   "task_title": "Τοποθέτηση βάσης ντουζιέρας"
+  },
+  {
+   "id": "cabin",
+   "name": "Καμπίνα ντουζιέρας γυάλινη",
+   "task": "plumb-shower-enclosure",
+   "task_title": "Τοποθέτηση καμπίνας ή διαχωριστικού ντουζιέρας"
+  },
+  {
+   "id": "bathtub",
+   "name": "Μπανιέρα ακρυλική",
+   "task": "plumb-bathtub",
+   "task_title": "Τοποθέτηση μπανιέρας"
+  },
+  {
+   "id": "sink",
+   "name": "Νεροχύτης ανοξείδωτος",
+   "task": "plumb-sink",
+   "task_title": "Τοποθέτηση νεροχύτη κουζίνας"
+  },
+  {
+   "id": "heater",
+   "name": "Θερμοσίφωνας",
+   "task": "plumb-water-heater",
+   "task_title": "Τοποθέτηση ή αντικατάσταση ηλεκτρικού θερμοσίφωνα"
+  },
+  {
+   "id": "siphon",
+   "name": "Σιφόνι",
+   "task": "plumb-siphon",
+   "task_title": "Αντικατάσταση σιφωνιού"
+  },
+  {
+   "id": "hose",
+   "name": "Σπιράλ σύνδεσης",
+   "task": "plumb-angle-valve",
+   "task_title": "Αντικατάσταση γωνιακών διακοπτών και σπιράλ σύνδεσης",
+   "consumable": true
+  },
+  {
+   "id": "float",
+   "name": "Φλοτέρ καζανακιού",
+   "task": "plumb-cistern-repair",
+   "task_title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού"
+  },
+  {
+   "id": "flush",
+   "name": "Μηχανισμός καζανακιού",
+   "task": "plumb-cistern-repair",
+   "task_title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού"
+  },
+  {
+   "id": "ballvalve",
+   "name": "Βάνα σφαιρική",
+   "task": "plumb-main-valve",
+   "task_title": "Αντικατάσταση κεντρικού διακόπτη ή βάνας νερού"
+  },
+  {
+   "id": "elbow",
+   "name": "Γωνία πολυστρωματική",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+   "consumable": true
+  },
+  {
+   "id": "coupling",
+   "name": "Ρακόρ / σύνδεσμος",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+   "consumable": true
+  },
+  {
+   "id": "tee",
+   "name": "Ταυ πολυστρωματικό",
+   "task": "plumb-water-network",
+   "task_title": "Κατασκευή ή αντικατάσταση δικτύου ύδρευσης",
+   "consumable": true
+  },
+  {
+   "id": "manifold",
+   "name": "Συλλέκτης νερού",
+   "task": "plumb-manifold",
+   "task_title": "Τοποθέτηση συλλέκτη ύδρευσης"
+  },
+  {
+   "id": "pressure",
+   "name": "Δοκιμή πίεσης δικτύου",
+   "task": "plumb-pressure-test",
+   "task_title": "Δοκιμή πίεσης δικτύου ύδρευσης",
+   "service": true
+  },
+  {
+   "id": "demolition",
+   "name": "Αποξήλωση παλιών ειδών & πλακιδίων",
+   "task": "gen-demolition",
+   "task_title": "Αποξήλωση παλιών ειδών και πλακιδίων, απομάκρυνση μπαζών",
+   "service": true
+  },
+  {
+   "id": "debris",
+   "name": "Απομάκρυνση μπαζών (κάδος)",
+   "task": "gen-demolition",
+   "task_title": "Αποξήλωση παλιών ειδών και πλακιδίων, απομάκρυνση μπαζών",
+   "service": true
+  },
+  {
+   "id": "tile",
+   "name": "Πλακάκι",
+   "task": "tile-floor",
+   "task_title": "Επικόλληση πλακιδίων δαπέδου",
+   "qualifiers": {
+    "τοίχου": "tile-wall",
+    "τοιχου": "tile-wall"
+   }
+  },
+  {
+   "id": "glue",
+   "name": "Κόλλα πλακιδίων 25 kg",
+   "task": "tile-floor",
+   "task_title": "Επικόλληση πλακιδίων δαπέδου",
+   "consumable": true
+  },
+  {
+   "id": "grout",
+   "name": "Αρμόστοκος 5 kg",
+   "task": "tile-floor",
+   "task_title": "Επικόλληση πλακιδίων δαπέδου",
+   "consumable": true
+  },
+  {
+   "id": "waterproof",
+   "name": "Στεγάνωση δαπέδου μπάνιου",
+   "task": "ins-wet-room",
+   "task_title": "Στεγάνωση δαπέδου και τοίχων μπάνιου"
+  },
+  {
+   "id": "screed",
+   "name": "Εξομάλυνση δαπέδου (αυτοεπιπεδούμενο)",
+   "task": "floor-screed",
+   "task_title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα"
+  },
+  {
+   "id": "plaster",
+   "name": "Σοβάς",
+   "task": "plaster-wall",
+   "task_title": "Σοβάτισμα τοίχων"
+  },
+  {
+   "id": "drywall",
+   "name": "Ψευδοροφή γυψοσανίδας",
+   "task": "drywall-ceiling",
+   "task_title": "Κατασκευή ψευδοροφής από γυψοσανίδα"
+  },
+  {
+   "id": "paint",
+   "name": "Βάψιμο τοίχων πλαστικό",
+   "task": "paint-interior-walls",
+   "task_title": "Βάψιμο εσωτερικών τοίχων και οροφών με πλαστικό χρώμα"
+  },
+  {
+   "id": "door",
+   "name": "Πόρτα εσωτερική laminate",
+   "task": "carp-interior-door",
+   "task_title": "Τοποθέτηση εσωτερικής πόρτας"
+  },
+  {
+   "id": "cable",
+   "name": "Καλώδιο ΝΥΜ",
+   "task": "elec-wiring",
+   "task_title": "Νέα γραμμή ή αντικατάσταση καλωδίωσης"
+  },
+  {
+   "id": "socket",
+   "name": "Πρίζα σούκο χωνευτή",
+   "task": "elec-socket",
+   "task_title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη"
+  },
+  {
+   "id": "light",
+   "name": "Φωτιστικό σποτ LED χωνευτό",
+   "task": "elec-downlight",
+   "task_title": "Τοποθέτηση χωνευτών σποτ"
+  }
+ ],
+ "catalog_unmatched": [
+  {
+   "id": "showerask",
+   "name": "Ντουζιέρα ή σετ ντους;",
+   "why": "Δεν είναι υλικό: ερώτηση επιλογής («ντουζιέρα ή σετ ντους;»). Η γραμμή παίρνει την εργασία του είδους που θα διαλέξει ο τεχνίτης."
+  }
+ ]
+}
