@@ -73,6 +73,22 @@ const MORE = new Set(['ακομα', 'ακομη', 'επιπλεον', 'αλλη'
 const CORR_PHRASE = ['θελω|ηθελα', 'να', 'πω'];
 const corrPhraseAt = tokens => tokens.findIndex((_, k) => CORR_PHRASE.every((w, j) => new RegExp(`^(${w})$`).test(tokens[k + j] || '')));
 
+// Η φωνή συνήθως δεν βάζει κόμμα: «δέκα μέτρα σωλήνα όχι δώδεκα» σπάει πριν από τη λέξη διόρθωσης, σαν να είχε ειπωθεί
+// «δέκα μέτρα σωλήνα, όχι δώδεκα». Μόνο αν μετά έρχεται σκέτη ποσότητα (αριθμός/μονάδα) — «…όχι τρεις λεκάνες» μένει όπως είναι.
+function splitCorrection(seg){
+  const words = seg.split(/\s+/), toks = words.map(w => norm(w).replace(/[«»'()".,;:!?]/g, ''));
+  for(let k = 1; k < toks.length; k++){
+    const phrase = CORR_PHRASE.every((w, j) => new RegExp(`^(${w})$`).test(toks[k + j] || ''));
+    if(!CORR_EXPLICIT.has(toks[k]) && !phrase) continue;
+    const tail = toks.slice(k + (phrase ? CORR_PHRASE.length : 1));
+    if(!tail.some(t => toNumber(t) != null)) continue;
+    if(!tail.every(t => toNumber(t) != null || unitOf(t) || CORR.has(t) || FILLER.has(t))) continue;
+    if(toks.slice(0, k).every(t => FILLER.has(t) || CORR.has(t) || NEG.has(t) || toNumber(t) != null)) continue;   // «όχι δέκα δώδεκα…»
+    return [words.slice(0, k).join(' '), words.slice(k).join(' ')];
+  }
+  return [seg];
+}
+
 /** Αριθμός που ξεκινά στο i, και σύνθετος από διαδοχικές λέξεις («είκοσι πέντε») → {n, end}· null αν δεν είναι αριθμός. */
 function numAt(tokens, i, {money = false} = {}){
   if(tokens[i] == null) return null;                                         // «30 επί» στο τέλος (ήταν εξαίρεση)
@@ -345,7 +361,7 @@ export function parse(text){
   text = cleanText(text);
   const lines = [], unknown = [];
   let title = '', correcting = false, lastLine = null, prevCorr = false, labor = null;
-  for(const rawSeg of text.split(SPLIT)){
+  for(const rawSeg of text.split(SPLIT).flatMap(s => s ? splitCorrection(s.trim()) : [])){
     const seg = rawSeg.trim();
     if(!seg) continue;
     // Η κάθετος χωρίζει λέξεις, εκτός από ίντσες («3/4»).
@@ -481,7 +497,10 @@ export function parse(text){
       const units = tokens.map(unitOf).filter(Boolean);
       const oneNumber = numIdx.length && numIdx[numIdx.length - 1] - numIdx[0] + 1 === numIdx.length;
       const unitOk = units.length ? units.every(u => u === lastLine.unit) : corrNear;
-      if(onlyCorrection && oneNumber && unitOk){
+      // Σκέτος αριθμός χωρίς μονάδα αλλάζει μόνο ποσότητα που ΕΙΠΩΘΗΚΕ: «θερμοσίφωνας 80 λίτρα όχι 120» είναι
+      // μέγεθος, όχι 120 τεμάχια — ρωτάμε.
+      const implicit = !units.length && !lastLine.qtyMissing && lastLine.mentions?.[0] == null;
+      if(onlyCorrection && oneNumber && unitOk && !implicit){
         if(!(NEG.has(tokens[numIdx[0] - 1]) && pending === lastLine.qty)){
           Object.assign(lastLine, {qty: pending, qtyMissing: false, qtyWhy: undefined, qtyWord: undefined}); lastLine.mentions = [pending]; checkQty(lastLine);
         }
