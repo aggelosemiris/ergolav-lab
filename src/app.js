@@ -21,6 +21,9 @@ import { mountCalendar } from './calendar-ui.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
+// «Περισσότερες λεπτομέρειες για τις εργασίες; / Ανάλυση εργασιών με AI» (με τις φωτογραφίες εργασίας): κρυφή.
+// Ο κώδικας (installation-ui.js, server) μένει για μελλοντική χρήση· ανάβει μόνο σε δοκιμές (ergolav.aiAnalysis = '1').
+const AI_ANALYSIS_ENABLED = (() => { try { return localStorage.getItem('ergolav.aiAnalysis') === '1'; } catch { return false; } })();
 
 const SAMPLE = 'Ανακαίνιση μπάνιου. Δώδεκα μέτρα σωλήνα πολυστρωματικό, μια μπαταρία νιπτήρα, λεκάνη κρεμαστή με καζανάκι εντοιχισμού, και δώδεκα τετραγωνικά πλακάκι τοίχου.';
 const BARS = 18;
@@ -851,7 +854,7 @@ function openSaved(no){
 function pdfMode(fromHistory){
   $('histBack').hidden = !fromHistory;
   $('pdfTitle').textContent = fromHistory ? `Προσφορά Αρ. ${SHOWN.no}` : 'Έτοιμη για τον πελάτη';
-  document.querySelector('#s-pdf .installation-entry').hidden = fromHistory;
+  document.querySelector('#s-pdf .installation-entry').hidden = fromHistory || !AI_ANALYSIS_ENABLED;
   // Η ανάλυση εργασιών βγαίνει από τις γραμμές της προσφοράς που φτιάχνεται τώρα (το ιστορικό κρατά μόνο το PDF).
   $('anEntry').hidden = fromHistory;
   if(!fromHistory) analysisPanel.refreshEntry();

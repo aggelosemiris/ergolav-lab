@@ -20,7 +20,8 @@ const p = await b.newPage({viewport: {width: 390, height: 844}, acceptDownloads:
 const errs = [], sentBodies = [];
 p.on('pageerror', e => errs.push(e.message));
 p.on('request', r => { if(r.url().includes('/api/')) sentBodies.push(r.postData() || ''); });
-await p.addInitScript(() => { window.SpeechRecognition = undefined; window.webkitSpeechRecognition = undefined; });
+// Η «Ανάλυση εργασιών με AI» είναι κρυφή στην εφαρμογή· εδώ ανοίγει για να ελεγχθεί η λειτουργία που κρατάμε.
+await p.addInitScript(() => { window.SpeechRecognition = undefined; window.webkitSpeechRecognition = undefined; localStorage.setItem('ergolav.aiAnalysis', '1'); });
 await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
 
 async function makeQuote(text){
