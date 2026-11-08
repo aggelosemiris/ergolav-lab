@@ -833,7 +833,7 @@ function buildPdf(){
 // Η «Ανάλυση εργασιών με AI» αφορά την προσφορά που φτιάχνεται τώρα, γι' αυτό εδώ δεν εμφανίζεται.
 function openSaved(no){
   const q = getQuote(no);
-  if(!q) return openHistory();
+  if(!q) return calendar.open();
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
   analysisPanel?.reset();
@@ -857,12 +857,12 @@ function pdfMode(fromHistory){
 migrateQuotes();
 const syncHistoryButton = () => {
   const n = listQuotes().length;
-  $('historyOpen').hidden = !n;
-  $('historyOpen').textContent = `📅 Ημερολόγιο (${n})`;
+  $('startNav').hidden = !n;
+  $('quotesOpen').textContent = `📋 Προσφορές (${n})`;
 };
-const calendar = mountCalendar({show, cta, onOpen: no => openSaved(no), onNew: () => location.reload(), onChange: syncHistoryButton});
-function openHistory(){ calendar.open(); }
-$('historyOpen').onclick = openHistory;
+const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => location.reload(), onChange: syncHistoryButton});
+$('historyOpen').onclick = () => calendar.open({view: 'month'});
+$('quotesOpen').onclick = () => calendar.open({view: 'list'});
 $('histBack').onclick = () => calendar.open({reset: false});     // πίσω εκεί που ήταν (μήνας, μέρα, προβολή)
 $('histNew').onclick = () => location.reload();
 syncHistoryButton();
