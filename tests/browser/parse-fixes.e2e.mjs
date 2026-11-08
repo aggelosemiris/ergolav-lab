@@ -48,6 +48,15 @@ try {
     const n = await names();
     ok(`«${t}» → μία γραμμή, 12 μ., χωρίς «Όχι»`, n.length === 1 && n[0].startsWith(PIPE) && /12 μ\./.test(await card(PIPE).textContent()) && !/Όχι/.test(await p.textContent('#lines')), n.join(' | '));
   }
+  // χωρίς κόμμα (όπως τα γράφει συνήθως η αναγνώριση φωνής)
+  for(const [t, q] of [['δέκα μέτρα σωλήνα όχι δώδεκα', '12 μ.'], ['δέκα μέτρα σωλήνα θέλω να πω δώδεκα', '12 μ.'], ['δέκα λεκάνες όχι εννιά', '9 τεμ.']]){
+    await lines(t);
+    ok(`χωρίς κόμμα: «${t}» → μία γραμμή, ${q}, χωρίς ερώτηση`, (await names()).length === 1 && new RegExp(q.replace('.', '\\.')).test(await p.textContent('#lines')) && !(await p.locator('#lines .ask').count()));
+  }
+  await lines('δέκα μέτρα σωλήνα όχι τρεις λεκάνες');
+  ok('«δέκα μέτρα σωλήνα όχι τρεις λεκάνες» → σωλήνας 10 μ. + 3 λεκάνες', (await names()).length === 2 && /10 μ\./.test(await card(PIPE).textContent()));
+  await lines('θερμοσίφωνας 80 λίτρα όχι 120');
+  ok('«θερμοσίφωνας 80 λίτρα όχι 120» → ρωτά (όχι 120 τεμάχια)', /Είπες «όχι 120»/.test(await p.textContent('#lines .ask')) && await p.locator('#ctaBtn').isDisabled());
   await lines('12 μέτρα σωλήνα, όχι 15 τεμάχια');
   ok('«12 μέτρα σωλήνα, όχι 15 τεμάχια» (άλλη μονάδα) → ρωτά, δεν αλλάζει σιωπηλά',
     /Είπες «όχι 15 τεμάχια»/.test(await card(PIPE).locator('.ask').textContent()) && await card(PIPE).locator('[data-p="qty"]').inputValue() === '12' && await p.locator('#ctaBtn').isDisabled());
