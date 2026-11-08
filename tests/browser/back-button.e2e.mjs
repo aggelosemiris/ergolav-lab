@@ -46,7 +46,10 @@ try {
   await back();
   ok('έλεγχος → «Πίσω» → το κείμενο', await screen() === 's-listen' && (await p.textContent('#transcript')).includes('12 μέτρα σωλήνα'));
   await back();
-  ok('κείμενο (ήρθε από τον έλεγχο) → «Πίσω» → ο έλεγχος όπως τον άφησε (4 πρίζες)', await screen() === 's-lines' && /4 τεμ\./.test(await qtyOf('Πρίζα')) && dialogs === 1);
+  ok('κείμενο (ήρθε από τον έλεγχο) → «Πίσω» → η αρχική με το μικρόφωνο, χωρίς ερώτηση (όχι ξανά ο έλεγχος)', await screen() === 's-start' && dialogs === 1);
+  await p.click('#mic'); await p.waitForSelector('#s-listen.on'); await type('3 πρίζες και 12 μέτρα σωλήνα');
+  await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
+  await p.locator('#lines .ln').filter({has: p.locator('.ln-name', {hasText: 'Πρίζα'})}).locator('[data-d="1"]').click();
 
   // ── PDF ↔ έλεγχος: ίδιος αριθμός, ίδιες αλλαγές
   await p.waitForFunction(() => !document.getElementById('ctaBtn').disabled);
@@ -81,6 +84,19 @@ try {
   await back();
   ok('«Τα PDF κατέβηκαν» → «Πίσω» → το PDF, με «Στείλε…» (και η ανάλυση που είχε μπει)', await screen() === 's-pdf' && (await p.textContent('#pdf .qno')).trim() === no &&
     /^Στείλε (στον πελάτη|και τα δύο PDF)$/.test(await p.textContent('#ctaBtn')) && !(await p.isVisible('#histBack')), `${await screen()} · ${await p.textContent('#ctaBtn')}`);
+
+  // ── Μετά την αποστολή: PDF → έλεγχος → κείμενο → αρχική = ΝΕΑ προσφορά (η σταλμένη δεν πειράζεται)
+  await back(); await back();
+  ok('PDF → έλεγχος → κείμενο', await screen() === 's-listen');
+  await back(); await p.waitForSelector('#s-start.on');
+  ok('κείμενο → «Πίσω» → αρχική (νέα προσφορά): άδειος πελάτης, χωρίς ερώτηση', await screen() === 's-start' && await p.inputValue('#client') === '' && dialogs === 1);
+  await p.click('#mic'); await p.waitForSelector('#s-listen.on'); await type('δύο λεκάνες');
+  await p.click('#ctaBtn'); await p.waitForSelector('#s-lines.on');
+  await p.waitForFunction(() => !document.getElementById('ctaBtn').disabled);
+  await p.click('#ctaBtn'); await p.waitForSelector('#s-pdf.on'); await pdfReady();
+  const stored = await p.evaluate(() => JSON.parse(localStorage.getItem('ergolav.quotes')));
+  ok('η νέα προσφορά παίρνει νέο αριθμό· η σταλμένη μένει ίδια στο ιστορικό', (await p.textContent('#pdf .qno')).trim() === String(+no + 1) && stored.length === 2 &&
+    stored.find(q => q.no === +no).status === 'sent' && stored.find(q => q.no === +no).rows.some(r => /Πρίζα/.test(r.name)), JSON.stringify(stored.map(q => [q.no, q.status])));
 
   // ── Ημερολόγιο / Προσφορές
   await p.goto(BASE); await p.waitForSelector('#s-start.on');
