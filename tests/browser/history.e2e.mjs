@@ -1,4 +1,5 @@
-// Ιστορικό προσφορών: ο τεχνίτης βλέπει τις προσφορές που έφτιαξε, ανοίγει το ίδιο PDF και το ξαναστέλνει.
+// Ιστορικό προσφορών (πλέον «Ημερολόγιο»): ο τεχνίτης βλέπει τις προσφορές που έφτιαξε, ανοίγει το ίδιο PDF και το ξαναστέλνει.
+// Το ημερολόγιο (μήνας, λίστα, ημερομηνίες, καταστάσεις) το ελέγχει το calendar.e2e.mjs.
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/history.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
@@ -39,21 +40,21 @@ async function makeQuote(p, {client = '', text, vat}){
 {
   const p = await page();
   await p.evaluate(() => { localStorage.removeItem('ergolav.quotes'); localStorage.removeItem('ergolav.quoteNo'); }); await p.reload();
-  ok('χωρίς προσφορές: το κουμπί «Οι προσφορές μου» δεν φαίνεται', !(await p.isVisible('#historyOpen')));
+  ok('χωρίς προσφορές: το κουμπί «Ημερολόγιο» δεν φαίνεται', !(await p.isVisible('#historyOpen')));
   const pdf1 = await makeQuote(p, {client: 'Γιώργος Αντωνίου, Χαλάνδρι', text: 'τρεις πρίζες και 12 μέτρα σωλήνα'});
   ok('η νέα προσφορά δεν δείχνει «← Όλες οι προσφορές» και κρατά την «Ανάλυση εργασιών με AI»', !(await p.isVisible('#histBack')) && await p.isVisible('#installOpen'));
   const pdf2 = await makeQuote(p, {text: 'λεκάνη κρεμαστή', vat: 13});
   await p.goto(BASE);
-  ok('μετά από δύο προσφορές: «📋 Οι προσφορές μου (2)» στην αρχική', await p.textContent('#historyOpen') === '📋 Οι προσφορές μου (2)');
+  ok('μετά από δύο προσφορές: «📅 Ημερολόγιο (2)» στην αρχική', await p.textContent('#historyOpen') === '📅 Ημερολόγιο (2)');
   await p.click('#historyOpen');
-  const items = await p.$$eval('#histList .q-open', els => els.map(e => e.textContent.replace(/\s+/g, ' ').trim()));
-  ok('λίστα: η νεότερη πρώτη, με πελάτη, αριθμό, ημερομηνία, τίτλο και σύνολο',
-    items.length === 2 && /^Χωρίς όνομα πελάτη Αρ\. 2 · \d+\/\d+\/\d{4} · εργασίες.*€$/.test(items[0]) && /^Γιώργος Αντωνίου, Χαλάνδρι Αρ\. 1 /.test(items[1]), items.join(' | '));
+  const items = await p.$$eval('#calDay .q-open', els => els.map(e => e.textContent.replace(/\s+/g, ' ').trim()));
+  ok('ημερολόγιο: σήμερα και οι δύο, με πελάτη, περιοχή, αριθμό, κατάσταση και σύνολο',
+    items.length === 2 && /^Γιώργος Αντωνίου Χαλάνδρι · Αρ\. 1 Πρόχειρη [\d.]+,\d\d €$/.test(items[0]) && /^Χωρίς όνομα πελάτη Αρ\. 2 Πρόχειρη [\d.]+,\d\d €$/.test(items[1]), items.join(' | '));
   // Άνοιγμα της πρώτης: ίδιο PDF, ίδιος αριθμός, χωρίς νέο αριθμό προσφοράς
   await p.locator('.q-open[data-no="1"]').click();
   await p.waitForSelector('#s-pdf.on'); await pdfReady(p);
   ok('άνοιγμα από το ιστορικό: ακριβώς το ίδιο PDF που πήρε ο πελάτης (Αρ. 1)', await p.textContent('#pdf') === pdf1 && (await p.textContent('#pdf .qno')).trim() === '1');
-  ok('«Στείλε ξανά στον πελάτη», «← Όλες οι προσφορές», χωρίς «Ανάλυση εργασιών με AI»',
+  ok('«Στείλε ξανά στον πελάτη», «← Ημερολόγιο», χωρίς «Ανάλυση εργασιών με AI»',
     await p.textContent('#ctaBtn') === 'Στείλε ξανά στον πελάτη' && await p.isVisible('#histBack') && !(await p.isVisible('#installOpen')) && await p.textContent('#pdfTitle') === 'Προσφορά Αρ. 1');
   ok('το άνοιγμα δεν «τρώει» αριθμό προσφοράς', await p.evaluate(() => localStorage.getItem('ergolav.quoteNo')) === '2');
   // Ξαναστέλνεται το σωστό αρχείο (κοινοποίηση σε ψεύτικο share: δεν φεύγει τίποτα)

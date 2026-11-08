@@ -63,7 +63,7 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .field input{width:100%;border:none;background:none;font:inherit;color:var(--ink);font-size:18px;font-weight:600;padding-top:2px}
 .field input:focus{outline:none}
 
-.mic-wrap{display:flex;flex-direction:column;align-items:center;margin:42px 0 18px;gap:14px}
+.mic-wrap{display:flex;flex-direction:column;align-items:center;margin:30px 0 18px;gap:14px}
 .mic{width:132px;height:132px;border-radius:50%;background:var(--pen);color:#fff;display:grid;place-items:center;
   box-shadow:0 0 0 10px var(--pen-soft);transition:transform .15s}
 .mic:active{transform:scale(.96)}
@@ -307,6 +307,86 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 .rule-act .q-del{min-height:40px}
 .rule-label{font-size:13px;color:var(--dim);display:block}
 .rule-label .rule-in{margin-top:4px;display:block}
+/* «Πότε πας;»: η μέρα της δουλειάς, κάτω από τον πελάτη */
+.when{margin-top:10px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px 4px}
+.when:empty{min-height:178px}
+.when .flabel{font-size:13px;color:var(--dim);display:block}
+.when-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.wchip{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:15px;font-weight:600}
+.wchip[aria-pressed="true"]{background:var(--pen-soft);border-color:var(--pen);color:var(--pen);box-shadow:0 0 0 1px var(--pen)}
+.wchip-wrap{position:relative;display:inline-flex}
+.when-date{position:absolute;left:0;bottom:0;width:100%;height:1px;opacity:0;pointer-events:none;border:0;padding:0;font-size:16px}
+.when-date.overlay{top:0;height:100%;pointer-events:auto;cursor:pointer}
+.when-sel{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;column-gap:8px;margin-top:6px}
+.when-sel p{font-size:16px;line-height:1.35;overflow-wrap:anywhere;min-width:0}
+.when-sub{display:block;font-size:13px;color:var(--dim)}
+.when-old{margin-left:8px;font-size:12px;color:var(--dim);white-space:nowrap}
+.when-more{display:flex;margin-right:-8px}
+.when-more .linkbtn{text-decoration:none;font-weight:600}
+.when-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 8px;padding:6px 0 10px;border-top:1px solid var(--line);margin-top:4px}
+.when-row[data-box="time"]{justify-content:flex-start}
+.when-rl{font-size:13px;color:var(--dim)}
+.when-row .when-chips{flex-basis:100%;margin-top:0}
+.when-row input{font:inherit;font-size:16px;min-height:44px;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.when-row input[type="number"]{width:76px}
+.when-x{text-decoration:none;font-size:16px;color:var(--dim);min-width:44px;margin-left:auto;margin-right:-8px}
+.wnum{min-width:48px;padding:0 10px}
+.when-row input[aria-invalid="true"]{border-color:var(--err)}
+/* Ημερολόγιο */
+.cal-head{display:flex;justify-content:space-between;align-items:center;gap:6px 10px;flex-wrap:wrap}
+.cal-head h1{margin-bottom:4px}
+.seg{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:2px}
+.seg button{min-height:44px;padding:0 14px;border-radius:10px;font-size:15px;font-weight:600;color:var(--dim)}
+.seg button[aria-pressed="true"]{background:var(--pen-soft);color:var(--pen)}
+.cal-msg{margin-top:8px;font-size:14px;font-weight:600;color:var(--ok)}
+.cal-nav{display:flex;align-items:center;gap:2px;margin-top:10px}
+.cal-nav b{flex:1;text-align:center;font-size:18px;font-weight:700;min-width:0}
+.cal-arrow{width:44px;height:44px;border-radius:12px;font-size:28px;line-height:1;flex:none}
+.cal-arrow:active{background:var(--line)}
+.cal-today{padding:0 12px;margin-left:4px;flex:none}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;margin-top:6px;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.cal-grid.anim{animation:in .22s ease-out}
+.cal-wd{font-size:12px;color:var(--dim);text-align:center;padding:2px 0 4px;font-weight:600}
+.cal-d{min-height:52px;min-width:0;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:5px;font-size:15px;font-weight:600}
+.cal-d.out{color:var(--dim);opacity:.55}
+.cal-n{width:30px;height:30px;display:grid;place-items:center;border-radius:50%}
+.cal-d.today .cal-n{background:var(--pen);color:var(--paper);font-weight:800}
+.cal-d.sel{background:var(--pen-soft);box-shadow:inset 0 0 0 2px var(--pen)}
+.cal-dots{display:flex;gap:3px;align-items:center;height:8px}
+.cal-dots small{font-size:10px;color:var(--dim);font-weight:700;line-height:1}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--st,var(--dim));flex:none}
+.dot.faint{opacity:.35}
+.st-draft{--st:var(--dim)} .st-sent{--st:var(--pen)} .st-won{--st:var(--ok)} .st-lost{--st:var(--err)}
+.cal-dh,.cal-gh{font-size:17px;font-weight:700;margin-top:20px}
+.cal-dh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 10px}
+.cal-dh small,.cal-gh span{color:var(--dim);font-weight:600;font-size:14px}
+.cal-lh{font-size:14px;font-weight:700;color:var(--dim);margin:14px 0 -6px}
+.cal-q{flex-direction:column;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:14px}
+.cal-q .q-open{border:0;background:none;align-items:flex-start;min-height:0}
+.cal-q.faint .q-open,.cal-q.faint .cal-quick{opacity:.62}
+.cal-q .cal-time{font-weight:700;font-size:15px;flex:none;align-self:flex-start;min-width:44px}
+.cal-main{flex:1;min-width:0}
+.cal-st .dot{margin-right:6px;vertical-align:1px}
+.cal-created{font-style:italic}
+.cal-st .nw{white-space:nowrap}
+.cal-q .cal-sum{align-self:flex-start}
+.cal-acts{display:flex;gap:6px;flex-wrap:wrap;padding:0 10px 10px}
+.cal-acts button{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:14px;font-weight:600}
+.cal-acts .q-del{margin-left:auto;color:var(--dim)}
+.cal-quick{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:0 10px 10px}
+.cal-quick>span:first-child{font-size:13px;color:var(--dim);flex-basis:100%}
+.cal-undated{margin-top:8px}
+.cal-empty{text-align:center;padding:48px 0 12px}
+.cal-empty p{font-size:18px;font-weight:600;color:var(--dim);margin-bottom:16px}
+.cal-empty .primary{width:auto;padding:0 28px}
+#calSheetBody>p{font-weight:600;color:var(--ink)}
+#calSheet .when{margin-top:0}
+#calSheet .when-sel p{color:var(--ink);font-size:16px;margin:0}
+.cal-sts{display:flex;flex-direction:column;gap:8px}
+.cal-stb{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:16px;font-weight:600;text-align:left}
+.cal-stb[aria-pressed="true"]{border-color:var(--st);box-shadow:0 0 0 1px var(--st)}
+.cal-stb .dot{width:12px;height:12px}
+@media (prefers-reduced-motion:reduce){.cal-grid.anim{animation:none}}
 .install-notice{font-size:11px;color:#5e646b;border-top:1px solid #ddd;padding-top:10px}#installReviewed{width:auto;margin-right:8px}#installClose{margin-left:auto}@media(max-width:500px){#installDialog{padding:16px}#installReport{padding:16px}.install-actions{flex-direction:column}#installClose{margin-left:0}}
 </style>
 </head>
@@ -350,6 +430,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <label for="client">Πελάτης</label>
         <input id="client" value="" placeholder="Όνομα πελάτη, περιοχή" autocomplete="off">
       </div>
+      <div class="when" id="when"></div>
       <div class="mic-wrap">
         <button class="mic" id="mic" aria-label="Ξεκίνα να μιλάς">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>
@@ -364,13 +445,32 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="alt" style="margin-top:6px"><button class="linkbtn" id="rulesOpen" hidden>Οι κανόνες μου</button></div>
     </section>
 
-    <!-- ΙΣΤΟΡΙΚΟ: οι προσφορές που έγιναν PDF σε αυτή τη συσκευή -->
+    <!-- ΗΜΕΡΟΛΟΓΙΟ (πρώην ιστορικό): οι προσφορές της συσκευής στη μέρα που πάει ο τεχνίτης. Κώδικας: src/calendar-ui.js -->
     <section class="screen" id="s-history">
-      <h1>Οι προσφορές μου</h1>
-      <p class="lede">Όσες έφτιαξες σε αυτή τη συσκευή. Πάτα μία για να τη δεις ή να την ξαναστείλεις.</p>
-      <div class="quotes" id="histList"></div>
-      <p class="privacy" id="histEmpty" hidden>Δεν υπάρχει ακόμα καμία προσφορά. Μόλις φτιάξεις την πρώτη, θα εμφανιστεί εδώ.</p>
-      <div class="alt" style="margin-top:22px"><button class="ghost" id="histNew">Νέα προσφορά</button></div>
+      <div class="cal-head">
+        <h1>Ημερολόγιο</h1>
+        <div class="seg" id="calViews" role="group" aria-label="Προβολή">
+          <button type="button" data-view="month" aria-pressed="true">Μήνας</button><button type="button" data-view="list" aria-pressed="false">Λίστα</button>
+        </div>
+      </div>
+      <p class="cal-msg" id="calMsg" role="status" hidden></p>
+      <div id="calMonth">
+        <div class="cal-nav">
+          <button type="button" class="cal-arrow" data-a="prev" aria-label="Προηγούμενος μήνας">‹</button>
+          <b id="calTitle" aria-live="polite"></b>
+          <button type="button" class="cal-arrow" data-a="next" aria-label="Επόμενος μήνας">›</button>
+          <button type="button" class="ghost cal-today" data-a="today">Σήμερα</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div id="calDay"></div>
+      </div>
+      <div id="calList" hidden></div>
+      <div class="cal-undated" id="calUndated" hidden></div>
+      <div class="cal-empty" id="calEmpty" hidden>
+        <p>Δεν έχεις προσφορές ακόμα</p>
+        <button type="button" class="primary" data-a="new">Νέα προσφορά</button>
+      </div>
+      <div class="alt" id="calNewWrap" style="margin-top:22px"><button class="ghost" id="histNew">Νέα προσφορά</button></div>
     </section>
 
     <!-- 2 LISTEN -->
@@ -415,7 +515,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 
     <!-- 4 PDF -->
     <section class="screen" id="s-pdf">
-      <button class="linkbtn" id="histBack" hidden>← Όλες οι προσφορές</button>
+      <button class="linkbtn" id="histBack" hidden>← Ημερολόγιο</button>
       <h1 id="pdfTitle">Έτοιμη για τον πελάτη</h1>
       <p class="lede">Έτσι θα τη δει ο πελάτης στο κινητό του.</p>
       <div class="pdf" id="pdf"></div>
@@ -488,6 +588,11 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
   </div>
 <div id="shareSeparateDownloads" hidden><p class="privacy">Εναλλακτικά, κατέβασέ τα ένα-ένα:</p><button class="ghost" id="downloadOfferOnly">Κατέβασμα προσφοράς</button><button class="ghost" id="downloadAnalysisOnly">Κατέβασμα ανάλυσης εργασιών</button></div>
 
+</div>
+
+<div class="sheet" id="calSheet" role="dialog" aria-modal="true" aria-labelledby="calSheetTitle">
+  <h3 id="calSheetTitle"></h3>
+  <div id="calSheetBody"></div>
 </div>
 
 <div class="sheet" id="keySheet" role="dialog" aria-label="Κλειδί ανάγνωσης">

@@ -15,7 +15,9 @@ import { parseAmount, toCents, formatEur, formatQty } from './number.js';
 import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
 import { fitImage } from './image.js';
-import { listQuotes, getQuote, saveQuote, deleteQuote } from './history.js';
+import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes } from './history.js';
+import { mountWhen } from './when-ui.js';
+import { mountCalendar } from './calendar-ui.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -229,6 +231,12 @@ $('mic').onclick = () => startListening();
 $('resume').onclick = () => startListening(transcript.textContent.trim());
 $('sample').onclick = () => { transcript.textContent = SAMPLE; transcript.oninput(); };
 if(!micSupported) $('micNote').textContent = 'Ο browser σου δεν έχει αναγνώριση φωνής — θα μπορείς να το γράψεις.';
+
+// «Πότε πας;» κάτω από τον πελάτη: προεπιλογή «Σήμερα», τίποτα να πατήσει όποιος δεν θέλει. Το «σήμερα» προχωρά τα
+// μεσάνυχτα ή όταν ξανανοίξει το κινητό άλλη μέρα (μόνο όσο φαίνεται η αρχική οθόνη).
+const when = mountWhen($('when'));
+document.addEventListener('visibilitychange', () => { if(!document.hidden) when.refresh(); });
+setInterval(() => when.refresh(), 30000);
 
 // Πρώτη φορά (δεν υπάρχουν αποθηκευμένα στοιχεία): «Τα στοιχεία σου» πριν από το μικρόφωνο. Μετά, ποτέ ξανά.
 renderBrand();
@@ -769,10 +777,13 @@ function renderTotals(){
 // Η προσφορά που φαίνεται στην προεπισκόπηση (και στέλνεται): στιγμιότυπο, ίδιο με αυτό που μπαίνει στο ιστορικό,
 // ώστε από το ιστορικό να ξαναβγαίνει ακριβώς το PDF που πήρε ο πελάτης.
 let SHOWN = null;
+// Ημερομηνία (δεν τυπώνεται στο PDF): ό,τι έδειχνε το «Πότε πας;» όταν έφυγε από την αρχική οθόνη. Κατάσταση: «Πρόχειρη»
+// μέχρι να σταλεί· νέο PDF της ίδιας προσφοράς κρατά την κατάσταση που είχε.
 function quoteData(){
   return {no: quoteNo, at: Date.now(), title: TITLE, client: $('client').value.trim(), vatRate, sum: sums(),
     rows: okLines().map(l => ({name: l.desc || l.name, qty: l.qty, unit: l.unit, mat: matOf(l)})),
-    profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone, ...(PROFILE.logo && {logo: PROFILE.logo})}};
+    profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone, ...(PROFILE.logo && {logo: PROFILE.logo})},
+    ...when.value(), status: getQuote(quoteNo)?.status ?? 'draft'};
 }
 // Κεφαλίδα του PDF (λογότυπο, στοιχεία, αριθμός, ημερομηνία): ίδια στην προσφορά και στην ανάλυση εργασιών.
 function pdfHead(q){
@@ -841,37 +852,18 @@ function pdfMode(fromHistory){
   if(!fromHistory) analysisPanel.refreshEntry();
 }
 
-// ─── Ιστορικό: οι προσφορές της συσκευής ─────────────────────
+// ─── Ημερολόγιο (πρώην ιστορικό): οι προσφορές της συσκευής στη μέρα που πάει ο τεχνίτης ───
+// Οι παλιές προσφορές (πριν από το ημερολόγιο) μπαίνουν στη μέρα δημιουργίας τους· αντίγραφο πρώτα, μία φορά.
+migrateQuotes();
 const syncHistoryButton = () => {
   const n = listQuotes().length;
   $('historyOpen').hidden = !n;
-  $('historyOpen').textContent = `📋 Οι προσφορές μου (${n})`;
+  $('historyOpen').textContent = `📅 Ημερολόγιο (${n})`;
 };
-function openHistory(){
-  const list = listQuotes();
-  $('histEmpty').hidden = list.length > 0;
-  $('histList').replaceChildren(...list.map(q => {
-    const el = document.createElement('div');
-    el.className = 'q-item';
-    el.innerHTML = `
-      <button class="q-open" data-no="${q.no}"><span><b>${q.client ? esc(q.client) : 'Χωρίς όνομα πελάτη'}</b>
-        <small>Αρ. ${q.no} · ${new Date(q.at).toLocaleDateString('el-GR')} · ${esc(q.title)}</small></span><span class="num">${eur(q.sum.total)}</span></button>
-      <button class="q-del" data-a="del" aria-label="Σβήσε την προσφορά ${q.no}">Σβήσε</button>`;
-    el.querySelector('.q-open').onclick = () => openSaved(q.no);
-    // Σβήσιμο σε δύο πατήματα (χωρίς παράθυρο): το πρώτο ρωτάει «Σίγουρα;».
-    const del = el.querySelector('[data-a="del"]');
-    del.onclick = () => {
-      if(!del.classList.contains('sure')){ del.classList.add('sure'); del.textContent = 'Σίγουρα;'; return; }
-      deleteQuote(q.no); openHistory();
-    };
-    return el;
-  }));
-  show('s-history', 'Οι προσφορές μου');
-  cta(null);
-  syncHistoryButton();
-}
+const calendar = mountCalendar({show, cta, onOpen: no => openSaved(no), onNew: () => location.reload(), onChange: syncHistoryButton});
+function openHistory(){ calendar.open(); }
 $('historyOpen').onclick = openHistory;
-$('histBack').onclick = openHistory;
+$('histBack').onclick = () => calendar.open({reset: false});     // πίσω εκεί που ήταν (μήνας, μέρα, προβολή)
 $('histNew').onclick = () => location.reload();
 syncHistoryButton();
 
@@ -917,12 +909,17 @@ function quoteCta(){
     SHOWN.unsaved ? 'Δεν αποθηκεύτηκε στο ιστορικό αυτής της συσκευής.' : '');
 }
 
+// Στάλθηκε: η «Πρόχειρη» γίνεται «Στάλθηκε». Ποτέ δεν πειράζει «Κλείστηκε»/«Χάθηκε» (ξαναστάλθηκε μια παλιά).
+function markSent(){
+  if(SHOWN?.unsaved || getQuote(SHOWN?.no)?.status !== 'draft') return;
+  if(updateQuote(SHOWN.no, {status: 'sent'})) SHOWN.status = 'sent';
+}
 async function sendPdf(){
   if(!pdfFile)return;
   shareSelection=companionFile?[pdfFile,companionFile]:[pdfFile];
   const extra=shareSelection.length===2;
   const res=await shareFiles(shareSelection,{title:`Προσφορά ${SHOWN.no} — ${clientName()}`,text:shareText()+(extra?' Μαζί επισυνάπτεται η αναλυτική περιγραφή εργασιών.':'')});
-  if(res==='shared')done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);
+  if(res==='shared'){markSent();done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);}
   else if(res==='unsupported')openSheet();
 }
 
@@ -941,6 +938,7 @@ document.querySelectorAll('[data-send]').forEach(b => b.onclick = () => {
   const files=shareSelection.length?shareSelection:[pdfFile],extra=files.length===2;
   const how = b.dataset.send, text = encodeURIComponent(shareText()+(extra?' Επισυνάπτω και την αναλυτική περιγραφή εργασιών.':''));
   files.forEach(download);
+  markSent();   // κατέβηκε για να σταλεί (Viber, WhatsApp, email ή με το χέρι): δεν μαθαίνουμε αν έφυγε, το θεωρούμε σταλμένο
   if(how === 'whatsapp') window.open(`https://wa.me/?text=${text}`, '_blank');
   if(how === 'viber') location.href = `viber://forward?text=${text}`;
   if(how === 'email') location.href = `mailto:?subject=${encodeURIComponent(pdfFile.name.replace(/\.pdf$/, ''))}&body=${text}`;
