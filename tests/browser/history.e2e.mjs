@@ -45,7 +45,7 @@ async function makeQuote(p, {client = '', text, vat}){
   ok('η νέα προσφορά δεν δείχνει «← Όλες οι προσφορές» και κρατά την «Ανάλυση εργασιών με AI»', !(await p.isVisible('#histBack')) && await p.isVisible('#installOpen'));
   const pdf2 = await makeQuote(p, {text: 'λεκάνη κρεμαστή', vat: 13});
   await p.goto(BASE);
-  ok('μετά από δύο προσφορές: «📅 Ημερολόγιο (2)» στην αρχική', await p.textContent('#historyOpen') === '📅 Ημερολόγιο (2)');
+  ok('μετά από δύο προσφορές: «📅 Ημερολόγιο» και «📋 Προσφορές (2)» στην αρχική', await p.textContent('#historyOpen') === '📅 Ημερολόγιο' && await p.textContent('#quotesOpen') === '📋 Προσφορές (2)');
   await p.click('#historyOpen');
   const items = await p.$$eval('#calDay .q-open', els => els.map(e => e.textContent.replace(/\s+/g, ' ').trim()));
   ok('ημερολόγιο: σήμερα και οι δύο, με πελάτη, περιοχή, αριθμό, κατάσταση και σύνολο',

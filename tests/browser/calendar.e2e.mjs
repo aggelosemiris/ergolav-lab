@@ -90,7 +90,7 @@ const shareMock = (p, can) => p.evaluate(can => {
 
 // ── 1. Νέες προσφορές από την αρχή ──
 {
-  const p = await page();
+  let p = await page();
   // Χωρίς να αγγίξει την ημερομηνία
   await makeQuote(p, {client: 'Γιώργος Αντωνίου, Χαλάνδρι', text: 'τρεις πρίζες και 12 μέτρα σωλήνα'});
   let q = await byNo(p, 1);
@@ -104,6 +104,9 @@ const shareMock = (p, can) => p.evaluate(can => {
   await p.waitForSelector('#s-done.on');
   ok('Viber: το PDF κατεβαίνει, «Το PDF κατέβηκε», ίδια ροή με πριν', /^Prosfora-1-Giorgos/.test(file.suggestedFilename()) && await p.textContent('#doneTitle') === 'Το PDF κατέβηκε', file.suggestedFilename());
   ok('μετά την αποστολή: «Στάλθηκε»', (await byNo(p, 1)).status === 'sent');
+  // Ο browser των τεστ δεν έχει Viber: το viber:// αφήνει ανοιχτό το «άνοιγμα εφαρμογής» που τρώει τα πατήματα — νέα καρτέλα.
+  { const old = p; p = await old.context().newPage(); p.errs = old.errs; p.on('pageerror', e => p.errs.push(e.message));
+    await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort()); await p.clock.setFixedTime(NOW); await old.close(); }
   await openCal(p);
   ok('«📅 Ημερολόγιο (1)» → ανοίγει στον Νοέμβριο, σήμερα τονισμένη και επιλεγμένη', await p.textContent('#calTitle') === 'Νοέμβριος 2026' &&
     await p.getAttribute('.cal-d.today', 'data-day') === '2026-11-08' && await p.getAttribute('.cal-d.sel', 'data-day') === '2026-11-08');
@@ -228,9 +231,22 @@ const SEED = [
   ok('Λίστα: πρώτα οι επόμενες (10/11 με τη σειρά της μέρας, 29/11), μετά οι προηγούμενες (5/11, 2/10)', order.join() === '2,1,3,4,5,6,9,7', order.join());
   ok('Λίστα: «Επόμενες (6)», «Προηγούμενες (2)», ανά μέρα', /Επόμενες \(6\)/.test(await p.textContent('#calList')) && /Προηγούμενες \(2\)/.test(await p.textContent('#calList')) &&
     (await p.$$eval('.cal-lh', e => e.map(x => x.textContent))).join('|') === 'Τρίτη 10 Νοεμβρίου|Κυριακή 29 Νοεμβρίου|Πέμπτη 5 Νοεμβρίου|Παρασκευή 2 Οκτωβρίου');
-  await p.reload(); await p.click('#historyOpen');
-  ok('η Λίστα μένει επιλεγμένη και στο επόμενο άνοιγμα', await p.isVisible('#calList') && !(await p.isVisible('#calMonth')));
+  // Δύο κουμπιά κάτω από το μικρόφωνο: «📅 Ημερολόγιο» → μήνας, «📋 Προσφορές» → λίστα (ό,τι κι αν είχε μείνει)
+  await p.reload();
+  ok('αρχική: «📅 Ημερολόγιο» και «📋 Προσφορές (9)» δίπλα-δίπλα κάτω από το μικρόφωνο', await p.textContent('#historyOpen') === '📅 Ημερολόγιο' &&
+    await p.textContent('#quotesOpen') === '📋 Προσφορές (9)' && await p.evaluate(() => {
+      const m = document.getElementById('mic').getBoundingClientRect(), a = document.getElementById('historyOpen').getBoundingClientRect(), c = document.getElementById('quotesOpen').getBoundingClientRect();
+      return a.top > m.bottom && Math.abs(a.top - c.top) < 2 && a.right <= c.left; }));
+  await p.click('#historyOpen');
+  ok('«📅 Ημερολόγιο» → μήνας, τίτλος «Ημερολόγιο» (ακόμα κι αν είχε μείνει η Λίστα)', await p.isVisible('#calMonth') && !(await p.isVisible('#calList')) && await p.textContent('#calH1') === 'Ημερολόγιο');
+  await p.goto(BASE); await p.click('#quotesOpen');
+  ok('«📋 Προσφορές» → λίστα, τίτλος «Προσφορές»', await p.isVisible('#calList') && !(await p.isVisible('#calMonth')) && await p.textContent('#calH1') === 'Προσφορές');
+  await p.locator('#calList .q-open').first().click(); await p.waitForSelector('#s-pdf.on');
+  ok('από τις Προσφορές → PDF με «← Προσφορές», και πίσω στη λίστα', await p.textContent('#histBack') === '← Προσφορές');
+  await p.click('#histBack');
+  ok('«← Προσφορές» → πίσω στη λίστα', await p.isVisible('#calList') && await p.textContent('#calH1') === 'Προσφορές');
   await p.click('[data-view="month"]');
+  ok('μέσα στην οθόνη, «Μήνας» → τίτλος «Ημερολόγιο»', await p.textContent('#calH1') === 'Ημερολόγιο');
   // Χωρίς σύνδεση: όλα τοπικά
   await p.context().setOffline(true);
   await p.click('[data-a="next"]'); await p.click('[data-day="2026-12-01"]');

@@ -67,6 +67,8 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .mic{width:132px;height:132px;border-radius:50%;background:var(--pen);color:#fff;display:grid;place-items:center;
   box-shadow:0 0 0 10px var(--pen-soft);transition:transform .15s}
 .mic:active{transform:scale(.96)}
+.start-nav{display:flex;gap:10px;justify-content:center;margin:0 0 18px}
+.start-nav .ghost{flex:1;max-width:190px;padding:12px 8px;white-space:nowrap}
 .mic-note{font-size:13px;color:var(--dim);text-align:center;max-width:30ch}
 .mic svg{width:46px;height:46px}
 .mic-hint{font-size:16px;font-weight:600}
@@ -438,17 +440,20 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <div class="mic-hint">Πάτα και μίλα</div>
         <div class="mic-note" id="micNote">π.χ. «δώδεκα μέτρα σωλήνα, μια λεκάνη κρεμαστή και δέκα τετραγωνικά πλακάκι λευκό»</div>
       </div>
+      <!-- Κάτω από το μικρόφωνο: το ημερολόγιο (μήνας) και οι προσφορές (λίστα) — ίδια οθόνη, άλλη προβολή. -->
+      <div class="start-nav" id="startNav" hidden>
+        <button class="ghost" id="historyOpen">📅 Ημερολόγιο</button><button class="ghost" id="quotesOpen">📋 Προσφορές</button>
+      </div>
       <div class="alt"><button class="ghost" id="photo">📷 Ή φωτογράφισε τις σημειώσεις σου</button></div>
       <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
       <div class="alt" style="margin-top:10px"><button class="linkbtn" id="keySettings" hidden>🔑 Κλειδί ανάγνωσης: αλλαγή ή διαγραφή</button></div>
-      <div class="alt" style="margin-top:14px"><button class="ghost" id="historyOpen" hidden>📋 Οι προσφορές μου</button></div>
       <div class="alt" style="margin-top:6px"><button class="linkbtn" id="rulesOpen" hidden>Οι κανόνες μου</button></div>
     </section>
 
     <!-- ΗΜΕΡΟΛΟΓΙΟ (πρώην ιστορικό): οι προσφορές της συσκευής στη μέρα που πάει ο τεχνίτης. Κώδικας: src/calendar-ui.js -->
     <section class="screen" id="s-history">
       <div class="cal-head">
-        <h1>Ημερολόγιο</h1>
+        <h1 id="calH1">Ημερολόγιο</h1>
         <div class="seg" id="calViews" role="group" aria-label="Προβολή">
           <button type="button" data-view="month" aria-pressed="true">Μήνας</button><button type="button" data-view="list" aria-pressed="false">Λίστα</button>
         </div>

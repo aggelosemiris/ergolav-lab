@@ -35,6 +35,7 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
     const empty = !quotes.length;
     $('calEmpty').hidden = !empty;
     for(const id of ['calViews', 'calMonth', 'calList', 'calUndated', 'calNewWrap']) $(id).hidden = empty;
+    $('calH1').textContent = view === 'list' ? 'Προσφορές' : 'Ημερολόγιο';
     if(empty) return;
     root.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
     $('calMonth').hidden = view !== 'month';
@@ -238,12 +239,16 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
   }
 
   return {
-    /** Ανοίγει το ημερολόγιο· reset: στον τρέχοντα μήνα με επιλεγμένη τη σημερινή μέρα (αλλιώς εκεί που ήταν). */
-    open({reset = true} = {}){
+    /** Η προβολή που δείχνει τώρα ('month' ή 'list'). */
+    get view(){ return view; },
+    /** Ανοίγει το ημερολόγιο· reset: στον τρέχοντα μήνα με επιλεγμένη τη σημερινή μέρα (αλλιώς εκεί που ήταν).
+     *  view: 'month' (κουμπί «Ημερολόγιο») ή 'list' (κουμπί «Προσφορές»)· χωρίς view, όπως ήταν. */
+    open({reset = true, view: v} = {}){
+      if(v === 'month' || v === 'list'){ view = v; try { localStorage.setItem(VIEW, view); } catch {} }
       if(reset || !sel) goTo(t());
       message('');
       render();
-      show('s-history', 'Ημερολόγιο');
+      show('s-history', view === 'list' ? 'Προσφορές' : 'Ημερολόγιο');
       cta(null);
     },
   };
