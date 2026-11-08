@@ -989,15 +989,18 @@ syncRulesButton();
 
 // ─── «Πίσω»: μία οθόνη πίσω, χωρίς να χαθεί τίποτα ───────────
 // Στις οθόνες που έχουν ήδη δικό τους «← Πίσω» κάνει ακριβώς το ίδιο. Από το PDF πίσω στον έλεγχο, οι γραμμές μένουν
-// όπως τις άφησε (καμία νέα ανάλυση)· το ίδιο από το κείμενο, αν ήρθε από τον έλεγχο. Κείμενο που θα σβηνόταν: ερώτηση.
+// όπως τις άφησε (καμία νέα ανάλυση). Από το κείμενο πάντα στην αρχική. Κείμενο που θα σβηνόταν: ερώτηση.
 function toStart(){ show('s-start', 'Νέα προσφορά'); cta(null); when.refresh(); syncHistoryButton(); }
 function toLines(){ show('s-lines', 'Έλεγχος'); renderLines(); }
 async function goBack(){
   const cur = document.querySelector('.screen.on')?.id;
   if(cur === 's-listen'){
     const t = (mic.listening ? await mic.stop() : transcript.textContent || '').trim();
-    if(listenFrom === 'lines' && LINES.length) return toLines();
-    if(t && !confirm('Πίσω στην αρχή; Το κείμενο που έγραψες θα σβηστεί.')) return review(t);
+    // Πάντα στην αρχική με το μικρόφωνο — όχι ξανά στον έλεγχο. Αν έχει ήδη βγει PDF (έχει αριθμό, ίσως και στάλθηκε),
+    // η αρχική ανοίγει ως ΝΕΑ προσφορά: αλλιώς η επόμενη υπαγόρευση θα έπαιρνε τον ίδιο αριθμό και θα έσβηνε την
+    // προηγούμενη από το ιστορικό. Ερώτηση μόνο για κείμενο που δεν έχει γίνει ακόμα προσφορά.
+    if(quoteNo != null) return location.reload();
+    if(t && listenFrom !== 'lines' && !confirm('Πίσω στην αρχή; Το κείμενο που έγραψες θα σβηστεί.')) return review(t);
     return toStart();
   }
   if(cur === 's-redact') return $('redactCancel').click();
