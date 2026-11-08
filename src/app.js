@@ -9,6 +9,8 @@ import { readNotes, shrink, getKey, setKey, forgetKey, canRememberKey, isKeyReme
 import { makePdf, shareFiles, download } from './share.js';
 import { mountInstallation } from './installation-ui.js';
 let installationPanel=null;
+import { mountAnalysis } from './analysis-ui.js';
+let analysisPanel = null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
 import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
@@ -67,6 +69,7 @@ function openProfile(back){
   $('pfName').value = p.name || ''; $('pfTrade').value = p.trade || ''; $('pfPhone').value = p.phone || '';
   pfLogo = p.logo || ''; syncLogoPreview();
   $('pfError').hidden = true;
+  $('pfRules').hidden = !PROFILE;
   show('s-profile', 'Τα στοιχεία σου');
   cta(null);
 }
@@ -116,6 +119,8 @@ $('brand').onclick = () => {
     disabled: $('ctaBtn').disabled, note: $('ctaNote').hidden ? '' : $('ctaNote').textContent};
   openProfile(() => {
     if(cur === 's-pdf') return SHOWN?.fromHistory ? openSaved(SHOWN.no) : buildPdf();
+    // Η ανάλυση έχει την ίδια κεφαλίδα: ξαναφτιάχνονται και τα δύο PDF με τα νέα στοιχεία.
+    if(cur === 's-analysis'){ buildPdf(); return analysisPanel.open(); }
     show(cur, step);
     if(c.hidden) cta(null); else cta(c.label, c.fn, c.disabled, c.note);
   });
@@ -754,15 +759,20 @@ function quoteData(){
     rows: okLines().map(l => ({name: l.desc || l.name, qty: l.qty, unit: l.unit, mat: matOf(l)})),
     profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone, ...(PROFILE.logo && {logo: PROFILE.logo})}};
 }
-function renderPdf(q){
-  const s = q.sum, p = q.profile;
+// Κεφαλίδα του PDF (λογότυπο, στοιχεία, αριθμός, ημερομηνία): ίδια στην προσφορά και στην ανάλυση εργασιών.
+function pdfHead(q){
+  const p = q.profile;
   const contact = p.phone ? `Τηλ. ${p.phone}` : '';
-  $('pdf').innerHTML = `
+  return `
     <div class="pdf-head">
       <div style="display:flex;gap:10px;align-items:center"><div class="logo">${logoHtml(p.name, p.logo)}</div>
         <div><b>${esc(p.name)}</b>${p.trade ? `<div style="color:#5E646B;font-size:12px">${esc(p.trade)}</div>` : ''}${contact ? `<div style="color:#5E646B;font-size:12px">${esc(contact)}</div>` : ''}</div></div>
       <div style="text-align:right;color:#5E646B;font-size:12px">Αρ. <span class="qno">${q.no}</span><br>${new Date(q.at).toLocaleDateString('el-GR')}</div>
-    </div>
+    </div>`;
+}
+function renderPdf(q){
+  const s = q.sum;
+  $('pdf').innerHTML = `${pdfHead(q)}
     <h2>Προσφορά: ${esc(q.title)}</h2>
     <div class="who">Προς: ${q.client ? esc(q.client) : '—'}</div>
     <table>
@@ -782,6 +792,7 @@ function renderPdf(q){
 function buildPdf(){
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
+  analysisPanel?.reset();
   // Χωρίς στοιχεία επιχείρησης δεν βγαίνει PDF: πρώτα η φόρμα, μετά το PDF.
   if(!PROFILE) return openProfile(buildPdf);
   if(quoteNo == null) quoteNo = takeQuoteNo();
@@ -799,6 +810,7 @@ function openSaved(no){
   if(!q) return openHistory();
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
+  analysisPanel?.reset();
   SHOWN = {...q, fromHistory: true};
   show('s-pdf', `Προσφορά ${q.no}`);
   pdfMode(true);
@@ -809,6 +821,9 @@ function pdfMode(fromHistory){
   $('histBack').hidden = !fromHistory;
   $('pdfTitle').textContent = fromHistory ? `Προσφορά Αρ. ${SHOWN.no}` : 'Έτοιμη για τον πελάτη';
   document.querySelector('#s-pdf .installation-entry').hidden = fromHistory;
+  // Η ανάλυση εργασιών βγαίνει από τις γραμμές της προσφοράς που φτιάχνεται τώρα (το ιστορικό κρατά μόνο το PDF).
+  $('anEntry').hidden = fromHistory;
+  if(!fromHistory) analysisPanel.refreshEntry();
 }
 
 // ─── Ιστορικό: οι προσφορές της συσκευής ─────────────────────
@@ -849,6 +864,9 @@ syncHistoryButton();
 // Το PDF φτιάχνεται μόλις ανοίξει η προεπισκόπηση, ώστε το «Στείλε» να ανοίγει αμέσως το μενού
 // κοινοποίησης (οι browsers το επιτρέπουν μόνο αμέσως μετά από πάτημα).
 let pdfFile = null,companionFile=null,shareSelection=[];
+// pdfWait: το PDF της προσφοράς που ετοιμάζεται (η ανάλυση εργασιών περιμένει και αυτό πριν το «Στείλε και τα δύο»).
+let pdfWait = null;
+const quoteFile = () => (pdfWait || Promise.resolve()).then(() => pdfFile, () => null);
 // Όνομα αρχείου με λατινικούς: κάποιοι browsers απορρίπτουν ελληνικά ονόματα στο κατέβασμα.
 const GR = {α:'a',β:'v',γ:'g',δ:'d',ε:'e',ζ:'z',η:'i',θ:'th',ι:'i',κ:'k',λ:'l',μ:'m',ν:'n',ξ:'x',ο:'o',π:'p',
   ρ:'r',σ:'s',ς:'s',τ:'t',υ:'y',φ:'f',χ:'ch',ψ:'ps',ω:'o'};
@@ -864,14 +882,24 @@ async function preparePdf(){
   pdfFile = null;
   cta('Ετοιμάζω το PDF…', null, true);
   const name = `Prosfora-${SHOWN.no}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf';
+  const job = pdfWait = makePdf($('pdf'), name);
   try {
-    pdfFile = await makePdf($('pdf'), name);
-    // Η συσκευή δεν κράτησε την προσφορά (π.χ. ιδιωτική περιήγηση): το λέμε, δεν το κρύβουμε.
-    cta(companionFile?'Στείλε και τα δύο PDF':SHOWN.fromHistory?'Στείλε ξανά στον πελάτη':'Στείλε στον πελάτη', sendPdf, false,
-      SHOWN.unsaved ? 'Δεν αποθηκεύτηκε στο ιστορικό αυτής της συσκευής.' : '');
+    const file = await job;
+    if(pdfWait !== job) return;
+    pdfFile = file;
+    if(onPdfScreen()) quoteCta();
   } catch (e) {
-    cta('Δοκίμασε ξανά', preparePdf, false, e.message || 'Δεν έγινε το PDF.');
+    if(pdfWait !== job) return;
+    pdfWait = null;
+    if(onPdfScreen()) cta('Δοκίμασε ξανά', preparePdf, false, e.message || 'Δεν έγινε το PDF.');
   }
+}
+const onPdfScreen = () => $('s-pdf').classList.contains('on');
+function quoteCta(){
+  if(!pdfFile) return pdfWait ? cta('Ετοιμάζω το PDF…', null, true) : preparePdf();
+  // Η συσκευή δεν κράτησε την προσφορά (π.χ. ιδιωτική περιήγηση): το λέμε, δεν το κρύβουμε.
+  cta(companionFile?'Στείλε και τα δύο PDF':SHOWN.fromHistory?'Στείλε ξανά στον πελάτη':'Στείλε στον πελάτη', sendPdf, false,
+    SHOWN.unsaved ? 'Δεν αποθηκεύτηκε στο ιστορικό αυτής της συσκευής.' : '');
 }
 
 async function sendPdf(){
@@ -918,4 +946,25 @@ $('again').onclick = ()=> location.reload();
 
 $('downloadOfferOnly').onclick=()=>{if(pdfFile)download(pdfFile)};
 $('downloadAnalysisOnly').onclick=()=>{if(companionFile)download(companionFile)};
-installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>({desc:l.desc,name:l.name,qty:l.qty,unit:l.unit}))}),{onReady:file=>{companionFile=file;if(pdfFile)cta('Στείλε και τα δύο PDF',sendPdf)},onDiscard:()=>{companionFile=null;if(pdfFile)cta('Στείλε στον πελάτη',sendPdf)},onShare:sendPdf});
+installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>({desc:l.desc,name:l.name,qty:l.qty,unit:l.unit}))}),{onReady:file=>{companionFile=file;analysisPanel?.detach();if(pdfFile)cta('Στείλε και τα δύο PDF',sendPdf)},onDiscard:()=>{companionFile=null;if(pdfFile)cta('Στείλε στον πελάτη',sendPdf)},onShare:sendPdf});
+
+// Ανάλυση εργασιών (δεύτερο PDF) από τις έτοιμες αναλύσεις, με «Άλλαξέ το» και «Οι κανόνες μου».
+analysisPanel = mountAnalysis({
+  show, cta,
+  quote: () => ({no: SHOWN.no, at: SHOWN.at, client: SHOWN.client, profile: SHOWN.profile, lines: okLines()}),
+  head: () => pdfHead(SHOWN),
+  fileName: () => `Analysi-Ergasion-${SHOWN.no}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf',
+  quoteFile,
+  onReady: file => { companionFile = file; installationPanel?.reset(); },
+  onDiscard: () => { companionFile = null; if(onPdfScreen()) quoteCta(); },
+  onSend: sendPdf,
+  onBack: () => { show('s-pdf', 'Προεπισκόπηση'); analysisPanel.refreshEntry(); quoteCta(); },
+});
+const syncRulesButton = () => {
+  const n = analysisPanel.rulesCount();
+  $('rulesOpen').hidden = !n;
+  $('rulesOpen').textContent = `Οι κανόνες μου (${n})`;
+};
+$('rulesOpen').onclick = () => analysisPanel.openRules(() => { show('s-start', 'Νέα προσφορά'); cta(null); syncRulesButton(); });
+$('pfRules').onclick = () => analysisPanel.openRules(() => show('s-profile', 'Τα στοιχεία σου'));
+syncRulesButton();

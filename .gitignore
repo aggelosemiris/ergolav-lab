@@ -5,3 +5,11 @@ tests/stress/reports/
 .service-data/
 .env
 .env.*
+
+# Συλλογή υλικών: raw δεδομένα και cache μένουν μόνο τοπικά
+data/raw/
+data/cache/
+
+# Worker «Άλλαξέ το»: τοπικές ρυθμίσεις και secrets του wrangler δεν ανεβαίνουν
+.wrangler/
+.dev.vars*

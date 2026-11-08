@@ -1,0 +1,29 @@
+# Cloudflare Worker της υπηρεσίας «Άλλαξέ το» (οδηγίες: worker/README.md).
+# Το κλειδί του AI ΔΕΝ μπαίνει εδώ: είναι secret (npx wrangler secret put ANTHROPIC_API_KEY).
+name = "ergolav-rewrite"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+# CORS: μόνο από εδώ γίνονται δεκτά αιτήματα (χωρισμένα με κόμμα, χωρίς / στο τέλος).
+ALLOWED_ORIGIN = "https://aggelosemiris.github.io"
+MODEL = "claude-opus-5-5"
+EFFORT = "low"
+# Όρια αιτημάτων: ανά συσκευή και ανά IP την ώρα, και συνολικά την ημέρα (προστασία κόστους).
+RATE_DEVICE_PER_HOUR = "30"
+RATE_IP_PER_HOUR = "60"
+RATE_GLOBAL_PER_DAY = "300"
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RateLimiter"]
+
+# Logs στο Cloudflare: μόνο μετρήσεις (κατάσταση, χρόνος, tokens), ποτέ κείμενο αιτημάτων.
+[observability]
+enabled = true

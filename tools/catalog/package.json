@@ -1,0 +1,10 @@
+{
+  "name": "ergolav-catalog-tools",
+  "private": true,
+  "type": "module",
+  "description": "Συλλογή ονομάτων υλικών και παραγωγή αναλύσεων εργασιών (δεν ανεβαίνει στο site)",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "cheerio": "1.0.0"
+  }
+}
