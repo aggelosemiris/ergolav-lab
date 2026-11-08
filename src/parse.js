@@ -43,6 +43,8 @@ const FILLER = new Set(['λοιπον','εεε','εε','εμ','οκ','οκει',
 
 function numberWord(t){
   if(UNITS[t] ?? TEENS[t] ?? TENS[t] ?? HUNDREDS[t] ?? FRAC[t] ?? EN_NUM[t]) return UNITS[t] ?? TEENS[t] ?? TENS[t] ?? HUNDREDS[t] ?? FRAC[t] ?? EN_NUM[t];
+  // Μία λέξη 21–99: «εικοσιπέντε», «σαρανταεφτά», «ενενηνταεννιά» (ήταν σιωπηλά 1 / «δεν είπες ποσότητα»).
+  for(const [k, v] of Object.entries(TENS)) if(t.startsWith(k) && UNITS[t.slice(k.length)]) return v + UNITS[t.slice(k.length)];
   // «δυόμισι», «τρεισήμισι», «εναμισι» → +0.5
   const m = t.match(/^(.+?)η?μισ[ιηυ]$/);
   if(m){ const base = UNITS[m[1]] ?? TEENS[m[1]]; if(base) return base + 0.5; }
@@ -60,6 +62,16 @@ function toNumber(tok, next = ''){
   return numberWord(tok) ?? (isLatin(tok) ? numberWord(greek(tok)) : null);
 }
 const isWordNumber = t => !/\d/.test(t) && numberWord(t) != null;
+// Λέξη που μοιάζει με ποσότητα αλλά δεν διαβάζεται («εικοσιπεν», «χιλιάδες» χωρίς αριθμό): ποτέ σιωπηλά 1 — ρωτάμε.
+const NUMBERISH = /^(εικοσι|τριαντα|σαραντα|πενηντα|εξηντα|εβδομηντα|ογδοντα|ενενηντα|εκατον?$|διακοσ|τριακοσ|τετρακοσ|πεντακοσ|εξακοσ|επτακοσ|εφτακοσ|οκτακοσ|οχτακοσ|εννιακοσ|εννεακοσ|χιλια|χιλιεσ$)/;
+const isNumberish = t => NUMBERISH.test(t) && toNumber(t) == null;
+// Μονάδες όπου ένας αριθμός χωρίς μονάδα («τρία καλώδια») δεν εννοείται: ποσότητα με ερώτηση.
+const NEEDS_UNIT = new Set(['μ.', 'τ.μ.']);
+// Λέξεις που κάνουν μια δεύτερη αναφορά ρητή πρόσθεση («μια λεκάνη ακόμα»).
+const MORE = new Set(['ακομα', 'ακομη', 'επιπλεον', 'αλλη', 'αλλο', 'αλλα', 'αλλεσ', 'αλλοι', 'αλλουσ']);
+// «Θέλω να πω δώδεκα», «ήθελα να πω»: διόρθωση, όπως το «συγγνώμη».
+const CORR_PHRASE = ['θελω|ηθελα', 'να', 'πω'];
+const corrPhraseAt = tokens => tokens.findIndex((_, k) => CORR_PHRASE.every((w, j) => new RegExp(`^(${w})$`).test(tokens[k + j] || '')));
 
 /** Αριθμός που ξεκινά στο i, και σύνθετος από διαδοχικές λέξεις («είκοσι πέντε») → {n, end}· null αν δεν είναι αριθμός. */
 function numAt(tokens, i, {money = false} = {}){
@@ -84,6 +96,7 @@ const DIM_SEP = new Set(['επι', 'x', 'χ', '×', '*']);
 // Μονάδα μεγέθους → [είδος, εμφάνιση, συντελεστής προς λίτρα/εκατοστά]. Διαβάζει και τις ετικέτες τύπων του καταλόγου.
 const SIZE_UNIT = {λιτρα:['vol','λ.',1], λιτρων:['vol','λ.',1], λ:['vol','λ.',1], εκατοστα:['len','εκ.',1], εκ:['len','εκ.',1], ποντουσ:['len','εκ.',1],
   χιλιοστα:['len','χιλ.',0.1], χιλ:['len','χιλ.',0.1], ιντσα:['inch','"',1], ιντσεσ:['inch','"',1], ιντσασ:['inch','"',1], χερι:['coat','χέρι',1], χερια:['coat','χέρια',1],
+  θεσεων:['slot','θέσεων',1], θεσεισ:['slot','θέσεων',1], αμπερ:['amp','A',1],
   εξοδων:['out','εξόδων',1], εξοδουσ:['out','εξόδων',1], εξοδοι:['out','εξόδων',1], γουρνα:['bowl','γούρνα',1], γουρνεσ:['bowl','γούρνες',1], γουρνων:['bowl','γούρνες',1]};
 const fmtNum = n => String(n).replace('.', ',');
 const dimSize = (at, a, b) => ({at, kind:'dim', v:[a, b].sort((x, y) => x - y), label:`${fmtNum(a)}×${fmtNum(b)}`});
@@ -95,6 +108,9 @@ function attributes(tokens){
     const x = tokens[i].match(/^(\d+(?:[.,]\d+)?)(?:[xχ×*]|επι)(\d+(?:[.,]\d+)?)$/);   // και «30επί60» (ήταν 30 τ.μ.)
     if(x){ at.add(i); sizes.push(dimSize(i, ...[x[1], x[2]].map(v => parseFloat(v.replace(',', '.'))))); continue; }
     // Ίντσες: «1/2», «3/4"», «1"» (σπείρωμα βάνας/διακόπτη).
+    // Αμπέρ: «16A» γραμμένο κολλητά (ετικέτα ασφάλειας ή σημειώσεις).
+    const amp = tokens[i].match(/^(\d+)a$/);
+    if(amp){ at.add(i); sizes.push({at: i, kind: 'amp', v: [+amp[1]], label: `${amp[1]}A`}); continue; }
     const f = tokens[i].match(/^(\d)\/(\d{1,2})"?$/) ?? tokens[i].match(/^(\d+)()"$/);
     if(f){ const v = f[2] ? +f[1] / +f[2] : +f[1]; at.add(i); sizes.push({at: i, kind: 'inch', v: [v], label: `${f[0].replace(/"$/, '')}"`}); continue; }
     const a = numAt(tokens, i);
@@ -106,7 +122,7 @@ function attributes(tokens){
     const last = b ? b.end : u ? a.end + 1 : half ? a.end + 1 : -1;
     if(last < 0) continue;
     for(let k = i; k <= last; k++) at.add(k);
-    if(!half) sizes.push(b ? dimSize(i, a.n, b.n) : {at: i, kind: u[0], v: [Math.round(a.n * u[2] * 100) / 100], label: u[0] === 'inch' ? `${fmtNum(a.n)}"` : `${fmtNum(a.n)} ${u[1]}`});
+    if(!half) sizes.push(b ? dimSize(i, a.n, b.n) : {at: i, kind: u[0], v: [Math.round(a.n * u[2] * 100) / 100], label: u[0] === 'inch' ? `${fmtNum(a.n)}"` : u[0] === 'amp' ? `${fmtNum(a.n)}A` : `${fmtNum(a.n)} ${u[1]}`});
     i = last;
   }
   return {at, sizes};
@@ -155,8 +171,9 @@ const QTY_LIMIT = {'τεμ.':30, 'μ.':300, 'τ.μ.':200, 'σακί':60, 'κάδ
 // Μονάδες όπου η ποσότητα δεν «εννοείται» 1 — αν δεν ειπώθηκε, τη ζητάμε.
 const MEASURED = new Set(['μ.', 'τ.μ.', 'σακί', 'kg', 'λ.', 'κάδος']);
 
+// qtyWhy: λόγος ελέγχου πέρα από το όριο — 'unit' (αριθμός χωρίς μονάδα), 'unread' (ποσότητα που δεν διαβάστηκε).
 function checkQty(line){
-  line.qtyCheck = line.qty > (QTY_LIMIT[line.unit] ?? 100);
+  line.qtyCheck = line.qty > (QTY_LIMIT[line.unit] ?? 100) || !!line.qtyWhy;
   return line;
 }
 
@@ -263,10 +280,11 @@ function unknownLine(raw){
     if(u && !unit && qty != null){ unit = u; return false; }
     return true;
   });
-  while(rest.length && (ASK_WORDS.has(wordTok(rest[0])) || FILLER.has(wordTok(rest[0])) || STOP.has(wordTok(rest[0])))) rest.shift();
+  while(rest.length && (ASK_WORDS.has(wordTok(rest[0])) || FILLER.has(wordTok(rest[0])) || STOP.has(wordTok(rest[0])) || CORR.has(wordTok(rest[0])))) rest.shift();
   const name = rest.join(' ').replace(/^[\s,.:-]+|[\s,.:;-]+$/g, '');
   const nouns = rest.map(wordTok).filter(t => /\p{L}{2,}/u.test(t) && !STOP.has(t) && !FILLER.has(t) && !CORR.has(t) && !NEG.has(t) && !ASK_WORDS.has(t));
-  const keep = nouns.length > 0 && !toks.some(t => NOISE.test(t));
+  // «όχι σίτες», «χωρίς ντουλάπι»: άρνηση — όχι προϊόν. Το «όχι» δεν γίνεται ποτέ όνομα είδους.
+  const keep = nouns.length > 0 && !toks.some(t => NOISE.test(t)) && !NEG.has(toks.find(Boolean) || '');
   return checkQty({id:'unknown', name: name ? name[0].toUpperCase() + name.slice(1) : seg, said: seg.replace(/[.,;:!?]+$/, ''),
     unit: unit || (keep ? 'τεμ.' : ''), qty: qty ?? 1, mat:0, lab:0, unknown:true, keep});
 }
@@ -350,15 +368,20 @@ export function parse(text){
       const prev = items.findLastIndex((it, k) => it && k < i), next = items.findIndex((it, k) => it && k > i);
       return list.find(d => d.at > i && (next < 0 || d.at < next)) ?? list.findLast(d => d.at < i && d.at > prev);
     };
-    if(tokens.some(t => CORR.has(t))) correcting = true;
-    const corrHere = tokens.some(t => CORR_EXPLICIT.has(t)), corrNear = corrHere || prevCorr;
+    const cp = corrPhraseAt(tokens), corrWord = (t, k) => CORR.has(t) || (cp >= 0 && k >= cp && k < cp + CORR_PHRASE.length);
+    if(tokens.some(corrWord)) correcting = true;
+    const corrHere = tokens.some(t => CORR_EXPLICIT.has(t)) || cp >= 0, corrNear = corrHere || prevCorr;
+    // Λέξη που μοιάζει με ποσότητα αλλά δεν διαβάστηκε (για το υλικό χωρίς ποσότητα της φράσης).
+    const unread = tokens.find((t, k) => !used.has(k) && isNumberish(t) && !(/^χιλιαδ/.test(t) && toNumber(tokens[k - 1] || '') != null));
     prevCorr = corrHere;
     for(let i = 0; i < tokens.length; i++){
       if(used.has(i)) continue;
+      // «δύο χιλιάδες», «τρεις χιλιάδες πεντακόσια» (ήταν σιωπηλά 2).
+      if(/^χιλιαδ/.test(tokens[i]) && lastNum === i - 1 && pending != null && pending < 1000){ pending *= 1000; lastNum = i; continue; }
       const n = toNumber(tokens[i], tokens[i + 1]);
       if(n != null){
         // Σύνθετοι αριθμοί μόνο από διαδοχικές λέξεις: «εκατόν είκοσι πέντε» → 125 (όχι «12 5»).
-        const joinable = lastNum === i - 1 && isWordNumber(tokens[i]) && isWordNumber(tokens[i - 1]) && pending != null;
+        const joinable = lastNum === i - 1 && isWordNumber(tokens[i]) && (isWordNumber(tokens[i - 1]) || /^χιλιαδ/.test(tokens[i - 1])) && pending != null;
         if(joinable && pending % 1000 === 0 && n >= 100 && n < 1000) pending += n;     // «χίλια διακόσια» (ήταν σιωπηλά 200)
         else if(joinable && pending % 100 === 0 && n < 100) pending += n;
         else if(joinable && pending >= 20 && pending % 10 === 0 && n < 10) pending += n;
@@ -392,13 +415,15 @@ export function parse(text){
         bare = {kind: 'sec', v: [bn], label: fmtNum(bn)};
         used.add(i + 1);
       }
+      // Ειπώθηκε μονάδα αμέσως μετά τον αριθμό («δέκα μέτρα», «σωλήνας 12 μ.»);
+      let unitSaid = pending != null && !!unitOf(tokens[lastNum + 1] || '');
       // Ποσότητα μετά το υλικό («σωλήνας 12 μέτρα»): ψάχνουμε μέχρι το επόμενο υλικό.
       if(pending == null){
         for(let j = i + 1; j < tokens.length && !findItem(tokens, j); j++){
           if(used.has(j)) continue;
           // Και σύνθετος αριθμός από λέξεις («αρμόστοκος είκοσι εννέα σακιά» = 29· ήταν σιωπηλά 20).
           const a = numAt(tokens, j);
-          if(a){ pending = a.n; for(let k = j; k <= a.end; k++) used.add(k); break; }
+          if(a){ pending = a.n; unitSaid = !!unitOf(tokens[a.end + 1] || ''); for(let k = j; k <= a.end; k++) used.add(k); break; }
         }
       }
       const qtyMissing = pending == null;
@@ -410,11 +435,16 @@ export function parse(text){
         ? {dim: sizeFor(i, attr.sizes.filter(d => d.kind === 'dim'))?.label}
         : {said: bare ?? sizeFor(i, attr.sizes)});
       line.mentions = [mention];
+      // «τρία καλώδια»: αριθμός χωρίς μονάδα σε είδος που μετριέται σε μ./τ.μ. — κρατάμε τον αριθμό, ρωτάμε.
+      if(!qtyMissing && !unitSaid && NEEDS_UNIT.has(line.unit)) line.qtyWhy = 'unit';
+      // «εικοσιπεν μέτρα»: ποσότητα που δεν διαβάστηκε — ποτέ σιωπηλά 1, ούτε σε τεμάχια.
+      if(qtyMissing && unread){ Object.assign(line, {qtyMissing: true, qtyWhy: 'unread', qtyWord: unread}); }
+      checkQty(line);
       const same = lines.find(l => l.id === line.id && (l.name === line.name || correcting) && !l.flag && !line.flag &&
         (correcting || (!l.sizeCheck && !line.sizeCheck)));
       if(same && correcting){
         // Διόρθωση: η νέα αναφορά αντικαθιστά την παλιά (ποσότητα και τύπο).
-        Object.assign(same, {...line, qtyMissing: line.qtyMissing, sizeCheck: line.sizeCheck});
+        Object.assign(same, {...line, qtyMissing: line.qtyMissing, sizeCheck: line.sizeCheck, qtyWhy: line.qtyWhy, qtyWord: line.qtyWord});
         correcting = false;
         lastLine = same;
       } else if(same){
@@ -422,6 +452,8 @@ export function parse(text){
         // Ποσότητα που έλειπε (προσωρινό 1) δεν μπαίνει στο άθροισμα.
         same.qty = same.qtyMissing && MEASURED.has(same.unit) ? qty : same.qty + qty;
         same.mentions.push(mention);
+        // «…και μια λεκάνη ακόμα / επιπλέον / άλλη»: ρητή πρόσθεση — όχι ερώτηση «Το είπες δύο φορές».
+        if(!tokens.some(t => MORE.has(t))) same.unsure = true;
         if(!qtyMissing) same.qtyMissing = false;
         checkQty(same);
         lastLine = same;
@@ -441,17 +473,28 @@ export function parse(text){
     // μόνο για τεμάχια. Αλλιώς ισχύει ό,τι πριν (η ποσότητα φαίνεται ως γραμμή για έλεγχο).
     // Ίδιοι κανόνες χωρίς λέξη διόρθωσης όταν η ποσότητα ΕΛΕΙΠΕ («πλακάκι 30 επί 60, δεκαπέντε τετραγωνικά»),
     // αλλά τότε μόνο με ρητά ίδια μονάδα.
+    // Με ρητή διόρθωση («όχι, δώδεκα», «συγγνώμη δώδεκα», «θέλω να πω δώδεκα») ο σκέτος αριθμός παίρνει τη μονάδα
+    // της γραμμής. «Όχι» + τον ΙΔΙΟ αριθμό («…, όχι δέκα») είναι άρνηση, όχι νέα ποσότητα: τίποτα δεν αλλάζει.
+    const onlyCorrection = tokens.every((t, k) => toNumber(t) != null || unitOf(t) || corrWord(t, k) || FILLER.has(t));
     if(!found && pending != null && lastLine && (corrNear || lastLine.qtyMissing)){
       const numIdx = tokens.map((t, k) => toNumber(t) != null ? k : -1).filter(k => k >= 0);
       const units = tokens.map(unitOf).filter(Boolean);
-      const onlyCorrection = tokens.every(t => toNumber(t) != null || unitOf(t) || CORR.has(t) || FILLER.has(t));
       const oneNumber = numIdx.length && numIdx[numIdx.length - 1] - numIdx[0] + 1 === numIdx.length;
-      const unitOk = units.length ? units.every(u => u === lastLine.unit) : corrNear && lastLine.unit === 'τεμ.';
+      const unitOk = units.length ? units.every(u => u === lastLine.unit) : corrNear;
       if(onlyCorrection && oneNumber && unitOk){
-        lastLine.qty = pending; lastLine.qtyMissing = false; checkQty(lastLine);
+        if(!(NEG.has(tokens[numIdx[0] - 1]) && pending === lastLine.qty)){
+          Object.assign(lastLine, {qty: pending, qtyMissing: false, qtyWhy: undefined, qtyWord: undefined}); lastLine.mentions = [pending]; checkQty(lastLine);
+        }
+        continue;
+      }
+      // «12 μέτρα σωλήνα, όχι 15 τεμάχια»: διόρθωση με άλλη μονάδα — δεν αλλάζουμε μόνοι μας, η γραμμή ρωτάει.
+      if(onlyCorrection && oneNumber && corrNear){
+        Object.assign(lastLine, {qtyWhy: 'corr', qtyWord: seg.replace(/[.,;:!?]+$/, '')}); checkQty(lastLine);
         continue;
       }
     }
+    // «όχι δέκα, …», «συγγνώμη, δεκαπέντε» χωρίς υλικό: διόρθωση ή άρνηση — ποτέ γραμμή «Όχι».
+    if(!found && onlyCorrection && tokens.some(corrWord)) continue;
     if(found) continue;
     if(tokens.every(t => FILLER.has(t) || CORR.has(t) || NEG.has(t))) continue;   // «όχι, συγγνώμη», «λοιπόν»
     const onlyQty = tokens.every(t => toNumber(t) != null || unitOf(t));
@@ -479,7 +522,7 @@ export function parse(text){
   // Το ίδιο υλικό ειπώθηκε πάνω από μία φορά: «Το είπες δύο φορές: 1 ή 2;» (επιλογές: κάθε αναφορά και το σύνολο).
   for(const l of lines){
     const said = (l.mentions || []).map(m => m ?? (l.unit === 'τεμ.' ? 1 : null)).filter(m => m != null);
-    if(said.length < 2) continue;
+    if(said.length < 2 || !l.unsure) continue;
     const sum = Math.round(said.reduce((a, b) => a + b, 0) * 1000) / 1000;
     l.dupAsk = {times: l.mentions.length, opts: [...new Set([...said, sum])].sort((a, b) => a - b)};
     l.qty = sum;

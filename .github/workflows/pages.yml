@@ -31,8 +31,11 @@ jobs:
         run: |
           V=${GITHUB_SHA::7}
           sed -i -E "s#src/app\.js\"#src/app.js?v=$V\"#; s#id=\"build\">dev<#id=\"build\">$V<#" _site/index.html
-          sed -i -E "s#(from '\./[a-z-]+\.js)'#\1?v=$V'#" _site/src/*.js
+          sed -i -E "s#(from '\./[A-Za-z0-9_.-]+\.js)'#\1?v=$V'#g" _site/src/*.js
           grep -n "v=$V" _site/index.html _site/src/*.js
+          # Φρουρός: αρχείο που φορτώνεται χωρίς ?v= θα έμενε παλιό στην cache του κινητού → σταματά το deploy.
+          if grep -nE "from '\./[^']+\.js'" _site/src/*.js; then echo "::error::import χωρίς ?v=" && exit 1; fi
+          grep -q "src/app.js?v=$V" _site/index.html || { echo "::error::index.html χωρίς app.js?v="; exit 1; }
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

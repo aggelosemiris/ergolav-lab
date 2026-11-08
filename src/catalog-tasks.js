@@ -49,4 +49,6 @@ export const CATALOG_TASKS = {
   cable:      {task: 'elec-wiring'},
   socket:     {task: 'elec-socket'},
   light:      {task: 'elec-downlight'},
+  panel:      {task: 'elec-panel'},
+  fuse:       {task: 'elec-panel', consumable: true},
 };
