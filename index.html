@@ -42,6 +42,9 @@ header{padding:18px 20px 10px;display:flex;justify-content:space-between;align-i
 .logo-edit{display:flex;gap:14px;align-items:center;margin-top:8px}
 .field .flabel{font-size:13px;color:var(--dim);display:block}
 .field .hint{display:block;font-size:12px;color:var(--dim);margin-top:6px}
+.head-l{display:flex;align-items:center;gap:10px;min-width:0}
+.nav-back{flex:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.nav-back svg{width:20px;height:20px}
 .brand{display:flex;gap:10px;align-items:center;background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:44px}
 .logo{width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--paper);
   display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:.5px}
@@ -395,10 +398,16 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 <body>
 <div id="app">
   <header>
-    <button class="brand" id="brand" type="button" aria-label="Τα στοιχεία σου">
-      <div class="logo" id="brandLogo"></div>
-      <div><b id="brandName">ergolav</b><span id="brandTrade"></span></div>
-    </button>
+    <div class="head-l">
+      <!-- Πίσω: μία οθόνη πίσω, σε κάθε οθόνη εκτός από την αρχική. Λογική: goBack() στο src/app.js -->
+      <button class="nav-back" id="navBack" type="button" aria-label="Πίσω" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="brand" id="brand" type="button" aria-label="Τα στοιχεία σου">
+        <div class="logo" id="brandLogo"></div>
+        <div><b id="brandName">ergolav</b><span id="brandTrade"></span></div>
+      </button>
+    </div>
     <div class="step" id="step">Νέα προσφορά</div>
   </header>
 
