@@ -396,6 +396,11 @@ const okLines = () => LINES.filter(l=>!l.flag && !l.suggest && !needsQty(l) && !
 // Πρόταση εργασίας από τον κατάλογο: Σ qty × εργασία του είδους, για τις γραμμές χωρίς εκκρεμότητα.
 const autoLabor = () => okLines().reduce((s,l)=>s+Math.round(l.qty*l.lab),0);
 const needsQty = l => l.qtyMissing || l.qtyCheck;
+const qtyAsk = l =>
+  l.qtyWhy === 'unread' ? `Δεν κατάλαβα την ποσότητα («${esc(l.qtyWord)}») — γράψε πόσα (${esc(l.unit)}):`
+  : l.qtyWhy === 'unit' ? `Είπες ${fmtQty(l.qty)} χωρίς μονάδα — είναι ${fmtQty(l.qty)} ${esc(l.unit)};`
+  : l.qtyWhy === 'corr' ? `Είπες «${esc(l.qtyWord)}» — έλεγξε την ποσότητα (${esc(l.unit)}):`
+  : l.qtyMissing ? `Δεν είπες ποσότητα (${esc(l.unit)}) — γράψε πόσα:` : `${fmtQty(l.qty)} ${esc(l.unit)}; Φαίνεται πολύ — έλεγξε την ποσότητα:`;
 // Μονάδες για υλικό εκτός καταλόγου (ό,τι ειπώθηκε, αλλιώς τεμ.).
 const UNITS = ['τεμ.', 'μ.', 'τ.μ.', 'σακί', 'kg', 'λ.', 'κουτί', 'ζεύγος', 'κατ.'];
 // Ανοιχτό πεδίο (τιμή, ποσότητα, περιγραφή) ή άκυρη κατανάλωση = η γραμμή δεν έχει ελεγχθεί ακόμα.
@@ -512,10 +517,11 @@ function renderLines(){
       el.querySelector('[data-a="keep"]').onclick=()=>{ l.suggest=false; checkedCount++; renderLines(); };
       el.querySelector('[data-a="drop"]').onclick=()=>{ LINES = LINES.filter(x=>x!==l); checkedCount++; renderLines(); };
     } else if(needsQty(l)){
+      // Ο λόγος του ελέγχου, με τα λόγια του τεχνίτη: αριθμός χωρίς μονάδα, ποσότητα που δεν διαβάστηκε, διόρθωση με άλλη μονάδα.
       // Ποσότητα που δεν ειπώθηκε ή φαίνεται παράλογη (π.χ. 999, τιμή που διαβάστηκε ως ποσότητα): επιβεβαίωση.
       el.innerHTML = `
         <div class="ln-top"><span class="ln-name">${esc(l.name)}</span></div>
-        <div class="ask">${l.qtyMissing ? `Δεν είπες ποσότητα (${esc(l.unit)}) — γράψε πόσα:` : `${fmtQty(l.qty)} ${esc(l.unit)}; Φαίνεται πολύ — έλεγξε την ποσότητα:`}</div>
+        <div class="ask">${qtyAsk(l)}</div>
         <div class="prices"><label>Ποσότητα (${esc(l.unit)})<input inputmode="decimal" data-p="qty" value="${l.qtyMissing ? '' : String(l.qty).replace('.', ',')}" placeholder="0"><small class="parsed" data-o="qty"></small></label></div>
         <div class="sug-act"><button data-a="ok">Εντάξει</button><button data-a="drop">Βγάλ' το</button></div>`;
       const readQty = numField(el, 'qty', {maxDecimals: 3}, v => `${formatQty(v)} ${l.unit}`);
@@ -523,7 +529,7 @@ function renderLines(){
         const r = readQty();
         if(r.error) return;
         const q = r.value;
-        Object.assign(l, {qty: q, qtyMissing: false, qtyCheck: false});
+        Object.assign(l, {qty: q, qtyMissing: false, qtyCheck: false, qtyWhy: null, qtyWord: null});
         checkedCount++; renderLines();
       };
       el.querySelector('[data-a="drop"]').onclick=()=>{ LINES = LINES.filter(x=>x!==l); checkedCount++; renderLines(); };
@@ -537,6 +543,7 @@ function renderLines(){
         <div class="ln-top"><span class="ln-name">${esc(l.desc || l.name)}</span><span class="ln-sum num">${l.mat > 0 ? eur(matOf(l)) : 'στην εργασία'}</span></div>
         <div class="ln-meta">${l.desc ? `${esc(l.name)} · ` : ''}${esc(l.code)} <button class="linkbtn" data-a="desc-edit">Άλλαξε περιγραφή</button>${l.added ? ` <button class="linkbtn" data-a="remove-line">Σβήσε</button>` : ''}</div>
         ${needsPrice(l) ? `<div class="ask">Δεν είναι στον κατάλογο — βάλε τιμή ή σβήσ' το</div>` : ''}
+        ${l.added && l.lab > 0 && !l.customOpen ? `<p class="hint">Εργασία: ${fmtQty(l.qty)} × ${eur(l.lab)} = ${eur(Math.round(l.qty * l.lab))} · μπαίνει στην «Εργασία για όλη τη δουλειά»${LABOR != null ? ' (εκεί έχεις γράψει δικό σου ποσό· δες την πρόταση)' : ''}</p>` : ''}
         ${l.descOpen ? `
         <div class="prices"><label>Περιγραφή στο PDF<input data-p="desc" maxlength="120" autocomplete="off" value="${esc(l.desc || l.name)}"></label></div>
         <p class="hint">Αλλάζει μόνο το κείμενο· τιμή και κωδικός μένουν ίδια.</p>
@@ -571,7 +578,8 @@ function renderLines(){
         </div>
         ${l.customOpen ? `
         <div class="custom">
-          <div class="prices"><label>Τιμή υλικού € ανά ${per}<input inputmode="decimal" data-p="cmat" placeholder="0,00" value="${esc(l.customDraft || '')}"><small class="parsed" data-o="cmat"></small></label></div>
+          <div class="prices"><label>Τιμή υλικού € ανά ${per}<input inputmode="decimal" data-p="cmat" placeholder="0,00" value="${esc(l.customDraft || (l.added && l.tier === 'custom' ? centsText(l.mat) : ''))}"><small class="parsed" data-o="cmat"></small></label>
+            ${l.added ? `<label>Εργασία € ανά ${per} <span class="for">(προαιρετικό)</span><input inputmode="decimal" data-p="clab" placeholder="0,00" value="${esc(l.labDraft ?? (l.lab ? centsText(l.lab) : ''))}"><small class="parsed" data-o="clab"></small></label>` : ''}</div>
           <div class="hist" data-hist ${hist.length && !l.customDraft ? '' : 'hidden'}>${hist.map(h => `
             <button class="hi" data-c="${h.c}"><span class="num">${eur(h.c)}</span><span>${ageLabel(h.at)}${isStale(h.at) ? ' · <b>έλεγξε αν άλλαξε</b>' : ''}</span></button>`).join('')}
           </div>
@@ -666,16 +674,23 @@ function renderLines(){
           input.dispatchEvent(new Event('input', {bubbles: true}));
           input.focus();
         });
+        // Εκτός καταλόγου: προαιρετική εργασία ανά μονάδα → × ποσότητα στην πρόταση της «Εργασίας για όλη τη δουλειά»
+        // (αλλιώς χρέωνε λιγότερα χωρίς να το καταλάβει). Δικό του χειροκίνητο ποσό εργασίας δεν αλλάζει.
+        const readL = l.added && numField(el, 'clab', {optional: true, allowZero: true}, v => `${formatEur(v)} ανά ${l.unit}`);
+        el.querySelector('[data-p="clab"]')?.addEventListener('input', e => { l.labDraft = e.target.value; });
         el.querySelector('[data-a="keep"]').onclick = () => {
           const r = readC();
           if(r.error) return;
+          const rl = readL ? readL() : {value: 0, empty: true};
+          if(rl.error) return;
           const cents = toCents(r.value);
+          if(readL) Object.assign(l, {lab: toCents(rl.value), labDraft: undefined});
           Object.assign(l, {mat: cents, tier: 'custom', customOpen: false, customDraft: ''});
           remember(key, cents);
           checkedCount++; renderLines();
         };
         el.querySelector('[data-a="cancel"]').onclick = () => {
-          Object.assign(l, {customOpen: false, customDraft: ''});
+          Object.assign(l, {customOpen: false, customDraft: '', labDraft: undefined});
           // «Βάλε 120 λ.» χωρίς δική του τιμή → πίσω στην ερώτηση (ποτέ όνομα 120 λ. με τιμή του 80 λ.).
           if(l.sizeSaid && l.tier !== 'custom'){ Object.assign(l, l.sizeSaid); l.sizeSaid = null; }
           renderLines();
