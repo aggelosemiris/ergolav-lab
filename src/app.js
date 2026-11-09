@@ -21,6 +21,9 @@ import { mountCalendar } from './calendar-ui.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
+// «Περισσότερες λεπτομέρειες για τις εργασίες; / Ανάλυση εργασιών με AI» (με τις φωτογραφίες εργασίας): κρυφή.
+// Ο κώδικας (installation-ui.js, server) μένει για μελλοντική χρήση· ανάβει μόνο σε δοκιμές (ergolav.aiAnalysis = '1').
+const AI_ANALYSIS_ENABLED = (() => { try { return localStorage.getItem('ergolav.aiAnalysis') === '1'; } catch { return false; } })();
 
 const SAMPLE = 'Ανακαίνιση μπάνιου. Δώδεκα μέτρα σωλήνα πολυστρωματικό, μια μπαταρία νιπτήρα, λεκάνη κρεμαστή με καζανάκι εντοιχισμού, και δώδεκα τετραγωνικά πλακάκι τοίχου.';
 const BARS = 18;
@@ -35,7 +38,7 @@ const eur = c => (c/100).toLocaleString('el-GR',{minimumFractionDigits:2,maximum
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmtQty = formatQty;   // ίδια ακρίβεια (3 δεκαδικά) με την είσοδο της ποσότητας
 const $ = id => document.getElementById(id);
-let started = 0, checkedCount = 0, lastText = '';
+let started = 0, checkedCount = 0, lastText = '', listenFrom = 'start';   // listenFrom: από πού ήρθε στο κείμενο
 
 function show(id, step){
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id));
@@ -43,6 +46,11 @@ function show(id, step){
   if(id !== 's-lines') $('toast').hidden = true;
   $('step').textContent = step;
   window.scrollTo({top:0});
+  syncBack(id);
+}
+// «Πίσω» πάνω αριστερά: παντού εκτός από την αρχική — και την πρώτη φόρμα στοιχείων, όταν δεν υπάρχει πού να γυρίσει.
+function syncBack(id){
+  $('navBack').hidden = id === 's-start' || (id === 's-profile' && !PROFILE && !profileBack);
 }
 function cta(label, fn, disabled, note){
   $('cta').hidden = !label;
@@ -196,7 +204,7 @@ function focusEnd(el){
   const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
 }
 transcript.addEventListener('pointerdown', async () => { if(mic.listening){ await finishListening(); focusEnd(transcript); } });
-$('editText').onclick = () => { review(lastText); focusEnd(transcript); };
+$('editText').onclick = () => { listenFrom = 'lines'; review(lastText); focusEnd(transcript); };
 
 async function finishListening(){
   cta('Τελειώνω…', null, true);
@@ -227,7 +235,7 @@ function review(text, msg){
   if(!text) transcript.focus();
 }
 
-$('mic').onclick = () => startListening();
+$('mic').onclick = () => { listenFrom = 'start'; startListening(); };
 $('resume').onclick = () => startListening(transcript.textContent.trim());
 $('sample').onclick = () => { transcript.textContent = SAMPLE; transcript.oninput(); };
 if(!micSupported) $('micNote').textContent = 'Ο browser σου δεν έχει αναγνώριση φωνής — θα μπορείς να το γράψεις.';
@@ -833,7 +841,7 @@ function buildPdf(){
 // Η «Ανάλυση εργασιών με AI» αφορά την προσφορά που φτιάχνεται τώρα, γι' αυτό εδώ δεν εμφανίζεται.
 function openSaved(no){
   const q = getQuote(no);
-  if(!q) return openHistory();
+  if(!q) return calendar.open();
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
   analysisPanel?.reset();
@@ -846,7 +854,7 @@ function openSaved(no){
 function pdfMode(fromHistory){
   $('histBack').hidden = !fromHistory;
   $('pdfTitle').textContent = fromHistory ? `Προσφορά Αρ. ${SHOWN.no}` : 'Έτοιμη για τον πελάτη';
-  document.querySelector('#s-pdf .installation-entry').hidden = fromHistory;
+  document.querySelector('#s-pdf .installation-entry').hidden = fromHistory || !AI_ANALYSIS_ENABLED;
   // Η ανάλυση εργασιών βγαίνει από τις γραμμές της προσφοράς που φτιάχνεται τώρα (το ιστορικό κρατά μόνο το PDF).
   $('anEntry').hidden = fromHistory;
   if(!fromHistory) analysisPanel.refreshEntry();
@@ -857,12 +865,12 @@ function pdfMode(fromHistory){
 migrateQuotes();
 const syncHistoryButton = () => {
   const n = listQuotes().length;
-  $('historyOpen').hidden = !n;
-  $('historyOpen').textContent = `📅 Ημερολόγιο (${n})`;
+  $('startNav').hidden = !n;
+  $('quotesOpen').textContent = `📋 Προσφορές (${n})`;
 };
-const calendar = mountCalendar({show, cta, onOpen: no => openSaved(no), onNew: () => location.reload(), onChange: syncHistoryButton});
-function openHistory(){ calendar.open(); }
-$('historyOpen').onclick = openHistory;
+const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => location.reload(), onChange: syncHistoryButton});
+$('historyOpen').onclick = () => calendar.open({view: 'month'});
+$('quotesOpen').onclick = () => calendar.open({view: 'list'});
 $('histBack').onclick = () => calendar.open({reset: false});     // πίσω εκεί που ήταν (μήνας, μέρα, προβολή)
 $('histNew').onclick = () => location.reload();
 syncHistoryButton();
@@ -981,3 +989,38 @@ const syncRulesButton = () => {
 $('rulesOpen').onclick = () => analysisPanel.openRules(() => { show('s-start', 'Νέα προσφορά'); cta(null); syncRulesButton(); });
 $('pfRules').onclick = () => analysisPanel.openRules(() => show('s-profile', 'Τα στοιχεία σου'));
 syncRulesButton();
+
+// ─── «Πίσω»: μία οθόνη πίσω, χωρίς να χαθεί τίποτα ───────────
+// Στις οθόνες που έχουν ήδη δικό τους «← Πίσω» κάνει ακριβώς το ίδιο. Από το PDF πίσω στον έλεγχο, οι γραμμές μένουν
+// όπως τις άφησε (καμία νέα ανάλυση). Από το κείμενο πάντα στην αρχική. Κείμενο που θα σβηνόταν: ερώτηση.
+function toStart(){ show('s-start', 'Νέα προσφορά'); cta(null); when.refresh(); syncHistoryButton(); }
+function toLines(){ show('s-lines', 'Έλεγχος'); renderLines(); }
+async function goBack(){
+  const cur = document.querySelector('.screen.on')?.id;
+  if(cur === 's-listen'){
+    const t = (mic.listening ? await mic.stop() : transcript.textContent || '').trim();
+    // Πάντα στην αρχική με το μικρόφωνο — όχι ξανά στον έλεγχο. Αν έχει ήδη βγει PDF (έχει αριθμό, ίσως και στάλθηκε),
+    // η αρχική ανοίγει ως ΝΕΑ προσφορά: αλλιώς η επόμενη υπαγόρευση θα έπαιρνε τον ίδιο αριθμό και θα έσβηνε την
+    // προηγούμενη από το ιστορικό. Ερώτηση μόνο για κείμενο που δεν έχει γίνει ακόμα προσφορά.
+    if(quoteNo != null) return location.reload();
+    if(t && listenFrom !== 'lines' && !confirm('Πίσω στην αρχή; Το κείμενο που έγραψες θα σβηστεί.')) return review(t);
+    return toStart();
+  }
+  if(cur === 's-redact') return $('redactCancel').click();
+  if(cur === 's-lines'){ listenFrom = 'lines'; return review(lastText); }
+  if(cur === 's-pdf') return SHOWN?.fromHistory ? $('histBack').click() : toLines();
+  if(cur === 's-done'){
+    if(SHOWN?.fromHistory) return openSaved(SHOWN.no);
+    show('s-pdf', 'Προεπισκόπηση'); pdfMode(false); renderPdf(SHOWN); return quoteCta();
+  }
+  if(cur === 's-analysis') return $('anBack').click();
+  if(cur === 's-rules') return $('rulesBack').click();
+  if(cur === 's-history') return toStart();
+  if(cur === 's-profile'){
+    const back = profileBack; profileBack = null;
+    if(!PROFILE) return back ? toLines() : undefined;     // χωρίς στοιχεία δεν βγαίνει PDF: πίσω στον έλεγχο
+    return back ? back() : toStart();
+  }
+}
+$('navBack').onclick = goBack;
+syncBack(document.querySelector('.screen.on')?.id);

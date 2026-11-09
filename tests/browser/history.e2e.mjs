@@ -42,10 +42,10 @@ async function makeQuote(p, {client = '', text, vat}){
   await p.evaluate(() => { localStorage.removeItem('ergolav.quotes'); localStorage.removeItem('ergolav.quoteNo'); }); await p.reload();
   ok('χωρίς προσφορές: το κουμπί «Ημερολόγιο» δεν φαίνεται', !(await p.isVisible('#historyOpen')));
   const pdf1 = await makeQuote(p, {client: 'Γιώργος Αντωνίου, Χαλάνδρι', text: 'τρεις πρίζες και 12 μέτρα σωλήνα'});
-  ok('η νέα προσφορά δεν δείχνει «← Όλες οι προσφορές» και κρατά την «Ανάλυση εργασιών με AI»', !(await p.isVisible('#histBack')) && await p.isVisible('#installOpen'));
+  ok('η νέα προσφορά δεν δείχνει «← Όλες οι προσφορές» ούτε την κρυφή «Ανάλυση εργασιών με AI»', !(await p.isVisible('#histBack')) && !(await p.isVisible('#installOpen')));
   const pdf2 = await makeQuote(p, {text: 'λεκάνη κρεμαστή', vat: 13});
   await p.goto(BASE);
-  ok('μετά από δύο προσφορές: «📅 Ημερολόγιο (2)» στην αρχική', await p.textContent('#historyOpen') === '📅 Ημερολόγιο (2)');
+  ok('μετά από δύο προσφορές: «📅 Ημερολόγιο» και «📋 Προσφορές (2)» στην αρχική', await p.textContent('#historyOpen') === '📅 Ημερολόγιο' && await p.textContent('#quotesOpen') === '📋 Προσφορές (2)');
   await p.click('#historyOpen');
   const items = await p.$$eval('#calDay .q-open', els => els.map(e => e.textContent.replace(/\s+/g, ' ').trim()));
   ok('ημερολόγιο: σήμερα και οι δύο, με πελάτη, περιοχή, αριθμό, κατάσταση και σύνολο',

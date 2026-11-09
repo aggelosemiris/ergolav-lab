@@ -70,7 +70,7 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
   await makeQuote(p, SAY, CLIENT, async () => { await p.evaluate(() => document.getElementById('anOpen').click()); ghostOpened = await p.isVisible('#s-analysis.on'); });
   ok('προεπισκόπηση: κουμπί «Φτιάξε και ανάλυση εργασιών» για τις 3 εργασίες',
     await p.textContent('#anOpen') === 'Φτιάξε και ανάλυση εργασιών' && /των 3 εργασιών/.test(await p.textContent('#anEntryText')));
-  ok('η παλιά «Ανάλυση εργασιών με AI» μένει διαθέσιμη', await p.isVisible('#installOpen'));
+  ok('η «Ανάλυση εργασιών με AI» («Περισσότερες λεπτομέρειες…») δεν φαίνεται', !(await p.isVisible('#installOpen')) && !(await p.isVisible('#s-pdf .installation-entry')));
   ok('διπλό πάτημα στο «Έλεγξα» δεν ανοίγει την ανάλυση', ghostOpened === false);
 
   await p.click('#anOpen'); await p.waitForSelector('#s-analysis.on');
