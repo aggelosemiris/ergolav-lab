@@ -4,7 +4,7 @@
 import { listQuotes, updateQuote, deleteQuote } from './history.js';
 import { today, addDays, longDate, daysBetween } from './dates.js';
 import { monthGrid, shiftMonth, monthOf, byDay, pickDay, listOrder, undated, splitClient, endOf } from './calendar.js';
-import { mountWhen } from './when-ui.js';
+import { mountWhen, nativeDatePicker, dateChip } from './when-ui.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
@@ -16,7 +16,6 @@ const wdFmt = new Intl.DateTimeFormat('el-GR', {timeZone: 'UTC', weekday: 'short
 const WEEKDAYS = Array.from({length: 7}, (_, i) => wdFmt.format(Date.UTC(2026, 10, 9 + i)));   // 9/11/2026 = Δευτέρα
 const VIEW = 'ergolav.calView';                 // Μήνας ή Λίστα: όπως το άφησε ο τεχνίτης σε αυτή τη συσκευή
 const count = n => n === 1 ? '1 προσφορά' : `${n} προσφορές`;
-const canPick = typeof HTMLInputElement !== 'undefined' && 'showPicker' in HTMLInputElement.prototype;
 
 /**
  * show/cta: της εφαρμογής. onOpen(no): άνοιγμα του PDF της προσφοράς (ίδιο με το ιστορικό). onNew(): νέα προσφορά.
@@ -91,6 +90,8 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
     $('calUndated').innerHTML = list.length ? `<h2 class="cal-gh">Χωρίς ημερομηνία <span>(${list.length})</span></h2>
       <p class="privacy">Πάτα μια μέρα και μπαίνει στο ημερολόγιο.</p>
       <div class="quotes">${list.map(q => item(q, {undated: true})).join('')}</div>` : '';
+    // «Άλλη μέρα»: το πάτημα ανοίγει απευθείας τον επιλογέα ημερομηνίας του κινητού (βλ. when-ui.js).
+    $('calUndated').querySelectorAll('[data-pick]').forEach(i => nativeDatePicker(i));
   }
 
   // Μία προσφορά: ώρα, πελάτης, περιοχή, σύνολο, κατάσταση. Πάτημα = το ίδιο PDF (όπως στο ιστορικό).
@@ -106,7 +107,7 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
       <div class="cal-quick" role="group" aria-label="Βάλε μέρα"><span>Βάλε μέρα:</span>
         <button type="button" class="wchip" data-quick="0" data-no="${q.no}">Σήμερα</button>
         <button type="button" class="wchip" data-quick="1" data-no="${q.no}">Αύριο</button>
-        <span class="wchip-wrap"><button type="button" class="wchip" data-a="pick" data-no="${q.no}">Άλλη μέρα</button><input type="date" class="when-date${canPick ? '' : ' overlay'}" data-pick="${q.no}" aria-label="Διάλεξε μέρα" tabindex="-1"></span>
+        ${dateChip('Άλλη μέρα', `data-pick="${q.no}"`)}
       </div>` : '';
     return `<div class="q-item cal-q st-${q.status}${q.scheduled_from_created ? ' faint' : ''}">
       <button type="button" class="q-open" data-a="open" data-no="${q.no}">
@@ -169,12 +170,6 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
     if(a === 'new') return onNew();
     if(a === 'date') return openDate(no);
     if(a === 'status') return openStatus(no);
-    if(a === 'pick'){
-      const input = root.querySelector(`[data-pick="${no}"]`);
-      input.value = '';
-      try { input.showPicker(); } catch { input.classList.add('overlay'); input.tabIndex = 0; input.focus(); }
-      return;
-    }
     if(a === 'del'){
       // Σβήσιμο σε δύο πατήματα (χωρίς παράθυρο): το πρώτο ρωτάει «Σίγουρα;».
       if(!b.classList.contains('sure')){ b.classList.add('sure'); b.textContent = 'Σίγουρα;'; return; }
