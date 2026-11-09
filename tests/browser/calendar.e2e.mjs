@@ -25,11 +25,13 @@ async function page({quotes = null, width = 390, height = 844, scheme = 'light',
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
   await p.clock.setFixedTime(at);
   // Χωρίς αναγνώριση φωνής: το μικρόφωνο ανοίγει κατευθείαν το κείμενο για γράψιμο. Το showPicker() μετριέται
-  // (window.picks) αντί να ανοίγει τον επιλογέα του browser.
-  await p.addInitScript(({profile, quotes}) => {
+  // (window.picks) αντί να ανοίγει τον επιλογέα του browser. Σε όλο το context, ώστε να ισχύει και σε νέα καρτέλα.
+  await ctx.addInitScript(() => {
     window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
     window.picks = [];
     HTMLInputElement.prototype.showPicker = function(){ window.picks.push(this.type); };
+  });
+  await p.addInitScript(({profile, quotes}) => {
     if(sessionStorage.seeded) return;
     sessionStorage.seeded = '1';
     localStorage.clear();
