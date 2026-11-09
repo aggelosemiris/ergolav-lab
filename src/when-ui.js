@@ -7,12 +7,23 @@ import { today, addDays, daysBetween, longDate, isDate, isTime, isDays, RELATIVE
 const CHIPS = [['today', 'Σήμερα'], ['tomorrow', 'Αύριο'], ['after', 'Μεθαύριο'], ['other', 'Άλλη μέρα'], ['none', 'Δεν ξέρω ακόμα']];
 const DAYS = [1, 2, 3, 5];
 const daysText = n => n === 1 ? '1 μέρα' : `${n} μέρες`;
-// Ο επιλογέας του κινητού ανοίγει με showPicker() (Chrome 99+, Safari 16+). Όπου δεν υπάρχει, το πεδίο ημερομηνίας
-// μπαίνει αόρατο πάνω στο «Άλλη μέρα», ώστε το πάτημα να το ανοίγει απευθείας.
-const canPick = typeof HTMLInputElement !== 'undefined' && 'showPicker' in HTMLInputElement.prototype;
-function openPicker(input){
-  try { input.showPicker(); return true; } catch { return false; }
+const openPicker = input => { try { input.showPicker(); } catch {} };
+// Ποντίκι (υπολογιστής) ή δάχτυλο (κινητό).
+const finePointer = () => { try { return matchMedia('(pointer: fine)').matches; } catch { return false; } };
+
+/**
+ * «Άλλη μέρα»: το πεδίο ημερομηνίας του κινητού (<input type="date">) κάθεται αόρατο ΠΑΝΩ στο κουμπί, οπότε το ίδιο
+ * το πάτημα ανοίγει τον επιλογέα του iPhone/Android. (Το showPicker() στο iPhone συχνά δεν κάνει τίποτα, χωρίς σφάλμα.)
+ * Με ποντίκι ο Chrome δεν ανοίγει επιλογέα στο απλό κλικ: εκεί showPicker(). Το πεδίο δεν αλλάζει τιμή την ώρα του
+ * πατήματος (ο Chrome τότε ακυρώνει το κλικ): κρατά τη μέρα που έχει διαλέξει, ή είναι άδειο (= ανοίγει στο σήμερα).
+ */
+export function nativeDatePicker(input){
+  input.addEventListener('click', () => { if(finePointer()) openPicker(input); });
 }
+// Το αόρατο πεδίο πάνω στο κουμπί: το κουμπί μόνο φαίνεται (το πάτημα και η προσβασιμότητα είναι του πεδίου).
+export const dateChip = (label, attrs = '', pressed = null) =>
+  `<span class="wchip-wrap"><span class="wchip" aria-hidden="true"${pressed === null ? '' : ` data-w="other" aria-pressed="${pressed}"`}>${label}</span>` +
+  `<input type="date" class="when-date" ${attrs} aria-label="${label}: διάλεξε ημερομηνία"></span>`;
 
 /**
  * Στήνει το «Πότε πας;» στο root.
@@ -38,7 +49,7 @@ export function mountWhen(root, {initial = null, now = Date.now, onChange = () =
   root.innerHTML = `
     <span class="flabel" id="${id}-label">Πότε πας;</span>
     <div class="when-chips" role="group" aria-labelledby="${id}-label">${CHIPS.map(([k, t]) => k === 'other'
-      ? `<span class="wchip-wrap"><button type="button" class="wchip" data-w="other" aria-pressed="false">${t}</button><input type="date" class="when-date${canPick ? '' : ' overlay'}" data-p="date" aria-label="Διάλεξε μέρα" tabindex="-1"></span>`
+      ? dateChip(t, 'data-p="date"', false)
       : `<button type="button" class="wchip" data-w="${k}" aria-pressed="false">${t}</button>`).join('')}</div>
     <div class="when-sel">
       <p aria-live="polite"><b data-o="date"></b><small class="when-old" data-o="old" hidden>Παλιά ημερομηνία</small><small class="when-sub" data-o="sub" hidden></small></p>
@@ -55,6 +66,7 @@ export function mountWhen(root, {initial = null, now = Date.now, onChange = () =
     </div>`;
   const q = s => root.querySelector(s);
   const dateIn = q('[data-p="date"]'), timeIn = q('[data-p="time"]'), daysIn = q('[data-p="days"]');
+  if(other) dateIn.value = other;
   if(time) timeIn.value = time;
   if(daysOpen && !DAYS.includes(days)) daysIn.value = String(days);
 
@@ -79,18 +91,18 @@ export function mountWhen(root, {initial = null, now = Date.now, onChange = () =
   }
   const changed = () => { sync(); onChange(value()); };
 
-  root.querySelectorAll('[data-w]').forEach(b => b.onclick = () => {
-    if(b.dataset.w !== 'other'){ choice = b.dataset.w; return changed(); }
-    // Άλλη μέρα: ο επιλογέας ανοίγει στη μέρα που ήδη έχει διαλέξει, αλλιώς άδειος (= σήμερα), ώστε κάθε επιλογή να μετρά.
-    dateIn.value = choice === 'other' && other ? other : '';
-    if(!openPicker(dateIn)){ dateIn.classList.add('overlay'); dateIn.tabIndex = 0; dateIn.focus(); }
-  });
+  // Άλλο chip: το πεδίο του «Άλλη μέρα» αδειάζει, ώστε ο επιλογέας να ξανανοίγει στο σήμερα και κάθε μέρα να μετρά
+  // ως επιλογή (και η ίδια με πριν). Με «Άλλη μέρα» κρατά τη μέρα που διάλεξε.
+  root.querySelectorAll('button[data-w]').forEach(b => b.onclick = () => { choice = b.dataset.w; other = null; dateIn.value = ''; changed(); });
+  nativeDatePicker(dateIn);
   // Αν κλείσει τον επιλογέα χωρίς να διαλέξει, μένει ό,τι ήταν.
   const pickDate = () => { if(!isDate(dateIn.value)) return; choice = 'other'; other = dateIn.value; changed(); };
   dateIn.addEventListener('change', pickDate);
   dateIn.addEventListener('input', pickDate);
 
-  q('[data-a="time"]').onclick = () => { timeOpen = true; sync(); if(!openPicker(timeIn)) timeIn.focus(); };
+  // «+ ώρα»: φαίνεται το πεδίο ώρας και ανοίγει ο επιλογέας (iPhone: με το focus· Android/υπολογιστής: showPicker).
+  // Αν δεν ανοίξει, το πεδίο φαίνεται και ανοίγει με ένα πάτημα.
+  q('[data-a="time"]').onclick = () => { timeOpen = true; sync(); timeIn.focus(); openPicker(timeIn); };
   q('[data-a="time-off"]').onclick = () => { time = null; timeIn.value = ''; timeOpen = false; changed(); };
   const pickTime = () => { time = isTime(timeIn.value) ? timeIn.value : null; changed(); };
   timeIn.addEventListener('change', pickTime);

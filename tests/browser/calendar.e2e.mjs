@@ -17,16 +17,19 @@ const mk = (no, client, sched, extra = {}) => ({no, at: Date.parse('2026-11-01T1
   vatRate: 24, profile: PROFILE, ...sched, ...extra});
 const S = (scheduled_date, scheduled_time = null, duration_days = 1, status = 'sent') => ({scheduled_date, scheduled_time, duration_days, status});
 
-async function page({quotes = null, width = 390, height = 844, scheme = 'light', at = NOW} = {}){
-  const ctx = await b.newContext({viewport: {width, height}, colorScheme: scheme, acceptDownloads: true});
+async function page({quotes = null, width = 390, height = 844, scheme = 'light', at = NOW, mobile = false} = {}){
+  const ctx = await b.newContext({viewport: {width, height}, colorScheme: scheme, acceptDownloads: true, ...(mobile && {isMobile: true, hasTouch: true})});
   const p = await ctx.newPage();
   p.errs = [];
   p.on('pageerror', e => p.errs.push(e.message));
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
   await p.clock.setFixedTime(at);
-  // Χωρίς αναγνώριση φωνής: το μικρόφωνο ανοίγει κατευθείαν το κείμενο για γράψιμο.
+  // Χωρίς αναγνώριση φωνής: το μικρόφωνο ανοίγει κατευθείαν το κείμενο για γράψιμο. Το showPicker() μετριέται
+  // (window.picks) αντί να ανοίγει τον επιλογέα του browser.
   await p.addInitScript(({profile, quotes}) => {
     window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
+    window.picks = [];
+    HTMLInputElement.prototype.showPicker = function(){ window.picks.push(this.type); };
     if(sessionStorage.seeded) return;
     sessionStorage.seeded = '1';
     localStorage.clear();
@@ -52,9 +55,9 @@ async function makeQuote(p, {client = '', text, pick, nav = true, afterMic} = {}
   await p.click('#ctaBtn'); await p.waitForSelector('#s-pdf.on');
   await p.waitForFunction(() => /^Στείλε/.test(document.getElementById('ctaBtn').textContent), null, {timeout: 60000});
 }
-// «Άλλη μέρα»: ο επιλογέας του κινητού δεν ανοίγει σε headless browser — η ημερομηνία μπαίνει όπως θα την έβαζε εκείνος.
+// «Άλλη μέρα»: ο επιλογέας του κινητού δεν ανοίγει σε headless browser — η ημερομηνία μπαίνει στο πεδίο όπως θα την
+// έβαζε εκείνος (το πάτημα πάνω στο κουμπί ελέγχεται χωριστά, στην ενότητα «Άλλη μέρα με το δάχτυλο»).
 async function otherDay(p, scope, date){
-  await p.click(`${scope} [data-w="other"]`); await p.keyboard.press('Escape');
   await p.evaluate(([scope, date]) => { const i = document.querySelector(`${scope} [data-p="date"]`); i.value = date; i.dispatchEvent(new Event('change', {bubbles: true})); }, [scope, date]);
 }
 const stored = p => p.evaluate(() => JSON.parse(localStorage.getItem('ergolav.quotes') || '[]'));
@@ -88,6 +91,40 @@ const shareMock = (p, can) => p.evaluate(can => {
   await p.context().close();
 }
 
+// ── 0β. «Άλλη μέρα» με το δάχτυλο (κινητό) και με ποντίκι (υπολογιστής) ──
+// Στο κινητό το πάτημα πρέπει να πέφτει ΠΑΝΩ στο πεδίο ημερομηνίας (ο επιλογέας του iPhone/Android ανοίγει από το ίδιο
+// το πάτημα· το showPicker() στο iPhone δεν κάνει τίποτα). Στον υπολογιστή, κλικ → showPicker().
+const hitAt = (p, chip) => p.evaluate(sel => { const c = document.querySelector(sel); c.scrollIntoView({block: 'center'}); const r = c.getBoundingClientRect();
+  const el = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return el?.matches('input[type="date"]') ? (el.dataset.p || 'pick:' + el.dataset.pick) : el?.outerHTML.slice(0, 60); }, chip);
+{
+  const p = await page({mobile: true, quotes: [mk(1, 'Χωρίς μέρα, Ψυχικό', S(null)), mk(2, 'Με μέρα', S('2026-11-08'))]});
+  ok('κινητό: το «Άλλη μέρα» της νέας προσφοράς είναι το ίδιο το πεδίο ημερομηνίας', await hitAt(p, '#when .wchip-wrap') === 'date');
+  await p.tap('#when [data-p="date"]');
+  ok('κινητό: το πάτημα ενεργοποιεί το πεδίο (ανοίγει ο επιλογέας του κινητού)', await p.evaluate(() => document.activeElement?.dataset.p) === 'date');
+  await p.evaluate(() => { const i = document.querySelector('#when [data-p="date"]'); i.value = '2026-11-19'; i.dispatchEvent(new Event('input', {bubbles: true})); });
+  ok('κινητό: η μέρα που διάλεξε φαίνεται ολογράφως και το «Άλλη μέρα» μένει επιλεγμένο', await p.textContent('#when [data-o="date"]') === 'Πέμπτη 19 Νοεμβρίου' &&
+    await p.getAttribute('#when [data-w="other"]', 'aria-pressed') === 'true');
+  await p.tap('#when [data-a="time"]');
+  ok('κινητό: «+ ώρα» → το πεδίο ώρας φαίνεται και ενεργοποιείται', await p.isVisible('#when [data-p="time"]') && await p.evaluate(() => document.activeElement?.dataset.p) === 'time');
+  await p.tap('#historyOpen');
+  ok('κινητό: το «Άλλη μέρα» στο «Χωρίς ημερομηνία» είναι το πεδίο ημερομηνίας', await hitAt(p, '#calUndated .wchip-wrap') === 'pick:1');
+  await p.tap('#calUndated [data-pick="1"]');
+  await p.evaluate(() => { const i = document.querySelector('#calUndated [data-pick="1"]'); i.value = '2026-11-12'; i.dispatchEvent(new Event('change', {bubbles: true})); });
+  ok('κινητό: η μέρα μπαίνει και η προσφορά πάει στο ημερολόγιο (12/11)', (await byNo(p, 1)).scheduled_date === '2026-11-12' && await p.getAttribute('.cal-d.sel', 'data-day') === '2026-11-12');
+  await p.tap('[data-day="2026-11-08"]'); await p.tap('.q-item:has(.q-open[data-no="2"]) [data-a="date"]'); await p.waitForSelector('#calSheet.on'); await p.waitForTimeout(300);
+  ok('κινητό: και στο «Άλλαξε ημερομηνία»', await hitAt(p, '#calSheet .wchip-wrap') === 'date');
+  ok('χωρίς σφάλματα JavaScript', p.errs.length === 0, p.errs.join(' | '));
+  await p.context().close();
+}
+{
+  const p = await page();
+  await p.click('#when [data-p="date"]');
+  ok('υπολογιστής: κλικ στο «Άλλη μέρα» ανοίγει τον επιλογέα (showPicker)', (await p.evaluate(() => window.picks)).join() === 'date');
+  await p.click('#when [data-a="time"]');
+  ok('υπολογιστής: «+ ώρα» ανοίγει τον επιλογέα ώρας', (await p.evaluate(() => window.picks)).join() === 'date,time');
+  await p.context().close();
+}
+
 // ── 1. Νέες προσφορές από την αρχή ──
 {
   const p = await page();
@@ -113,7 +150,7 @@ const shareMock = (p, can) => p.evaluate(can => {
   // «Άλλη μέρα» με ώρα και διάρκεια
   await makeQuote(p, {client: 'Μαρία, Κηφισιά', text: 'λεκάνη κρεμαστή', pick: async () => {
     await otherDay(p, '#when', '2026-11-20');
-    await p.click('#when [data-a="time"]'); await p.keyboard.press('Escape'); await p.fill('#when [data-p="time"]', '08:30');
+    await p.click('#when [data-a="time"]'); await p.fill('#when [data-p="time"]', '08:30');
     await p.click('#when [data-a="days"]'); await p.click('#when [data-d="2"]');
   }});
   q = await byNo(p, 2);
