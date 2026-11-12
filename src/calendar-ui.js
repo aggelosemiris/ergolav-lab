@@ -5,6 +5,7 @@ import { listQuotes, updateQuote, deleteQuote } from './history.js';
 import { today, addDays, longDate, daysBetween } from './dates.js';
 import { monthGrid, shiftMonth, monthOf, byDay, pickDay, listOrder, undated, splitClient, endOf } from './calendar.js';
 import { mountWhen, nativeDatePicker, dateChip } from './when-ui.js';
+import { statisticsMarkup } from './statistics.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
@@ -23,7 +24,7 @@ const count = n => n === 1 ? '1 προσφορά' : `${n} προσφορές`;
  */
 export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, now = Date.now}){
   const root = $('s-history');
-  let view = (() => { try { return localStorage.getItem(VIEW) === 'list' ? 'list' : 'month'; } catch { return 'month'; } })();
+  let view = (() => { try { const saved = localStorage.getItem(VIEW); return ['list', 'stats'].includes(saved) ? saved : 'month'; } catch { return 'month'; } })();
   let y, m, sel, quotes = [], msgTimer = 0, swipedAt = 0, lastFocus = null;
   const find = no => quotes.find(q => q.no === no);
   const t = () => today(now());
@@ -32,13 +33,18 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
   function render(){
     quotes = listQuotes();
     const empty = !quotes.length;
-    $('calEmpty').hidden = !empty;
-    for(const id of ['calViews', 'calMonth', 'calList', 'calUndated', 'calNewWrap']) $(id).hidden = empty;
-    $('calH1').textContent = view === 'list' ? 'Προσφορές' : 'Ημερολόγιο';
-    if(empty) return;
+    const stats = view === 'stats';
+    $('calEmpty').hidden = !empty || stats;
+    $('calViews').hidden = empty && !stats;
+    $('calNewWrap').hidden = empty && !stats;
+    $('calStats').hidden = !stats;
+    $('calH1').textContent = stats ? 'Στατιστικά επιχείρησης' : view === 'list' ? 'Προσφορές' : 'Ημερολόγιο';
     root.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
-    $('calMonth').hidden = view !== 'month';
-    $('calList').hidden = view !== 'list';
+    $('calMonth').hidden = empty || view !== 'month';
+    $('calList').hidden = empty || view !== 'list';
+    $('calUndated').hidden = empty || stats;
+    if(stats){ $('calStats').innerHTML = statisticsMarkup(quotes); return; }
+    if(empty) return;
     if(view === 'month') renderMonth(); else renderList();
     renderUndated();
   }
@@ -239,11 +245,11 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
     /** Ανοίγει το ημερολόγιο· reset: στον τρέχοντα μήνα με επιλεγμένη τη σημερινή μέρα (αλλιώς εκεί που ήταν).
      *  view: 'month' (κουμπί «Ημερολόγιο») ή 'list' (κουμπί «Προσφορές»)· χωρίς view, όπως ήταν. */
     open({reset = true, view: v} = {}){
-      if(v === 'month' || v === 'list'){ view = v; try { localStorage.setItem(VIEW, view); } catch {} }
+      if(['month', 'list', 'stats'].includes(v)){ view = v; try { localStorage.setItem(VIEW, view); } catch {} }
       if(reset || !sel) goTo(t());
       message('');
       render();
-      show('s-history', view === 'list' ? 'Προσφορές' : 'Ημερολόγιο');
+      show('s-history', view === 'stats' ? 'Στατιστικά' : view === 'list' ? 'Προσφορές' : 'Ημερολόγιο');
       cta(null);
     },
   };
