@@ -871,6 +871,7 @@ const syncHistoryButton = () => {
 const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => location.reload(), onChange: syncHistoryButton});
 $('historyOpen').onclick = () => calendar.open({view: 'month'});
 $('quotesOpen').onclick = () => calendar.open({view: 'list'});
+$('statsOpen').onclick = () => calendar.open({view: 'stats'});
 $('histBack').onclick = () => calendar.open({reset: false});     // πίσω εκεί που ήταν (μήνας, μέρα, προβολή)
 $('histNew').onclick = () => location.reload();
 syncHistoryButton();
