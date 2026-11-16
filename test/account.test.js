@@ -106,6 +106,12 @@ test('ο τρέχων config.js: κλειστό, με placeholders, και η CS
   assert.ok(fs.existsSync(new URL('../' + acc.LIB_URL, import.meta.url)), 'η βιβλιοθήκη υπάρχει στο vendor/');
 });
 
+test('config.js χωρίς τις ρυθμίσεις λογαριασμού (παλιό ή δοκιμαστικό): κλειστό, χωρίς σφάλμα', () => {
+  const {a, made} = setup({cfg: {REWRITE_URL: ''}});
+  assert.equal(a.enabled, false);
+  assert.equal(made(), 0);
+});
+
 test('κωδικός email: αποστολή με δημιουργία χρήστη, χωρίς link· σύνδεση με τα 6 ψηφία', async () => {
   const {a, client} = setup();
   const seen = [];

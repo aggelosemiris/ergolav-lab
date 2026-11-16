@@ -5,7 +5,9 @@
 // - Σύνδεση/αποσύνδεση ΔΕΝ σβήνουν ποτέ προσφορές, ημερολόγιο, τιμές ή τον αριθμό προσφοράς (ergolav.quoteNo).
 // - Πριν γραφτεί στη συσκευή προφίλ από τον λογαριασμό: αντίγραφο ασφαλείας (profile.js · backupProfile).
 // - Κανένα μήνυμα ή log δεν περιέχει email, τηλέφωνο, όνομα ή token: τα λάθη γίνονται σταθερά ελληνικά μηνύματα.
-import { AUTH_ENABLED, SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+// Ρυθμίσεις ως namespace: αν λείπουν (π.χ. παλιό ή δοκιμαστικό config.js), ο λογαριασμός μένει κλειστός —
+// ποτέ σφάλμα φόρτωσης που θα σταματούσε όλη την εφαρμογή.
+import * as CONFIG from './config.js';
 import { loadProfile, saveProfile, getLogo, backupProfile } from './profile.js';
 
 export const LIB_URL = 'vendor/supabase-2.118.0.js';
@@ -30,7 +32,7 @@ export const MSG = {
   generic: 'Κάτι πήγε στραβά. Ξαναδοκίμασε σε λίγο.',
 };
 
-export const configured = (c = {SUPABASE_URL, SUPABASE_ANON_KEY}) =>
+export const configured = (c = CONFIG) =>
   /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.SUPABASE_URL || '') && !!c.SUPABASE_ANON_KEY && c.SUPABASE_ANON_KEY !== 'your-anon-key';
 
 const isOnline = win => !(win?.navigator && win.navigator.onLine === false);
@@ -113,7 +115,7 @@ export function loadClient(cfg, win = globalThis){
  * config: {AUTH_ENABLED, SUPABASE_URL, SUPABASE_ANON_KEY}. getClient(config) → client του Supabase.
  * win: window (location, history, localStorage, navigator). now(): η ώρα (για τα τεστ).
  */
-export function createAccount({config = {AUTH_ENABLED, SUPABASE_URL, SUPABASE_ANON_KEY}, getClient = c => loadClient(c), win = globalThis, now = Date.now, timeoutMs = TIMEOUT_MS} = {}){
+export function createAccount({config = CONFIG, getClient = c => loadClient(c), win = globalThis, now = Date.now, timeoutMs = TIMEOUT_MS} = {}){
   let client = null, user = null, sentAt = 0;
   const listeners = new Set();
   const emit = () => listeners.forEach(f => { try { f(user); } catch {} });
