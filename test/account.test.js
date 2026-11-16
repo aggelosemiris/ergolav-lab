@@ -102,7 +102,11 @@ test('ο τρέχων config.js: κλειστό, με placeholders, και η CS
   assert.ok(connect.includes(origin), `η CSP χρειάζεται ${origin} στο connect-src`);
   assert.equal(connect.filter(x => /supabase/.test(x)).length, 1, 'καμία άλλη διεύθυνση Supabase (ούτε *.supabase.co)');
   assert.ok(!/supabase/.test(csp.replace(/connect-src [^;]+/, '')), 'το Supabase μόνο στο connect-src');
-  assert.ok(/script-src 'self';/.test(csp), 'κώδικας μόνο από το ίδιο site');
+  const dir = n => (csp.match(new RegExp(`(?:^|; )${n} ([^;]+)`)) || [])[1]?.split(/\s+/) || [];
+  assert.deepEqual(dir('script-src'), ["'self'", 'https://challenges.cloudflare.com'], 'κώδικας μόνο από το ίδιο site και το Turnstile');
+  assert.deepEqual(dir('frame-src'), ['https://challenges.cloudflare.com'], 'iframe μόνο του Turnstile');
+  assert.ok(connect.includes('https://challenges.cloudflare.com'));
+  assert.equal(csp.match(/cloudflare/g).length, 3, 'το Turnstile μόνο σε script-src, frame-src, connect-src');
   assert.ok(fs.existsSync(new URL('../' + acc.LIB_URL, import.meta.url)), 'η βιβλιοθήκη υπάρχει στο vendor/');
 });
 
@@ -110,6 +114,21 @@ test('config.js χωρίς τις ρυθμίσεις λογαριασμού (π�
   const {a, made} = setup({cfg: {REWRITE_URL: ''}});
   assert.equal(a.enabled, false);
   assert.equal(made(), 0);
+});
+
+test('πριν ανοίξει ο λογαριασμός: πραγματική διεύθυνση και key, email επικοινωνίας στους Όρους/Απόρρητο', async () => {
+  const cfg = await import('../src/config.js');
+  const legal = ['terms', 'privacy'].map(n => fs.readFileSync(new URL(`../legal/${n}.html`, import.meta.url), 'utf8'));
+  for(const html of legal){
+    assert.ok(/Προσωρινό κείμενο, υπό νομικό έλεγχο/.test(html));
+    assert.ok(/script-src 'none'/.test(html), 'οι σελίδες δεν τρέχουν κώδικα');
+  }
+  assert.ok(/Φρανκφούρτη/.test(legal[1]) && /μόνο στη συσκευή σου/.test(legal[1]) && /Διαγραφή λογαριασμού/.test(legal[1]));
+  if(!cfg.AUTH_ENABLED) return;
+  assert.ok(acc.configured(cfg), 'AUTH_ENABLED χωρίς πραγματικό SUPABASE_URL / anon key');
+  assert.ok(!/your-project-ref/.test(fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8')));
+  for(const html of legal) assert.ok(!html.includes('[email επικοινωνίας]'), 'λείπει το email επικοινωνίας στους Όρους/Απόρρητο');
+  if(cfg.TURNSTILE_SITE_KEY) assert.match(cfg.TURNSTILE_SITE_KEY, /^0x[0-9A-Za-z_-]{20,}$/, 'site key Turnstile (0x…)');
 });
 
 test('κωδικός email: αποστολή με δημιουργία χρήστη, χωρίς link· σύνδεση με τα 6 ψηφία', async () => {
@@ -136,7 +155,14 @@ test('λάθη στα ελληνικά: λάθος, ληγμένος, πολλέ
   t += (OTP_TTL_S + 1) * 1000;
   assert.equal((await wrong.a.verifyCode(EMAIL, '000000')).error, MSG.expired, 'μετά τη λήξη = ληγμένος');
   const many = setup({client: fakeClient({fail: {otp: {status: 429, code: 'over_email_send_rate_limit'}}})});
-  assert.equal((await many.a.sendCode(EMAIL)).error, MSG.tooMany);
+  assert.equal((await many.a.sendCode(EMAIL)).error, MSG.tooManySends, 'όριο αποστολών email → «Συνέχισε με Google»');
+  assert.ok(/Συνέχισε με Google/.test(MSG.tooManySends));
+  const many429 = setup({client: fakeClient({fail: {otp: {status: 429}}})});
+  assert.equal((await many429.a.sendCode(EMAIL)).error, MSG.tooManySends);
+  const verify429 = setup({client: fakeClient({fail: {verify: {status: 429, code: 'over_request_rate_limit'}}})});
+  assert.equal((await verify429.a.verifyCode(EMAIL, '123456')).error, MSG.tooMany, 'πολλές προσπάθειες κωδικού');
+  const cap = setup({client: fakeClient({fail: {otp: {status: 400, code: 'captcha_failed', message: 'captcha protection: request disallowed'}}})});
+  assert.equal((await cap.a.sendCode(EMAIL, {captchaToken: 'x'})).error, MSG.captcha);
   const off = setup({client: fakeClient({fail: {otp: {name: 'AuthRetryableFetchError', status: 0}}})});
   assert.equal((await off.a.sendCode(EMAIL)).error, MSG.offline);
   const off2 = setup({online: false, client: fakeClient({fail: {verify: {status: 0}}})});
@@ -157,6 +183,14 @@ test('χωρίς ίντερνετ: απάντηση αμέσως· server που
   const a = createAccount({config: CFG, getClient: async () => hang, win, timeoutMs: 50});
   assert.equal((await a.sendCode(EMAIL)).error, MSG.offline);
   assert.ok(Date.now() - t0 < 2000);
+});
+
+test('CAPTCHA (Turnstile): το token πάει στην αποστολή κωδικού· χωρίς token, όπως πριν', async () => {
+  const {a, client} = setup();
+  await a.sendCode(EMAIL, {captchaToken: 'turnstile-token-1'});
+  assert.deepEqual(client.calls.at(-1), ['otp', {email: EMAIL, options: {shouldCreateUser: true, captchaToken: 'turnstile-token-1'}}]);
+  await a.sendCode(EMAIL);
+  assert.deepEqual(client.calls.at(-1), ['otp', {email: EMAIL, options: {shouldCreateUser: true}}]);
 });
 
 test('Google (PKCE): redirectTo = η διεύθυνση της εφαρμογής, και στο υπο-path και στο localhost', async () => {

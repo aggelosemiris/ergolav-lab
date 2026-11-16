@@ -23,6 +23,10 @@ export const MSG = {
   wrong: 'Λάθος κωδικός. Έλεγξε τα 6 ψηφία στο email και ξαναδοκίμασε.',
   expired: 'Ο κωδικός έληξε. Πάτα «Στείλε ξανά» για νέο κωδικό.',
   tooMany: 'Πολλές προσπάθειες. Περίμενε λίγα λεπτά και ξαναδοκίμασε.',
+  // Το ενσωματωμένο email του Supabase στέλνει ελάχιστα email την ώρα: το Google δεν έχει αυτό το όριο.
+  tooManySends: 'Πολλές αποστολές αυτή τη στιγμή. Συνέχισε με Google ή δοκίμασε σε λίγο.',
+  captcha: 'Ο έλεγχος ασφαλείας δεν ολοκληρώθηκε. Ξαναδοκίμασε ή συνέχισε με Google.',
+  captchaLoad: 'Ο έλεγχος ασφαλείας δεν φόρτωσε. Συνέχισε με Google ή δοκίμασε ξανά σε λίγο.',
   badEmail: 'Το email δεν φαίνεται σωστό. Έλεγξέ το (π.χ. onoma@gmail.com).',
   badCode: 'Ο κωδικός έχει 6 ψηφία.',
   google: 'Η σύνδεση με Google δεν ολοκληρώθηκε. Ξαναδοκίμασε.',
@@ -44,12 +48,14 @@ function timeout(p, ms = TIMEOUT_MS){
 }
 
 /** Σφάλμα του Supabase → ένα από τα MSG. Ποτέ το κείμενο του σφάλματος (μπορεί να περιέχει το email). */
-export function errorText(err, {sentAt = 0, now = Date.now(), online = true} = {}){
+export function errorText(err, {sentAt = 0, now = Date.now(), online = true, send = false} = {}){
   if(!err) return '';
   const code = String(err.code || err.error_code || ''), status = Number(err.status || err.context?.status || 0);
   const name = String(err.name || ''), text = String(err.message || '');
   if(!online || name === 'AuthRetryableFetchError' || name === 'FunctionsFetchError' || err instanceof TypeError
     || /failed to fetch|networkerror|load failed/i.test(text)) return MSG.offline;
+  if(/captcha/.test(code) || /captcha/i.test(text)) return MSG.captcha;
+  if(/over_email_send_rate_limit/.test(code) || (send && (status === 429 || /rate_limit|too_many/.test(code)))) return MSG.tooManySends;
   if(status === 429 || /rate_limit|too_many/.test(code)) return MSG.tooMany;
   if(code === 'otp_expired' || /token has expired or is invalid|invalid otp|otp has expired/i.test(text))
     return sentAt && now - sentAt > OTP_TTL_S * 1000 ? MSG.expired : MSG.wrong;
@@ -181,13 +187,15 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       } catch(e) { return {error: err(e)}; }
     },
 
-    async sendCode(email){
+    /** captchaToken: το token του Cloudflare Turnstile (όταν το project έχει CAPTCHA). Ισχύει για μία αποστολή. */
+    async sendCode(email, {captchaToken = ''} = {}){
       email = norm(email).toLowerCase();
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return {error: MSG.badEmail};
       if(!enabled) return {error: MSG.notConfigured};
       try {
-        const {error} = await call(cl => cl.auth.signInWithOtp({email, options: {shouldCreateUser: true}}));
-        if(error) return {error: err(error)};
+        const options = {shouldCreateUser: true, ...(captchaToken && {captchaToken})};
+        const {error} = await call(cl => cl.auth.signInWithOtp({email, options}));
+        if(error) return {error: errorText(error, {online: isOnline(win), send: true})};
         sentAt = now();
         return {error: ''};
       } catch(e) { return {error: err(e)}; }

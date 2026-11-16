@@ -11,3 +11,6 @@ export const REWRITE_URL = '';
 export const AUTH_ENABLED = false;
 export const SUPABASE_URL = 'https://your-project-ref.supabase.co';
 export const SUPABASE_ANON_KEY = 'your-anon-key';
+// Cloudflare Turnstile (δωρεάν CAPTCHA) στην αποστολή κωδικού email. Το site key είναι δημόσιο· το secret key
+// ΜΟΝΟ στο Supabase (Authentication → Attack Protection). Κενό = χωρίς CAPTCHA.
+export const TURNSTILE_SITE_KEY = '';
