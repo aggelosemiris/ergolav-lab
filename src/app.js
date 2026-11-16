@@ -18,6 +18,7 @@ import { fitImage } from './image.js';
 import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes } from './history.js';
 import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
+import { mountAccount } from './account-ui.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -111,6 +112,7 @@ $('pfSave').onclick = () => {
     return;
   }
   PROFILE = r.profile;
+  account.profileSaved();      // συνδεδεμένος: τα στοιχεία ανεβαίνουν και στον λογαριασμό (χωρίς ίντερνετ: αργότερα)
   // Η συσκευή δεν χώρεσε το λογότυπο: ισχύει τώρα (μόνο στη μνήμη) και το λέμε.
   if(r.logoLost) PROFILE.logo = pfLogo;
   renderBrand();
@@ -121,19 +123,26 @@ $('pfSave').onclick = () => {
   if(!r.saved) $('micNote').textContent = 'Τα στοιχεία σου δεν αποθηκεύτηκαν σε αυτή τη συσκευή — ισχύουν μόνο μέχρι να κλείσει η σελίδα.';
   else if(r.logoLost) $('micNote').textContent = 'Το λογότυπο δεν χώρεσε στη μνήμη της συσκευής — ισχύει μόνο μέχρι να κλείσει η σελίδα.';
 };
+// «Θυμήσου πού είμαι»: συνάρτηση που γυρίζει στην τρέχουσα οθόνη, όπως ήταν (κεφαλίδα → στοιχεία, λογαριασμός).
+// Το PDF και η ανάλυση ξαναφτιάχνονται, γιατί η κεφαλίδα τους έχει τα στοιχεία της επιχείρησης.
+function returnHere(){
+  const cur = document.querySelector('.screen.on')?.id;
+  // Από τη φόρμα στοιχείων: αν στο μεταξύ ήρθαν στοιχεία (π.χ. από τον λογαριασμό), στην αρχική.
+  if(cur === 's-profile'){ const back = profileBack; return () => back ? openProfile(back) : PROFILE ? toStart() : openProfile(null); }
+  const step = $('step').textContent, c = {hidden: $('cta').hidden, label: $('ctaBtn').textContent, fn: $('ctaBtn').onclick,
+    disabled: $('ctaBtn').disabled, note: $('ctaNote').hidden ? '' : $('ctaNote').textContent};
+  return () => {
+    if(cur === 's-pdf') return SHOWN?.fromHistory ? openSaved(SHOWN.no) : buildPdf();
+    if(cur === 's-analysis'){ buildPdf(); return analysisPanel.open(); }
+    show(cur, step);
+    if(c.hidden) cta(null); else cta(c.label, c.fn, c.disabled, c.note);
+  };
+}
 // Πάτημα στην κεφαλίδα → ίδια φόρμα· μετά επιστροφή εκεί που ήταν (το PDF ξαναφτιάχνεται με τα νέα στοιχεία).
 $('brand').onclick = () => {
   const cur = document.querySelector('.screen.on')?.id;
   if(cur === 's-profile' || mic.listening) return;
-  const step = $('step').textContent, c = {hidden: $('cta').hidden, label: $('ctaBtn').textContent, fn: $('ctaBtn').onclick,
-    disabled: $('ctaBtn').disabled, note: $('ctaNote').hidden ? '' : $('ctaNote').textContent};
-  openProfile(() => {
-    if(cur === 's-pdf') return SHOWN?.fromHistory ? openSaved(SHOWN.no) : buildPdf();
-    // Η ανάλυση έχει την ίδια κεφαλίδα: ξαναφτιάχνονται και τα δύο PDF με τα νέα στοιχεία.
-    if(cur === 's-analysis'){ buildPdf(); return analysisPanel.open(); }
-    show(cur, step);
-    if(c.hidden) cta(null); else cta(c.label, c.fn, c.disabled, c.note);
-  });
+  openProfile(returnHere());
 };
 
 // ─── 2 : ακρόαση σε πραγματικό χρόνο ────────────────────────
@@ -991,6 +1000,15 @@ $('rulesOpen').onclick = () => analysisPanel.openRules(() => { show('s-start', '
 $('pfRules').onclick = () => analysisPanel.openRules(() => show('s-profile', 'Τα στοιχεία σου'));
 syncRulesButton();
 
+// ─── Λογαριασμός (μόνο με AUTH_ENABLED στο src/config.js· αλλιώς τίποτα δεν αλλάζει) ───
+const account = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
+  onProfileChange: () => {
+    PROFILE = loadProfile();
+    renderBrand();
+    // Πρώτο άνοιγμα σε νέο κινητό: η φόρμα στοιχείων δεν χρειάζεται πια.
+    if(document.querySelector('.screen.on')?.id === 's-profile' && PROFILE && !profileBack) toStart();
+  }});
+
 // ─── «Πίσω»: μία οθόνη πίσω, χωρίς να χαθεί τίποτα ───────────
 // Στις οθόνες που έχουν ήδη δικό τους «← Πίσω» κάνει ακριβώς το ίδιο. Από το PDF πίσω στον έλεγχο, οι γραμμές μένουν
 // όπως τις άφησε (καμία νέα ανάλυση). Από το κείμενο πάντα στην αρχική. Κείμενο που θα σβηνόταν: ερώτηση.
@@ -998,6 +1016,7 @@ function toStart(){ show('s-start', 'Νέα προσφορά'); cta(null); when.
 function toLines(){ show('s-lines', 'Έλεγχος'); renderLines(); }
 async function goBack(){
   const cur = document.querySelector('.screen.on')?.id;
+  if(account.back()) return;      // οθόνες λογαριασμού
   if(cur === 's-listen'){
     const t = (mic.listening ? await mic.stop() : transcript.textContent || '').trim();
     // Πάντα στην αρχική με το μικρόφωνο — όχι ξανά στον έλεγχο. Αν έχει ήδη βγει PDF (έχει αριθμό, ίσως και στάλθηκε),

@@ -61,6 +61,27 @@ export function saveProfile(input){
   catch { return {profile: r.profile, saved: false, ...(logoLost && {logoLost})}; }
 }
 
+// ── Αντίγραφο ασφαλείας πριν από αλλαγή λόγω λογαριασμού ──
+// Πριν γραφτούν στη συσκευή στοιχεία που ήρθαν από τον λογαριασμό, κρατιέται ολόκληρο το τοπικό προφίλ και τα
+// λογότυπα (όπως κάνει το ιστορικό πριν από τη μετάπτωση). Κρατιούνται τα MAX_PROFILE_BACKUPS νεότερα.
+export const PROFILE_BACKUP = 'ergolav.profile.backup.';
+export const MAX_PROFILE_BACKUPS = 2;
+/** Το κλειδί του αντιγράφου· '' αν δεν υπάρχει τίποτα να κρατηθεί· null αν η συσκευή δεν το χώρεσε. */
+export function backupProfile(now = Date.now()){
+  const s = storage();
+  try {
+    const profile = s?.getItem(PROFILE) ?? null, logos = s?.getItem(LOGOS) ?? null;
+    if(profile === null && logos === null) return '';
+    let key = PROFILE_BACKUP + now;
+    for(let n = 2; s.getItem(key) !== null; n++) key = `${PROFILE_BACKUP}${now}.${n}`;
+    s.setItem(key, JSON.stringify({at: now, profile, logos}));
+    const all = [];
+    for(let i = 0; i < s.length; i++){ const k = s.key(i); if(k?.startsWith(PROFILE_BACKUP)) all.push(k); }
+    all.sort((a, b) => b.localeCompare(a, 'en', {numeric: true})).slice(MAX_PROFILE_BACKUPS).forEach(k => s.removeItem(k));
+    return key;
+  } catch { return null; }
+}
+
 // ── Λογότυπα ──
 const hash = s => { let h = 0x811c9dc5; for(let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16).padStart(8, '0'); };
 function loadLogos(){
