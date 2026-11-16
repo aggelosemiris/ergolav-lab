@@ -92,9 +92,9 @@ test('flag κλειστό: τίποτα δεν φορτώνεται, καμία 
   assert.equal(JSON.stringify(data), before);
 });
 
-test('ο τρέχων config.js: κλειστό, με placeholders, και η CSP έχει ΜΟΝΟ τη διεύθυνση του project', async () => {
+test('ο τρέχων config.js: η CSP έχει ΜΟΝΟ τη διεύθυνση του project του config', async () => {
   const cfg = await import('../src/config.js');
-  assert.equal(cfg.AUTH_ENABLED, false, 'στο repo το flag μένει κλειστό');
+  assert.equal(typeof cfg.AUTH_ENABLED, 'boolean', 'AUTH_ENABLED: true (ανοιχτό) ή false (κλειστό, όπως πριν)');
   const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const csp = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
   const connect = csp.match(/connect-src ([^;]+)/)[1].split(/\s+/);

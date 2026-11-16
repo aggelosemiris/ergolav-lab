@@ -33,3 +33,14 @@ grant usage on schema storage to anon, authenticated;
 grant all on storage.objects to anon, authenticated;
 grant select on storage.buckets to anon, authenticated;
 grant usage on schema public to anon, authenticated;
+
+-- Όπως το Supabase: απευθείας DELETE στο storage.objects απαγορεύεται (μόνο μέσω Storage API).
+create or replace function storage.protect_delete() returns trigger language plpgsql as $$
+begin
+  if current_setting('storage.allow_delete_query', true) is distinct from 'true' then
+    raise exception 'Direct deletion from storage tables is not allowed. Use the Storage API instead.' using errcode = '42501';
+  end if;
+  return null;
+end $$;
+drop trigger if exists protect_objects_delete on storage.objects;
+create trigger protect_objects_delete before delete on storage.objects for each statement execute function storage.protect_delete();
