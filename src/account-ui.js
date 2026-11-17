@@ -406,8 +406,9 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     if(pending) return;
     msg('acctError', ''); msg('acctStatus', '');
     const done = working($('acctPwSave'), 'Αποθήκευση…');
-    const r = await account.setPassword(val('acctPw'), val('acctPw2'), {current: account.hasPassword() ? val('acctPwCur') : null});
+    const r = await account.setPassword(val('acctPw'), val('acctPw2'), {current: !$('acctPwCurWrap').hidden ? val('acctPwCur') : null});
     done();
+    if(r.field === 'current') $('acctPwCurWrap').hidden = false;    // ο server ξέρει ότι υπάρχει κωδικός
     if(r.error) return showError(r, ACCT);
     openAccount({status: 'Ο κωδικός άλλαξε.'});
   };

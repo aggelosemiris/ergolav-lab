@@ -48,6 +48,7 @@ export const MSG = {
   terms: 'Για να φτιάξεις λογαριασμό, αποδέξου τους Όρους και το Απόρρητο.',
   reauth: 'Για ασφάλεια, επιβεβαίωσε ξανά ότι είσαι εσύ (κωδικός ή Google) και ξαναδοκίμασε.',
   sameEmail: 'Αυτό είναι ήδη το email του λογαριασμού σου.',
+  needCurrent: 'Γράψε τον τωρινό κωδικό σου.',
   relogin: 'Η σύνδεση έληξε. Συνδέσου ξανά για να συνεχίσεις — ό,τι έγραφες δεν χάθηκε.',
 };
 /** Μετά από 5 λάθος κωδικούς: αναμονή (30″, 60″, … έως 5′) — ποτέ κλείδωμα για πάντα. */
@@ -91,6 +92,7 @@ export function errorText(err, {sentAt = 0, now = Date.now(), online = true, sen
   if(/user_already_exists|email_exists|identity_already_exists/.test(code) || /already registered/i.test(text)) return MSG.exists;
   if(code === 'weak_password' || err.name === 'AuthWeakPasswordError') return MSG.weak;
   if(code === 'same_password') return MSG.samePassword;
+  if(code === 'current_password_required') return MSG.needCurrent;
   if(/current_password|invalid_current_password/.test(code) || /current password/i.test(text)) return MSG.wrongCurrent;
   if(code === 'reauthentication_needed' || code === 'reauth_required' || /reauthenticat/i.test(text)) return MSG.reauth;
   if(/over_email_send_rate_limit/.test(code) || (send && (status === 429 || /rate_limit|too_many/.test(code)))) return MSG.tooManySends;
@@ -109,7 +111,10 @@ export function summarize(u){
   const full = String(meta.full_name || meta.name || meta.given_name || '').trim();
   const name = (full.split(/\s+/)[0] || String(u.email || '').split('@')[0] || 'Λογαριασμός').slice(0, 16);
   const providers = [...new Set([...(u.identities || []).map(i => i.provider), ...(u.app_metadata?.providers || [])].filter(Boolean))];
-  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email',
+  // Κωδικός: ταυτότητα email, ή κωδικός που ορίστηκε αργότερα σε λογαριασμό Google («Ξέχασα τον κωδικό»). Το Supabase
+  // δεν το δείχνει στον χρήστη (μένει providers: ['google']), γι' αυτό το σημάδι has_password στα user_metadata.
+  const password = providers.includes('email') || !!meta.has_password;
+  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email', password,
     providers: providers.length ? providers : [u.app_metadata?.provider || 'email'], confirmed: !!(u.email_confirmed_at || u.confirmed_at)};
 }
 
@@ -325,6 +330,9 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
           return {error: msg, field: msg === MSG.badLogin ? 'password' : undefined, notConfirmed: msg === MSG.notConfirmed};
         }
         setThr({});
+        // Λογαριασμός Google που ορίστηκε κωδικός πριν από αυτή την έκδοση: το σημάδι μπαίνει τώρα (χωρίς αναμονή).
+        if(!data.user?.user_metadata?.has_password && !(data.user?.identities || []).some(i => i.provider === 'email'))
+          c().then(cl => cl.auth.updateUser({data: {has_password: true}})).then(r => r?.data?.user && setUser(r.data.user)).catch(() => {});
         return {user: setUser(data.user)};
       } catch(e) { return fail()(e); }
     },
@@ -358,9 +366,9 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       if(!chk.rules.match) return {error: MSG.mismatch, field: 'repeat'};
       if(current !== null && !current) return {error: MSG.noPassword, field: 'current'};
       try {
-        const attrs = {password, ...(current !== null && {current_password: current})};
+        const attrs = {password, data: {has_password: true}, ...(current !== null && {current_password: current})};
         const {data, error} = await call(cl => cl.auth.updateUser(attrs));
-        if(error){ const m = err(error); return {error: m, field: m === MSG.wrongCurrent ? 'current' : 'password'}; }
+        if(error){ const m = err(error); return {error: m, field: [MSG.wrongCurrent, MSG.needCurrent].includes(m) ? 'current' : 'password'}; }
         return {user: setUser(data.user)};
       } catch(e) { return fail()(e); }
     },
@@ -407,7 +415,7 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
         return r && now() - r.at < 600000 ? r.purpose : '';
       } catch { return ''; }
     },
-    hasPassword: () => !!user?.providers?.includes('email'),
+    hasPassword: () => !!user?.password,
     onLock(f){ lockListeners.add(f); return () => lockListeners.delete(f); },
 
     /** Αποσύνδεση: αυτής της συσκευής (προεπιλογή) ή όλων (global). Δεν αγγίζει δεδομένα της εφαρμογής (ergolav.*). */
