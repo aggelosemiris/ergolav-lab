@@ -4,7 +4,7 @@ import {analyzeMaterials,materialSnapshot,normalizeGeminiKey,requestGemini,MODEL
 if(process.env.NODE_TLS_REJECT_UNAUTHORIZED==='0')delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
 import {resolveProviderModel} from './provider-models.mjs';
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-export function createService({root=repo,stateFile=path.join(repo,'.service-data','lab.json'),fetchImpl=fetch,analyze=analyzeMaterials,probe=requestGemini,resolveModel=resolveProviderModel}={}){
+export function createService({root=repo,stateFile=path.join(repo,'.service-data','lab.json'),fetchImpl=fetch,analyze=analyzeMaterials,probe=requestGemini,resolveModel=resolveProviderModel,authOff=false}={}){
  let diagnostics=null;
  async function providerFetch(url,options){
   const started=Date.now(),requestUrl=new URL(url),provider=requestUrl.hostname==='api.openai.com'?'OpenAI':'Google';
@@ -69,6 +69,9 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
    if(relative.split('/').some(part=>part.startsWith('.')))return json(res,404,{error:'Δεν βρέθηκε.'});
    if(!['index.html','favicon.ico'].includes(relative)&&!/^((src|vendor|media|legal)\/[a-zA-Z0-9_.\/-]+)$/.test(relative))return json(res,404,{error:'Δεν βρέθηκε.'});
    const file=path.resolve(root,relative);if(!file.startsWith(path.resolve(root)+path.sep))return json(res,403,{error:'Μη επιτρεπτό αρχείο.'});
+   // Δοκιμές της ροής χωρίς λογαριασμό (--auth off): ο υποχρεωτικός λογαριασμός κλειστός ΜΟΝΟ σε αυτόν τον server δοκιμών.
+   // Το GitHub Pages σερβίρει πάντα το src/config.js όπως είναι.
+   if(authOff&&relative==='src/config.js'&&fs.existsSync(file)){const src=fs.readFileSync(file,'utf8').replace(/export const AUTH_ENABLED = true/,'export const AUTH_ENABLED = false');res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-cache'});return res.end(req.method==='HEAD'?undefined:src)}
    const type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.mp4':'video/mp4','.woff2':'font/woff2'}[path.extname(file)]||'application/octet-stream';return serve(file,type);
    function serve(file,type){if(!fs.existsSync(file)||!fs.statSync(file).isFile())return json(res,404,{error:'Δεν βρέθηκε.'});res.writeHead(200,{'Content-Type':type,'Cache-Control':'no-cache'});if(req.method==='HEAD')res.end();else fs.createReadStream(file).pipe(res)}
   }catch(e){if(!res.headersSent)json(res,400,{error:e.message||'Η υπηρεσία δεν ολοκλήρωσε το αίτημα.'});else res.end()}
@@ -77,5 +80,5 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const args=process.argv.slice(2),value=(flag,fallback)=>args.includes(flag)?args[args.indexOf(flag)+1]:fallback;
- createService({root:path.resolve(value('--root',repo))}).listen(Number(value('--port','8087')),'127.0.0.1',()=>console.log('ergolav δοκιμών: http://127.0.0.1:'+value('--port','8087')+'/ · Διαχείριση: /owner.html'));
+ createService({root:path.resolve(value('--root',repo)),authOff:value('--auth','on')==='off'}).listen(Number(value('--port','8087')),'127.0.0.1',()=>console.log('ergolav δοκιμών: http://127.0.0.1:'+value('--port','8087')+'/ · Διαχείριση: /owner.html'));
 }

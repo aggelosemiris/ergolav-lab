@@ -1,5 +1,6 @@
-// Cloudflare Turnstile (δωρεάν CAPTCHA) για την αποστολή κωδικού email. Φορτώνεται ΜΟΝΟ όταν ανοίγει η οθόνη
-// σύνδεσης και μόνο αν υπάρχει site key (src/config.js). Το secret key είναι ΜΟΝΟ στο Supabase.
+// Cloudflare Turnstile (δωρεάν CAPTCHA) για εγγραφή, σύνδεση με κωδικό, επαναφορά κωδικού και αποστολή κωδικών email.
+// Φορτώνεται ΜΟΝΟ όταν ανοίγει οθόνη που το χρειάζεται και μόνο αν υπάρχει site key (src/config.js).
+// Το secret key είναι ΜΟΝΟ στο Supabase.
 // Αν δεν φορτώσει (μπλοκαρισμένο, χωρίς ίντερνετ), το «Συνέχεια με Google» δουλεύει κανονικά.
 export const SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 export const LOAD_TIMEOUT_MS = 10000;
@@ -25,10 +26,10 @@ export function loadTurnstile(win = globalThis, ms = LOAD_TIMEOUT_MS){
  * Βάζει το widget στο container. onToken(token) σε κάθε νέο token· onReset() όταν το token λήγει ή χαλάει.
  * Επιστρέφει {token(), reset()}: κάθε token ισχύει για ΜΙΑ αποστολή, μετά reset().
  */
-export function mountWidget(ts, container, siteKey, {onToken = () => {}, onReset = () => {}, onError = () => {}} = {}){
+export function mountWidget(ts, container, siteKey, {onToken = () => {}, onReset = () => {}, onError = () => {}, action = 'auth'} = {}){
   let token = '';
   const id = ts.render(container, {
-    sitekey: siteKey, language: 'el', size: 'flexible', appearance: 'interaction-only', action: 'email-otp',
+    sitekey: siteKey, language: 'el', size: 'flexible', appearance: 'interaction-only', action,
     callback: t => { token = t; onToken(t); },
     'expired-callback': () => { token = ''; onReset(); },
     'error-callback': () => { token = ''; onError(); return true; },

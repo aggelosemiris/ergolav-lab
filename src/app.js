@@ -19,6 +19,7 @@ import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes } from './h
 import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
+import { authGate } from './account.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -41,7 +42,12 @@ const fmtQty = formatQty;   // ίδια ακρίβεια (3 δεκαδικά) μ
 const $ = id => document.getElementById(id);
 let started = 0, checkedCount = 0, lastText = '', listenFrom = 'start';   // listenFrom: από πού ήρθε στο κείμενο
 
+// Υποχρεωτικός λογαριασμός: χωρίς συνεδρία ΚΑΜΙΑ οθόνη εκτός από τη σύνδεση — από οπουδήποτε κι αν ζητηθεί
+// (κουμπί, «‹ Πίσω», αλλαγή της διεύθυνσης). Αποφασίζεται αμέσως, χωρίς δίκτυο (account.js · authGate).
+let authLocked = authGate().locked, authUi = null;
+const AUTH_OPEN = new Set(['s-login']);
 function show(id, step){
+  if(authLocked && !AUTH_OPEN.has(id)){ id = 's-login'; step = 'Σύνδεση'; }
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id));
   // Η «Αναίρεση» αφορά μόνο την οθόνη ελέγχου: σε άλλη οθόνη (π.χ. PDF που ήδη φτιάχτηκε) δεν μένει.
   if(id !== 's-lines') $('toast').hidden = true;
@@ -51,11 +57,12 @@ function show(id, step){
 }
 // «Πίσω» πάνω αριστερά: παντού εκτός από την αρχική — και την πρώτη φόρμα στοιχείων, όταν δεν υπάρχει πού να γυρίσει.
 function syncBack(id){
-  $('navBack').hidden = id === 's-start' || (id === 's-profile' && !PROFILE && !profileBack);
+  $('navBack').hidden = id === 's-start' || (id === 's-profile' && !PROFILE && !profileBack) || (authUi ? !authUi.canBack(id) : id === 's-login');
   // Με «‹ Πίσω» η κεφαλίδα στενεύει: σε μικρή οθόνη το κουμπί λογαριασμού γίνεται μόνο εικονίδιο.
   document.querySelector('header').classList.toggle('has-back', !$('navBack').hidden);
 }
 function cta(label, fn, disabled, note){
+  if(authLocked) label = null;            // στην οθόνη σύνδεσης κανένα κουμπί της εφαρμογής
   $('cta').hidden = !label;
   if(!label) return;
   const b = $('ctaBtn'); b.textContent = label; b.disabled = !!disabled; b.onclick = fn;
@@ -70,10 +77,11 @@ let PROFILE = loadProfile(), quoteNo = null, profileBack = null;
 const logoSrc = v => typeof v === 'string' && v.startsWith('data:image/') ? v : getLogo(v);
 const logoHtml = (name, logo) => { const src = logoSrc(logo); return src ? `<img src="${esc(src)}" alt="">` : esc(initials(name)); };
 function renderBrand(){
-  $('brandLogo').innerHTML = PROFILE ? logoHtml(PROFILE.name, PROFILE.logo) : '';
-  $('brandLogo').hidden = !PROFILE;
-  $('brandName').textContent = PROFILE?.name || 'ergolav';
-  $('brandTrade').textContent = PROFILE?.trade || '';
+  const p = authLocked ? null : PROFILE;      // κλειδωμένη: κανένα στοιχείο της επιχείρησης στην κεφαλίδα
+  $('brandLogo').innerHTML = p ? logoHtml(p.name, p.logo) : '';
+  $('brandLogo').hidden = !p;
+  $('brandName').textContent = p?.name || 'ergolav';
+  $('brandTrade').textContent = p?.trade || '';
 }
 // back: τι γίνεται μετά την αποθήκευση (null = αρχική οθόνη).
 function openProfile(back){
@@ -143,7 +151,7 @@ function returnHere(){
 // Πάτημα στην κεφαλίδα → ίδια φόρμα· μετά επιστροφή εκεί που ήταν (το PDF ξαναφτιάχνεται με τα νέα στοιχεία).
 $('brand').onclick = () => {
   const cur = document.querySelector('.screen.on')?.id;
-  if(cur === 's-profile' || mic.listening) return;
+  if(cur === 's-profile' || mic.listening || authLocked) return;
   openProfile(returnHere());
 };
 
@@ -260,6 +268,7 @@ setInterval(() => when.refresh(), 30000);
 // Πρώτη φορά (δεν υπάρχουν αποθηκευμένα στοιχεία): «Τα στοιχεία σου» πριν από το μικρόφωνο. Μετά, ποτέ ξανά.
 renderBrand();
 if(!PROFILE) openProfile(null);
+else show('s-start', 'Νέα προσφορά');
 
 // ─── Φωτογραφία σημειώσεων → κατευθείαν στην προσφορά ──────
 const shot = $('shot');
@@ -1003,7 +1012,9 @@ $('pfRules').onclick = () => analysisPanel.openRules(() => show('s-profile', 'Τ
 syncRulesButton();
 
 // ─── Λογαριασμός (μόνο με AUTH_ENABLED στο src/config.js· αλλιώς τίποτα δεν αλλάζει) ───
-const account = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
+const account = authUi = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
+  needProfile: () => openProfile(null),
+  onLockChange: v => { authLocked = v; renderBrand(); },
   onProfileChange: () => {
     PROFILE = loadProfile();
     renderBrand();

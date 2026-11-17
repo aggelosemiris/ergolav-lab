@@ -8,7 +8,7 @@ const fx = n => fs.realpathSync(new URL(`../stress/fixtures/${n}`, import.meta.u
 const results = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
 
-const service = createService({stateFile: null, resolveModel: async c => c, probe: async () => { throw new Error('no probe'); },
+const service = createService({authOff: true, stateFile: null, resolveModel: async c => c, probe: async () => { throw new Error('no probe'); },
   analyze: async items => ({items, decisions: items.map(x => ({id: x.id, selected: true, reason: 'Σύνθετη εγκατάσταση'})),
     guides: items.map(x => ({id: x.id, scope: 'Τοποθέτηση', prerequisites: ['Έλεγχος'], tools: ['Εργαλεία'], steps: ['Προεργασία', 'Παράδοση'],
       checks: ['Έλεγχος'], missing: [], specialist: 'Αρμόδιος'})), provider: 'openai', model: 'mock', createdAt: new Date().toISOString()})});

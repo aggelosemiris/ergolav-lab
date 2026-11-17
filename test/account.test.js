@@ -12,7 +12,7 @@ function env(initial = {}){
   return ls;
 }
 const acc = await import('../src/account.js');
-const { createAccount, MSG, OTP_TTL_S, PENDING, errorText } = acc;
+const { createAccount, MSG, OTP_TTL_S, PENDING, errorText, passwordCheck, authGate, storedSession, throttleText, THROTTLE_AFTER } = acc;
 const prof = await import('../src/profile.js');
 
 const CFG = {AUTH_ENABLED: true, SUPABASE_URL: 'https://abcdefgh.supabase.co', SUPABASE_ANON_KEY: 'test-anon-key'};
@@ -25,13 +25,24 @@ const APP_DATA = {'ergolav.quotes': '[{"no":1}]', 'ergolav.prices': '{"x":1}', '
 function fakeClient({session = null, remote = {}, files = {}, fail = {}} = {}){
   const calls = [], authCbs = [];
   const err = f => f && (typeof f === 'object' ? f : {code: f});
-  const user = {id: UID, email: EMAIL, user_metadata: {full_name: NAME}, app_metadata: {provider: 'email'}};
+  const user = {id: UID, email: EMAIL, user_metadata: {full_name: NAME}, app_metadata: {provider: 'email', providers: ['email']},
+    identities: [{provider: 'email'}], email_confirmed_at: '2026-11-17T10:00:00Z'};
   const c = {calls, remote, files, authCbs,
     auth: {
       getSession: async () => { calls.push(['getSession']); return {data: {session}, error: null}; },
       onAuthStateChange: cb => { authCbs.push(cb); return {data: {subscription: {unsubscribe(){}}}}; },
       signInWithOAuth: async a => { calls.push(['oauth', a]); return {error: err(fail.oauth) || null}; },
-      signInWithOtp: async a => { calls.push(['otp', a]); return {error: err(fail.otp) || null}; },
+      signUp: async a => { calls.push(['signUp', a]);
+        if(fail.signUp) return {data: {user: null, session: null}, error: err(fail.signUp)};
+        // Υπάρχον email: το Supabase επιστρέφει «χρήστη» χωρίς ταυτότητες, χωρίς σφάλμα (δεν αποκαλύπτει τίποτα).
+        if(fail.exists) return {data: {user: {id: 'x', identities: []}, session: null}, error: null};
+        return {data: {user: {...user, identities: [{provider: 'email'}]}, session: null}, error: null}; },
+      signInWithPassword: async a => { calls.push(['password', a]);
+        if(fail.password) return {data: {user: null, session: null}, error: err(typeof fail.password === 'function' ? fail.password(a) : fail.password)};
+        return {data: {user, session: {user}}, error: null}; },
+      resend: async a => { calls.push(['resend', a]); return {error: err(fail.resend) || null}; },
+      resetPasswordForEmail: async (e, o) => { calls.push(['reset', e, o]); return {error: err(fail.reset) || null}; },
+      updateUser: async a => { calls.push(['updateUser', a]); return fail.updateUser ? {data: {user: null}, error: err(fail.updateUser)} : {data: {user}, error: null}; },
       verifyOtp: async a => { calls.push(['verify', a]);
         if(fail.verify) return {data: {user: null, session: null}, error: err(fail.verify)};
         return {data: {user, session: {user}}, error: null}; },
@@ -67,11 +78,11 @@ function setup({cfg = CFG, client = fakeClient(), href, online, now} = {}){
   const a = createAccount({config: cfg, getClient: async () => { made++; return client; }, win, now});
   return {a, client, win, made: () => made};
 }
+const PW = 'ergolav2026', PW2 = 'Nero-sto-banio9';
 async function signedIn(opts = {}){
   const s = setup(opts);
-  await s.a.sendCode(EMAIL);
-  const r = await s.a.verifyCode(EMAIL, '123456');
-  assert.equal(r.error, '');
+  const r = await s.a.signIn(EMAIL, PW);
+  assert.ok(r.user, r.error);
   return s;
 }
 // Κανένα console.* δεν γράφει στοιχεία χρήστη (ελέγχεται σε όλα τα tests).
@@ -86,7 +97,8 @@ test('flag κλειστό: τίποτα δεν φορτώνεται, καμία 
     const {a, made} = setup({cfg});
     assert.equal(a.enabled, false);
     assert.deepEqual(await a.init(), {user: null});
-    assert.equal((await a.sendCode(EMAIL)).error, MSG.notConfigured);
+    assert.equal((await a.signUp(EMAIL, PW)).error, MSG.notConfigured);
+    assert.deepEqual(authGate(cfg, {localStorage: globalThis.localStorage}), {required: false, locked: false}, 'κλειστό: καμία οθόνη δεν κλειδώνει');
     assert.equal(made(), 0, 'η βιβλιοθήκη δεν φορτώθηκε');
   }
   assert.equal(JSON.stringify(data), before);
@@ -131,66 +143,217 @@ test('πριν ανοίξει ο λογαριασμός: πραγματική δ
   if(cfg.TURNSTILE_SITE_KEY) assert.match(cfg.TURNSTILE_SITE_KEY, /^0x[0-9A-Za-z_-]{20,}$/, 'site key Turnstile (0x…)');
 });
 
-test('κωδικός email: αποστολή με δημιουργία χρήστη, χωρίς link· σύνδεση με τα 6 ψηφία', async () => {
-  const {a, client} = setup();
-  const seen = [];
-  a.onChange(u => seen.push(u?.id ?? null));
-  assert.equal((await a.sendCode('όχι-email')).error, MSG.badEmail);
-  assert.equal(client.calls.length, 0);
-  assert.equal((await a.sendCode('  Nikos.Test@Example.com ')).error, '');
-  assert.deepEqual(client.calls.at(-1), ['otp', {email: EMAIL, options: {shouldCreateUser: true}}]);
-  assert.equal((await a.verifyCode(EMAIL, '12345')).error, MSG.badCode);
-  const r = await a.verifyCode(EMAIL, '123 456');
-  assert.equal(r.error, '');
-  assert.deepEqual(client.calls.at(-1), ['verify', {email: EMAIL, token: '123456', type: 'email'}]);
-  assert.deepEqual(a.user(), {id: UID, email: EMAIL, name: 'Νίκος', provider: 'email'});
-  assert.deepEqual(seen, [UID]);
+test('κανόνες κωδικού: 8+ χαρακτήρες, γράμματα ΚΑΙ αριθμοί, ίδιος δύο φορές· ένδειξη δύναμης', () => {
+  assert.deepEqual(passwordCheck('abc12'), {rules: {len: false, letter: true, digit: true}, ok: false, strength: 'weak'});
+  assert.equal(passwordCheck('abcdefgh').ok, false, 'χωρίς αριθμούς');
+  assert.equal(passwordCheck('12345678').ok, false, 'χωρίς γράμματα');
+  assert.equal(passwordCheck('αβγδεζηθ1').rules.letter, false, 'ελληνικά γράμματα δεν μετράνε (όπως στο Supabase: a–z)');
+  assert.deepEqual(passwordCheck(PW), {rules: {len: true, letter: true, digit: true}, ok: true, strength: 'good'});
+  assert.equal(passwordCheck(PW2).strength, 'strong');
+  assert.equal(passwordCheck(PW, 'ergolav2025').ok, false, 'διαφορετική επανάληψη');
+  assert.equal(passwordCheck(PW, PW).ok, true);
+  assert.equal(passwordCheck('', '').rules.match, false);
 });
 
-test('λάθη στα ελληνικά: λάθος, ληγμένος, πολλές προσπάθειες, χωρίς ίντερνετ', async () => {
+test('εγγραφή: έλεγχοι πριν από κάθε κλήση· email + κωδικός + CAPTCHA → κωδικός 6 ψηφίων για επιβεβαίωση', async () => {
+  const {a, client} = setup();
+  assert.deepEqual(await a.signUp('όχι-email', PW, {repeat: PW}), {error: MSG.badEmail, field: 'email'});
+  assert.deepEqual(await a.signUp(EMAIL, 'abc', {repeat: 'abc'}), {error: MSG.weak, field: 'password'});
+  assert.deepEqual(await a.signUp(EMAIL, PW, {repeat: PW + 'x'}), {error: MSG.mismatch, field: 'repeat'});
+  assert.deepEqual(await a.signUp(EMAIL, PW, {repeat: PW, terms: false}), {error: MSG.terms, field: 'terms'});
+  assert.equal(client.calls.length, 0, 'καμία κλήση με λάθος στοιχεία');
+  assert.deepEqual(await a.signUp(' Nikos.Test@Example.com ', PW, {repeat: PW, captchaToken: 'tok-1'}), {needsConfirm: true});
+  assert.deepEqual(client.calls.at(-1), ['signUp', {email: EMAIL, password: PW, options: {captchaToken: 'tok-1'}}]);
+  assert.equal(a.user(), null, 'πριν από την επιβεβαίωση: όχι συνδεδεμένος');
+  assert.deepEqual(await a.confirmSignup(EMAIL, '12345'), {error: MSG.badCode, field: 'code'});
+  const r = await a.confirmSignup(EMAIL, '123 456');
+  assert.deepEqual(client.calls.at(-1), ['verify', {email: EMAIL, token: '123456', type: 'signup'}]);
+  assert.equal(r.user.id, UID);
+  assert.equal(a.user().confirmed, true);
+  assert.deepEqual(a.user().providers, ['email']);
+  // «Στείλε ξανά»: ίδιο endpoint επιβεβαίωσης, με CAPTCHA
+  assert.equal((await a.resendConfirm(EMAIL, {captchaToken: 'tok-2'})).error, '');
+  assert.deepEqual(client.calls.at(-1), ['resend', {type: 'signup', email: EMAIL, options: {captchaToken: 'tok-2'}}]);
+});
+
+test('εγγραφή με email που ήδη υπάρχει (και με Google): μήνυμα που δείχνει «Σύνδεση» / Google / «Ξέχασα τον κωδικό»', async () => {
+  const {a} = setup({client: fakeClient({fail: {exists: true}})});
+  assert.deepEqual(await a.signUp(EMAIL, PW, {repeat: PW}), {error: MSG.exists, field: 'email'});
+  assert.ok(/Συνέχεια με Google/.test(MSG.exists) && /Ξέχασα τον κωδικό/.test(MSG.exists));
+  const b = setup({client: fakeClient({fail: {signUp: {code: 'user_already_exists', status: 422}}})});
+  assert.equal((await b.a.signUp(EMAIL, PW, {repeat: PW})).error, MSG.exists);
+  const w = setup({client: fakeClient({fail: {signUp: {code: 'weak_password', status: 422, name: 'AuthWeakPasswordError'}}})});
+  assert.deepEqual(await w.a.signUp(EMAIL, PW, {repeat: PW}), {error: MSG.weak, field: 'password'});
+});
+
+test('σύνδεση: email + κωδικός + CAPTCHA· λάθος → ΕΝΑ μήνυμα (όχι ποιο από τα δύο)· μη επιβεβαιωμένο email', async () => {
+  const {a, client} = setup();
+  assert.deepEqual(await a.signIn(EMAIL, ''), {error: MSG.noPassword, field: 'password'});
+  assert.deepEqual(await a.signIn('x@', PW), {error: MSG.badEmail, field: 'email'});
+  const r = await a.signIn(EMAIL.toUpperCase(), PW, {captchaToken: 'tok'});
+  assert.deepEqual(client.calls.at(-1), ['password', {email: EMAIL, password: PW, options: {captchaToken: 'tok'}}]);
+  assert.equal(r.user.id, UID);
+  const bad = setup({client: fakeClient({fail: {password: {code: 'invalid_credentials', status: 400, message: 'Invalid login credentials'}}})});
+  const e = await bad.a.signIn(EMAIL, 'λάθος123');
+  assert.equal(e.error, MSG.badLogin);
+  assert.ok(!/το email δεν|ο κωδικός δεν/i.test(MSG.badLogin) && /email ή κωδικός/.test(MSG.badLogin), 'δεν λέει ποιο είναι λάθος');
+  assert.ok(/Συνέχεια με Google/.test(MSG.badLogin), 'λογαριασμός Google χωρίς κωδικό: δείχνει τον δρόμο');
+  const nc = setup({client: fakeClient({fail: {password: {code: 'email_not_confirmed', status: 400}}})});
+  const n = await nc.a.signIn(EMAIL, PW);
+  assert.equal(n.error, MSG.notConfirmed); assert.equal(n.notConfirmed, true);
+  assert.ok(/Στείλε κωδικό επιβεβαίωσης/.test(MSG.notConfirmed));
+});
+
+test('5 λάθος κωδικοί → αναμονή που μεγαλώνει (30″, 60″ …, έως 5′), χωρίς κλήση στο μεταξύ· ποτέ μόνιμο κλείδωμα', async () => {
+  let t = 5_000_000;
+  const ss = {}; const sessionStorage = {getItem: k => ss[k] ?? null, setItem: (k, v) => { ss[k] = v; }, removeItem: k => { delete ss[k]; }};
+  const client = fakeClient({fail: {password: {code: 'invalid_credentials', status: 400}}});
+  const win = {...makeWin(), sessionStorage};
+  const a = createAccount({config: CFG, getClient: async () => client, win, now: () => t});
+  for(let i = 1; i < THROTTLE_AFTER; i++) assert.equal((await a.signIn(EMAIL, 'wrong' + i)).wait, undefined, `λάθος ${i}: χωρίς αναμονή`);
+  const fifth = await a.signIn(EMAIL, 'wrong5');
+  assert.equal(fifth.wait, 30); assert.equal(fifth.error, throttleText(30));
+  const n = client.calls.length;
+  t += 10_000;
+  const blocked = await a.signIn(EMAIL, PW);
+  assert.equal(blocked.wait, 20, 'μέσα στην αναμονή: καμία κλήση, μένουν 20″');
+  assert.equal(client.calls.length, n);
+  t += 21_000;
+  assert.equal((await a.signIn(EMAIL, 'wrong6')).wait, 60, 'το επόμενο λάθος διπλασιάζει');
+  for(let i = 0; i < 6; i++){ t += 400_000; await a.signIn(EMAIL, 'w'); }
+  assert.equal(a.throttleLeft(), 300, 'το πολύ 5 λεπτά');
+  t += 301_000;
+  assert.equal(a.throttleLeft(), 0, 'μετά την αναμονή ξαναδοκιμάζει');
+  client.auth.signInWithPassword = async () => ({data: {user: client.user, session: {user: client.user}}, error: null});
+  assert.ok((await a.signIn(EMAIL, PW)).user);
+  assert.equal(ss['ergolav.account.throttle'], '{}', 'σωστή σύνδεση: ο μετρητής μηδενίζεται');
+  assert.ok(/Ξαναδοκίμασε σε 5′/.test(throttleText(300)));
+});
+
+test('ξέχασα τον κωδικό: κωδικός 6 ψηφίων (recovery) → νέος κωδικός δύο φορές, ΧΩΡΙΣ τον παλιό', async () => {
+  const {a, client} = setup();
+  assert.deepEqual(await a.requestReset('λάθος'), {error: MSG.badEmail, field: 'email'});
+  assert.equal((await a.requestReset(EMAIL, {captchaToken: 'tok'})).error, '');
+  assert.deepEqual(client.calls.at(-1), ['reset', EMAIL, {captchaToken: 'tok'}]);
+  assert.equal((await a.verifyReset(EMAIL, '654321')).user.id, UID);
+  assert.deepEqual(client.calls.at(-1), ['verify', {email: EMAIL, token: '654321', type: 'recovery'}]);
+  assert.deepEqual(await a.setPassword(PW2, PW2 + '!'), {error: MSG.mismatch, field: 'repeat'});
+  assert.deepEqual(await a.setPassword('short1', 'short1'), {error: MSG.weak, field: 'password'});
+  assert.ok((await a.setPassword(PW2, PW2)).user);
+  assert.deepEqual(client.calls.at(-1), ['updateUser', {password: PW2}], 'στην επαναφορά δεν ζητείται ο παλιός');
+  const same = setup({client: fakeClient({fail: {updateUser: {code: 'same_password', status: 422}}})});
+  assert.equal((await same.a.setPassword(PW, PW)).error, MSG.samePassword);
+});
+
+test('αλλαγή κωδικού από τον λογαριασμό: ζητά τον τωρινό (current_password)· λάθος τωρινός → στο πεδίο του', async () => {
+  const s = await signedIn();
+  assert.deepEqual(await s.a.setPassword(PW2, PW2, {current: ''}), {error: MSG.noPassword, field: 'current'});
+  assert.ok((await s.a.setPassword(PW2, PW2, {current: PW})).user);
+  assert.deepEqual(s.client.calls.at(-1), ['updateUser', {password: PW2, current_password: PW}]);
+  const bad = await signedIn({client: fakeClient({fail: {updateUser: {code: 'current_password_invalid', status: 400}}})});
+  assert.deepEqual(await bad.a.setPassword(PW2, PW2, {current: 'λάθος'}), {error: MSG.wrongCurrent, field: 'current'});
+  assert.ok(s.a.hasPassword());
+});
+
+test('αλλαγή email: κωδικός 6 ψηφίων στο ΝΕΟ email (email_change)', async () => {
+  const s = await signedIn();
+  assert.deepEqual(await s.a.changeEmail(EMAIL), {error: MSG.sameEmail, field: 'email'});
+  assert.deepEqual(await s.a.changeEmail('όχι'), {error: MSG.badEmail, field: 'email'});
+  assert.equal((await s.a.changeEmail('Neo@Example.com')).error, '');
+  assert.deepEqual(s.client.calls.at(-1), ['updateUser', {email: 'neo@example.com'}]);
+  assert.ok((await s.a.confirmEmailChange('neo@example.com', '111222')).user);
+  assert.deepEqual(s.client.calls.at(-1), ['verify', {email: 'neo@example.com', token: '111222', type: 'email_change'}]);
+});
+
+test('λάθη στα ελληνικά: λάθος/ληγμένος κωδικός email, πολλές αποστολές, CAPTCHA, χωρίς ίντερνετ', async () => {
   let t = 1_000_000;
   const wrong = setup({client: fakeClient({fail: {verify: {code: 'otp_expired', status: 403, message: `Token has expired or is invalid for ${EMAIL}`}}}), now: () => t});
-  await wrong.a.sendCode(EMAIL);
-  assert.equal((await wrong.a.verifyCode(EMAIL, '000000')).error, MSG.wrong, 'μέσα στον χρόνο = λάθος κωδικός');
+  await wrong.a.signUp(EMAIL, PW, {repeat: PW});
+  assert.equal((await wrong.a.confirmSignup(EMAIL, '000000')).error, MSG.wrong, 'μέσα στον χρόνο = λάθος κωδικός');
   t += (OTP_TTL_S + 1) * 1000;
-  assert.equal((await wrong.a.verifyCode(EMAIL, '000000')).error, MSG.expired, 'μετά τη λήξη = ληγμένος');
-  const many = setup({client: fakeClient({fail: {otp: {status: 429, code: 'over_email_send_rate_limit'}}})});
-  assert.equal((await many.a.sendCode(EMAIL)).error, MSG.tooManySends, 'όριο αποστολών email → «Συνέχισε με Google»');
-  assert.ok(/Συνέχισε με Google/.test(MSG.tooManySends));
-  const many429 = setup({client: fakeClient({fail: {otp: {status: 429}}})});
-  assert.equal((await many429.a.sendCode(EMAIL)).error, MSG.tooManySends);
+  assert.equal((await wrong.a.confirmSignup(EMAIL, '000000')).error, MSG.expired, 'μετά τη λήξη = ληγμένος');
+  const many = setup({client: fakeClient({fail: {resend: {status: 429, code: 'over_email_send_rate_limit'}}})});
+  assert.equal((await many.a.resendConfirm(EMAIL)).error, MSG.tooManySends);
   const verify429 = setup({client: fakeClient({fail: {verify: {status: 429, code: 'over_request_rate_limit'}}})});
-  assert.equal((await verify429.a.verifyCode(EMAIL, '123456')).error, MSG.tooMany, 'πολλές προσπάθειες κωδικού');
-  const cap = setup({client: fakeClient({fail: {otp: {status: 400, code: 'captcha_failed', message: 'captcha protection: request disallowed'}}})});
-  assert.equal((await cap.a.sendCode(EMAIL, {captchaToken: 'x'})).error, MSG.captcha);
-  const off = setup({client: fakeClient({fail: {otp: {name: 'AuthRetryableFetchError', status: 0}}})});
-  assert.equal((await off.a.sendCode(EMAIL)).error, MSG.offline);
-  const off2 = setup({online: false, client: fakeClient({fail: {verify: {status: 0}}})});
-  assert.equal((await off2.a.verifyCode(EMAIL, '123456')).error, MSG.offline);
+  assert.equal((await verify429.a.verifyReset(EMAIL, '123456')).error, MSG.tooMany);
+  const cap = setup({client: fakeClient({fail: {password: {status: 400, code: 'captcha_failed', message: 'captcha protection: request disallowed'}}})});
+  assert.equal((await cap.a.signIn(EMAIL, PW, {captchaToken: 'x'})).error, MSG.captcha);
+  const off = setup({client: fakeClient({fail: {password: {name: 'AuthRetryableFetchError', status: 0}}})});
+  assert.equal((await off.a.signIn(EMAIL, PW)).error, MSG.offline);
+  const off2 = setup({online: false});
+  assert.equal((await off2.a.signUp(EMAIL, PW, {repeat: PW})).error, MSG.offline);
+  assert.equal(off2.client.calls.length, 0);
   // Το κείμενο του σφάλματος (που μπορεί να έχει το email) δεν φτάνει ποτέ στην οθόνη.
   for(const m of Object.values(MSG)) assert.ok(![EMAIL, PHONE, NAME].some(x => m.includes(x)));
   assert.equal(errorText({message: `weird ${EMAIL} ${PHONE}`}), MSG.generic);
 });
 
-test('χωρίς ίντερνετ: απάντηση αμέσως· server που δεν απαντά: μήνυμα μετά το όριο χρόνου, όχι κουμπί που περιμένει', async () => {
-  const off = setup({online: false});
+test('server που δεν απαντά: μήνυμα μετά το όριο χρόνου, όχι κουμπί που περιμένει', async () => {
   const t0 = Date.now();
-  assert.equal((await off.a.sendCode(EMAIL)).error, MSG.offline);
-  assert.equal(off.client.calls.length, 0, 'καμία κλήση χωρίς ίντερνετ');
   const hang = fakeClient();
-  hang.auth.signInWithOtp = () => new Promise(() => {});
-  const win = makeWin();
-  const a = createAccount({config: CFG, getClient: async () => hang, win, timeoutMs: 50});
-  assert.equal((await a.sendCode(EMAIL)).error, MSG.offline);
+  hang.auth.signInWithPassword = () => new Promise(() => {});
+  const a = createAccount({config: CFG, getClient: async () => hang, win: makeWin(), timeoutMs: 50});
+  assert.equal((await a.signIn(EMAIL, PW)).error, MSG.offline);
   assert.ok(Date.now() - t0 < 2000);
 });
 
-test('CAPTCHA (Turnstile): το token πάει στην αποστολή κωδικού· χωρίς token, όπως πριν', async () => {
+test('υποχρεωτικός λογαριασμός: κλειδωμένο χωρίς αποθηκευμένη συνεδρία· ΛΗΓΜΕΝΗ συνεδρία χωρίς σήμα = ανοιχτό', async () => {
+  const win = () => ({localStorage: globalThis.localStorage});
+  assert.deepEqual(authGate(CFG, win()), {required: true, locked: true});
+  const user = fakeClient().user;
+  const expired = {access_token: 'a', refresh_token: 'r', expires_at: 1, user};      // έληξε το 1970
+  env({'sb-abcdefgh-auth-token': JSON.stringify(expired)});
+  assert.deepEqual(authGate(CFG, win()), {required: true, locked: false});
+  assert.equal(storedSession(CFG, win()).user.id, UID);
+  env({'sb-otherproj-auth-token': JSON.stringify(expired)});
+  assert.equal(authGate(CFG, win()).locked, true, 'συνεδρία ΑΛΛΟΥ project δεν μετράει');
+  env({'sb-abcdefgh-auth-token': '{χαλασμένο'});
+  assert.equal(authGate(CFG, win()).locked, true);
+  // Χωρίς ίντερνετ: ο χρήστης υπάρχει από την πρώτη στιγμή και μένει μετά το init (η βιβλιοθήκη δεν ανανεώνει).
+  env({'sb-abcdefgh-auth-token': JSON.stringify(expired)});
+  const client = fakeClient();
+  client.auth.getSession = async () => ({data: {session: null}, error: {name: 'AuthRetryableFetchError', status: 0}});
+  const {a} = setup({client, online: false});
+  assert.equal(a.user().id, UID, 'πριν από κάθε δίκτυο');
+  await a.init();
+  assert.equal(a.user().id, UID, 'χωρίς σήμα δεν κλειδώνει');
+});
+
+test('η συνεδρία ανακλήθηκε (π.χ. «Αποσύνδεση από όλες τις συσκευές» αλλού): ειδοποίηση κλειδώματος· όχι στη δική μας αποσύνδεση', async () => {
+  const live = () => fakeClient({session: {user: fakeClient().user}});
+  const s = await signedIn({client: live()});
+  await s.a.init();
+  const locks = [];
+  s.a.onLock(r => locks.push(r));
+  s.client.authCbs.forEach(cb => cb('SIGNED_OUT', null));
+  assert.deepEqual(locks, ['expired']);
+  assert.equal(s.a.user(), null);
+  const t = await signedIn({client: live()});
+  await t.a.init();
+  const l2 = [];
+  t.a.onLock(r => l2.push(r));
+  const p = t.a.signOut();
+  t.client.authCbs.forEach(cb => cb('SIGNED_OUT', null));
+  await p;
+  assert.deepEqual(l2, [], 'δική μας αποσύνδεση: κανένα «έληξε»');
+});
+
+test('αποσύνδεση από όλες τις συσκευές: scope global· χωρίς ίντερνετ → μήνυμα, μένει συνδεδεμένος', async () => {
+  const s = await signedIn();
+  assert.equal((await s.a.signOut({global: true})).error, '');
+  assert.deepEqual(s.client.calls.at(-1), ['signOut', {scope: 'global'}]);
+  assert.equal(s.a.user(), null);
+  const off = await signedIn({client: fakeClient({fail: {signOut: {name: 'AuthRetryableFetchError', status: 0}}})});
+  assert.equal((await off.a.signOut({global: true})).error, MSG.offline);
+  assert.equal(off.a.user().id, UID);
+});
+
+test('CAPTCHA (Turnstile): το token πάει σε εγγραφή, σύνδεση, επαναφορά, «στείλε ξανά»· χωρίς token δεν στέλνεται κενό', async () => {
   const {a, client} = setup();
-  await a.sendCode(EMAIL, {captchaToken: 'turnstile-token-1'});
-  assert.deepEqual(client.calls.at(-1), ['otp', {email: EMAIL, options: {shouldCreateUser: true, captchaToken: 'turnstile-token-1'}}]);
-  await a.sendCode(EMAIL);
-  assert.deepEqual(client.calls.at(-1), ['otp', {email: EMAIL, options: {shouldCreateUser: true}}]);
+  await a.signIn(EMAIL, PW);
+  assert.deepEqual(client.calls.at(-1)[1].options, {});
+  await a.requestReset(EMAIL);
+  assert.deepEqual(client.calls.at(-1)[2], {});
 });
 
 test('Google (PKCE): redirectTo = η διεύθυνση της εφαρμογής, και στο υπο-path και στο localhost', async () => {
@@ -329,6 +492,26 @@ test('διαγραφή λογαριασμού: Edge Function + αποσύνδε�
   assert.equal((await bad.a.deleteAccount({wipeLocal: true})).error, MSG.session);
   assert.equal(bad.a.user().id, UID, 'αποτυχία: μένει συνδεδεμένος');
   assert.equal(data['ergolav.quotes'], APP_DATA['ergolav.quotes'], 'αποτυχία: τίποτα δεν σβήστηκε');
+  // Παλιά σύνδεση (πάνω από 10′): ο server ζητά ξανά κωδικό ή Google → reauth, τίποτα δεν σβήνεται.
+  const old = await signedIn({client: fakeClient({fail: {invoke: {name: 'FunctionsHttpError', context: {status: 403}}}})});
+  assert.deepEqual(await old.a.deleteAccount({wipeLocal: true}), {error: MSG.reauth, reauth: true});
+  assert.equal(data['ergolav.quotes'], APP_DATA['ergolav.quotes']);
+  assert.equal(old.a.user().id, UID);
+});
+
+test('επιβεβαίωση ταυτότητας πριν από τη διαγραφή: κωδικός (νέα σύνδεση) ή Google με σημάδι σκοπού', async () => {
+  const s = await signedIn();
+  assert.deepEqual(await s.a.reauthPassword(''), {error: MSG.noPassword, field: 'password'});
+  assert.equal((await s.a.reauthPassword(PW, {captchaToken: 't'})).error, '');
+  assert.deepEqual(s.client.calls.at(-1), ['password', {email: EMAIL, password: PW, options: {captchaToken: 't'}}]);
+  const ss = {}, win = {...makeWin(), sessionStorage: {getItem: k => ss[k] ?? null, setItem: (k, v) => { ss[k] = v; }, removeItem: k => { delete ss[k]; }}};
+  let t = 1000;
+  const g = createAccount({config: CFG, getClient: async () => fakeClient(), win, now: () => t});
+  assert.equal((await g.reauthGoogle('delete')).error, '');
+  assert.equal(g.takeReauth(), 'delete');
+  assert.equal(g.takeReauth(), '', 'μία φορά');
+  await g.reauthGoogle('delete'); t += 11 * 60_000;
+  assert.equal(g.takeReauth(), '', 'μετά από 10′ δεν ισχύει');
 });
 
 test('κανένα console.* δεν έγραψε email, τηλέφωνο, όνομα ή token', () => {

@@ -11,6 +11,19 @@ export const ALLOWED_ORIGINS = [
 ];
 
 export const BUCKET = 'logos';
+// Η διαγραφή θέλει ΠΡΟΣΦΑΤΗ επιβεβαίωση ταυτότητας: η τελευταία σύνδεση (κωδικός, Google, κωδικός email) μέσα σε
+// τόσα δευτερόλεπτα. Το JWT το γράφει στο «amr» (μέθοδος + χρόνος). Παλιό token (π.χ. κλεμμένο) → 403.
+export const REAUTH_MAX_AGE_S = 600;
+
+/** Ο πιο πρόσφατος χρόνος σύνδεσης (δευτερόλεπτα) από το amr του JWT· 0 αν δεν υπάρχει. */
+export function lastAuthAt(jwt: string): number {
+  try {
+    const part = jwt.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const claims = JSON.parse(atob(part + '='.repeat((4 - part.length % 4) % 4)));
+    const amr = Array.isArray(claims.amr) ? claims.amr : [];
+    return Math.max(0, ...amr.map((a: { timestamp?: number }) => Number(a?.timestamp) || 0));
+  } catch { return 0; }
+}
 
 type Admin = {
   auth: {
@@ -50,7 +63,7 @@ async function userFiles(admin: Admin, uid: string): Promise<string[]> {
   return paths;
 }
 
-export async function handle(req: Request, admin: Admin, allowed: string[] = ALLOWED_ORIGINS): Promise<Response> {
+export async function handle(req: Request, admin: Admin, allowed: string[] = ALLOWED_ORIGINS, now: () => number = Date.now): Promise<Response> {
   const cors = corsHeaders(req.headers.get('Origin'), allowed);
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
   if (req.method !== 'POST') return json(405, { error: 'method_not_allowed' }, cors);
@@ -60,6 +73,8 @@ export async function handle(req: Request, admin: Admin, allowed: string[] = ALL
   const { data, error } = await admin.auth.getUser(jwt);
   const uid = data?.user?.id;
   if (error || !uid) return json(401, { error: 'not_signed_in' }, cors);
+  // Το JWT επαληθεύτηκε παραπάνω· εδώ μόνο ο χρόνος της τελευταίας σύνδεσης.
+  if (now() / 1000 - lastAuthAt(jwt) > REAUTH_MAX_AGE_S) return json(403, { error: 'reauth_required' }, cors);
 
   try {
     // Πρώτα τα αρχεία: το «on delete cascade» σβήνει το profile, όχι τα αρχεία του Storage.
