@@ -61,7 +61,9 @@ header.auth{gap:10px}
 header.auth .head-l{min-width:0;flex:1}
 header.auth .brand{min-width:0}
 header.auth .brand>div:last-child{min-width:0}
-header.auth .brand b,header.auth .brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header.auth .brand{overflow:hidden}
+header.auth .brand .logo{flex:none}
+header.auth .brand b,header.auth .brand span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Στενή οθόνη με «‹ Πίσω»: μόνο το εικονίδιο (το όνομα στο aria-label) */
 @media (max-width:420px){header.has-back .acct{width:40px;padding:0;justify-content:center}header.has-back .acct span{display:none}}
 .captcha{margin-top:14px;min-height:0}

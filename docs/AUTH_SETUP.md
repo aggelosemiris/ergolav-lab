@@ -5,6 +5,25 @@
 
 Οι ονομασίες στα dashboards αλλάζουν συχνά· αν κάποιο κουμπί δεν είναι εκεί που γράφει, ψάξε το ίδιο όνομα ρύθμισης.
 
+## Τρέχουσα ρύθμιση του ergolav-lab (17/11/2026)
+
+| Τι | Πού / τιμή |
+|---|---|
+| Supabase project | `myyecdraxrkkwojppglb` (eu-central-1, Φρανκφούρτη), Free |
+| Βάση | migration του `supabase/migrations/` (μέσω Management API· βλ. βήμα 3), `rls.sql` → «RLS OK» |
+| Function | `delete-account`, Verify JWT ενεργό, CORS: `ALLOWED_ORIGINS` στο `handler.ts` |
+| Email | δικό μας SMTP (Gmail, `myergolav@gmail.com`), ελληνικό email με κωδικό 6 ψηφίων, λήξη 10′ |
+| Google | OAuth client στο Google Cloud· provider ενεργός στο Supabase |
+| CAPTCHA | Cloudflare Turnstile (widget «ergolav»)· site key στο `src/config.js`, secret ΜΟΝΟ στο Supabase |
+| Όρια ανά IP | 10 αποστολές/συνδέσεις και 15 επαληθεύσεις κωδικού ανά 5′· 30 email/ώρα |
+
+## Κλείσιμο αμέσως, αν κάτι πάει στραβά
+
+1. **Από την εφαρμογή:** `AUTH_ENABLED = false` στο `src/config.js` → commit → PR → merge στο `lab`. Σε ~1′ το site είναι
+   όπως πριν (ούτε κουμπί, ούτε κλήσεις στο Supabase). Τα δεδομένα των συσκευών δεν αγγίζονται.
+2. **Χωρίς deploy (σε δευτερόλεπτα):** Supabase → **Authentication → Sign In / Providers** → απενεργοποίηση του
+   **Allow new users to sign up** (κλείνει τις νέες εγγραφές) ή των providers Email / Google (κλείνει και τις συνδέσεις).
+
 ## Τι θα χρειαστείς
 
 - Λογαριασμό στο [Supabase](https://supabase.com/dashboard) (δωρεάν, χωρίς κάρτα).
@@ -29,6 +48,9 @@
 
 ## 3. Βάση: πίνακας, κανόνες, λογότυπα (SQL)
 
+Στο ergolav-lab η migration πέρασε μέσω του Management API (`POST /v1/projects/<ref>/database/query`), γιατί το
+`supabase db push` θέλει απευθείας σύνδεση Postgres με τον κωδικό της βάσης. Και οι δύο τρόποι τρέχουν το ίδιο αρχείο.
+
 1. **SQL Editor → New query** → επικόλλησε όλο το `supabase/migrations/20261116000000_auth_profiles.sql` → **Run**.
    Φτιάχνει τον πίνακα `profiles` με Row Level Security, τον trigger για κάθε νέο χρήστη και το ιδιωτικό bucket
    `logos` με κανόνες μόνο για τον φάκελο `<user_id>/`. Μπορεί να ξανατρέξει χωρίς πρόβλημα.
@@ -47,6 +69,14 @@
   - `http://localhost:8080/`, μόνο αν τη σερβίρεις και αλλιώς σε αυτή τη θύρα
 
 ## 5. Κωδικός 6 ψηφίων στο email
+
+**Προσοχή:** στο Free, με το ενσωματωμένο email του Supabase, τα templates **δεν αλλάζουν** (αγγλικό email με link, χωρίς
+κωδικό) και το όριο είναι 2 email/ώρα. Γι' αυτό χρειάζεται δικό μας SMTP (δωρεάν με Gmail):
+
+- Στο Gmail του αποστολέα: Επαλήθευση σε 2 βήματα → [κωδικός εφαρμογής](https://myaccount.google.com/apppasswords).
+- Supabase → **Authentication → Emails → SMTP Settings → Enable custom SMTP**: host `smtp.gmail.com`, port `465`,
+  username/sender το Gmail, password ο κωδικός εφαρμογής (μόνο εκεί), sender name `ergolav` → **Save**.
+
 
 1. **Authentication → Sign In / Providers → Email**: ενεργό. **Email OTP Length: 6**, **Email OTP Expiration: 600**
    (10 λεπτά· ίδιο με το `OTP_TTL_S` στο `src/account.js`, που ξεχωρίζει το «λάθος» από το «έληξε»).
@@ -113,9 +143,19 @@ npx supabase functions deploy delete-account
 6. **Ο λογαριασμός μου → Διαγραφή λογαριασμού** → ο χρήστης φεύγει από το **Authentication → Users**, η γραμμή από το
    `profiles`, ο φάκελος από το `logos`. Στη συσκευή οι προσφορές μένουν.
 
+## 9. CAPTCHA με Cloudflare Turnstile (δωρεάν)
+
+1. [dash.cloudflare.com](https://dash.cloudflare.com) → **Turnstile → Add widget**: όνομα `ergolav`, hostname
+   `aggelosemiris.github.io` (για δοκιμές προσωρινά και `localhost`, `127.0.0.1`), Widget Mode **Managed**.
+2. **Site key** (δημόσιο) → `TURNSTILE_SITE_KEY` στο `src/config.js`.
+3. **Secret key** → ΜΟΝΟ στο Supabase: **Authentication → Attack Protection → CAPTCHA → Turnstile** → Save.
+4. CSP: `https://challenges.cloudflare.com` μόνο σε `script-src`, `frame-src`, `connect-src` (ήδη στο `index.html`).
+   Αν το Turnstile δεν φορτώσει, η αποστολή κωδικού κλειδώνει με μήνυμα· το «Συνέχεια με Google» δουλεύει κανονικά.
+
 ## Δωρεάν όρια (Supabase Free)
 
-- **Email:** το ενσωματωμένο email του Supabase έχει **πολύ χαμηλό όριο** (λίγα email την ώρα για όλο το project· δες
+- **Email:** με δικό μας SMTP (Gmail) το όριο είναι 30 email/ώρα στο Supabase και ~500/ημέρα στο Gmail. Χωρίς αυτό, το
+  ενσωματωμένο email του Supabase έχει **πολύ χαμηλό όριο** (λίγα email την ώρα για όλο το project· δες
   **Authentication → Rate Limits**) και είναι **μόνο για δοκιμές**. Η σύνδεση με Google δεν έχει αυτό το θέμα.
 - **Πάγωμα:** το project του Free **παγώνει μετά από 1 εβδομάδα χωρίς χρήση**. Ξεπαγώνει από το dashboard (Restore). Όσο
   είναι παγωμένο, η σύνδεση δεν δουλεύει. Η εφαρμογή συνεχίζει κανονικά με τα δεδομένα της συσκευής.
@@ -128,14 +168,18 @@ npx supabase functions deploy delete-account
    συνεδρία σύνδεσης (`sb-…-auth-token` στον browser) μπορεί να διαβαστεί από οποιαδήποτε σελίδα σε άλλο repo του ίδιου
    λογαριασμού. Με δικό μας domain (π.χ. `app.ergolav.gr` στο GitHub Pages, δωρεάν πέρα από το κόστος του domain): νέο
    domain στα βήματα 4 και 6, στη CSP και στο `ALLOWED_ORIGINS` της function.
-2. **CAPTCHA στην εγγραφή με Cloudflare Turnstile (δωρεάν).** Supabase: **Authentication → Attack Protection → CAPTCHA**
+2. ✅ **CAPTCHA στην εγγραφή με Cloudflare Turnstile (δωρεάν)** — έγινε (βήμα 9).
+   Αρχική περιγραφή: Supabase: **Authentication → Attack Protection → CAPTCHA**
    → Turnstile, με τα κλειδιά από το Cloudflare. Χρειάζεται και αλλαγή κώδικα: το widget της Turnstile στην οθόνη
    σύνδεσης, το `captchaToken` στο `signInWithOtp`, και το `https://challenges.cloudflare.com` στη CSP
    (`script-src`, `frame-src`).
-3. **Δικός μας πάροχος email** αντί του ενσωματωμένου (**Authentication → Emails → SMTP Settings**). Το email θα έρχεται
+3. ✅ **Δικός μας πάροχος email** — έγινε με Gmail (βήμα 5)· για μεγαλύτερο όγκο, πάροχος με δικό μας domain.
+   Αρχική περιγραφή: αντί του ενσωματωμένου (**Authentication → Emails → SMTP Settings**). Το email θα έρχεται
    από δική μας διεύθυνση, με τα όρια του παρόχου και όχι του Supabase.
 4. **Supabase Pro** για **αυτόματα ημερήσια backup** (και χωρίς πάγωμα μετά από αδράνεια).
-5. **Όροι** και **Απόρρητο**: πραγματικά κείμενα στη θέση των placeholders της οθόνης σύνδεσης.
+5. **Όροι** και **Απόρρητο**: υπάρχουν (`legal/`) ως «Προσωρινό κείμενο, υπό νομικό έλεγχο» — θέλουν νομικό έλεγχο.
+6. **Google σε Production:** όσο η εφαρμογή OAuth είναι σε **Testing**, συνδέονται μόνο οι Test users. Για όλους:
+   Google Cloud → OAuth consent screen → **Publish app**.
 
 ## Τι ΔΕΝ κάνει ακόμα ο λογαριασμός
 
