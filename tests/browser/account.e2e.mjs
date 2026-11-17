@@ -16,6 +16,7 @@ const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); co
 
 const UID = '11111111-2222-4333-8444-555555555555';
 const EMAIL = 'meletis.test@example.com', PHONE = '6977777777', NAME = 'Μελέτης Υδραυλικός';
+const LATIN = 'Τα ελληνικά γράμματα δεν μετράνε· βάλε κι ένα λατινικό (a–z).';   // το MSG.latin του src/account.js
 const PW = 'ergolav2026', PW_NEW = 'Kainourgios-77', UNCONFIRMED = 'den.epivevaiose@example.com';
 const PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
 const b64 = o => Buffer.from(JSON.stringify(o)).toString('base64url');
@@ -211,6 +212,26 @@ try {
   await p1.check('#upTerms'); await ready(p1);
   ok('με «Αποδέχομαι» (και τον έλεγχο ασφαλείας) → ανοίγει', !(await p1.isDisabled('#lgSubmit')) &&
     (await p1.getAttribute('#lgCaptcha', 'data-rendered')) === '0x4AAAAAAAtestSiteKey000000|auth');
+  // Κωδικός μόνο με ελληνικά γράμματα: όλα τα άλλα σωστά (email, ίδιος δύο φορές, Όροι, έλεγχος ασφαλείας), κι όμως ΔΕΝ φτιάχνει λογαριασμό
+  const ruleText = async r => (await p1.textContent(`#upRules li[data-r="${r}"]`)).replace(LATIN, '').trim();
+  ok('κανόνες: «Τουλάχιστον 8 χαρακτήρες», «Τουλάχιστον 1 λατινικό γράμμα (a–z)», «Τουλάχιστον 1 αριθμός (0–9)»',
+    await ruleText('len') === 'Τουλάχιστον 8 χαρακτήρες' && await ruleText('letter') === 'Τουλάχιστον 1 λατινικό γράμμα (a–z)' && await ruleText('digit') === 'Τουλάχιστον 1 αριθμός (0–9)');
+  ok('λατινικός κωδικός: κανένα μήνυμα για ελληνικά', !(await visible(p1, '#upHint')));
+  const GR = 'καλημέρα12', signups = () => reqs('/auth/v1/signup').length, before = signups();
+  await p1.fill('#upPw', GR); await p1.fill('#upPw2', GR);
+  ok(`«${GR}»: τικ σε 8+, αριθμό, ίδιο — ΟΧΙ στο γράμμα· «Αδύναμος»`, JSON.stringify(await rules()) === '{"len":true,"letter":false,"digit":true,"match":true}' &&
+    await text(p1, '#upMeterText') === 'Αδύναμος');
+  ok(`«${GR}»: «Τα ελληνικά γράμματα δεν μετράνε· βάλε κι ένα λατινικό (a–z).» κάτω από τον κανόνα`, await visible(p1, '#upHint') && await text(p1, '#upHint') === LATIN &&
+    await p1.getAttribute('#upHint', 'role') === 'status');
+  await p1.evaluate(() => document.getElementById('lgSubmit').click()); await p1.press('#upPw2', 'Enter'); await p1.waitForTimeout(300);
+  ok(`«${GR}»: κουμπί κλειδωμένο, πάτημα και Enter → ΚΑΝΕΝΑ αίτημα εγγραφής`, await p1.isDisabled('#lgSubmit') && signups() === before && !(await visible(p1, '#pConfirm')));
+  await p1.fill('#upPw', GR + 'a'); await p1.fill('#upPw2', GR + 'a');
+  ok(`«${GR}a» (ελληνικά + ένα λατινικό): όλα τικ, το μήνυμα φεύγει, κουμπί ανοιχτό`, Object.values(await rules()).every(Boolean) &&
+    !(await visible(p1, '#upHint')) && !(await p1.isDisabled('#lgSubmit')));
+  await p1.fill('#upPw', GR); await p1.fill('#upPw2', GR);
+  await shot(p1, 'signup-greek-390-light');
+  await p1.fill('#upPw', PW_NEW); await p1.fill('#upPw2', PW_NEW);
+  ok('πίσω στον λατινικό κωδικό: μήνυμα κρυμμένο, κουμπί ανοιχτό', !(await visible(p1, '#upHint')) && !(await p1.isDisabled('#lgSubmit')));
   await shot(p1, 'signup-390-light');
   // διπλό πάτημα → ΕΝΑ αίτημα
   await p1.evaluate(() => { const b = document.getElementById('lgSubmit'); b.click(); b.click(); });

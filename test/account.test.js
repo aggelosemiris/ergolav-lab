@@ -12,7 +12,7 @@ function env(initial = {}){
   return ls;
 }
 const acc = await import('../src/account.js');
-const { createAccount, MSG, OTP_TTL_S, PENDING, errorText, passwordCheck, authGate, storedSession, throttleText, THROTTLE_AFTER } = acc;
+const { createAccount, MSG, OTP_TTL_S, PENDING, errorText, passwordCheck, needsLatin, authGate, storedSession, throttleText, THROTTLE_AFTER } = acc;
 const prof = await import('../src/profile.js');
 
 const CFG = {AUTH_ENABLED: true, SUPABASE_URL: 'https://abcdefgh.supabase.co', SUPABASE_ANON_KEY: 'test-anon-key'};
@@ -154,6 +154,35 @@ test('κανόνες κωδικού: 8+ χαρακτήρες, γράμματα �
   assert.equal(passwordCheck(PW, 'ergolav2025').ok, false, 'διαφορετική επανάληψη');
   assert.equal(passwordCheck(PW, PW).ok, true);
   assert.equal(passwordCheck('', '').rules.match, false);
+});
+
+test('κωδικός μόνο με ελληνικά γράμματα: δεν περνά, και η οθόνη λέει γιατί (MSG.latin)', () => {
+  for(const pw of ['καλημέρα12', 'ΚΑΛΗΜΕΡΑ12', 'άέήίόύώ12', 'ϊΐϋΰς1234', 'Ελλάδα 2026!']){
+    const c = passwordCheck(pw, pw);
+    assert.equal(c.rules.letter, false, `${pw}: τα ελληνικά δεν μετράνε ως γράμμα`);
+    assert.equal(c.ok, false, `${pw}: δεν δίνει λογαριασμό`);
+    assert.equal(needsLatin(pw), true, `${pw}: φαίνεται το μήνυμα`);
+  }
+  // Ελληνικά ΜΑΖΙ με ένα λατινικό: περνά (το Supabase θέλει τουλάχιστον ένα a–z, όχι μόνο a–z)
+  assert.equal(passwordCheck('καλημέρα1a', 'καλημέρα1a').ok, true);
+  assert.equal(needsLatin('καλημέρα1a'), false);
+  // Χωρίς κανένα ελληνικό: κανένα μήνυμα για ελληνικά (λείπει απλώς το γράμμα ή κάτι άλλο)
+  for(const pw of ['', '12345678', '1234-5678!', 'ergolav2026', 'abc', 'Ergolav']) assert.equal(needsLatin(pw), false, JSON.stringify(pw));
+  assert.match(MSG.latin, /ελληνικά γράμματα δεν μετράνε/);
+  assert.match(MSG.latin, /λατινικό \(a–z\)/);
+  for(const part of ['τουλάχιστον 8 χαρακτήρες', 'τουλάχιστον 1 λατινικό γράμμα (a–z)', '1 αριθμό (0–9)']) assert.ok(MSG.weak.includes(part), part);
+});
+
+test('οθόνες κωδικού (εγγραφή, επαναφορά, αλλαγή): ίδιοι κανόνες «τουλάχιστον 1», με θέση για το μήνυμα των ελληνικών', () => {
+  const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const RULES = {len: 'Τουλάχιστον 8 χαρακτήρες', letter: 'Τουλάχιστον 1 λατινικό γράμμα (a–z)', digit: 'Τουλάχιστον 1 αριθμός (0–9)', match: 'Ίδιος και στις δύο φορές'};
+  for(const pre of ['up', 'rs', 'acct']){
+    const list = html.match(new RegExp(`<ul class="rules" id="${pre}Rules">([\\s\\S]*?)</ul>`));
+    assert.ok(list, `${pre}Rules`);
+    const items = [...list[1].matchAll(/<li data-r="(\w+)">([^<]+)/g)].map(m => [m[1], m[2]]);
+    assert.deepEqual(Object.fromEntries(items), RULES, `${pre}Rules`);
+    assert.match(list[1], new RegExp(`<li data-r="letter">[^<]+<small class="pw-hint" id="${pre}Hint" role="status"></small></li>`), `${pre}Hint μέσα στον κανόνα «γράμμα»`);
+  }
 });
 
 test('εγγραφή: έλεγχοι πριν από κάθε κλήση· email + κωδικός + CAPTCHA → κωδικός 6 ψηφίων για επιβεβαίωση', async () => {

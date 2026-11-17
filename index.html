@@ -115,6 +115,8 @@ header.locked .brand{pointer-events:none}
 .rules li::before{content:"○";display:inline-block;width:1.4em;font-weight:700}
 .rules li.ok{color:var(--ok)}
 .rules li.ok::before{content:"✓"}
+.pw-hint{display:block;padding-left:1.4em;margin-top:2px;font-size:inherit;color:var(--err);font-weight:600;line-height:1.35}
+.pw-hint:empty{display:none}
 .terms{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:15px;line-height:1.45}
 .terms input{width:24px;height:24px;flex:none;margin:0}
 .terms a,.legal-g a{color:var(--pen)}
@@ -571,8 +573,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <div class="meter" id="upMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="upMeterText"></span></div>
         <ul class="rules" id="upRules">
           <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
-          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
-          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="letter">Τουλάχιστον 1 λατινικό γράμμα (a–z)<small class="pw-hint" id="upHint" role="status"></small></li>
+          <li data-r="digit">Τουλάχιστον 1 αριθμός (0–9)</li>
           <li data-r="match">Ίδιος και στις δύο φορές</li>
         </ul>
           <label class="terms"><input type="checkbox" id="upTerms"> <span>Αποδέχομαι τους <a href="legal/terms.html">Όρους</a> και το <a href="legal/privacy.html">Απόρρητο</a></span></label>
@@ -606,8 +608,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <div class="meter" id="rsMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="rsMeterText"></span></div>
         <ul class="rules" id="rsRules">
           <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
-          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
-          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="letter">Τουλάχιστον 1 λατινικό γράμμα (a–z)<small class="pw-hint" id="rsHint" role="status"></small></li>
+          <li data-r="digit">Τουλάχιστον 1 αριθμός (0–9)</li>
           <li data-r="match">Ίδιος και στις δύο φορές</li>
         </ul>
       </div>
@@ -643,8 +645,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <div class="meter" id="acctMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="acctMeterText"></span></div>
         <ul class="rules" id="acctRules">
           <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
-          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
-          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="letter">Τουλάχιστον 1 λατινικό γράμμα (a–z)<small class="pw-hint" id="acctHint" role="status"></small></li>
+          <li data-r="digit">Τουλάχιστον 1 αριθμός (0–9)</li>
           <li data-r="match">Ίδιος και στις δύο φορές</li>
         </ul>
         <button class="primary" id="acctPwSave" type="button">Αποθήκευση κωδικού</button>
