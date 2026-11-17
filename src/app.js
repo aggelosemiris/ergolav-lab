@@ -52,6 +52,8 @@ function show(id, step){
 // «Πίσω» πάνω αριστερά: παντού εκτός από την αρχική — και την πρώτη φόρμα στοιχείων, όταν δεν υπάρχει πού να γυρίσει.
 function syncBack(id){
   $('navBack').hidden = id === 's-start' || (id === 's-profile' && !PROFILE && !profileBack);
+  // Με «‹ Πίσω» η κεφαλίδα στενεύει: σε μικρή οθόνη το κουμπί λογαριασμού γίνεται μόνο εικονίδιο.
+  document.querySelector('header').classList.toggle('has-back', !$('navBack').hidden);
 }
 function cta(label, fn, disabled, note){
   $('cta').hidden = !label;

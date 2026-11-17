@@ -4,9 +4,12 @@
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/account.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
-const SB = 'https://your-project-ref.supabase.co';
+// Η διεύθυνση του project από το src/config.js (όπως και η CSP). ΟΛΑ τα αιτήματα προς αυτήν τα απαντά ο ψεύτικος
+// server παρακάτω: το test δεν φτάνει ποτέ στο πραγματικό Supabase.
+const CONFIG_SRC = (await import('node:fs')).readFileSync(new URL('../../src/config.js', import.meta.url), 'utf8');
+const SB = CONFIG_SRC.match(/SUPABASE_URL = '([^']+)'/)[1];
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
-const results = [];
+const results = [], leaked = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
 
 const UID = '11111111-2222-4333-8444-555555555555';
@@ -67,7 +70,7 @@ async function supabase(route){
   return json(route, 404, {});
 }
 
-async function page({auth = true, viewport = {width: 390, height: 844}, ctx} = {}){
+async function page({auth = true, viewport = {width: 390, height: 844}, ctx, siteKey = '', turnstile = 'none'} = {}){
   ctx = ctx || await b.newContext({viewport});
   const p = await ctx.newPage();
   p.errs = []; p.csp = []; p.logs = [];
@@ -75,11 +78,20 @@ async function page({auth = true, viewport = {width: 390, height: 844}, ctx} = {
   p.on('console', m => p.logs.push(m.text()));
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
   await p.route(SB + '/**', supabase);
-  if(auth) await p.route('**/src/config.js', async r => {
+  // Ψεύτικο Turnstile: 'ok' = δίνει token· 'fail' = το script δεν φορτώνει (μπλοκαρισμένο / χωρίς ίντερνετ)
+  await p.route('https://challenges.cloudflare.com/**', r => turnstile === 'fail' ? r.abort() : r.fulfill({contentType: 'text/javascript', body: `
+    window.turnstile = {n: 0, render(el, o){ el.dataset.rendered = o.sitekey + '|' + o.action; this.o = o; setTimeout(() => o.callback('ts-token-' + (++this.n)), 50); return 'w1'; },
+      reset(){ const o = this.o; setTimeout(() => o.callback('ts-token-' + (++this.n)), 50); }};`}));
+  // Ρυθμίσεις του κάθε σεναρίου: flag, δοκιμαστικό key, site key Turnstile (ή κανένα).
+  await p.route('**/src/config.js', async r => {
     const res = await r.fetch();
-    const src = (await res.text()).replace('export const AUTH_ENABLED = false', 'export const AUTH_ENABLED = true').replace("'your-anon-key'", "'test-anon-key'");
+    const src = (await res.text()).replace(/export const AUTH_ENABLED = (true|false)/, `export const AUTH_ENABLED = ${auth}`)
+      .replace(/export const SUPABASE_ANON_KEY = '[^']*'/, "export const SUPABASE_ANON_KEY = 'test-anon-key'")
+      .replace(/export const TURNSTILE_SITE_KEY = '[^']*'/, `export const TURNSTILE_SITE_KEY = '${siteKey}'`);
     return r.fulfill({response: res, body: src});
   });
+  // Ασφάλεια: αίτημα προς οποιοδήποτε *.supabase.co που ΔΕΝ πιάστηκε παραπάνω = αποτυχία του test.
+  await p.route(/^https:\/\/[^/]*\.supabase\.co\//, r => { if(!r.request().url().startsWith(SB)) { leaked.push(r.request().url()); return r.abort(); } return r.fallback(); });
   await p.addInitScript(() => {
     window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
     window.__csp = [];
@@ -111,16 +123,17 @@ try {
   await p.addInitScript(app => { if(!sessionStorage.seeded){ sessionStorage.seeded = 1; for(const [k, v] of Object.entries(app)) localStorage.setItem(k, v); } }, APP);
   await p.goto(BASE); await p.waitForSelector('#s-profile.on');
   await p.waitForSelector('#acctBtn:not([hidden])');
-  ok('flag ανοιχτό: «Σύνδεση» πάνω δεξιά στη θέση της ένδειξης βήματος', await p.textContent('#acctBtn') === 'Σύνδεση' && !(await p.isVisible('#step')));
+  ok('flag ανοιχτό: «Σύνδεση» πάνω δεξιά στη θέση της ένδειξης βήματος', await p.textContent('#acctLabel') === 'Σύνδεση' && !(await p.isVisible('#step')));
   await p.click('#acctBtn'); await p.waitForSelector('#s-login.on');
   ok('«Σύνδεση ή εγγραφή»: Google, email, Όροι/Απόρρητο, «‹ Πίσω»', await p.isVisible('#loginGoogle') && await p.isVisible('#loginEmail') &&
-    await p.isVisible('[data-legal="terms"]') && await p.isVisible('#navBack'));
+    await p.isVisible('a[href="legal/terms.html"]') && await p.isVisible('#navBack'));
   await p.fill('#loginEmail', 'όχι-email'); await p.click('#loginSend');
   ok('άκυρο email → μήνυμα, κανένα αίτημα', /δεν φαίνεται σωστό/.test(await p.textContent('#loginError')) && !server.reqs.some(r => r.path === '/auth/v1/otp'));
   server.otpStatus = 429;
   await p.fill('#loginEmail', EMAIL); await p.click('#loginSend');
   await p.waitForFunction(() => !document.getElementById('loginError').hidden);
-  ok('όριο αποστολών (429) → «Πολλές προσπάθειες»', /Πολλές προσπάθειες/.test(await p.textContent('#loginError')));
+  ok('όριο αποστολών (429) → «Πολλές αποστολές… Συνέχισε με Google»', /Πολλές αποστολές αυτή τη στιγμή\. Συνέχισε με Google ή δοκίμασε σε λίγο/.test(await p.textContent('#loginError')));
+  ok('στην οθόνη σύνδεσης το Google είναι πρώτο', await p.evaluate(() => { const g = document.getElementById('loginGoogle').getBoundingClientRect(), e = document.getElementById('loginEmail').getBoundingClientRect(); return g.top < e.top; }));
   server.otpStatus = 200;
   await p.click('#loginSend'); await p.waitForSelector('#loginCode:not([hidden])');
   const otp = server.reqs.filter(r => r.path === '/auth/v1/otp').at(-1);
@@ -139,7 +152,7 @@ try {
   const logos = JSON.parse(await ls(p, 'ergolav.logos') || '{}');
   ok('στη συσκευή: όνομα, ειδικότητα, τηλέφωνο, λογότυπο', prof.name === NAME && prof.trade === 'Υδραυλικός' && prof.phone === PHONE &&
     logos[prof.logo]?.url === 'data:image/png;base64,' + PNG);
-  ok('η κεφαλίδα δείχνει το όνομα στο κουμπί', await p.textContent('#acctBtn') === EMAIL.split('@')[0].slice(0, 16));
+  ok('η κεφαλίδα δείχνει το όνομα στο κουμπί', await p.textContent('#acctLabel') === EMAIL.split('@')[0].slice(0, 16));
   await p.click('#ctaBtn');
   ok('«Συνέχεια» → αρχική (η φόρμα στοιχείων δεν χρειάζεται)', await screen(p) === 's-start' && await p.textContent('#brandName') === NAME &&
     await p.getAttribute('#brandLogo img', 'src') === 'data:image/png;base64,' + PNG);
@@ -151,13 +164,13 @@ try {
   const p2 = await page({ctx});
   await p2.goto(BASE); await p2.waitForSelector('#s-start.on');
   await p2.waitForFunction(() => document.getElementById('acctBtn').classList.contains('on'));
-  ok('ξανά άνοιγμα: παραμένει συνδεδεμένος (χωρίς νέα σύνδεση)', await p2.textContent('#acctBtn') !== 'Σύνδεση');
+  ok('ξανά άνοιγμα: παραμένει συνδεδεμένος (χωρίς νέα σύνδεση)', await p2.textContent('#acctLabel') !== 'Σύνδεση');
 
   // ── 3. Αποσύνδεση μόνο αυτής της συσκευής ──
   await p2.click('#acctBtn'); await p2.waitForSelector('#s-account.on');
   await p2.click('#acctSignOut'); await p2.waitForSelector('#s-start.on');
   const lo = server.reqs.filter(r => r.path === '/auth/v1/logout').at(-1);
-  ok('Αποσύνδεση → logout με scope=local, πίσω εκεί που ήταν, «Σύνδεση»', lo?.search === '?scope=local' && await p2.textContent('#acctBtn') === 'Σύνδεση', lo?.search);
+  ok('Αποσύνδεση → logout με scope=local, πίσω εκεί που ήταν, «Σύνδεση»', lo?.search === '?scope=local' && await p2.textContent('#acctLabel') === 'Σύνδεση', lo?.search);
   ok('μετά την αποσύνδεση: στοιχεία, προσφορές, τιμές, αριθμός μένουν· η συνεδρία φεύγει',
     JSON.parse(await ls(p2, 'ergolav.profile')).name === NAME && await ls(p2, 'ergolav.quotes') === APP['ergolav.quotes'] &&
     await ls(p2, 'ergolav.quoteNo') === '41' && await p2.evaluate(() => !Object.keys(localStorage).some(k => k.startsWith('sb-'))));
@@ -180,7 +193,7 @@ try {
   const backups = await p2.evaluate(() => Object.keys(localStorage).filter(k => k.startsWith('ergolav.profile.backup.')));
   ok('«του λογαριασμού» → στη συσκευή, με αντίγραφο ασφαλείας των προηγούμενων', JSON.parse(await ls(p2, 'ergolav.profile')).name === 'Άλλη Επιχείρηση ΑΕ' &&
     backups.length >= 1 && JSON.parse(JSON.parse(await ls(p2, backups.at(-1))).profile).name === NAME);
-  ok('Google: «Σύνδεση με Google», το όνομα από τον λογαριασμό στο κουμπί', await p2.textContent('#acctVia') === 'Σύνδεση με Google' && await p2.textContent('#acctBtn') === 'Μελέτης');
+  ok('Google: «Σύνδεση με Google», το όνομα από τον λογαριασμό στο κουμπί', await p2.textContent('#acctVia') === 'Σύνδεση με Google' && await p2.textContent('#acctLabel') === 'Μελέτης');
   await p2.click('#ctaBtn');
   // η πλοήγηση της εφαρμογής δεν μπερδεύεται: οθόνες, «‹ Πίσω», ανανέωση
   await p2.click('#quotesOpen').catch(() => {});
@@ -190,7 +203,7 @@ try {
   await p2.reload(); await p2.waitForSelector('#s-start.on'); await p2.waitForTimeout(600);
   ok('ανανέωση: καμία δεύτερη ανταλλαγή κωδικού, η διεύθυνση καθαρή, ακόμα συνδεδεμένος',
     server.reqs.filter(r => r.path === '/auth/v1/token' && /pkce/.test(r.search)).length === tokenCalls && !(await p2.evaluate(() => location.search)) &&
-    await p2.textContent('#acctBtn') === 'Μελέτης');
+    await p2.textContent('#acctLabel') === 'Μελέτης');
   ok('το ιστορικό του browser δεν μεγάλωσε από την καθαριστική replaceState (μόνο από το Google)', await p2.evaluate(() => history.length) <= histBefore + 2);
 
   // ── 5. Αλλαγή στοιχείων ενώ είναι συνδεδεμένος → ανεβαίνουν ──
@@ -218,7 +231,7 @@ try {
   await p2.click('#acctDelete'); await p2.click('#acctDelYes'); await p2.waitForSelector('#s-start.on');
   const del = server.reqs.find(r => r.path === '/functions/v1/delete-account');
   ok('διαγραφή → Edge Function με το JWT του χρήστη, μετά αποσύνδεση', server.deleted && /^Bearer [\w-]+\.[\w-]+\.[\w-]+$/.test(del.auth) &&
-    await p2.textContent('#acctBtn') === 'Σύνδεση');
+    await p2.textContent('#acctLabel') === 'Σύνδεση');
   ok('μετά τη διαγραφή: τα δεδομένα της συσκευής μένουν (δεν τσεκαρίστηκε το «σβήσε»)', await ls(p2, 'ergolav.quotes') === APP['ergolav.quotes'] &&
     !!(await ls(p2, 'ergolav.profile')));
 
@@ -235,6 +248,71 @@ try {
     await p3.context().close();
   }
 
+  // ── 7γ. CAPTCHA (Turnstile) στην αποστολή κωδικού ──
+  {
+    const p4 = await page({siteKey: '0x4AAAAAAAtestSiteKey000000', turnstile: 'ok'});
+    await p4.goto(BASE); await p4.waitForSelector('#acctBtn:not([hidden])');
+    await p4.click('#acctBtn'); await p4.waitForSelector('#s-login.on');
+    await p4.waitForFunction(() => !document.getElementById('loginSend').disabled);
+    ok('Turnstile: φορτώνει στην οθόνη σύνδεσης με το site key, action «email-otp»', await p4.getAttribute('#loginCaptcha', 'data-rendered') === '0x4AAAAAAAtestSiteKey000000|email-otp');
+    const before = server.reqs.length;
+    await p4.fill('#loginEmail', EMAIL); await p4.click('#loginSend'); await p4.waitForSelector('#loginCode:not([hidden])');
+    const sent = JSON.parse(server.reqs.slice(before).find(r => r.path === '/auth/v1/otp').body);
+    ok('το token του Turnstile πάει στο Supabase (gotrue_meta_security.captcha_token)', sent.gotrue_meta_security?.captcha_token === 'ts-token-1', JSON.stringify(sent.gotrue_meta_security));
+    await p4.waitForFunction(() => !document.getElementById('loginResend').disabled);
+    await p4.click('#loginResend'); await p4.waitForFunction(() => !document.getElementById('loginStatus').hidden);
+    const resent = JSON.parse(server.reqs.filter(r => r.path === '/auth/v1/otp').at(-1).body);
+    ok('«Στείλε ξανά» → νέο token (κάθε token μία φορά)', resent.gotrue_meta_security?.captcha_token === 'ts-token-2');
+    await p4.context().close();
+    const p5 = await page({siteKey: '0x4AAAAAAAtestSiteKey000000', turnstile: 'fail'});
+    await p5.goto(BASE); await p5.waitForSelector('#acctBtn:not([hidden])');
+    await p5.click('#acctBtn'); await p5.waitForSelector('#s-login.on');
+    await p5.waitForFunction(() => /δεν φόρτωσε/.test(document.getElementById('loginCaptchaNote').textContent), null, {timeout: 15000});
+    ok('Turnstile δεν φορτώνει → μήνυμα, «Στείλε μου κωδικό» κλειδωμένο', await p5.isDisabled('#loginSend') && /Συνέχισε με Google/.test(await p5.textContent('#loginCaptchaNote')));
+    await Promise.all([p5.waitForURL(/\?code=|127\.0\.0\.1/), p5.click('#loginGoogle')]);
+    await p5.waitForFunction(() => document.getElementById('acctBtn').classList.contains('on'), null, {timeout: 15000});
+    ok('…και το «Συνέχεια με Google» δουλεύει κανονικά', await p5.textContent('#acctLabel') === 'Μελέτης');
+    await p5.context().close();
+  }
+
+  // ── 7δ. Όροι και Απόρρητο ──
+  {
+    const p6 = await page();
+    await p6.goto(BASE); await p6.waitForSelector('#acctBtn:not([hidden])');
+    await p6.click('#acctBtn'); await p6.waitForSelector('#s-login.on');
+    await p6.click('a[href="legal/privacy.html"]'); await p6.waitForSelector('h1');
+    ok('«Απόρρητο» → σελίδα με τι κρατάμε, πού (ΕΕ/Φρανκφούρτη), προσφορές στη συσκευή, διαγραφή', await p6.textContent('h1') === 'Απόρρητο' &&
+      /Προσωρινό κείμενο, υπό νομικό έλεγχο/.test(await p6.textContent('.draft')) && /Φρανκφούρτη/.test(await p6.textContent('main')) &&
+      /μόνο στη συσκευή σου/.test(await p6.textContent('main')) && /Διαγραφή λογαριασμού/.test(await p6.textContent('main')));
+    await p6.goBack(); await p6.waitForSelector('#s-start.on, #s-profile.on, #s-login.on');
+    await p6.click('#acctBtn').catch(() => {}); await p6.waitForSelector('#s-login.on');
+    await p6.click('a[href="legal/terms.html"]'); await p6.waitForSelector('h1:text("Όροι χρήσης")');
+    await p6.click('.back'); await p6.waitForSelector('#s-start.on, #s-profile.on');
+    ok('«Όροι» → σελίδα· «‹ Πίσω στην εφαρμογή» → η εφαρμογή', true);
+    await p6.context().close();
+  }
+
+  // ── 7ε. Κουμπί λογαριασμού σε στενή οθόνη ──
+  for(const width of [360, 390]){
+    const p7 = await page({viewport: {width, height: 760}});
+    await p7.addInitScript(() => localStorage.setItem('ergolav.profile', JSON.stringify({name: 'Υδραυλικές Εγκαταστάσεις Παπαδόπουλος ΟΕ', trade: 'Υδραυλικός θέρμανσης'})));
+    await p7.goto(BASE); await p7.waitForSelector('#acctBtn:not([hidden])');
+    const fits = () => p7.evaluate(() => {
+      const h = document.querySelector('header').getBoundingClientRect(), a = document.getElementById('acctBtn').getBoundingClientRect(),
+        b = document.getElementById('brand').getBoundingClientRect(), l = document.getElementById('acctLabel');
+      return {inside: a.right <= h.right + 0.5 && a.left >= b.right - 0.5, labelCut: l.offsetWidth > 0 && l.scrollWidth > l.clientWidth + 1,
+        iconOnly: getComputedStyle(l).display === 'none', scroll: document.documentElement.scrollWidth > innerWidth};
+    });
+    const start = await fits();
+    ok(`${width}px αρχική: «Σύνδεση» ολόκληρο, το όνομα της επιχείρησης κόβεται με «…»`, start.inside && !start.labelCut && !start.iconOnly && !start.scroll, JSON.stringify(start));
+    await p7.click('#quotesOpen').catch(() => {});
+    await p7.click('#acctBtn'); await p7.waitForSelector('#s-login.on');
+    const back = await fits();
+    ok(`${width}px με «‹ Πίσω»: μόνο εικονίδιο ανθρώπου, τίποτα κομμένο`, back.inside && back.iconOnly && !back.scroll &&
+      await p7.getAttribute('#acctBtn', 'aria-label') === 'Σύνδεση ή εγγραφή', JSON.stringify(back));
+    await p7.context().close();
+  }
+
   // ── 8. CSP, απόρρητο, στενή οθόνη ──
   ok('καμία παραβίαση CSP (η βιβλιοθήκη και οι κλήσεις περνούν από την πολιτική ασφαλείας)', (await p2.evaluate(() => window.__csp)).length === 0,
     (await p2.evaluate(() => window.__csp)).join(' | '));
@@ -242,6 +320,7 @@ try {
   ok('το console δεν έγραψε email, τηλέφωνο, όνομα ή token', leaks.length === 0, leaks.join(' | '));
   await p2.setViewportSize({width: 320, height: 700});
   ok('320px: το κουμπί χωράει στην κεφαλίδα, χωρίς οριζόντια κύλιση', await p2.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  ok('κανένα αίτημα δεν βγήκε προς πραγματικό Supabase', leaked.length === 0, leaked.join(' | '));
   ok('χωρίς σφάλματα JavaScript', p.errs.length + p2.errs.length === 0, [...p.errs, ...p2.errs].join(' | '));
 } finally {
   await b.close();

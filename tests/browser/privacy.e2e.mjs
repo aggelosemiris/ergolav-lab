@@ -114,9 +114,12 @@ if(!(await p.isVisible('#photo'))){
 }
 
 // iframe
-await p.setContent(`<iframe src="${BASE}" width="400" height="300"></iframe>`);
-await p.waitForTimeout(1500);
-const frame = p.frames().find(f => f !== p.mainFrame());   // το iframe, όχι η κύρια σελίδα
+// Πραγματικά ξένη σελίδα, σε ΝΕΑ καρτέλα: το setContent πάνω στο έγγραφο της εφαρμογής θα κρατούσε τη δική της CSP
+// (frame-src μόνο για το Turnstile), που μπλοκάρει το iframe πριν φτάσει στον έλεγχο της εφαρμογής.
+const foreign = await b.newPage();
+await foreign.setContent(`<iframe src="${BASE}" width="400" height="300"></iframe>`);
+await foreign.waitForTimeout(1500);
+const frame = foreign.frames().find(f => f !== foreign.mainFrame());   // το iframe, όχι η κύρια σελίδα
 check('μέσα σε ξένο iframe η εφαρμογή δεν τρέχει', /μόνο απευθείας/.test(await frame.textContent('body')));
 
 await b.close();

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- Κώδικας μόνο από τον ίδιο server· δίκτυο μόνο προς Google Gemini / Anthropic, την υπηρεσία «Άλλαξέ το» (Cloudflare Worker)
      και το project του Supabase για τον λογαριασμό (ίδια διεύθυνση με το SUPABASE_URL του src/config.js). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com https://api.anthropic.com https://api.openai.com https://*.workers.dev https://your-project-ref.supabase.co; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://generativelanguage.googleapis.com https://api.anthropic.com https://api.openai.com https://*.workers.dev https://myyecdraxrkkwojppglb.supabase.co https://challenges.cloudflare.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>ergolav — προσφορά επί τόπου</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,20 @@ header{padding:18px 20px 10px;display:flex;justify-content:space-between;align-i
 .step{font-size:13px;color:var(--dim)}
 /* Λογαριασμός (AUTH_ENABLED): το κουμπί παίρνει τη θέση της ένδειξης βήματος */
 header.auth .step{display:none}
-.acct{min-height:40px;max-width:44vw;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acct{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;max-width:40vw;padding:0 12px;border-radius:20px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap}
+.acct svg{width:18px;height:18px;flex:none}
+.acct span{overflow:hidden;text-overflow:ellipsis;min-width:0}
+header.auth{gap:10px}
+header.auth .head-l{min-width:0;flex:1}
+header.auth .brand{min-width:0}
+header.auth .brand>div:last-child{min-width:0}
+header.auth .brand{overflow:hidden}
+header.auth .brand .logo{flex:none}
+header.auth .brand b,header.auth .brand span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Στενή οθόνη με «‹ Πίσω»: μόνο το εικονίδιο (το όνομα στο aria-label) */
+@media (max-width:420px){header.has-back .acct{width:40px;padding:0;justify-content:center}header.has-back .acct span{display:none}}
+.captcha{margin-top:14px;min-height:0}
+.legal a{color:var(--pen)}
 .acct.on{border-color:var(--pen);color:var(--pen)}
 .google-btn{width:100%;min-height:54px;margin-top:24px;border-radius:14px;border:1px solid var(--line);background:#fff;color:#1f1f1f;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;gap:12px}
 .google-btn svg{width:22px;height:22px}
@@ -63,7 +76,7 @@ header.auth .step{display:none}
 #s-login .primary,#s-account .primary{margin-top:16px}
 .otp{letter-spacing:.4em;font-size:26px!important}
 .acct-ok{color:var(--ok);font-weight:600;margin-top:14px}
-.legal{margin-top:22px}.legal .linkbtn{padding:0 2px;min-height:0;font-size:13px}
+.legal{margin-top:22px}
 .acct-email{display:block;font-size:18px;overflow-wrap:anywhere}
 .ghost.wide{width:100%;min-height:54px;margin-top:16px;font-size:17px}
 .linkbtn.danger{color:var(--err);margin-top:18px}
@@ -456,7 +469,10 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     </div>
     <div class="step" id="step">Νέα προσφορά</div>
     <!-- Λογαριασμός (μόνο με AUTH_ENABLED): «Σύνδεση» ή το όνομα. Λογική: src/account-ui.js -->
-    <button class="acct" id="acctBtn" type="button" hidden>Σύνδεση</button>
+    <button class="acct" id="acctBtn" type="button" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      <span id="acctLabel">Σύνδεση</span>
+    </button>
   </header>
 
   <main>
@@ -492,7 +508,6 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <p class="or"><span>ή με email</span></p>
         <div class="field"><label for="loginEmail">Email</label>
           <input id="loginEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
-        <button class="primary" id="loginSend" type="button">Στείλε μου κωδικό</button>
       </div>
       <div id="loginCode" hidden>
         <p class="lede" id="loginSentTo">Σου στείλαμε 6ψήφιο κωδικό στο email σου. Γράψ' τον εδώ:</p>
@@ -502,11 +517,15 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <div class="alt" style="margin-top:8px"><button class="linkbtn" id="loginResend" type="button">Στείλε ξανά</button>
           <button class="linkbtn" id="loginOther" type="button">Άλλο email</button></div>
       </div>
+      <!-- Cloudflare Turnstile (μόνο με TURNSTILE_SITE_KEY): για την αποστολή κωδικού email -->
+      <div class="captcha" id="loginCaptcha" hidden></div>
+      <p class="privacy" id="loginCaptchaNote" role="status" hidden></p>
+      <!-- Μετά τον έλεγχο ασφαλείας, ώστε το «Επαληθεύστε ότι είστε άνθρωπος» να φαίνεται πρώτο -->
+      <button class="primary" id="loginSend" type="button">Στείλε μου κωδικό</button>
       <div class="notice" id="loginError" role="alert" hidden></div>
       <p class="acct-ok" id="loginStatus" role="status" hidden></p>
-      <p class="privacy legal">Συνεχίζοντας, αποδέχεσαι τους <button class="linkbtn" type="button" data-legal="terms">Όρους</button> και το
-        <button class="linkbtn" type="button" data-legal="privacy">Απόρρητο</button>.</p>
-      <p class="privacy" id="legalText" hidden></p>
+      <p class="privacy legal">Συνεχίζοντας, αποδέχεσαι τους <a href="legal/terms.html">Όρους</a> και το
+        <a href="legal/privacy.html">Απόρρητο</a>.</p>
     </section>
 
     <!-- ΛΟΓΑΡΙΑΣΜΟΣ: ο λογαριασμός μου -->

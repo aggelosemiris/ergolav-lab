@@ -29,8 +29,10 @@ drop policy if exists "profiles: update own" on public.profiles;
 create policy "profiles: update own" on public.profiles
   for update to authenticated using (id = (select auth.uid())) with check (id = (select auth.uid()));
 
--- Ο ανώνυμος ρόλος δεν βλέπει τίποτα.
+-- Ο ανώνυμος ρόλος δεν βλέπει τίποτα. Ο συνδεδεμένος: μόνο ό,τι χρειάζεται. Το Supabase δίνει από προεπιλογή και
+-- TRUNCATE/REFERENCES/TRIGGER σε κάθε νέο πίνακα· το TRUNCATE δεν περνά από το RLS, γι' αυτό αφαιρούνται ρητά.
 revoke all on public.profiles from anon;
+revoke all on public.profiles from authenticated;
 grant select, insert, update on public.profiles to authenticated;
 
 -- updated_at σε κάθε αλλαγή

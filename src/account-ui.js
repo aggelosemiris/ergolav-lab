@@ -2,14 +2,15 @@
 // Λογική: account.js. Με AUTH_ENABLED = false (ή χωρίς ρυθμίσεις) δεν κάνει τίποτα: ούτε κουμπί, ούτε φόρτωμα βιβλιοθήκης.
 import { createAccount, MSG } from './account.js';
 import { getLogo, initials } from './profile.js';
+import { loadTurnstile, mountWidget } from './turnstile.js';
+import * as CONFIG from './config.js';
+
+// Turnstile μόνο αν υπάρχει site key· αλλιώς η αποστολή κωδικού όπως πριν (χωρίς CAPTCHA).
+const SITE_KEY = CONFIG.TURNSTILE_SITE_KEY || '';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const SCREENS = ['s-login', 's-account', 's-pchoice'];
-const LEGAL = {
-  terms: 'Όροι χρήσης: θα δημοσιευτούν πριν ανοίξει η εφαρμογή σε πραγματικούς χρήστες.',
-  privacy: 'Απόρρητο: ο λογαριασμός κρατά μόνο το email σου, τα στοιχεία της επιχείρησης και το λογότυπο. Το πλήρες κείμενο θα δημοσιευτεί πριν ανοίξει η εφαρμογή σε πραγματικούς χρήστες.',
-};
 
 /**
  * show/cta: της εφαρμογής. here(): «θυμήσου πού είμαι» → συνάρτηση που γυρίζει εκεί.
@@ -31,9 +32,9 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
   const btn = $('acctBtn');
   btn.hidden = false;
   const syncBtn = u => {
-    btn.textContent = u ? u.name : 'Σύνδεση';
+    $('acctLabel').textContent = u ? u.name : 'Σύνδεση';
     btn.classList.toggle('on', !!u);
-    btn.setAttribute('aria-label', u ? 'Ο λογαριασμός μου' : 'Σύνδεση ή εγγραφή');
+    btn.setAttribute('aria-label', u ? `Ο λογαριασμός μου (${u.name})` : 'Σύνδεση ή εγγραφή');
   };
   account.onChange(syncBtn);
   syncBtn(null);
@@ -48,14 +49,37 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     step = s;
     $('loginStart').hidden = s !== 'start';
     $('loginCode').hidden = s !== 'code';
+    $('loginSend').hidden = s !== 'start';
     msg('loginError', ''); msg('loginStatus', '');
   }
   function openLogin(error = ''){
     loginStep('start');
-    $('legalText').hidden = true;
     show('s-login', 'Σύνδεση');
     cta(null);
     msg('loginError', error);
+    ensureCaptcha();
+  }
+
+  // ── CAPTCHA (Cloudflare Turnstile) για την αποστολή κωδικού. Το Google δεν το χρειάζεται. ──
+  let captcha = null;
+  const syncSend = () => {
+    const ok = !SITE_KEY || !!captcha?.token();
+    $('loginSend').disabled = !ok; $('loginResend').disabled = !ok;
+  };
+  async function ensureCaptcha(){
+    if(!SITE_KEY || captcha) return syncSend();
+    $('loginCaptcha').hidden = false;
+    msg('loginCaptchaNote', 'Έλεγχος ασφαλείας για την αποστολή κωδικού…');
+    syncSend();
+    try {
+      const ts = await loadTurnstile();
+      captcha = mountWidget(ts, $('loginCaptcha'), SITE_KEY, {
+        onToken: () => { msg('loginCaptchaNote', ''); syncSend(); },
+        onReset: syncSend,
+        onError: () => { msg('loginCaptchaNote', MSG.captcha); syncSend(); },
+      });
+    } catch { msg('loginCaptchaNote', MSG.captchaLoad); }
+    syncSend();
   }
   $('loginGoogle').onclick = async () => {
     msg('loginError', '');
@@ -67,8 +91,10 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     email = $('loginEmail').value.trim();
     msg('loginError', '');
     const done = working($('loginSend'), 'Στέλνω…');
-    const r = await account.sendCode(email);
+    const r = await account.sendCode(email, {captchaToken: captcha?.token() || ''});
     done();
+    captcha?.reset();          // κάθε token ισχύει για μία αποστολή
+    syncSend();
     if(r.error) return msg('loginError', r.error);
     loginStep('code');
     $('loginSentTo').textContent = `Σου στείλαμε 6ψήφιο κωδικό στο ${email}. Γράψ' τον εδώ:`;
@@ -92,13 +118,11 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
   });
   $('loginResend').onclick = async () => {
     msg('loginError', ''); msg('loginStatus', '');
-    const r = await account.sendCode(email);
+    const r = await account.sendCode(email, {captchaToken: captcha?.token() || ''});
+    captcha?.reset(); syncSend();
     if(r.error) msg('loginError', r.error); else msg('loginStatus', 'Στάλθηκε νέος κωδικός.');
   };
   $('loginOther').onclick = () => { loginStep('start'); $('loginEmail').focus(); };
-  document.querySelectorAll('[data-legal]').forEach(b => b.onclick = () => {
-    $('legalText').hidden = false; $('legalText').textContent = LEGAL[b.dataset.legal];
-  });
 
   // ── Μετά τη σύνδεση: στοιχεία επιχείρησης ──
   async function afterLogin(){

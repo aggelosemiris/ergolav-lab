@@ -13,3 +13,7 @@ data/cache/
 # Worker «Άλλαξέ το»: τοπικές ρυθμίσεις και secrets του wrangler δεν ανεβαίνουν
 .wrangler/
 .dev.vars*
+
+# Supabase CLI (τοπικά: project ref, εκδόσεις)
+supabase/.temp/
+supabase/.branches/

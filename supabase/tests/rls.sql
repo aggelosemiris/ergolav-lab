@@ -41,6 +41,12 @@ do $$ declare n int; begin
   if n <> 0 then raise exception 'FAIL: ο Α έσβησε το profile του Β'; end if;
 
   begin
+    truncate public.profiles;
+    raise exception 'FAIL: ο Α άδειασε τον πίνακα profiles (TRUNCATE)';
+  exception when insufficient_privilege then null;
+  end;
+
+  begin
     insert into public.profiles (id) values ('00000000-0000-4000-8000-00000000000c');
     raise exception 'FAIL: ο Α έφτιαξε profile με ξένο id';
   exception when insufficient_privilege or foreign_key_violation then null;
@@ -60,8 +66,12 @@ do $$ declare n int; begin
   get diagnostics n = row_count;
   if n <> 0 then raise exception 'FAIL: ο Α άλλαξε το λογότυπο του Β'; end if;
 
-  delete from storage.objects where bucket_id = 'logos' and name = '00000000-0000-4000-8000-00000000000b/logo.jpg';
-  get diagnostics n = row_count;
+  -- Το Supabase απαγορεύει κάθε απευθείας DELETE στο storage.objects (μόνο μέσω Storage API): άρνηση = σωστό.
+  begin
+    delete from storage.objects where bucket_id = 'logos' and name = '00000000-0000-4000-8000-00000000000b/logo.jpg';
+    get diagnostics n = row_count;
+  exception when insufficient_privilege then n := 0;
+  end;
   if n <> 0 then raise exception 'FAIL: ο Α έσβησε το λογότυπο του Β'; end if;
 
   begin
