@@ -4,9 +4,12 @@
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/account.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
-const SB = 'https://your-project-ref.supabase.co';
+// Η διεύθυνση του project από το src/config.js (όπως και η CSP). ΟΛΑ τα αιτήματα προς αυτήν τα απαντά ο ψεύτικος
+// server παρακάτω: το test δεν φτάνει ποτέ στο πραγματικό Supabase.
+const CONFIG_SRC = (await import('node:fs')).readFileSync(new URL('../../src/config.js', import.meta.url), 'utf8');
+const SB = CONFIG_SRC.match(/SUPABASE_URL = '([^']+)'/)[1];
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
-const results = [];
+const results = [], leaked = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
 
 const UID = '11111111-2222-4333-8444-555555555555';
@@ -79,12 +82,16 @@ async function page({auth = true, viewport = {width: 390, height: 844}, ctx, sit
   await p.route('https://challenges.cloudflare.com/**', r => turnstile === 'fail' ? r.abort() : r.fulfill({contentType: 'text/javascript', body: `
     window.turnstile = {n: 0, render(el, o){ el.dataset.rendered = o.sitekey + '|' + o.action; this.o = o; setTimeout(() => o.callback('ts-token-' + (++this.n)), 50); return 'w1'; },
       reset(){ const o = this.o; setTimeout(() => o.callback('ts-token-' + (++this.n)), 50); }};`}));
-  if(auth) await p.route('**/src/config.js', async r => {
+  // Ρυθμίσεις του κάθε σεναρίου: flag, δοκιμαστικό key, site key Turnstile (ή κανένα).
+  await p.route('**/src/config.js', async r => {
     const res = await r.fetch();
-    const src = (await res.text()).replace('export const AUTH_ENABLED = false', 'export const AUTH_ENABLED = true').replace("'your-anon-key'", "'test-anon-key'")
-      .replace("export const TURNSTILE_SITE_KEY = ''", `export const TURNSTILE_SITE_KEY = '${siteKey}'`);
+    const src = (await res.text()).replace(/export const AUTH_ENABLED = (true|false)/, `export const AUTH_ENABLED = ${auth}`)
+      .replace(/export const SUPABASE_ANON_KEY = '[^']*'/, "export const SUPABASE_ANON_KEY = 'test-anon-key'")
+      .replace(/export const TURNSTILE_SITE_KEY = '[^']*'/, `export const TURNSTILE_SITE_KEY = '${siteKey}'`);
     return r.fulfill({response: res, body: src});
   });
+  // Ασφάλεια: αίτημα προς οποιοδήποτε *.supabase.co που ΔΕΝ πιάστηκε παραπάνω = αποτυχία του test.
+  await p.route(/^https:\/\/[^/]*\.supabase\.co\//, r => { if(!r.request().url().startsWith(SB)) { leaked.push(r.request().url()); return r.abort(); } return r.fallback(); });
   await p.addInitScript(() => {
     window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
     window.__csp = [];
@@ -313,6 +320,7 @@ try {
   ok('το console δεν έγραψε email, τηλέφωνο, όνομα ή token', leaks.length === 0, leaks.join(' | '));
   await p2.setViewportSize({width: 320, height: 700});
   ok('320px: το κουμπί χωράει στην κεφαλίδα, χωρίς οριζόντια κύλιση', await p2.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  ok('κανένα αίτημα δεν βγήκε προς πραγματικό Supabase', leaked.length === 0, leaked.join(' | '));
   ok('χωρίς σφάλματα JavaScript', p.errs.length + p2.errs.length === 0, [...p.errs, ...p2.errs].join(' | '));
 } finally {
   await b.close();

@@ -49,6 +49,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     step = s;
     $('loginStart').hidden = s !== 'start';
     $('loginCode').hidden = s !== 'code';
+    $('loginSend').hidden = s !== 'start';
     msg('loginError', ''); msg('loginStatus', '');
   }
   function openLogin(error = ''){

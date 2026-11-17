@@ -506,7 +506,6 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <p class="or"><span>ή με email</span></p>
         <div class="field"><label for="loginEmail">Email</label>
           <input id="loginEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
-        <button class="primary" id="loginSend" type="button">Στείλε μου κωδικό</button>
       </div>
       <div id="loginCode" hidden>
         <p class="lede" id="loginSentTo">Σου στείλαμε 6ψήφιο κωδικό στο email σου. Γράψ' τον εδώ:</p>
@@ -519,6 +518,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <!-- Cloudflare Turnstile (μόνο με TURNSTILE_SITE_KEY): για την αποστολή κωδικού email -->
       <div class="captcha" id="loginCaptcha" hidden></div>
       <p class="privacy" id="loginCaptchaNote" role="status" hidden></p>
+      <!-- Μετά τον έλεγχο ασφαλείας, ώστε το «Επαληθεύστε ότι είστε άνθρωπος» να φαίνεται πρώτο -->
+      <button class="primary" id="loginSend" type="button">Στείλε μου κωδικό</button>
       <div class="notice" id="loginError" role="alert" hidden></div>
       <p class="acct-ok" id="loginStatus" role="status" hidden></p>
       <p class="privacy legal">Συνεχίζοντας, αποδέχεσαι τους <a href="legal/terms.html">Όρους</a> και το
