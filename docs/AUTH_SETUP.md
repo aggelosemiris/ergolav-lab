@@ -11,11 +11,14 @@
 |---|---|
 | Supabase project | `myyecdraxrkkwojppglb` (eu-central-1, Φρανκφούρτη), Free |
 | Βάση | migration του `supabase/migrations/` (μέσω Management API· βλ. βήμα 3), `rls.sql` → «RLS OK» |
-| Function | `delete-account`, Verify JWT ενεργό, CORS: `ALLOWED_ORIGINS` στο `handler.ts` |
-| Email | δικό μας SMTP (Gmail, `myergolav@gmail.com`), ελληνικό email με κωδικό 6 ψηφίων, λήξη 10′ |
+| Function | `delete-account`, Verify JWT ενεργό, σύνδεση των τελευταίων 10′ (αλλιώς 403), CORS: `ALLOWED_ORIGINS` στο `handler.ts` |
+| Σύνδεση | **υποχρεωτική**: email + κωδικός πρόσβασης (8+, γράμματα και αριθμοί), ή Google |
+| Κωδικός πρόσβασης | Min length 8, «Letters and digits», αλλαγή μόνο με τον τωρινό (εκτός από την επαναφορά) |
+| Email | δικό μας SMTP (Gmail, `myergolav@gmail.com`)· ελληνικά templates με κωδικό 6 ψηφίων, χωρίς link: Confirm signup, Reset password, Change email· ειδοποιήσεις «άλλαξε ο κωδικός» / «άλλαξε το email»· λήξη 10′ |
+| `has_password()` | συνάρτηση βάσης: true/false μόνο για τον τρέχοντα χρήστη (migration `20261117000000_has_password.sql`) |
 | Google | OAuth client στο Google Cloud· provider ενεργός στο Supabase |
 | CAPTCHA | Cloudflare Turnstile (widget «ergolav»)· site key στο `src/config.js`, secret ΜΟΝΟ στο Supabase |
-| Όρια ανά IP | 10 αποστολές/συνδέσεις και 15 επαληθεύσεις κωδικού ανά 5′· 30 email/ώρα |
+| Όρια ανά IP | 30 εγγραφές/συνδέσεις/αποστολές και 30 επαληθεύσεις κωδικού ανά 5′ (τα κινητά δίκτυα μοιράζονται IP)· 30 email/ώρα· στην εφαρμογή: μετά από 5 λάθος κωδικούς αναμονή 30″ που διπλασιάζεται έως 5′ |
 
 ## Κλείσιμο αμέσως, αν κάτι πάει στραβά
 
@@ -78,19 +81,16 @@
   username/sender το Gmail, password ο κωδικός εφαρμογής (μόνο εκεί), sender name `ergolav` → **Save**.
 
 
-1. **Authentication → Sign In / Providers → Email**: ενεργό. **Email OTP Length: 6**, **Email OTP Expiration: 600**
+1. **Authentication → Sign In / Providers → Email**: ενεργό, **Confirm email** ενεργό, **Secure email change** ΚΛΕΙΣΤΟ
+   (ο κωδικός πάει μόνο στο νέο email· το παλιό παίρνει ειδοποίηση), **Email OTP Length: 6**, **Email OTP Expiration: 600**
    (10 λεπτά· ίδιο με το `OTP_TTL_S` στο `src/account.js`, που ξεχωρίζει το «λάθος» από το «έληξε»).
-2. **Authentication → Emails → Templates**: άλλαξε **και** το **Magic Link** **και** το **Confirm signup** (το πρώτο email
-   νέου χρήστη) ώστε να δείχνουν τον κωδικό και όχι link:
-   - Θέμα: `Ο κωδικός σου για το ergolav`
-   - Κείμενο:
-
-     ```html
-     <h2>Ο κωδικός σου για το ergolav</h2>
-     <p>Γράψε αυτόν τον κωδικό στην εφαρμογή:</p>
-     <p style="font-size:28px;font-weight:700;letter-spacing:6px">{{ .Token }}</p>
-     <p>Ισχύει για 10 λεπτά. Αν δεν τον ζήτησες εσύ, αγνόησε αυτό το email.</p>
-     ```
+2. **Authentication → Sign In / Providers → Email → Password**: **Minimum length 8**, **Password requirements: Letters and
+   digits** (ίδιο με το `passwordCheck` του `src/account.js`), **Require current password when updating** ενεργό.
+3. **Authentication → Emails → Templates** (στα ελληνικά, με `{{ .Token }}` και ΧΩΡΙΣ link):
+   **Confirm signup** (επιβεβαίωση εγγραφής), **Reset password** (Ξέχασα τον κωδικό), **Change email address** (κωδικός στο
+   νέο email). Και στις **Security notifications**: «Password changed» και «Email address changed» ενεργά, στα ελληνικά.
+   Το ακριβές κείμενο που μπήκε στο ergolav-lab μπαίνει με ένα PATCH στο Management API (`/v1/projects/<ref>/config/auth`,
+   πεδία `mailer_templates_*_content`, `mailer_subjects_*`).
 
    Κωδικός και όχι link: στο iPhone ένα link από το email ανοίγει στο Safari και όχι στην εφαρμογή της αρχικής οθόνης.
 
@@ -135,12 +135,13 @@ npx supabase functions deploy delete-account
 ## 8. Δοκιμή
 
 1. `AUTH_ENABLED = true` → `npm start` → άνοιξε `http://localhost:8087/`.
-2. **Σύνδεση** πάνω δεξιά → **Στείλε μου κωδικό** με το email σου → γράψε τον κωδικό → «Συνδέθηκες».
-3. **Αποσύνδεση** → ξανά με **Συνέχεια με Google**.
+2. Ανοίγει μόνο η οθόνη σύνδεσης. **Νέος λογαριασμός** → email, κωδικός δύο φορές, «Αποδέχομαι» → κωδικός 6 ψηφίων από
+   το email → «Τα στοιχεία σου» → αρχική.
+3. **Αποσύνδεση** → σύνδεση με email και κωδικό· **Ξέχασα τον κωδικό** → κωδικός 6 ψηφίων → νέος κωδικός· **Συνέχεια με Google**.
 4. Σε δεύτερο browser (ή σε ιδιωτικό παράθυρο): σύνδεση με τον ίδιο λογαριασμό → τα στοιχεία της επιχείρησης και το
    λογότυπο έρχονται μόνα τους.
 5. Στο Supabase: **Table Editor → profiles** (μία γραμμή) και **Storage → logos** (ο φάκελός σου).
-6. **Ο λογαριασμός μου → Διαγραφή λογαριασμού** → ο χρήστης φεύγει από το **Authentication → Users**, η γραμμή από το
+6. **Ο λογαριασμός μου → Διαγραφή λογαριασμού** → ξανά ο κωδικός (ή Google) → ο χρήστης φεύγει από το **Authentication → Users**, η γραμμή από το
    `profiles`, ο φάκελος από το `logos`. Στη συσκευή οι προσφορές μένουν.
 
 ## 9. CAPTCHA με Cloudflare Turnstile (δωρεάν)
@@ -150,7 +151,9 @@ npx supabase functions deploy delete-account
 2. **Site key** (δημόσιο) → `TURNSTILE_SITE_KEY` στο `src/config.js`.
 3. **Secret key** → ΜΟΝΟ στο Supabase: **Authentication → Attack Protection → CAPTCHA → Turnstile** → Save.
 4. CSP: `https://challenges.cloudflare.com` μόνο σε `script-src`, `frame-src`, `connect-src` (ήδη στο `index.html`).
-   Αν το Turnstile δεν φορτώσει, η αποστολή κωδικού κλειδώνει με μήνυμα· το «Συνέχεια με Google» δουλεύει κανονικά.
+   Ζητείται σε εγγραφή, σύνδεση με κωδικό, «Ξέχασα τον κωδικό», «Στείλε ξανά» και στην επιβεβαίωση πριν από τη διαγραφή.
+   Αν το Turnstile δεν φορτώσει, αυτά κλειδώνουν με μήνυμα· το «Συνέχεια με Google» δουλεύει κανονικά.
+   Τα μηνύματα «Fetch API cannot load data:,» στην κονσόλα έρχονται από το iframe του Turnstile (δική του CSP), όχι από την εφαρμογή.
 
 ## Δωρεάν όρια (Supabase Free)
 
@@ -185,4 +188,10 @@ npx supabase functions deploy delete-account
 
 - Οι **προσφορές, το ημερολόγιο, οι τιμές** και ο **αριθμός προσφοράς** (`ergolav.quoteNo`) μένουν μόνο στη συσκευή. Ο
   συγχρονισμός τους είναι η επόμενη φάση.
-- Σύνδεση και αποσύνδεση **δεν σβήνουν ποτέ** δεδομένα της συσκευής. Η αποσύνδεση αφορά **μόνο αυτή τη συσκευή**.
+- Σύνδεση και αποσύνδεση **δεν σβήνουν ποτέ** δεδομένα της συσκευής. Η «Αποσύνδεση» αφορά μόνο αυτή τη συσκευή· η
+  «Αποσύνδεση από όλες τις συσκευές» ανακαλεί όλες τις συνεδρίες.
+- Χωρίς ίντερνετ, με αποθηκευμένη συνεδρία (ακόμα και ληγμένη) η εφαρμογή δουλεύει κανονικά: κλειδώνει μόνο όταν ο server
+  πει ότι η συνεδρία δεν ισχύει πια, και τότε ό,τι έγραφε ο τεχνίτης μένει μέχρι να συνδεθεί ξανά.
+- Λογαριασμοί που φτιάχτηκαν με τον παλιό «κωδικό στο email» (πριν από τον κωδικό πρόσβασης): μπαίνουν με
+  **Ξέχασα τον κωδικό** μία φορά (ή με Google, αν είναι Google).
+- Το Supabase δέχεται ακόμα σύνδεση με κωδικό στο email (OTP) μέσω API· η εφαρμογή δεν τη δείχνει πια.

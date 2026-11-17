@@ -111,10 +111,7 @@ export function summarize(u){
   const full = String(meta.full_name || meta.name || meta.given_name || '').trim();
   const name = (full.split(/\s+/)[0] || String(u.email || '').split('@')[0] || 'Λογαριασμός').slice(0, 16);
   const providers = [...new Set([...(u.identities || []).map(i => i.provider), ...(u.app_metadata?.providers || [])].filter(Boolean))];
-  // Κωδικός: ταυτότητα email, ή κωδικός που ορίστηκε αργότερα σε λογαριασμό Google («Ξέχασα τον κωδικό»). Το Supabase
-  // δεν το δείχνει στον χρήστη (μένει providers: ['google']), γι' αυτό το σημάδι has_password στα user_metadata.
-  const password = providers.includes('email') || !!meta.has_password;
-  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email', password,
+  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email',
     providers: providers.length ? providers : [u.app_metadata?.provider || 'email'], confirmed: !!(u.email_confirmed_at || u.confirmed_at)};
 }
 
@@ -186,7 +183,7 @@ export function loadClient(cfg, win = globalThis){
  * win: window (location, history, localStorage, navigator). now(): η ώρα (για τα τεστ).
  */
 export function createAccount({config = CONFIG, getClient = c => loadClient(c), win = globalThis, now = Date.now, timeoutMs = TIMEOUT_MS} = {}){
-  let client = null, sentAt = 0, expectSignOut = false;
+  let client = null, sentAt = 0, expectSignOut = false, pwKnown = null;
   const listeners = new Set(), lockListeners = new Set();
   const emit = () => listeners.forEach(f => { try { f(user); } catch {} });
   const enabled = !!config.AUTH_ENABLED && configured(config);
@@ -200,6 +197,7 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
   const waitLeft = () => Math.max(0, Math.ceil(((thr().until || 0) - now()) / 1000));
   const fail = field => e => ({error: err(e), field});
   const setUser = u => { user = summarize(u); emit(); return user; };
+  const knowPw = v => { pwKnown = user ? {id: user.id, v} : null; };
   const err = e => errorText(e, {sentAt, now: now(), online: isOnline(win)});
   const store = () => { try { return win.localStorage ?? null; } catch { return null; } };
   const ref = enabled ? new URL(config.SUPABASE_URL).hostname.split('.')[0] : '';
@@ -330,9 +328,6 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
           return {error: msg, field: msg === MSG.badLogin ? 'password' : undefined, notConfirmed: msg === MSG.notConfirmed};
         }
         setThr({});
-        // Λογαριασμός Google που ορίστηκε κωδικός πριν από αυτή την έκδοση: το σημάδι μπαίνει τώρα (χωρίς αναμονή).
-        if(!data.user?.user_metadata?.has_password && !(data.user?.identities || []).some(i => i.provider === 'email'))
-          c().then(cl => cl.auth.updateUser({data: {has_password: true}})).then(r => r?.data?.user && setUser(r.data.user)).catch(() => {});
         return {user: setUser(data.user)};
       } catch(e) { return fail()(e); }
     },
@@ -366,9 +361,10 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       if(!chk.rules.match) return {error: MSG.mismatch, field: 'repeat'};
       if(current !== null && !current) return {error: MSG.noPassword, field: 'current'};
       try {
-        const attrs = {password, data: {has_password: true}, ...(current !== null && {current_password: current})};
+        const attrs = {password, ...(current !== null && {current_password: current})};
         const {data, error} = await call(cl => cl.auth.updateUser(attrs));
-        if(error){ const m = err(error); return {error: m, field: [MSG.wrongCurrent, MSG.needCurrent].includes(m) ? 'current' : 'password'}; }
+        if(error){ const m = err(error); if(m === MSG.needCurrent) knowPw(true); return {error: m, field: [MSG.wrongCurrent, MSG.needCurrent].includes(m) ? 'current' : 'password'}; }
+        knowPw(true);
         return {user: setUser(data.user)};
       } catch(e) { return fail()(e); }
     },
@@ -415,7 +411,19 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
         return r && now() - r.at < 600000 ? r.purpose : '';
       } catch { return ''; }
     },
-    hasPassword: () => !!user?.password,
+    /**
+     * Έχει ο λογαριασμός κωδικό πρόσβασης; Το Supabase δεν το δείχνει (λογαριασμός Google που όρισε κωδικό μένει
+     * providers: ['google']): ρωτάμε τη βάση, has_password() — μόνο για τον τρέχοντα χρήστη, μόνο true/false.
+     * Χωρίς απάντηση (π.χ. χωρίς ίντερνετ): ό,τι ξέρουμε, αλλιώς από τους τρόπους σύνδεσης.
+     */
+    async hasPassword(){
+      if(!user) return false;
+      try {
+        const {data, error} = await call(cl => cl.rpc('has_password'));
+        if(!error && typeof data === 'boolean') knowPw(data);
+      } catch {}
+      return pwKnown?.id === user.id ? pwKnown.v : !!user.providers?.includes('email');
+    },
     onLock(f){ lockListeners.add(f); return () => lockListeners.delete(f); },
 
     /** Αποσύνδεση: αυτής της συσκευής (προεπιλογή) ή όλων (global). Δεν αγγίζει δεδομένα της εφαρμογής (ergolav.*). */

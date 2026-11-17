@@ -629,7 +629,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <small class="hint" id="acctVia"></small></div>
       <p class="privacy">Οι προσφορές, το ημερολόγιο και οι τιμές μένουν σε αυτή τη συσκευή και δεν σβήνονται με την αποσύνδεση.</p>
 
-      <button class="ghost wide" id="acctPwOpen" type="button">Αλλαγή κωδικού</button>
+      <button class="ghost wide" id="acctPwOpen" type="button">Κωδικός πρόσβασης</button>
       <div class="card acct-box" id="acctPwBox" hidden>
         <div id="acctPwCurWrap"><div class="field pw"><label for="acctPwCur">Τωρινός κωδικός</label>
           <div class="pw-row"><input id="acctPwCur" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="acctPwCur" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
@@ -678,6 +678,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <small class="ferr" id="acctDelPwErr" role="alert" hidden></small>
           <div class="captcha" id="acctCaptcha" hidden></div>
           <p class="privacy" id="acctCaptchaNote" role="status" hidden></p></div>
+        <button class="linkbtn" id="acctDelGoogle" type="button" hidden>Ή επιβεβαίωσε με Google</button>
         <p class="privacy" id="acctDelGoogleNote" hidden>Για ασφάλεια, θα συνδεθείς ξανά με Google και μετά θα ολοκληρωθεί η διαγραφή.</p>
         <button class="primary danger-bg" id="acctDelYes" type="button">Ναι, σβήσε τον λογαριασμό</button>
         <button class="ghost wide" id="acctDelNo" type="button">Άκυρο</button>

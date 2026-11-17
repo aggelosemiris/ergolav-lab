@@ -14,4 +14,6 @@ psql=("$bin/psql" -h "$dir" -p "$port" -U postgres -v ON_ERROR_STOP=1 -q -X)
 "${psql[@]}" -f "$here/local-stub.sql"
 "${psql[@]}" -f "$here/../migrations/20261116000000_auth_profiles.sql"
 "${psql[@]}" -f "$here/../migrations/20261116000000_auth_profiles.sql"   # ξανατρέξιμο
+"${psql[@]}" -f "$here/../migrations/20261117000000_has_password.sql"
+"${psql[@]}" -f "$here/../migrations/20261117000000_has_password.sql"   # ξανατρέξιμο
 "${psql[@]}" -t -A -f "$here/rls.sql" | tail -1

@@ -374,13 +374,18 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
   }
 
   // ── Ο λογαριασμός μου ──
+  // Έχει κωδικό; Το ρωτάμε τη βάση (has_password) όταν χρειάζεται: αλλαγή κωδικού, διαγραφή.
+  let hasPw = false;
+  const providers = () => account.user()?.providers || [];
+  const via = pw => { const g = providers().includes('google');
+    $('acctVia').textContent = pw && g ? 'Σύνδεση με email και κωδικό ή με Google' : g ? 'Σύνδεση με Google' : 'Σύνδεση με email και κωδικό'; };
   function openAccount({status = '', error = '', del = false} = {}){
     const u = account.user();
     if(!u) return lock('expired');
-    const pw = account.hasPassword(), g = u.providers.includes('google');
+    hasPw = providers().includes('email');           // πρώτη εκτίμηση· η βάση απαντά όταν χρειαστεί
     $('acctEmail').textContent = u.email || u.name;
-    $('acctVia').textContent = pw && g ? 'Σύνδεση με email και κωδικό ή με Google' : g ? 'Σύνδεση με Google' : 'Σύνδεση με email και κωδικό';
-    $('acctPwOpen').textContent = pw ? 'Αλλαγή κωδικού' : 'Όρισε κωδικό';
+    via(hasPw);
+    $('acctPwOpen').textContent = 'Κωδικός πρόσβασης';
     ['acctPwBox', 'acctEmBox', 'acctEmCodeWrap', 'acctDelBox'].forEach(id => { $(id).hidden = true; });
     ['acctPwCur', 'acctPw', 'acctPw2', 'acctEm', 'acctEmCode', 'acctDelPw'].forEach(id => { $(id).value = ''; });
     $('acctWipe').checked = false;
@@ -390,17 +395,28 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     cta(null);
     if(del) openDelete();
   }
+  async function askPassword(btn){
+    const done = working(btn, 'Περίμενε…');
+    hasPw = await account.hasPassword();
+    done();
+    via(hasPw);
+    return hasPw;
+  }
   const ACCT = {password: 'acctPw', repeat: 'acctPw2', current: 'acctPwCur', email: 'acctEm', code: 'acctEmCode'};
   $('s-account').addEventListener('input', e => {
     if(e.target.id) fieldErr(e.target.id, '');
     syncRules('acct', val('acctPw'), val('acctPw2'));
     syncDel();
   });
-  $('acctPwOpen').onclick = () => {
-    $('acctPwBox').hidden = !$('acctPwBox').hidden;
-    $('acctPwCurWrap').hidden = !account.hasPassword();
+  $('acctPwOpen').onclick = async () => {
+    if(pending) return;
+    if(!$('acctPwBox').hidden){ $('acctPwBox').hidden = true; return; }
+    const pw = await askPassword($('acctPwOpen'));
+    $('acctPwBox').hidden = false;
+    $('acctPwCurWrap').hidden = !pw;
+    $('acctPwSave').textContent = pw ? 'Αλλαγή κωδικού' : 'Ορισμός κωδικού';
     syncRules('acct', '', '');
-    if(!$('acctPwBox').hidden) $(account.hasPassword() ? 'acctPwCur' : 'acctPw').focus();
+    $(pw ? 'acctPwCur' : 'acctPw').focus();
   };
   $('acctPwSave').onclick = async () => {
     if(pending) return;
@@ -456,32 +472,37 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     openLogin({status});
   }
 
-  // Διαγραφή: ξανά ο κωδικός (ή νέα σύνδεση με Google, για λογαριασμούς χωρίς κωδικό).
+  // Διαγραφή: ξανά επιβεβαίωση ταυτότητας. Με κωδικό → ο κωδικός· μόνο Google → νέα σύνδεση Google·
+  // Google ΚΑΙ κωδικός → οποιοδήποτε από τα δύο.
   const syncDel = () => {
     if(pending) return;
-    $('acctDelYes').disabled = account.hasPassword() && !reauthDone && (!val('acctDelPw') || !delCaptcha.ready());
+    $('acctDelYes').disabled = !reauthDone && hasPw && (!val('acctDelPw') || !delCaptcha.ready());
   };
-  function openDelete(){
-    const pw = account.hasPassword() && !reauthDone;
+  async function openDelete(){
+    if(pending) return;
+    if(!reauthDone) await askPassword($('acctDelete'));
+    const g = providers().includes('google'), pw = hasPw && !reauthDone;
     $('acctDelBox').hidden = false;
     $('acctDelPwWrap').hidden = !pw;
-    $('acctDelGoogleNote').hidden = account.hasPassword() || reauthDone;
-    $('acctDelYes').textContent = !account.hasPassword() && !reauthDone ? 'Σύνδεση με Google και διαγραφή' : 'Ναι, σβήσε τον λογαριασμό';
+    $('acctDelGoogle').hidden = !(pw && g);                 // και τα δύο: «ή επιβεβαίωσε με Google»
+    $('acctDelGoogleNote').hidden = hasPw || reauthDone;
+    $('acctDelYes').textContent = !hasPw && !reauthDone ? 'Σύνδεση με Google και διαγραφή' : 'Ναι, σβήσε τον λογαριασμό';
     if(pw){ delCaptcha.ensure(); $('acctDelPw').focus(); }
     syncDel();
   }
+  async function viaGoogle(btn){
+    const done = working(btn, 'Άνοιγμα Google…');
+    const r = await account.reauthGoogle('delete');
+    if(r.error){ done(); msg('acctError', r.error); }
+  }
   $('acctDelete').onclick = openDelete;
+  $('acctDelGoogle').onclick = () => { if(!pending) viaGoogle($('acctDelGoogle')); };
   $('acctDelNo').onclick = () => { $('acctDelBox').hidden = true; $('acctDelPw').value = ''; };
   $('acctDelYes').onclick = async () => {
     if(pending || $('acctDelYes').disabled) return;
     msg('acctError', '');
     const wipe = $('acctWipe').checked;
-    if(!account.hasPassword() && !reauthDone){
-      const done = working($('acctDelYes'), 'Άνοιγμα Google…');
-      const r = await account.reauthGoogle('delete');
-      if(r.error){ done(); msg('acctError', r.error); }
-      return;
-    }
+    if(!hasPw && !reauthDone) return viaGoogle($('acctDelYes'));
     const done = working($('acctDelYes'), 'Διαγραφή…');
     if(!reauthDone){
       const a = await account.reauthPassword(val('acctDelPw'), {captchaToken: delCaptcha.token()});

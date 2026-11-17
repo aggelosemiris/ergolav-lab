@@ -10,6 +10,7 @@ create schema if not exists auth;
 create table if not exists auth.users (
   id uuid primary key, email text, aud text, role text, created_at timestamptz default now()
 );
+alter table auth.users add column if not exists encrypted_password text;
 create or replace function auth.uid() returns uuid language sql stable as $$
   select coalesce(nullif(current_setting('request.jwt.claim.sub', true), ''),
                   (nullif(current_setting('request.jwt.claims', true), '')::jsonb ->> 'sub'))::uuid

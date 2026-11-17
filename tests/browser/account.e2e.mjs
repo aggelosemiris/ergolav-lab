@@ -87,6 +87,7 @@ async function supabase(route){
     const f = server.files[decodeURIComponent(obj[1])];
     return f ? route.fulfill({status: 200, contentType: 'image/png', body: f, headers: H}) : json(route, 404, {error: 'not_found'});
   }
+  if(path === '/rest/v1/rpc/has_password'){ server.rpcCalls = (server.rpcCalls || 0) + 1; return json(route, 200, server.hasPw ?? server.providers.includes('email')); }
   if(path === '/functions/v1/delete-account'){ server.deleted = true; server.row = null; server.files = {}; return json(route, 200, {deleted: true}); }
   console.log('  (άγνωστο αίτημα)', m, path);
   return json(route, 404, {});
@@ -375,6 +376,38 @@ try {
     await p.context().close();
   }
 
+  // ── 8β. Λογαριασμός Google που όρισε κωδικό («Ξέχασα τον κωδικό»): το Supabase δείχνει μόνο google — ρωτάμε τη βάση ──
+  for(const hasPw of [true, false]){
+    const p = await page();
+    server.providers = ['google']; server.hasPw = hasPw; server.deleted = false; server.rpcCalls = 0;
+    server.row = {id: UID, business_name: 'Google Επιχείρηση', specialty: null, phone: null, logo_path: null};
+    await p.goto(BASE); await p.waitForSelector('#s-login.on');
+    await Promise.all([p.waitForURL(/127\.0\.0\.1|localhost/), p.click('#lgGoogle')]);
+    await p.waitForSelector('#s-start.on', {timeout: 15000});
+    server.providers = ['google'];                      // (το pkce του ψεύτικου server προσθέτει google σε ό,τι υπήρχε)
+    await p.click('#acctBtn'); await p.waitForSelector('#s-account.on');
+    await p.click('#acctPwOpen'); await p.waitForSelector('#acctPwBox:not([hidden])');
+    ok(`Google ${hasPw ? 'ΜΕ' : 'χωρίς'} κωδικό: η βάση ρωτήθηκε (has_password), «Τωρινός κωδικός» ${hasPw ? 'ζητείται' : 'δεν ζητείται'}`,
+      server.rpcCalls >= 1 && (await p.isVisible('#acctPwCur')) === hasPw && await text(p, '#acctPwSave') === (hasPw ? 'Αλλαγή κωδικού' : 'Ορισμός κωδικού'));
+    ok(`Google ${hasPw ? 'ΜΕ' : 'χωρίς'} κωδικό: «${hasPw ? 'email και κωδικό ή με Google' : 'Σύνδεση με Google'}»`,
+      await text(p, '#acctVia') === (hasPw ? 'Σύνδεση με email και κωδικό ή με Google' : 'Σύνδεση με Google'));
+    await p.click('#acctDelete'); await p.waitForSelector('#acctDelBox:not([hidden])');
+    if(hasPw){
+      ok('Google + κωδικός: η διαγραφή δέχεται ΚΑΙ κωδικό ΚΑΙ Google', await p.isVisible('#acctDelPw') && await p.isVisible('#acctDelGoogle'));
+      await Promise.all([p.waitForURL(/127\.0\.0\.1|localhost/), p.click('#acctDelGoogle')]);
+      await p.waitForSelector('#s-account.on #acctDelBox:not([hidden])', {timeout: 15000});
+      ok('επιβεβαίωση με Google → πίσω στη διαγραφή, χωρίς να ζητά κωδικό', /Επιβεβαιώθηκες με Google/.test(await text(p, '#acctStatus')) &&
+        !(await p.isVisible('#acctDelPw')) && await p.isEnabled('#acctDelYes') && !server.deleted);
+      await p.click('#acctDelYes'); await p.waitForSelector('#s-login.on');
+      ok('→ διαγραφή', server.deleted);
+    } else {
+      ok('μόνο Google: η διαγραφή ζητά νέα σύνδεση με Google (όχι κωδικό)', !(await p.isVisible('#acctDelPw')) && !(await p.isVisible('#acctDelGoogle')) &&
+        await text(p, '#acctDelYes') === 'Σύνδεση με Google και διαγραφή');
+    }
+    await p.context().close();
+  }
+  server.hasPw = undefined; server.providers = ['email'];
+
   // ── 9. Νέα συσκευή, νέος λογαριασμός: «Τα στοιχεία σου» ΥΠΟΧΡΕΩΤΙΚΑ πριν από την αρχική ──
   {
     const p = await page();
@@ -393,7 +426,7 @@ try {
     ok('→ αρχική, και το όνομα ανέβηκε στον λογαριασμό', server.row?.business_name === 'Νέος Τεχνίτης');
     // Διαγραφή: ζητά ξανά κωδικό (+ Turnstile)
     await p.click('#acctBtn'); await p.waitForSelector('#s-account.on');
-    await p.click('#acctDelete');
+    await p.click('#acctDelete'); await p.waitForSelector('#acctDelBox:not([hidden])');
     ok('διαγραφή → ζητά ξανά τον κωδικό (με έλεγχο ασφαλείας), κουμπί κλειδωμένο χωρίς κωδικό', await visible(p, '#acctDelPw') &&
       await p.getAttribute('#acctDelPw', 'autocomplete') === 'current-password' && await p.isDisabled('#acctDelYes') && !server.deleted);
     await p.fill('#acctDelPw', 'lathos-999');

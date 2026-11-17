@@ -60,6 +60,7 @@ function fakeClient({session = null, remote = {}, files = {}, fail = {}} = {}){
       list: async prefix => ({data: Object.keys(files).filter(p => p.startsWith(prefix + '/')).map(p => ({name: p.split('/')[1]})), error: null}),
       remove: async paths => { calls.push(['remove', bucket, paths]); paths.forEach(p => delete files[p]); return {error: null}; },
     })},
+    rpc: async name => { calls.push(['rpc', name]); if(fail.rpc) return {data: null, error: err(fail.rpc)}; return {data: remote.hasPassword ?? true, error: null}; },
     functions: {invoke: async (name, opts) => { calls.push(['invoke', name, opts]); return {data: null, error: err(fail.invoke) || null}; }},
   };
   c.user = user;
@@ -240,7 +241,7 @@ test('ξέχασα τον κωδικό: κωδικός 6 ψηφίων (recovery)
   assert.deepEqual(await a.setPassword(PW2, PW2 + '!'), {error: MSG.mismatch, field: 'repeat'});
   assert.deepEqual(await a.setPassword('short1', 'short1'), {error: MSG.weak, field: 'password'});
   assert.ok((await a.setPassword(PW2, PW2)).user);
-  assert.deepEqual(client.calls.at(-1), ['updateUser', {password: PW2, data: {has_password: true}}], 'στην επαναφορά δεν ζητείται ο παλιός');
+  assert.deepEqual(client.calls.at(-1), ['updateUser', {password: PW2}], 'στην επαναφορά δεν ζητείται ο παλιός');
   const same = setup({client: fakeClient({fail: {updateUser: {code: 'same_password', status: 422}}})});
   assert.equal((await same.a.setPassword(PW, PW)).error, MSG.samePassword);
 });
@@ -249,24 +250,32 @@ test('αλλαγή κωδικού από τον λογαριασμό: ζητά �
   const s = await signedIn();
   assert.deepEqual(await s.a.setPassword(PW2, PW2, {current: ''}), {error: MSG.noPassword, field: 'current'});
   assert.ok((await s.a.setPassword(PW2, PW2, {current: PW})).user);
-  assert.deepEqual(s.client.calls.at(-1), ['updateUser', {password: PW2, data: {has_password: true}, current_password: PW}]);
+  assert.deepEqual(s.client.calls.at(-1), ['updateUser', {password: PW2, current_password: PW}]);
   const bad = await signedIn({client: fakeClient({fail: {updateUser: {code: 'current_password_invalid', status: 400}}})});
   assert.deepEqual(await bad.a.setPassword(PW2, PW2, {current: 'λάθος'}), {error: MSG.wrongCurrent, field: 'current'});
   assert.ok(s.a.hasPassword());
 });
 
-test('λογαριασμός Google που όρισε κωδικό («Ξέχασα τον κωδικό»): το Supabase δεν το δείχνει — σημάδι has_password', async () => {
+test('έχει κωδικό; ρωτά τη βάση (has_password, χωρίς παραμέτρους)· Google που όρισε κωδικό = true· χωρίς ίντερνετ: από τους τρόπους σύνδεσης', async () => {
   const g = {...fakeClient().user, app_metadata: {provider: 'google', providers: ['google']}, identities: [{provider: 'google'}]};
-  assert.equal(acc.summarize(g).password, false);
-  assert.equal(acc.summarize({...g, user_metadata: {has_password: true}}).password, true);
-  const c = fakeClient(); c.auth.signInWithPassword = async a => { c.calls.push(['password', a]); return {data: {user: g, session: {user: g}}, error: null}; };
+  const c = fakeClient({remote: {hasPassword: true}});
+  c.auth.signInWithPassword = async () => ({data: {user: g, session: {user: g}}, error: null});
   const {a} = setup({client: c});
   await a.signIn(EMAIL, PW);
-  await new Promise(r => setTimeout(r, 10));
-  assert.deepEqual(c.calls.at(-1), ['updateUser', {data: {has_password: true}}], 'σύνδεση με κωδικό: το σημάδι μπαίνει');
-  const req = setup({client: fakeClient({fail: {updateUser: {code: 'current_password_required', status: 400}}})});
+  assert.equal(await a.hasPassword(), true, 'Google + κωδικός: η βάση λέει true (το Supabase δείχνει μόνο google)');
+  assert.deepEqual(c.calls.at(-1), ['rpc', 'has_password']);
+  c.remote.hasPassword = false;
+  assert.equal(await a.hasPassword(), false);
+  const off = fakeClient({fail: {rpc: {name: 'AuthRetryableFetchError', status: 0}}});
+  const o = setup({client: off}); await o.a.signIn(EMAIL, PW);
+  assert.equal(await o.a.hasPassword(), true, 'χωρίς απάντηση: ταυτότητα email → true');
+  // ο server ζήτησε τον τωρινό κωδικό: από εκεί και πέρα ξέρουμε ότι υπάρχει
+  const req = setup({client: fakeClient({fail: {updateUser: {code: 'current_password_required', status: 400}, rpc: {status: 0, name: 'AuthRetryableFetchError'}}})});
   await req.a.signIn(EMAIL, PW);
   assert.deepEqual(await req.a.setPassword(PW2, PW2), {error: MSG.needCurrent, field: 'current'});
+  assert.equal(await req.a.hasPassword(), true);
+  const none = setup(); assert.equal(await none.a.hasPassword(), false, 'χωρίς σύνδεση: false, καμία κλήση');
+  assert.equal(none.client.calls.length, 0);
 });
 
 test('αλλαγή email: κωδικός 6 ψηφίων στο ΝΕΟ email (email_change)', async () => {
