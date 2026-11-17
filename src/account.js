@@ -39,7 +39,8 @@ export const MSG = {
   // Ποτέ «λάθος email» ή «λάθος κωδικός» χωριστά: δεν λέμε σε κανέναν αν ένα email έχει λογαριασμό.
   badLogin: 'Λάθος email ή κωδικός. Αν έφτιαξες τον λογαριασμό με Google, πάτα «Συνέχεια με Google» ή «Ξέχασα τον κωδικό» για να ορίσεις κωδικό.',
   exists: 'Αυτό το email έχει ήδη λογαριασμό. Πάτα «Σύνδεση». Αν τον έφτιαξες με Google, πάτα «Συνέχεια με Google» ή «Ξέχασα τον κωδικό» για να ορίσεις κωδικό.',
-  weak: 'Ο κωδικός είναι αδύναμος: τουλάχιστον 8 χαρακτήρες, με λατινικά γράμματα (a–z) και αριθμούς.',
+  weak: 'Ο κωδικός θέλει τουλάχιστον 8 χαρακτήρες, με τουλάχιστον 1 λατινικό γράμμα (a–z) και 1 αριθμό (0–9).',
+  latin: 'Τα ελληνικά γράμματα δεν μετράνε· βάλε κι ένα λατινικό (a–z).',
   mismatch: 'Οι δύο κωδικοί δεν είναι ίδιοι.',
   samePassword: 'Ο νέος κωδικός είναι ίδιος με τον παλιό.',
   wrongCurrent: 'Ο τωρινός κωδικός δεν είναι σωστός.',
@@ -67,6 +68,10 @@ export function passwordCheck(pw = '', repeat = null){
   const strength = !base ? 'weak' : extra >= 2 ? 'strong' : 'good';
   return {rules, ok: Object.values(rules).every(Boolean), strength};
 }
+
+/** Ελληνικά γράμματα χωρίς κανένα λατινικό: ο κανόνας «γράμμα» δεν περνά (το Supabase μετρά μόνο a–z)· η οθόνη
+ * το λέει ρητά (MSG.latin), αλλιώς ο τεχνίτης βλέπει γράμματα στον κωδικό του και δεν καταλαβαίνει γιατί δεν περνά. */
+export const needsLatin = (pw = '') => /\p{Script=Greek}/u.test(pw) && !/[A-Za-z]/.test(pw);
 
 export const configured = (c = CONFIG) =>
   /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.SUPABASE_URL || '') && !!c.SUPABASE_ANON_KEY && c.SUPABASE_ANON_KEY !== 'your-anon-key';

@@ -5,7 +5,7 @@
 // Η απόφαση παίρνεται χωρίς δίκτυο, από τη συνεδρία που κράτησε η συσκευή (ακόμα και ληγμένη): ο τεχνίτης χωρίς σήμα
 // δεν κλειδώνεται ποτέ έξω. Κλείδωμα μόνο όταν ο server πει ότι η συνεδρία δεν ισχύει πια — και τότε ό,τι έγραφε μένει.
 // Με AUTH_ENABLED = false (ή χωρίς ρυθμίσεις) δεν κάνει τίποτα: ούτε κουμπί, ούτε φόρτωμα βιβλιοθήκης.
-import { createAccount, MSG, passwordCheck, validEmail, throttleText } from './account.js';
+import { createAccount, MSG, needsLatin, passwordCheck, validEmail, throttleText } from './account.js';
 import { getLogo, initials, loadProfile } from './profile.js';
 import { loadTurnstile, mountWidget } from './turnstile.js';
 import * as CONFIG from './config.js';
@@ -90,6 +90,8 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     $(prefix + 'Rules').querySelectorAll('li').forEach(li => li.classList.toggle('ok', !!c.rules[li.dataset.r]));
     $(prefix + 'Meter').dataset.s = pw ? c.strength : '';
     $(prefix + 'MeterText').textContent = pw ? STRENGTH[c.strength] : '';
+    const hint = needsLatin(pw) ? MSG.latin : '';
+    if($(prefix + 'Hint').textContent !== hint) $(prefix + 'Hint').textContent = hint;   // ίδιο κείμενο: καμία νέα ανακοίνωση
     return c;
   }
 
