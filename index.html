@@ -91,6 +91,40 @@ header.auth .brand b,header.auth .brand span{display:block;white-space:nowrap;ov
 .pchoice .pc-b{display:flex;gap:12px;align-items:center;margin:10px 0 4px}
 .pchoice .pc-b b{display:block;font-size:17px;overflow-wrap:anywhere}
 .pchoice .pc-b span{display:block;font-size:14px;color:var(--dim)}
+/* Σύνδεση / εγγραφή με κωδικό */
+header.locked .acct,header.locked #brandLogo,header.locked #brandTrade{display:none}
+header.locked .brand{pointer-events:none}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:18px;padding:4px;border-radius:14px;background:var(--line)}
+.tab{min-height:44px;border:0;border-radius:11px;background:none;font:inherit;font-weight:600;font-size:15px;color:var(--dim);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.pw-row{display:flex;align-items:center;gap:6px}
+.pw-row input{flex:1;min-width:0}
+.eye{flex:none;width:44px;height:44px;margin:-8px -10px -8px 0;display:grid;place-items:center;border:0;background:none;color:var(--dim);cursor:pointer;border-radius:10px}
+.eye svg{width:22px;height:22px}
+.eye[aria-pressed="true"]{color:var(--pen)}
+.eye[aria-pressed="true"] svg path{stroke-dasharray:2 3}
+.ferr{display:block;color:var(--err);font-size:14px;font-weight:600;margin:6px 4px 0;line-height:1.35}
+.field.bad{border-color:var(--err)}
+.meter{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:6px;align-items:center;margin:12px 2px 0}
+.meter i{height:6px;border-radius:3px;background:var(--line)}
+.meter span{font-size:13px;font-weight:600;color:var(--dim);min-width:6ch;text-align:right}
+.meter[data-s="weak"] i:nth-child(1){background:var(--err)}
+.meter[data-s="good"] i:nth-child(-n+2){background:var(--warn)}
+.meter[data-s="strong"] i{background:var(--ok)}
+.rules{list-style:none;padding:0;margin:10px 2px 0;display:grid;gap:4px;font-size:14px;color:var(--dim)}
+.rules li::before{content:"○";display:inline-block;width:1.4em;font-weight:700}
+.rules li.ok{color:var(--ok)}
+.rules li.ok::before{content:"✓"}
+.terms{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:15px;line-height:1.45}
+.terms input{width:24px;height:24px;flex:none;margin:0}
+.terms a,.legal-g a{color:var(--pen)}
+.legal-g{margin-top:8px;font-size:13px}
+.lg-sub{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+#pIn .alt{margin-top:10px}
+#s-login .legal{margin-top:20px}
+.acct-box{margin-top:12px;padding:4px 16px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.acct-box .field{background:var(--bg)}
+button[aria-busy="true"]{opacity:.7;cursor:progress}
 
 main{flex:1;padding:6px 20px 24px}
 .screen{display:none}
@@ -479,7 +513,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     <!-- 0 ΣΤΟΙΧΕΙΑ: την πρώτη φορά, και από την κεφαλίδα για αλλαγές -->
     <section class="screen" id="s-profile">
       <h1>Τα στοιχεία σου</h1>
-      <p class="lede">Μπαίνουν μία φορά και γράφονται σε κάθε προσφορά. Μένουν μόνο σε αυτή τη συσκευή.</p>
+      <p class="lede">Μπαίνουν μία φορά και γράφονται σε κάθε προσφορά. <span id="pfWhere">Μένουν μόνο σε αυτή τη συσκευή.</span></p>
       <div class="field"><label for="pfName">Όνομα επιχείρησης ή ονοματεπώνυμο</label>
         <input id="pfName" autocomplete="organization" maxlength="80" required></div>
       <div class="field"><label for="pfTrade">Ειδικότητα <small>(προαιρετικό)</small></label>
@@ -497,35 +531,93 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="alt" style="margin-top:14px"><button class="linkbtn" id="pfRules" type="button" hidden>Οι κανόνες μου για την ανάλυση εργασιών</button></div>
     </section>
 
-    <!-- ΛΟΓΑΡΙΑΣΜΟΣ (μόνο με AUTH_ENABLED): σύνδεση ή εγγραφή — ίδια οθόνη για νέο και υπάρχοντα χρήστη -->
+    <!-- ΛΟΓΑΡΙΑΣΜΟΣ (υποχρεωτικός με AUTH_ENABLED): χωρίς σύνδεση ανοίγει ΜΟΝΟ αυτή η οθόνη. Λογική: src/account-ui.js -->
     <section class="screen" id="s-login">
-      <h1>Σύνδεση ή εγγραφή</h1>
-      <p class="lede">Με λογαριασμό, τα στοιχεία της επιχείρησής σου και το λογότυπο έρχονται σε κάθε κινητό σου.</p>
-      <div id="loginStart">
-        <button class="google-btn" id="loginGoogle" type="button">
+      <h1 id="lgTitle">Σύνδεση</h1>
+      <p class="lede" id="lgLede">Ο λογαριασμός κρατά τα στοιχεία της επιχείρησής σου και το λογότυπο σε κάθε κινητό σου.</p>
+      <div class="notice" id="lgError" role="alert" hidden></div>
+      <p class="acct-ok" id="lgStatus" role="status" hidden></p>
+      <!-- Αρχή: Google + καρτέλες -->
+      <div id="lgMain">
+        <button class="google-btn" id="lgGoogle" type="button">
           <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.8-6A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.7l7.9-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-9.9l-7.9 6C6.6 42.6 14.6 48 24 48z"/></svg>
           Συνέχεια με Google</button>
-        <p class="or"><span>ή με email</span></p>
-        <div class="field"><label for="loginEmail">Email</label>
-          <input id="loginEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
+        <p class="privacy legal-g">Με το «Συνέχεια με Google» αποδέχεσαι τους <a href="legal/terms.html">Όρους</a> και το <a href="legal/privacy.html">Απόρρητο</a>.</p>
+        <p class="or"><span>ή με email και κωδικό</span></p>
+        <div class="tabs" role="tablist">
+          <button class="tab" id="tabIn" role="tab" type="button" aria-selected="true" aria-controls="pIn">Σύνδεση</button>
+          <button class="tab" id="tabUp" role="tab" type="button" aria-selected="false" aria-controls="pUp">Νέος λογαριασμός</button>
+        </div>
+        <div id="pIn" role="tabpanel" aria-labelledby="tabIn">
+        <div class="field"><label for="inEmail">Email</label>
+          <input id="inEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
+        <small class="ferr" id="inEmailErr" role="alert" hidden></small>
+        <div class="field pw"><label for="inPw">Κωδικός</label>
+          <div class="pw-row"><input id="inPw" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="inPw" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="inPwErr" role="alert" hidden></small>
+          <div class="alt"><button class="linkbtn" id="inForgot" type="button">Ξέχασα τον κωδικό</button></div>
+          <button class="linkbtn" id="inConfirm" type="button" hidden>Στείλε κωδικό επιβεβαίωσης</button>
+        </div>
+        <div id="pUp" role="tabpanel" aria-labelledby="tabUp" hidden>
+        <div class="field"><label for="upEmail">Email</label>
+          <input id="upEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
+        <small class="ferr" id="upEmailErr" role="alert" hidden></small>
+        <div class="field pw"><label for="upPw">Κωδικός</label>
+          <div class="pw-row"><input id="upPw" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="upPw" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="upPwErr" role="alert" hidden></small>
+        <div class="field pw"><label for="upPw2">Ξανά ο κωδικός</label>
+          <div class="pw-row"><input id="upPw2" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="upPw2" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="upPw2Err" role="alert" hidden></small>
+        <div class="meter" id="upMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="upMeterText"></span></div>
+        <ul class="rules" id="upRules">
+          <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
+          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
+          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="match">Ίδιος και στις δύο φορές</li>
+        </ul>
+          <label class="terms"><input type="checkbox" id="upTerms"> <span>Αποδέχομαι τους <a href="legal/terms.html">Όρους</a> και το <a href="legal/privacy.html">Απόρρητο</a></span></label>
+          <small class="ferr" id="upTermsErr" role="alert" hidden></small>
+        </div>
       </div>
-      <div id="loginCode" hidden>
-        <p class="lede" id="loginSentTo">Σου στείλαμε 6ψήφιο κωδικό στο email σου. Γράψ' τον εδώ:</p>
-        <div class="field"><label for="loginOtp">Κωδικός από το email</label>
-          <input id="loginOtp" class="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="······"></div>
-        <button class="primary" id="loginVerify" type="button">Σύνδεση</button>
-        <div class="alt" style="margin-top:8px"><button class="linkbtn" id="loginResend" type="button">Στείλε ξανά</button>
-          <button class="linkbtn" id="loginOther" type="button">Άλλο email</button></div>
+      <!-- Επιβεβαίωση email (εγγραφή): κωδικός 6 ψηφίων -->
+      <div id="pConfirm" hidden>
+        <p class="lede" id="cfSentTo"></p>
+        <div class="field"><label for="cfCode">Κωδικός από το email</label>
+          <input id="cfCode" class="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="······"></div>
+        <small class="ferr" id="cfCodeErr" role="alert" hidden></small>
       </div>
-      <!-- Cloudflare Turnstile (μόνο με TURNSTILE_SITE_KEY): για την αποστολή κωδικού email -->
-      <div class="captcha" id="loginCaptcha" hidden></div>
-      <p class="privacy" id="loginCaptchaNote" role="status" hidden></p>
-      <!-- Μετά τον έλεγχο ασφαλείας, ώστε το «Επαληθεύστε ότι είστε άνθρωπος» να φαίνεται πρώτο -->
-      <button class="primary" id="loginSend" type="button">Στείλε μου κωδικό</button>
-      <div class="notice" id="loginError" role="alert" hidden></div>
-      <p class="acct-ok" id="loginStatus" role="status" hidden></p>
-      <p class="privacy legal">Συνεχίζοντας, αποδέχεσαι τους <a href="legal/terms.html">Όρους</a> και το
-        <a href="legal/privacy.html">Απόρρητο</a>.</p>
+      <!-- Ξέχασα τον κωδικό: email → κωδικός 6 ψηφίων → νέος κωδικός δύο φορές -->
+      <div id="pForgot" hidden>
+        <div class="field"><label for="fgEmail">Email</label>
+          <input id="fgEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
+        <small class="ferr" id="fgEmailErr" role="alert" hidden></small>
+      </div>
+      <div id="pReset" hidden>
+        <p class="lede" id="rsSentTo"></p>
+        <div class="field"><label for="rsCode">Κωδικός από το email</label>
+          <input id="rsCode" class="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="······"></div>
+        <small class="ferr" id="rsCodeErr" role="alert" hidden></small>
+        <div class="field pw"><label for="rsPw">Νέος κωδικός</label>
+          <div class="pw-row"><input id="rsPw" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="rsPw" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="rsPwErr" role="alert" hidden></small>
+        <div class="field pw"><label for="rsPw2">Ξανά ο νέος κωδικός</label>
+          <div class="pw-row"><input id="rsPw2" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="rsPw2" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="rsPw2Err" role="alert" hidden></small>
+        <div class="meter" id="rsMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="rsMeterText"></span></div>
+        <ul class="rules" id="rsRules">
+          <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
+          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
+          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="match">Ίδιος και στις δύο φορές</li>
+        </ul>
+      </div>
+      <!-- Cloudflare Turnstile: εγγραφή, σύνδεση, επαναφορά (ΕΝΑ widget για όλη την οθόνη) -->
+      <div class="captcha" id="lgCaptcha" hidden></div>
+      <p class="privacy" id="lgCaptchaNote" role="status" hidden></p>
+      <button class="primary" id="lgSubmit" type="button">Σύνδεση</button>
+      <div class="alt lg-sub" id="lgSub" hidden><button class="linkbtn" id="lgResend" type="button">Στείλε ξανά</button>
+        <button class="linkbtn" id="lgOther" type="button">Άλλο email</button></div>
+      <p class="privacy legal"><a href="legal/terms.html">Όροι</a> · <a href="legal/privacy.html">Απόρρητο</a></p>
     </section>
 
     <!-- ΛΟΓΑΡΙΑΣΜΟΣ: ο λογαριασμός μου -->
@@ -535,13 +627,59 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="notice" id="acctError" role="alert" hidden></div>
       <div class="field"><span class="flabel">Συνδεδεμένος ως</span><b class="acct-email" id="acctEmail"></b>
         <small class="hint" id="acctVia"></small></div>
-      <p class="privacy">Οι προσφορές, το ημερολόγιο και οι τιμές μένουν σε αυτή τη συσκευή και δεν αγγίζονται από τη σύνδεση ή την αποσύνδεση.</p>
+      <p class="privacy">Οι προσφορές, το ημερολόγιο και οι τιμές μένουν σε αυτή τη συσκευή και δεν σβήνονται με την αποσύνδεση.</p>
+
+      <button class="ghost wide" id="acctPwOpen" type="button">Κωδικός πρόσβασης</button>
+      <div class="card acct-box" id="acctPwBox" hidden>
+        <div id="acctPwCurWrap"><div class="field pw"><label for="acctPwCur">Τωρινός κωδικός</label>
+          <div class="pw-row"><input id="acctPwCur" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="acctPwCur" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="acctPwCurErr" role="alert" hidden></small></div>
+        <div class="field pw"><label for="acctPw">Νέος κωδικός</label>
+          <div class="pw-row"><input id="acctPw" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="acctPw" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="acctPwErr" role="alert" hidden></small>
+        <div class="field pw"><label for="acctPw2">Ξανά ο νέος κωδικός</label>
+          <div class="pw-row"><input id="acctPw2" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="acctPw2" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="acctPw2Err" role="alert" hidden></small>
+        <div class="meter" id="acctMeter" data-s="" aria-live="polite"><i></i><i></i><i></i><span id="acctMeterText"></span></div>
+        <ul class="rules" id="acctRules">
+          <li data-r="len">Τουλάχιστον 8 χαρακτήρες</li>
+          <li data-r="letter">Λατινικά γράμματα (a–z)</li>
+          <li data-r="digit">Αριθμοί (0–9)</li>
+          <li data-r="match">Ίδιος και στις δύο φορές</li>
+        </ul>
+        <button class="primary" id="acctPwSave" type="button">Αποθήκευση κωδικού</button>
+      </div>
+
+      <button class="ghost wide" id="acctEmOpen" type="button">Αλλαγή email</button>
+      <div class="card acct-box" id="acctEmBox" hidden>
+        <div class="field"><label for="acctEm">Νέο email</label>
+          <input id="acctEm" type="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="120" placeholder="onoma@gmail.com"></div>
+        <small class="ferr" id="acctEmErr" role="alert" hidden></small>
+        <button class="primary" id="acctEmSend" type="button">Στείλε κωδικό στο νέο email</button>
+        <div id="acctEmCodeWrap" hidden>
+          <p class="lede" id="acctEmSentTo"></p>
+          <div class="field"><label for="acctEmCode">Κωδικός από το email</label>
+          <input id="acctEmCode" class="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="······"></div>
+        <small class="ferr" id="acctEmCodeErr" role="alert" hidden></small>
+          <button class="primary" id="acctEmVerify" type="button">Επιβεβαίωση</button>
+        </div>
+      </div>
+
       <button class="ghost wide" id="acctSignOut" type="button">Αποσύνδεση</button>
+      <button class="ghost wide" id="acctSignOutAll" type="button">Αποσύνδεση από όλες τις συσκευές</button>
       <button class="linkbtn danger" id="acctDelete" type="button">Διαγραφή λογαριασμού</button>
       <div class="card acct-del" id="acctDelBox" hidden>
         <b>Σίγουρα; Η διαγραφή δεν αναιρείται.</b>
         <p>Σβήνονται ο λογαριασμός, τα στοιχεία της επιχείρησης στον λογαριασμό και το λογότυπό σου. Οι προσφορές σε αυτή τη συσκευή μένουν.</p>
         <label class="acct-wipe"><input type="checkbox" id="acctWipe"> Σβήσε και όλα τα δεδομένα αυτής της συσκευής (προσφορές, ημερολόγιο, τιμές, στοιχεία)</label>
+        <!-- Επιβεβαίωση ταυτότητας: ο κωδικός (ή νέα σύνδεση με Google για λογαριασμούς χωρίς κωδικό) -->
+        <div id="acctDelPwWrap"><div class="field pw"><label for="acctDelPw">Ο κωδικός σου, για επιβεβαίωση</label>
+          <div class="pw-row"><input id="acctDelPw" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="72"><button class="eye" type="button" data-eye="acctDelPw" aria-label="Εμφάνιση κωδικού" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <small class="ferr" id="acctDelPwErr" role="alert" hidden></small>
+          <div class="captcha" id="acctCaptcha" hidden></div>
+          <p class="privacy" id="acctCaptchaNote" role="status" hidden></p></div>
+        <button class="linkbtn" id="acctDelGoogle" type="button" hidden>Ή επιβεβαίωσε με Google</button>
+        <p class="privacy" id="acctDelGoogleNote" hidden>Για ασφάλεια, θα συνδεθείς ξανά με Google και μετά θα ολοκληρωθεί η διαγραφή.</p>
         <button class="primary danger-bg" id="acctDelYes" type="button">Ναι, σβήσε τον λογαριασμό</button>
         <button class="ghost wide" id="acctDelNo" type="button">Άκυρο</button>
       </div>
@@ -556,7 +694,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     </section>
 
     <!-- 1 START -->
-    <section class="screen on" id="s-start">
+    <section class="screen" id="s-start">
       <h1>Πες τι χρειάζεται η δουλειά</h1>
       <p class="lede">Όπως θα το έλεγες στον βοηθό σου. Τα υπόλοιπα τα βγάζω εγώ.</p>
       <div class="field">

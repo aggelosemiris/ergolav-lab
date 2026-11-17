@@ -1,11 +1,13 @@
--- Έλεγχος Row Level Security: ο χρήστης Α ΔΕΝ διαβάζει, δεν αλλάζει, δεν σβήνει το profile ή το λογότυπο του Β.
+-- Έλεγχος Row Level Security: ο χρήστης Α ΔΕΝ διαβάζει, δεν αλλάζει, δεν σβήνει το profile ή το λογότυπο του Β,
+-- και δεν μαθαίνει τίποτα για τον Β από το has_password().
 -- Τρέχει στο SQL editor του Supabase ΜΕΤΑ τη migration. Όλα γίνονται μέσα σε μία συναλλαγή που ακυρώνεται στο τέλος
 -- (rollback): δεν μένει κανένας δοκιμαστικός χρήστης. Επιτυχία = τελευταία γραμμή «RLS OK». Αποτυχία = σφάλμα «FAIL: …».
 begin;
 
-insert into auth.users (id, email, aud, role) values
-  ('00000000-0000-4000-8000-00000000000a', 'rls-a@example.invalid', 'authenticated', 'authenticated'),
-  ('00000000-0000-4000-8000-00000000000b', 'rls-b@example.invalid', 'authenticated', 'authenticated');
+-- Ο Α ΧΩΡΙΣ κωδικό (σαν λογαριασμός Google), ο Β ΜΕ κωδικό: ό,τι κι αν κάνει ο Α, το has_password() του λέει false.
+insert into auth.users (id, email, aud, role, encrypted_password) values
+  ('00000000-0000-4000-8000-00000000000a', 'rls-a@example.invalid', 'authenticated', 'authenticated', ''),
+  ('00000000-0000-4000-8000-00000000000b', 'rls-b@example.invalid', 'authenticated', 'authenticated', '$2a$10$rlsTestHashOfUserBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 
 -- Ο trigger έφτιαξε άδεια γραμμή και για τους δύο
 do $$ declare n int; begin
@@ -83,6 +85,33 @@ do $$ declare n int; begin
   insert into storage.objects (bucket_id, name) values ('logos', '00000000-0000-4000-8000-00000000000a/logo.jpg');
   select count(*) into n from storage.objects where bucket_id = 'logos' and name like '00000000-0000-4000-8000-00000000000a/%';
   if n <> 1 then raise exception 'FAIL: ο Α δεν βλέπει το δικό του λογότυπο'; end if;
+
+  -- has_password(): μόνο για τον Α (που δεν έχει κωδικό) — ο Β έχει, αλλά ο Α δεν μπορεί να το μάθει
+  if public.has_password() is distinct from false then raise exception 'FAIL: has_password() του Α δεν είναι false'; end if;
+  begin
+    perform public.has_password('00000000-0000-4000-8000-00000000000b'::uuid);
+    raise exception 'FAIL: το has_password() δέχεται id άλλου χρήστη';
+  exception when undefined_function then null;
+  end;
+  begin
+    select count(*) into n from auth.users where id = '00000000-0000-4000-8000-00000000000b';
+    raise exception 'FAIL: ο Α διαβάζει το auth.users';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+
+-- has_password(): επιστρέφει ΜΟΝΟ boolean, χωρίς παραμέτρους
+do $$ declare r record; begin
+  select pronargs, prorettype::regtype::text rt, prosecdef into r from pg_proc where oid = 'public.has_password()'::regprocedure;
+  if r.pronargs <> 0 or r.rt <> 'boolean' or not r.prosecdef then raise exception 'FAIL: has_password() δεν είναι () → boolean security definer (%)', r; end if;
+end $$;
+
+-- ── Ως χρήστης Β: ο ίδιος βλέπει true ──
+reset role;
+select set_config('request.jwt.claims', '{"sub":"00000000-0000-4000-8000-00000000000b","role":"authenticated"}', true);
+set local role authenticated;
+do $$ begin
+  if public.has_password() is distinct from true then raise exception 'FAIL: has_password() του Β (με κωδικό) δεν είναι true'; end if;
 end $$;
 
 -- ── Ανώνυμος (χωρίς σύνδεση) ──
@@ -97,6 +126,11 @@ do $$ declare n int; begin
   if n <> 0 then raise exception 'FAIL: ο ανώνυμος βλέπει profiles'; end if;
   select count(*) into n from storage.objects where bucket_id = 'logos';
   if n <> 0 then raise exception 'FAIL: ο ανώνυμος βλέπει λογότυπα'; end if;
+  begin
+    perform public.has_password();
+    raise exception 'FAIL: ο ανώνυμος εκτελεί το has_password()';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 
 -- ── Ο Β έμεινε ανέπαφος ──

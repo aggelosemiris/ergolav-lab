@@ -1,4 +1,5 @@
-// Λογαριασμός (Supabase): σύνδεση με Google ή με 6ψήφιο κωδικό email, αποσύνδεση, διαγραφή, μεταφορά προφίλ.
+// Λογαριασμός (Supabase): σύνδεση με Google ή με email και κωδικό πρόσβασης (επιβεβαίωση email και επαναφορά κωδικού
+// με κωδικό 6 ψηφίων), αποσύνδεση, διαγραφή, μεταφορά προφίλ.
 // Χωρίς DOM: η οθόνη είναι στο account-ui.js. Ο client του Supabase δίνεται απ' έξω (στα τεστ, ψεύτικος).
 //
 // Κανόνες:
@@ -34,7 +35,38 @@ export const MSG = {
   noBackup: 'Η συσκευή δεν έχει χώρο για αντίγραφο ασφαλείας· τα στοιχεία της δεν άλλαξαν.',
   notConfigured: 'Ο λογαριασμός δεν έχει ρυθμιστεί ακόμα.',
   generic: 'Κάτι πήγε στραβά. Ξαναδοκίμασε σε λίγο.',
+  // ── email + κωδικός πρόσβασης ──
+  // Ποτέ «λάθος email» ή «λάθος κωδικός» χωριστά: δεν λέμε σε κανέναν αν ένα email έχει λογαριασμό.
+  badLogin: 'Λάθος email ή κωδικός. Αν έφτιαξες τον λογαριασμό με Google, πάτα «Συνέχεια με Google» ή «Ξέχασα τον κωδικό» για να ορίσεις κωδικό.',
+  exists: 'Αυτό το email έχει ήδη λογαριασμό. Πάτα «Σύνδεση». Αν τον έφτιαξες με Google, πάτα «Συνέχεια με Google» ή «Ξέχασα τον κωδικό» για να ορίσεις κωδικό.',
+  weak: 'Ο κωδικός είναι αδύναμος: τουλάχιστον 8 χαρακτήρες, με λατινικά γράμματα (a–z) και αριθμούς.',
+  mismatch: 'Οι δύο κωδικοί δεν είναι ίδιοι.',
+  samePassword: 'Ο νέος κωδικός είναι ίδιος με τον παλιό.',
+  wrongCurrent: 'Ο τωρινός κωδικός δεν είναι σωστός.',
+  notConfirmed: 'Το email δεν έχει επιβεβαιωθεί ακόμα. Πάτα «Στείλε κωδικό επιβεβαίωσης».',
+  noPassword: 'Γράψε τον κωδικό σου.',
+  terms: 'Για να φτιάξεις λογαριασμό, αποδέξου τους Όρους και το Απόρρητο.',
+  reauth: 'Για ασφάλεια, επιβεβαίωσε ξανά ότι είσαι εσύ (κωδικός ή Google) και ξαναδοκίμασε.',
+  sameEmail: 'Αυτό είναι ήδη το email του λογαριασμού σου.',
+  needCurrent: 'Γράψε τον τωρινό κωδικό σου.',
+  relogin: 'Η σύνδεση έληξε. Συνδέσου ξανά για να συνεχίσεις — ό,τι έγραφες δεν χάθηκε.',
 };
+/** Μετά από 5 λάθος κωδικούς: αναμονή (30″, 60″, … έως 5′) — ποτέ κλείδωμα για πάντα. */
+export const throttleText = sec => `Πολλές λάθος προσπάθειες. Ξαναδοκίμασε σε ${sec >= 60 ? `${Math.ceil(sec / 60)}′` : `${sec}″`}.`;
+export const THROTTLE_AFTER = 5, THROTTLE_BASE_S = 30, THROTTLE_MAX_S = 300;
+
+// ── Κανόνες κωδικού: ΙΔΙΟΙ με του Supabase (password_min_length 8, γράμματα και αριθμοί) ──
+export const PASSWORD_MIN = 8;
+export const validEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(e || '').trim());
+/** {rules: {len, letter, digit, match}, ok, strength: 'weak' | 'good' | 'strong'} */
+export function passwordCheck(pw = '', repeat = null){
+  const rules = {len: pw.length >= PASSWORD_MIN, letter: /[A-Za-z]/.test(pw), digit: /\d/.test(pw)};
+  if(repeat !== null) rules.match = pw.length > 0 && pw === repeat;
+  const base = rules.len && rules.letter && rules.digit;
+  const extra = [pw.length >= 12, /[a-z]/.test(pw) && /[A-Z]/.test(pw), /[^A-Za-z0-9]/.test(pw)].filter(Boolean).length;
+  const strength = !base ? 'weak' : extra >= 2 ? 'strong' : 'good';
+  return {rules, ok: Object.values(rules).every(Boolean), strength};
+}
 
 export const configured = (c = CONFIG) =>
   /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.SUPABASE_URL || '') && !!c.SUPABASE_ANON_KEY && c.SUPABASE_ANON_KEY !== 'your-anon-key';
@@ -55,6 +87,14 @@ export function errorText(err, {sentAt = 0, now = Date.now(), online = true, sen
   if(!online || name === 'AuthRetryableFetchError' || name === 'FunctionsFetchError' || err instanceof TypeError
     || /failed to fetch|networkerror|load failed/i.test(text)) return MSG.offline;
   if(/captcha/.test(code) || /captcha/i.test(text)) return MSG.captcha;
+  if(code === 'invalid_credentials' || /invalid login credentials/i.test(text)) return MSG.badLogin;
+  if(code === 'email_not_confirmed' || /email not confirmed/i.test(text)) return MSG.notConfirmed;
+  if(/user_already_exists|email_exists|identity_already_exists/.test(code) || /already registered/i.test(text)) return MSG.exists;
+  if(code === 'weak_password' || err.name === 'AuthWeakPasswordError') return MSG.weak;
+  if(code === 'same_password') return MSG.samePassword;
+  if(code === 'current_password_required') return MSG.needCurrent;
+  if(/current_password|invalid_current_password/.test(code) || /current password/i.test(text)) return MSG.wrongCurrent;
+  if(code === 'reauthentication_needed' || code === 'reauth_required' || /reauthenticat/i.test(text)) return MSG.reauth;
   if(/over_email_send_rate_limit/.test(code) || (send && (status === 429 || /rate_limit|too_many/.test(code)))) return MSG.tooManySends;
   if(status === 429 || /rate_limit|too_many/.test(code)) return MSG.tooMany;
   if(code === 'otp_expired' || /token has expired or is invalid|invalid otp|otp has expired/i.test(text))
@@ -70,7 +110,28 @@ export function summarize(u){
   const meta = u.user_metadata || {};
   const full = String(meta.full_name || meta.name || meta.given_name || '').trim();
   const name = (full.split(/\s+/)[0] || String(u.email || '').split('@')[0] || 'Λογαριασμός').slice(0, 16);
-  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email'};
+  const providers = [...new Set([...(u.identities || []).map(i => i.provider), ...(u.app_metadata?.providers || [])].filter(Boolean))];
+  return {id: u.id, email: u.email || '', name, provider: u.app_metadata?.provider || 'email',
+    providers: providers.length ? providers : [u.app_metadata?.provider || 'email'], confirmed: !!(u.email_confirmed_at || u.confirmed_at)};
+}
+
+const refOf = cfg => { try { return new URL(cfg.SUPABASE_URL).hostname.split('.')[0]; } catch { return ''; } };
+/**
+ * Η συνεδρία που κράτησε η βιβλιοθήκη στη συσκευή (sb-<project>-auth-token), ΧΩΡΙΣ δίκτυο. Ακόμα και ληγμένη μετράει:
+ * ο τεχνίτης στο εργοτάξιο δεν κλειδώνεται έξω επειδή δεν έχει σήμα· ανανεώνεται μόνη της όταν βρει.
+ */
+export function storedSession(cfg = CONFIG, win = globalThis){
+  try {
+    const raw = win.localStorage?.getItem(`sb-${refOf(cfg)}-auth-token`);
+    const s = raw ? JSON.parse(raw) : null;
+    const sess = s?.currentSession || s;           // παλιές και νέες μορφές της βιβλιοθήκης
+    return sess?.refresh_token && sess?.user?.id ? sess : null;
+  } catch { return null; }
+}
+/** Υποχρεωτικός λογαριασμός: required = ανοιχτό και ρυθμισμένο· locked = χωρίς αποθηκευμένη συνεδρία. */
+export function authGate(cfg = CONFIG, win = globalThis){
+  const required = !!cfg.AUTH_ENABLED && configured(cfg);
+  return {required, locked: required && !storedSession(cfg, win)};
 }
 
 // ── εικόνα ↔ data URL χωρίς FileReader (δουλεύει και στα τεστ) ──
@@ -122,10 +183,21 @@ export function loadClient(cfg, win = globalThis){
  * win: window (location, history, localStorage, navigator). now(): η ώρα (για τα τεστ).
  */
 export function createAccount({config = CONFIG, getClient = c => loadClient(c), win = globalThis, now = Date.now, timeoutMs = TIMEOUT_MS} = {}){
-  let client = null, user = null, sentAt = 0;
-  const listeners = new Set();
+  let client = null, sentAt = 0, expectSignOut = false, pwKnown = null;
+  const listeners = new Set(), lockListeners = new Set();
   const emit = () => listeners.forEach(f => { try { f(user); } catch {} });
   const enabled = !!config.AUTH_ENABLED && configured(config);
+  // Από την αποθηκευμένη συνεδρία, χωρίς δίκτυο: η εφαρμογή ανοίγει αμέσως, και χωρίς σήμα.
+  let user = enabled ? summarize(storedSession(config, win)?.user) : null;
+  // Λάθος κωδικοί στη σύνδεση: μετά από THROTTLE_AFTER, αναμονή που διπλασιάζεται (μένει στη συνεδρία της καρτέλας).
+  const ss = () => { try { return win.sessionStorage ?? null; } catch { return null; } };
+  const THR = 'ergolav.account.throttle';
+  const thr = () => { try { return JSON.parse(ss()?.getItem(THR) || '{}'); } catch { return {}; } };
+  const setThr = v => { try { ss()?.setItem(THR, JSON.stringify(v)); } catch {} };
+  const waitLeft = () => Math.max(0, Math.ceil(((thr().until || 0) - now()) / 1000));
+  const fail = field => e => ({error: err(e), field});
+  const setUser = u => { user = summarize(u); emit(); return user; };
+  const knowPw = v => { pwKnown = user ? {id: user.id, v} : null; };
   const err = e => errorText(e, {sentAt, now: now(), online: isOnline(win)});
   const store = () => { try { return win.localStorage ?? null; } catch { return null; } };
   const ref = enabled ? new URL(config.SUPABASE_URL).hostname.split('.')[0] : '';
@@ -171,7 +243,14 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
         if(fromGoogle && user) fresh = true;
         if(denied) error = MSG.google;
         else if(fromGoogle && !user) error = !isOnline(win) ? MSG.offline : (e ? err(e) : MSG.google);
-        cl.auth.onAuthStateChange((_ev, session) => { const u = summarize(session?.user); if(u?.id !== user?.id){ user = u; emit(); } });
+        // Χωρίς σήμα η βιβλιοθήκη δεν ανανεώνει τη συνεδρία· η αποθηκευμένη ισχύει μέχρι να βρει σήμα.
+        if(!user && !fromGoogle) user = summarize(storedSession(config, win)?.user);
+        cl.auth.onAuthStateChange((ev, session) => {
+          const u = summarize(session?.user);
+          // Η συνεδρία έληξε ή ανακλήθηκε (π.χ. «Αποσύνδεση από όλες τις συσκευές» αλλού) ΧΩΡΙΣ να το ζητήσει εδώ.
+          if(ev === 'SIGNED_OUT' && !expectSignOut && user){ user = null; emit(); lockListeners.forEach(f => { try { f('expired'); } catch {} }); return; }
+          if(u && (u.id !== user?.id || u.email !== user?.email || u.confirmed !== user?.confirmed)){ user = u; emit(); }
+        });
       } catch(e) { error = err(e); }
       cleanUrl();
       emit();
@@ -187,36 +266,175 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       } catch(e) { return {error: err(e)}; }
     },
 
-    /** captchaToken: το token του Cloudflare Turnstile (όταν το project έχει CAPTCHA). Ισχύει για μία αποστολή. */
-    async sendCode(email, {captchaToken = ''} = {}){
+    // ── Εγγραφή: email + κωδικός → κωδικός 6 ψηφίων στο email (επιβεβαίωση) ──
+    /** {error, field} ή {needsConfirm: true} (στάλθηκε κωδικός) ή {user} (το project δεν ζητά επιβεβαίωση). */
+    async signUp(email, password, {captchaToken = '', repeat = null, terms = true} = {}){
       email = norm(email).toLowerCase();
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return {error: MSG.badEmail};
+      if(!validEmail(email)) return {error: MSG.badEmail, field: 'email'};
+      const chk = passwordCheck(password || '', repeat);
+      if(!chk.rules.len || !chk.rules.letter || !chk.rules.digit) return {error: MSG.weak, field: 'password'};
+      if(repeat !== null && !chk.rules.match) return {error: MSG.mismatch, field: 'repeat'};
+      if(!terms) return {error: MSG.terms, field: 'terms'};
       if(!enabled) return {error: MSG.notConfigured};
       try {
-        const options = {shouldCreateUser: true, ...(captchaToken && {captchaToken})};
-        const {error} = await call(cl => cl.auth.signInWithOtp({email, options}));
+        const {data, error} = await call(cl => cl.auth.signUp({email, password, options: {...(captchaToken && {captchaToken})}}));
+        if(error) return {error: errorText(error, {online: isOnline(win), send: true}), field: /exists|registered/.test(String(error.code || error.message)) ? 'email' : (error.code === 'weak_password' ? 'password' : undefined)};
+        // Υπάρχον email: το Supabase δεν το λέει ρητά (προστασία) — επιστρέφει χρήστη χωρίς ταυτότητες.
+        if(data?.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) return {error: MSG.exists, field: 'email'};
+        sentAt = now();
+        if(data?.session) return {user: setUser(data.session.user)};
+        return {needsConfirm: true};
+      } catch(e) { return fail()(e); }
+    },
+    /** Ο κωδικός 6 ψηφίων της επιβεβαίωσης email. */
+    async confirmSignup(email, code){
+      code = norm(code).replace(/\s/g, '');
+      if(!/^\d{6}$/.test(code)) return {error: MSG.badCode, field: 'code'};
+      try {
+        const {data, error} = await call(cl => cl.auth.verifyOtp({email: norm(email).toLowerCase(), token: code, type: 'signup'}));
+        if(error || !data?.user) return {error: err(error || {code: 'otp_expired'}), field: 'code'};
+        return {user: setUser(data.user)};
+      } catch(e) { return fail('code')(e); }
+    },
+    async resendConfirm(email, {captchaToken = ''} = {}){
+      email = norm(email).toLowerCase();
+      if(!validEmail(email)) return {error: MSG.badEmail, field: 'email'};
+      try {
+        const {error} = await call(cl => cl.auth.resend({type: 'signup', email, options: {...(captchaToken && {captchaToken})}}));
         if(error) return {error: errorText(error, {online: isOnline(win), send: true})};
         sentAt = now();
         return {error: ''};
-      } catch(e) { return {error: err(e)}; }
+      } catch(e) { return fail()(e); }
     },
 
-    async verifyCode(email, code){
-      code = norm(code).replace(/\s/g, '');
-      if(!/^\d{6}$/.test(code)) return {error: MSG.badCode};
+    // ── Σύνδεση: email + κωδικός ──
+    /** Μετά από THROTTLE_AFTER λάθος κωδικούς: {error, wait} χωρίς κλήση, μέχρι να περάσει η αναμονή. */
+    async signIn(email, password, {captchaToken = ''} = {}){
+      email = norm(email).toLowerCase();
+      const left = waitLeft();
+      if(left) return {error: throttleText(left), wait: left};
+      if(!validEmail(email)) return {error: MSG.badEmail, field: 'email'};
+      if(!password) return {error: MSG.noPassword, field: 'password'};
       try {
-        const {data, error} = await call(cl => cl.auth.verifyOtp({email: norm(email).toLowerCase(), token: code, type: 'email'}));
-        if(error || !data?.user) return {error: err(error || {code: 'otp_expired'})};
-        user = summarize(data.user); emit();
-        return {error: '', user};
-      } catch(e) { return {error: err(e)}; }
+        const {data, error} = await call(cl => cl.auth.signInWithPassword({email, password, options: {...(captchaToken && {captchaToken})}}));
+        if(error){
+          const msg = err(error);
+          if(msg === MSG.badLogin){
+            const t = thr(), n = (t.n || 0) + 1, over = n - THROTTLE_AFTER;
+            const wait = over >= 0 ? Math.min(THROTTLE_MAX_S, THROTTLE_BASE_S * 2 ** over) : 0;
+            setThr({n, until: wait ? now() + wait * 1000 : 0});
+            if(wait) return {error: throttleText(wait), wait, field: 'password'};
+          }
+          return {error: msg, field: msg === MSG.badLogin ? 'password' : undefined, notConfirmed: msg === MSG.notConfirmed};
+        }
+        setThr({});
+        return {user: setUser(data.user)};
+      } catch(e) { return fail()(e); }
+    },
+    throttleLeft: waitLeft,
+
+    // ── Ξέχασα τον κωδικό: κωδικός 6 ψηφίων στο email → νέος κωδικός ──
+    async requestReset(email, {captchaToken = ''} = {}){
+      email = norm(email).toLowerCase();
+      if(!validEmail(email)) return {error: MSG.badEmail, field: 'email'};
+      try {
+        const {error} = await call(cl => cl.auth.resetPasswordForEmail(email, {...(captchaToken && {captchaToken})}));
+        if(error) return {error: errorText(error, {online: isOnline(win), send: true})};
+        sentAt = now();
+        return {error: ''};
+      } catch(e) { return fail()(e); }
+    },
+    async verifyReset(email, code){
+      code = norm(code).replace(/\s/g, '');
+      if(!/^\d{6}$/.test(code)) return {error: MSG.badCode, field: 'code'};
+      try {
+        const {data, error} = await call(cl => cl.auth.verifyOtp({email: norm(email).toLowerCase(), token: code, type: 'recovery'}));
+        if(error || !data?.user) return {error: err(error || {code: 'otp_expired'}), field: 'code'};
+        setThr({});
+        return {user: setUser(data.user)};
+      } catch(e) { return fail('code')(e); }
+    },
+    /** Νέος κωδικός (μετά την επαναφορά, ή αλλαγή με τον τωρινό: current). */
+    async setPassword(password, repeat, {current = null} = {}){
+      const chk = passwordCheck(password || '', repeat);
+      if(!chk.rules.len || !chk.rules.letter || !chk.rules.digit) return {error: MSG.weak, field: 'password'};
+      if(!chk.rules.match) return {error: MSG.mismatch, field: 'repeat'};
+      if(current !== null && !current) return {error: MSG.noPassword, field: 'current'};
+      try {
+        const attrs = {password, ...(current !== null && {current_password: current})};
+        const {data, error} = await call(cl => cl.auth.updateUser(attrs));
+        if(error){ const m = err(error); if(m === MSG.needCurrent) knowPw(true); return {error: m, field: [MSG.wrongCurrent, MSG.needCurrent].includes(m) ? 'current' : 'password'}; }
+        knowPw(true);
+        return {user: setUser(data.user)};
+      } catch(e) { return fail()(e); }
     },
 
-    /** Αποσύνδεση ΜΟΝΟ αυτής της συσκευής. Δεν αγγίζει κανένα δεδομένο της εφαρμογής (ergolav.*). */
-    async signOut(){
-      try { const {error} = await (await c()).auth.signOut({scope: 'local'}); if(error) dropLocalSession(); }
-      catch { dropLocalSession(); }
+    // ── Αλλαγή email: κωδικός 6 ψηφίων στο ΝΕΟ email ──
+    async changeEmail(newEmail){
+      newEmail = norm(newEmail).toLowerCase();
+      if(!validEmail(newEmail)) return {error: MSG.badEmail, field: 'email'};
+      if(newEmail === user?.email) return {error: MSG.sameEmail, field: 'email'};
+      try {
+        const {error} = await call(cl => cl.auth.updateUser({email: newEmail}));
+        if(error) return {error: errorText(error, {online: isOnline(win), send: true}), field: 'email'};
+        sentAt = now();
+        return {error: ''};
+      } catch(e) { return fail('email')(e); }
+    },
+    async confirmEmailChange(newEmail, code){
+      code = norm(code).replace(/\s/g, '');
+      if(!/^\d{6}$/.test(code)) return {error: MSG.badCode, field: 'code'};
+      try {
+        const {data, error} = await call(cl => cl.auth.verifyOtp({email: norm(newEmail).toLowerCase(), token: code, type: 'email_change'}));
+        if(error || !data?.user) return {error: err(error || {code: 'otp_expired'}), field: 'code'};
+        return {user: setUser(data.user)};
+      } catch(e) { return fail('code')(e); }
+    },
+
+    /** Επιβεβαίωση ταυτότητας πριν από τη διαγραφή: ο κωδικός (νέα σύνδεση, φρέσκια). */
+    async reauthPassword(password, {captchaToken = ''} = {}){
+      if(!password) return {error: MSG.noPassword, field: 'password'};
+      if(!user?.email) return {error: MSG.session};
+      const r = await this.signIn(user.email, password, {captchaToken});
+      return r.user ? {error: ''} : {error: r.error, field: 'password', wait: r.wait};
+    },
+    /** Για λογαριασμούς Google: νέα σύνδεση με Google· μετά την επιστροφή, το reauth() δίνει 'delete'. */
+    async reauthGoogle(purpose = 'delete'){
+      try { ss()?.setItem('ergolav.account.reauth', JSON.stringify({purpose, at: now()})); } catch {}
+      return this.signInGoogle();
+    },
+    /** Αν μόλις έγινε επανασύνδεση με Google για κάποιον σκοπό (μέσα σε 10′): ο σκοπός, μία φορά. */
+    takeReauth(){
+      try {
+        const r = JSON.parse(ss()?.getItem('ergolav.account.reauth') || 'null');
+        ss()?.removeItem('ergolav.account.reauth');
+        return r && now() - r.at < 600000 ? r.purpose : '';
+      } catch { return ''; }
+    },
+    /**
+     * Έχει ο λογαριασμός κωδικό πρόσβασης; Το Supabase δεν το δείχνει (λογαριασμός Google που όρισε κωδικό μένει
+     * providers: ['google']): ρωτάμε τη βάση, has_password() — μόνο για τον τρέχοντα χρήστη, μόνο true/false.
+     * Χωρίς απάντηση (π.χ. χωρίς ίντερνετ): ό,τι ξέρουμε, αλλιώς από τους τρόπους σύνδεσης.
+     */
+    async hasPassword(){
+      if(!user) return false;
+      try {
+        const {data, error} = await call(cl => cl.rpc('has_password'));
+        if(!error && typeof data === 'boolean') knowPw(data);
+      } catch {}
+      return pwKnown?.id === user.id ? pwKnown.v : !!user.providers?.includes('email');
+    },
+    onLock(f){ lockListeners.add(f); return () => lockListeners.delete(f); },
+
+    /** Αποσύνδεση: αυτής της συσκευής (προεπιλογή) ή όλων (global). Δεν αγγίζει δεδομένα της εφαρμογής (ergolav.*). */
+    async signOut({global = false} = {}){
+      expectSignOut = true;
+      try {
+        const {error} = await (global ? call(cl => cl.auth.signOut({scope: 'global'})) : (await c()).auth.signOut({scope: 'local'}));
+        if(error){ if(global) { expectSignOut = false; return {error: err(error)}; } dropLocalSession(); }
+      } catch(e) { if(global){ expectSignOut = false; return {error: err(e)}; } dropLocalSession(); }
       user = null; emit();
+      setTimeout(() => { expectSignOut = false; }, 0);
       return {error: ''};
     },
 
@@ -225,8 +443,14 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       try {
         const cl = await c();
         const {error} = await call(() => cl.functions.invoke('delete-account', {method: 'POST', body: {}}));
-        if(error) return {error: error.context?.status === 401 ? MSG.session : err(error)};
+        if(error){
+          const st = error.context?.status;
+          if(st === 403) return {error: MSG.reauth, reauth: true};
+          return {error: st === 401 ? MSG.session : err(error)};
+        }
+        expectSignOut = true;
         try { const {error: e} = await cl.auth.signOut({scope: 'local'}); if(e) dropLocalSession(); } catch { dropLocalSession(); }
+        setTimeout(() => { expectSignOut = false; }, 0);
       } catch(e) { return {error: err(e)}; }
       user = null;
       if(wipeLocal){
