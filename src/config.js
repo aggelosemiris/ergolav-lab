@@ -1,6 +1,9 @@
 // Η διεύθυνση της υπηρεσίας «Άλλαξέ το» (worker/, Cloudflare Workers). Μπαίνει εδώ μετά το deploy του worker
 // (βλ. worker/README.md). Κενό = η υπηρεσία δεν έχει ρυθμιστεί ακόμα· το «Άλλαξέ το» το λέει στον τεχνίτη.
 // Δεν είναι μυστικό: το κλειδί του AI μένει μόνο στον worker, ποτέ στην εφαρμογή.
+// ΑΣΦΑΛΕΙΑ: όταν μπει εδώ, η ΑΚΡΙΒΗΣ διεύθυνση (π.χ. https://xxx.ergolav.workers.dev) πρέπει να προστεθεί και στη
+// CSP του index.html (connect-src) — ΠΟΤΕ wildcard (https://*.workers.dev): ο καθένας φτιάχνει δωρεάν subdomain
+// workers.dev, οπότε το wildcard θα άνοιγε κανάλι εξαγωγής δεδομένων. Το test/account.test.js το ελέγχει.
 export const REWRITE_URL = '';
 
 // ── Λογαριασμός (Supabase Free + Google OAuth) — βλ. docs/AUTH_SETUP.md ──

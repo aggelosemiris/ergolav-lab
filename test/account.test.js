@@ -113,6 +113,9 @@ test('ο τρέχων config.js: η CSP έχει ΜΟΝΟ τη διεύθυνσ�
   const connect = csp.match(/connect-src ([^;]+)/)[1].split(/\s+/);
   const origin = new URL(cfg.SUPABASE_URL).origin;
   assert.ok(connect.includes(origin), `η CSP χρειάζεται ${origin} στο connect-src`);
+  // Καμία wildcard διεύθυνση: ο worker (όταν μπει) πρέπει να γραφτεί με το ΑΚΡΙΒΕΣ host του, όχι https://*.workers.dev,
+  // αλλιώς ανοίγει κανάλι εξαγωγής δεδομένων (ο καθένας φτιάχνει δωρεάν subdomain workers.dev).
+  assert.ok(!connect.some(x => x.includes('*')), 'καμία wildcard διεύθυνση στο connect-src');
   assert.equal(connect.filter(x => /supabase/.test(x)).length, 1, 'καμία άλλη διεύθυνση Supabase (ούτε *.supabase.co)');
   assert.ok(!/supabase/.test(csp.replace(/connect-src [^;]+/, '')), 'το Supabase μόνο στο connect-src');
   const dir = n => (csp.match(new RegExp(`(?:^|; )${n} ([^;]+)`)) || [])[1]?.split(/\s+/) || [];

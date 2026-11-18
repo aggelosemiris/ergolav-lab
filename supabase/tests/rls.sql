@@ -106,6 +106,41 @@ do $$ declare r record; begin
   if r.pronargs <> 0 or r.rt <> 'boolean' or not r.prosecdef then raise exception 'FAIL: has_password() δεν είναι () → boolean security definer (%)', r; end if;
 end $$;
 
+-- bot_metrics (ανώνυμες μετρήσεις): δεκτό ΜΟΝΟ το αυστηρό σχήμα της allaxe-store.track() — επίπεδο αντικείμενο με
+-- t (αριθμός) και μόνο σύντομα string πεδία από τη λίστα. Όχι εμφωλευμένα, όχι άγνωστα keys, όχι υπερμεγέθη τιμές,
+-- όχι διάβασμα. (Ο ρόλος εδώ είναι ακόμα ο Α, authenticated.) Μια αποτυχία policy δίνει insufficient_privilege,
+-- μια αποτυχία column-check δίνει check_violation — δεχόμαστε και τα δύο ως «φράχτηκε σωστά».
+do $$ declare n int; begin
+  insert into public.bot_metrics (event) values (jsonb_build_object('t', 1, 'ev', 'open', 'step', 'item'));
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL: έγκυρη μέτρηση απορρίφθηκε'; end if;
+
+  begin
+    insert into public.bot_metrics (event) values (jsonb_build_object('t', 1, 'client', jsonb_build_object('email', 'x@y.z')));
+    raise exception 'FAIL: μέτρηση με εμφωλευμένο/άγνωστο key πέρασε';
+  exception when insufficient_privilege or check_violation then null; end;
+
+  begin
+    insert into public.bot_metrics (event) values (jsonb_build_object('t', 1, 'email', 'a@b.c'));
+    raise exception 'FAIL: μέτρηση με άγνωστο key (email) πέρασε';
+  exception when insufficient_privilege or check_violation then null; end;
+
+  begin
+    insert into public.bot_metrics (event) values (jsonb_build_object('t', 1, 'ev', repeat('x', 200)));
+    raise exception 'FAIL: μέτρηση με υπερμεγέθη τιμή πέρασε';
+  exception when insufficient_privilege or check_violation then null; end;
+
+  begin
+    insert into public.bot_metrics (event) values (jsonb_build_object('ev', 'open'));
+    raise exception 'FAIL: μέτρηση χωρίς αριθμητικό t πέρασε';
+  exception when insufficient_privilege or check_violation then null; end;
+
+  begin
+    perform 1 from public.bot_metrics;
+    raise exception 'FAIL: ο χρήστης διαβάζει το bot_metrics';
+  exception when insufficient_privilege then null; end;
+end $$;
+
 -- ── Ως χρήστης Β: ο ίδιος βλέπει true ──
 reset role;
 select set_config('request.jwt.claims', '{"sub":"00000000-0000-4000-8000-00000000000b","role":"authenticated"}', true);
