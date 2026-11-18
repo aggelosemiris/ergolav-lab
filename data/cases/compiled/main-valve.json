@@ -79,9 +79,9 @@
    "review": {
     "key": "case:main-valve:threaded.new",
     "hash": "03481c7583e4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -123,9 +123,9 @@
    "review": {
     "key": "case:main-valve:plastic.replace",
     "hash": "d31e64507edb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -167,9 +167,9 @@
    "review": {
     "key": "case:main-valve:plastic.new",
     "hash": "3f5cc4c77b8a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -181,9 +181,9 @@
    "review": {
     "key": "extra:main-valve:mv.x.filter",
     "hash": "e98033f01e4c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -193,9 +193,9 @@
    "review": {
     "key": "extra:main-valve:mv.x.reducer",
     "hash": "54c076bba0fd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -209,9 +209,9 @@
    "review": {
     "key": "sc:mv.preparation.new-place",
     "hash": "3e5a8e189184",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "mv.steps.plastic-cut": {
@@ -223,9 +223,9 @@
    "review": {
     "key": "sc:mv.steps.plastic-cut",
     "hash": "f4bd1defa048",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "mv.steps.plastic-fit": {
@@ -237,9 +237,9 @@
    "review": {
     "key": "sc:mv.steps.plastic-fit",
     "hash": "b150d320d0fb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "mv.steps.thread-cut": {
@@ -251,9 +251,9 @@
    "review": {
     "key": "sc:mv.steps.thread-cut",
     "hash": "567660b1fa08",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "mv.x.filter": {
@@ -265,9 +265,9 @@
    "review": {
     "key": "sc:mv.x.filter",
     "hash": "c3ffc1c17df7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "mv.x.reducer": {
@@ -279,9 +279,9 @@
    "review": {
     "key": "sc:mv.x.reducer",
     "hash": "dc647ce748c9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.checks.1": {
@@ -293,9 +293,9 @@
    "review": {
     "key": "sc:plumb-main-valve.checks.1",
     "hash": "7576c33ac2c7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.checks.2": {
@@ -307,9 +307,9 @@
    "review": {
     "key": "sc:plumb-main-valve.checks.2",
     "hash": "fae944677216",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.checks.3": {
@@ -321,9 +321,9 @@
    "review": {
     "key": "sc:plumb-main-valve.checks.3",
     "hash": "37f2b1d02545",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.handover.1": {
@@ -335,9 +335,9 @@
    "review": {
     "key": "sc:plumb-main-valve.handover.1",
     "hash": "d267e84bf064",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.handover.2": {
@@ -349,9 +349,9 @@
    "review": {
     "key": "sc:plumb-main-valve.handover.2",
     "hash": "4b6aee84cebf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.preparation.1": {
@@ -363,9 +363,9 @@
    "review": {
     "key": "sc:plumb-main-valve.preparation.1",
     "hash": "eaa00ac3be6a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.preparation.2": {
@@ -377,9 +377,9 @@
    "review": {
     "key": "sc:plumb-main-valve.preparation.2",
     "hash": "a33293fb736e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.preparation.3": {
@@ -391,9 +391,9 @@
    "review": {
     "key": "sc:plumb-main-valve.preparation.3",
     "hash": "4d08675e0a40",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.prerequisites.1": {
@@ -405,9 +405,9 @@
    "review": {
     "key": "sc:plumb-main-valve.prerequisites.1",
     "hash": "7af03556468d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.prerequisites.2": {
@@ -419,9 +419,9 @@
    "review": {
     "key": "sc:plumb-main-valve.prerequisites.2",
     "hash": "7c0717161322",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.steps.1": {
@@ -433,9 +433,9 @@
    "review": {
     "key": "sc:plumb-main-valve.steps.1",
     "hash": "0aa81c5b5387",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.steps.2": {
@@ -447,9 +447,9 @@
    "review": {
     "key": "sc:plumb-main-valve.steps.2",
     "hash": "693f3772f68e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-main-valve.steps.3": {
@@ -461,9 +461,9 @@
    "review": {
     "key": "sc:plumb-main-valve.steps.3",
     "hash": "824e2f4a729c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

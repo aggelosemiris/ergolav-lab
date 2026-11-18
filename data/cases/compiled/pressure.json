@@ -76,9 +76,9 @@
    "review": {
     "key": "case:pressure:existing",
     "hash": "d96adeed4de3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -94,9 +94,9 @@
    "review": {
     "key": "extra:pressure:pressure.x.moisture",
     "hash": "56a52a4a8889",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -110,9 +110,9 @@
    "review": {
     "key": "extra:pressure:pressure.x.cisterns",
     "hash": "0f9e00c5b642",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -126,9 +126,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.checks.1",
     "hash": "4e910b11e039",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.checks.2": {
@@ -140,9 +140,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.checks.2",
     "hash": "839b50fa0046",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.checks.3": {
@@ -154,9 +154,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.checks.3",
     "hash": "17c0d1755877",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.handover.1": {
@@ -168,9 +168,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.handover.1",
     "hash": "5daf82394474",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.handover.2": {
@@ -182,9 +182,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.handover.2",
     "hash": "378b42314d90",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.preparation.1": {
@@ -196,9 +196,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.preparation.1",
     "hash": "e4ca6f9222cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.preparation.2": {
@@ -210,9 +210,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.preparation.2",
     "hash": "932f8a927ced",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.prerequisites.1": {
@@ -224,9 +224,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.prerequisites.1",
     "hash": "ec4ef206001b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.prerequisites.2": {
@@ -238,9 +238,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.prerequisites.2",
     "hash": "93f8e707f634",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.steps.1": {
@@ -252,9 +252,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.steps.1",
     "hash": "68017372e281",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.steps.2": {
@@ -266,9 +266,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.steps.2",
     "hash": "1f68bddf16d3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.steps.3": {
@@ -280,9 +280,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.steps.3",
     "hash": "1b3d3e4677c8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-pressure-test.steps.4": {
@@ -294,9 +294,9 @@
    "review": {
     "key": "sc:plumb-pressure-test.steps.4",
     "hash": "69b6cafe86ab",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.checks.meter": {
@@ -308,9 +308,9 @@
    "review": {
     "key": "sc:pressure.checks.meter",
     "hash": "06cd68f622d0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.checks.visible": {
@@ -322,9 +322,9 @@
    "review": {
     "key": "sc:pressure.checks.visible",
     "hash": "b5fdfbf6e09c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.handover.report": {
@@ -336,9 +336,9 @@
    "review": {
     "key": "sc:pressure.handover.report",
     "hash": "9d80ce96b2ad",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.preparation.close-points": {
@@ -350,9 +350,9 @@
    "review": {
     "key": "sc:pressure.preparation.close-points",
     "hash": "46aeeca85dce",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.preparation.meter-read": {
@@ -364,9 +364,9 @@
    "review": {
     "key": "sc:pressure.preparation.meter-read",
     "hash": "0b6afa9e4b02",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.prerequisites.access": {
@@ -378,9 +378,9 @@
    "review": {
     "key": "sc:pressure.prerequisites.access",
     "hash": "442bc1cc90a1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.prerequisites.no-use": {
@@ -392,9 +392,9 @@
    "review": {
     "key": "sc:pressure.prerequisites.no-use",
     "hash": "a3ff42205e5f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.steps.gauge": {
@@ -406,9 +406,9 @@
    "review": {
     "key": "sc:pressure.steps.gauge",
     "hash": "0e4fde439518",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.steps.hold": {
@@ -420,9 +420,9 @@
    "review": {
     "key": "sc:pressure.steps.hold",
     "hash": "c3000187c2f3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.steps.locate": {
@@ -434,9 +434,9 @@
    "review": {
     "key": "sc:pressure.steps.locate",
     "hash": "3b2df9bab8c3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.x.cisterns": {
@@ -448,9 +448,9 @@
    "review": {
     "key": "sc:pressure.x.cisterns",
     "hash": "67117bcc7e4b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pressure.x.moisture": {
@@ -462,9 +462,9 @@
    "review": {
     "key": "sc:pressure.x.moisture",
     "hash": "5e0c820e068d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

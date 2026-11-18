@@ -124,9 +124,9 @@
    "review": {
     "key": "case:drywall:flat.outdoor",
     "hash": "98109d2cfe28",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -174,9 +174,9 @@
    "review": {
     "key": "case:drywall:level.dry",
     "hash": "0e981c9961fb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -225,9 +225,9 @@
    "review": {
     "key": "case:drywall:level.wet",
     "hash": "d1242ad40f40",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -277,9 +277,9 @@
    "review": {
     "key": "case:drywall:level.outdoor",
     "hash": "e1c8cb06efbb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -323,9 +323,9 @@
    "review": {
     "key": "case:drywall:box.dry",
     "hash": "0237f83b6ff7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -370,9 +370,9 @@
    "review": {
     "key": "case:drywall:box.wet",
     "hash": "f473be4ffa36",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -418,9 +418,9 @@
    "review": {
     "key": "case:drywall:box.outdoor",
     "hash": "f1b560f31c54",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -432,9 +432,9 @@
    "review": {
     "key": "extra:drywall:drywall.x.insulation",
     "hash": "df42ef20f4a4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -449,9 +449,9 @@
    "review": {
     "key": "extra:drywall:drywall.x.hatch",
     "hash": "1ecd4971fefa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -461,9 +461,9 @@
    "review": {
     "key": "extra:drywall:drywall.x.reinforce",
     "hash": "9cbdbef4723a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -477,9 +477,9 @@
    "review": {
     "key": "sc:drywall-ceiling.checks.1",
     "hash": "d428b5cdf1a3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.checks.2": {
@@ -491,9 +491,9 @@
    "review": {
     "key": "sc:drywall-ceiling.checks.2",
     "hash": "a9f688c7ebd9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.checks.3": {
@@ -505,9 +505,9 @@
    "review": {
     "key": "sc:drywall-ceiling.checks.3",
     "hash": "998bb0afe182",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.checks.4": {
@@ -519,9 +519,9 @@
    "review": {
     "key": "sc:drywall-ceiling.checks.4",
     "hash": "8dd9ca99419d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.handover.1": {
@@ -533,9 +533,9 @@
    "review": {
     "key": "sc:drywall-ceiling.handover.1",
     "hash": "34457cec89ca",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.handover.2": {
@@ -547,9 +547,9 @@
    "review": {
     "key": "sc:drywall-ceiling.handover.2",
     "hash": "e6b8cf14f18e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.preparation.1": {
@@ -561,9 +561,9 @@
    "review": {
     "key": "sc:drywall-ceiling.preparation.1",
     "hash": "6e46af746f5d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.preparation.2": {
@@ -575,9 +575,9 @@
    "review": {
     "key": "sc:drywall-ceiling.preparation.2",
     "hash": "9f1d93767677",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.prerequisites.1": {
@@ -589,9 +589,9 @@
    "review": {
     "key": "sc:drywall-ceiling.prerequisites.1",
     "hash": "9b1a1e22934a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.prerequisites.2": {
@@ -603,9 +603,9 @@
    "review": {
     "key": "sc:drywall-ceiling.prerequisites.2",
     "hash": "3af81731bdae",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.prerequisites.3": {
@@ -617,9 +617,9 @@
    "review": {
     "key": "sc:drywall-ceiling.prerequisites.3",
     "hash": "8d873aaab1d0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.steps.1": {
@@ -631,9 +631,9 @@
    "review": {
     "key": "sc:drywall-ceiling.steps.1",
     "hash": "e4a70e7d6c58",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.steps.2": {
@@ -645,9 +645,9 @@
    "review": {
     "key": "sc:drywall-ceiling.steps.2",
     "hash": "df4e3d2d2a03",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.steps.3": {
@@ -659,9 +659,9 @@
    "review": {
     "key": "sc:drywall-ceiling.steps.3",
     "hash": "b348c0541464",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.steps.4": {
@@ -673,9 +673,9 @@
    "review": {
     "key": "sc:drywall-ceiling.steps.4",
     "hash": "75670e5838b4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-ceiling.steps.5": {
@@ -687,9 +687,9 @@
    "review": {
     "key": "sc:drywall-ceiling.steps.5",
     "hash": "38e273961ca1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.checks.1": {
@@ -701,9 +701,9 @@
    "review": {
     "key": "sc:drywall-cement-board.checks.1",
     "hash": "134b1fc82ee1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.checks.2": {
@@ -715,9 +715,9 @@
    "review": {
     "key": "sc:drywall-cement-board.checks.2",
     "hash": "ccee56b2b200",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.checks.3": {
@@ -729,9 +729,9 @@
    "review": {
     "key": "sc:drywall-cement-board.checks.3",
     "hash": "8337f0a2c01d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.handover.1": {
@@ -743,9 +743,9 @@
    "review": {
     "key": "sc:drywall-cement-board.handover.1",
     "hash": "82d92fb08207",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.handover.2": {
@@ -757,9 +757,9 @@
    "review": {
     "key": "sc:drywall-cement-board.handover.2",
     "hash": "c1f4b1e4a8f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.preparation.1": {
@@ -771,9 +771,9 @@
    "review": {
     "key": "sc:drywall-cement-board.preparation.1",
     "hash": "12ab90811a7f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.preparation.2": {
@@ -785,9 +785,9 @@
    "review": {
     "key": "sc:drywall-cement-board.preparation.2",
     "hash": "138a3bf5b859",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.prerequisites.1": {
@@ -799,9 +799,9 @@
    "review": {
     "key": "sc:drywall-cement-board.prerequisites.1",
     "hash": "986dfb51a5b0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.prerequisites.2": {
@@ -813,9 +813,9 @@
    "review": {
     "key": "sc:drywall-cement-board.prerequisites.2",
     "hash": "0483cf606eb8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.steps.1": {
@@ -827,9 +827,9 @@
    "review": {
     "key": "sc:drywall-cement-board.steps.1",
     "hash": "6bde8e301bba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.steps.2": {
@@ -841,9 +841,9 @@
    "review": {
     "key": "sc:drywall-cement-board.steps.2",
     "hash": "82c5037c6de1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.steps.3": {
@@ -855,9 +855,9 @@
    "review": {
     "key": "sc:drywall-cement-board.steps.3",
     "hash": "4469dd9c67e5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall-cement-board.steps.4": {
@@ -869,9 +869,9 @@
    "review": {
     "key": "sc:drywall-cement-board.steps.4",
     "hash": "d0ad5ebe39ea",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.checks.box-plumb": {
@@ -883,9 +883,9 @@
    "review": {
     "key": "sc:drywall.checks.box-plumb",
     "hash": "4098356c785a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.checks.hatch": {
@@ -897,9 +897,9 @@
    "review": {
     "key": "sc:drywall.checks.hatch",
     "hash": "23aa5598ed7e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.checks.level-lines": {
@@ -911,9 +911,9 @@
    "review": {
     "key": "sc:drywall.checks.level-lines",
     "hash": "d7b30c3bdf4e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.preparation.box-mark": {
@@ -925,9 +925,9 @@
    "review": {
     "key": "sc:drywall.preparation.box-mark",
     "hash": "ac2dcd2e26ff",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.preparation.level-mark": {
@@ -939,9 +939,9 @@
    "review": {
     "key": "sc:drywall.preparation.level-mark",
     "hash": "db92e37526dc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.prerequisites.box-access": {
@@ -953,9 +953,9 @@
    "review": {
     "key": "sc:drywall.prerequisites.box-access",
     "hash": "3e190fdbd093",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.prerequisites.box-pipes": {
@@ -967,9 +967,9 @@
    "review": {
     "key": "sc:drywall.prerequisites.box-pipes",
     "hash": "e845c8d33ba7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.prerequisites.outdoor-board": {
@@ -981,9 +981,9 @@
    "review": {
     "key": "sc:drywall.prerequisites.outdoor-board",
     "hash": "730b3ad9d9c1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.box-frame": {
@@ -995,9 +995,9 @@
    "review": {
     "key": "sc:drywall.steps.box-frame",
     "hash": "7ed10542ea5d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.box-hatch": {
@@ -1009,9 +1009,9 @@
    "review": {
     "key": "sc:drywall.steps.box-hatch",
     "hash": "b9c4d2424dde",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.cement-boards": {
@@ -1023,9 +1023,9 @@
    "review": {
     "key": "sc:drywall.steps.cement-boards",
     "hash": "3344690f0f4c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.corner-bead": {
@@ -1037,9 +1037,9 @@
    "review": {
     "key": "sc:drywall.steps.corner-bead",
     "hash": "88d4d7f2effc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.level-frame": {
@@ -1051,9 +1051,9 @@
    "review": {
     "key": "sc:drywall.steps.level-frame",
     "hash": "522f5d772649",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.steps.outdoor-finish": {
@@ -1065,9 +1065,9 @@
    "review": {
     "key": "sc:drywall.steps.outdoor-finish",
     "hash": "8a432dd3c48f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.x.hatch": {
@@ -1079,9 +1079,9 @@
    "review": {
     "key": "sc:drywall.x.hatch",
     "hash": "91e10acd062f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.x.insulation": {
@@ -1093,9 +1093,9 @@
    "review": {
     "key": "sc:drywall.x.insulation",
     "hash": "6063ea43fe47",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drywall.x.reinforce": {
@@ -1107,9 +1107,9 @@
    "review": {
     "key": "sc:drywall.x.reinforce",
     "hash": "494ac4c7ceac",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

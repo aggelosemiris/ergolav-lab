@@ -83,9 +83,9 @@
    "review": {
     "key": "case:waterproof:bathroom.membrane",
     "hash": "589a03ed510e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -130,9 +130,9 @@
    "review": {
     "key": "case:waterproof:walkin.coating",
     "hash": "0bf6f392eff4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -177,9 +177,9 @@
    "review": {
     "key": "case:waterproof:walkin.membrane",
     "hash": "19d86e56e10b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -224,9 +224,9 @@
    "review": {
     "key": "case:waterproof:roof.coating",
     "hash": "6fd2de44b875",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -272,9 +272,9 @@
    "review": {
     "key": "case:waterproof:roof.membrane",
     "hash": "639565fba3cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -291,9 +291,9 @@
    "review": {
     "key": "extra:waterproof:wp.x.niche",
     "hash": "2ef65489a0dd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -308,9 +308,9 @@
    "review": {
     "key": "extra:waterproof:wp.x.outside-zone",
     "hash": "6d85b411364e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -324,9 +324,9 @@
    "review": {
     "key": "extra:waterproof:wp.x.threshold",
     "hash": "662af5030f75",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -340,9 +340,9 @@
    "review": {
     "key": "extra:waterproof:wp.x.gutters",
     "hash": "dfa77c2a9062",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -356,9 +356,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.checks.1",
     "hash": "37fe633ac5db",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.checks.2": {
@@ -370,9 +370,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.checks.2",
     "hash": "e2682caa29d6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.checks.3": {
@@ -384,9 +384,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.checks.3",
     "hash": "6aa557a9ae14",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.handover.1": {
@@ -398,9 +398,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.handover.1",
     "hash": "406816822f30",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.handover.2": {
@@ -412,9 +412,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.handover.2",
     "hash": "01f02c755142",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.preparation.1": {
@@ -426,9 +426,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.preparation.1",
     "hash": "51913e95d7cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.preparation.2": {
@@ -440,9 +440,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.preparation.2",
     "hash": "5e3f9da0ec25",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.preparation.3": {
@@ -454,9 +454,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.preparation.3",
     "hash": "1dbf8daf2aa1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.preparation.4": {
@@ -468,9 +468,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.preparation.4",
     "hash": "95a449bbcec4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.prerequisites.1": {
@@ -482,9 +482,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.prerequisites.1",
     "hash": "8bcbc5ac6425",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.prerequisites.2": {
@@ -496,9 +496,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.prerequisites.2",
     "hash": "a89a07108375",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.prerequisites.3": {
@@ -510,9 +510,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.prerequisites.3",
     "hash": "bf27056dcdcc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.steps.1": {
@@ -524,9 +524,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.steps.1",
     "hash": "6199cdfd7d59",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.steps.2": {
@@ -538,9 +538,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.steps.2",
     "hash": "58d1a7eced4d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-liquid.steps.3": {
@@ -552,9 +552,9 @@
    "review": {
     "key": "sc:ins-roof-liquid.steps.3",
     "hash": "7b417f357b84",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.checks.1": {
@@ -566,9 +566,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.checks.1",
     "hash": "8b1e1b90e0fc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.checks.2": {
@@ -580,9 +580,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.checks.2",
     "hash": "77acb5b2a561",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.checks.3": {
@@ -594,9 +594,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.checks.3",
     "hash": "88f91b820082",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.handover.1": {
@@ -608,9 +608,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.handover.1",
     "hash": "971eb56a4dc6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.handover.2": {
@@ -622,9 +622,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.handover.2",
     "hash": "ba2d0bfc2041",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.preparation.1": {
@@ -636,9 +636,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.preparation.1",
     "hash": "a26f546e237c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.preparation.2": {
@@ -650,9 +650,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.preparation.2",
     "hash": "d7905d2d356f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.preparation.3": {
@@ -664,9 +664,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.preparation.3",
     "hash": "3b93c8e5121f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.prerequisites.1": {
@@ -678,9 +678,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.prerequisites.1",
     "hash": "ee58f27e91f4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.prerequisites.2": {
@@ -692,9 +692,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.prerequisites.2",
     "hash": "7872d4e4c140",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.prerequisites.3": {
@@ -706,9 +706,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.prerequisites.3",
     "hash": "b42efd31f6f1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.steps.1": {
@@ -720,9 +720,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.steps.1",
     "hash": "3217240987e8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.steps.2": {
@@ -734,9 +734,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.steps.2",
     "hash": "86b66904fe69",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.steps.3": {
@@ -748,9 +748,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.steps.3",
     "hash": "2af38b1e7a49",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.steps.4": {
@@ -762,9 +762,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.steps.4",
     "hash": "61e4f85a4482",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-roof-membrane.steps.5": {
@@ -776,9 +776,9 @@
    "review": {
     "key": "sc:ins-roof-membrane.steps.5",
     "hash": "bf3b3adc2486",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.checks.1": {
@@ -790,9 +790,9 @@
    "review": {
     "key": "sc:ins-wet-room.checks.1",
     "hash": "e916831379ae",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.checks.2": {
@@ -804,9 +804,9 @@
    "review": {
     "key": "sc:ins-wet-room.checks.2",
     "hash": "7756d82ab49e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.checks.3": {
@@ -818,9 +818,9 @@
    "review": {
     "key": "sc:ins-wet-room.checks.3",
     "hash": "c477987ef2b8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.handover.1": {
@@ -832,9 +832,9 @@
    "review": {
     "key": "sc:ins-wet-room.handover.1",
     "hash": "810cd7c35435",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.handover.2": {
@@ -846,9 +846,9 @@
    "review": {
     "key": "sc:ins-wet-room.handover.2",
     "hash": "5189d5aa6604",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.preparation.1": {
@@ -860,9 +860,9 @@
    "review": {
     "key": "sc:ins-wet-room.preparation.1",
     "hash": "5fb0848628c5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.preparation.2": {
@@ -874,9 +874,9 @@
    "review": {
     "key": "sc:ins-wet-room.preparation.2",
     "hash": "777571c1b785",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.preparation.3": {
@@ -888,9 +888,9 @@
    "review": {
     "key": "sc:ins-wet-room.preparation.3",
     "hash": "ee756a6866ec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.prerequisites.1": {
@@ -902,9 +902,9 @@
    "review": {
     "key": "sc:ins-wet-room.prerequisites.1",
     "hash": "976d91056219",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.prerequisites.2": {
@@ -916,9 +916,9 @@
    "review": {
     "key": "sc:ins-wet-room.prerequisites.2",
     "hash": "bb45bad13e3c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.prerequisites.3": {
@@ -930,9 +930,9 @@
    "review": {
     "key": "sc:ins-wet-room.prerequisites.3",
     "hash": "9f346c68fee3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.steps.1": {
@@ -944,9 +944,9 @@
    "review": {
     "key": "sc:ins-wet-room.steps.1",
     "hash": "37084e0dfca5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.steps.2": {
@@ -958,9 +958,9 @@
    "review": {
     "key": "sc:ins-wet-room.steps.2",
     "hash": "55871432d566",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.steps.3": {
@@ -972,9 +972,9 @@
    "review": {
     "key": "sc:ins-wet-room.steps.3",
     "hash": "947faa0c4c63",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "ins-wet-room.steps.4": {
@@ -986,9 +986,9 @@
    "review": {
     "key": "sc:ins-wet-room.steps.4",
     "hash": "3095cdb91b11",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.checks.membrane-joints": {
@@ -1000,9 +1000,9 @@
    "review": {
     "key": "sc:wp.checks.membrane-joints",
     "hash": "baff255967fb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.prerequisites.slope": {
@@ -1014,9 +1014,9 @@
    "review": {
     "key": "sc:wp.prerequisites.slope",
     "hash": "852b4ffb1ac3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.steps.drain-flange": {
@@ -1028,9 +1028,9 @@
    "review": {
     "key": "sc:wp.steps.drain-flange",
     "hash": "7e5b128a33e7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.steps.membrane-lay": {
@@ -1042,9 +1042,9 @@
    "review": {
     "key": "sc:wp.steps.membrane-lay",
     "hash": "af2d1b8b4183",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.steps.membrane-overlap": {
@@ -1056,9 +1056,9 @@
    "review": {
     "key": "sc:wp.steps.membrane-overlap",
     "hash": "2fffaffe60b1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.x.gutters": {
@@ -1070,9 +1070,9 @@
    "review": {
     "key": "sc:wp.x.gutters",
     "hash": "90a35298e5bc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.x.niche": {
@@ -1084,9 +1084,9 @@
    "review": {
     "key": "sc:wp.x.niche",
     "hash": "34bde62a8486",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.x.outside-zone": {
@@ -1098,9 +1098,9 @@
    "review": {
     "key": "sc:wp.x.outside-zone",
     "hash": "6dadf87d1312",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "wp.x.threshold": {
@@ -1112,9 +1112,9 @@
    "review": {
     "key": "sc:wp.x.threshold",
     "hash": "2cd775e53048",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

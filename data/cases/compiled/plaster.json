@@ -87,9 +87,9 @@
    "review": {
     "key": "case:plaster:new.interior.machine",
     "hash": "d7b45581b7c4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -178,9 +178,9 @@
    "review": {
     "key": "case:plaster:new.exterior.machine",
     "hash": "b5267f39a99d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -223,9 +223,9 @@
    "review": {
     "key": "case:plaster:repair.interior",
     "hash": "4d54104af6f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -268,9 +268,9 @@
    "review": {
     "key": "case:plaster:repair.exterior",
     "hash": "4d54104af6f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -316,9 +316,9 @@
    "review": {
     "key": "case:plaster:replace.interior.traditional",
     "hash": "71ce7f42f065",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -365,9 +365,9 @@
    "review": {
     "key": "case:plaster:replace.interior.machine",
     "hash": "f359d2079137",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -414,9 +414,9 @@
    "review": {
     "key": "case:plaster:replace.exterior.traditional",
     "hash": "1d84aa7e7f78",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -464,9 +464,9 @@
    "review": {
     "key": "case:plaster:replace.exterior.machine",
     "hash": "a0656f8445a4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -478,9 +478,9 @@
    "review": {
     "key": "extra:plaster:plaster.x.mesh-all",
     "hash": "7cb99ba442cd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -494,9 +494,9 @@
    "review": {
     "key": "extra:plaster:plaster.x.repellent",
     "hash": "2c194ca4bd4c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -510,9 +510,9 @@
    "review": {
     "key": "extra:plaster:plaster.x.debris",
     "hash": "ecec1543df08",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -526,9 +526,9 @@
    "review": {
     "key": "sc:plaster-repair.checks.1",
     "hash": "4529e55262fa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.checks.2": {
@@ -540,9 +540,9 @@
    "review": {
     "key": "sc:plaster-repair.checks.2",
     "hash": "c7c60ee38c08",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.checks.3": {
@@ -554,9 +554,9 @@
    "review": {
     "key": "sc:plaster-repair.checks.3",
     "hash": "9f54ca188e7e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.handover.1": {
@@ -568,9 +568,9 @@
    "review": {
     "key": "sc:plaster-repair.handover.1",
     "hash": "e663442d8f36",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.handover.2": {
@@ -582,9 +582,9 @@
    "review": {
     "key": "sc:plaster-repair.handover.2",
     "hash": "db9f36a766b3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.preparation.1": {
@@ -596,9 +596,9 @@
    "review": {
     "key": "sc:plaster-repair.preparation.1",
     "hash": "46160e0bfb83",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.preparation.2": {
@@ -610,9 +610,9 @@
    "review": {
     "key": "sc:plaster-repair.preparation.2",
     "hash": "0a09fbacf0fb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.preparation.3": {
@@ -624,9 +624,9 @@
    "review": {
     "key": "sc:plaster-repair.preparation.3",
     "hash": "3d6f774ce9ea",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.prerequisites.1": {
@@ -638,9 +638,9 @@
    "review": {
     "key": "sc:plaster-repair.prerequisites.1",
     "hash": "a88b9bc06003",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.prerequisites.2": {
@@ -652,9 +652,9 @@
    "review": {
     "key": "sc:plaster-repair.prerequisites.2",
     "hash": "946eab3cd5c5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.steps.1": {
@@ -666,9 +666,9 @@
    "review": {
     "key": "sc:plaster-repair.steps.1",
     "hash": "869367aa1b11",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.steps.2": {
@@ -680,9 +680,9 @@
    "review": {
     "key": "sc:plaster-repair.steps.2",
     "hash": "af2a72aebbd0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-repair.steps.3": {
@@ -694,9 +694,9 @@
    "review": {
     "key": "sc:plaster-repair.steps.3",
     "hash": "1595fac28708",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.checks.1": {
@@ -708,9 +708,9 @@
    "review": {
     "key": "sc:plaster-wall.checks.1",
     "hash": "b41768602a7b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.checks.2": {
@@ -722,9 +722,9 @@
    "review": {
     "key": "sc:plaster-wall.checks.2",
     "hash": "3771a1d5e2a5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.checks.3": {
@@ -736,9 +736,9 @@
    "review": {
     "key": "sc:plaster-wall.checks.3",
     "hash": "a44509cdf37b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.checks.4": {
@@ -750,9 +750,9 @@
    "review": {
     "key": "sc:plaster-wall.checks.4",
     "hash": "fd48a6f7411b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.handover.1": {
@@ -764,9 +764,9 @@
    "review": {
     "key": "sc:plaster-wall.handover.1",
     "hash": "450e032c04b4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.handover.2": {
@@ -778,9 +778,9 @@
    "review": {
     "key": "sc:plaster-wall.handover.2",
     "hash": "6f9005b2d48d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.preparation.1": {
@@ -792,9 +792,9 @@
    "review": {
     "key": "sc:plaster-wall.preparation.1",
     "hash": "bb1235fa4112",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.preparation.2": {
@@ -806,9 +806,9 @@
    "review": {
     "key": "sc:plaster-wall.preparation.2",
     "hash": "af6a584b51c6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.preparation.3": {
@@ -820,9 +820,9 @@
    "review": {
     "key": "sc:plaster-wall.preparation.3",
     "hash": "44ec4c850071",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.preparation.4": {
@@ -834,9 +834,9 @@
    "review": {
     "key": "sc:plaster-wall.preparation.4",
     "hash": "14a78a13dd09",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.prerequisites.1": {
@@ -848,9 +848,9 @@
    "review": {
     "key": "sc:plaster-wall.prerequisites.1",
     "hash": "d45b3e222b16",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.prerequisites.2": {
@@ -862,9 +862,9 @@
    "review": {
     "key": "sc:plaster-wall.prerequisites.2",
     "hash": "b6a12a8cad30",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.prerequisites.3": {
@@ -876,9 +876,9 @@
    "review": {
     "key": "sc:plaster-wall.prerequisites.3",
     "hash": "888c30a6005f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.steps.1": {
@@ -890,9 +890,9 @@
    "review": {
     "key": "sc:plaster-wall.steps.1",
     "hash": "c4f46bd422dc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.steps.2": {
@@ -904,9 +904,9 @@
    "review": {
     "key": "sc:plaster-wall.steps.2",
     "hash": "f7252773dd1c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster-wall.steps.3": {
@@ -918,9 +918,9 @@
    "review": {
     "key": "sc:plaster-wall.steps.3",
     "hash": "1fd4e20dc8cd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.preparation.strip": {
@@ -932,9 +932,9 @@
    "review": {
     "key": "sc:plaster.preparation.strip",
     "hash": "e91281fded46",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.prerequisites.machine-access": {
@@ -946,9 +946,9 @@
    "review": {
     "key": "sc:plaster.prerequisites.machine-access",
     "hash": "b3a5f7a5e6f6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.prerequisites.replace-agree": {
@@ -960,9 +960,9 @@
    "review": {
     "key": "sc:plaster.prerequisites.replace-agree",
     "hash": "496a6a15c3b2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.steps.machine-finish": {
@@ -974,9 +974,9 @@
    "review": {
     "key": "sc:plaster.steps.machine-finish",
     "hash": "8b28d0a382a0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.steps.machine-level": {
@@ -988,9 +988,9 @@
    "review": {
     "key": "sc:plaster.steps.machine-level",
     "hash": "b458223df071",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.steps.machine-spray": {
@@ -1002,9 +1002,9 @@
    "review": {
     "key": "sc:plaster.steps.machine-spray",
     "hash": "aa3816fd0875",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.x.debris": {
@@ -1016,9 +1016,9 @@
    "review": {
     "key": "sc:plaster.x.debris",
     "hash": "a56abf2b1f44",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.x.mesh-all": {
@@ -1030,9 +1030,9 @@
    "review": {
     "key": "sc:plaster.x.mesh-all",
     "hash": "646bb37161e8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plaster.x.repellent": {
@@ -1044,9 +1044,9 @@
    "review": {
     "key": "sc:plaster.x.repellent",
     "hash": "5b70a496ca5c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

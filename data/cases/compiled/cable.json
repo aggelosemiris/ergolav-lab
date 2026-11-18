@@ -122,9 +122,9 @@
    "review": {
     "key": "case:cable:newline.surface",
     "hash": "126e559a810e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -248,9 +248,9 @@
    "review": {
     "key": "case:cable:rewire.surface",
     "hash": "078c34b36b4d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -294,9 +294,9 @@
    "review": {
     "key": "case:cable:extend.chased",
     "hash": "a7ea47c82224",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -337,9 +337,9 @@
    "review": {
     "key": "case:cable:extend.existing",
     "hash": "5722b347eacb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -381,9 +381,9 @@
    "review": {
     "key": "case:cable:extend.surface",
     "hash": "6b426e15e0a3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -399,9 +399,9 @@
    "review": {
     "key": "extra:cable:cable.x.close-old",
     "hash": "9ec1da13c4b6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -416,9 +416,9 @@
    "review": {
     "key": "extra:cable:cable.x.rcd",
     "hash": "f274588db1e3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -428,9 +428,9 @@
    "review": {
     "key": "extra:cable:cable.x.data",
     "hash": "0ec8a6204751",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -444,9 +444,9 @@
    "review": {
     "key": "sc:cable.checks.same-breaker",
     "hash": "255b6a5d5483",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.handover.route-note": {
@@ -458,9 +458,9 @@
    "review": {
     "key": "sc:cable.handover.route-note",
     "hash": "83ba702cfb80",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.preparation.old-out": {
@@ -472,9 +472,9 @@
    "review": {
     "key": "sc:cable.preparation.old-out",
     "hash": "b25b8fdd1001",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.preparation.pull-check": {
@@ -486,9 +486,9 @@
    "review": {
     "key": "sc:cable.preparation.pull-check",
     "hash": "44e67b022679",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.prerequisites.extend-point": {
@@ -500,9 +500,9 @@
    "review": {
     "key": "sc:cable.prerequisites.extend-point",
     "hash": "49d4606c85e9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.prerequisites.load-check": {
@@ -514,9 +514,9 @@
    "review": {
     "key": "sc:cable.prerequisites.load-check",
     "hash": "2d2e524f348e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.prerequisites.surface-route": {
@@ -528,9 +528,9 @@
    "review": {
     "key": "sc:cable.prerequisites.surface-route",
     "hash": "5935d4a5474b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.steps.channel": {
@@ -542,9 +542,9 @@
    "review": {
     "key": "sc:cable.steps.channel",
     "hash": "5e2bcb3dac30",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.steps.channel-wire": {
@@ -556,9 +556,9 @@
    "review": {
     "key": "sc:cable.steps.channel-wire",
     "hash": "3c00a95ae6ba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.steps.junction": {
@@ -570,9 +570,9 @@
    "review": {
     "key": "sc:cable.steps.junction",
     "hash": "619f20329cdd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.steps.pull": {
@@ -584,9 +584,9 @@
    "review": {
     "key": "sc:cable.steps.pull",
     "hash": "5ebb6a86a5bd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.x.close-old": {
@@ -598,9 +598,9 @@
    "review": {
     "key": "sc:cable.x.close-old",
     "hash": "1d9a4e1b00df",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.x.data": {
@@ -612,9 +612,9 @@
    "review": {
     "key": "sc:cable.x.data",
     "hash": "bf68797c6e70",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cable.x.rcd": {
@@ -626,9 +626,9 @@
    "review": {
     "key": "sc:cable.x.rcd",
     "hash": "1b1e562bf050",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.checks.1": {
@@ -640,9 +640,9 @@
    "review": {
     "key": "sc:elec-wiring.checks.1",
     "hash": "16107d29c3dc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.checks.2": {
@@ -654,9 +654,9 @@
    "review": {
     "key": "sc:elec-wiring.checks.2",
     "hash": "da774340527a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.checks.3": {
@@ -668,9 +668,9 @@
    "review": {
     "key": "sc:elec-wiring.checks.3",
     "hash": "8b5ee07b497d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.handover.1": {
@@ -682,9 +682,9 @@
    "review": {
     "key": "sc:elec-wiring.handover.1",
     "hash": "788433de7284",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.handover.2": {
@@ -696,9 +696,9 @@
    "review": {
     "key": "sc:elec-wiring.handover.2",
     "hash": "d6fe5f09b87f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.preparation.1": {
@@ -710,9 +710,9 @@
    "review": {
     "key": "sc:elec-wiring.preparation.1",
     "hash": "4ae6f3adbe26",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.preparation.2": {
@@ -724,9 +724,9 @@
    "review": {
     "key": "sc:elec-wiring.preparation.2",
     "hash": "e00dd9c231b5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.preparation.3": {
@@ -738,9 +738,9 @@
    "review": {
     "key": "sc:elec-wiring.preparation.3",
     "hash": "debb79b18836",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.prerequisites.1": {
@@ -752,9 +752,9 @@
    "review": {
     "key": "sc:elec-wiring.prerequisites.1",
     "hash": "0e2f2b877190",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.prerequisites.2": {
@@ -766,9 +766,9 @@
    "review": {
     "key": "sc:elec-wiring.prerequisites.2",
     "hash": "544030e54010",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.prerequisites.3": {
@@ -780,9 +780,9 @@
    "review": {
     "key": "sc:elec-wiring.prerequisites.3",
     "hash": "312832464995",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.steps.1": {
@@ -794,9 +794,9 @@
    "review": {
     "key": "sc:elec-wiring.steps.1",
     "hash": "ef33f288a089",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.steps.2": {
@@ -808,9 +808,9 @@
    "review": {
     "key": "sc:elec-wiring.steps.2",
     "hash": "f33b24d79799",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.steps.3": {
@@ -822,9 +822,9 @@
    "review": {
     "key": "sc:elec-wiring.steps.3",
     "hash": "38addabd4442",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-wiring.steps.4": {
@@ -836,9 +836,9 @@
    "review": {
     "key": "sc:elec-wiring.steps.4",
     "hash": "e8d23bfb6a54",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

@@ -124,9 +124,9 @@
    "review": {
     "key": "case:pipe-drain:renovation.ceiling",
     "hash": "7b63659e8e26",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -170,9 +170,9 @@
    "review": {
     "key": "case:pipe-drain:extend.floor",
     "hash": "47f3eabe1d00",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -216,9 +216,9 @@
    "review": {
     "key": "case:pipe-drain:extend.wall",
     "hash": "0468a14cc756",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -263,9 +263,9 @@
    "review": {
     "key": "case:pipe-drain:extend.ceiling",
     "hash": "98a7ed77ea3f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -308,9 +308,9 @@
    "review": {
     "key": "case:pipe-drain:stack.wall",
     "hash": "437cd9402e22",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -353,9 +353,9 @@
    "review": {
     "key": "case:pipe-drain:stack.ceiling",
     "hash": "e5311e6c3774",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -371,9 +371,9 @@
    "review": {
     "key": "extra:pipe-drain:plumb-drain-network.handover.1",
     "hash": "4eb5ffc835ff",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -383,9 +383,9 @@
    "review": {
     "key": "extra:pipe-drain:drain.x.cleanout",
     "hash": "b12dde6d26b2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -395,9 +395,9 @@
    "review": {
     "key": "extra:pipe-drain:drain.x.acoustic",
     "hash": "22f1d5333283",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -407,9 +407,9 @@
    "review": {
     "key": "extra:pipe-drain:drain.x.camera",
     "hash": "563c21cbb07a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -423,9 +423,9 @@
    "review": {
     "key": "sc:drain.checks.join-dry",
     "hash": "6640c6ee38ee",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.checks.stack-flow": {
@@ -437,9 +437,9 @@
    "review": {
     "key": "sc:drain.checks.stack-flow",
     "hash": "1532a6e7f802",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.handover.stack-reopen": {
@@ -451,9 +451,9 @@
    "review": {
     "key": "sc:drain.handover.stack-reopen",
     "hash": "a8b29fd870e7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.core-holes": {
@@ -465,9 +465,9 @@
    "review": {
     "key": "sc:drain.preparation.core-holes",
     "hash": "d10d4a16fa66",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.expose-join": {
@@ -479,9 +479,9 @@
    "review": {
     "key": "sc:drain.preparation.expose-join",
     "hash": "65bc9a84b195",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.hangers": {
@@ -493,9 +493,9 @@
    "review": {
     "key": "sc:drain.preparation.hangers",
     "hash": "995decc4002f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.open-route": {
@@ -507,9 +507,9 @@
    "review": {
     "key": "sc:drain.preparation.open-route",
     "hash": "50fe1b5590d4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.stack-access": {
@@ -521,9 +521,9 @@
    "review": {
     "key": "sc:drain.preparation.stack-access",
     "hash": "cfd1c101d150",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.stack-open": {
@@ -535,9 +535,9 @@
    "review": {
     "key": "sc:drain.preparation.stack-open",
     "hash": "39fae60435f7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.preparation.stack-stop": {
@@ -549,9 +549,9 @@
    "review": {
     "key": "sc:drain.preparation.stack-stop",
     "hash": "bb43542f7501",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.prerequisites.below-access": {
@@ -563,9 +563,9 @@
    "review": {
     "key": "sc:drain.prerequisites.below-access",
     "hash": "6f259cd45b4a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.prerequisites.extend-point": {
@@ -577,9 +577,9 @@
    "review": {
     "key": "sc:drain.prerequisites.extend-point",
     "hash": "a3a0196e3a2d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.prerequisites.stack-consent": {
@@ -591,9 +591,9 @@
    "review": {
     "key": "sc:drain.prerequisites.stack-consent",
     "hash": "f0838124750a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.prerequisites.stack-route": {
@@ -605,9 +605,9 @@
    "review": {
     "key": "sc:drain.prerequisites.stack-route",
     "hash": "e61c1d70bc5a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.hang": {
@@ -619,9 +619,9 @@
    "review": {
     "key": "sc:drain.steps.hang",
     "hash": "4d3cf805e8f7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.slab-seal": {
@@ -633,9 +633,9 @@
    "review": {
     "key": "sc:drain.steps.slab-seal",
     "hash": "7907dd488e15",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.stack-clamp": {
@@ -647,9 +647,9 @@
    "review": {
     "key": "sc:drain.steps.stack-clamp",
     "hash": "73afa3036b24",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.stack-cut": {
@@ -661,9 +661,9 @@
    "review": {
     "key": "sc:drain.steps.stack-cut",
     "hash": "f244170c28ae",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.stack-new": {
@@ -675,9 +675,9 @@
    "review": {
     "key": "sc:drain.steps.stack-new",
     "hash": "66e8222f903b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.stack-vent": {
@@ -689,9 +689,9 @@
    "review": {
     "key": "sc:drain.steps.stack-vent",
     "hash": "4bc893217db8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.steps.tie-in": {
@@ -703,9 +703,9 @@
    "review": {
     "key": "sc:drain.steps.tie-in",
     "hash": "f861511234d2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.x.acoustic": {
@@ -717,9 +717,9 @@
    "review": {
     "key": "sc:drain.x.acoustic",
     "hash": "8dc27c8c098a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.x.camera": {
@@ -731,9 +731,9 @@
    "review": {
     "key": "sc:drain.x.camera",
     "hash": "13a41c3751d5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "drain.x.cleanout": {
@@ -745,9 +745,9 @@
    "review": {
     "key": "sc:drain.x.cleanout",
     "hash": "ffe6ce1a65ca",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.checks.1": {
@@ -759,9 +759,9 @@
    "review": {
     "key": "sc:plumb-drain-network.checks.1",
     "hash": "269e819b2947",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.checks.2": {
@@ -773,9 +773,9 @@
    "review": {
     "key": "sc:plumb-drain-network.checks.2",
     "hash": "b88c5dbbb9a3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.checks.3": {
@@ -787,9 +787,9 @@
    "review": {
     "key": "sc:plumb-drain-network.checks.3",
     "hash": "f597d4a502f0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.handover.1": {
@@ -801,9 +801,9 @@
    "review": {
     "key": "sc:plumb-drain-network.handover.1",
     "hash": "5886fb72378b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.handover.2": {
@@ -815,9 +815,9 @@
    "review": {
     "key": "sc:plumb-drain-network.handover.2",
     "hash": "a20b2b470c5c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.preparation.1": {
@@ -829,9 +829,9 @@
    "review": {
     "key": "sc:plumb-drain-network.preparation.1",
     "hash": "0c6758a3961e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.preparation.2": {
@@ -843,9 +843,9 @@
    "review": {
     "key": "sc:plumb-drain-network.preparation.2",
     "hash": "362ff381e9c4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.prerequisites.1": {
@@ -857,9 +857,9 @@
    "review": {
     "key": "sc:plumb-drain-network.prerequisites.1",
     "hash": "3f44de0309c1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.prerequisites.2": {
@@ -871,9 +871,9 @@
    "review": {
     "key": "sc:plumb-drain-network.prerequisites.2",
     "hash": "badfb28366d3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.prerequisites.3": {
@@ -885,9 +885,9 @@
    "review": {
     "key": "sc:plumb-drain-network.prerequisites.3",
     "hash": "36bcf7f70a55",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.steps.1": {
@@ -899,9 +899,9 @@
    "review": {
     "key": "sc:plumb-drain-network.steps.1",
     "hash": "735e8e904ca3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.steps.2": {
@@ -913,9 +913,9 @@
    "review": {
     "key": "sc:plumb-drain-network.steps.2",
     "hash": "9a3de276abe3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.steps.3": {
@@ -927,9 +927,9 @@
    "review": {
     "key": "sc:plumb-drain-network.steps.3",
     "hash": "5902ff826213",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.steps.4": {
@@ -941,9 +941,9 @@
    "review": {
     "key": "sc:plumb-drain-network.steps.4",
     "hash": "25221652496f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-drain-network.steps.5": {
@@ -955,9 +955,9 @@
    "review": {
     "key": "sc:plumb-drain-network.steps.5",
     "hash": "99762c60017b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

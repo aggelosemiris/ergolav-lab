@@ -79,9 +79,9 @@
    "review": {
     "key": "case:manifold:new.surface",
     "hash": "d44ee1da6a77",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -123,9 +123,9 @@
    "review": {
     "key": "case:manifold:replace.recessed",
     "hash": "cf3fae2771cd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -167,9 +167,9 @@
    "review": {
     "key": "case:manifold:replace.surface",
     "hash": "492a814faa9f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -181,9 +181,9 @@
    "review": {
     "key": "extra:manifold:manifold.x.drain",
     "hash": "79f3dccd5c93",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -193,9 +193,9 @@
    "review": {
     "key": "extra:manifold:manifold.x.spare",
     "hash": "c1c5844f3231",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -209,9 +209,9 @@
    "review": {
     "key": "sc:manifold.checks.flow",
     "hash": "7c757dd4c663",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.checks.joints": {
@@ -223,9 +223,9 @@
    "review": {
     "key": "sc:manifold.checks.joints",
     "hash": "7ee40b8d8f61",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.handover.clean": {
@@ -237,9 +237,9 @@
    "review": {
     "key": "sc:manifold.handover.clean",
     "hash": "5998eecf934e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.preparation.label-old": {
@@ -251,9 +251,9 @@
    "review": {
     "key": "sc:manifold.preparation.label-old",
     "hash": "538fb504c5f9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.preparation.mark": {
@@ -265,9 +265,9 @@
    "review": {
     "key": "sc:manifold.preparation.mark",
     "hash": "6a039a9e0418",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.preparation.remove-old": {
@@ -279,9 +279,9 @@
    "review": {
     "key": "sc:manifold.preparation.remove-old",
     "hash": "5ed1e25b66cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.preparation.routes": {
@@ -293,9 +293,9 @@
    "review": {
     "key": "sc:manifold.preparation.routes",
     "hash": "45c6c024abd5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.prerequisites.main-off": {
@@ -307,9 +307,9 @@
    "review": {
     "key": "sc:manifold.prerequisites.main-off",
     "hash": "f3bb0d63d0cc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.prerequisites.replace-match": {
@@ -321,9 +321,9 @@
    "review": {
     "key": "sc:manifold.prerequisites.replace-match",
     "hash": "187b52740484",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.prerequisites.surface-place": {
@@ -335,9 +335,9 @@
    "review": {
     "key": "sc:manifold.prerequisites.surface-place",
     "hash": "a3fdfeced870",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.steps.brackets": {
@@ -349,9 +349,9 @@
    "review": {
     "key": "sc:manifold.steps.brackets",
     "hash": "facd61da4ea0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.steps.fix-in-box": {
@@ -363,9 +363,9 @@
    "review": {
     "key": "sc:manifold.steps.fix-in-box",
     "hash": "600d5824f417",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.steps.leak-test": {
@@ -377,9 +377,9 @@
    "review": {
     "key": "sc:manifold.steps.leak-test",
     "hash": "114ddeb1da9d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.x.drain": {
@@ -391,9 +391,9 @@
    "review": {
     "key": "sc:manifold.x.drain",
     "hash": "e3ad8d54de54",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "manifold.x.spare": {
@@ -405,9 +405,9 @@
    "review": {
     "key": "sc:manifold.x.spare",
     "hash": "8be6b3e0f9d1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.checks.1": {
@@ -419,9 +419,9 @@
    "review": {
     "key": "sc:plumb-manifold.checks.1",
     "hash": "73652081e115",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.checks.2": {
@@ -433,9 +433,9 @@
    "review": {
     "key": "sc:plumb-manifold.checks.2",
     "hash": "2d0f77d75c8a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.checks.3": {
@@ -447,9 +447,9 @@
    "review": {
     "key": "sc:plumb-manifold.checks.3",
     "hash": "fd3d28f46ec7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.handover.1": {
@@ -461,9 +461,9 @@
    "review": {
     "key": "sc:plumb-manifold.handover.1",
     "hash": "e4fd3c84057d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.handover.2": {
@@ -475,9 +475,9 @@
    "review": {
     "key": "sc:plumb-manifold.handover.2",
     "hash": "36e7c2aa72b1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.preparation.1": {
@@ -489,9 +489,9 @@
    "review": {
     "key": "sc:plumb-manifold.preparation.1",
     "hash": "1c59f6a62b68",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.preparation.2": {
@@ -503,9 +503,9 @@
    "review": {
     "key": "sc:plumb-manifold.preparation.2",
     "hash": "29b827027194",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.prerequisites.1": {
@@ -517,9 +517,9 @@
    "review": {
     "key": "sc:plumb-manifold.prerequisites.1",
     "hash": "82880cccb635",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.prerequisites.2": {
@@ -531,9 +531,9 @@
    "review": {
     "key": "sc:plumb-manifold.prerequisites.2",
     "hash": "e5cac9285dbb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.steps.1": {
@@ -545,9 +545,9 @@
    "review": {
     "key": "sc:plumb-manifold.steps.1",
     "hash": "cbcf75c0fa1b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.steps.2": {
@@ -559,9 +559,9 @@
    "review": {
     "key": "sc:plumb-manifold.steps.2",
     "hash": "43bc1e0a8e8d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.steps.3": {
@@ -573,9 +573,9 @@
    "review": {
     "key": "sc:plumb-manifold.steps.3",
     "hash": "87b3b19a9fe9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-manifold.steps.4": {
@@ -587,9 +587,9 @@
    "review": {
     "key": "sc:plumb-manifold.steps.4",
     "hash": "c9af447ec834",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

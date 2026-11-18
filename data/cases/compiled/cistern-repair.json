@@ -120,9 +120,9 @@
    "review": {
     "key": "case:cistern-repair:float.close",
     "hash": "30d33d438ba9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -245,9 +245,9 @@
    "review": {
     "key": "case:cistern-repair:flush.close",
     "hash": "a5ff188568cd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -370,9 +370,9 @@
    "review": {
     "key": "case:cistern-repair:both.close",
     "hash": "313b7dade0d5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -384,9 +384,9 @@
    "review": {
     "key": "extra:cistern-repair:cistern.x.angle",
     "hash": "122357ff0ee5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -396,9 +396,9 @@
    "review": {
     "key": "extra:cistern-repair:cistern.x.limescale",
     "hash": "e60543d46359",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -412,9 +412,9 @@
    "review": {
     "key": "sc:cistern.checks.close-joint",
     "hash": "aac900d7365c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cistern.preparation.close-lid": {
@@ -426,9 +426,9 @@
    "review": {
     "key": "sc:cistern.preparation.close-lid",
     "hash": "49888900734b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cistern.prerequisites.close-type": {
@@ -440,9 +440,9 @@
    "review": {
     "key": "sc:cistern.prerequisites.close-type",
     "hash": "369d86b8d0c0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cistern.steps.close-unbolt": {
@@ -454,9 +454,9 @@
    "review": {
     "key": "sc:cistern.steps.close-unbolt",
     "hash": "46405556d9c5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cistern.x.angle": {
@@ -468,9 +468,9 @@
    "review": {
     "key": "sc:cistern.x.angle",
     "hash": "afa590c0c2a8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "cistern.x.limescale": {
@@ -482,9 +482,9 @@
    "review": {
     "key": "sc:cistern.x.limescale",
     "hash": "d51c45525cff",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.checks.1": {
@@ -496,9 +496,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.checks.1",
     "hash": "cac8aab84bba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.checks.2": {
@@ -510,9 +510,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.checks.2",
     "hash": "fe9443bf0b57",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.checks.3": {
@@ -524,9 +524,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.checks.3",
     "hash": "1282bb9dafbe",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.handover.1": {
@@ -538,9 +538,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.handover.1",
     "hash": "125e00ac58c4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.handover.2": {
@@ -552,9 +552,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.handover.2",
     "hash": "9e82accef790",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.preparation.1": {
@@ -566,9 +566,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.preparation.1",
     "hash": "24996d3316f6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.preparation.2": {
@@ -580,9 +580,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.preparation.2",
     "hash": "9c842e4e96f2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.preparation.3": {
@@ -594,9 +594,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.preparation.3",
     "hash": "1860c78c91e9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.prerequisites.1": {
@@ -608,9 +608,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.prerequisites.1",
     "hash": "79fc4b0fbceb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.prerequisites.2": {
@@ -622,9 +622,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.prerequisites.2",
     "hash": "6ddbb1bcd52e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.steps.1": {
@@ -636,9 +636,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.steps.1",
     "hash": "746f7683dc4d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.steps.2": {
@@ -650,9 +650,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.steps.2",
     "hash": "305321abe6d8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.steps.3": {
@@ -664,9 +664,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.steps.3",
     "hash": "a2850038e9da",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-cistern-repair.steps.4": {
@@ -678,9 +678,9 @@
    "review": {
     "key": "sc:plumb-cistern-repair.steps.4",
     "hash": "10be5c14523f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

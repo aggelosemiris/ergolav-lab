@@ -18,4 +18,4 @@ export const TURNSTILE_SITE_KEY = '0x4AAAAAAGEQsmQ8gtAQ0mHi';
 // «Άλλαξέ το» χωρίς AI (bot με έτοιμα, εγκεκριμένα κείμενα) — βλ. docs/ALLAXE_BOT.md.
 // false: η εφαρμογή είναι ακριβώς όπως πριν. true: η ανάλυση κάθε εργασίας διαλέγεται από επιλογή/κανόνα/φωνή/βασική,
 // με ετικέτα μόνο στην οθόνη, και η εφαρμογή ΔΕΝ καλεί ποτέ τον worker (REWRITE_URL) ή οποιοδήποτε AI.
-export const ALLAXE_BOT_ENABLED = false;
+export const ALLAXE_BOT_ENABLED = true;

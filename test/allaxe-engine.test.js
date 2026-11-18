@@ -21,7 +21,12 @@ const approve = r => ({...r, out: {...r.out,
   extras: r.out.extras.map(x => ({...x, review: {...x.review, reviewed: true}})),
   items: Object.fromEntries(Object.entries(r.out.items).map(([id, it]) => [id, {...it, review: {...it.review, reviewed: true}}]))}});
 const ALL = appData(map, Object.fromEntries(Object.entries(res).map(([k, r]) => [k, approve(r)])));
-const NONE = appData(map, res);
+// «Τίποτα εγκεκριμένο»: όπως πριν από τον έλεγχο, ανεξάρτητα από το data/cases/reviews.json.
+const unapprove = r => ({...r, out: {...r.out,
+  cases: r.out.cases.map(c => c.review ? {...c, review: {...c.review, reviewed: false}} : c),
+  extras: r.out.extras.map(x => ({...x, review: {...x.review, reviewed: false}})),
+  items: Object.fromEntries(Object.entries(r.out.items).map(([id, it]) => [id, {...it, review: {...it.review, reviewed: false}}]))}});
+const NONE = appData(map, Object.fromEntries(Object.entries(res).map(([k, r]) => [k, unapprove(r)])));
 const wc = (() => { const l = lineFor('wc', 1), o = l.options.find(x => x.label === 'κρεμαστή'); return Object.assign(l, {code: o.code, name: 'Λεκάνη κρεμαστή'}); })();
 const TASK = 'plumb-wc-wall-hung', A = ANALYSES[TASK];
 const ctx = (extra = {}) => ({task: TASK, lines: [wc], voice: '', rules: {}, chosen: null, ops: [], scope: null, ...extra});

@@ -18,7 +18,7 @@ const approve = r => ({...r, out: {...r.out,
 const ALL = appData(map, Object.fromEntries(Object.entries(res).map(([k, r]) => [k, approve(r)])));
 const CASES_JS = appDataSource(ALL);
 const CONFIG = fs.readFileSync(new URL('../../src/config.js', import.meta.url), 'utf8')
-  .replace('export const ALLAXE_BOT_ENABLED = false;', 'export const ALLAXE_BOT_ENABLED = true;')
+  .replace(/export const ALLAXE_BOT_ENABLED = (true|false);/, 'export const ALLAXE_BOT_ENABLED = true;')
   .replace('export const AUTH_ENABLED = true;', 'export const AUTH_ENABLED = false;');
 const caseTitle = id => res[id.split(':')[0]].out.cases.find(c => c.id === id).title;
 const PROFILE = JSON.stringify({name: 'Νίκος Παπαδάκης', trade: 'Υδραυλικός', phone: '6912345678'});
