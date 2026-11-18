@@ -1,0 +1,990 @@
+{
+ "material": "socket",
+ "name": "Πρίζα ή διακόπτης",
+ "cases": [
+  {
+   "id": "socket:socket.replace.indoor",
+   "label": "Πρίζα · Αλλαγή σε υπάρχον σημείο · Μέσα στο σπίτι",
+   "answers": {
+    "item": "socket",
+    "job": "replace",
+    "place": "indoor"
+   },
+   "source": "base",
+   "task": "elec-socket",
+   "title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο για αντικατάσταση· 1–2 ώρες για νέα θέση",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "elec-socket.checks.3",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "socket:socket.replace.wet",
+   "label": "Πρίζα · Αλλαγή σε υπάρχον σημείο · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "socket",
+    "job": "replace",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση στεγανής πρίζας σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:socket.replace.wet",
+    "hash": "d06a0f64c80e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:socket.new.masonry.indoor",
+   "label": "Πρίζα · Νέο σημείο · Τούβλο ή μπετό (σκάψιμο) · Μέσα στο σπίτι",
+   "answers": {
+    "item": "socket",
+    "job": "new",
+    "wall": "masonry",
+    "place": "indoor"
+   },
+   "source": "base",
+   "task": "elec-socket",
+   "title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο για αντικατάσταση· 1–2 ώρες για νέα θέση",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "elec-socket.checks.3",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "socket:socket.new.masonry.wet",
+   "label": "Πρίζα · Νέο σημείο · Τούβλο ή μπετό (σκάψιμο) · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "socket",
+    "job": "new",
+    "wall": "masonry",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση στεγανής πρίζας σε νέα θέση σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd",
+     "socket.prerequisites.bath-zones"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:socket.new.masonry.wet",
+    "hash": "625a9fe58a93",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:socket.new.drywall.indoor",
+   "label": "Πρίζα · Νέο σημείο · Γυψοσανίδα · Μέσα στο σπίτι",
+   "answers": {
+    "item": "socket",
+    "job": "new",
+    "wall": "drywall",
+    "place": "indoor"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση πρίζας σε νέα θέση σε γυψοσανίδα",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2",
+     "socket.prerequisites.drywall-route"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "socket.preparation.drywall-hole"
+    ],
+    "steps": [
+     "socket.steps.drywall-box",
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:socket.new.drywall.indoor",
+    "hash": "868744d9e010",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:socket.new.drywall.wet",
+   "label": "Πρίζα · Νέο σημείο · Γυψοσανίδα · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "socket",
+    "job": "new",
+    "wall": "drywall",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση στεγανής πρίζας σε νέα θέση σε γυψοσανίδα σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd",
+     "socket.prerequisites.drywall-route"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "socket.preparation.drywall-hole"
+    ],
+    "steps": [
+     "socket.steps.drywall-box",
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:socket.new.drywall.wet",
+    "hash": "c00f7f9b3213",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:switch.replace.indoor",
+   "label": "Διακόπτης φωτός · Αλλαγή σε υπάρχον σημείο · Μέσα στο σπίτι",
+   "answers": {
+    "item": "switch",
+    "job": "replace",
+    "place": "indoor"
+   },
+   "source": "base",
+   "task": "elec-socket",
+   "title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο για αντικατάσταση· 1–2 ώρες για νέα θέση",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "elec-socket.checks.3",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "socket:switch.replace.wet",
+   "label": "Διακόπτης φωτός · Αλλαγή σε υπάρχον σημείο · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "switch",
+    "job": "replace",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση στεγανού διακόπτη φωτός σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.3",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:switch.replace.wet",
+    "hash": "cbade91d7ef8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:switch.new.masonry.indoor",
+   "label": "Διακόπτης φωτός · Νέο σημείο · Τούβλο ή μπετό (σκάψιμο) · Μέσα στο σπίτι",
+   "answers": {
+    "item": "switch",
+    "job": "new",
+    "wall": "masonry",
+    "place": "indoor"
+   },
+   "source": "base",
+   "task": "elec-socket",
+   "title": "Τοποθέτηση ή αντικατάσταση πρίζας ή διακόπτη",
+   "duration": "ενδεικτικά 20–40 λεπτά ανά σημείο για αντικατάσταση· 1–2 ώρες για νέα θέση",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.2",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.1",
+     "elec-socket.checks.2",
+     "elec-socket.checks.3",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "socket:switch.new.masonry.wet",
+   "label": "Διακόπτης φωτός · Νέο σημείο · Τούβλο ή μπετό (σκάψιμο) · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "switch",
+    "job": "new",
+    "wall": "masonry",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση στεγανού διακόπτη φωτός σε νέα θέση σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd",
+     "socket.prerequisites.bath-zones"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "elec-socket.preparation.3"
+    ],
+    "steps": [
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.3",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.3",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:switch.new.masonry.wet",
+    "hash": "432ef3f0faff",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:switch.new.drywall.indoor",
+   "label": "Διακόπτης φωτός · Νέο σημείο · Γυψοσανίδα · Μέσα στο σπίτι",
+   "answers": {
+    "item": "switch",
+    "job": "new",
+    "wall": "drywall",
+    "place": "indoor"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση διακόπτη φωτός σε νέα θέση σε γυψοσανίδα",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "elec-socket.prerequisites.2",
+     "socket.prerequisites.drywall-route"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "socket.preparation.drywall-hole"
+    ],
+    "steps": [
+     "socket.steps.drywall-box",
+     "elec-socket.steps.1",
+     "elec-socket.steps.2",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.3",
+     "elec-socket.checks.2",
+     "elec-socket.checks.4"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:switch.new.drywall.indoor",
+    "hash": "d489533a6789",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket:switch.new.drywall.wet",
+   "label": "Διακόπτης φωτός · Νέο σημείο · Γυψοσανίδα · Μπάνιο ή έξω (στεγανή)",
+   "answers": {
+    "item": "switch",
+    "job": "new",
+    "wall": "drywall",
+    "place": "wet"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση στεγανού διακόπτη φωτός σε νέα θέση σε γυψοσανίδα σε μπάνιο ή εξωτερικό χώρο",
+   "duration": "ενδεικτικά 1–2 ώρες ανά σημείο",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-socket.prerequisites.1",
+     "socket.prerequisites.wet-type",
+     "socket.prerequisites.rcd",
+     "socket.prerequisites.drywall-route"
+    ],
+    "preparation": [
+     "elec-socket.preparation.1",
+     "socket.preparation.drywall-hole"
+    ],
+    "steps": [
+     "socket.steps.drywall-box",
+     "elec-socket.steps.1",
+     "socket.steps.wet-mount",
+     "elec-socket.steps.4"
+    ],
+    "checks": [
+     "elec-socket.checks.3",
+     "elec-socket.checks.2",
+     "socket.checks.wet-cover"
+    ],
+    "handover": [
+     "elec-socket.handover.1",
+     "elec-socket.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:socket:switch.new.drywall.wet",
+    "hash": "4da4c0bc2d5b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "socket.x.check-load",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:socket:socket.x.check-load",
+    "hash": "8a495feb4d0d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket.x.label-panel",
+   "section": "handover",
+   "when": {
+    "job": [
+     "new"
+    ]
+   },
+   "review": {
+    "key": "extra:socket:socket.x.label-panel",
+    "hash": "2dd87d4bd1ac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket.x.earth-test",
+   "section": "checks",
+   "when": null,
+   "review": {
+    "key": "extra:socket:socket.x.earth-test",
+    "hash": "44cbe607c58f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "socket.x.paint-patch",
+   "section": "handover",
+   "when": {
+    "job": [
+     "new"
+    ],
+    "wall": [
+     "masonry"
+    ]
+   },
+   "review": {
+    "key": "extra:socket:socket.x.paint-patch",
+    "hash": "f76bb1c735db",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "elec-socket.checks.1": {
+   "section": "checks",
+   "n": "Μετράμε με όργανο ότι η πρίζα έχει ρεύμα και ότι η γείωση είναι συνδεδεμένη.",
+   "s": "Με όργανο βλέπουμε ότι η πρίζα έχει ρεύμα και ότι η γείωση είναι συνδεδεμένη.",
+   "c": "Μέτρηση ρεύματος και γείωσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.checks.1",
+    "hash": "1c882f12d9b5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.checks.2": {
+   "section": "checks",
+   "n": "Αν υπάρχει ρελέ διαρροής στον πίνακα, ελέγχουμε ότι πέφτει με το κουμπί δοκιμής.",
+   "s": "Αν ο πίνακας έχει ρελέ διαρροής, πατάμε το κουμπί δοκιμής και βλέπουμε ότι πέφτει.",
+   "c": "Δοκιμή ρελέ διαρροής.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.checks.2",
+    "hash": "943dc533c034",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.checks.3": {
+   "section": "checks",
+   "n": "Ο διακόπτης ανάβει και σβήνει το σωστό φωτιστικό.",
+   "s": "Ο διακόπτης ανάβει και σβήνει το σωστό φως.",
+   "c": "Ο διακόπτης ελέγχει το σωστό φως.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.checks.3",
+    "hash": "727197cd18ab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.checks.4": {
+   "section": "checks",
+   "n": "Το πλαίσιο κάθεται ίσια, χωρίς κενό από τον τοίχο.",
+   "s": "Το πλαίσιο κάθεται ίσιο και κολλητά στον τοίχο.",
+   "c": "Πλαίσιο ίσιο, χωρίς κενό.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.checks.4",
+    "hash": "5a6a22b9d681",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τη σκόνη και τα υπολείμματα.",
+   "s": "Σκουπίζουμε τη σκόνη και τα υπολείμματα.",
+   "c": "Καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.handover.1",
+    "hash": "f5aed600845a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε σε ποια ασφάλεια του πίνακα ανήκει η πρίζα ή ο διακόπτης.",
+   "s": "Σας λέμε ποια ασφάλεια στον πίνακα κλείνει αυτή την πρίζα ή τον διακόπτη.",
+   "c": "Σε ποια ασφάλεια ανήκει.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.handover.2",
+    "hash": "abc454b2132f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.preparation.1": {
+   "section": "preparation",
+   "n": "Κατεβάζουμε την ασφάλεια της γραμμής και ελέγχουμε με όργανο ότι δεν υπάρχει ρεύμα.",
+   "s": "Κατεβάζουμε την ασφάλεια και ελέγχουμε με όργανο ότι δεν υπάρχει ρεύμα.",
+   "c": "Κόβουμε ρεύμα, ελέγχουμε με όργανο.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.preparation.1",
+    "hash": "d9c3c0c7c5f2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε την παλιά πρίζα ή τον διακόπτη και ελέγχουμε την κατάσταση των καλωδίων μέσα στο κουτί.",
+   "s": "Βγάζουμε την παλιά πρίζα ή τον διακόπτη και κοιτάμε σε τι κατάσταση είναι τα καλώδια.",
+   "c": "Αφαιρούμε το παλιό, ελέγχουμε τα καλώδια.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.preparation.2",
+    "hash": "ce85648b298b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.preparation.3": {
+   "section": "preparation",
+   "n": "Για νέα θέση, ανοίγουμε κουτί στον τοίχο και φέρνουμε καλώδιο από τη γραμμή που αντέχει το επιπλέον φορτίο.",
+   "s": "Για νέα θέση, ανοίγουμε κουτί στον τοίχο και φέρνουμε καλώδιο από γραμμή που σηκώνει κι άλλη κατανάλωση.",
+   "c": "Νέα θέση: κουτί και καλώδιο από κατάλληλη γραμμή.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.preparation.3",
+    "hash": "05d9e8375e4d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στον ηλεκτρολογικό πίνακα, για να κόψουμε το ρεύμα στη γραμμή.",
+   "s": "Να φτάνουμε τον πίνακα με τις ασφάλειες, για να κόψουμε το ρεύμα στη γραμμή.",
+   "c": "Πρόσβαση στον πίνακα.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.prerequisites.1",
+    "hash": "18e1aac30ca3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχετε διαλέξει σειρά και χρώμα πριζών και διακοπτών, ώστε να ταιριάζουν πλαίσια και μηχανισμοί σε όλο το σπίτι.",
+   "s": "Να έχετε διαλέξει σειρά και χρώμα, ώστε όλες οι πρίζες και οι διακόπτες του σπιτιού να ταιριάζουν.",
+   "c": "Επιλεγμένη σειρά και χρώμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.prerequisites.2",
+    "hash": "d6a65d4b4344",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.steps.1": {
+   "section": "steps",
+   "n": "Συνδέουμε τα καλώδια στον νέο μηχανισμό, μαζί με τη γείωση.",
+   "s": "Ενώνουμε τα καλώδια στον νέο μηχανισμό, μαζί με το καλώδιο της γείωσης.",
+   "c": "Σύνδεση καλωδίων και γείωσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.steps.1",
+    "hash": "3816ed7d9a62",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.steps.2": {
+   "section": "steps",
+   "n": "Στερεώνουμε τον μηχανισμό ίσια στο κουτί και τοποθετούμε πλαίσιο και καπάκι.",
+   "s": "Βιδώνουμε τον μηχανισμό ίσιο στο κουτί και βάζουμε πλαίσιο και καπάκι.",
+   "c": "Μηχανισμός ίσιος, πλαίσιο και καπάκι.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.steps.2",
+    "hash": "632d9d69a56f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.steps.3": {
+   "section": "steps",
+   "n": "Για νέα θέση, κλείνουμε το αυλάκι του καλωδίου με γύψο, έτοιμο για βάψιμο.",
+   "s": "Για νέα θέση, κλείνουμε με γύψο το κανάλι του καλωδίου, έτοιμο για βάψιμο.",
+   "c": "Νέα θέση: γύψος στο αυλάκι.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.steps.3",
+    "hash": "6f94ff5f770e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-socket.steps.4": {
+   "section": "steps",
+   "n": "Ανεβάζουμε ξανά την ασφάλεια.",
+   "s": "Ξαναδίνουμε ρεύμα από την ασφάλεια.",
+   "c": "Ανεβάζουμε την ασφάλεια.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-socket.steps.4",
+    "hash": "d9356ae28171",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.checks.wet-cover": {
+   "section": "checks",
+   "n": "Το καπάκι κλείνει μόνο του και εφαρμόζει σε όλη την περίμετρο.",
+   "s": "Το καπάκι κλείνει καλά από παντού, χωρίς κενά.",
+   "c": "Καπάκι που κλείνει σφιχτά.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.checks.wet-cover",
+    "hash": "5584975a8be3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.preparation.drywall-hole": {
+   "section": "preparation",
+   "n": "Ανοίγουμε τρύπα στη γυψοσανίδα με ποτηροτρύπανο και περνάμε καλώδιο από γραμμή που αντέχει το επιπλέον φορτίο.",
+   "s": "Κάνουμε στρογγυλή τρύπα στη γυψοσανίδα και φέρνουμε καλώδιο από γραμμή που σηκώνει κι άλλη κατανάλωση.",
+   "c": "Οπή με ποτηροτρύπανο και καλώδιο από κατάλληλη γραμμή.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.preparation.drywall-hole",
+    "hash": "329adaa319fd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.prerequisites.bath-zones": {
+   "section": "prerequisites",
+   "n": "Στο μπάνιο, η θέση να είναι εκτός των ζωνών του νερού, όπως ορίζουν οι κανονισμοί.",
+   "s": "Στο μπάνιο, η πρίζα μπαίνει μακριά από ντους και μπανιέρα, όσο ορίζουν οι κανονισμοί.",
+   "c": "Στο μπάνιο, εκτός ζωνών νερού.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.prerequisites.bath-zones",
+    "hash": "605742ff7061",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.prerequisites.drywall-route": {
+   "section": "prerequisites",
+   "n": "Να υπάρχει διαδρομή για το καλώδιο μέσα στον σκελετό της γυψοσανίδας, χωρίς να κοπούν προφίλ.",
+   "s": "Να μπορεί να περάσει το καλώδιο μέσα από τον τοίχο γυψοσανίδας χωρίς να κόψουμε τα μεταλλικά του.",
+   "c": "Διαδρομή καλωδίου μέσα στον σκελετό.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.prerequisites.drywall-route",
+    "hash": "4b14b7c6cf61",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.prerequisites.rcd": {
+   "section": "prerequisites",
+   "n": "Η γραμμή να προστατεύεται από ρελέ διαρροής στον πίνακα· αν δεν υπάρχει, το προτείνουμε πριν από τη δουλειά.",
+   "s": "Στον πίνακα πρέπει να υπάρχει ο διακόπτης που κόβει το ρεύμα όταν υπάρχει διαρροή· αν λείπει, σας το λέμε από πριν.",
+   "c": "Ρελέ διαρροής στη γραμμή.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.prerequisites.rcd",
+    "hash": "835ad08d5a45",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.prerequisites.wet-type": {
+   "section": "prerequisites",
+   "n": "Να έχει επιλεγεί στεγανή πρίζα ή στεγανός διακόπτης με καπάκι, κατάλληλος για μπάνιο ή εξωτερικό χώρο.",
+   "s": "Για μπάνιο ή έξω χρειάζεται πρίζα ή διακόπτης με καπάκι, που δεν τον πειράζει το νερό.",
+   "c": "Στεγανό είδος με καπάκι.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.prerequisites.wet-type",
+    "hash": "dc4d731c2942",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.steps.drywall-box": {
+   "section": "steps",
+   "n": "Στερεώνουμε στη γυψοσανίδα κουτί που σφίγγει με τα πτερύγιά του.",
+   "s": "Βάζουμε στη γυψοσανίδα ειδικό κουτί, που πιάνει με τα «φτερά» του.",
+   "c": "Κουτί γυψοσανίδας με πτερύγια.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.steps.drywall-box",
+    "hash": "a05a3e070b3d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.steps.wet-mount": {
+   "section": "steps",
+   "n": "Στερεώνουμε τον στεγανό μηχανισμό με τα παρεμβύσματά του, ώστε να μην μπαίνει νερό στο κουτί.",
+   "s": "Βιδώνουμε τη στεγανή πρίζα με τα λαστιχάκια της, για να μην μπαίνει νερό μέσα.",
+   "c": "Στεγανός μηχανισμός με παρεμβύσματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.steps.wet-mount",
+    "hash": "a3f013250c41",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.x.check-load": {
+   "section": "preparation",
+   "n": "Ελέγχουμε ότι η γραμμή αντέχει το φορτίο της συσκευής που θα συνδεθεί.",
+   "s": "Κοιτάμε ότι το καλώδιο και η ασφάλεια σηκώνουν τη συσκευή που θα μπει στην πρίζα.",
+   "c": "Έλεγχος φορτίου γραμμής.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.x.check-load",
+    "hash": "28b8bb7ef8e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.x.earth-test": {
+   "section": "checks",
+   "n": "Μετράμε τη γείωση με όργανο και καταγράφουμε την ένδειξη, όπου απαιτείται.",
+   "s": "Μετράμε με ειδικό όργανο ότι η γείωση δουλεύει σωστά και το σημειώνουμε, όπου χρειάζεται.",
+   "c": "Μέτρηση και καταγραφή γείωσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.x.earth-test",
+    "hash": "451075ce43ab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.x.label-panel": {
+   "section": "handover",
+   "n": "Γράφουμε στον πίνακα ποια ασφάλεια ανήκει στο νέο σημείο.",
+   "s": "Σημειώνουμε στον πίνακα ποια ασφάλεια κλείνει τη νέα πρίζα ή τον νέο διακόπτη.",
+   "c": "Ετικέτα στον πίνακα.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.x.label-panel",
+    "hash": "a39e08178c40",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "socket.x.paint-patch": {
+   "section": "handover",
+   "n": "Το σημείο με τον γύψο μένει έτοιμο για βάψιμο· το βάφουμε, αν το έχουμε συμφωνήσει.",
+   "s": "Εκεί που βάλαμε γύψο, ο τοίχος είναι έτοιμος για μπογιά· τον βάφουμε κι εμείς, αν το έχουμε πει.",
+   "c": "Γύψος έτοιμος για βάψιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:socket.x.paint-patch",
+    "hash": "ebb5f20c2b91",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

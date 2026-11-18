@@ -1,0 +1,551 @@
+{
+ "material": "tank-ext",
+ "name": "Εξωτερικό καζανάκι",
+ "cases": [
+  {
+   "id": "tank-ext:replace.low",
+   "label": "Αλλαγή παλιού · Χαμηλό, ακριβώς πάνω από τη λεκάνη",
+   "answers": {
+    "job": "replace",
+    "height": "low"
+   },
+   "source": "base",
+   "task": "plumb-cistern-external",
+   "title": "Αντικατάσταση εξωτερικού καζανακιού",
+   "duration": "ενδεικτικά 1–2 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-external.prerequisites.1",
+     "plumb-cistern-external.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-external.preparation.1",
+     "plumb-cistern-external.preparation.2",
+     "plumb-cistern-external.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-external.steps.1",
+     "plumb-cistern-external.steps.2",
+     "plumb-cistern-external.steps.3",
+     "plumb-cistern-external.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-external.checks.1",
+     "plumb-cistern-external.checks.2",
+     "plumb-cistern-external.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-external.handover.1",
+     "plumb-cistern-external.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "tank-ext:replace.high",
+   "label": "Αλλαγή παλιού · Ψηλό, με σωλήνα και κορδόνι",
+   "answers": {
+    "job": "replace",
+    "height": "high"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση ψηλού εξωτερικού καζανακιού",
+   "duration": "ενδεικτικά 1–3 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-external.prerequisites.1",
+     "plumb-cistern-external.prerequisites.2",
+     "tank.prerequisites.high-wall"
+    ],
+    "preparation": [
+     "plumb-cistern-external.preparation.1",
+     "plumb-cistern-external.preparation.2",
+     "tank.preparation.mark-high"
+    ],
+    "steps": [
+     "plumb-cistern-external.steps.1",
+     "tank.steps.high-pipe",
+     "tank.steps.cord",
+     "plumb-cistern-external.steps.3",
+     "plumb-cistern-external.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-external.checks.1",
+     "plumb-cistern-external.checks.2",
+     "plumb-cistern-external.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-external.handover.1",
+     "plumb-cistern-external.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:tank-ext:replace.high",
+    "hash": "83a6b401489b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "tank-ext:new.low",
+   "label": "Καινούργιο σε λεκάνη που δεν είχε · Χαμηλό, ακριβώς πάνω από τη λεκάνη",
+   "answers": {
+    "job": "new",
+    "height": "low"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση εξωτερικού καζανακιού σε λεκάνη που δεν είχε",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη νέα παροχή",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-external.prerequisites.1",
+     "tank.prerequisites.new-bowl"
+    ],
+    "preparation": [
+     "tank.preparation.new-feed",
+     "tank.preparation.mark"
+    ],
+    "steps": [
+     "plumb-cistern-external.steps.1",
+     "plumb-cistern-external.steps.2",
+     "plumb-cistern-external.steps.3",
+     "plumb-cistern-external.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-external.checks.1",
+     "plumb-cistern-external.checks.2",
+     "plumb-cistern-external.checks.3"
+    ],
+    "handover": [
+     "tank.handover.clean",
+     "plumb-cistern-external.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:tank-ext:new.low",
+    "hash": "897f339b083a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "tank-ext:new.high",
+   "label": "Καινούργιο σε λεκάνη που δεν είχε · Ψηλό, με σωλήνα και κορδόνι",
+   "answers": {
+    "job": "new",
+    "height": "high"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ψηλού εξωτερικού καζανακιού σε λεκάνη που δεν είχε",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη νέα παροχή",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-external.prerequisites.1",
+     "tank.prerequisites.new-bowl",
+     "tank.prerequisites.high-wall"
+    ],
+    "preparation": [
+     "tank.preparation.new-feed",
+     "tank.preparation.mark-high"
+    ],
+    "steps": [
+     "plumb-cistern-external.steps.1",
+     "tank.steps.high-pipe",
+     "tank.steps.cord",
+     "plumb-cistern-external.steps.3",
+     "plumb-cistern-external.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-external.checks.1",
+     "plumb-cistern-external.checks.2",
+     "plumb-cistern-external.checks.3"
+    ],
+    "handover": [
+     "tank.handover.clean",
+     "plumb-cistern-external.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:tank-ext:new.high",
+    "hash": "7b18cdf876e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "tank.x.dual",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:tank-ext:tank.x.dual",
+    "hash": "154b62163fe9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "tank.x.angle",
+   "section": "preparation",
+   "when": {
+    "job": [
+     "replace"
+    ]
+   },
+   "review": {
+    "key": "extra:tank-ext:tank.x.angle",
+    "hash": "e42bd82b80c0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "plumb-cistern-external.checks.1": {
+   "section": "checks",
+   "n": "Γεμίζουμε και τραβάμε αρκετές φορές: το καζανάκι αδειάζει, ξαναγεμίζει και σταματά στη σωστή στάθμη.",
+   "s": "Τραβάμε αρκετές φορές: αδειάζει, ξαναγεμίζει και σταματά εκεί που πρέπει.",
+   "c": "Αδειάζει, γεμίζει, σταματά σωστά.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.checks.1",
+    "hash": "edb465dd1c5b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.checks.2": {
+   "section": "checks",
+   "n": "Ελέγχουμε με στεγνό χαρτί ότι δεν στάζει στη σύνδεση με τη λεκάνη και στο σπιράλ.",
+   "s": "Περνάμε στεγνό χαρτί από την ένωση με τη λεκάνη και το σωληνάκι: μένει στεγνό.",
+   "c": "Στεγνό χαρτί στις ενώσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.checks.2",
+    "hash": "ac75a018990a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.checks.3": {
+   "section": "checks",
+   "n": "Μετά το γέμισμα δεν τρέχει νερό στη λεκάνη.",
+   "s": "Όταν γεμίσει, δεν τρέχει νερό στη λεκάνη.",
+   "c": "Δεν τρέχει μετά το γέμισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.checks.3",
+    "hash": "bc70fe61a74b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.handover.1": {
+   "section": "handover",
+   "n": "Παίρνουμε το παλιό καζανάκι και καθαρίζουμε τον χώρο.",
+   "s": "Παίρνουμε μαζί μας το παλιό καζανάκι και καθαρίζουμε.",
+   "c": "Παίρνουμε το παλιό, καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.handover.1",
+    "hash": "aad9110cad86",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς ανοίγει το καπάκι, για μελλοντικό έλεγχο του μηχανισμού.",
+   "s": "Σας δείχνουμε πώς ανοίγει το καπάκι, για να κοιτάτε τον μηχανισμό αν χρειαστεί.",
+   "c": "Πώς ανοίγει το καπάκι.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.handover.2",
+    "hash": "15a7061d3bb3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό και αδειάζουμε το καζανάκι.",
+   "s": "Κόβουμε το νερό και αδειάζουμε ό,τι έχει μείνει στο καζανάκι.",
+   "c": "Κλείσιμο νερού, άδειασμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.preparation.1",
+    "hash": "354b25eb1915",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε το παλιό καζανάκι, τον σωλήνα που το ενώνει με τη λεκάνη και τα στηρίγματά του.",
+   "s": "Βγάζουμε το παλιό καζανάκι, τον σωλήνα προς τη λεκάνη και τα στηρίγματα.",
+   "c": "Αφαίρεση παλιού με σωλήνα και στηρίγματα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.preparation.2",
+    "hash": "c6a0d4dd276e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.preparation.3": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τον τοίχο στο σημείο στήριξης και αφαιρούμε τα παλιά ούπα.",
+   "s": "Κοιτάμε τον τοίχο εκεί που θα βιδωθεί και βγάζουμε τα παλιά ούπα.",
+   "c": "Έλεγχος τοίχου, παλιά ούπα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.preparation.3",
+    "hash": "37289be83c7d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχει επιλεγεί καζανάκι που ταιριάζει με τη λεκάνη και με τη θέση της παροχής νερού.",
+   "s": "Να έχουμε διαλέξει καζανάκι που κάνει για τη λεκάνη και για το σημείο που έρχεται το νερό.",
+   "c": "Καζανάκι συμβατό με λεκάνη και παροχή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.prerequisites.1",
+    "hash": "cf4d561922ec",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Γωνιακός διακόπτης που κλείνει κανονικά.",
+   "s": "Ο μικρός διακόπτης του νερού να κλείνει κανονικά.",
+   "c": "Γωνιακός που κλείνει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.prerequisites.2",
+    "hash": "365fae258a28",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε το νέο καζανάκι στον τοίχο, αλφαδιασμένο, στο ύψος που προβλέπει ο κατασκευαστής.",
+   "s": "Βιδώνουμε ίσια το καινούργιο καζανάκι στον τοίχο, στο ύψος που λέει ο κατασκευαστής.",
+   "c": "Στερέωση αλφαδιασμένη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.steps.1",
+    "hash": "d53b287a6880",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.steps.2": {
+   "section": "steps",
+   "n": "Συνδέουμε τον σωλήνα έκπλυσης ανάμεσα σε καζανάκι και λεκάνη, με τα παρεμβύσματά του.",
+   "s": "Ενώνουμε τον σωλήνα ανάμεσα στο καζανάκι και τη λεκάνη, με τα λαστιχάκια του.",
+   "c": "Σωλήνας έκπλυσης με παρεμβύσματα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.steps.2",
+    "hash": "bb0fff9f2f25",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.steps.3": {
+   "section": "steps",
+   "n": "Συνδέουμε την παροχή νερού στο φλοτέρ με σπιράλ.",
+   "s": "Ενώνουμε το νερό με τον μηχανισμό που γεμίζει το καζανάκι, με σωληνάκι.",
+   "c": "Παροχή στο φλοτέρ.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.steps.3",
+    "hash": "7f66dd8399a0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-external.steps.4": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε τη στάθμη του νερού και τον μηχανισμό έκπλυσης.",
+   "s": "Ρυθμίζουμε πόσο νερό κρατάει και πώς αδειάζει.",
+   "c": "Ρύθμιση στάθμης και έκπλυσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-external.steps.4",
+    "hash": "edeffd934b14",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.handover.clean": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τον χώρο και μαζεύουμε τις συσκευασίες.",
+   "s": "Καθαρίζουμε και παίρνουμε τα κουτιά.",
+   "c": "Καθάρισμα, συσκευασίες.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.handover.clean",
+    "hash": "b94e022085fd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.preparation.mark": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε με αλφάδι τη θέση του καζανακιού πάνω από τη λεκάνη.",
+   "s": "Σημαδεύουμε ίσια πού θα μπει το καζανάκι πάνω από τη λεκάνη.",
+   "c": "Σημάδεμα θέσης καζανακιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.preparation.mark",
+    "hash": "73351d7c2b7a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.preparation.mark-high": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε με αλφάδι τη θέση του καζανακιού και τη διαδρομή του σωλήνα ως τη λεκάνη.",
+   "s": "Σημαδεύουμε ίσια πού θα μπει το καζανάκι και από πού θα κατέβει ο σωλήνας ως τη λεκάνη.",
+   "c": "Σημάδεμα θέσης και σωλήνα.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.preparation.mark-high",
+    "hash": "78f882318d28",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.preparation.new-feed": {
+   "section": "preparation",
+   "n": "Φέρνουμε παροχή νερού με γωνιακό διακόπτη ως τη θέση του καζανακιού.",
+   "s": "Φέρνουμε νερό ως το καζανάκι, με δικό του μικρό διακόπτη.",
+   "c": "Νέα παροχή με γωνιακό.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.preparation.new-feed",
+    "hash": "efe31152c897",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.prerequisites.high-wall": {
+   "section": "prerequisites",
+   "n": "Γερός τοίχος ψηλά πάνω από τη λεκάνη, που να κρατά το γεμάτο καζανάκι.",
+   "s": "Ο τοίχος ψηλά πάνω από τη λεκάνη να είναι γερός, για να κρατάει το καζανάκι γεμάτο νερό.",
+   "c": "Γερός τοίχος ψηλά.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.prerequisites.high-wall",
+    "hash": "2847245c1691",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.prerequisites.new-bowl": {
+   "section": "prerequisites",
+   "n": "Λεκάνη με είσοδο για εξωτερικό καζανάκι, στη σωστή απόσταση από τον τοίχο.",
+   "s": "Η λεκάνη να έχει τρύπα για καζανάκι που κρεμιέται στον τοίχο και να είναι στη σωστή απόσταση.",
+   "c": "Λεκάνη για εξωτερικό καζανάκι.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.prerequisites.new-bowl",
+    "hash": "5192890ddf81",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.steps.cord": {
+   "section": "steps",
+   "n": "Τοποθετούμε το κορδόνι ή την αλυσίδα, στο ύψος που φτάνετε άνετα.",
+   "s": "Βάζουμε το κορδόνι ή την αλυσίδα, σε ύψος που το πιάνετε εύκολα.",
+   "c": "Κορδόνι σε άνετο ύψος.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.steps.cord",
+    "hash": "b366da1aae42",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.steps.high-pipe": {
+   "section": "steps",
+   "n": "Συνδέουμε τον μακρύ σωλήνα έκπλυσης και τον στερεώνουμε στον τοίχο με στηρίγματα.",
+   "s": "Ενώνουμε τον μακρύ σωλήνα που κατεβάζει το νερό στη λεκάνη και τον στερεώνουμε στον τοίχο.",
+   "c": "Μακρύς σωλήνας με στηρίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.steps.high-pipe",
+    "hash": "5bc44be76ef4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.x.angle": {
+   "section": "preparation",
+   "n": "Αλλάζουμε και τον γωνιακό διακόπτη, αν δεν κλείνει καλά.",
+   "s": "Αν ο μικρός διακόπτης του νερού δεν κλείνει καλά, τον αλλάζουμε κι αυτόν.",
+   "c": "Αλλαγή γωνιακού, αν δεν κλείνει.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.x.angle",
+    "hash": "47fbe7ea931f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "tank.x.dual": {
+   "section": "steps",
+   "n": "Τοποθετούμε μηχανισμό διπλής έκπλυσης, όπου το καζανάκι τον δέχεται.",
+   "s": "Αν το καζανάκι το σηκώνει, βάζουμε μηχανισμό με δύο κουμπιά, για λίγο ή πολύ νερό.",
+   "c": "Διπλή έκπλυση, όπου γίνεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:tank.x.dual",
+    "hash": "fa9ab5747071",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

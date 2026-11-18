@@ -1,0 +1,688 @@
+{
+ "material": "cistern-repair",
+ "name": "Μηχανισμός ή φλοτέρ καζανακιού",
+ "cases": [
+  {
+   "id": "cistern-repair:float.external",
+   "label": "Το φλοτέρ (γέμισμα) · Εξωτερικό",
+   "answers": {
+    "part": "float",
+    "cistern": "external"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:float.inwall",
+   "label": "Το φλοτέρ (γέμισμα) · Εντοιχισμού",
+   "answers": {
+    "part": "float",
+    "cistern": "inwall"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:float.close",
+   "label": "Το φλοτέρ (γέμισμα) · Πάνω στη λεκάνη",
+   "answers": {
+    "part": "float",
+    "cistern": "close"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση φλοτέρ σε καζανάκι πάνω στη λεκάνη",
+   "duration": "ενδεικτικά 30–60 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "cistern.prerequisites.close-type",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "cistern.preparation.close-lid",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cistern-repair:float.close",
+    "hash": "30d33d438ba9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cistern-repair:flush.external",
+   "label": "Ο μηχανισμός (άδειασμα, κουμπί) · Εξωτερικό",
+   "answers": {
+    "part": "flush",
+    "cistern": "external"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:flush.inwall",
+   "label": "Ο μηχανισμός (άδειασμα, κουμπί) · Εντοιχισμού",
+   "answers": {
+    "part": "flush",
+    "cistern": "inwall"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:flush.close",
+   "label": "Ο μηχανισμός (άδειασμα, κουμπί) · Πάνω στη λεκάνη",
+   "answers": {
+    "part": "flush",
+    "cistern": "close"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση μηχανισμού σε καζανάκι πάνω στη λεκάνη",
+   "duration": "ενδεικτικά 1–2 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "cistern.prerequisites.close-type",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "cistern.preparation.close-lid",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "cistern.steps.close-unbolt",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3",
+     "cistern.checks.close-joint"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cistern-repair:flush.close",
+    "hash": "a5ff188568cd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cistern-repair:both.external",
+   "label": "Και τα δύο · Εξωτερικό",
+   "answers": {
+    "part": "both",
+    "cistern": "external"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:both.inwall",
+   "label": "Και τα δύο · Εντοιχισμού",
+   "answers": {
+    "part": "both",
+    "cistern": "inwall"
+   },
+   "source": "base",
+   "task": "plumb-cistern-repair",
+   "title": "Αντικατάσταση μηχανισμού ή φλοτέρ καζανακιού",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-cistern-repair.prerequisites.1",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "plumb-cistern-repair.preparation.2",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cistern-repair:both.close",
+   "label": "Και τα δύο · Πάνω στη λεκάνη",
+   "answers": {
+    "part": "both",
+    "cistern": "close"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση φλοτέρ και μηχανισμού σε καζανάκι πάνω στη λεκάνη",
+   "duration": "ενδεικτικά 1–2 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "cistern.prerequisites.close-type",
+     "plumb-cistern-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-cistern-repair.preparation.1",
+     "cistern.preparation.close-lid",
+     "plumb-cistern-repair.preparation.3"
+    ],
+    "steps": [
+     "plumb-cistern-repair.steps.1",
+     "cistern.steps.close-unbolt",
+     "plumb-cistern-repair.steps.2",
+     "plumb-cistern-repair.steps.3",
+     "plumb-cistern-repair.steps.4"
+    ],
+    "checks": [
+     "plumb-cistern-repair.checks.1",
+     "plumb-cistern-repair.checks.2",
+     "plumb-cistern-repair.checks.3",
+     "cistern.checks.close-joint"
+    ],
+    "handover": [
+     "plumb-cistern-repair.handover.1",
+     "plumb-cistern-repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cistern-repair:both.close",
+    "hash": "313b7dade0d5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "cistern.x.angle",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:cistern-repair:cistern.x.angle",
+    "hash": "122357ff0ee5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cistern.x.limescale",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:cistern-repair:cistern.x.limescale",
+    "hash": "e60543d46359",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "cistern.checks.close-joint": {
+   "section": "checks",
+   "n": "Ελέγχουμε με στεγνό χαρτί ότι δεν στάζει η ένωση ανάμεσα σε καζανάκι και λεκάνη.",
+   "s": "Περνάμε στεγνό χαρτί από το σημείο που το καζανάκι ακουμπάει στη λεκάνη: μένει στεγνό.",
+   "c": "Στεγνή ένωση καζανακιού-λεκάνης.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.checks.close-joint",
+    "hash": "aac900d7365c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cistern.preparation.close-lid": {
+   "section": "preparation",
+   "n": "Σηκώνουμε το καπάκι του καζανακιού, προσέχοντας το κουμπί που περνά μέσα από αυτό.",
+   "s": "Ανοίγουμε το καπάκι του καζανακιού προσεκτικά, γιατί το κουμπί περνάει μέσα από αυτό.",
+   "c": "Άνοιγμα καπακιού με το κουμπί.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.preparation.close-lid",
+    "hash": "49888900734b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cistern.prerequisites.close-type": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε το μοντέλο της λεκάνης με το καζανάκι πάνω της, για να φέρουμε συμβατό ανταλλακτικό.",
+   "s": "Να ξέρουμε τι λεκάνη είναι, με το καζανάκι κολλητά πάνω της, για να φέρουμε κομμάτι που ταιριάζει.",
+   "c": "Γνωστό μοντέλο, συμβατό ανταλλακτικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.prerequisites.close-type",
+    "hash": "369d86b8d0c0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cistern.steps.close-unbolt": {
+   "section": "steps",
+   "n": "Όπου ο μηχανισμός δεν βγαίνει από πάνω, λύνουμε τις βίδες ανάμεσα σε καζανάκι και λεκάνη και αλλάζουμε και το λάστιχο της ένωσης.",
+   "s": "Αν ο μηχανισμός δεν βγαίνει από πάνω, ξεβιδώνουμε το καζανάκι από τη λεκάνη και αλλάζουμε και το λάστιχο ανάμεσά τους.",
+   "c": "Λύσιμο καζανακιού, νέο λάστιχο ένωσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.steps.close-unbolt",
+    "hash": "46405556d9c5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cistern.x.angle": {
+   "section": "preparation",
+   "n": "Αλλάζουμε και τον γωνιακό διακόπτη του καζανακιού, αν δεν κλείνει καλά.",
+   "s": "Αν ο μικρός διακόπτης του καζανακιού δεν κλείνει καλά, τον αλλάζουμε κι αυτόν.",
+   "c": "Αλλαγή γωνιακού, αν δεν κλείνει.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.x.angle",
+    "hash": "afa590c0c2a8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cistern.x.limescale": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τα άλατα μέσα στο καζανάκι πριν βάλουμε το νέο κομμάτι.",
+   "s": "Πριν βάλουμε το καινούργιο κομμάτι, καθαρίζουμε τα άλατα από μέσα.",
+   "c": "Καθάρισμα αλάτων.",
+   "source": "new",
+   "review": {
+    "key": "sc:cistern.x.limescale",
+    "hash": "d51c45525cff",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.checks.1": {
+   "section": "checks",
+   "n": "Τραβάμε αρκετές φορές με το μικρό και το μεγάλο κουμπί: η ποσότητα νερού είναι σωστή.",
+   "s": "Τραβάμε αρκετές φορές και με τα δύο κουμπιά: ρίχνει όσο νερό πρέπει.",
+   "c": "Σωστή ποσότητα έκπλυσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.checks.1",
+    "hash": "cac8aab84bba",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.checks.2": {
+   "section": "checks",
+   "n": "Το καζανάκι σταματά να γεμίζει στη στάθμη που ρυθμίσαμε.",
+   "s": "Το καζανάκι σταματά να γεμίζει εκεί που το ρυθμίσαμε.",
+   "c": "Σταματά στη σωστή στάθμη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.checks.2",
+    "hash": "fe9443bf0b57",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.checks.3": {
+   "section": "checks",
+   "n": "Μετά από λίγα λεπτά το νερό στη λεκάνη μένει ακίνητο, άρα δεν τρέχει νερό από το καζανάκι.",
+   "s": "Περιμένουμε λίγο: το νερό στη λεκάνη δεν κουνιέται, άρα δεν τρέχει από το καζανάκι.",
+   "c": "Δεν τρέχει νερό στη λεκάνη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.checks.3",
+    "hash": "1282bb9dafbe",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε τα νερά.",
+   "s": "Μαζεύουμε τα νερά.",
+   "c": "Σκούπισμα νερών.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.handover.1",
+    "hash": "125e00ac58c4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.handover.2": {
+   "section": "handover",
+   "n": "Σας εξηγούμε πώς καταλαβαίνετε αν ξαναρχίσει να τρέχει νερό στη λεκάνη.",
+   "s": "Σας λέμε πώς θα καταλάβετε αν αρχίσει πάλι να τρέχει νερό στη λεκάνη.",
+   "c": "Πώς φαίνεται νέα διαρροή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.handover.2",
+    "hash": "9e82accef790",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό του καζανακιού και το αδειάζουμε.",
+   "s": "Κόβουμε το νερό του καζανακιού και το αδειάζουμε τραβώντας το.",
+   "c": "Κλείσιμο νερού, άδειασμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.preparation.1",
+    "hash": "24996d3316f6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.preparation.2": {
+   "section": "preparation",
+   "n": "Ανοίγουμε το καπάκι ή, στο καζανάκι εντοιχισμού, βγάζουμε την πλάκα χειρισμού.",
+   "s": "Ανοίγουμε το καπάκι ή, στο καζανάκι του τοίχου, βγάζουμε την πλάκα με τα κουμπιά.",
+   "c": "Καπάκι ή πλάκα χειρισμού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.preparation.2",
+    "hash": "9c842e4e96f2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.preparation.3": {
+   "section": "preparation",
+   "n": "Ελέγχουμε αν το νερό διαρρέει από τη βαλβίδα εκκένωσης ή αν το φλοτέρ δεν κόβει το γέμισμα.",
+   "s": "Κοιτάμε αν το νερό φεύγει από κάτω, από τη βαλβίδα, ή αν δεν σταματάει να γεμίζει.",
+   "c": "Εντοπισμός βλάβης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.preparation.3",
+    "hash": "1860c78c91e9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε τον τύπο του καζανακιού (εξωτερικό ή εντοιχισμού), για να φέρουμε συμβατό ανταλλακτικό.",
+   "s": "Να ξέρουμε τι καζανάκι είναι, εξωτερικό ή μέσα στον τοίχο, για να φέρουμε κομμάτι που ταιριάζει.",
+   "c": "Γνωστός τύπος καζανακιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.prerequisites.1",
+    "hash": "79fc4b0fbceb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Γωνιακός διακόπτης ή διακόπτης καζανακιού που κλείνει.",
+   "s": "Ο μικρός διακόπτης του νερού ή του καζανακιού να κλείνει.",
+   "c": "Διακόπτης που κλείνει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.prerequisites.2",
+    "hash": "6ddbb1bcd52e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.steps.1": {
+   "section": "steps",
+   "n": "Αφαιρούμε το φθαρμένο φλοτέρ ή τον μηχανισμό εκκένωσης.",
+   "s": "Βγάζουμε το φλοτέρ ή τον μηχανισμό που έχει χαλάσει.",
+   "c": "Αφαίρεση φθαρμένου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.steps.1",
+    "hash": "746f7683dc4d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε το νέο κομμάτι και το στερεώνουμε στη θέση του.",
+   "s": "Βάζουμε το καινούργιο κομμάτι και το στερεώνουμε.",
+   "c": "Τοποθέτηση νέου κομματιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.steps.2",
+    "hash": "305321abe6d8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.steps.3": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε τη στάθμη του νερού και την ποσότητα έκπλυσης, για το μικρό και το μεγάλο κουμπί όπου υπάρχουν.",
+   "s": "Ρυθμίζουμε πόσο νερό κρατάει και πόσο ρίχνει, για το μικρό και το μεγάλο κουμπί, όπου υπάρχουν.",
+   "c": "Ρύθμιση στάθμης και έκπλυσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.steps.3",
+    "hash": "a2850038e9da",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-cistern-repair.steps.4": {
+   "section": "steps",
+   "n": "Ανοίγουμε το νερό και κλείνουμε το καπάκι ή την πλάκα χειρισμού.",
+   "s": "Ανοίγουμε το νερό και ξανακλείνουμε το καπάκι ή την πλάκα.",
+   "c": "Άνοιγμα νερού, κλείσιμο καπακιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-cistern-repair.steps.4",
+    "hash": "10be5c14523f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

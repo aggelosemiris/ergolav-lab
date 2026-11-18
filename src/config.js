@@ -14,3 +14,8 @@ export const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiO
 // Cloudflare Turnstile (δωρεάν CAPTCHA) στην αποστολή κωδικού email. Το site key είναι δημόσιο· το secret key
 // ΜΟΝΟ στο Supabase (Authentication → Attack Protection). Κενό = χωρίς CAPTCHA.
 export const TURNSTILE_SITE_KEY = '0x4AAAAAAGEQsmQ8gtAQ0mHi';
+
+// «Άλλαξέ το» χωρίς AI (bot με έτοιμα, εγκεκριμένα κείμενα) — βλ. docs/ALLAXE_BOT.md.
+// false: η εφαρμογή είναι ακριβώς όπως πριν. true: η ανάλυση κάθε εργασίας διαλέγεται από επιλογή/κανόνα/φωνή/βασική,
+// με ετικέτα μόνο στην οθόνη, και η εφαρμογή ΔΕΝ καλεί ποτέ τον worker (REWRITE_URL) ή οποιοδήποτε AI.
+export const ALLAXE_BOT_ENABLED = false;

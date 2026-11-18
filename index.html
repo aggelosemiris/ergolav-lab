@@ -328,6 +328,7 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .apdf .an-top,.apdf .an-sec,.apdf .an-dur,.apdf .foot,.apdf .who,.apdf .an-intro{break-inside:avoid;page-break-inside:avoid}
 .apdf h3{font-size:15px;font-weight:800;line-height:1.3;overflow-wrap:anywhere}
 .apdf .an-for{color:#5E646B;font-size:12px;margin-top:2px;overflow-wrap:anywhere}
+.apdf .an-case{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:999px;background:#E3E8F7;color:#1B3590;font-size:12px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
 .apdf .an-lic{margin-top:8px;padding:6px 10px;border-left:3px solid #1A1D21;background:#F3F4F1;font-size:12px}
 .apdf h4{font-size:13px;font-weight:700;margin-top:10px}
 .apdf ul,.apdf ol{margin:4px 0 0 18px}
@@ -380,6 +381,67 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 #rwRuleBox{margin-top:8px}
 #rwRuleBox small{display:block;color:var(--dim);font-size:12px;margin-top:4px}
 @media (max-width:340px){.rw-compare{grid-template-columns:1fr}}
+/* «Άλλαξέ το» χωρίς AI: πάνελ συζήτησης από κάτω (μόνο με ALLAXE_BOT_ENABLED) */
+#botDialog{position:fixed;inset:auto 0 0 0;margin:0 auto;width:min(640px,100%);max-width:100%;max-height:88dvh;height:88dvh;border:1px solid var(--line);border-bottom:none;border-radius:20px 20px 0 0;padding:0;background:var(--bg);color:var(--ink);font:inherit;display:none;flex-direction:column}
+#botDialog[open]{display:flex}
+#botDialog::backdrop{background:#0008}
+@media (prefers-reduced-motion:no-preference){#botDialog[open]{animation:botUp .2s ease-out}@keyframes botUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}}
+.bot-head{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.bot-head h2{font-size:19px;line-height:1.2}
+.bot-head p{font-size:13px;color:var(--dim);margin-top:2px;overflow-wrap:anywhere}
+.bot-head>div{flex:1;min-width:0}
+.bot-x{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--paper);font-size:22px;line-height:1}
+.bot-log{flex:1;overflow-y:auto;padding:12px 16px 16px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.msg{max-width:88%;padding:9px 13px;border-radius:16px;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+.msg.bot{align-self:flex-start;background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg.me{align-self:flex-end;background:var(--pen);color:var(--paper);border-bottom-right-radius:6px}
+.msg.focus{align-self:stretch;max-width:none;background:#FFF1B8;color:#1A1D21;border-radius:10px;font-size:14px}
+.bot-opts{display:flex;flex-wrap:wrap;gap:6px;align-self:stretch;justify-content:flex-start;align-items:flex-start}
+.bot-opts button{min-height:44px;padding:8px 14px;border-radius:22px;border:1px solid var(--pen);background:var(--paper);color:var(--pen);font-weight:600;font-size:14px;text-align:left;overflow-wrap:anywhere;max-width:100%}
+.bot-opts button.primary{background:var(--pen);color:var(--paper)}
+.bot-opts button:disabled{opacity:.45;border-color:var(--line);color:var(--dim);cursor:default}
+.bot-opts button.chosen:disabled{opacity:1;background:var(--pen-soft)}
+.bcard{align-self:stretch;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px;overflow-wrap:anywhere}
+.bcard h4{font-size:12px;color:var(--dim);font-weight:700;margin:8px 0 2px;text-transform:uppercase;letter-spacing:.03em}
+.bcard h4:first-child{margin-top:0}
+.bcard .was{text-decoration:line-through;color:var(--dim)}
+.bcard .now{border-left:3px solid var(--ok);padding-left:8px}
+.bcard ul,.bcard ol{margin-left:18px}
+.bcard h5{font-size:13px;margin-top:6px}
+.bcard .tagline{font-size:12px;color:var(--dim)}
+.border-list{list-style:none;margin:0!important;display:flex;flex-direction:column;gap:6px}
+.border-list li{display:flex;gap:6px;align-items:center;background:var(--bg);border-radius:10px;padding:4px 4px 4px 10px}
+.border-list li span{flex:1;min-width:0}
+.border-list button{flex:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);font-size:18px}
+.border-list button:disabled{opacity:.35}
+.bot-input{display:flex;gap:8px;align-items:flex-end;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--bg)}
+.bot-input textarea{flex:1;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);resize:none;max-height:30dvh}
+.bot-send{flex:none;min-height:48px;padding:0 16px;border-radius:12px;background:var(--pen);color:var(--paper);font-weight:700}
+#botDialog button:focus-visible,#botDialog textarea:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.bot-undo{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;display:flex;gap:10px;align-items:center;background:var(--ink);color:var(--paper);border-radius:14px;padding:6px 6px 6px 14px;font-size:14px;max-width:calc(100% - 32px);box-shadow:0 6px 20px #0004}
+.bot-undo button{min-height:44px;padding:0 14px;border-radius:10px;background:var(--paper);color:var(--ink);font-weight:700}
+.apdf li.flash,.apdf h4.flash{background:#D7F2E2;box-shadow:0 0 0 3px #D7F2E2;transition:background 1s,box-shadow 1s}
+.apdf .an-change{margin:8px 0 0;min-height:44px;padding:0 14px;border-radius:22px;border:1px solid #2140A8;background:#fff;color:#2140A8;font-weight:700;font-size:14px}
+#rulesList[data-old]:not([data-old=""])::before{content:attr(data-old);display:block;font-size:13px;color:var(--dim);margin-top:10px}
+#botRules{margin-top:14px}
+#botRules>p,#anMyRules>p{color:var(--dim);font-size:13px;margin-top:4px}
+.an-item{padding:10px 0;border-top:1px solid var(--line)}
+.an-item:first-child{border-top:none;padding-top:0}
+.an-item p{color:var(--ink);font-size:14px;margin:0 0 8px}
+.an-item-act{display:flex;gap:8px;flex-wrap:wrap}
+.an-make,.an-keep{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--pen);font-weight:700;font-size:14px}
+.an-make{background:var(--pen);color:var(--paper)}.an-keep{background:var(--paper);color:var(--pen)}
+.lib-h{font-size:18px;margin-top:22px}
+.lib-row h5{font-size:13px;margin-top:6px}
+.lib-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.lib-row{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.lib-row b{display:block;font-size:15px;overflow-wrap:anywhere}
+.lib-row small{color:var(--dim);font-size:12px}
+.lib-row details{margin-top:6px;font-size:13px}.lib-row details li{margin-left:18px}
+.lib-act{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin-top:6px}
+.my-rules{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.my-rules span{display:inline-flex;align-items:center;gap:2px;background:var(--pen-soft);color:var(--pen);border-radius:999px;padding:0 0 0 12px;font-size:13px;font-weight:600;max-width:100%;overflow-wrap:anywhere}
+.my-rules button{width:44px;height:44px;flex:none;font-size:18px;color:var(--pen)}
 /* Οι κανόνες μου */
 .rules{display:flex;flex-direction:column;gap:8px;margin-top:18px}
 .rule{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
@@ -813,6 +875,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="an-side" id="anWithout" hidden></div>
       <div class="an-side" id="anMine" hidden></div>
       <details class="an-side" id="anNotes" hidden></details>
+      <div class="an-side" id="anMyRules" hidden></div>
       <div class="alt" style="margin-top:10px"><button class="linkbtn" id="anRules">Οι κανόνες μου</button></div>
     </section>
 
@@ -821,6 +884,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <button class="linkbtn" id="rulesBack">← Πίσω</button>
       <h1>Οι κανόνες μου</h1>
       <p class="lede">Μπαίνουν σε κάθε «Άλλαξέ το» της ανάλυσης εργασιών. Μένουν μόνο σε αυτή τη συσκευή.</p>
+      <div id="botRules" hidden></div>
+      <div id="botLibrary" hidden></div>
       <div class="rules" id="rulesList"></div>
       <p class="privacy" id="rulesEmpty" hidden>Δεν έχεις ακόμα κανόνες. Στο «Άλλαξέ το», τσέκαρε «Θυμήσου το και για τις επόμενες».</p>
     </section>
@@ -924,6 +989,17 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     <div class="alt"><button class="linkbtn" id="rwEdit" type="button">Άλλαξε τι ζήτησες</button></div>
   </div>
 </dialog>
+
+<dialog id="botDialog" aria-labelledby="botTitle">
+  <div class="bot-head"><div><h2 id="botTitle">Άλλαξέ το</h2><p id="botSub"></p></div><button class="bot-x" id="botClose" type="button" aria-label="Κλείσε">×</button></div>
+  <div class="bot-log" id="botLog" aria-live="polite"></div>
+  <form class="bot-input" id="botInput" hidden>
+    <textarea id="botText" rows="2" maxlength="320" aria-label="Το μήνυμά σου"></textarea>
+    <button class="rw-mic" type="button" id="botMic" aria-pressed="false" aria-label="Πες το με φωνή">🎙</button>
+    <button class="bot-send" type="submit">Στείλε</button>
+  </form>
+</dialog>
+<div class="bot-undo" id="botUndo" role="status" hidden><span id="botUndoText">Άλλαξε.</span><button type="button" id="botUndoBtn">Αναίρεση</button></div>
 
 <script type="module"src="src/app.js"></script>
 </body>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος: Γωνιακός διακόπτης</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><main>
+<p class="small"><a href="index.html">← Όλα τα υλικά</a></p>
+<h1>Έλεγχος κειμένων: Γωνιακός διακόπτης</h1>
+<p class="lede">Άνοιξε κάθε περίπτωση. Για κάθε σημείο: κανονική | απλή | σύντομη. Η εφαρμογή χρησιμοποιεί μόνο ό,τι εγκρίνεις. Οι αποφάσεις μένουν σε αυτόν τον browser· στο τέλος πάτα «Εξαγωγή» και στείλε το αρχείο.</p>
+
+<div class="bar">
+  <label>Ελέγχει <input id="reviewer" autocomplete="name" placeholder="Το όνομά σου"></label>
+  <label>Δείξε <select id="filter"><option value="all">όλες</option><option value="todo">χωρίς απόφαση</option><option value="fix">για διόρθωση</option></select></label>
+  <button type="button" id="approveSc">Εγκρίνω τις απλές/σύντομες των ανοιχτών</button>
+  <button type="button" class="primary" id="export">Εξαγωγή αποφάσεων</button>
+  <span class="progress" id="progress"></span>
+</div>
+<div id="cases"></div>
+</main>
+<script id="data" type="application/json">{"material":"angle-valve","name":"Γωνιακός διακόπτης","cases":[{"id":"angle-valve:replace","label":"Αλλαγή παλιού","answers":{"job":"replace"},"source":"base","task":"plumb-angle-valve","title":"Αντικατάσταση γωνιακών διακοπτών και σπιράλ σύνδεσης","duration":"ενδεικτικά 30–60 λεπτά ανά σημείο","licensed":false,"sections":{"prerequisites":["plumb-angle-valve.prerequisites.1","plumb-angle-valve.prerequisites.2"],"preparation":["plumb-angle-valve.preparation.1","plumb-angle-valve.preparation.2","plumb-angle-valve.preparation.3"],"steps":["plumb-angle-valve.steps.1","plumb-angle-valve.steps.2","plumb-angle-valve.steps.3","plumb-angle-valve.steps.4"],"checks":["plumb-angle-valve.checks.1","plumb-angle-valve.checks.2","plumb-angle-valve.checks.3"],"handover":["plumb-angle-valve.handover.1","plumb-angle-valve.handover.2"]}},{"id":"angle-valve:new","label":"Σε νέα αναμονή","answers":{"job":"new"},"source":"new","title":"Τοποθέτηση γωνιακών διακοπτών σε νέες αναμονές","duration":"ενδεικτικά 20–40 λεπτά ανά σημείο","licensed":false,"sections":{"prerequisites":["plumb-angle-valve.prerequisites.1","angle.prerequisites.new-stub"],"preparation":["plumb-angle-valve.preparation.1","plumb-angle-valve.preparation.2"],"steps":["angle.steps.new-cut","angle.steps.rosette","plumb-angle-valve.steps.2","plumb-angle-valve.steps.3","plumb-angle-valve.steps.4"],"checks":["plumb-angle-valve.checks.1","plumb-angle-valve.checks.2","plumb-angle-valve.checks.3"],"handover":["plumb-angle-valve.handover.1","plumb-angle-valve.handover.2"]},"review":{"key":"case:angle-valve:new","hash":"61eb59aae341","reviewed":false,"reviewer":null,"reviewed_at":null}}],"extras":[{"id":"angle.x.filter","section":"steps","when":null,"review":{"key":"extra:angle-valve:angle.x.filter","hash":"74ef888bcdee","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"angle.x.check-hoses","section":"preparation","when":null,"review":{"key":"extra:angle-valve:angle.x.check-hoses","hash":"72ecfd493bd8","reviewed":false,"reviewer":null,"reviewed_at":null}}],"items":{"angle.prerequisites.new-stub":{"section":"prerequisites","n":"Νέα αναμονή στον τοίχο, με το πλακάκι τελειωμένο γύρω της.","s":"Ο σωλήνας που βγαίνει από τον τοίχο να είναι έτοιμος και τα πλακάκια γύρω του να έχουν μπει.","c":"Νέα αναμονή, με πλακάκι γύρω.","source":"new","review":{"key":"sc:angle.prerequisites.new-stub","hash":"b44bae28a8c2","reviewed":false,"reviewer":null,"reviewed_at":null}},"angle.steps.new-cut":{"section":"steps","n":"Αφαιρούμε την τάπα της αναμονής και ελέγχουμε ότι το σπείρωμα είναι καθαρό και στο σωστό βάθος.","s":"Βγάζουμε το καπάκι από τον σωλήνα και κοιτάμε ότι η βόλτα είναι καθαρή και στο σωστό σημείο.","c":"Αφαίρεση τάπας, έλεγχος σπειρώματος.","source":"new","review":{"key":"sc:angle.steps.new-cut","hash":"394dfc4febbc","reviewed":false,"reviewer":null,"reviewed_at":null}},"angle.steps.rosette":{"section":"steps","n":"Τοποθετούμε τη ροζέτα, ώστε να καλύπτει το άνοιγμα στο πλακάκι.","s":"Βάζουμε το στρογγυλό καπάκι που κρύβει την τρύπα στο πλακάκι.","c":"Ροζέτα πάνω από το άνοιγμα.","source":"new","review":{"key":"sc:angle.steps.rosette","hash":"634ed7606d93","reviewed":false,"reviewer":null,"reviewed_at":null}},"angle.x.check-hoses":{"section":"preparation","n":"Ελέγχουμε και τα σπιράλ της μπαταρίας και τα αλλάζουμε, αν είναι φουσκωμένα ή σκουριασμένα.","s":"Κοιτάμε και τα σωληνάκια της μπαταρίας· αν έχουν φουσκώσει ή σκουριάσει, τα αλλάζουμε.","c":"Αλλαγή φθαρμένων σπιράλ.","source":"new","review":{"key":"sc:angle.x.check-hoses","hash":"5ed7c03cca24","reviewed":false,"reviewer":null,"reviewed_at":null}},"angle.x.filter":{"section":"steps","n":"Τοποθετούμε γωνιακό διακόπτη με φίλτρο, όπου το νερό φέρνει άμμο ή άλατα.","s":"Αν το νερό έχει άμμο ή πολλά άλατα, βάζουμε διακόπτη με φιλτράκι.","c":"Γωνιακός με φίλτρο, όπου χρειάζεται.","source":"new","review":{"key":"sc:angle.x.filter","hash":"61b6164017aa","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.checks.1":{"section":"checks","n":"Ελέγχουμε κάθε σύνδεση για σταγόνες με στεγνό χαρτί.","s":"Περνάμε στεγνό χαρτί από κάθε ένωση: πρέπει να μείνει στεγνό.","c":"Στεγνό χαρτί στις ενώσεις.","source":"current","review":{"key":"sc:plumb-angle-valve.checks.1","hash":"27d47dff2d6f","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.checks.2":{"section":"checks","n":"Κλείνουμε και ανοίγουμε κάθε γωνιακό: κόβει πλήρως το νερό.","s":"Κλείνουμε και ανοίγουμε κάθε μικρό διακόπτη: κόβει τελείως το νερό.","c":"Κάθε γωνιακός κόβει πλήρως.","source":"current","review":{"key":"sc:plumb-angle-valve.checks.2","hash":"c994bbbc72cb","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.checks.3":{"section":"checks","n":"Τα σπιράλ δεν είναι τσακισμένα ούτε τεντωμένα.","s":"Τα σωληνάκια δεν είναι διπλωμένα ούτε τεντωμένα.","c":"Σπιράλ χωρίς τσακίσματα.","source":"current","review":{"key":"sc:plumb-angle-valve.checks.3","hash":"160012aa4bf5","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.handover.1":{"section":"handover","n":"Σκουπίζουμε τα νερά και καθαρίζουμε το ντουλάπι.","s":"Σκουπίζουμε τα νερά και αφήνουμε το ντουλάπι καθαρό.","c":"Καθάρισμα ντουλαπιού.","source":"current","review":{"key":"sc:plumb-angle-valve.handover.1","hash":"2f2000bf2e09","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.handover.2":{"section":"handover","n":"Σας δείχνουμε ποιος διακόπτης κόβει ποια παροχή.","s":"Σας δείχνουμε ποιος διακόπτης κλείνει τι.","c":"Ποιος διακόπτης κόβει τι.","source":"current","review":{"key":"sc:plumb-angle-valve.handover.2","hash":"7e447e553cbb","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.preparation.1":{"section":"preparation","n":"Κλείνουμε τον κεντρικό διακόπτη και ανοίγουμε μια βρύση για να φύγει η πίεση.","s":"Κλείνουμε τον κεντρικό διακόπτη και ανοίγουμε μια βρύση για να φύγει το νερό που έχει μείνει.","c":"Κλείσιμο κεντρικού, ξεπίεσμα.","source":"current","review":{"key":"sc:plumb-angle-valve.preparation.1","hash":"3cc6723d5c29","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.preparation.2":{"section":"preparation","n":"Βάζουμε πανί και λεκάνη κάτω από τους διακόπτες.","s":"Στρώνουμε ένα πανί και βάζουμε μια λεκάνη από κάτω, για τα νερά που θα πέσουν.","c":"Πανί και λεκάνη από κάτω.","source":"current","review":{"key":"sc:plumb-angle-valve.preparation.2","hash":"3f5521a82078","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.preparation.3":{"section":"preparation","n":"Ξεβιδώνουμε τα σπιράλ και τους παλιούς γωνιακούς διακόπτες.","s":"Ξεβιδώνουμε τα σωληνάκια και τους παλιούς μικρούς διακόπτες.","c":"Αφαίρεση σπιράλ και παλιών γωνιακών.","source":"current","review":{"key":"sc:plumb-angle-valve.preparation.3","hash":"ae476a21ecf5","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.prerequisites.1":{"section":"prerequisites","n":"Πρόσβαση στον κεντρικό διακόπτη νερού του σπιτιού.","s":"Να φτάνουμε τον κεντρικό διακόπτη νερού του σπιτιού.","c":"Πρόσβαση στον κεντρικό διακόπτη.","source":"current","review":{"key":"sc:plumb-angle-valve.prerequisites.1","hash":"6fbb9c450268","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.prerequisites.2":{"section":"prerequisites","n":"Χώρος κάτω από τον νιπτήρα ή τον νεροχύτη για να δουλέψουμε.","s":"Να υπάρχει χώρος κάτω από τον νιπτήρα ή τον νεροχύτη για να δουλέψουμε.","c":"Χώρος εργασίας κάτω από τον νιπτήρα.","source":"current","review":{"key":"sc:plumb-angle-valve.prerequisites.2","hash":"a53913764c9d","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.steps.1":{"section":"steps","n":"Καθαρίζουμε τα σπειρώματα της αναμονής στον τοίχο από άλατα και παλιό στεγανωτικό.","s":"Καθαρίζουμε τις βόλτες του σωλήνα στον τοίχο από άλατα και παλιό στεγανωτικό.","c":"Καθαρισμός σπειρωμάτων.","source":"current","review":{"key":"sc:plumb-angle-valve.steps.1","hash":"5e35fd46df07","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.steps.2":{"section":"steps","n":"Βιδώνουμε τους νέους διακόπτες με τεφλόν ή κάνναβη, με τη λαβή σε θέση που γυρίζει εύκολα.","s":"Βιδώνουμε τους καινούργιους διακόπτες με τεφλόν ή κάνναβη, ώστε η λαβή να γυρίζει άνετα.","c":"Νέοι γωνιακοί με στεγανωτικό.","source":"current","review":{"key":"sc:plumb-angle-valve.steps.2","hash":"b8cd2a5c2f64","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.steps.3":{"section":"steps","n":"Συνδέουμε τα νέα σπιράλ στη μπαταρία ή στο καζανάκι.","s":"Ενώνουμε τα νέα σωληνάκια με τη μπαταρία ή το καζανάκι.","c":"Νέα σπιράλ σε μπαταρία ή καζανάκι.","source":"current","review":{"key":"sc:plumb-angle-valve.steps.3","hash":"6ece43553503","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-angle-valve.steps.4":{"section":"steps","n":"Ανοίγουμε τον κεντρικό διακόπτη και μετά, σιγά, τους γωνιακούς.","s":"Ανοίγουμε τον κεντρικό διακόπτη και μετά, σιγά-σιγά, τους μικρούς.","c":"Ανοίγουμε κεντρικό, μετά τους γωνιακούς.","source":"current","review":{"key":"sc:plumb-angle-valve.steps.4","hash":"d680b1f855f8","reviewed":false,"reviewer":null,"reviewed_at":null}}},"licensedNote":"Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία.","sections":[{"key":"prerequisites","title":"Τι χρειάζεται πριν ξεκινήσουμε"},{"key":"preparation","title":"Προεργασία"},{"key":"steps","title":"Στάδια τοποθέτησης"},{"key":"checks","title":"Έλεγχοι πριν την παράδοση"},{"key":"handover","title":"Καθαρισμός και παράδοση"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'ergolav-review:' + D.material;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = {reviewer: '', decisions: {}};
+try { S = Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} paint(); };
+$('reviewer').value = S.reviewer || '';
+$('reviewer').oninput = e => { S.reviewer = e.target.value; save(); };
+// Αποφάσεις: μόνο για το κείμενο που φαίνεται (ίδιο αποτύπωμα)· ό,τι άλλαξε από τότε ξαναζητά έλεγχο.
+const keys = {};
+for(const c of D.cases) if(c.review) keys[c.review.key] = c.review;
+for(const [, it] of Object.entries(D.items)) keys[it.review.key] = it.review;
+for(const x of D.extras) keys[x.review.key] = x.review;
+const verdict = k => { const d = S.decisions[k]; return d && d.hash === keys[k].hash ? d.verdict : (keys[k].reviewed ? 'ok' : null); };
+const decideHtml = (k, what) => {
+  const d = S.decisions[k] && S.decisions[k].hash === keys[k].hash ? S.decisions[k] : null, v = verdict(k);
+  return '<div class="decide" data-key="' + esc(k) + '"><span class="what">' + what + '</span>'
+    + '<button type="button" class="ok' + (v === 'ok' ? ' on' : '') + '" data-v="ok" aria-pressed="' + (v === 'ok') + '">Εγκρίνω</button>'
+    + '<button type="button" class="fix' + (v === 'fix' ? ' on' : '') + '" data-v="fix" aria-pressed="' + (v === 'fix') + '">Θέλει διόρθωση</button>'
+    + '<textarea placeholder="Τι να διορθωθεί;" aria-label="Σχόλιο"' + (v === 'fix' ? '' : ' hidden') + '>' + esc(d && d.comment || '') + '</textarea></div>';
+};
+const item = (id, withSc) => {
+  const it = D.items[id];
+  return '<div class="row" data-item="' + esc(id) + '">'
+    + '<div class="v"><small>Κανονική <span class="tag ' + (it.source === 'new' ? 'new">νέο' : 'cur">σημερινό') + '</span></small>' + esc(it.n) + '</div>'
+    + '<div class="v"><small>Απλή</small>' + esc(it.s) + '</div>'
+    + '<div class="v"><small>Σύντομη</small>' + esc(it.c) + '</div>'
+    + (withSc ? '<div class="acts">' + decideHtml(it.review.key, 'Απλή και σύντομη:') + '</div>' : '') + '</div>';
+};
+const body = c => {
+  let h = '<p class="meta">Περίπτωση: ' + esc(c.label) + ' · ' + esc(c.duration) + (c.task ? ' · κείμενο: ' + esc(c.task) : '') + '</p>';
+  if(c.licensed) h += '<p class="note">' + esc(D.licensedNote) + '</p>';
+  if(c.safety) h += '<p class="note">Ασφάλεια: ' + esc(c.safety) + '</p>';
+  for(const s of D.sections){ const ids = c.sections[s.key] || []; if(!ids.length) continue;
+    h += '<div class="sec"><h3>' + esc(s.title) + '</h3>' + ids.map(id => item(id, true)).join('') + '</div>'; }
+  if(c.review) h += decideHtml(c.review.key, c.source === 'existing' ? 'Η περίπτωση (έτοιμο κείμενο):' : 'Η περίπτωση (σύνθεση και νέα κείμενα):');
+  return h;
+};
+const groups = [['base', 'Βασικές περιπτώσεις (σημερινές αναλύσεις)', 'Τα κείμενα δεν αλλάζουν· ελέγχεις μόνο την απλή και τη σύντομη εκδοχή.'],
+  ['existing', 'Περιπτώσεις με έτοιμο κείμενο', 'Από τις 96 γραμμένες αναλύσεις.'], ['new', D.material === 'generic' ? 'Κατηγορίες' : 'Νέες περιπτώσεις', '']];
+let html = '';
+for(const [src, title, sub] of groups){
+  const list = D.cases.filter(c => c.source === src); if(!list.length) continue;
+  html += '<h2>' + title + ' (' + list.length + ')</h2>' + (sub ? '<p class="small meta">' + sub + '</p>' : '');
+  for(const c of list) html += '<details class="case" data-case="' + esc(c.id) + '"><summary><b>' + esc(c.title) + '</b><span class="state" data-state="' + esc(c.id) + '"></span><span class="lbl">' + esc(c.label) + '</span></summary><div class="body"></div></details>';
+}
+if(D.extras.length){
+  html += '<h2>Επιπλέον βήματα για το «Λείπει κάτι» (' + D.extras.length + ')</h2>';
+  html += '<div class="case" style="padding:0 14px 14px">' + D.extras.map(x => '<div class="sec"><h3>' + esc((D.sections.find(s => s.key === x.section) || {}).title || x.section)
+    + (x.when ? ' · <span class="meta">μόνο όταν ' + esc(Object.entries(x.when).map(([k, v]) => k + ' = ' + v.join(' ή ')).join(', ')) + '</span>' : '') + '</h3>'
+    + item(x.id, true) + decideHtml(x.review.key, 'Να μπαίνει ως επιπλέον βήμα:') + '</div>').join('') + '</div>';
+}
+$('cases').innerHTML = html;
+// Το σώμα κάθε περίπτωσης φτιάχνεται όταν ανοίξει (οι σελίδες έχουν εκατοντάδες σημεία).
+document.querySelectorAll('details.case').forEach(d => d.addEventListener('toggle', () => {
+  const b = d.querySelector('.body'); if(d.open && !b.innerHTML) b.innerHTML = body(D.cases.find(c => c.id === d.dataset.case));
+}));
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.decide button'); if(!btn) return;
+  const k = btn.closest('.decide').dataset.key, v = btn.dataset.v, prev = S.decisions[k];
+  S.decisions[k] = {verdict: v, hash: keys[k].hash, comment: v === 'fix' ? (prev && prev.comment || '') : ''};
+  save();
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest('.decide'); if(!box || e.target.tagName !== 'TEXTAREA') return;
+  const k = box.dataset.key; S.decisions[k] = Object.assign({verdict: 'fix', hash: keys[k].hash}, S.decisions[k], {comment: e.target.value});
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+});
+function paint(){
+  // Ίδιο σημείο σε πολλές περιπτώσεις: η απόφαση φαίνεται παντού.
+  document.querySelectorAll('.decide').forEach(box => {
+    const v = verdict(box.dataset.key);
+    box.querySelectorAll('button').forEach(b => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    box.querySelector('textarea').hidden = v !== 'fix';
+  });
+  for(const c of D.cases){
+    const el = document.querySelector('[data-state="' + CSS.escape(c.id) + '"]'); if(!el) continue;
+    const ks = [...(c.review ? [c.review.key] : []), ...Object.values(c.sections).flat().map(id => D.items[id].review.key)];
+    const vs = ks.map(verdict), fix = vs.includes('fix'), done = vs.every(v => v === 'ok');
+    el.className = 'state ' + (fix ? 'fix' : done ? 'ok' : 'todo');
+    el.textContent = fix ? 'θέλει διόρθωση' : done ? 'εγκρίθηκε' : vs.filter(Boolean).length + '/' + vs.length;
+  }
+  const all = Object.keys(keys), dec = all.filter(k => verdict(k));
+  $('progress').textContent = dec.length + ' από ' + all.length + ' αποφάσεις · ' + all.filter(k => verdict(k) === 'fix').length + ' για διόρθωση';
+}
+document.addEventListener('toggle', paint, true);
+$('filter').onchange = e => {
+  const f = e.target.value;
+  document.querySelectorAll('details.case').forEach(d => {
+    const st = d.querySelector('.state').className;
+    d.classList.toggle('hidden', f === 'todo' ? /\b(ok)\b/.test(st) : f === 'fix' ? !/\bfix\b/.test(st) : false);
+  });
+};
+$('export').onclick = () => {
+  if(!S.reviewer.trim()){ $('reviewer').focus(); alert('Γράψε πρώτα το όνομά σου (ποιος ελέγχει).'); return; }
+  const decisions = Object.entries(S.decisions).filter(([k, d]) => keys[k] && d.hash === keys[k].hash).map(([key, d]) => ({key, hash: d.hash, verdict: d.verdict, comment: d.comment || ''}));
+  const file = {format: 'ergolav-reviews', version: 1, material: D.material, reviewer: S.reviewer.trim(), exported_at: new Date().toISOString(), decisions};
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], {type: 'application/json'}));
+  a.download = 'ergolav-elegxos-' + D.material + '-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+$('approveSc').onclick = () => {
+  // Γρήγορα: όσες απλές/σύντομες δεν έχουν απόφαση, στις ανοιχτές περιπτώσεις.
+  document.querySelectorAll('details.case[open] .row .decide').forEach(box => { const k = box.dataset.key; if(!verdict(k)) S.decisions[k] = {verdict: 'ok', hash: keys[k].hash, comment: ''}; });
+  save();
+};
+paint();
+</script>
+</body></html>

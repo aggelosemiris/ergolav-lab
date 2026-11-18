@@ -4,13 +4,25 @@
 // Το PDF βγαίνει και χωρίς σύνδεση· σύνδεση θέλει μόνο το «Άλλαξέ το».
 import { ANALYSES } from './analyses-data.js';
 import { SECTIONS, LICENSED_NOTE } from './analysis-schema.js';
-import { quoteTasks } from './tasks.js';
+import { quoteTasks, WHY } from './tasks.js';
+import * as CONFIG from './config.js';
+import { CASE_DATA } from './cases-data.js';
+import { pickAnalysis, pickTag, voiceFor } from './case-pick.js';
+import { pickRules, quotePicks, quoteEdits, quoteSnapshot, saveQuoteSnapshot, caseRules, removeCaseRule, speechRule, removeSpeechRule,
+  editRules, removeEditRule, restoreAll } from './allaxe-store.js';
+import { applyEdits, mergeOps } from './analysis-edits.js';
+import { library, libKey, saveLibrary, removeLibrary, officialAsked, setOfficialAsked } from './allaxe-store.js';
+import { analysisForAnswers } from './case-pick.js';
+import { createSync } from './allaxe-sync.js';
+import { mountBot, undoToast } from './allaxe-ui.js';
 import { getVersion, saveVersion, resetVersion, listRules, addRule, updateRule, deleteRule, deviceId } from './analysis-store.js';
 import { QUICK, MESSAGES, personalFrom, rewriteRequest, applyRewrite, rewriteSection, ruleFrom } from './rewrite-client.js';
 import { createMic, micSupported } from './mic.js';
 import { makePdf } from './share.js';
 import { formatQty } from './number.js';
 
+// Μόνο ρητό true ανοίγει το bot· config χωρίς τη σημαία (π.χ. παλιό ή mock) = όπως πριν.
+const ALLAXE_BOT_ENABLED = CONFIG.ALLAXE_BOT_ENABLED === true;
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const FOOT = 'Η ανάλυση περιγράφει τη συνήθη σειρά εργασιών για τα είδη της προσφοράς. Αν στον χώρο σας χρειαστεί κάποια αλλαγή, θα σας το πούμε πριν γίνει. Τιμές και όροι είναι αυτοί της προσφοράς.';
@@ -25,21 +37,73 @@ export const analysisFor = lines => quoteTasks(lines, id => !!ANALYSES[id]);
 /** Η ανάλυση που ισχύει για μια εργασία: η εκδοχή του τεχνίτη, αλλιώς η αρχική. */
 const current = id => { const mine = getVersion(id); return {analysis: mine || ANALYSES[id], mine: !!mine}; };
 
+// Οι γραμμές μιας προσφοράς ως «υπογραφή»: στιγμιότυπο ανάλυσης ισχύει μόνο για τις ίδιες ακριβώς γραμμές.
+const signature = lines => JSON.stringify(lines.map(l => [l.id, l.code || '', l.name || '', l.desc || '', l.qty, l.unit || '']));
+/**
+ * Οι εργασίες με την ανάλυσή τους. ALLAXE_BOT_ENABLED = false: ακριβώς όπως πριν (αρχική ή εκδοχή του τεχνίτη).
+ * true: η περίπτωση από επιλογή «μόνο εδώ» > κανόνα > φωνή > βασική (src/case-pick.js), μόνο εγκεκριμένα κείμενα.
+ * Προσφορά που έχει σταλεί, με τις ίδιες γραμμές: ακριβώς το στιγμιότυπο που μπήκε στο PDF της.
+ */
+export function collect(q){
+  if(!ALLAXE_BOT_ENABLED){
+    const r = analysisFor(q.lines);
+    return {docs: r.tasks.map(t => ({...t, ...current(t.id)})), without: r.without};
+  }
+  const r = quoteTasks(q.lines, () => true);
+  const snap = q.status && q.status !== 'draft' ? quoteSnapshot(q.no) : null;
+  if(snap && snap.sig === signature(q.lines))
+    return {docs: snap.docs.map(d => ({...d, mine: false, frozen: true})), without: r.without};
+  const rules = pickRules(), picks = quotePicks(q.no), edits = quoteEdits(q.no), docs = [], without = [...r.without];
+  for(const t of r.tasks){
+    const pick = pickAnalysis({data: CASE_DATA, base: ANALYSES, task: t.id, lines: t.lines, voice: voiceFor(q.voice, t.lines), rules, chosen: picks[t.id] || null});
+    // Οι αλλαγές του μάστορα: πρώτα ο κανόνας του υλικού, μετά όσες έκανε «μόνο εδώ».
+    const ops = pick && mergeOps(rules.edits[pick.material || `task:${t.id}`]?.ops || [], edits[t.id] || []);
+    if(pick) docs.push({...t, analysis: ops.length ? applyEdits(pick.analysis, ops, CASE_DATA).analysis : pick.analysis, mine: false, pick});
+    else for(const line of t.lines) without.push({line, why: WHY.missing});
+  }
+  // Είδη εκτός καταλόγου (Μέρος 5): από τη βιβλιοθήκη του μάστορα, αλλιώς πλαίσιο «Φτιάξε ανάλυση».
+  const lib = library(), items = [], seen = new Map();
+  for(const w of [...without]){
+    if(w.why !== WHY.custom && w.why !== WHY.type) continue;
+    const name = (w.line.desc || w.line.name || '').trim(), key = libKey(name);
+    if(!key) continue;
+    without.splice(without.indexOf(w), 1);
+    if(seen.has(key)){ seen.get(key).lines.push(w.line); continue; }
+    const e = lib[key];
+    if(e){
+      const src = e.createdIn === q.no ? ({generic: 'generic', own: 'own', case: 'chosen'}[e.kind] || 'library') : 'library';
+      const cat = CASE_DATA.genericCategories.find(g => g.id === e.category);
+      const official = CASE_DATA.promoted?.[key];
+      const d = {id: `lib:${key}`, lines: [w.line], analysis: e.analysis, mine: false, library: key, name: e.name,
+        pick: {source: src, material: e.material || null, label: e.kind === 'generic' ? cat?.name || '' : e.label || '', variant: 'n', caseId: null},
+        ...(official && e.kind !== 'official' && !officialAsked(key) && {officialOffer: official})};
+      docs.push(d); seen.set(key, d);
+    } else {
+      const it = {key, name, lines: [w.line]};
+      items.push(it); seen.set(key, it);
+    }
+  }
+  return {docs, without, items};
+}
+
 /**
  * show/cta: της εφαρμογής. quote(): {no, at, client, profile, lines} της προσφοράς που φαίνεται· head(): η κεφαλίδα
  * του PDF της προσφοράς (ίδιο στυλ)· fileName(): όνομα αρχείου· quoteFile(): Promise με το PDF της προσφοράς.
  * onReady(file)/onDiscard(): η ανάλυση μπαίνει/βγαίνει από την αποστολή· onSend(): «Στείλε και τα δύο»· onBack().
  */
-export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onReady, onDiscard, onSend, onBack}){
-  let docs = [], without = [], file = null, attached = false, gen = 0;
+export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onReady, onDiscard, onSend, onBack, db}){
+  // Συγχρονισμός με τον λογαριασμό (μόνο με το flag και μόνο αν υπάρχει σύνδεση)· μετά ξαναζωγραφίζει ό,τι ήρθε.
+  const sync = ALLAXE_BOT_ENABLED ? createSync(db) : null;
+  const syncThen = () => sync?.().then(r => { if(r?.pulled){ paintMyRules(); if(onScreen()) reload(); } });
+  if(sync) globalThis.addEventListener?.('online', () => syncThen());
+  let docs = [], without = [], items = [], file = null, attached = false, gen = 0;
   const onScreen = () => $('s-analysis').classList.contains('on');
   const status = msg => { $('anStatus').textContent = msg || ''; $('anStatus').hidden = !msg; };
 
   // ── Η οθόνη και το PDF
   function open(){
-    const r = analysisFor(quote().lines);
-    docs = r.tasks.map(t => ({...t, ...current(t.id)}));
-    without = r.without;
+    syncThen();
+    ({docs, without, items = []} = collect(quote()));
     show('s-analysis', 'Ανάλυση εργασιών');
     status('');
     render();
@@ -57,9 +121,9 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
       ${docs.map((d, n) => taskHtml(d, docs.length > 1 ? `${n + 1}. ` : '')).join('')}
       <p class="foot">${FOOT}</p>` : '';
     // Μόνο για τον τεχνίτη (δεν μπαίνουν στο PDF): γραμμές χωρίς ανάλυση, δικές του εκδοχές, σημειώσεις.
-    $('anWithout').hidden = !without.length;
-    $('anWithout').innerHTML = `<b>Χωρίς ανάλυση · δεν μπαίνουν στο PDF</b><ul>${without.map(w =>
-      `<li><span>${esc(w.line.desc || w.line.name)}</span><small>${esc(w.why)}</small></li>`).join('')}</ul>`;
+    $('anWithout').hidden = !without.length && !items.length && !docs.some(d => d.officialOffer);
+    $('anWithout').innerHTML = (ALLAXE_BOT_ENABLED ? itemsHtml() : '') + (without.length ? `<b>Χωρίς ανάλυση · δεν μπαίνουν στο PDF</b><ul>${without.map(w =>
+      `<li><span>${esc(w.line.desc || w.line.name)}</span><small>${esc(w.why)}</small></li>`).join('')}</ul>` : '');
     const mine = docs.filter(d => d.mine);
     $('anMine').hidden = !mine.length;
     $('anMine').innerHTML = `<b>Δικές σου εκδοχές</b><p>Μπαίνουν σε κάθε προσφορά με αυτή την εργασία. Η αρχική γυρνά με την «Επαναφορά».</p>${mine.map(d =>
@@ -75,17 +139,20 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
       `<li><b>${esc(d.analysis.title)}:</b> ${esc(d.analysis.notes_for_master)}</li>`).join('')}</ul>`;
     syncRulesLink();
   }
-  function taskHtml({id, analysis: a, lines}, num){
+  // Η ετικέτα της περίπτωσης (μόνο με ALLAXE_BOT_ENABLED) φαίνεται μόνο εδώ: το data-html2canvas-ignore την κρατά έξω από το PDF.
+  function taskHtml({id, analysis: a, lines, pick, frozen}, num){
     const sec = s => `<h4 data-sel="${s.key}" tabindex="0">${esc(s.title)}</h4>` + (ordered(s.key) ? '<ol>' : '<ul>') +
       s.items.map((it, i) => `<li data-sel="${s.key}" data-i="${i}" tabindex="0">${esc(it.text)}</li>`).join('') + (ordered(s.key) ? '</ol>' : '</ul>');
-    const [first, ...rest] = a.sections;
+    const [first, ...rest] = ALLAXE_BOT_ENABLED ? a.sections.filter(s => s.items.length) : a.sections;
     return `<section class="an-task" data-task="${esc(id)}">
       <div class="an-top"><h3>${num}${esc(a.title)}</h3>
+        ${pick ? `<p class="an-case" data-html2canvas-ignore>${esc(pickTag(pick, CASE_DATA))}</p>` : ''}
+        ${pick && !frozen ? `<button type="button" class="an-change" data-change="${esc(id)}" data-html2canvas-ignore>✏️ Άλλαξέ το</button>` : ''}
         <div class="an-for">Αφορά: ${lines.map(l => `${esc(l.desc || l.name)} · ${formatQty(l.qty)} ${esc(l.unit)}`).join(', ')}</div>
         ${a.requires_licensed_professional ? `<p class="an-lic">${esc(LICENSED_NOTE)}</p>` : ''}
         <div class="an-sec">${sec(first)}</div></div>
       ${rest.map(s => `<div class="an-sec">${sec(s)}</div>`).join('')}
-      <p class="an-dur"><b>Διάρκεια:</b> ${esc(a.typical_duration)}</p>
+      ${!ALLAXE_BOT_ENABLED || a.typical_duration ? `<p class="an-dur"><b>Διάρκεια:</b> ${esc(a.typical_duration)}</p>` : ''}
     </section>`;
   }
   // Το PDF φτιάχνεται μόλις φανεί (και ξανά μετά από κάθε αλλαγή), ώστε το «Στείλε» να ανοίγει αμέσως.
@@ -102,6 +169,11 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
       if(run !== gen) return;
       if(!offer) throw new Error('Δεν έγινε το PDF της προσφοράς. Γύρνα πίσω και δοκίμασε ξανά.');
       file = f; attached = true; onReady(f);
+      // Το στιγμιότυπο αυτού που μπήκε στο PDF: μετά την αποστολή, η προσφορά κρατά ακριβώς αυτή την ανάλυση.
+      if(ALLAXE_BOT_ENABLED){
+        const q = quote();
+        saveQuoteSnapshot(q.no, signature(q.lines), docs.map(({id, lines, analysis, pick}) => ({id, lines, analysis, pick})));
+      }
       restoreCta();
     } catch(e){
       if(run === gen && onScreen()) cta('Δοκίμασε ξανά', prepare, false, e.message || 'Δεν έγινε το PDF.');
@@ -128,11 +200,13 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
   const ghost = () => Date.now() - shownAt < 700;
   function refreshEntry(shown = true){
     if(shown) shownAt = Date.now();
-    const n = analysisFor(quote().lines).tasks.length;
+    const c = ALLAXE_BOT_ENABLED ? collect(quote()) : null;
+    const n = c ? c.docs.length : analysisFor(quote().lines).tasks.length, todo = c?.items?.length || 0;
     $('anEntryText').textContent = attached ? 'Θα σταλεί μαζί με την προσφορά, ως δεύτερο PDF.'
       : n ? `Δεύτερο PDF με τα στάδια ${n === 1 ? 'της εργασίας' : `των ${n} εργασιών`}, στο ίδιο στυλ με την προσφορά.`
+      : todo ? 'Τα είδη αυτής της προσφοράς δεν έχουν ακόμα έτοιμη ανάλυση. Μπορείς να τη φτιάξεις από εδώ.'
       : 'Τα είδη αυτής της προσφοράς δεν έχουν ακόμα έτοιμη ανάλυση.';
-    $('anOpen').hidden = !n;
+    $('anOpen').hidden = !n && !todo;
     $('anOpen').textContent = attached ? 'Δες ή άλλαξέ την' : 'Φτιάξε και ανάλυση εργασιών';
     $('anRemove').hidden = !attached;
   }
@@ -145,6 +219,10 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
   let selEl = null;
   function deselect(){ selEl?.classList.remove('sel'); selEl?.querySelector('.sel-go')?.remove(); selEl = null; }
   function select(el){
+    // Με ALLAXE_BOT_ENABLED το «Άλλαξέ το» με AI (worker/REWRITE_URL) δεν ανοίγει ποτέ· ανοίγει το bot χωρίς AI.
+    const task = el.closest('[data-task]').dataset.task;
+    if(ALLAXE_BOT_ENABLED && !docs.find(d => d.id === task)?.pick) return;
+    if(ALLAXE_BOT_ENABLED && docs.find(d => d.id === task)?.frozen) return status('Η προσφορά έχει σταλεί· η ανάλυσή της μένει όπως στάλθηκε.');
     if(selEl === el) return;
     deselect();
     selEl = el;
@@ -153,11 +231,131 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
     b.type = 'button'; b.className = 'sel-go'; b.textContent = '✏️ Άλλαξέ το';
     b.onclick = e => {
       e.stopPropagation();
-      openRewrite(el.closest('[data-task]').dataset.task, el.dataset.sel, el.dataset.i == null ? null : Number(el.dataset.i));
+      if(ALLAXE_BOT_ENABLED) return openBot(task, el.dataset.sel, el.dataset.i == null ? null : Number(el.dataset.i));
+      openRewrite(task, el.dataset.sel, el.dataset.i == null ? null : Number(el.dataset.i));
     };
     el.append(b);
   }
-  $('apdf').addEventListener('click', e => { const el = e.target.closest('[data-sel]'); if(el) select(el); else deselect(); });
+  $('apdf').addEventListener('click', e => {
+    const ch = e.target.closest('[data-change]');
+    if(ch) return openBot(ch.dataset.change, null, null);
+    const el = e.target.closest('[data-sel]'); if(el) select(el); else deselect();
+  });
+
+  // ── «Άλλαξέ το» χωρίς AI (ALLAXE_BOT_ENABLED): το bot, οι αλλαγές του, το φώτισμα και η «Αναίρεση»
+  let flashIds = [];
+  const texts = task => Object.fromEntries((docs.find(d => d.id === task)?.analysis.sections || []).flatMap(s => s.items.map(i => [i.id, i.text])));
+  const bot = ALLAXE_BOT_ENABLED ? mountBot({
+    getDoc: task => docs.find(d => d.id === task),
+    quote,
+    onApplied(task, undo){
+      if(!onScreen()){ paintMyRules(); undoToast(() => { restoreAll(undo); paintMyRules(); }); return; }
+      const before = texts(task);
+      reload();
+      const after = texts(task);
+      flashIds = Object.keys(after).filter(id => after[id] !== before[id]);
+      // Ίδια σημεία με άλλη σειρά: φωτίζονται όσα άλλαξαν θέση.
+      const b = Object.keys(before), a = Object.keys(after);
+      if(!flashIds.length) flashIds = a.filter((id, n) => b[n] !== id);
+      if(!bot?.isOpen()) flash(task);
+      undoToast(() => { restoreAll(undo); reload(); status('Η αλλαγή αναιρέθηκε.'); paintMyRules(); });
+    },
+    onRules(){ paintMyRules(); syncRulesLink(); },
+    onClose(){ for(const d of docs) flash(d.id); },
+  }) : null;
+  function itemsHtml(){
+    const offers = docs.filter(d => d.officialOffer);
+    return items.map(it => `<div class="an-item"><p>Δεν υπάρχει έτοιμη ανάλυση για «${esc(it.name)}». Ο πελάτης δεν βλέπει αυτή την εργασία μέχρι να φτιαχτεί.</p>
+      <button type="button" class="an-make" data-make="${esc(it.key)}">Φτιάξε ανάλυση</button></div>`).join('')
+      + offers.map(d => `<div class="an-item"><p>Υπάρχει πλέον έτοιμη ανάλυση για «${esc(d.name)}». Να τη χρησιμοποιώ;</p>
+      <div class="an-item-act"><button type="button" class="an-make" data-official="${esc(d.library)}" data-yes="1">Ναι</button><button type="button" class="an-keep" data-official="${esc(d.library)}">Κράτα τη δική μου</button></div></div>`).join('');
+  }
+  $('anWithout').addEventListener('click', e => {
+    const mk = e.target.closest('[data-make]');
+    if(mk && bot){ const it = items.find(x => x.key === mk.dataset.make); if(it) bot.openItem(it.name); return; }
+    const of = e.target.closest('[data-official]');
+    if(of){
+      const key = of.dataset.official, d = docs.find(x => x.library === key);
+      if(of.dataset.yes && d){
+        const m = CASE_DATA.materials.find(x => x.id === d.officialOffer);
+        const r = m && analysisForAnswers(CASE_DATA, ANALYSES, m.id, m.base[0]?.answers || {});
+        if(r) saveLibrary(d.name, {kind: 'official', material: m.id, label: r.label, analysis: r.analysis});
+      }
+      setOfficialAsked(key);
+      reload();
+    }
+  });
+  function openBot(task, section, index){
+    deselect();
+    const d = docs.find(x => x.id === task);
+    if(d?.library && !d.frozen) return bot.openItem(d.name);
+    if(!d?.pick || d.frozen) return;
+    const s = d.analysis.sections.find(x => x.key === section);
+    bot.open(task, index == null || !s ? null : {section, id: s.items[index]?.id});
+  }
+  function reload(){ ({docs, without, items = []} = collect(quote())); render(); prepare(); }
+  function flash(task){
+    if(!flashIds.length || matchMedia('(prefers-reduced-motion: reduce)').matches){ flashIds = []; return; }
+    const sec = $('apdf').querySelector(`[data-task="${CSS.escape(task)}"]`);
+    const d = docs.find(x => x.id === task);
+    if(!sec || !d) return;
+    const ids = new Set(flashIds); flashIds = [];
+    d.analysis.sections.forEach(s => s.items.forEach((it, i) => {
+      if(ids.has(it.id)) sec.querySelector(`li[data-sel="${s.key}"][data-i="${i}"]`)?.classList.add('flash');
+    }));
+    setTimeout(() => sec.querySelectorAll('.flash').forEach(x => x.classList.remove('flash')), 1500);
+  }
+  // Οι κανόνες του bot ως ετικέτες με ×: κάτω από την ανάλυση και στο «Οι κανόνες μου».
+  function botRules(){
+    const out = [];
+    for(const [m, r] of Object.entries(caseRules())) out.push({label: r.label || m, remove: () => removeCaseRule(m)});
+    const v = speechRule();
+    if(v) out.push({label: v === 's' ? 'Πάντα απλά λόγια' : 'Πάντα σύντομα', remove: removeSpeechRule});
+    for(const [k, r] of Object.entries(editRules())) out.push({label: r.label || k, remove: () => removeEditRule(k)});
+    return out;
+  }
+  function chips(box, empty){
+    const rules = botRules();
+    box.replaceChildren();
+    const h = document.createElement('b'); h.textContent = 'Οι κανόνες μου'; box.append(h);
+    if(!rules.length){ const p = document.createElement('p'); p.textContent = empty; box.append(p); return; }
+    const wrap = document.createElement('div'); wrap.className = 'my-rules';
+    for(const r of rules){
+      const chip = document.createElement('span'), x = document.createElement('button');
+      chip.textContent = r.label; x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', `Αφαίρεσε: ${r.label}`);
+      x.onclick = () => { r.remove(); paintMyRules(); syncRulesLink(); if(onScreen()) reload(); };
+      chip.append(x); wrap.append(chip);
+    }
+    box.append(wrap);
+  }
+  const EMPTY = 'Κανένας ακόμα. Όταν πεις «Να το κάνω έτσι πάντα», μπαίνει εδώ και ισχύει σε κάθε νέα προσφορά.';
+  function paintMyRules(){
+    if(!ALLAXE_BOT_ENABLED) return;
+    $('anMyRules').hidden = false; chips($('anMyRules'), EMPTY);
+    $('botRules').hidden = false; chips($('botRules'), EMPTY);
+    paintLibrary();
+  }
+  // Η βιβλιοθήκη του μάστορα (είδη εκτός καταλόγου): τη βλέπει, την αλλάζει (ξανά από το bot) ή τη σβήνει.
+  function paintLibrary(){
+    const box = $('botLibrary'), all = Object.entries(library()).sort((a, b) => a[1].name.localeCompare(b[1].name, 'el'));
+    box.hidden = false;
+    const kind = e => e.kind === 'generic' ? `γενική ανάλυση · ${CASE_DATA.genericCategories.find(g => g.id === e.category)?.name || ''}`
+      : e.kind === 'own' ? 'γραμμένη από σένα' : e.kind === 'official' ? 'η έτοιμη ανάλυση' : `όπως: ${CASE_DATA.materials.find(m => m.id === e.material)?.name || ''} · ${e.label || ''}`;
+    box.innerHTML = `<h2 class="lib-h">Η βιβλιοθήκη μου</h2>` + (all.length ? `<div class="lib-list">${all.map(([k, e]) => `<div class="lib-row" data-lib="${esc(k)}">
+      <b>${esc(e.name)}</b><small>${esc(kind(e))}</small>
+      <details><summary>Δες την ανάλυση</summary>${e.analysis.sections.filter(s => s.items.length).map(s => `<h5>${esc(s.title)}</h5><ul>${s.items.map(i => `<li>${esc(i.text)}</li>`).join('')}</ul>`).join('')}</details>
+      <div class="lib-act"><button type="button" class="linkbtn" data-a="edit">Άλλαξε</button><button type="button" class="q-del" data-a="del">Σβήσε</button></div></div>`).join('')}</div>`
+      : '<p class="privacy">Κενή ακόμα. Όταν φτιάξεις ανάλυση για ένα είδος εκτός καταλόγου, μπαίνει εδώ και ξαναμπαίνει μόνη της στις επόμενες προσφορές.</p>');
+    box.querySelectorAll('.lib-row').forEach(row => {
+      const key = row.dataset.lib, e = library()[key];
+      row.querySelector('[data-a="edit"]').onclick = () => bot?.openItem(e.name);
+      const del = row.querySelector('[data-a="del"]');
+      del.onclick = () => {
+        if(!del.classList.contains('sure')){ del.classList.add('sure'); del.textContent = 'Σίγουρα;'; return; }
+        removeLibrary(key); paintLibrary(); if(onScreen()) reload();
+      };
+    });
+  }
   $('apdf').addEventListener('keydown', e => {
     if((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-sel]')){ e.preventDefault(); select(e.target); e.target.querySelector('.sel-go').focus(); }
   });
@@ -282,10 +480,12 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
   // ── Οι κανόνες μου: προβολή, αλλαγή, σβήσιμο
   let rulesBack = null;
   function syncRulesLink(){
-    const n = listRules().length;
+    if(ALLAXE_BOT_ENABLED) paintMyRules();
+    const n = listRules().length + (ALLAXE_BOT_ENABLED ? botRules().length : 0);
     $('anRules').textContent = n ? `Οι κανόνες μου (${n})` : 'Οι κανόνες μου';
   }
   function openRules(backTo){
+    syncThen();
     rulesBack = backTo;
     paintRules();
     show('s-rules', 'Οι κανόνες μου');
@@ -293,7 +493,13 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
   }
   function paintRules(){
     const rules = listRules();
-    $('rulesEmpty').hidden = rules.length > 0;
+    $('rulesEmpty').hidden = rules.length > 0 || ALLAXE_BOT_ENABLED;
+    if(ALLAXE_BOT_ENABLED){
+      // Οι παλιοί κανόνες ύφους (για το AI) δεν σβήνονται: μένουν εδώ, χωριστά, και ξαναμπαίνουν αν προστεθεί μηχανή AI.
+      paintMyRules();
+      document.querySelector('#s-rules .lede').textContent = 'Ισχύουν σε κάθε νέα προσφορά. Μένουν σε αυτή τη συσκευή.';
+      $('rulesList').dataset.old = rules.length ? 'Παλιές οδηγίες ύφους για το AI · δεν χρησιμοποιούνται χωρίς AI' : '';
+    }
     $('rulesList').replaceChildren(...rules.map(r => {
       const el = document.createElement('div');
       el.className = 'rule';
@@ -317,5 +523,5 @@ export function mountAnalysis({show, cta, quote, head, fileName, quoteFile, onRe
   $('rulesBack').onclick = () => rulesBack?.();
   $('anRules').onclick = () => openRules(() => { show('s-analysis', 'Ανάλυση εργασιών'); syncRulesLink(); restoreCta(); });
 
-  return {open, reset, refreshEntry, openRules, detach, rulesCount: () => listRules().length};
+  return {open, reset, refreshEntry, openRules, detach, rulesCount: () => listRules().length + (ALLAXE_BOT_ENABLED ? botRules().length : 0)};
 }

@@ -1,0 +1,740 @@
+{
+ "material": "screed",
+ "name": "Εξομάλυνση δαπέδου",
+ "cases": [
+  {
+   "id": "screed:self.concrete",
+   "label": "Αυτοεπιπεδούμενο (λεπτό) · Μπετό ή τσιμεντοκονία",
+   "answers": {
+    "product": "self",
+    "under": "concrete"
+   },
+   "source": "base",
+   "task": "floor-screed",
+   "title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα",
+   "duration": "ενδεικτικά μισή έως 1 ημέρα για 20–40 τ.μ., χωρίς τον χρόνο στεγνώματος πριν το τελικό δάπεδο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "floor-screed.prerequisites.1",
+     "floor-screed.prerequisites.2",
+     "floor-screed.prerequisites.3"
+    ],
+    "preparation": [
+     "floor-screed.preparation.1",
+     "floor-screed.preparation.2",
+     "floor-screed.preparation.3",
+     "floor-screed.preparation.4"
+    ],
+    "steps": [
+     "floor-screed.steps.1",
+     "floor-screed.steps.2",
+     "floor-screed.steps.3",
+     "floor-screed.steps.4"
+    ],
+    "checks": [
+     "floor-screed.checks.1",
+     "floor-screed.checks.2",
+     "floor-screed.checks.3"
+    ],
+    "handover": [
+     "floor-screed.handover.1",
+     "floor-screed.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "screed:self.overtile",
+   "label": "Αυτοεπιπεδούμενο (λεπτό) · Παλιό πλακάκι",
+   "answers": {
+    "product": "self",
+    "under": "overtile"
+   },
+   "source": "new",
+   "title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα πάνω σε παλιό πλακάκι",
+   "duration": "ενδεικτικά μισή έως 1 ημέρα για 20–40 τ.μ., χωρίς τον χρόνο στεγνώματος πριν το τελικό δάπεδο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "screed.prerequisites.tile-firm",
+     "floor-screed.prerequisites.2",
+     "floor-screed.prerequisites.3"
+    ],
+    "preparation": [
+     "screed.preparation.tile-check",
+     "screed.preparation.degrease",
+     "floor-screed.preparation.3",
+     "screed.preparation.tile-primer"
+    ],
+    "steps": [
+     "floor-screed.steps.1",
+     "floor-screed.steps.2",
+     "floor-screed.steps.3",
+     "floor-screed.steps.4"
+    ],
+    "checks": [
+     "floor-screed.checks.1",
+     "floor-screed.checks.2",
+     "floor-screed.checks.3"
+    ],
+    "handover": [
+     "floor-screed.handover.1",
+     "floor-screed.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:screed:self.overtile",
+    "hash": "f5262f9319bb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "screed:self.wood",
+   "label": "Αυτοεπιπεδούμενο (λεπτό) · Ξύλινο πάτωμα",
+   "answers": {
+    "product": "self",
+    "under": "wood"
+   },
+   "source": "new",
+   "title": "Εξομάλυνση δαπέδου με αυτοεπιπεδούμενο κονίαμα πάνω σε ξύλινο πάτωμα",
+   "duration": "ενδεικτικά μισή έως 1 ημέρα για 20–40 τ.μ., χωρίς τον χρόνο στεγνώματος πριν το τελικό δάπεδο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "screed.prerequisites.wood-firm",
+     "floor-screed.prerequisites.2",
+     "floor-screed.prerequisites.3"
+    ],
+    "preparation": [
+     "screed.preparation.wood-fix",
+     "floor-screed.preparation.2",
+     "floor-screed.preparation.3",
+     "screed.preparation.wood-primer"
+    ],
+    "steps": [
+     "floor-screed.steps.1",
+     "screed.steps.flexible",
+     "floor-screed.steps.3",
+     "floor-screed.steps.4"
+    ],
+    "checks": [
+     "floor-screed.checks.1",
+     "floor-screed.checks.2",
+     "floor-screed.checks.3"
+    ],
+    "handover": [
+     "floor-screed.handover.1",
+     "floor-screed.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:screed:self.wood",
+    "hash": "4e14fff50b9d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "screed:sand",
+   "label": "Τσιμεντοκονία (γέμισμα, παχύ)",
+   "answers": {
+    "product": "sand"
+   },
+   "source": "new",
+   "title": "Γέμισμα δαπέδου με τσιμεντοκονία",
+   "duration": "ενδεικτικά 1–2 ημέρες για 20–40 τ.μ., χωρίς τον χρόνο στεγνώματος πριν το τελικό δάπεδο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "screed.prerequisites.sand-height",
+     "screed.prerequisites.pipes",
+     "floor-screed.prerequisites.3"
+    ],
+    "preparation": [
+     "floor-screed.preparation.1",
+     "screed.preparation.edge",
+     "screed.preparation.levels"
+    ],
+    "steps": [
+     "screed.steps.sand-mix",
+     "screed.steps.sand-lay",
+     "screed.steps.sand-trowel",
+     "screed.steps.cure"
+    ],
+    "checks": [
+     "floor-screed.checks.1",
+     "floor-screed.checks.2",
+     "floor-screed.checks.3",
+     "screed.checks.hollow"
+    ],
+    "handover": [
+     "floor-screed.handover.1",
+     "floor-screed.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:screed:sand",
+    "hash": "e7bd3e5ff3e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "screed.x.vapour",
+   "section": "preparation",
+   "when": {
+    "product": [
+     "sand"
+    ]
+   },
+   "review": {
+    "key": "extra:screed:screed.x.vapour",
+    "hash": "58961dcde6ec",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "screed.x.insulation",
+   "section": "preparation",
+   "when": {
+    "product": [
+     "sand"
+    ]
+   },
+   "review": {
+    "key": "extra:screed:screed.x.insulation",
+    "hash": "6bbf117501c6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "screed.x.joints",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:screed:screed.x.joints",
+    "hash": "536b2d53fd43",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "floor-screed.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε με πήχη ότι το δάπεδο είναι επίπεδο, χωρίς σκαλοπάτια ανάμεσα στις λωρίδες.",
+   "s": "Κοιτάμε με πήχη ότι το πάτωμα είναι ίσιο, χωρίς σκαλοπατάκια ανάμεσα στις λωρίδες.",
+   "c": "Επίπεδο, χωρίς σκαλοπάτια.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.checks.1",
+    "hash": "5dd4401b86aa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.checks.2": {
+   "section": "checks",
+   "n": "Όταν στεγνώσει, δεν υπάρχουν ρωγμές ή φυσαλίδες.",
+   "s": "Όταν στεγνώσει, δεν έχει ραγίσει ούτε φουσκάλες.",
+   "c": "Χωρίς ρωγμές ή φυσαλίδες.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.checks.2",
+    "hash": "62b840ca94b9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.checks.3": {
+   "section": "checks",
+   "n": "Το νέο ύψος ταιριάζει με τις πόρτες και τα διπλανά δάπεδα.",
+   "s": "Το νέο ύψος ταιριάζει με τις πόρτες και τα πατώματα δίπλα.",
+   "c": "Ύψος που ταιριάζει.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.checks.3",
+    "hash": "7f39c7e01d3a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα εργαλεία και τον χώρο.",
+   "s": "Πλένουμε τα εργαλεία και καθαρίζουμε τον χώρο.",
+   "c": "Καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.handover.1",
+    "hash": "491b23e8cd5a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να πατηθεί και πότε μπορεί να μπει το τελικό δάπεδο.",
+   "s": "Σας λέμε από πότε πατιέται και πότε μπορεί να μπει το τελικό πάτωμα.",
+   "c": "Πότε πατιέται, πότε το δάπεδο.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.handover.2",
+    "hash": "d391532246b0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.preparation.1": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε το δάπεδο από σκόνη, λάδια και παλιές κόλλες.",
+   "s": "Καθαρίζουμε το πάτωμα από σκόνη, λάδια και παλιές κόλλες.",
+   "c": "Καθάρισμα δαπέδου.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.preparation.1",
+    "hash": "b65c4d4daf33",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.preparation.2": {
+   "section": "preparation",
+   "n": "Κλείνουμε ρωγμές και ανοίγματα, για να μη φύγει υλικό.",
+   "s": "Κλείνουμε ρωγμές και τρύπες, για να μη φύγει το υλικό από κάτω.",
+   "c": "Κλείσιμο ρωγμών.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.preparation.2",
+    "hash": "5683fa00d407",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.preparation.3": {
+   "section": "preparation",
+   "n": "Κολλάμε περιμετρική ταινία στους τοίχους.",
+   "s": "Κολλάμε ταινία γύρω-γύρω στους τοίχους.",
+   "c": "Περιμετρική ταινία.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.preparation.3",
+    "hash": "54189ad7d339",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.preparation.4": {
+   "section": "preparation",
+   "n": "Βάζουμε αστάρι για καλή πρόσφυση, ώστε το δάπεδο να μη ρουφήξει το νερό του υλικού.",
+   "s": "Περνάμε αστάρι για να πιάσει καλά, ώστε το πάτωμα να μη ρουφήξει το νερό του υλικού.",
+   "c": "Αστάρι πρόσφυσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.preparation.4",
+    "hash": "fb2c48f6777c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Δάπεδο χωρίς σαθρά σημεία και χωρίς υγρασία που ανεβαίνει από κάτω.",
+   "s": "Το πάτωμα να είναι γερό και να μην έχει υγρασία που ανεβαίνει από κάτω.",
+   "c": "Γερό, στεγνό δάπεδο.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.prerequisites.1",
+    "hash": "834940b8214f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Οι χώροι να μπορούν να μείνουν κλειστοί μέχρι να πατηθεί το υλικό.",
+   "s": "Οι χώροι να μένουν κλειστοί ώσπου να μπορεί να πατηθεί το υλικό.",
+   "c": "Κλειστοί χώροι ως το πάτημα.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.prerequisites.2",
+    "hash": "24e7fe7c64aa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Παροχή νερού και ρεύματος για το ανακάτεμα.",
+   "s": "Να υπάρχει νερό και ρεύμα για να ανακατέψουμε το υλικό.",
+   "c": "Νερό και ρεύμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.prerequisites.3",
+    "hash": "515acb44d40d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.steps.1": {
+   "section": "steps",
+   "n": "Σημαδεύουμε το τελικό ύψος με οδηγούς.",
+   "s": "Σημαδεύουμε με οδηγούς πόσο ψηλά θα φτάσει.",
+   "c": "Οδηγοί τελικού ύψους.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.steps.1",
+    "hash": "9d00e4253499",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.steps.2": {
+   "section": "steps",
+   "n": "Ανακατεύουμε το υλικό με την ποσότητα νερού που ορίζει ο κατασκευαστής.",
+   "s": "Ανακατεύουμε το υλικό με όσο νερό λέει ο κατασκευαστής.",
+   "c": "Ανάμειξη με το σωστό νερό.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.steps.2",
+    "hash": "6570fcced3d0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.steps.3": {
+   "section": "steps",
+   "n": "Το απλώνουμε σε λωρίδες χωρίς διακοπή και το βοηθάμε να απλώσει με λάμα.",
+   "s": "Το ρίχνουμε σε λωρίδες χωρίς να σταματήσουμε και το βοηθάμε να απλώσει με λάμα.",
+   "c": "Άπλωμα σε λωρίδες.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.steps.3",
+    "hash": "c3561b3e3307",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "floor-screed.steps.4": {
+   "section": "steps",
+   "n": "Περνάμε ρολό με καρφιά, για να φύγουν οι φυσαλίδες αέρα.",
+   "s": "Περνάμε ρολό με καρφάκια, για να βγει ο αέρας.",
+   "c": "Ρολό με καρφιά.",
+   "source": "current",
+   "review": {
+    "key": "sc:floor-screed.steps.4",
+    "hash": "4dba3c3ac199",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.checks.hollow": {
+   "section": "checks",
+   "n": "Χτυπάμε την επιφάνεια: δεν ακούγεται κούφια και δεν ξεφλουδίζει.",
+   "s": "Χτυπάμε το πάτωμα: δεν ακούγεται άδειο από κάτω και δεν βγαίνουν κομμάτια.",
+   "c": "Χωρίς κούφιο ήχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.checks.hollow",
+    "hash": "44a694ee71ed",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.degrease": {
+   "section": "preparation",
+   "n": "Πλένουμε τα πλακάκια με απολιπαντικό και τα τρίβουμε, για να πιάσει το υλικό.",
+   "s": "Πλένουμε καλά τα πλακάκια από λίπη και τα τρίβουμε, για να κολλήσει πάνω τους το υλικό.",
+   "c": "Απολίπανση και τρίψιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.degrease",
+    "hash": "f2c91e93ed43",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.edge": {
+   "section": "preparation",
+   "n": "Κολλάμε περιμετρική ταινία στους τοίχους και προστατεύουμε τους σωλήνες στο δάπεδο.",
+   "s": "Κολλάμε ταινία γύρω-γύρω στους τοίχους και σκεπάζουμε τους σωλήνες που είναι στο πάτωμα.",
+   "c": "Περιμετρική ταινία, προστασία σωλήνων.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.edge",
+    "hash": "d3681aef459e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.levels": {
+   "section": "preparation",
+   "n": "Στήνουμε οδηγούς στο τελικό ύψος με λέιζερ, με κλίση όπου χρειάζεται, π.χ. προς σιφώνι.",
+   "s": "Βάζουμε οδηγούς στο ύψος που θέλουμε με λέιζερ, με κλίση όπου πρέπει, π.χ. προς το σιφόνι.",
+   "c": "Οδηγοί στο τελικό ύψος, με κλίσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.levels",
+    "hash": "07bfd054cab7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.tile-check": {
+   "section": "preparation",
+   "n": "Χτυπάμε τα πλακάκια, ξεκολλάμε όσα ακούγονται κούφια και γεμίζουμε τη θέση τους.",
+   "s": "Χτυπάμε ένα-ένα τα πλακάκια· όσα ακούγονται άδεια τα βγάζουμε και γεμίζουμε το κενό.",
+   "c": "Αφαίρεση κούφιων πλακιδίων.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.tile-check",
+    "hash": "4ed013cffce4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.tile-primer": {
+   "section": "preparation",
+   "n": "Περνάμε ειδικό αστάρι πρόσφυσης για λείες επιφάνειες, όπως ορίζει ο κατασκευαστής.",
+   "s": "Περνάμε ειδικό αστάρι που κάνει το υλικό να πιάνει πάνω σε γυαλιστερά πλακάκια.",
+   "c": "Αστάρι πρόσφυσης για λεία.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.tile-primer",
+    "hash": "1957d1600cf0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.wood-fix": {
+   "section": "preparation",
+   "n": "Βιδώνουμε τις σανίδες που κουνιούνται και τρίβουμε τα παλιά βερνίκια, όπου χρειάζεται.",
+   "s": "Βιδώνουμε όσες σανίδες κουνιούνται και τρίβουμε το παλιό βερνίκι, όπου πρέπει.",
+   "c": "Στερέωση σανίδων, τρίψιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.wood-fix",
+    "hash": "f4a229812829",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.preparation.wood-primer": {
+   "section": "preparation",
+   "n": "Περνάμε αστάρι για ξύλο και, όπου ορίζει ο κατασκευαστής, πλέγμα οπλισμού.",
+   "s": "Περνάμε αστάρι για ξύλο και, αν το λέει ο κατασκευαστής, ειδικό πλέγμα.",
+   "c": "Αστάρι για ξύλο, πλέγμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.preparation.wood-primer",
+    "hash": "dd2d11052001",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.prerequisites.pipes": {
+   "section": "prerequisites",
+   "n": "Να έχουν περάσει οι σωλήνες και τα καλώδια που θα μείνουν μέσα στο γέμισμα.",
+   "s": "Οι σωλήνες και τα καλώδια που θα σκεπαστούν να έχουν ήδη περάσει.",
+   "c": "Σωλήνες και καλώδια περασμένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.prerequisites.pipes",
+    "hash": "c96ca145f240",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.prerequisites.sand-height": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε το τελικό ύψος του δαπέδου και πόσο πάχος χρειάζεται το γέμισμα.",
+   "s": "Να ξέρουμε πόσο ψηλά θα φτάσει το πάτωμα στο τέλος και πόσο χοντρό θα είναι το γέμισμα.",
+   "c": "Τελικό ύψος και πάχος γεμίσματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.prerequisites.sand-height",
+    "hash": "e694ca96b84f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.prerequisites.tile-firm": {
+   "section": "prerequisites",
+   "n": "Τα παλιά πλακάκια να είναι γερά κολλημένα, χωρίς κούφια σημεία.",
+   "s": "Τα παλιά πλακάκια να κρατάνε καλά και να μην ακούγονται άδεια από κάτω.",
+   "c": "Γερά κολλημένα πλακάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.prerequisites.tile-firm",
+    "hash": "bc9c5f211712",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.prerequisites.wood-firm": {
+   "section": "prerequisites",
+   "n": "Το ξύλινο πάτωμα να είναι γερό, χωρίς σανίδες που λυγίζουν ή τρίζουν.",
+   "s": "Το ξύλινο πάτωμα να είναι γερό και οι σανίδες να μη βουλιάζουν ή τρίζουν.",
+   "c": "Γερό ξύλινο πάτωμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.prerequisites.wood-firm",
+    "hash": "0ce310e2b828",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.steps.cure": {
+   "section": "steps",
+   "n": "Τις πρώτες ημέρες βρέχουμε ή σκεπάζουμε την επιφάνεια, για να μη ραγίσει από το γρήγορο στέγνωμα.",
+   "s": "Τις πρώτες μέρες τη βρέχουμε ή τη σκεπάζουμε, για να μη στεγνώσει απότομα και ραγίσει.",
+   "c": "Συντήρηση τις πρώτες ημέρες.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.steps.cure",
+    "hash": "c346f08feb79",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.steps.flexible": {
+   "section": "steps",
+   "n": "Ανακατεύουμε ελαστικό υλικό εξομάλυνσης, κατάλληλο για ξύλινη βάση, με το νερό που ορίζει ο κατασκευαστής.",
+   "s": "Ανακατεύουμε υλικό που κάνει για ξύλο, γιατί λυγίζει λίγο, με όσο νερό λέει ο κατασκευαστής.",
+   "c": "Ελαστικό υλικό για ξύλο.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.steps.flexible",
+    "hash": "bb8cb12b329a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.steps.sand-lay": {
+   "section": "steps",
+   "n": "Απλώνουμε, συμπυκνώνουμε και τραβάμε το κονίαμα με πήχη πάνω στους οδηγούς.",
+   "s": "Ρίχνουμε το μείγμα, το πατάμε καλά και το ισιώνουμε με τον πήχη πάνω στους οδηγούς.",
+   "c": "Άπλωμα, συμπύκνωση, τράβηγμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.steps.sand-lay",
+    "hash": "e9249c93ca9b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.steps.sand-mix": {
+   "section": "steps",
+   "n": "Ανακατεύουμε άμμο, τσιμέντο και νερό στην αναλογία που χρειάζεται το πάχος, ή έτοιμο κονίαμα.",
+   "s": "Φτιάχνουμε το μείγμα από άμμο, τσιμέντο και νερό, ή χρησιμοποιούμε έτοιμο, ανάλογα με το πάχος.",
+   "c": "Ανάμειξη τσιμεντοκονίας.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.steps.sand-mix",
+    "hash": "07d5e8951619",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.steps.sand-trowel": {
+   "section": "steps",
+   "n": "Λειαίνουμε την επιφάνεια με μυστρί ή μηχανή, ανάλογα με το δάπεδο που θα μπει.",
+   "s": "Κάνουμε λεία την επιφάνεια με μυστρί ή μηχανή, ανάλογα με το τι πάτωμα θα μπει από πάνω.",
+   "c": "Λείανση επιφάνειας.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.steps.sand-trowel",
+    "hash": "cbe85b6de34c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.x.insulation": {
+   "section": "preparation",
+   "n": "Στρώνουμε θερμομόνωση ή ηχομόνωση κάτω από το γέμισμα, όπου έχει συμφωνηθεί.",
+   "s": "Αν το έχουμε πει, στρώνουμε από κάτω πλάκες που κρατούν τη ζέστη ή κόβουν τον θόρυβο.",
+   "c": "Μόνωση κάτω από το γέμισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.x.insulation",
+    "hash": "fceb67468fe9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.x.joints": {
+   "section": "steps",
+   "n": "Αφήνουμε αρμούς διαστολής σε μεγάλες επιφάνειες και στα κατωκάσια, όπως ορίζει ο κατασκευαστής.",
+   "s": "Σε μεγάλα πατώματα και κάτω από τις πόρτες αφήνουμε ειδικές χαραμάδες, για να μη ραγίσει όταν κινείται.",
+   "c": "Αρμοί διαστολής.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.x.joints",
+    "hash": "b0cdd5e7019a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "screed.x.vapour": {
+   "section": "preparation",
+   "n": "Στρώνουμε φράγμα υδρατμών κάτω από το γέμισμα, όπου υπάρχει υγρασία από το έδαφος.",
+   "s": "Αν ανεβαίνει υγρασία από το έδαφος, στρώνουμε από κάτω ειδικό φύλλο που την κόβει.",
+   "c": "Φράγμα υδρατμών, όπου χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:screed.x.vapour",
+    "hash": "0b893ebad904",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

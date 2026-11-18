@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος: Νεροχύτης</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><main>
+<p class="small"><a href="index.html">← Όλα τα υλικά</a></p>
+<h1>Έλεγχος κειμένων: Νεροχύτης</h1>
+<p class="lede">Άνοιξε κάθε περίπτωση. Για κάθε σημείο: κανονική | απλή | σύντομη. Η εφαρμογή χρησιμοποιεί μόνο ό,τι εγκρίνεις. Οι αποφάσεις μένουν σε αυτόν τον browser· στο τέλος πάτα «Εξαγωγή» και στείλε το αρχείο.</p>
+
+<div class="bar">
+  <label>Ελέγχει <input id="reviewer" autocomplete="name" placeholder="Το όνομά σου"></label>
+  <label>Δείξε <select id="filter"><option value="all">όλες</option><option value="todo">χωρίς απόφαση</option><option value="fix">για διόρθωση</option></select></label>
+  <button type="button" id="approveSc">Εγκρίνω τις απλές/σύντομες των ανοιχτών</button>
+  <button type="button" class="primary" id="export">Εξαγωγή αποφάσεων</button>
+  <span class="progress" id="progress"></span>
+</div>
+<div id="cases"></div>
+</main>
+<script id="data" type="application/json">{"material":"sink","name":"Νεροχύτης","cases":[{"id":"sink:replace.inset","label":"Αλλαγή παλιού · Πάνω στον πάγκο (ένθετος)","answers":{"job":"replace","mount":"inset"},"source":"base","task":"plumb-sink","title":"Τοποθέτηση νεροχύτη κουζίνας","duration":"ενδεικτικά 1–3 ώρες","licensed":false,"sections":{"prerequisites":["plumb-sink.prerequisites.1","plumb-sink.prerequisites.2"],"preparation":["plumb-sink.preparation.1","plumb-sink.preparation.2"],"steps":["plumb-sink.steps.1","plumb-sink.steps.2","plumb-sink.steps.3","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","plumb-sink.checks.3"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]}},{"id":"sink:replace.under","label":"Αλλαγή παλιού · Κάτω από τον πάγκο (υποτοποθετούμενος)","answers":{"job":"replace","mount":"under"},"source":"new","title":"Τοποθέτηση υποκαθήμενου νεροχύτη κουζίνας","duration":"ενδεικτικά 2–4 ώρες, χωρίς τον χρόνο στεγνώματος της σιλικόνης","licensed":false,"sections":{"prerequisites":["sink.prerequisites.under-cutout","plumb-sink.prerequisites.2"],"preparation":["sink.preparation.under-remove","plumb-sink.preparation.2"],"steps":["sink.steps.under-fix","sink.steps.under-tap","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","sink.checks.under-seal"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]},"review":{"key":"case:sink:replace.under","hash":"dea2a8924242","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink:replace.cabinet","label":"Αλλαγή παλιού · Πάνω σε ντουλάπι, χωρίς πάγκο","answers":{"job":"replace","mount":"cabinet"},"source":"new","title":"Τοποθέτηση νεροχύτη με ντουλάπι","duration":"ενδεικτικά 1–3 ώρες","licensed":false,"sections":{"prerequisites":["sink.prerequisites.cabinet-size","plumb-sink.prerequisites.2"],"preparation":["sink.preparation.cabinet-remove","sink.preparation.cabinet-level"],"steps":["sink.steps.cabinet-set","plumb-sink.steps.1","sink.steps.cabinet-top","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","sink.checks.cabinet-firm"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]},"review":{"key":"case:sink:replace.cabinet","hash":"e1d5ad90ca1d","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink:new.inset","label":"Σε νέο πάγκο ή νέα κουζίνα · Πάνω στον πάγκο (ένθετος)","answers":{"job":"new","mount":"inset"},"source":"new","title":"Τοποθέτηση νεροχύτη κουζίνας σε νέο σημείο","duration":"ενδεικτικά 1–3 ώρες","licensed":false,"sections":{"prerequisites":["plumb-sink.prerequisites.1","sink.prerequisites.new-points"],"preparation":["sink.preparation.new-check","plumb-sink.preparation.2"],"steps":["plumb-sink.steps.1","plumb-sink.steps.2","plumb-sink.steps.3","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","plumb-sink.checks.3"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]},"review":{"key":"case:sink:new.inset","hash":"3f48bf7c0704","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink:new.under","label":"Σε νέο πάγκο ή νέα κουζίνα · Κάτω από τον πάγκο (υποτοποθετούμενος)","answers":{"job":"new","mount":"under"},"source":"new","title":"Τοποθέτηση υποκαθήμενου νεροχύτη κουζίνας σε νέο σημείο","duration":"ενδεικτικά 2–4 ώρες, χωρίς τον χρόνο στεγνώματος της σιλικόνης","licensed":false,"sections":{"prerequisites":["sink.prerequisites.under-cutout","sink.prerequisites.new-points"],"preparation":["sink.preparation.new-check","plumb-sink.preparation.2"],"steps":["sink.steps.under-fix","sink.steps.under-tap","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","sink.checks.under-seal"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]},"review":{"key":"case:sink:new.under","hash":"2209e6c8d83f","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink:new.cabinet","label":"Σε νέο πάγκο ή νέα κουζίνα · Πάνω σε ντουλάπι, χωρίς πάγκο","answers":{"job":"new","mount":"cabinet"},"source":"new","title":"Τοποθέτηση νεροχύτη με ντουλάπι σε νέο σημείο","duration":"ενδεικτικά 1–3 ώρες","licensed":false,"sections":{"prerequisites":["sink.prerequisites.cabinet-size","sink.prerequisites.new-points"],"preparation":["sink.preparation.new-check","sink.preparation.cabinet-level"],"steps":["sink.steps.cabinet-set","plumb-sink.steps.1","sink.steps.cabinet-top","plumb-sink.steps.4","plumb-sink.steps.5"],"checks":["plumb-sink.checks.1","plumb-sink.checks.2","sink.checks.cabinet-firm"],"handover":["plumb-sink.handover.1","plumb-sink.handover.2"]},"review":{"key":"case:sink:new.cabinet","hash":"87e05f7bf6ba","reviewed":false,"reviewer":null,"reviewed_at":null}}],"extras":[{"id":"sink.x.dishwasher-valve","section":"steps","when":null,"review":{"key":"extra:sink:sink.x.dishwasher-valve","hash":"ebd0bfb690bd","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink.x.filter","section":"steps","when":null,"review":{"key":"extra:sink:sink.x.filter","hash":"45e43b5fde3f","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"sink.x.cabinet-protect","section":"handover","when":{"mount":["inset","under"]},"review":{"key":"extra:sink:sink.x.cabinet-protect","hash":"a670c9c743af","reviewed":false,"reviewer":null,"reviewed_at":null}}],"items":{"plumb-sink.checks.1":{"section":"checks","n":"Γεμίζουμε τις γούρνες και τις αδειάζουμε: το σιφώνι δεν στάζει.","s":"Γεμίζουμε τις γούρνες και τις αδειάζουμε: από κάτω δεν στάζει τίποτα.","c":"Γέμισμα και άδειασμα χωρίς στάξιμο.","source":"current","review":{"key":"sc:plumb-sink.checks.1","hash":"e2ae010006f9","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.checks.2":{"section":"checks","n":"Ελέγχουμε όλες τις συνδέσεις του νερού για σταγόνες με στεγνό χαρτί.","s":"Περνάμε στεγνό χαρτί από όλες τις ενώσεις του νερού: πρέπει να μείνει στεγνό.","c":"Στεγνό χαρτί στις συνδέσεις.","source":"current","review":{"key":"sc:plumb-sink.checks.2","hash":"d66d0fc51547","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.checks.3":{"section":"checks","n":"Το χείλος του νεροχύτη κάθεται σφιχτά στον πάγκο, χωρίς κενά.","s":"Το χείλος του νεροχύτη ακουμπάει παντού στον πάγκο, χωρίς χαραμάδες.","c":"Χείλος σφιχτά στον πάγκο.","source":"current","review":{"key":"sc:plumb-sink.checks.3","hash":"1ccf244eccf9","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.handover.1":{"section":"handover","n":"Καθαρίζουμε τα υπολείμματα στεγανωτικού και το ντουλάπι.","s":"Καθαρίζουμε τη σιλικόνη που περίσσεψε και το ντουλάπι.","c":"Καθάρισμα στεγανωτικού και ντουλαπιού.","source":"current","review":{"key":"sc:plumb-sink.handover.1","hash":"fa683d8cb802","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.handover.2":{"section":"handover","n":"Σας λέμε πότε μπορεί να χρησιμοποιηθεί, ώστε να προλάβει να στεγνώσει το στεγανωτικό.","s":"Σας λέμε από πότε μπορείτε να τον χρησιμοποιήσετε, για να στεγνώσει πρώτα η σιλικόνη.","c":"Πότε μπαίνει σε χρήση.","source":"current","review":{"key":"sc:plumb-sink.handover.2","hash":"c71a1a45cd6c","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.preparation.1":{"section":"preparation","n":"Αφαιρούμε τον παλιό νεροχύτη, αν υπάρχει, και καθαρίζουμε τον πάγκο από παλιά σιλικόνη.","s":"Βγάζουμε τον παλιό νεροχύτη, αν υπάρχει, και ξύνουμε την παλιά σιλικόνη από τον πάγκο.","c":"Αφαίρεση παλιού, καθαρισμός πάγκου.","source":"current","review":{"key":"sc:plumb-sink.preparation.1","hash":"8a48e8079c7b","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.preparation.2":{"section":"preparation","n":"Ελέγχουμε ότι ο νέος νεροχύτης ταιριάζει στο άνοιγμα και χωράει στο ντουλάπι.","s":"Κοιτάμε ότι ο καινούργιος νεροχύτης μπαίνει στην τρύπα και χωράει μέσα στο ντουλάπι.","c":"Έλεγχος ότι ταιριάζει και χωράει.","source":"current","review":{"key":"sc:plumb-sink.preparation.2","hash":"b372ad804e76","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.prerequisites.1":{"section":"prerequisites","n":"Να έχει ανοιχτεί η τρύπα στον πάγκο στη διάσταση του νεροχύτη, ή να την ανοίξουμε εμείς αν το συμφωνήσαμε.","s":"Η τρύπα στον πάγκο να έχει το μέγεθος του νεροχύτη, ή να την ανοίξουμε εμείς, αν το έχουμε πει.","c":"Άνοιγμα πάγκου στη διάσταση.","source":"current","review":{"key":"sc:plumb-sink.prerequisites.1","hash":"c54d1a2267ac","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.prerequisites.2":{"section":"prerequisites","n":"Παροχές νερού και αποχέτευση μέσα στο ντουλάπι του νεροχύτη.","s":"Να υπάρχουν μέσα στο ντουλάπι οι σωλήνες του νερού και της αποχέτευσης.","c":"Παροχές και αποχέτευση στο ντουλάπι.","source":"current","review":{"key":"sc:plumb-sink.prerequisites.2","hash":"86638d694b50","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.steps.1":{"section":"steps","n":"Τοποθετούμε τη μπαταρία και τις βαλβίδες στον νεροχύτη πριν μπει στη θέση του.","s":"Βάζουμε πρώτα τη βρύση και τις τάπες στον νεροχύτη, πριν τον βάλουμε στη θέση του.","c":"Μπαταρία και βαλβίδες πριν την τοποθέτηση.","source":"current","review":{"key":"sc:plumb-sink.steps.1","hash":"452e23f47be1","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.steps.2":{"section":"steps","n":"Βάζουμε στεγανωτικό, ή την ταινία του κατασκευαστή, στο χείλος και κατεβάζουμε τον νεροχύτη στο άνοιγμα.","s":"Βάζουμε σιλικόνη ή την ταινία του νεροχύτη στο χείλος του και τον κατεβάζουμε στην τρύπα.","c":"Στεγανωτικό στο χείλος, τοποθέτηση.","source":"current","review":{"key":"sc:plumb-sink.steps.2","hash":"0cb0718a0654","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.steps.3":{"section":"steps","n":"Τον σφίγγουμε από κάτω με τα κλιπ στήριξης.","s":"Τον σφίγγουμε από κάτω με τα κλιπ που τον κρατάνε.","c":"Σφίξιμο με κλιπ από κάτω.","source":"current","review":{"key":"sc:plumb-sink.steps.3","hash":"62d8161ba848","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.steps.4":{"section":"steps","n":"Συνδέουμε το σιφώνι, την υπερχείλιση και τη σύνδεση του πλυντηρίου πιάτων, αν υπάρχει.","s":"Ενώνουμε το σιφόνι, το σωληνάκι του ξεχειλίσματος και το πλυντήριο πιάτων, αν υπάρχει.","c":"Σιφώνι, υπερχείλιση, πλυντήριο πιάτων.","source":"current","review":{"key":"sc:plumb-sink.steps.4","hash":"a282bf6471eb","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-sink.steps.5":{"section":"steps","n":"Συνδέουμε τη μπαταρία στους γωνιακούς διακόπτες.","s":"Ενώνουμε τη βρύση με τους μικρούς διακόπτες του νερού.","c":"Μπαταρία στους γωνιακούς.","source":"current","review":{"key":"sc:plumb-sink.steps.5","hash":"89a23d2e8bc3","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.checks.cabinet-firm":{"section":"checks","n":"Το ντουλάπι και ο νεροχύτης δεν κουνιούνται όταν ακουμπάμε πάνω τους.","s":"Αν ακουμπήσουμε πάνω, ούτε το ντουλαπάκι ούτε ο νεροχύτης κουνιούνται.","c":"Σταθερό ντουλάπι και νεροχύτης.","source":"new","review":{"key":"sc:sink.checks.cabinet-firm","hash":"1a3d5535e4f8","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.checks.under-seal":{"section":"checks","n":"Η σιλικόνη γύρω από την κοπή είναι συνεχής και το νερό από τον πάγκο πέφτει μέσα στη γούρνα.","s":"Η σιλικόνη γύρω από την τρύπα δεν έχει κενά και τα νερά του πάγκου πέφτουν μέσα στον νεροχύτη.","c":"Συνεχής σιλικόνη στην κοπή.","source":"new","review":{"key":"sc:sink.checks.under-seal","hash":"4e06e72ce63b","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.preparation.cabinet-level":{"section":"preparation","n":"Ελέγχουμε το δάπεδο και τον τοίχο με το αλφάδι, ώστε το ντουλάπι να καθίσει ίσια.","s":"Κοιτάμε με το αλφάδι αν είναι ίσιο το πάτωμα και ο τοίχος, για να στέκεται σωστά το ντουλάπι.","c":"Αλφάδι δαπέδου και τοίχου.","source":"new","review":{"key":"sc:sink.preparation.cabinet-level","hash":"171fdfb37b0d","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.preparation.cabinet-remove":{"section":"preparation","n":"Αφαιρούμε τον παλιό νεροχύτη μαζί με το ντουλάπι του και καθαρίζουμε τη θέση.","s":"Βγάζουμε τον παλιό νεροχύτη και το ντουλαπάκι του και καθαρίζουμε το σημείο.","c":"Αφαίρεση παλιού νεροχύτη με ντουλάπι.","source":"new","review":{"key":"sc:sink.preparation.cabinet-remove","hash":"5d308f643450","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.preparation.new-check":{"section":"preparation","n":"Ελέγχουμε τη θέση και το ύψος των νέων παροχών και της αποχέτευσης σε σχέση με τον νεροχύτη.","s":"Μετράμε ότι οι καινούργιοι σωλήνες βγαίνουν στη σωστή θέση και στο σωστό ύψος για τον νεροχύτη.","c":"Έλεγχος θέσης νέων παροχών.","source":"new","review":{"key":"sc:sink.preparation.new-check","hash":"c5f75ae4294c","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.preparation.under-remove":{"section":"preparation","n":"Αφαιρούμε τον παλιό νεροχύτη κάτω από τον πάγκο, χωρίς να πειράξουμε την πέτρα, και καθαρίζουμε την παλιά σιλικόνη.","s":"Ξεκολλάμε τον παλιό νεροχύτη από κάτω, προσεκτικά για να μην πάθει τίποτα ο πάγκος, και καθαρίζουμε την παλιά σιλικόνη.","c":"Αφαίρεση παλιού υποκαθήμενου, καθαρισμός.","source":"new","review":{"key":"sc:sink.preparation.under-remove","hash":"a4208f6dd3f5","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.prerequisites.cabinet-size":{"section":"prerequisites","n":"Ο νεροχύτης με το ντουλάπι του να χωράει στη θέση, με τον χώρο που θέλουν οι πόρτες για να ανοίγουν.","s":"Ο νεροχύτης μαζί με το ντουλαπάκι του να χωράει στη θέση και να ανοίγουν άνετα οι πόρτες.","c":"Νεροχύτης με ντουλάπι που χωράει.","source":"new","review":{"key":"sc:sink.prerequisites.cabinet-size","hash":"8be0011b5658","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.prerequisites.new-points":{"section":"prerequisites","n":"Νέες παροχές νερού και αποχέτευση έτοιμες στη θέση του νεροχύτη, μέσα στο ντουλάπι.","s":"Να έχουν φτάσει οι καινούργιοι σωλήνες του νερού και της αποχέτευσης εκεί που θα μπει ο νεροχύτης.","c":"Νέες παροχές και αποχέτευση στη θέση.","source":"new","review":{"key":"sc:sink.prerequisites.new-points","hash":"6bae65172d05","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.prerequisites.under-cutout":{"section":"prerequisites","n":"Πάγκος από πέτρα ή συμπαγές υλικό, με την κοπή για υποκαθήμενο νεροχύτη τελειωμένη και γυαλισμένη στις άκρες.","s":"Ο πάγκος να είναι πέτρινος ή συμπαγής και η τρύπα του να έχει κοπεί και γυαλιστεί για νεροχύτη που μπαίνει από κάτω.","c":"Πάγκος με έτοιμη κοπή για υποκαθήμενο.","source":"new","review":{"key":"sc:sink.prerequisites.under-cutout","hash":"a4e1ae71c67e","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.steps.cabinet-set":{"section":"steps","n":"Στήνουμε το ντουλάπι, το αλφαδιάζουμε με τα πόδια του και το στερεώνουμε στον τοίχο.","s":"Βάζουμε το ντουλαπάκι στη θέση του, το ισιώνουμε με τα ποδαράκια του και το βιδώνουμε στον τοίχο.","c":"Στήσιμο και στερέωση ντουλαπιού.","source":"new","review":{"key":"sc:sink.steps.cabinet-set","hash":"6dcb619cff80","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.steps.cabinet-top":{"section":"steps","n":"Τοποθετούμε τον νεροχύτη πάνω στο ντουλάπι και τον στερεώνουμε με τα στηρίγματά του.","s":"Βάζουμε τον νεροχύτη πάνω στο ντουλαπάκι και τον σφίγγουμε με τα κομμάτια που τον κρατάνε.","c":"Νεροχύτης πάνω στο ντουλάπι.","source":"new","review":{"key":"sc:sink.steps.cabinet-top","hash":"2f39b24361a7","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.steps.under-fix":{"section":"steps","n":"Στερεώνουμε τον νεροχύτη κάτω από τον πάγκο με σιλικόνη και τα ειδικά στηρίγματα, με το χείλος του ίσια με την κοπή.","s":"Κολλάμε τον νεροχύτη από κάτω με σιλικόνη και τον βιδώνουμε με τα στηρίγματά του, ώστε να ταιριάζει ακριβώς με την τρύπα.","c":"Στερέωση από κάτω με σιλικόνη και στηρίγματα.","source":"new","review":{"key":"sc:sink.steps.under-fix","hash":"f957125e3cdb","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.steps.under-tap":{"section":"steps","n":"Τοποθετούμε τη μπαταρία στην τρύπα του πάγκου και τις βαλβίδες στις γούρνες.","s":"Βάζουμε τη βρύση στην τρύπα του πάγκου και τις τάπες στις γούρνες.","c":"Μπαταρία στον πάγκο, βαλβίδες στις γούρνες.","source":"new","review":{"key":"sc:sink.steps.under-tap","hash":"9078eba47980","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.x.cabinet-protect":{"section":"handover","n":"Σφραγίζουμε τις κομμένες άκρες του ντουλαπιού γύρω από τους σωλήνες, ώστε να μη φουσκώσουν από την υγρασία.","s":"Κλείνουμε με σιλικόνη τα κομμένα σημεία του ντουλαπιού γύρω από τους σωλήνες, για να μη φουσκώσουν από τα νερά.","c":"Σφράγισμα κομμένων άκρων ντουλαπιού.","source":"new","review":{"key":"sc:sink.x.cabinet-protect","hash":"872654c8cc3f","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.x.dishwasher-valve":{"section":"steps","n":"Προσθέτουμε ξεχωριστό διακόπτη για το πλυντήριο πιάτων, όπου δεν υπάρχει.","s":"Αν δεν υπάρχει, βάζουμε δικό του διακόπτη νερού για το πλυντήριο πιάτων.","c":"Διακόπτης πλυντηρίου πιάτων.","source":"new","review":{"key":"sc:sink.x.dishwasher-valve","hash":"51d02e52030f","reviewed":false,"reviewer":null,"reviewed_at":null}},"sink.x.filter":{"section":"steps","n":"Τοποθετούμε φίλτρο νερού κάτω από τον νεροχύτη, όπου έχει συμφωνηθεί.","s":"Αν το έχουμε πει, βάζουμε φίλτρο για το νερό μέσα στο ντουλάπι.","c":"Φίλτρο νερού, αν συμφωνήθηκε.","source":"new","review":{"key":"sc:sink.x.filter","hash":"b380d9c1fe08","reviewed":false,"reviewer":null,"reviewed_at":null}}},"licensedNote":"Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία.","sections":[{"key":"prerequisites","title":"Τι χρειάζεται πριν ξεκινήσουμε"},{"key":"preparation","title":"Προεργασία"},{"key":"steps","title":"Στάδια τοποθέτησης"},{"key":"checks","title":"Έλεγχοι πριν την παράδοση"},{"key":"handover","title":"Καθαρισμός και παράδοση"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'ergolav-review:' + D.material;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = {reviewer: '', decisions: {}};
+try { S = Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} paint(); };
+$('reviewer').value = S.reviewer || '';
+$('reviewer').oninput = e => { S.reviewer = e.target.value; save(); };
+// Αποφάσεις: μόνο για το κείμενο που φαίνεται (ίδιο αποτύπωμα)· ό,τι άλλαξε από τότε ξαναζητά έλεγχο.
+const keys = {};
+for(const c of D.cases) if(c.review) keys[c.review.key] = c.review;
+for(const [, it] of Object.entries(D.items)) keys[it.review.key] = it.review;
+for(const x of D.extras) keys[x.review.key] = x.review;
+const verdict = k => { const d = S.decisions[k]; return d && d.hash === keys[k].hash ? d.verdict : (keys[k].reviewed ? 'ok' : null); };
+const decideHtml = (k, what) => {
+  const d = S.decisions[k] && S.decisions[k].hash === keys[k].hash ? S.decisions[k] : null, v = verdict(k);
+  return '<div class="decide" data-key="' + esc(k) + '"><span class="what">' + what + '</span>'
+    + '<button type="button" class="ok' + (v === 'ok' ? ' on' : '') + '" data-v="ok" aria-pressed="' + (v === 'ok') + '">Εγκρίνω</button>'
+    + '<button type="button" class="fix' + (v === 'fix' ? ' on' : '') + '" data-v="fix" aria-pressed="' + (v === 'fix') + '">Θέλει διόρθωση</button>'
+    + '<textarea placeholder="Τι να διορθωθεί;" aria-label="Σχόλιο"' + (v === 'fix' ? '' : ' hidden') + '>' + esc(d && d.comment || '') + '</textarea></div>';
+};
+const item = (id, withSc) => {
+  const it = D.items[id];
+  return '<div class="row" data-item="' + esc(id) + '">'
+    + '<div class="v"><small>Κανονική <span class="tag ' + (it.source === 'new' ? 'new">νέο' : 'cur">σημερινό') + '</span></small>' + esc(it.n) + '</div>'
+    + '<div class="v"><small>Απλή</small>' + esc(it.s) + '</div>'
+    + '<div class="v"><small>Σύντομη</small>' + esc(it.c) + '</div>'
+    + (withSc ? '<div class="acts">' + decideHtml(it.review.key, 'Απλή και σύντομη:') + '</div>' : '') + '</div>';
+};
+const body = c => {
+  let h = '<p class="meta">Περίπτωση: ' + esc(c.label) + ' · ' + esc(c.duration) + (c.task ? ' · κείμενο: ' + esc(c.task) : '') + '</p>';
+  if(c.licensed) h += '<p class="note">' + esc(D.licensedNote) + '</p>';
+  if(c.safety) h += '<p class="note">Ασφάλεια: ' + esc(c.safety) + '</p>';
+  for(const s of D.sections){ const ids = c.sections[s.key] || []; if(!ids.length) continue;
+    h += '<div class="sec"><h3>' + esc(s.title) + '</h3>' + ids.map(id => item(id, true)).join('') + '</div>'; }
+  if(c.review) h += decideHtml(c.review.key, c.source === 'existing' ? 'Η περίπτωση (έτοιμο κείμενο):' : 'Η περίπτωση (σύνθεση και νέα κείμενα):');
+  return h;
+};
+const groups = [['base', 'Βασικές περιπτώσεις (σημερινές αναλύσεις)', 'Τα κείμενα δεν αλλάζουν· ελέγχεις μόνο την απλή και τη σύντομη εκδοχή.'],
+  ['existing', 'Περιπτώσεις με έτοιμο κείμενο', 'Από τις 96 γραμμένες αναλύσεις.'], ['new', D.material === 'generic' ? 'Κατηγορίες' : 'Νέες περιπτώσεις', '']];
+let html = '';
+for(const [src, title, sub] of groups){
+  const list = D.cases.filter(c => c.source === src); if(!list.length) continue;
+  html += '<h2>' + title + ' (' + list.length + ')</h2>' + (sub ? '<p class="small meta">' + sub + '</p>' : '');
+  for(const c of list) html += '<details class="case" data-case="' + esc(c.id) + '"><summary><b>' + esc(c.title) + '</b><span class="state" data-state="' + esc(c.id) + '"></span><span class="lbl">' + esc(c.label) + '</span></summary><div class="body"></div></details>';
+}
+if(D.extras.length){
+  html += '<h2>Επιπλέον βήματα για το «Λείπει κάτι» (' + D.extras.length + ')</h2>';
+  html += '<div class="case" style="padding:0 14px 14px">' + D.extras.map(x => '<div class="sec"><h3>' + esc((D.sections.find(s => s.key === x.section) || {}).title || x.section)
+    + (x.when ? ' · <span class="meta">μόνο όταν ' + esc(Object.entries(x.when).map(([k, v]) => k + ' = ' + v.join(' ή ')).join(', ')) + '</span>' : '') + '</h3>'
+    + item(x.id, true) + decideHtml(x.review.key, 'Να μπαίνει ως επιπλέον βήμα:') + '</div>').join('') + '</div>';
+}
+$('cases').innerHTML = html;
+// Το σώμα κάθε περίπτωσης φτιάχνεται όταν ανοίξει (οι σελίδες έχουν εκατοντάδες σημεία).
+document.querySelectorAll('details.case').forEach(d => d.addEventListener('toggle', () => {
+  const b = d.querySelector('.body'); if(d.open && !b.innerHTML) b.innerHTML = body(D.cases.find(c => c.id === d.dataset.case));
+}));
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.decide button'); if(!btn) return;
+  const k = btn.closest('.decide').dataset.key, v = btn.dataset.v, prev = S.decisions[k];
+  S.decisions[k] = {verdict: v, hash: keys[k].hash, comment: v === 'fix' ? (prev && prev.comment || '') : ''};
+  save();
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest('.decide'); if(!box || e.target.tagName !== 'TEXTAREA') return;
+  const k = box.dataset.key; S.decisions[k] = Object.assign({verdict: 'fix', hash: keys[k].hash}, S.decisions[k], {comment: e.target.value});
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+});
+function paint(){
+  // Ίδιο σημείο σε πολλές περιπτώσεις: η απόφαση φαίνεται παντού.
+  document.querySelectorAll('.decide').forEach(box => {
+    const v = verdict(box.dataset.key);
+    box.querySelectorAll('button').forEach(b => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    box.querySelector('textarea').hidden = v !== 'fix';
+  });
+  for(const c of D.cases){
+    const el = document.querySelector('[data-state="' + CSS.escape(c.id) + '"]'); if(!el) continue;
+    const ks = [...(c.review ? [c.review.key] : []), ...Object.values(c.sections).flat().map(id => D.items[id].review.key)];
+    const vs = ks.map(verdict), fix = vs.includes('fix'), done = vs.every(v => v === 'ok');
+    el.className = 'state ' + (fix ? 'fix' : done ? 'ok' : 'todo');
+    el.textContent = fix ? 'θέλει διόρθωση' : done ? 'εγκρίθηκε' : vs.filter(Boolean).length + '/' + vs.length;
+  }
+  const all = Object.keys(keys), dec = all.filter(k => verdict(k));
+  $('progress').textContent = dec.length + ' από ' + all.length + ' αποφάσεις · ' + all.filter(k => verdict(k) === 'fix').length + ' για διόρθωση';
+}
+document.addEventListener('toggle', paint, true);
+$('filter').onchange = e => {
+  const f = e.target.value;
+  document.querySelectorAll('details.case').forEach(d => {
+    const st = d.querySelector('.state').className;
+    d.classList.toggle('hidden', f === 'todo' ? /\b(ok)\b/.test(st) : f === 'fix' ? !/\bfix\b/.test(st) : false);
+  });
+};
+$('export').onclick = () => {
+  if(!S.reviewer.trim()){ $('reviewer').focus(); alert('Γράψε πρώτα το όνομά σου (ποιος ελέγχει).'); return; }
+  const decisions = Object.entries(S.decisions).filter(([k, d]) => keys[k] && d.hash === keys[k].hash).map(([key, d]) => ({key, hash: d.hash, verdict: d.verdict, comment: d.comment || ''}));
+  const file = {format: 'ergolav-reviews', version: 1, material: D.material, reviewer: S.reviewer.trim(), exported_at: new Date().toISOString(), decisions};
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], {type: 'application/json'}));
+  a.download = 'ergolav-elegxos-' + D.material + '-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+$('approveSc').onclick = () => {
+  // Γρήγορα: όσες απλές/σύντομες δεν έχουν απόφαση, στις ανοιχτές περιπτώσεις.
+  document.querySelectorAll('details.case[open] .row .decide').forEach(box => { const k = box.dataset.key; if(!verdict(k)) S.decisions[k] = {verdict: 'ok', hash: keys[k].hash, comment: ''}; });
+  save();
+};
+paint();
+</script>
+</body></html>

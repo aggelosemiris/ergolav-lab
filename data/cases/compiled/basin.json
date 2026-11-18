@@ -1,0 +1,1353 @@
+{
+ "material": "basin",
+ "name": "Νιπτήρας",
+ "cases": [
+  {
+   "id": "basin:replace.wall.masonry",
+   "label": "Αλλαγή παλιού · Κρεμαστός στον τοίχο · Τούβλο ή μπετό",
+   "answers": {
+    "job": "replace",
+    "type": "wall",
+    "wall": "masonry"
+   },
+   "source": "base",
+   "task": "plumb-basin",
+   "title": "Τοποθέτηση νιπτήρα",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "plumb-basin.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "basin:replace.wall.drywall",
+   "label": "Αλλαγή παλιού · Κρεμαστός στον τοίχο · Γυψοσανίδα",
+   "answers": {
+    "job": "replace",
+    "type": "wall",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση κρεμαστού νιπτήρα σε τοίχο από γυψοσανίδα",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.drywall-backing"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:replace.wall.drywall",
+    "hash": "8abc100c832f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:replace.pedestal.masonry",
+   "label": "Αλλαγή παλιού · Με κολόνα ή ημικολόνα · Τούβλο ή μπετό",
+   "answers": {
+    "job": "replace",
+    "type": "pedestal",
+    "wall": "masonry"
+   },
+   "source": "base",
+   "task": "plumb-basin",
+   "title": "Τοποθέτηση νιπτήρα",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "plumb-basin.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "basin:replace.pedestal.drywall",
+   "label": "Αλλαγή παλιού · Με κολόνα ή ημικολόνα · Γυψοσανίδα",
+   "answers": {
+    "job": "replace",
+    "type": "pedestal",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση νιπτήρα με κολόνα σε τοίχο από γυψοσανίδα",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.drywall-backing"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "basin.steps.pedestal",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:replace.pedestal.drywall",
+    "hash": "53de5f7d413c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:replace.countertop",
+   "label": "Αλλαγή παλιού · Πάνω σε πάγκο (επικαθήμενος)",
+   "answers": {
+    "job": "replace",
+    "type": "countertop"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση επικαθήμενου νιπτήρα σε πάγκο",
+   "duration": "ενδεικτικά 2–4 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.counter-ready"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "basin.preparation.counter-mark"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.counter-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:replace.countertop",
+    "hash": "ab0728e0ebc7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:replace.inset",
+   "label": "Αλλαγή παλιού · Χωνευτός σε πάγκο",
+   "answers": {
+    "job": "replace",
+    "type": "inset"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση χωνευτού νιπτήρα σε πάγκο",
+   "duration": "ενδεικτικά 2–4 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.counter-ready"
+    ],
+    "preparation": [
+     "plumb-basin.preparation.1",
+     "basin.preparation.counter-cutout"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.inset-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:replace.inset",
+    "hash": "7affd13fba1c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.wall.masonry",
+   "label": "Σε ανακαίνιση μπάνιου · Κρεμαστός στον τοίχο · Τούβλο ή μπετό",
+   "answers": {
+    "job": "renovation",
+    "type": "wall",
+    "wall": "masonry"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση κρεμαστού νιπτήρα σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "plumb-basin.prerequisites.3",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.wall.masonry",
+    "hash": "4a830cc93d00",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.wall.drywall",
+   "label": "Σε ανακαίνιση μπάνιου · Κρεμαστός στον τοίχο · Γυψοσανίδα",
+   "answers": {
+    "job": "renovation",
+    "type": "wall",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση κρεμαστού νιπτήρα σε τοίχο από γυψοσανίδα σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.drywall-backing",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.wall.drywall",
+    "hash": "c17142bf7339",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.pedestal.masonry",
+   "label": "Σε ανακαίνιση μπάνιου · Με κολόνα ή ημικολόνα · Τούβλο ή μπετό",
+   "answers": {
+    "job": "renovation",
+    "type": "pedestal",
+    "wall": "masonry"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση νιπτήρα με κολόνα σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "plumb-basin.prerequisites.3",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "basin.steps.pedestal",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.pedestal.masonry",
+    "hash": "8951f568cae0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.pedestal.drywall",
+   "label": "Σε ανακαίνιση μπάνιου · Με κολόνα ή ημικολόνα · Γυψοσανίδα",
+   "answers": {
+    "job": "renovation",
+    "type": "pedestal",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση νιπτήρα με κολόνα σε τοίχο από γυψοσανίδα σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–3 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.drywall-backing",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "basin.steps.pedestal",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.pedestal.drywall",
+    "hash": "8fbe52b001c7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.countertop",
+   "label": "Σε ανακαίνιση μπάνιου · Πάνω σε πάγκο (επικαθήμενος)",
+   "answers": {
+    "job": "renovation",
+    "type": "countertop"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση επικαθήμενου νιπτήρα σε πάγκο σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–4 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.counter-ready",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "basin.preparation.counter-mark"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.counter-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.countertop",
+    "hash": "44bc7c729bd8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:renovation.inset",
+   "label": "Σε ανακαίνιση μπάνιου · Χωνευτός σε πάγκο",
+   "answers": {
+    "job": "renovation",
+    "type": "inset"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση χωνευτού νιπτήρα σε πάγκο σε ανακαίνιση μπάνιου",
+   "duration": "ενδεικτικά 2–4 ώρες, μαζί με τη μπαταρία",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "plumb-basin.prerequisites.2",
+     "basin.prerequisites.counter-ready",
+     "basin.prerequisites.after-tiles"
+    ],
+    "preparation": [
+     "basin.preparation.check-points",
+     "basin.preparation.counter-cutout"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.inset-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:renovation.inset",
+    "hash": "25cd0f51e54a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.wall.masonry",
+   "label": "Σε νέα θέση · Κρεμαστός στον τοίχο · Τούβλο ή μπετό",
+   "answers": {
+    "job": "new",
+    "type": "wall",
+    "wall": "masonry"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση κρεμαστού νιπτήρα σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "plumb-basin.prerequisites.3"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.wall.masonry",
+    "hash": "19979b8a1527",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.wall.drywall",
+   "label": "Σε νέα θέση · Κρεμαστός στον τοίχο · Γυψοσανίδα",
+   "answers": {
+    "job": "new",
+    "type": "wall",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση κρεμαστού νιπτήρα σε τοίχο από γυψοσανίδα σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "basin.prerequisites.drywall-backing"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "plumb-basin.steps.3",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.wall.drywall",
+    "hash": "19781283b672",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.pedestal.masonry",
+   "label": "Σε νέα θέση · Με κολόνα ή ημικολόνα · Τούβλο ή μπετό",
+   "answers": {
+    "job": "new",
+    "type": "pedestal",
+    "wall": "masonry"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση νιπτήρα με κολόνα σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "plumb-basin.prerequisites.3"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "plumb-basin.steps.1",
+     "plumb-basin.steps.2",
+     "basin.steps.pedestal",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.pedestal.masonry",
+    "hash": "c42c544139f1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.pedestal.drywall",
+   "label": "Σε νέα θέση · Με κολόνα ή ημικολόνα · Γυψοσανίδα",
+   "answers": {
+    "job": "new",
+    "type": "pedestal",
+    "wall": "drywall"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση νιπτήρα με κολόνα σε τοίχο από γυψοσανίδα σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "basin.prerequisites.drywall-backing"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "plumb-basin.preparation.2"
+    ],
+    "steps": [
+     "basin.steps.drywall-anchors",
+     "plumb-basin.steps.2",
+     "basin.steps.pedestal",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "plumb-basin.checks.3",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "plumb-basin.handover.1",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.pedestal.drywall",
+    "hash": "27b36b64471c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.countertop",
+   "label": "Σε νέα θέση · Πάνω σε πάγκο (επικαθήμενος)",
+   "answers": {
+    "job": "new",
+    "type": "countertop"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση επικαθήμενου νιπτήρα σε πάγκο σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "basin.prerequisites.counter-ready"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "basin.preparation.counter-mark"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.counter-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.countertop",
+    "hash": "cacb920bf834",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin:new.inset",
+   "label": "Σε νέα θέση · Χωνευτός σε πάγκο",
+   "answers": {
+    "job": "new",
+    "type": "inset"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση χωνευτού νιπτήρα σε πάγκο σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες παροχές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-basin.prerequisites.1",
+     "basin.prerequisites.new-points",
+     "basin.prerequisites.counter-ready"
+    ],
+    "preparation": [
+     "basin.preparation.new-lines",
+     "basin.preparation.counter-cutout"
+    ],
+    "steps": [
+     "plumb-basin.steps.2",
+     "basin.steps.inset-set",
+     "plumb-basin.steps.4"
+    ],
+    "checks": [
+     "plumb-basin.checks.1",
+     "plumb-basin.checks.2",
+     "basin.checks.counter-seal",
+     "plumb-basin.checks.4"
+    ],
+    "handover": [
+     "basin.handover.counter-silicone",
+     "plumb-basin.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:basin:new.inset",
+    "hash": "5f08acf2a0d0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "basin.x.angle-valves",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:basin:basin.x.angle-valves",
+    "hash": "6dc378024801",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin.x.take-old",
+   "section": "handover",
+   "when": {
+    "job": [
+     "replace"
+    ]
+   },
+   "review": {
+    "key": "extra:basin:basin.x.take-old",
+    "hash": "396c65a5b7e5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin.x.overflow",
+   "section": "checks",
+   "when": null,
+   "review": {
+    "key": "extra:basin:basin.x.overflow",
+    "hash": "baaa78bb5056",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "basin.x.new-siphon",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:basin:basin.x.new-siphon",
+    "hash": "c59ca36b5c53",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "basin.checks.counter-seal": {
+   "section": "checks",
+   "n": "Ρίχνουμε νερό γύρω από τον νιπτήρα: δεν περνά κάτω από το χείλος του.",
+   "s": "Ρίχνουμε λίγο νερό γύρω-γύρω: δεν μπαίνει νερό κάτω από τον νιπτήρα.",
+   "c": "Το νερό δεν περνά κάτω από το χείλος.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.checks.counter-seal",
+    "hash": "0d88a5128040",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.handover.counter-silicone": {
+   "section": "handover",
+   "n": "Σφραγίζουμε με σιλικόνη την επαφή του νιπτήρα με τον πάγκο και του πάγκου με τον τοίχο.",
+   "s": "Βάζουμε σιλικόνη εκεί που ο νιπτήρας ακουμπά στον πάγκο και ο πάγκος στον τοίχο.",
+   "c": "Σιλικόνη νιπτήρα–πάγκου–τοίχου.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.handover.counter-silicone",
+    "hash": "9834bacf305f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.preparation.check-points": {
+   "section": "preparation",
+   "n": "Ελέγχουμε ότι οι αναμονές νερού και η αποχέτευση είναι στη θέση και στο ύψος του νιπτήρα.",
+   "s": "Κοιτάμε ότι οι σωλήνες του νερού και η αποχέτευση είναι εκεί που τα θέλει ο νιπτήρας.",
+   "c": "Ελέγχουμε θέση και ύψος των αναμονών.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.preparation.check-points",
+    "hash": "2be156e40be7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.preparation.counter-cutout": {
+   "section": "preparation",
+   "n": "Ανοίγουμε στον πάγκο το άνοιγμα του νιπτήρα με το πρότυπο του κατασκευαστή, αν δεν έχει ανοιχτεί ήδη.",
+   "s": "Κόβουμε στον πάγκο την τρύπα στο σχήμα του νιπτήρα, με το χαρτί-οδηγό που έχει, αν δεν είναι ήδη κομμένη.",
+   "c": "Άνοιγμα στον πάγκο με το πρότυπο.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.preparation.counter-cutout",
+    "hash": "2e9089e7d924",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.preparation.counter-mark": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε στον πάγκο τη θέση του νιπτήρα και ανοίγουμε τις τρύπες για τη βαλβίδα και, αν χρειάζεται, για τη μπαταρία.",
+   "s": "Σημαδεύουμε πού κάθεται ο νιπτήρας στον πάγκο και ανοίγουμε τις τρύπες για την τάπα και τη μπαταρία.",
+   "c": "Σημάδεμα και οπές στον πάγκο.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.preparation.counter-mark",
+    "hash": "de9a84c12c11",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.preparation.new-lines": {
+   "section": "preparation",
+   "n": "Φέρνουμε νέες παροχές και αποχέτευση στη θέση του νιπτήρα και κάνουμε δοκιμή πριν κλείσει ο τοίχος.",
+   "s": "Περνάμε νέους σωλήνες νερού και αποχέτευσης ως τη νέα θέση και ελέγχουμε ότι δεν χάνουν, πριν κλείσει ο τοίχος.",
+   "c": "Νέες παροχές και αποχέτευση, με δοκιμή.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.preparation.new-lines",
+    "hash": "86980ce08c78",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.prerequisites.after-tiles": {
+   "section": "prerequisites",
+   "n": "Ο νιπτήρας μπαίνει αφού τελειώσουν τα πλακάκια του τοίχου.",
+   "s": "Τον νιπτήρα τον βάζουμε όταν έχουν μπει τα πλακάκια.",
+   "c": "Μπαίνει μετά τα πλακάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.prerequisites.after-tiles",
+    "hash": "b78c1eeae33d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.prerequisites.counter-ready": {
+   "section": "prerequisites",
+   "n": "Ο πάγκος να έχει τοποθετηθεί γερός και αλφαδιασμένος, με συμφωνημένη τη θέση του νιπτήρα.",
+   "s": "Ο πάγκος πρέπει να είναι ήδη στη θέση του, σταθερός και ίσιος, και να ξέρουμε πού πάει ο νιπτήρας.",
+   "c": "Πάγκος στη θέση του, αλφαδιασμένος.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.prerequisites.counter-ready",
+    "hash": "1d90b64b3d16",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.prerequisites.drywall-backing": {
+   "section": "prerequisites",
+   "n": "Στη γυψοσανίδα να έχει μπει ενίσχυση, ξύλο ή μεταλλική βάση, πίσω από τα σημεία στήριξης.",
+   "s": "Πίσω από τη γυψοσανίδα πρέπει να υπάρχει ξύλο ή μεταλλικό κομμάτι εκεί που θα βιδωθεί ο νιπτήρας.",
+   "c": "Ενίσχυση πίσω από τη γυψοσανίδα.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.prerequisites.drywall-backing",
+    "hash": "1a7656eda801",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.prerequisites.new-points": {
+   "section": "prerequisites",
+   "n": "Νέες παροχές ζεστού και κρύου νερού και αποχέτευση στη νέα θέση· τις φέρνουμε πριν τα πλακάκια.",
+   "s": "Στη νέα θέση φέρνουμε ζεστό, κρύο νερό και αποχέτευση, πριν μπουν τα πλακάκια.",
+   "c": "Νέες παροχές και αποχέτευση, πριν τα πλακάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.prerequisites.new-points",
+    "hash": "e991c169e72d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.steps.counter-set": {
+   "section": "steps",
+   "n": "Βάζουμε τον νιπτήρα στη θέση του πάνω στον πάγκο, με σιλικόνη ή με τα στηρίγματά του, ώστε να μη μετακινείται.",
+   "s": "Ακουμπάμε τον νιπτήρα στον πάγκο και τον κολλάμε ή τον βιδώνουμε, για να μη φεύγει.",
+   "c": "Νιπτήρας σταθερός πάνω στον πάγκο.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.steps.counter-set",
+    "hash": "e8646b185261",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.steps.drywall-anchors": {
+   "section": "steps",
+   "n": "Στερεώνουμε τα στηρίγματα στην ενίσχυση πίσω από τη γυψοσανίδα, με βίδες κατάλληλες για το βάρος.",
+   "s": "Βιδώνουμε τα στηρίγματα του νιπτήρα στο ξύλο ή στο μέταλλο πίσω από τη γυψοσανίδα, με βίδες που αντέχουν.",
+   "c": "Στηρίγματα στην ενίσχυση της γυψοσανίδας.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.steps.drywall-anchors",
+    "hash": "417c3a771f25",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.steps.inset-set": {
+   "section": "steps",
+   "n": "Τοποθετούμε τον νιπτήρα στο άνοιγμα, με σιλικόνη στο χείλος ή με τα κλιπ στήριξης κάτω από τον πάγκο.",
+   "s": "Βάζουμε τον νιπτήρα μέσα στην τρύπα του πάγκου και τον στερεώνουμε με σιλικόνη ή με κλιπ από κάτω.",
+   "c": "Νιπτήρας στο άνοιγμα, με σιλικόνη ή κλιπ.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.steps.inset-set",
+    "hash": "950a7e473816",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.steps.pedestal": {
+   "section": "steps",
+   "n": "Κρεμάμε τον νιπτήρα αλφαδιασμένο και τοποθετούμε την κολόνα ή την ημικολόνα, ώστε να κρύβει σωλήνες και σιφόνι.",
+   "s": "Κρεμάμε τον νιπτήρα ίσιο και βάζουμε από κάτω την κολόνα, που κρύβει τους σωλήνες.",
+   "c": "Νιπτήρας αλφαδιασμένος και κολόνα.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.steps.pedestal",
+    "hash": "db5c5a179d4d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.x.angle-valves": {
+   "section": "preparation",
+   "n": "Αλλάζουμε τους γωνιακούς διακόπτες, αν είναι παλιοί και δεν κλείνουν καλά.",
+   "s": "Αν οι μικροί διακόπτες του νερού είναι παλιοί και δεν κλείνουν, τους αλλάζουμε.",
+   "c": "Αλλαγή παλιών γωνιακών.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.x.angle-valves",
+    "hash": "da7cac20776c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.x.new-siphon": {
+   "section": "steps",
+   "n": "Αλλάζουμε το σιφόνι με καινούργιο, αν το παλιό είναι φθαρμένο.",
+   "s": "Αν το κυρτό σωληνάκι κάτω από τον νιπτήρα είναι παλιό, βάζουμε καινούργιο.",
+   "c": "Νέο σιφόνι, αν το παλιό είναι φθαρμένο.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.x.new-siphon",
+    "hash": "5e65cd0ba955",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.x.overflow": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι η υπερχείλιση, η τρύπα κάτω από το χείλος, δεν στάζει όταν γεμίζει ο νιπτήρας.",
+   "s": "Γεμίζουμε τον νιπτήρα ως πάνω και κοιτάμε ότι η τρυπούλα που παίρνει το παραπάνω νερό δεν στάζει.",
+   "c": "Η υπερχείλιση δεν στάζει.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.x.overflow",
+    "hash": "7dfd0379ea63",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "basin.x.take-old": {
+   "section": "handover",
+   "n": "Παίρνουμε τον παλιό νιπτήρα, αν το έχουμε συμφωνήσει.",
+   "s": "Παίρνουμε μαζί μας τον παλιό νιπτήρα, αν το θέλετε.",
+   "c": "Παίρνουμε τον παλιό, αν συμφωνήθηκε.",
+   "source": "new",
+   "review": {
+    "key": "sc:basin.x.take-old",
+    "hash": "7c91fbbb6322",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.checks.1": {
+   "section": "checks",
+   "n": "Γεμίζουμε τον νιπτήρα και τον αδειάζουμε: δεν στάζει ούτε η βαλβίδα ούτε το σιφόνι.",
+   "s": "Γεμίζουμε και αδειάζουμε τον νιπτήρα: δεν στάζει ούτε η τάπα ούτε το σιφόνι.",
+   "c": "Γέμισμα και άδειασμα χωρίς στάξιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.checks.1",
+    "hash": "8f8508ed98b6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.checks.2": {
+   "section": "checks",
+   "n": "Ελέγχουμε τις συνδέσεις του νερού για σταγόνες με στεγνό χαρτί.",
+   "s": "Περνάμε στεγνό χαρτί από τις ενώσεις του νερού: πρέπει να μείνει στεγνό.",
+   "c": "Στεγνό χαρτί στις συνδέσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.checks.2",
+    "hash": "60fe374fd347",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.checks.3": {
+   "section": "checks",
+   "n": "Πιέζουμε τον νιπτήρα προς τα κάτω με το χέρι: δεν κουνιέται.",
+   "s": "Πατάμε τον νιπτήρα προς τα κάτω με το χέρι: δεν κουνιέται.",
+   "c": "Ο νιπτήρας δεν κουνιέται.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.checks.3",
+    "hash": "466320b19823",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.checks.4": {
+   "section": "checks",
+   "n": "Ελέγχουμε με αλφάδι ότι κάθεται οριζόντια.",
+   "s": "Με το αλφάδι βλέπουμε ότι είναι ίσιος.",
+   "c": "Αλφαδιασμένος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.checks.4",
+    "hash": "d89a0d075b16",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.handover.1": {
+   "section": "handover",
+   "n": "Σφραγίζουμε με σιλικόνη την επαφή του νιπτήρα με τον τοίχο.",
+   "s": "Βάζουμε σιλικόνη εκεί που ο νιπτήρας ακουμπά στον τοίχο.",
+   "c": "Σιλικόνη νιπτήρα–τοίχου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.handover.1",
+    "hash": "247d7fc14f8d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.handover.2": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τη σκόνη από τα τρυπήματα και τον χώρο.",
+   "s": "Μαζεύουμε τη σκόνη από το τρύπανο και αφήνουμε τον χώρο καθαρό.",
+   "c": "Καθάρισμα σκόνης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.handover.2",
+    "hash": "7d46ce27824e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό και αφαιρούμε τον παλιό νιπτήρα, αν υπάρχει.",
+   "s": "Κλείνουμε το νερό και βγάζουμε τον παλιό νιπτήρα, αν υπάρχει.",
+   "c": "Αφαιρούμε τον παλιό νιπτήρα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.preparation.1",
+    "hash": "5f5aa661158e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε με αλφάδι το ύψος και τις τρύπες στήριξης.",
+   "s": "Σημαδεύουμε με αλφάδι το ύψος και πού θα μπουν οι βίδες.",
+   "c": "Σημαδεύουμε ύψος και τρύπες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.preparation.2",
+    "hash": "a36865f9a253",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχει επιλεγεί ο νιπτήρας (επιτοίχιος, επικαθήμενος ή με κολόνα) και η μπαταρία του.",
+   "s": "Να έχετε διαλέξει τον νιπτήρα (κρεμαστό, πάνω σε πάγκο ή με κολόνα) και τη μπαταρία του.",
+   "c": "Νιπτήρας και μπαταρία επιλεγμένα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.prerequisites.1",
+    "hash": "55857b81d9ee",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Παροχές ζεστού και κρύου νερού και αποχέτευση στη θέση του νιπτήρα.",
+   "s": "Να υπάρχει ζεστό και κρύο νερό και αποχέτευση εκεί που μπαίνει ο νιπτήρας.",
+   "c": "Παροχές και αποχέτευση στη θέση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.prerequisites.2",
+    "hash": "42327a14d25f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Τοίχος που αντέχει το βάρος· σε γυψοσανίδα χρειάζεται ενίσχυση από πριν.",
+   "s": "Ο τοίχος πρέπει να αντέχει το βάρος· αν είναι γυψοσανίδα, θέλει ενίσχυση από πριν.",
+   "c": "Τοίχος που αντέχει· γυψοσανίδα με ενίσχυση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.prerequisites.3",
+    "hash": "5acb9a4f2352",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε τα στηρίγματα ή τις βίδες στήριξης στον τοίχο.",
+   "s": "Βάζουμε στον τοίχο τα στηρίγματα ή τις βίδες που θα κρατούν τον νιπτήρα.",
+   "c": "Στηρίγματα στον τοίχο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.steps.1",
+    "hash": "b734cbb94f03",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε τη μπαταρία και τη βαλβίδα στον νιπτήρα πριν τον κρεμάσουμε, όπου είναι πιο εύκολο.",
+   "s": "Βάζουμε τη μπαταρία και την τάπα στον νιπτήρα πριν τον κρεμάσουμε, γιατί έτσι είναι πιο εύκολο.",
+   "c": "Μπαταρία και βαλβίδα πριν το κρέμασμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.steps.2",
+    "hash": "2c6bb4bf7218",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.steps.3": {
+   "section": "steps",
+   "n": "Κρεμάμε τον νιπτήρα και τον σφίγγουμε αλφαδιασμένο.",
+   "s": "Κρεμάμε τον νιπτήρα και τον σφίγγουμε απόλυτα ίσιο.",
+   "c": "Κρεμάμε και σφίγγουμε, αλφαδιασμένο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.steps.3",
+    "hash": "99cab7d9ef9d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-basin.steps.4": {
+   "section": "steps",
+   "n": "Συνδέουμε τα σπιράλ της μπαταρίας στους γωνιακούς διακόπτες και το σιφόνι στην αποχέτευση.",
+   "s": "Ενώνουμε τα σωληνάκια της μπαταρίας με τους μικρούς διακόπτες και το σιφόνι με την αποχέτευση.",
+   "c": "Σπιράλ στους γωνιακούς, σιφόνι στην αποχέτευση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-basin.steps.4",
+    "hash": "1b60596f6104",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

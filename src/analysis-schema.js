@@ -91,3 +91,13 @@ export const RESPONSE_SCHEMA = {
     notes_for_master: {type: 'string'},
   },
 };
+
+/** Ένα κείμενο του μάστορα (δικό του βήμα): οι ίδιοι κανόνες με τις αναλύσεις. null = εντάξει, αλλιώς το πρόβλημα. */
+export function textProblem(t){
+  if(typeof t !== 'string' || t.trim().length < 8 || t.length > 320) return 'Θέλει από 8 έως 320 χαρακτήρες.';
+  if(NUMBERED.test(t)) return 'Χωρίς αρίθμηση μέσα στο κείμενο.';
+  if(WARRANTY.test(plain(t))) return 'Δεν αναφέρουμε εγγύηση.';
+  if(PROMISE.test(plain(t))) return 'Καμία υπόσχεση αποτελέσματος.';
+  if(VAGUE.test(plain(t))) return 'Πες τι ακριβώς γίνεται, όχι γενικά λόγια.';
+  return null;
+}

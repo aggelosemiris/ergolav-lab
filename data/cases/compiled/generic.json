@@ -1,0 +1,5027 @@
+{
+ "material": "generic",
+ "name": "Γενικές κατηγορίες",
+ "cases": [
+  {
+   "id": "generic:frame",
+   "label": "Σε κούφωμα (πόρτα ή παράθυρο) · π.χ. σίτες, ρολό, πατζούρι, κλειδαριά",
+   "answers": {},
+   "source": "new",
+   "title": "Τοποθέτηση εξαρτήματος σε κούφωμα",
+   "duration": "ενδεικτικά 1–3 ώρες ανά κούφωμα",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.frame.prerequisites.1",
+     "generic.frame.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.frame.preparation.1",
+     "generic.frame.preparation.2"
+    ],
+    "steps": [
+     "generic.frame.steps.1",
+     "generic.frame.steps.2",
+     "generic.frame.steps.3"
+    ],
+    "checks": [
+     "generic.frame.checks.1",
+     "generic.frame.checks.2",
+     "generic.frame.checks.3"
+    ],
+    "handover": [
+     "generic.frame.handover.1",
+     "generic.frame.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:frame",
+    "hash": "4a3f6adcd8eb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:wall-fix",
+   "label": "Στερέωση σε τοίχο · π.χ. ράφι, καθρέπτης, κρεμαστό ντουλάπι, τηλεόραση",
+   "answers": {},
+   "source": "new",
+   "title": "Στερέωση σε τοίχο",
+   "duration": "ενδεικτικά 30–90 λεπτά ανά τεμάχιο",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.wall-fix.prerequisites.1",
+     "generic.wall-fix.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.wall-fix.preparation.1",
+     "generic.wall-fix.preparation.2"
+    ],
+    "steps": [
+     "generic.wall-fix.steps.1",
+     "generic.wall-fix.steps.2",
+     "generic.wall-fix.steps.3"
+    ],
+    "checks": [
+     "generic.wall-fix.checks.1",
+     "generic.wall-fix.checks.2",
+     "generic.wall-fix.checks.3"
+    ],
+    "handover": [
+     "generic.wall-fix.handover.1",
+     "generic.wall-fix.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:wall-fix",
+    "hash": "8c4e6e68dd55",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:bath-acc",
+   "label": "Αξεσουάρ μπάνιου · π.χ. χαρτοθήκη, πετσετοθήκη, σαπουνοθήκη, μπάρα στήριξης",
+   "answers": {},
+   "source": "new",
+   "title": "Τοποθέτηση αξεσουάρ μπάνιου",
+   "duration": "ενδεικτικά 15–30 λεπτά ανά αξεσουάρ",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.bath-acc.prerequisites.1",
+     "generic.bath-acc.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.bath-acc.preparation.1",
+     "generic.bath-acc.preparation.2"
+    ],
+    "steps": [
+     "generic.bath-acc.steps.1",
+     "generic.bath-acc.steps.2",
+     "generic.bath-acc.steps.3"
+    ],
+    "checks": [
+     "generic.bath-acc.checks.1",
+     "generic.bath-acc.checks.2",
+     "generic.bath-acc.checks.3"
+    ],
+    "handover": [
+     "generic.bath-acc.handover.1",
+     "generic.bath-acc.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:bath-acc",
+    "hash": "8a6210e418b2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:floor-fix",
+   "label": "Πάνω στο πάτωμα · π.χ. ντουλάπα, συσκευή, παπουτσοθήκη",
+   "answers": {},
+   "source": "new",
+   "title": "Τοποθέτηση πάνω στο πάτωμα",
+   "duration": "ενδεικτικά 30–90 λεπτά ανά τεμάχιο",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.floor-fix.prerequisites.1",
+     "generic.floor-fix.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.floor-fix.preparation.1",
+     "generic.floor-fix.preparation.2"
+    ],
+    "steps": [
+     "generic.floor-fix.steps.1",
+     "generic.floor-fix.steps.2",
+     "generic.floor-fix.steps.3"
+    ],
+    "checks": [
+     "generic.floor-fix.checks.1",
+     "generic.floor-fix.checks.2",
+     "generic.floor-fix.checks.3"
+    ],
+    "handover": [
+     "generic.floor-fix.handover.1",
+     "generic.floor-fix.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:floor-fix",
+    "hash": "82a8570efd74",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:ceiling-fix",
+   "label": "Από την οροφή · π.χ. ανεμιστήρας οροφής, κουρτινόξυλο, φωτιστικό",
+   "answers": {},
+   "source": "new",
+   "title": "Στερέωση από την οροφή",
+   "duration": "ενδεικτικά 30–90 λεπτά ανά τεμάχιο",
+   "licensed": false,
+   "safety": "Αν έχει ρεύμα: αδειούχος ηλεκτρολόγος.",
+   "sections": {
+    "prerequisites": [
+     "generic.ceiling-fix.prerequisites.1",
+     "generic.ceiling-fix.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.ceiling-fix.preparation.1",
+     "generic.ceiling-fix.preparation.2"
+    ],
+    "steps": [
+     "generic.ceiling-fix.steps.1",
+     "generic.ceiling-fix.steps.2",
+     "generic.ceiling-fix.steps.3"
+    ],
+    "checks": [
+     "generic.ceiling-fix.checks.1",
+     "generic.ceiling-fix.checks.2",
+     "generic.ceiling-fix.checks.3"
+    ],
+    "handover": [
+     "generic.ceiling-fix.handover.1",
+     "generic.ceiling-fix.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:ceiling-fix",
+    "hash": "2ad2f5e316a7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:plumb-connect",
+   "label": "Υδραυλική σύνδεση συσκευής · π.χ. πλυντήριο, φίλτρο νερού, ψυγείο με νερό",
+   "answers": {},
+   "source": "new",
+   "title": "Υδραυλική σύνδεση συσκευής",
+   "duration": "ενδεικτικά 30–90 λεπτά ανά συσκευή",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.plumb-connect.prerequisites.1",
+     "generic.plumb-connect.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.plumb-connect.preparation.1",
+     "generic.plumb-connect.preparation.2"
+    ],
+    "steps": [
+     "generic.plumb-connect.steps.1",
+     "generic.plumb-connect.steps.2",
+     "generic.plumb-connect.steps.3"
+    ],
+    "checks": [
+     "generic.plumb-connect.checks.1",
+     "generic.plumb-connect.checks.2",
+     "generic.plumb-connect.checks.3"
+    ],
+    "handover": [
+     "generic.plumb-connect.handover.1",
+     "generic.plumb-connect.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:plumb-connect",
+    "hash": "cbab6973d953",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:elec-connect",
+   "label": "Ηλεκτρολογική σύνδεση συσκευής · π.χ. απορροφητήρας, φούρνος, εστίες",
+   "answers": {},
+   "source": "new",
+   "title": "Ηλεκτρολογική σύνδεση συσκευής",
+   "duration": "ενδεικτικά 30–90 λεπτά ανά συσκευή",
+   "licensed": true,
+   "safety": "Αδειούχος ηλεκτρολόγος· δική της γραμμή όπου χρειάζεται.",
+   "sections": {
+    "prerequisites": [
+     "generic.elec-connect.prerequisites.1",
+     "generic.elec-connect.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.elec-connect.preparation.1",
+     "generic.elec-connect.preparation.2"
+    ],
+    "steps": [
+     "generic.elec-connect.steps.1",
+     "generic.elec-connect.steps.2",
+     "generic.elec-connect.steps.3"
+    ],
+    "checks": [
+     "generic.elec-connect.checks.1",
+     "generic.elec-connect.checks.2",
+     "generic.elec-connect.checks.3"
+    ],
+    "handover": [
+     "generic.elec-connect.handover.1",
+     "generic.elec-connect.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:elec-connect",
+    "hash": "37a025b96773",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:low-voltage",
+   "label": "Θυροτηλέφωνο, κουδούνι ή αισθητήρας · π.χ. θυροτηλέφωνο, κουδούνι, αισθητήρας κίνησης",
+   "answers": {},
+   "source": "new",
+   "title": "Θυροτηλέφωνο, κουδούνι ή αισθητήρας",
+   "duration": "ενδεικτικά 1–3 ώρες",
+   "licensed": true,
+   "safety": "Αδειούχος ηλεκτρολόγος όπου υπάρχει σύνδεση στο ρεύμα.",
+   "sections": {
+    "prerequisites": [
+     "generic.low-voltage.prerequisites.1",
+     "generic.low-voltage.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.low-voltage.preparation.1",
+     "generic.low-voltage.preparation.2"
+    ],
+    "steps": [
+     "generic.low-voltage.steps.1",
+     "generic.low-voltage.steps.2",
+     "generic.low-voltage.steps.3"
+    ],
+    "checks": [
+     "generic.low-voltage.checks.1",
+     "generic.low-voltage.checks.2",
+     "generic.low-voltage.checks.3"
+    ],
+    "handover": [
+     "generic.low-voltage.handover.1",
+     "generic.low-voltage.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:low-voltage",
+    "hash": "7141b12190fa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:outdoor-light",
+   "label": "Φωτισμός εξωτερικού χώρου · π.χ. προβολέας, φωτιστικό κήπου",
+   "answers": {},
+   "source": "new",
+   "title": "Φωτισμός εξωτερικού χώρου",
+   "duration": "ενδεικτικά 1–3 ώρες ανά φωτιστικό",
+   "licensed": true,
+   "safety": "Αδειούχος ηλεκτρολόγος· στεγανά υλικά.",
+   "sections": {
+    "prerequisites": [
+     "generic.outdoor-light.prerequisites.1",
+     "generic.outdoor-light.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.outdoor-light.preparation.1",
+     "generic.outdoor-light.preparation.2"
+    ],
+    "steps": [
+     "generic.outdoor-light.steps.1",
+     "generic.outdoor-light.steps.2",
+     "generic.outdoor-light.steps.3"
+    ],
+    "checks": [
+     "generic.outdoor-light.checks.1",
+     "generic.outdoor-light.checks.2",
+     "generic.outdoor-light.checks.3"
+    ],
+    "handover": [
+     "generic.outdoor-light.handover.1",
+     "generic.outdoor-light.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:outdoor-light",
+    "hash": "6223c3dba012",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:replace-part",
+   "label": "Αλλαγή εξαρτήματος · π.χ. λάστιχα, κεφαλή μπαταρίας, αντίσταση",
+   "answers": {},
+   "source": "new",
+   "title": "Αλλαγή εξαρτήματος",
+   "duration": "ενδεικτικά 30–90 λεπτά",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.replace-part.prerequisites.1",
+     "generic.replace-part.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.replace-part.preparation.1",
+     "generic.replace-part.preparation.2"
+    ],
+    "steps": [
+     "generic.replace-part.steps.1",
+     "generic.replace-part.steps.2",
+     "generic.replace-part.steps.3"
+    ],
+    "checks": [
+     "generic.replace-part.checks.1",
+     "generic.replace-part.checks.2",
+     "generic.replace-part.checks.3"
+    ],
+    "handover": [
+     "generic.replace-part.handover.1",
+     "generic.replace-part.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:replace-part",
+    "hash": "26cbf639f575",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:repair",
+   "label": "Επισκευή · π.χ. ρωγμή, φθορά, μπάλωμα",
+   "answers": {},
+   "source": "new",
+   "title": "Επισκευή",
+   "duration": "ενδεικτικά 1–4 ώρες, χωρίς τον χρόνο στεγνώματος",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.repair.prerequisites.1",
+     "generic.repair.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.repair.preparation.1",
+     "generic.repair.preparation.2"
+    ],
+    "steps": [
+     "generic.repair.steps.1",
+     "generic.repair.steps.2",
+     "generic.repair.steps.3"
+    ],
+    "checks": [
+     "generic.repair.checks.1",
+     "generic.repair.checks.2",
+     "generic.repair.checks.3"
+    ],
+    "handover": [
+     "generic.repair.handover.1",
+     "generic.repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:repair",
+    "hash": "80f099467510",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:paint-coat",
+   "label": "Βάψιμο ή επίστρωση · π.χ. ξύλινη πόρτα, κάγκελα, δάπεδο γκαράζ",
+   "answers": {},
+   "source": "new",
+   "title": "Βάψιμο ή επίστρωση",
+   "duration": "ενδεικτικά 1–3 ημέρες, μαζί με το στέγνωμα ανάμεσα στα χέρια",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.paint-coat.prerequisites.1",
+     "generic.paint-coat.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.paint-coat.preparation.1",
+     "generic.paint-coat.preparation.2"
+    ],
+    "steps": [
+     "generic.paint-coat.steps.1",
+     "generic.paint-coat.steps.2",
+     "generic.paint-coat.steps.3"
+    ],
+    "checks": [
+     "generic.paint-coat.checks.1",
+     "generic.paint-coat.checks.2",
+     "generic.paint-coat.checks.3"
+    ],
+    "handover": [
+     "generic.paint-coat.handover.1",
+     "generic.paint-coat.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:paint-coat",
+    "hash": "fe048752d37d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:insulate",
+   "label": "Μόνωση ή στεγάνωση · π.χ. ηχομόνωση, υγρασία τοίχου, μόνωση σωλήνων",
+   "answers": {},
+   "source": "new",
+   "title": "Μόνωση ή στεγάνωση",
+   "duration": "ενδεικτικά 1–3 ημέρες, ανάλογα με την επιφάνεια",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.insulate.prerequisites.1",
+     "generic.insulate.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.insulate.preparation.1",
+     "generic.insulate.preparation.2"
+    ],
+    "steps": [
+     "generic.insulate.steps.1",
+     "generic.insulate.steps.2",
+     "generic.insulate.steps.3"
+    ],
+    "checks": [
+     "generic.insulate.checks.1",
+     "generic.insulate.checks.2",
+     "generic.insulate.checks.3"
+    ],
+    "handover": [
+     "generic.insulate.handover.1",
+     "generic.insulate.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:insulate",
+    "hash": "73a4cedda146",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:remove",
+   "label": "Αποξήλωση ή απομάκρυνση · π.χ. παλιά ντουλάπια, μοκέτα, παλιό καλοριφέρ",
+   "answers": {},
+   "source": "new",
+   "title": "Αποξήλωση ή απομάκρυνση",
+   "duration": "ενδεικτικά 1–4 ώρες, ανάλογα με τον όγκο",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.remove.prerequisites.1",
+     "generic.remove.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.remove.preparation.1",
+     "generic.remove.preparation.2"
+    ],
+    "steps": [
+     "generic.remove.steps.1",
+     "generic.remove.steps.2",
+     "generic.remove.steps.3"
+    ],
+    "checks": [
+     "generic.remove.checks.1",
+     "generic.remove.checks.2",
+     "generic.remove.checks.3"
+    ],
+    "handover": [
+     "generic.remove.handover.1",
+     "generic.remove.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:remove",
+    "hash": "cfb910302858",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:flooring",
+   "label": "Νέο δάπεδο (laminate, βινύλιο, ξύλο) · π.χ. laminate, βινυλικό, παρκέ, σοβατεπί",
+   "answers": {},
+   "source": "new",
+   "title": "Νέο δάπεδο",
+   "duration": "ενδεικτικά 1–2 ημέρες για 20–30 τ.μ.",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.flooring.prerequisites.1",
+     "generic.flooring.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.flooring.preparation.1",
+     "generic.flooring.preparation.2"
+    ],
+    "steps": [
+     "generic.flooring.steps.1",
+     "generic.flooring.steps.2",
+     "generic.flooring.steps.3"
+    ],
+    "checks": [
+     "generic.flooring.checks.1",
+     "generic.flooring.checks.2",
+     "generic.flooring.checks.3"
+    ],
+    "handover": [
+     "generic.flooring.handover.1",
+     "generic.flooring.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:flooring",
+    "hash": "67a9990c33e0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:cladding",
+   "label": "Επένδυση τοίχου · π.χ. πάνελ, πέτρα, ξύλινη επένδυση",
+   "answers": {},
+   "source": "new",
+   "title": "Επένδυση τοίχου",
+   "duration": "ενδεικτικά 1–3 ημέρες για 10–20 τ.μ.",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.cladding.prerequisites.1",
+     "generic.cladding.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.cladding.preparation.1",
+     "generic.cladding.preparation.2"
+    ],
+    "steps": [
+     "generic.cladding.steps.1",
+     "generic.cladding.steps.2",
+     "generic.cladding.steps.3"
+    ],
+    "checks": [
+     "generic.cladding.checks.1",
+     "generic.cladding.checks.2",
+     "generic.cladding.checks.3"
+    ],
+    "handover": [
+     "generic.cladding.handover.1",
+     "generic.cladding.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:cladding",
+    "hash": "c0317cdd4b53",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:furniture",
+   "label": "Συναρμολόγηση και τοποθέτηση επίπλου · π.χ. κουζίνα, ντουλάπα, συρταριέρα",
+   "answers": {},
+   "source": "new",
+   "title": "Συναρμολόγηση και τοποθέτηση επίπλου",
+   "duration": "ενδεικτικά 2–8 ώρες, ανάλογα με το μέγεθος",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.furniture.prerequisites.1",
+     "generic.furniture.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.furniture.preparation.1",
+     "generic.furniture.preparation.2"
+    ],
+    "steps": [
+     "generic.furniture.steps.1",
+     "generic.furniture.steps.2",
+     "generic.furniture.steps.3"
+    ],
+    "checks": [
+     "generic.furniture.checks.1",
+     "generic.furniture.checks.2",
+     "generic.furniture.checks.3"
+    ],
+    "handover": [
+     "generic.furniture.handover.1",
+     "generic.furniture.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:furniture",
+    "hash": "b53a5f043fe3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:countertop",
+   "label": "Πάγκος · π.χ. πάγκος κουζίνας, πάγκος μπάνιου",
+   "answers": {},
+   "source": "new",
+   "title": "Τοποθέτηση πάγκου",
+   "duration": "ενδεικτικά 2–6 ώρες",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.countertop.prerequisites.1",
+     "generic.countertop.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.countertop.preparation.1",
+     "generic.countertop.preparation.2"
+    ],
+    "steps": [
+     "generic.countertop.steps.1",
+     "generic.countertop.steps.2",
+     "generic.countertop.steps.3"
+    ],
+    "checks": [
+     "generic.countertop.checks.1",
+     "generic.countertop.checks.2",
+     "generic.countertop.checks.3"
+    ],
+    "handover": [
+     "generic.countertop.handover.1",
+     "generic.countertop.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:countertop",
+    "hash": "9316e23594af",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:stone",
+   "label": "Μάρμαρο ή πέτρα · π.χ. ποδιά παραθύρου, κατωκάσι, σκαλοπάτια",
+   "answers": {},
+   "source": "new",
+   "title": "Τοποθέτηση μαρμάρου ή πέτρας",
+   "duration": "ενδεικτικά 2–6 ώρες, χωρίς τον χρόνο στεγνώματος",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.stone.prerequisites.1",
+     "generic.stone.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.stone.preparation.1",
+     "generic.stone.preparation.2"
+    ],
+    "steps": [
+     "generic.stone.steps.1",
+     "generic.stone.steps.2",
+     "generic.stone.steps.3"
+    ],
+    "checks": [
+     "generic.stone.checks.1",
+     "generic.stone.checks.2",
+     "generic.stone.checks.3"
+    ],
+    "handover": [
+     "generic.stone.handover.1",
+     "generic.stone.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:stone",
+    "hash": "772d20b5a8ad",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:drywall-build",
+   "label": "Κατασκευή με γυψοσανίδα · π.χ. χώρισμα, κουτί, βιβλιοθήκη",
+   "answers": {},
+   "source": "new",
+   "title": "Κατασκευή με γυψοσανίδα",
+   "duration": "ενδεικτικά 1–3 ημέρες, μαζί με το στοκάρισμα",
+   "licensed": false,
+   "safety": null,
+   "sections": {
+    "prerequisites": [
+     "generic.drywall-build.prerequisites.1",
+     "generic.drywall-build.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.drywall-build.preparation.1",
+     "generic.drywall-build.preparation.2"
+    ],
+    "steps": [
+     "generic.drywall-build.steps.1",
+     "generic.drywall-build.steps.2",
+     "generic.drywall-build.steps.3"
+    ],
+    "checks": [
+     "generic.drywall-build.checks.1",
+     "generic.drywall-build.checks.2",
+     "generic.drywall-build.checks.3"
+    ],
+    "handover": [
+     "generic.drywall-build.handover.1",
+     "generic.drywall-build.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:drywall-build",
+    "hash": "acc68ecc60c9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:masonry",
+   "label": "Κτίσιμο · π.χ. τοίχος από τούβλο, πορομπετόν, υαλότουβλα",
+   "answers": {},
+   "source": "new",
+   "title": "Κτίσιμο",
+   "duration": "ενδεικτικά 1–3 ημέρες, χωρίς τον σοβά",
+   "licensed": false,
+   "safety": "Νέος τοίχος σε πλάκα: βάρος, έλεγχος από μηχανικό όπου χρειάζεται.",
+   "sections": {
+    "prerequisites": [
+     "generic.masonry.prerequisites.1",
+     "generic.masonry.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.masonry.preparation.1",
+     "generic.masonry.preparation.2"
+    ],
+    "steps": [
+     "generic.masonry.steps.1",
+     "generic.masonry.steps.2",
+     "generic.masonry.steps.3"
+    ],
+    "checks": [
+     "generic.masonry.checks.1",
+     "generic.masonry.checks.2",
+     "generic.masonry.checks.3"
+    ],
+    "handover": [
+     "generic.masonry.handover.1",
+     "generic.masonry.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:masonry",
+    "hash": "f0662f2e8903",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:heating",
+   "label": "Θέρμανση · π.χ. σώμα καλοριφέρ, θερμοστάτης, κυκλοφορητής",
+   "answers": {},
+   "source": "new",
+   "title": "Εργασία στη θέρμανση",
+   "duration": "ενδεικτικά 1–3 ώρες ανά σημείο",
+   "licensed": false,
+   "safety": "Λέβητες αερίου ή πετρελαίου: μόνο αδειούχος· δεν καλύπτονται από τη γενική ανάλυση.",
+   "sections": {
+    "prerequisites": [
+     "generic.heating.prerequisites.1",
+     "generic.heating.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.heating.preparation.1",
+     "generic.heating.preparation.2"
+    ],
+    "steps": [
+     "generic.heating.steps.1",
+     "generic.heating.steps.2",
+     "generic.heating.steps.3"
+    ],
+    "checks": [
+     "generic.heating.checks.1",
+     "generic.heating.checks.2",
+     "generic.heating.checks.3"
+    ],
+    "handover": [
+     "generic.heating.handover.1",
+     "generic.heating.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:heating",
+    "hash": "1aeb19ca77a5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:hvac",
+   "label": "Κλιματισμός ή αερισμός · π.χ. κλιματιστικό, εξαεριστήρας",
+   "answers": {},
+   "source": "new",
+   "title": "Κλιματισμός ή αερισμός",
+   "duration": "ενδεικτικά 2–5 ώρες ανά μονάδα",
+   "licensed": true,
+   "safety": "Κλιματιστικά: πιστοποιημένος ψυκτικός (ψυκτικά υγρά).",
+   "sections": {
+    "prerequisites": [
+     "generic.hvac.prerequisites.1",
+     "generic.hvac.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.hvac.preparation.1",
+     "generic.hvac.preparation.2"
+    ],
+    "steps": [
+     "generic.hvac.steps.1",
+     "generic.hvac.steps.2",
+     "generic.hvac.steps.3"
+    ],
+    "checks": [
+     "generic.hvac.checks.1",
+     "generic.hvac.checks.2",
+     "generic.hvac.checks.3"
+    ],
+    "handover": [
+     "generic.hvac.handover.1",
+     "generic.hvac.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:hvac",
+    "hash": "dcf964499b84",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "generic:roof",
+   "label": "Ταράτσα ή στέγη · π.χ. κεραμίδια, υδρορροή, ταράτσα",
+   "answers": {},
+   "source": "new",
+   "title": "Εργασία σε ταράτσα ή στέγη",
+   "duration": "ενδεικτικά 1–3 ημέρες, ανάλογα με τον καιρό",
+   "licensed": false,
+   "safety": "Εργασία σε ύψος.",
+   "sections": {
+    "prerequisites": [
+     "generic.roof.prerequisites.1",
+     "generic.roof.prerequisites.2"
+    ],
+    "preparation": [
+     "generic.roof.preparation.1",
+     "generic.roof.preparation.2"
+    ],
+    "steps": [
+     "generic.roof.steps.1",
+     "generic.roof.steps.2",
+     "generic.roof.steps.3"
+    ],
+    "checks": [
+     "generic.roof.checks.1",
+     "generic.roof.checks.2",
+     "generic.roof.checks.3"
+    ],
+    "handover": [
+     "generic.roof.handover.1",
+     "generic.roof.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:generic:roof",
+    "hash": "e18182136c1d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [],
+ "note": "{είδος} = το όνομα που γράφει ο μάστορας, με άρθρο σε αιτιατική, π.χ. «τις σίτες», «το ράφι». Ο μάστορας το βλέπει και το διορθώνει πριν το κρατήσει.",
+ "items": {
+  "generic.bath-acc.checks.1": {
+   "section": "checks",
+   "n": "Κανένα αξεσουάρ δεν κουνιέται όταν το τραβάμε ελαφρά.",
+   "s": "Τα τραβάμε λίγο: κανένα δεν κουνιέται.",
+   "c": "Σταθερά αξεσουάρ.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.checks.1",
+    "hash": "3f442eb22e1e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.checks.2": {
+   "section": "checks",
+   "n": "Κανένα πλακάκι δεν έχει ραγίσει γύρω από τις τρύπες.",
+   "s": "Τα πλακάκια γύρω από τις τρύπες δεν έχουν σπάσει.",
+   "c": "Άθικτα πλακάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.checks.2",
+    "hash": "6a3f975043b6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.checks.3": {
+   "section": "checks",
+   "n": "Οι θέσεις είναι αυτές που συμφωνήσαμε και όλα στέκονται ίσια.",
+   "s": "Όλα είναι εκεί που είπαμε και είναι ίσια στο αλφάδι.",
+   "c": "Σωστές θέσεις, ίσια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.checks.3",
+    "hash": "ff78463a38a7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τη σκόνη και τα πλακάκια.",
+   "s": "Σκουπίζουμε τη σκόνη και σκουπίζουμε τα πλακάκια.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.handover.1",
+    "hash": "aac20b31e975",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες.",
+   "s": "Παίρνουμε τα κουτιά μαζί μας.",
+   "c": "Μάζεμα κουτιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.handover.2",
+    "hash": "17be4546e787",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.preparation.1": {
+   "section": "preparation",
+   "n": "Ελέγχουμε για σωλήνες στα σημεία που θα τρυπήσουμε.",
+   "s": "Κοιτάμε μήπως περνάνε σωλήνες εκεί που θα τρυπήσουμε.",
+   "c": "Έλεγχος για σωλήνες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.preparation.1",
+    "hash": "5a506eaeca5a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε τις τρύπες με αλφάδι, όσο γίνεται πάνω στους αρμούς.",
+   "s": "Σημαδεύουμε ίσια τις τρύπες, όσο γίνεται στα κενά ανάμεσα στα πλακάκια.",
+   "c": "Σημάδεμα στους αρμούς.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.preparation.2",
+    "hash": "acd4254ebf35",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τις θέσεις και τα ύψη.",
+   "s": "Να έχουμε πει πού και σε τι ύψος μπαίνει το καθένα.",
+   "c": "Συμφωνημένες θέσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.prerequisites.1",
+    "hash": "f9f62676a1ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Τα πλακάκια να έχουν μπει και οι αρμοί να έχουν στεγνώσει.",
+   "s": "Να έχουν τελειώσει τα πλακάκια και να έχουν στεγνώσει τα κενά ανάμεσά τους.",
+   "c": "Πλακάκια τελειωμένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.prerequisites.2",
+    "hash": "f82ca6b5b819",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.steps.1": {
+   "section": "steps",
+   "n": "Ανοίγουμε τις τρύπες χωρίς κρούση, με τρυπάνι για πλακάκι, για να μη σπάσει το πλακάκι.",
+   "s": "Τρυπάμε με ειδικό τρυπάνι και χωρίς χτυπήματα, για να μη ραγίσει το πλακάκι.",
+   "c": "Τρύπημα χωρίς κρούση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.steps.1",
+    "hash": "4a274f19dafc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.steps.2": {
+   "section": "steps",
+   "n": "Βάζουμε λίγη σιλικόνη στις τρύπες πριν τα ούπα, για να μη μπαίνει νερό στον τοίχο.",
+   "s": "Ρίχνουμε λίγη σιλικόνη στις τρύπες πριν βάλουμε τα βύσματα, για να μη μπαίνει νερό.",
+   "c": "Σιλικόνη στις τρύπες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.steps.2",
+    "hash": "d5bc15a919a4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.bath-acc.steps.3": {
+   "section": "steps",
+   "n": "Στερεώνουμε {είδος} με ανοξείδωτες βίδες.",
+   "s": "Βιδώνουμε {είδος} με βίδες που δεν σκουριάζουν.",
+   "c": "Στερέωση με ανοξείδωτες βίδες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.bath-acc.steps.3",
+    "hash": "8cf45bd7d7e7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.checks.1": {
+   "section": "checks",
+   "n": "Τραβάμε ελαφρά προς τα κάτω: η στήριξη δεν υποχωρεί.",
+   "s": "Τραβάμε λίγο προς τα κάτω: δεν κατεβαίνει καθόλου.",
+   "c": "Γερή στήριξη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.checks.1",
+    "hash": "4d2b7237eec0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.checks.2": {
+   "section": "checks",
+   "n": "Ό,τι κινείται, όπως ο ανεμιστήρας, λειτουργεί χωρίς κραδασμούς σε όλες τις ταχύτητες.",
+   "s": "Αν γυρίζει, όπως ο ανεμιστήρας, δεν τρέμει σε καμία ταχύτητα.",
+   "c": "Χωρίς κραδασμούς.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.checks.2",
+    "hash": "5a65a1f34ca6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.checks.3": {
+   "section": "checks",
+   "n": "Το ύψος και η ευθυγράμμιση είναι όπως συμφωνήσαμε.",
+   "s": "Είναι στο ύψος που είπαμε και στέκεται ίσια.",
+   "c": "Σωστό ύψος, ίσια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.checks.3",
+    "hash": "a753a27d20a1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τη σκόνη από το τρύπημα.",
+   "s": "Σκουπίζουμε τη σκόνη από τις τρύπες.",
+   "c": "Καθάρισμα σκόνης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.handover.1",
+    "hash": "a5a45ca9fb2b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς λειτουργεί και πώς καθαρίζεται.",
+   "s": "Σας δείχνουμε πώς δουλεύει και με τι καθαρίζεται.",
+   "c": "Χρήση και καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.handover.2",
+    "hash": "f1f871890457",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε το δάπεδο και στήνουμε σταθερή σκάλα.",
+   "s": "Σκεπάζουμε το πάτωμα και στήνουμε γερή σκάλα.",
+   "c": "Σκέπασμα, σκάλα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.preparation.1",
+    "hash": "d18b7b22d682",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.preparation.2": {
+   "section": "preparation",
+   "n": "Βρίσκουμε σημεία στήριξης που αντέχουν το βάρος, π.χ. το μπετόν ή τον σκελετό της ψευδοροφής.",
+   "s": "Βρίσκουμε πού μπορεί να βιδωθεί γερά, π.χ. στο μπετό ή στα μεταλλικά της ψευδοροφής.",
+   "c": "Γερά σημεία στήριξης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.preparation.2",
+    "hash": "396c2526493a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε το βάρος και από τι είναι η οροφή: μπετόν, γυψοσανίδα ή ξύλο.",
+   "s": "Να ξέρουμε πόσο βαρύ είναι και αν το ταβάνι είναι μπετό, γυψοσανίδα ή ξύλο.",
+   "c": "Βάρος, υλικό οροφής.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.prerequisites.1",
+    "hash": "df2d944619cf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Αν χρειάζεται ρεύμα, η σύνδεση γίνεται από αδειούχο ηλεκτρολόγο, με κατεβασμένη ασφάλεια.",
+   "s": "Αν θέλει ρεύμα, τη σύνδεση την κάνει αδειούχος ηλεκτρολόγος, με κομμένη την ασφάλεια.",
+   "c": "Ρεύμα: από αδειούχο ηλεκτρολόγο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.prerequisites.2",
+    "hash": "48977efee7a6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.steps.1": {
+   "section": "steps",
+   "n": "Τρυπάμε και βάζουμε άγκιστρο ή ούπα που αντέχουν το βάρος και την κίνηση.",
+   "s": "Τρυπάμε και βάζουμε γάντζο ή βύσματα που σηκώνουν το βάρος και το κούνημα.",
+   "c": "Άγκιστρο ή ούπα για το βάρος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.steps.1",
+    "hash": "fab774a9ab6e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.steps.2": {
+   "section": "steps",
+   "n": "Κρεμάμε {είδος} και ρυθμίζουμε ύψος και ευθυγράμμιση.",
+   "s": "Κρεμάμε {είδος} και ρυθμίζουμε να είναι στο σωστό ύψος και ίσια.",
+   "c": "Κρέμασμα, ρύθμιση ύψους.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.steps.2",
+    "hash": "66ce46e6e4f2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.ceiling-fix.steps.3": {
+   "section": "steps",
+   "n": "Όπου υπάρχει ρεύμα, ο ηλεκτρολόγος συνδέει τα καλώδια και τη γείωση.",
+   "s": "Αν θέλει ρεύμα, ο ηλεκτρολόγος ενώνει τα καλώδια και τη γείωση.",
+   "c": "Σύνδεση από ηλεκτρολόγο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.ceiling-fix.steps.3",
+    "hash": "e76aa5762a04",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.checks.1": {
+   "section": "checks",
+   "n": "Οι σειρές είναι ίσιες, με έλεγχο αλφαδιού.",
+   "s": "Οι σειρές στέκονται ίσια στο αλφάδι.",
+   "c": "Ίσιες σειρές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.checks.1",
+    "hash": "92eca458857e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.checks.2": {
+   "section": "checks",
+   "n": "Κανένα κομμάτι δεν κουνιέται ούτε ακούγεται κούφιο.",
+   "s": "Κανένα κομμάτι δεν κουνιέται ούτε ακούγεται άδειο από πίσω.",
+   "c": "Σταθερά κομμάτια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.checks.2",
+    "hash": "a14dc5e11bde",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.checks.3": {
+   "section": "checks",
+   "n": "Οι αρμοί και τα τελειώματα είναι ομοιόμορφα.",
+   "s": "Τα κενά και οι άκρες είναι ίδια παντού.",
+   "c": "Ομοιόμορφοι αρμοί.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.checks.3",
+    "hash": "2b7209127a7f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.handover.1": {
+   "section": "handover",
+   "n": "Ξαναβάζουμε τα καπάκια σε πρίζες και διακόπτες.",
+   "s": "Βάζουμε πάλι τα καπάκια στις πρίζες και τους διακόπτες.",
+   "c": "Καπάκια στη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.handover.1",
+    "hash": "ac8383aa0a68",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα κοψίματα και καθαρίζουμε.",
+   "s": "Παίρνουμε τα κομμάτια που περίσσεψαν και καθαρίζουμε.",
+   "c": "Μάζεμα, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.handover.2",
+    "hash": "613477c0cc15",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και αφαιρούμε καπάκια από πρίζες και διακόπτες.",
+   "s": "Σκεπάζουμε τα πατώματα και βγάζουμε τα καπάκια από πρίζες και διακόπτες.",
+   "c": "Προστασία, καπάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.preparation.1",
+    "hash": "bbc93d91595e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε το αλφάδι του τοίχου και σημαδεύουμε την πρώτη σειρά.",
+   "s": "Κοιτάμε με αλφάδι τον τοίχο και σημαδεύουμε ίσια την πρώτη σειρά.",
+   "c": "Αλφάδι, πρώτη σειρά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.preparation.2",
+    "hash": "6c2de240229b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Τοίχος στεγνός, γερός και χωρίς υγρασία.",
+   "s": "Ο τοίχος να είναι στεγνός, γερός και να μην έχει υγρασία.",
+   "c": "Στεγνός, γερός τοίχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.prerequisites.1",
+    "hash": "94f9dd2c4dce",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει το υλικό, το σχέδιο και πού σταματά η επένδυση.",
+   "s": "Να έχουμε πει ποιο υλικό, τι σχέδιο και ως πού φτάνει.",
+   "c": "Υλικό, σχέδιο, όρια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.prerequisites.2",
+    "hash": "fa0eaa2be23d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε σκελετό ή απλώνουμε κόλλα, ανάλογα με το υλικό.",
+   "s": "Βάζουμε σκελετό ή κόλλα, ανάλογα με το τι υλικό μπαίνει.",
+   "c": "Σκελετός ή κόλλα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.steps.1",
+    "hash": "6bdccf871955",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} σε ίσιες σειρές, με τους αρμούς που ορίζει το σχέδιο.",
+   "s": "Βάζουμε {είδος} σε ίσιες σειρές, με τα κενά που θέλει το σχέδιο.",
+   "c": "Τοποθέτηση σε ίσιες σειρές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.steps.2",
+    "hash": "ce4b229c7213",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.cladding.steps.3": {
+   "section": "steps",
+   "n": "Κόβουμε γύρω από πρίζες, διακόπτες και ανοίγματα και κλείνουμε τις άκρες με τελειώματα.",
+   "s": "Κόβουμε γύρω από πρίζες, διακόπτες και ανοίγματα και κλείνουμε τις άκρες με ειδικά κομμάτια.",
+   "c": "Κοψίματα, τελειώματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.cladding.steps.3",
+    "hash": "1a2bffb1d70c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.checks.1": {
+   "section": "checks",
+   "n": "Ο πάγκος είναι οριζόντιος, με έλεγχο αλφαδιού.",
+   "s": "Ο πάγκος είναι ίσιος στο αλφάδι.",
+   "c": "Οριζόντιος πάγκος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.checks.1",
+    "hash": "7107a7be4fa5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.checks.2": {
+   "section": "checks",
+   "n": "Οι ενώσεις ανάμεσα στα κομμάτια είναι κλειστές και ίσιες.",
+   "s": "Εκεί που ενώνονται τα κομμάτια δεν υπάρχει χαραμάδα ή σκαλοπάτι.",
+   "c": "Κλειστές ενώσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.checks.2",
+    "hash": "2ffd3ef64f63",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.checks.3": {
+   "section": "checks",
+   "n": "Τα ανοίγματα ταιριάζουν στις συσκευές που θα μπουν.",
+   "s": "Οι τρύπες έχουν το σωστό μέγεθος για ό,τι θα μπει μέσα.",
+   "c": "Σωστά ανοίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.checks.3",
+    "hash": "9ce5d1438186",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε σκόνη και υπολείμματα σιλικόνης.",
+   "s": "Σκουπίζουμε τη σκόνη και ό,τι σιλικόνη περίσσεψε.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.handover.1",
+    "hash": "46af3f33ba29",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πώς καθαρίζεται ο πάγκος και τι να αποφεύγετε.",
+   "s": "Σας λέμε με τι καθαρίζετε τον πάγκο και τι να μην κάνετε.",
+   "c": "Φροντίδα πάγκου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.handover.2",
+    "hash": "857a567c51c5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.preparation.1": {
+   "section": "preparation",
+   "n": "Παίρνουμε μέτρα ή πατρόν από τους τοίχους, που συχνά δεν είναι ίσιοι.",
+   "s": "Μετράμε ή φτιάχνουμε καλούπι από τους τοίχους, γιατί συχνά δεν είναι ίσιοι.",
+   "c": "Μέτρα ή πατρόν.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.preparation.1",
+    "hash": "6f994c0f2970",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε με αλφάδι τα ντουλάπια και διορθώνουμε όπου χρειάζεται.",
+   "s": "Κοιτάμε με αλφάδι τα ντουλάπια και τα ισιώνουμε όπου πρέπει.",
+   "c": "Αλφάδι ντουλαπιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.preparation.2",
+    "hash": "825428d48b35",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Τα ντουλάπια βάσης να είναι στη θέση τους, αλφαδιασμένα και στερεωμένα.",
+   "s": "Τα κάτω ντουλάπια να έχουν μπει, ίσια και βιδωμένα.",
+   "c": "Ντουλάπια βάσης έτοιμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.prerequisites.1",
+    "hash": "2f3d61eda99f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τα ανοίγματα για νεροχύτη, εστίες και μπαταρία.",
+   "s": "Να έχουμε πει πού ανοίγουν τρύπες για νεροχύτη, εστίες και βρύση.",
+   "c": "Συμφωνημένα ανοίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.prerequisites.2",
+    "hash": "9b7b61633dfe",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.steps.1": {
+   "section": "steps",
+   "n": "Κόβουμε και τοποθετούμε {είδος} πάνω στα ντουλάπια.",
+   "s": "Κόβουμε στα μέτρα και βάζουμε {είδος} πάνω στα ντουλάπια.",
+   "c": "Κοπή και τοποθέτηση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.steps.1",
+    "hash": "0992af3aae65",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.steps.2": {
+   "section": "steps",
+   "n": "Ανοίγουμε τα ανοίγματα για νεροχύτη, εστίες και μπαταρία και σφραγίζουμε τις κομμένες άκρες.",
+   "s": "Ανοίγουμε τις τρύπες για νεροχύτη, εστίες και βρύση και κλείνουμε τις κομμένες άκρες για την υγρασία.",
+   "c": "Ανοίγματα, σφράγισμα άκρων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.steps.2",
+    "hash": "afed53359c31",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.countertop.steps.3": {
+   "section": "steps",
+   "n": "Στερεώνουμε από κάτω και σφραγίζουμε με σιλικόνη την επαφή με τον τοίχο.",
+   "s": "Βιδώνουμε από κάτω και βάζουμε σιλικόνη εκεί που ακουμπάει στον τοίχο.",
+   "c": "Στερέωση, σιλικόνη στον τοίχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.countertop.steps.3",
+    "hash": "aef8a84eaeeb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.checks.1": {
+   "section": "checks",
+   "n": "Η κατασκευή είναι κατακόρυφη και ίσια.",
+   "s": "Στέκεται όρθια και ίσια στο αλφάδι.",
+   "c": "Κατακόρυφη, ίσια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.checks.1",
+    "hash": "dfeb0945be9f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.checks.2": {
+   "section": "checks",
+   "n": "Σπρώχνουμε την κατασκευή: δεν τρέμει.",
+   "s": "Τη σπρώχνουμε: δεν κουνιέται.",
+   "c": "Δεν τρέμει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.checks.2",
+    "hash": "ccee56b2b200",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.checks.3": {
+   "section": "checks",
+   "n": "Οι αρμοί και οι βίδες δεν φαίνονται και δεν έχουν ραγίσει.",
+   "s": "Δεν φαίνονται ενώσεις ή βίδες και τίποτα δεν έχει ραγίσει.",
+   "c": "Αόρατοι αρμοί.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.checks.3",
+    "hash": "f47ddd3d6d28",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.handover.1": {
+   "section": "handover",
+   "n": "Η επιφάνεια μένει έτοιμη για αστάρι και βάψιμο.",
+   "s": "Είναι έτοιμη για αστάρι και μπογιά.",
+   "c": "Έτοιμη για βάψιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.handover.1",
+    "hash": "315cadbdb768",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα κομμάτια και καθαρίζουμε τη σκόνη.",
+   "s": "Παίρνουμε ό,τι περίσσεψε και σκουπίζουμε τη σκόνη.",
+   "c": "Μάζεμα, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.handover.2",
+    "hash": "c126dbe209ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και έπιπλα.",
+   "s": "Σκεπάζουμε πατώματα και έπιπλα.",
+   "c": "Προστασία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.preparation.1",
+    "hash": "98a046407c20",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε με λέιζερ τη θέση στο δάπεδο, στους τοίχους και στην οροφή.",
+   "s": "Σημαδεύουμε με λέιζερ πού θα μπει, στο πάτωμα, στους τοίχους και στο ταβάνι.",
+   "c": "Σημάδεμα με λέιζερ.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.preparation.2",
+    "hash": "55399c2a76c8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει σχέδιο, διαστάσεις και πού θα μπουν πρίζες ή φωτισμός.",
+   "s": "Να έχουμε πει τι σχήμα και μέγεθος θα έχει και πού μπαίνουν πρίζες ή φώτα.",
+   "c": "Σχέδιο, διαστάσεις, ηλεκτρικά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.prerequisites.1",
+    "hash": "75e9b8831f51",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουν περάσει καλώδια και σωλήνες που θα μείνουν μέσα στην κατασκευή.",
+   "s": "Τα καλώδια και οι σωλήνες που θα κρυφτούν μέσα να έχουν ήδη περάσει.",
+   "c": "Καλώδια, σωλήνες περασμένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.prerequisites.2",
+    "hash": "6ace9991ea82",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.steps.1": {
+   "section": "steps",
+   "n": "Στήνουμε μεταλλικό σκελετό, με ενίσχυση εκεί που θα κρεμαστούν ράφια ή βάρη.",
+   "s": "Φτιάχνουμε μεταλλικό σκελετό, πιο γερό εκεί που θα κρεμαστούν ράφια ή βαριά πράγματα.",
+   "c": "Σκελετός με ενισχύσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.steps.1",
+    "hash": "ff531dbd9fd5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.steps.2": {
+   "section": "steps",
+   "n": "Κατασκευάζουμε {είδος} βιδώνοντας γυψοσανίδες στον σκελετό, με μόνωση μέσα όπου συμφωνήσαμε.",
+   "s": "Φτιάχνουμε {είδος} βιδώνοντας γυψοσανίδες στον σκελετό, με μόνωση μέσα αν το έχουμε πει.",
+   "c": "Γυψοσανίδες, μόνωση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.steps.2",
+    "hash": "ee4bb0ad12cb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.drywall-build.steps.3": {
+   "section": "steps",
+   "n": "Περνάμε γωνιόκρανα, ταινία και στόκο στους αρμούς και τρίβουμε για λεία επιφάνεια.",
+   "s": "Βάζουμε μεταλλικές γωνίες, ταινία και στόκο στις ενώσεις και τρίβουμε να γίνει λείο.",
+   "c": "Γωνιόκρανα, στόκος, τρίψιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.drywall-build.steps.3",
+    "hash": "209373718590",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.checks.1": {
+   "section": "checks",
+   "n": "Δοκιμάζουμε όλες τις λειτουργίες της συσκευής.",
+   "s": "Δοκιμάζουμε όλα τα κουμπιά και τα προγράμματα.",
+   "c": "Δοκιμή λειτουργιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.checks.1",
+    "hash": "a51d25d32425",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.checks.2": {
+   "section": "checks",
+   "n": "Μετράμε με όργανο τη γείωση στη σύνδεση.",
+   "s": "Ελέγχουμε με όργανο ότι η γείωση δουλεύει.",
+   "c": "Μέτρηση γείωσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.checks.2",
+    "hash": "04a317b015d1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.checks.3": {
+   "section": "checks",
+   "n": "Μετά από λίγη λειτουργία, η σύνδεση και το καλώδιο δεν ζεσταίνονται.",
+   "s": "Αφού δουλέψει λίγο, ούτε η ένωση ούτε το καλώδιο είναι ζεστά.",
+   "c": "Χωρίς ζέστη στη σύνδεση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.checks.3",
+    "hash": "7a3379e76ac6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες.",
+   "s": "Παίρνουμε κουτιά και χαρτόνια.",
+   "c": "Μάζεμα κουτιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.handover.1",
+    "hash": "d4a3d82686aa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε ποια ασφάλεια κόβει τη συσκευή.",
+   "s": "Σας δείχνουμε ποια ασφάλεια κλείνει τη συσκευή.",
+   "c": "Ποια ασφάλεια την κόβει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.handover.2",
+    "hash": "7e98cfac52e4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.preparation.1": {
+   "section": "preparation",
+   "n": "Κατεβάζουμε την ασφάλεια και ελέγχουμε με όργανο ότι δεν υπάρχει τάση.",
+   "s": "Κόβουμε την ασφάλεια και κοιτάμε με όργανο ότι δεν έχει ρεύμα.",
+   "c": "Διακοπή, έλεγχος τάσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.preparation.1",
+    "hash": "d6e2f68916bb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τη διατομή του καλωδίου και τη γείωση στο σημείο.",
+   "s": "Κοιτάμε ότι το καλώδιο είναι αρκετά χοντρό και ότι υπάρχει γείωση.",
+   "c": "Διατομή και γείωση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.preparation.2",
+    "hash": "c0be9f1f0268",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Γραμμή ρεύματος στη θέση της συσκευής, με ασφάλεια που αντέχει την ισχύ της· όπου χρειάζεται, δική της γραμμή.",
+   "s": "Να φτάνει ρεύμα στη συσκευή από ασφάλεια που σηκώνει το φορτίο της· αν χρειάζεται, από δική της γραμμή.",
+   "c": "Γραμμή που σηκώνει την ισχύ.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.prerequisites.1",
+    "hash": "e624a2ff75bf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε τις οδηγίες σύνδεσης και την ισχύ της συσκευής.",
+   "s": "Να έχουμε τις οδηγίες και να ξέρουμε πόσο ρεύμα τραβάει η συσκευή.",
+   "c": "Οδηγίες και ισχύς.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.prerequisites.2",
+    "hash": "91f0daabf47f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.steps.1": {
+   "section": "steps",
+   "n": "Συνδέουμε {είδος} στην παροχή, μαζί με τη γείωση, όπως ορίζει ο κατασκευαστής.",
+   "s": "Ενώνουμε {είδος} με το ρεύμα και τη γείωση, όπως λένε οι οδηγίες.",
+   "c": "Σύνδεση με γείωση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.steps.1",
+    "hash": "a7f979766a58",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.steps.2": {
+   "section": "steps",
+   "n": "Στερεώνουμε το καλώδιο τροφοδοσίας ώστε να μην τεντώνεται ούτε να ακουμπά σε ζεστά σημεία.",
+   "s": "Στερεώνουμε το καλώδιο να μην τεντώνει και να μην ακουμπά σε σημεία που ζεσταίνονται.",
+   "c": "Καλώδιο μακριά από ζέστη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.steps.2",
+    "hash": "08bfb6438d04",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.elec-connect.steps.3": {
+   "section": "steps",
+   "n": "Ανεβάζουμε την ασφάλεια και ενεργοποιούμε τη συσκευή.",
+   "s": "Ξαναδίνουμε ρεύμα και ανάβουμε τη συσκευή.",
+   "c": "Επαναφορά, ενεργοποίηση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.elec-connect.steps.3",
+    "hash": "6046284cd178",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.checks.1": {
+   "section": "checks",
+   "n": "Τίποτα δεν κουνιέται όταν σπρώχνουμε ή ανοίγουμε πόρτες και συρτάρια.",
+   "s": "Σπρώχνουμε και ανοίγουμε πόρτες και συρτάρια: δεν κουνιέται τίποτα.",
+   "c": "Σταθερότητα στη χρήση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.checks.1",
+    "hash": "1508282b31f0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.checks.2": {
+   "section": "checks",
+   "n": "Οι πόρτες και τα συρτάρια κλείνουν ίσια, χωρίς κενά.",
+   "s": "Πόρτες και συρτάρια κλείνουν σωστά και δεν μένουν χαραμάδες.",
+   "c": "Ίσιο κλείσιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.checks.2",
+    "hash": "c304d224095c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.checks.3": {
+   "section": "checks",
+   "n": "Το δάπεδο δεν έχει γρατζουνιές από τη μεταφορά.",
+   "s": "Το πάτωμα δεν γρατζουνίστηκε από το κουβάλημα.",
+   "c": "Δάπεδο χωρίς γρατζουνιές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.checks.3",
+    "hash": "150f58a04ad8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες.",
+   "s": "Παίρνουμε τα κουτιά και τα χαρτόνια.",
+   "c": "Μάζεμα κουτιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.handover.1",
+    "hash": "1e411819fd37",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς ρυθμίζονται τα πόδια, αν χρειαστεί αργότερα.",
+   "s": "Σας δείχνουμε πώς ισιώνει από τα ποδαράκια, αν χρειαστεί.",
+   "c": "Ρύθμιση ποδιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.handover.2",
+    "hash": "23fe36b70a00",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.preparation.1": {
+   "section": "preparation",
+   "n": "Προστατεύουμε το δάπεδο και τις πόρτες στη διαδρομή.",
+   "s": "Σκεπάζουμε το πάτωμα και τις πόρτες από όπου θα περάσουμε.",
+   "c": "Προστασία διαδρομής.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.preparation.1",
+    "hash": "52428f157fde",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε το αλφάδι του δαπέδου στη θέση.",
+   "s": "Κοιτάμε με αλφάδι αν το πάτωμα είναι ίσιο εκεί.",
+   "c": "Αλφάδι δαπέδου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.preparation.2",
+    "hash": "92a1862684d4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να περνάει από τις πόρτες και τις σκάλες ως την τελική θέση.",
+   "s": "Να χωράει από τις πόρτες και τη σκάλα ως εκεί που θα μπει.",
+   "c": "Περνάει ως τη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.prerequisites.1",
+    "hash": "68872c465e41",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τη θέση και, όπου χρειάζεται, να υπάρχει πρίζα ή νερό κοντά.",
+   "s": "Να έχουμε πει πού μπαίνει και, αν θέλει ρεύμα ή νερό, να υπάρχει κοντά.",
+   "c": "Θέση, ρεύμα ή νερό κοντά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.prerequisites.2",
+    "hash": "c7f8483981ff",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.steps.1": {
+   "section": "steps",
+   "n": "Μεταφέρουμε {είδος} στη θέση που συμφωνήσαμε, χωρίς να σέρνουμε στο δάπεδο.",
+   "s": "Φέρνουμε {είδος} εκεί που θα μπει, σηκώνοντας και όχι σέρνοντας στο πάτωμα.",
+   "c": "Μεταφορά χωρίς σύρσιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.steps.1",
+    "hash": "c098fe533ffd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.steps.2": {
+   "section": "steps",
+   "n": "Αλφαδιάζουμε με τα ρυθμιζόμενα πόδια ή με τάκους.",
+   "s": "Ισιώνουμε με τα ρυθμιζόμενα ποδαράκια ή με σφήνες από κάτω.",
+   "c": "Αλφάδιασμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.steps.2",
+    "hash": "40bfa9eac920",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.floor-fix.steps.3": {
+   "section": "steps",
+   "n": "Όπου υπάρχει κίνδυνος ανατροπής, στερεώνουμε την πάνω πλευρά στον τοίχο με στήριγμα ασφαλείας.",
+   "s": "Αν μπορεί να πέσει μπροστά, βιδώνουμε το πάνω μέρος στον τοίχο με ειδικό στήριγμα.",
+   "c": "Στήριγμα κατά της ανατροπής.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.floor-fix.steps.3",
+    "hash": "ad0bd269ff85",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.checks.1": {
+   "section": "checks",
+   "n": "Το δάπεδο δεν τρίζει και δεν βουλιάζει όταν περπατάμε.",
+   "s": "Περπατάμε: δεν τρίζει και δεν βουλιάζει.",
+   "c": "Χωρίς τρίξιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.checks.1",
+    "hash": "65b106f0e494",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.checks.2": {
+   "section": "checks",
+   "n": "Οι ενώσεις είναι κλειστές, χωρίς χαραμάδες ή σκαλοπάτια.",
+   "s": "Οι ενώσεις είναι κολλητές, χωρίς χαραμάδες ή σκαλοπατάκια.",
+   "c": "Κλειστές ενώσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.checks.2",
+    "hash": "f057ea2e65db",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.checks.3": {
+   "section": "checks",
+   "n": "Οι πόρτες ανοίγουν χωρίς να ακουμπούν στο νέο δάπεδο.",
+   "s": "Οι πόρτες ανοίγουν χωρίς να τρίβονται στο καινούργιο πάτωμα.",
+   "c": "Πόρτες ανοίγουν ελεύθερα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.checks.3",
+    "hash": "71766674ce70",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα κοψίματα και τις συσκευασίες.",
+   "s": "Παίρνουμε τα κομμάτια που περίσσεψαν και τα κουτιά.",
+   "c": "Μάζεμα κοψιμάτων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.handover.1",
+    "hash": "e74de73201f3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πώς καθαρίζεται το δάπεδο και τι να αποφεύγετε.",
+   "s": "Σας λέμε με τι καθαρίζετε το πάτωμα και τι να μην κάνετε.",
+   "c": "Καθάρισμα, προσοχή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.handover.2",
+    "hash": "de144f67ed58",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.preparation.1": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε το δάπεδο και αφαιρούμε τα παλιά σοβατεπί.",
+   "s": "Καθαρίζουμε το πάτωμα και βγάζουμε τα παλιά σοβατεπί.",
+   "c": "Καθάρισμα, παλιά σοβατεπί.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.preparation.1",
+    "hash": "d2c0a3250af2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε με πήχη την επιπεδότητα και διορθώνουμε τα σημεία που ξεφεύγουν.",
+   "s": "Κοιτάμε με πήχη αν είναι ίσιο και φτιάχνουμε όπου δεν είναι.",
+   "c": "Έλεγχος επιπεδότητας.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.preparation.2",
+    "hash": "88578651067c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Υπόστρωμα επίπεδο, στεγνό και γερό.",
+   "s": "Το πάτωμα από κάτω να είναι ίσιο, στεγνό και γερό.",
+   "c": "Επίπεδο, στεγνό υπόστρωμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.prerequisites.1",
+    "hash": "de29c209550b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Το υλικό να έχει μείνει στον χώρο όσο ορίζει ο κατασκευαστής, για να προσαρμοστεί.",
+   "s": "Τα κουτιά να έχουν μείνει στο σπίτι όσο λέει ο κατασκευαστής, για να συνηθίσουν τη θερμοκρασία.",
+   "c": "Εγκλιματισμός υλικού.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.prerequisites.2",
+    "hash": "1f3313e94b23",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.steps.1": {
+   "section": "steps",
+   "n": "Στρώνουμε το υπόστρωμα που προβλέπεται, όπου χρειάζεται.",
+   "s": "Απλώνουμε από κάτω το ειδικό στρώμα, όπου το θέλει το υλικό.",
+   "c": "Υπόστρωμα, όπου χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.steps.1",
+    "hash": "ef6665f5b276",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} αφήνοντας αρμό διαστολής στην περίμετρο, όπως ορίζει ο κατασκευαστής.",
+   "s": "Στρώνουμε {είδος} αφήνοντας μικρό κενό γύρω-γύρω στους τοίχους, όπως λέει ο κατασκευαστής.",
+   "c": "Τοποθέτηση με περιμετρικό αρμό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.steps.2",
+    "hash": "157d3098cc96",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.flooring.steps.3": {
+   "section": "steps",
+   "n": "Κόβουμε γύρω από κάσες και σωλήνες και τοποθετούμε σοβατεπί και προφίλ στις ενώσεις.",
+   "s": "Κόβουμε γύρω από πόρτες και σωλήνες και βάζουμε σοβατεπί και κομμάτια στις ενώσεις.",
+   "c": "Κοψίματα, σοβατεπί, προφίλ.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.flooring.steps.3",
+    "hash": "7752f6e7acc1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.checks.1": {
+   "section": "checks",
+   "n": "Ανοίγουμε και κλείνουμε αρκετές φορές: η κίνηση είναι ομαλή, χωρίς τριβές.",
+   "s": "Ανοιγοκλείνουμε πολλές φορές: πηγαίνει εύκολα και δεν τρίβεται.",
+   "c": "Ομαλή κίνηση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.checks.1",
+    "hash": "e1d529b8ac55",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.checks.2": {
+   "section": "checks",
+   "n": "Το κούφωμα κλείνει και κλειδώνει όπως πριν.",
+   "s": "Η πόρτα ή το παράθυρο κλείνει και κλειδώνει κανονικά.",
+   "c": "Κλείνει και κλειδώνει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.checks.2",
+    "hash": "b7e4f22fa46c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.checks.3": {
+   "section": "checks",
+   "n": "Τα σημεία στήριξης είναι σφιχτά και δεν φαίνονται σκισίματα ή ρωγμές γύρω τους.",
+   "s": "Οι βίδες κρατάνε γερά και γύρω τους δεν έχει σπάσει ή ραγίσει τίποτα.",
+   "c": "Σφιχτή στήριξη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.checks.3",
+    "hash": "88b16086cdf9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.handover.1": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς λειτουργεί και πώς καθαρίζεται.",
+   "s": "Σας δείχνουμε πώς δουλεύει και με τι καθαρίζεται.",
+   "c": "Χρήση και καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.handover.1",
+    "hash": "f1f871890457",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες και το παλιό εξάρτημα, αν το συμφωνήσαμε.",
+   "s": "Παίρνουμε τα κουτιά και το παλιό κομμάτι, αν το έχουμε πει.",
+   "c": "Μάζεμα συσκευασιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.handover.2",
+    "hash": "25aeba86a98f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε το δάπεδο κάτω από το κούφωμα και ελέγχουμε ότι το κούφωμα κλείνει σωστά.",
+   "s": "Σκεπάζουμε το πάτωμα και κοιτάμε ότι η πόρτα ή το παράθυρο κλείνει καλά.",
+   "c": "Σκέπασμα, έλεγχος κουφώματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.preparation.1",
+    "hash": "f20874ff55bf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε το παλιό εξάρτημα, όπου υπάρχει, και καθαρίζουμε τα σημεία στήριξης.",
+   "s": "Βγάζουμε το παλιό, αν υπάρχει, και καθαρίζουμε εκεί που θα βιδωθεί το καινούργιο.",
+   "c": "Αφαίρεση παλιού, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.preparation.2",
+    "hash": "6b9cb7775c57",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε πάρει μέτρα στο κούφωμα και να έχει παραγγελθεί {είδος} στις σωστές διαστάσεις.",
+   "s": "Να έχουμε μετρήσει την πόρτα ή το παράθυρο και να έχει παραγγελθεί {είδος} στο σωστό μέγεθος.",
+   "c": "Μετρημένο κούφωμα, σωστή παραγγελία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.prerequisites.1",
+    "hash": "a457d9ef413d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Ελεύθερη πρόσβαση στο κούφωμα, από μέσα και, όπου χρειάζεται, από έξω.",
+   "s": "Να φτάνουμε την πόρτα ή το παράθυρο από μέσα και, αν πρέπει, από έξω.",
+   "c": "Πρόσβαση μέσα και έξω.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.prerequisites.2",
+    "hash": "b9a2e6e317b2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.steps.1": {
+   "section": "steps",
+   "n": "Σημαδεύουμε με αλφάδι τα σημεία στήριξης.",
+   "s": "Σημαδεύουμε ίσια πού θα μπουν οι βίδες.",
+   "c": "Σημάδεμα στήριξης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.steps.1",
+    "hash": "d1cd7b0f8485",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} με τα εξαρτήματα στήριξης που προβλέπει ο κατασκευαστής, χωρίς να τρυπήσουμε το κούφωμα όπου δεν πρέπει.",
+   "s": "Βάζουμε {είδος} με τα κομμάτια στήριξης που έχει, προσέχοντας να μην τρυπήσουμε το κούφωμα όπου δεν πρέπει.",
+   "c": "Τοποθέτηση χωρίς λάθος τρύπες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.steps.2",
+    "hash": "055fa959886a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.frame.steps.3": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε {είδος} ώστε να ανοιγοκλείνει ή να κινείται ομαλά.",
+   "s": "Ρυθμίζουμε {είδος} να ανοίγει, να κλείνει ή να γλιστράει εύκολα.",
+   "c": "Ρύθμιση κίνησης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.frame.steps.3",
+    "hash": "05a2ce173698",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.checks.1": {
+   "section": "checks",
+   "n": "Πόρτες και συρτάρια ανοίγουν ομαλά και κλείνουν ίσια.",
+   "s": "Πόρτες και συρτάρια ανοίγουν εύκολα και κλείνουν χωρίς στραβά κενά.",
+   "c": "Ομαλό άνοιγμα, ίσιο κλείσιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.checks.1",
+    "hash": "5fc023ba0322",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.checks.2": {
+   "section": "checks",
+   "n": "Τίποτα δεν κουνιέται όταν σπρώχνουμε ή ανοίγουμε πόρτες.",
+   "s": "Σπρώχνουμε και ανοίγουμε πόρτες: δεν κουνιέται τίποτα.",
+   "c": "Σταθερότητα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.checks.2",
+    "hash": "34e108314a3e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.checks.3": {
+   "section": "checks",
+   "n": "Δεν έχουν μείνει βίδες ή εξαρτήματα χωρίς τοποθέτηση.",
+   "s": "Δεν περίσσεψαν βίδες ή κομμάτια που έπρεπε να μπουν.",
+   "c": "Όλα τα εξαρτήματα στη θέση τους.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.checks.3",
+    "hash": "79a628ee9cd2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες.",
+   "s": "Παίρνουμε τα χαρτόνια και τα κουτιά.",
+   "c": "Μάζεμα κουτιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.handover.1",
+    "hash": "156c33627f9b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς ρυθμίζονται πόρτες και συρτάρια.",
+   "s": "Σας δείχνουμε πώς ξαναρυθμίζετε πόρτες και συρτάρια.",
+   "c": "Ρύθμιση πορτών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.handover.2",
+    "hash": "311808937544",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.preparation.1": {
+   "section": "preparation",
+   "n": "Προστατεύουμε το δάπεδο και ελέγχουμε τα κομμάτια για ζημιές πριν ξεκινήσουμε.",
+   "s": "Σκεπάζουμε το πάτωμα και κοιτάμε μήπως έχει χτυπήσει κάποιο κομμάτι πριν αρχίσουμε.",
+   "c": "Προστασία, έλεγχος κομματιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.preparation.1",
+    "hash": "0313b9b61de5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε το αλφάδι δαπέδου και τοίχων στη θέση.",
+   "s": "Κοιτάμε με αλφάδι αν είναι ίσια το πάτωμα και οι τοίχοι εκεί.",
+   "c": "Αλφάδι δαπέδου, τοίχων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.preparation.2",
+    "hash": "4e30f84b4a13",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουν παραδοθεί όλα τα κομμάτια και τα εξαρτήματα, με τις οδηγίες.",
+   "s": "Να έχουν έρθει όλα τα κομμάτια, οι βίδες και οι οδηγίες.",
+   "c": "Πλήρης παράδοση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.prerequisites.1",
+    "hash": "c0ec87bc4d23",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τη θέση και να έχει αδειάσει ο χώρος.",
+   "s": "Να έχουμε πει πού μπαίνει και να είναι άδειο το σημείο.",
+   "c": "Θέση, άδειος χώρος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.prerequisites.2",
+    "hash": "bbc0cd5624cc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.steps.1": {
+   "section": "steps",
+   "n": "Συναρμολογούμε {είδος} σύμφωνα με τις οδηγίες του κατασκευαστή.",
+   "s": "Στήνουμε {είδος} όπως λένε οι οδηγίες.",
+   "c": "Συναρμολόγηση κατά τις οδηγίες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.steps.1",
+    "hash": "8961591c7eca",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.steps.2": {
+   "section": "steps",
+   "n": "Αλφαδιάζουμε και στερεώνουμε στον τοίχο, όπου το προβλέπει ο κατασκευαστής.",
+   "s": "Ισιώνουμε και βιδώνουμε στον τοίχο, όπου το λέει ο κατασκευαστής.",
+   "c": "Αλφάδιασμα, στερέωση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.steps.2",
+    "hash": "ac2ccd034f78",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.furniture.steps.3": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε πόρτες, συρτάρια και μεντεσέδες.",
+   "s": "Ρυθμίζουμε να κλείνουν σωστά οι πόρτες και τα συρτάρια.",
+   "c": "Ρύθμιση πορτών, συρταριών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.furniture.steps.3",
+    "hash": "496a3fe90ad0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.checks.1": {
+   "section": "checks",
+   "n": "Ανάβουμε τη θέρμανση: τα σώματα ζεσταίνονται ομοιόμορφα.",
+   "s": "Ανάβουμε: όλα τα καλοριφέρ ζεσταίνονται το ίδιο.",
+   "c": "Ομοιόμορφη θέρμανση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.checks.1",
+    "hash": "7d8b3934f2e2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.checks.2": {
+   "section": "checks",
+   "n": "Καμία ένωση δεν στάζει, ούτε κρύα ούτε ζεστή.",
+   "s": "Δεν στάζει καμία ένωση, ούτε όταν ζεσταθεί.",
+   "c": "Στεγνές ενώσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.checks.2",
+    "hash": "d5fe63ef75a9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.checks.3": {
+   "section": "checks",
+   "n": "Η πίεση μένει σταθερή μετά από λίγη ώρα λειτουργίας.",
+   "s": "Η πίεση δεν πέφτει αφού δουλέψει λίγη ώρα.",
+   "c": "Σταθερή πίεση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.checks.3",
+    "hash": "24b6fd4a6c3b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε τα νερά και καθαρίζουμε.",
+   "s": "Μαζεύουμε τα νερά και καθαρίζουμε τον χώρο.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.handover.1",
+    "hash": "923275c30ddc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς εξαερώνονται τα σώματα και πού ελέγχετε την πίεση.",
+   "s": "Σας δείχνουμε πώς βγάζετε τον αέρα και πού κοιτάτε την πίεση.",
+   "c": "Εξαέρωση, πίεση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.handover.2",
+    "hash": "855a5407fac1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε τους διακόπτες του κυκλώματος και αδειάζουμε το νερό όσο χρειάζεται.",
+   "s": "Κλείνουμε τους διακόπτες και βγάζουμε όσο νερό πρέπει από το κύκλωμα.",
+   "c": "Κλείσιμο, άδειασμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.preparation.1",
+    "hash": "ea4973342b43",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.preparation.2": {
+   "section": "preparation",
+   "n": "Προστατεύουμε το δάπεδο από τα νερά του κυκλώματος.",
+   "s": "Σκεπάζουμε το πάτωμα, γιατί το νερό του καλοριφέρ λερώνει.",
+   "c": "Προστασία δαπέδου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.preparation.2",
+    "hash": "7b89e243842c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Η εργασία δεν αφορά λέβητα αερίου ή πετρελαίου· αυτούς τους χειρίζεται μόνο αδειούχος τεχνικός.",
+   "s": "Δεν πειράζουμε λέβητα αερίου ή πετρελαίου· αυτόν τον φτιάχνει μόνο αδειούχος τεχνικός.",
+   "c": "Όχι λέβητες: μόνο αδειούχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.prerequisites.1",
+    "hash": "f84d63f0e8bb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Η θέρμανση να είναι κλειστή και κρύα όταν ξεκινάμε.",
+   "s": "Το καλοριφέρ να είναι σβηστό και κρύο όταν αρχίζουμε.",
+   "c": "Σβηστή, κρύα θέρμανση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.prerequisites.2",
+    "hash": "288124435ab5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.steps.1": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} και κάνουμε τις συνδέσεις με καινούργια παρεμβύσματα.",
+   "s": "Βάζουμε {είδος} και ενώνουμε με καινούργια λαστιχάκια.",
+   "c": "Τοποθέτηση, νέα παρεμβύσματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.steps.1",
+    "hash": "7b92396e2c2b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.steps.2": {
+   "section": "steps",
+   "n": "Γεμίζουμε το κύκλωμα και ανεβάζουμε την πίεση στην τιμή που ορίζει ο κατασκευαστής.",
+   "s": "Ξαναγεμίζουμε με νερό και φέρνουμε την πίεση εκεί που λέει ο κατασκευαστής.",
+   "c": "Γέμισμα, ρύθμιση πίεσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.steps.2",
+    "hash": "b4a558dc9e42",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.heating.steps.3": {
+   "section": "steps",
+   "n": "Εξαερώνουμε τα σώματα και ρυθμίζουμε, όπου υπάρχει, τον θερμοστάτη.",
+   "s": "Βγάζουμε τον αέρα από τα καλοριφέρ και ρυθμίζουμε τον θερμοστάτη, αν υπάρχει.",
+   "c": "Εξαέρωση, θερμοστάτης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.heating.steps.3",
+    "hash": "d39d8731df62",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.checks.1": {
+   "section": "checks",
+   "n": "Δοκιμάζουμε όλες τις λειτουργίες: ψύχει, θερμαίνει ή απορροφά κανονικά.",
+   "s": "Δοκιμάζουμε όλα τα προγράμματα: δροσίζει, ζεσταίνει ή τραβάει αέρα κανονικά.",
+   "c": "Δοκιμή λειτουργιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.checks.1",
+    "hash": "aad839969557",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.checks.2": {
+   "section": "checks",
+   "n": "Τα νερά της συμπύκνωσης φεύγουν χωρίς να στάζουν σε τοίχο ή μπαλκόνι.",
+   "s": "Το νερό που βγάζει φεύγει χωρίς να στάζει σε τοίχο ή μπαλκόνι.",
+   "c": "Σωστή απορροή νερών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.checks.2",
+    "hash": "f43deacf5a96",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.checks.3": {
+   "section": "checks",
+   "n": "Δεν υπάρχουν κραδασμοί ή θόρυβοι από τη στήριξη.",
+   "s": "Δεν τρέμει και δεν κάνει θόρυβο από τα στηρίγματα.",
+   "c": "Χωρίς κραδασμούς.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.checks.3",
+    "hash": "46b08dff6d46",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.handover.1": {
+   "section": "handover",
+   "n": "Σφραγίζουμε τη διέλευση στον τοίχο και καθαρίζουμε τη σκόνη.",
+   "s": "Κλείνουμε γύρω από την τρύπα στον τοίχο και σκουπίζουμε τη σκόνη.",
+   "c": "Σφράγισμα, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.handover.1",
+    "hash": "474ba97cff20",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς λειτουργεί και πώς καθαρίζονται τα φίλτρα.",
+   "s": "Σας δείχνουμε πώς δουλεύει και πώς καθαρίζετε τα φίλτρα.",
+   "c": "Χρήση, φίλτρα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.handover.2",
+    "hash": "4bd079a480b7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.preparation.1": {
+   "section": "preparation",
+   "n": "Κατεβάζουμε την ασφάλεια και ελέγχουμε με όργανο.",
+   "s": "Κόβουμε το ρεύμα και κοιτάμε με όργανο.",
+   "c": "Διακοπή, έλεγχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.preparation.1",
+    "hash": "043939a2d3ac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε για σωλήνες και καλώδια στα σημεία που θα τρυπήσουμε τον τοίχο.",
+   "s": "Ψάχνουμε μήπως περνάνε σωλήνες ή καλώδια εκεί που θα ανοίξουμε τρύπα.",
+   "c": "Ανίχνευση πριν το τρύπημα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.preparation.2",
+    "hash": "a3c4827193bb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Στα κλιματιστικά, τα ψυκτικά κυκλώματα τα χειρίζεται μόνο πιστοποιημένος ψυκτικός.",
+   "s": "Στα κλιματιστικά, το υγρό της ψύξης το πιάνει μόνο ψυκτικός με πιστοποίηση.",
+   "c": "Ψυκτικά: μόνο πιστοποιημένος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.prerequisites.1",
+    "hash": "f23077c347e7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τις θέσεις, τη διαδρομή σωλήνων ή αεραγωγού και την παροχή ρεύματος.",
+   "s": "Να έχουμε πει πού μπαίνει, από πού περνάνε σωλήνες ή αεραγωγός και από πού παίρνει ρεύμα.",
+   "c": "Θέσεις, διαδρομή, ρεύμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.prerequisites.2",
+    "hash": "4fb2532c881f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.steps.1": {
+   "section": "steps",
+   "n": "Ανοίγουμε τη διέλευση στον τοίχο με κλίση προς τα έξω, για να φεύγουν τα νερά.",
+   "s": "Ανοίγουμε τρύπα στον τοίχο που γέρνει προς τα έξω, για να φεύγουν τα νερά.",
+   "c": "Διέλευση με κλίση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.steps.1",
+    "hash": "65009373bcd9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.steps.2": {
+   "section": "steps",
+   "n": "Στερεώνουμε {είδος} σε στηρίγματα που αντέχουν βάρος και κραδασμούς.",
+   "s": "Βιδώνουμε {είδος} σε στηρίγματα που σηκώνουν το βάρος και το τρέμουλο.",
+   "c": "Στερέωση σε γερά στηρίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.steps.2",
+    "hash": "490ec7c2533b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.hvac.steps.3": {
+   "section": "steps",
+   "n": "Κάνουμε τις συνδέσεις σωλήνων, αποχέτευσης συμπυκνωμάτων και ρεύματος, όπως ορίζει ο κατασκευαστής.",
+   "s": "Ενώνουμε σωλήνες, το λαστιχάκι για τα νερά και το ρεύμα, όπως λέει ο κατασκευαστής.",
+   "c": "Συνδέσεις κατά τον κατασκευαστή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.hvac.steps.3",
+    "hash": "5077105361dd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.checks.1": {
+   "section": "checks",
+   "n": "Δεν έχουν μείνει κενά ή ακάλυπτα σημεία.",
+   "s": "Δεν έμειναν τρύπες ή σημεία χωρίς μόνωση.",
+   "c": "Χωρίς κενά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.checks.1",
+    "hash": "ed04374a9e55",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.checks.2": {
+   "section": "checks",
+   "n": "Οι ενώσεις και οι γωνίες είναι σφραγισμένες σε όλο το μήκος.",
+   "s": "Ενώσεις και γωνίες είναι κλεισμένες παντού.",
+   "c": "Σφραγισμένες ενώσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.checks.2",
+    "hash": "b14f15d5312d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.checks.3": {
+   "section": "checks",
+   "n": "Η τελική επιφάνεια είναι ίσια και χωρίς ρωγμές.",
+   "s": "Η επιφάνεια από πάνω είναι ίσια και δεν έχει ραγίσει.",
+   "c": "Ίσια, χωρίς ρωγμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.checks.3",
+    "hash": "7199f0f8165e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα υπολείμματα και καθαρίζουμε.",
+   "s": "Μαζεύουμε ό,τι περίσσεψε και καθαρίζουμε.",
+   "c": "Μάζεμα, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.handover.1",
+    "hash": "957c07fa7649",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να βαφτεί και τι να προσέχετε στη χρήση.",
+   "s": "Σας λέμε από πότε βάφεται και τι να προσέχετε.",
+   "c": "Βάψιμο, προσοχή στη χρήση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.handover.2",
+    "hash": "116536a478ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και έπιπλα και αδειάζουμε τον χώρο εργασίας.",
+   "s": "Σκεπάζουμε πατώματα και έπιπλα και ελευθερώνουμε τον χώρο.",
+   "c": "Προστασία, άδειασμα χώρου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.preparation.1",
+    "hash": "522f7075ba33",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.preparation.2": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε την επιφάνεια από σαθρά υλικά, άλατα και σκόνη.",
+   "s": "Βγάζουμε από την επιφάνεια ό,τι ξεκολλάει, τα άλατα και τη σκόνη.",
+   "c": "Καθάρισμα επιφάνειας.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.preparation.2",
+    "hash": "884222932809",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχει βρεθεί από πού έρχεται η υγρασία ή ο θόρυβος.",
+   "s": "Να ξέρουμε από πού μπαίνει η υγρασία ή ο θόρυβος.",
+   "c": "Γνωστή πηγή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.prerequisites.1",
+    "hash": "b80189d600d6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει το υλικό και το πάχος της μόνωσης.",
+   "s": "Να έχουμε πει ποιο υλικό θα μπει και πόσο χοντρό.",
+   "c": "Υλικό και πάχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.prerequisites.2",
+    "hash": "0064d7f101db",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.steps.1": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} σε όλη την επιφάνεια, χωρίς κενά ανάμεσα στα κομμάτια.",
+   "s": "Βάζουμε {είδος} σε όλη την επιφάνεια, με τα κομμάτια κολλητά μεταξύ τους.",
+   "c": "Συνεχής τοποθέτηση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.steps.1",
+    "hash": "03215e4fe1e4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.steps.2": {
+   "section": "steps",
+   "n": "Σφραγίζουμε τις ενώσεις και τα σημεία γύρω από σωλήνες, πρίζες και γωνίες.",
+   "s": "Κλείνουμε τις ενώσεις και τα σημεία γύρω από σωλήνες, πρίζες και γωνίες, να μη μείνει χαραμάδα.",
+   "c": "Σφράγισμα ενώσεων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.steps.2",
+    "hash": "428f03d8c777",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.insulate.steps.3": {
+   "section": "steps",
+   "n": "Κλείνουμε με την τελική επιφάνεια που συμφωνήσαμε, π.χ. γυψοσανίδα ή σοβά.",
+   "s": "Σκεπάζουμε με ό,τι έχουμε πει, π.χ. γυψοσανίδα ή σοβά.",
+   "c": "Τελική επιφάνεια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.insulate.steps.3",
+    "hash": "f3503b2b5254",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.checks.1": {
+   "section": "checks",
+   "n": "Δοκιμάζουμε από κάθε σημείο: ήχος, εικόνα ή άνοιγμα πόρτας λειτουργούν.",
+   "s": "Δοκιμάζουμε από κάθε θέση ότι δουλεύουν ήχος, εικόνα ή το άνοιγμα της πόρτας.",
+   "c": "Δοκιμή από κάθε σημείο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.checks.1",
+    "hash": "e7476828885a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.checks.2": {
+   "section": "checks",
+   "n": "Ο αισθητήρας, όπου υπάρχει, πιάνει την κίνηση στην περιοχή που θέλουμε.",
+   "s": "Αν υπάρχει αισθητήρας, ανάβει όταν περνάμε από το σημείο που θέλουμε.",
+   "c": "Σωστή περιοχή αισθητήρα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.checks.2",
+    "hash": "37b17f9285f4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.checks.3": {
+   "section": "checks",
+   "n": "Οι εξωτερικές μονάδες είναι σφραγισμένες από τη βροχή.",
+   "s": "Ό,τι μπαίνει έξω είναι κλεισμένο καλά για τη βροχή.",
+   "c": "Στεγανές εξωτερικές μονάδες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.checks.3",
+    "hash": "a968a4fa5288",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.handover.1": {
+   "section": "handover",
+   "n": "Σας δείχνουμε τη χρήση και τις ρυθμίσεις.",
+   "s": "Σας δείχνουμε πώς δουλεύει και πώς αλλάζουν οι ρυθμίσεις.",
+   "c": "Χρήση, ρυθμίσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.handover.1",
+    "hash": "16417f142a64",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες και το παλιό σύστημα, αν το συμφωνήσαμε.",
+   "s": "Παίρνουμε τα κουτιά και τα παλιά κομμάτια, αν το έχουμε πει.",
+   "c": "Μάζεμα συσκευασιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.handover.2",
+    "hash": "353a6a26fc4a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.preparation.1": {
+   "section": "preparation",
+   "n": "Κόβουμε το ρεύμα στο τροφοδοτικό και ελέγχουμε με όργανο.",
+   "s": "Κατεβάζουμε την ασφάλεια του τροφοδοτικού και κοιτάμε με όργανο.",
+   "c": "Διακοπή, έλεγχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.preparation.1",
+    "hash": "b2696c4d1a66",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε τα παλιά καλώδια πριν τα αποσυνδέσουμε.",
+   "s": "Σημαδεύουμε κάθε παλιό καλώδιο πριν το λύσουμε.",
+   "c": "Σήμανση καλωδίων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.preparation.2",
+    "hash": "01d4b5764b7b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τις θέσεις των μονάδων και πού βρίσκεται η τροφοδοσία.",
+   "s": "Να έχουμε πει πού μπαίνει κάθε κομμάτι και από πού θα πάρει ρεύμα.",
+   "c": "Θέσεις και τροφοδοσία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.prerequisites.1",
+    "hash": "18087c767119",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Αν αντικαθιστούμε παλιό σύστημα, να ξέρουμε τον τύπο του και πόσα καλώδια υπάρχουν.",
+   "s": "Αν αλλάζουμε παλιό, να ξέρουμε τι σύστημα είναι και πόσα καλώδια έχει.",
+   "c": "Τύπος παλιού συστήματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.prerequisites.2",
+    "hash": "a26e730e0bb0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε {είδος} στη θέση που συμφωνήσαμε, στο σωστό ύψος.",
+   "s": "Βιδώνουμε {είδος} εκεί που έχουμε πει, στο σωστό ύψος.",
+   "c": "Στερέωση στη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.steps.1",
+    "hash": "76966aa356e8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.steps.2": {
+   "section": "steps",
+   "n": "Συνδέουμε τα καλώδια σύμφωνα με το σχέδιο του κατασκευαστή.",
+   "s": "Ενώνουμε τα καλώδια όπως δείχνει το σχέδιο του κατασκευαστή.",
+   "c": "Σύνδεση κατά το σχέδιο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.steps.2",
+    "hash": "77a06667a514",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.low-voltage.steps.3": {
+   "section": "steps",
+   "n": "Δίνουμε ρεύμα και ρυθμίζουμε ένταση, ευαισθησία ή χρόνους, όπου υπάρχουν.",
+   "s": "Ξαναδίνουμε ρεύμα και ρυθμίζουμε ένταση, πόσο εύκολα πιάνει ή πόση ώρα μένει αναμμένο, όπου υπάρχουν.",
+   "c": "Ρυθμίσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.low-voltage.steps.3",
+    "hash": "9facad0719d1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.checks.1": {
+   "section": "checks",
+   "n": "Ο τοίχος είναι κατακόρυφος και ευθύς, με έλεγχο αλφαδιού και ράμματος.",
+   "s": "Ο τοίχος στέκεται όρθιος και ίσιος στο αλφάδι και στο νήμα.",
+   "c": "Κατακόρυφος, ευθύς.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.checks.1",
+    "hash": "1e384cadfa5d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.checks.2": {
+   "section": "checks",
+   "n": "Οι αρμοί είναι γεμάτοι και ομοιόμορφοι.",
+   "s": "Οι ενώσεις ανάμεσα στα τούβλα είναι γεμάτες και ίδιες.",
+   "c": "Γεμάτοι αρμοί.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.checks.2",
+    "hash": "af86ef1af7e4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.checks.3": {
+   "section": "checks",
+   "n": "Όπου ο τοίχος φτάνει ως την οροφή, το πάνω μέρος έχει σφηνωθεί σφιχτά.",
+   "s": "Αν φτάνει ως το ταβάνι, το πάνω μέρος έχει κλείσει σφιχτά.",
+   "c": "Σφήνωμα στην οροφή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.checks.3",
+    "hash": "2f3e81aca1ac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα υπολείμματα κονιάματος.",
+   "s": "Καθαρίζουμε τη λάσπη που περίσσεψε.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.handover.1",
+    "hash": "daf1bbb8095e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να σοβατιστεί ή να επενδυθεί.",
+   "s": "Σας λέμε πόσο περιμένουμε πριν τον σοβά ή το ντύσιμο.",
+   "c": "Πότε σοβατίζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.handover.2",
+    "hash": "9062bdbf8840",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.preparation.1": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τη βάση και σημαδεύουμε τη θέση με λέιζερ.",
+   "s": "Καθαρίζουμε κάτω και σημαδεύουμε με λέιζερ πού θα χτίσουμε.",
+   "c": "Καθάρισμα, σημάδεμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.preparation.1",
+    "hash": "dead013e2dfd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.preparation.2": {
+   "section": "preparation",
+   "n": "Προστατεύουμε δάπεδα και ό,τι είναι κοντά.",
+   "s": "Σκεπάζουμε πατώματα και ό,τι υπάρχει κοντά.",
+   "c": "Προστασία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.preparation.2",
+    "hash": "1e4f34fe0345",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει θέση, πάχος και ανοίγματα του τοίχου.",
+   "s": "Να έχουμε πει πού χτίζεται, πόσο χοντρός θα είναι και πού θα έχει ανοίγματα.",
+   "c": "Θέση, πάχος, ανοίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.prerequisites.1",
+    "hash": "13d2dbca2ad4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Για νέο τοίχο πάνω σε πλάκα, να έχει ελεγχθεί το βάρος από μηχανικό, όπου χρειάζεται.",
+   "s": "Αν ο τοίχος πατάει πάνω σε πλάκα, να έχει δει μηχανικός ότι σηκώνει το βάρος, όπου χρειάζεται.",
+   "c": "Έλεγχος βάρους από μηχανικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.prerequisites.2",
+    "hash": "8a3a49434238",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.steps.1": {
+   "section": "steps",
+   "n": "Χτίζουμε {είδος} σε σειρές με κονίαμα ή κόλλα, ελέγχοντας αλφάδι και ευθεία σε κάθε σειρά.",
+   "s": "Χτίζουμε {είδος} σειρά-σειρά με λάσπη ή κόλλα και κοιτάμε το αλφάδι σε κάθε σειρά.",
+   "c": "Κτίσιμο με αλφάδι ανά σειρά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.steps.1",
+    "hash": "ed2bc10a3cf9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.steps.2": {
+   "section": "steps",
+   "n": "Δένουμε τον νέο τοίχο με τους υπάρχοντες με αναμονές ή μεταλλικά δεσίματα.",
+   "s": "Ενώνουμε τον καινούργιο τοίχο με τους παλιούς με σίδερα ή ειδικά μεταλλικά κομμάτια.",
+   "c": "Δέσιμο με υπάρχοντες.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.steps.2",
+    "hash": "b98312ac93c4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.masonry.steps.3": {
+   "section": "steps",
+   "n": "Τοποθετούμε πρέκια πάνω από ανοίγματα, όπου υπάρχουν.",
+   "s": "Βάζουμε γερό δοκάρι πάνω από πόρτες ή παράθυρα, αν υπάρχουν.",
+   "c": "Πρέκια στα ανοίγματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.masonry.steps.3",
+    "hash": "ca60e2a7cf76",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.checks.1": {
+   "section": "checks",
+   "n": "Ανάβουμε: λειτουργούν όλα τα φωτιστικά.",
+   "s": "Ανάβουμε: δουλεύουν όλα τα φώτα.",
+   "c": "Ανάβουν όλα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.checks.1",
+    "hash": "1ad0566273ab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.checks.2": {
+   "section": "checks",
+   "n": "Δοκιμάζουμε το ρελέ διαρροής της γραμμής.",
+   "s": "Δοκιμάζουμε τον διακόπτη προστασίας της γραμμής.",
+   "c": "Δοκιμή ρελέ.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.checks.2",
+    "hash": "631cd981026e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.checks.3": {
+   "section": "checks",
+   "n": "Τα κουτιά και οι είσοδοι καλωδίων είναι κλειστά και στεγανά.",
+   "s": "Τα κουτιά και τα σημεία όπου μπαίνουν τα καλώδια είναι κλεισμένα καλά.",
+   "c": "Στεγανά κουτιά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.checks.3",
+    "hash": "bbc52a4d2891",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.handover.1": {
+   "section": "handover",
+   "n": "Σας δείχνουμε ποια ασφάλεια κλείνει τη γραμμή και πώς ρυθμίζεται ο αισθητήρας.",
+   "s": "Σας δείχνουμε ποια ασφάλεια κόβει τα φώτα και πώς αλλάζει η ρύθμιση του αισθητήρα.",
+   "c": "Ασφάλεια, ρύθμιση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.handover.1",
+    "hash": "5bf3db1ac80c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες και ξανακλείνουμε το χώμα, όπου σκάψαμε.",
+   "s": "Παίρνουμε τα κουτιά και ξαναγεμίζουμε το χώμα όπου σκάψαμε.",
+   "c": "Μάζεμα, κλείσιμο χώματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.handover.2",
+    "hash": "475643d803b7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.preparation.1": {
+   "section": "preparation",
+   "n": "Κατεβάζουμε την ασφάλεια και ελέγχουμε με όργανο.",
+   "s": "Κόβουμε το ρεύμα και κοιτάμε με όργανο.",
+   "c": "Διακοπή, έλεγχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.preparation.1",
+    "hash": "043939a2d3ac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε τις θέσεις και τη διαδρομή του καλωδίου.",
+   "s": "Σημαδεύουμε πού μπαίνουν τα φώτα και από πού περνάει το καλώδιο.",
+   "c": "Σημάδεμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.preparation.2",
+    "hash": "c24c609e73d3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει θέσεις, διαδρομή καλωδίου και από πού ανάβει.",
+   "s": "Να έχουμε πει πού μπαίνουν τα φώτα, από πού περνάει το καλώδιο και από πού ανάβουν.",
+   "c": "Θέσεις, διαδρομή, διακόπτης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.prerequisites.1",
+    "hash": "1d0cae5510c6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Γραμμή με ρελέ διαρροής και στεγανά υλικά για εξωτερικό χώρο.",
+   "s": "Η γραμμή να έχει διακόπτη προστασίας και τα υλικά να είναι για έξω, να μην περνάει νερό.",
+   "c": "Ρελέ διαρροής, στεγανά υλικά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.prerequisites.2",
+    "hash": "62148f801072",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.steps.1": {
+   "section": "steps",
+   "n": "Περνάμε καλώδιο για εξωτερική χρήση σε σωλήνα, στον τοίχο ή μέσα στο χώμα στο βάθος που χρειάζεται.",
+   "s": "Περνάμε καλώδιο για έξω μέσα σε σωλήνα, πάνω στον τοίχο ή θαμμένο στο χώμα όσο βαθιά πρέπει.",
+   "c": "Καλώδιο σε σωλήνα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.steps.1",
+    "hash": "8265ae705a1d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.steps.2": {
+   "section": "steps",
+   "n": "Στερεώνουμε {είδος} και κάνουμε τις συνδέσεις σε στεγανό κουτί.",
+   "s": "Βιδώνουμε {είδος} και ενώνουμε τα καλώδια μέσα σε κουτί που δεν μπαίνει νερό.",
+   "c": "Στερέωση, στεγανή σύνδεση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.steps.2",
+    "hash": "da6ca2507ba9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.outdoor-light.steps.3": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε την κατεύθυνση του φωτός και, όπου υπάρχει, τον αισθητήρα ή τον χρονοδιακόπτη.",
+   "s": "Γυρίζουμε το φως προς τα εκεί που θέλουμε και ρυθμίζουμε αισθητήρα ή χρονοδιακόπτη, αν υπάρχει.",
+   "c": "Κατεύθυνση, αισθητήρας.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.outdoor-light.steps.3",
+    "hash": "89bb47c7e59b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.checks.1": {
+   "section": "checks",
+   "n": "Το χρώμα καλύπτει ομοιόμορφα, χωρίς τρεξίματα ή σημάδια πινέλου.",
+   "s": "Η μπογιά σκεπάζει παντού το ίδιο, χωρίς να έχει τρέξει και χωρίς σημάδια από το πινέλο.",
+   "c": "Ομοιόμορφη κάλυψη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.checks.1",
+    "hash": "7fd39f579bf5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.checks.2": {
+   "section": "checks",
+   "n": "Οι γραμμές με τις διπλανές επιφάνειες είναι καθαρές.",
+   "s": "Εκεί που σταματά το χρώμα, η γραμμή είναι καθαρή.",
+   "c": "Καθαρές γραμμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.checks.2",
+    "hash": "e7ecec4c890f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.checks.3": {
+   "section": "checks",
+   "n": "Δεν υπάρχουν σημεία χωρίς χρώμα, ούτε στις γωνίες.",
+   "s": "Δεν έμεινε τίποτα άβαφο, ούτε στις γωνίες.",
+   "c": "Χωρίς άβαφα σημεία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.checks.3",
+    "hash": "40a408c4196b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.handover.1": {
+   "section": "handover",
+   "n": "Αφαιρούμε τα χαρτιά και τις ταινίες και καθαρίζουμε.",
+   "s": "Βγάζουμε τα χαρτιά και τις ταινίες και καθαρίζουμε τον χώρο.",
+   "c": "Αφαίρεση κάλυψης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.handover.1",
+    "hash": "7093fae26ba4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να χρησιμοποιηθεί και πώς καθαρίζεται.",
+   "s": "Σας λέμε από πότε μπαίνει σε χρήση και με τι καθαρίζεται.",
+   "c": "Πότε σε χρήση, φροντίδα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.handover.2",
+    "hash": "af7575205472",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.preparation.1": {
+   "section": "preparation",
+   "n": "Προστατεύουμε με χαρτί και ταινία ό,τι δεν βάφεται.",
+   "s": "Σκεπάζουμε με χαρτί και ταινία ό,τι δεν θα βαφτεί.",
+   "c": "Κάλυψη σημείων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.preparation.1",
+    "hash": "c89df181b03a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.preparation.2": {
+   "section": "preparation",
+   "n": "Τρίβουμε, καθαρίζουμε σκουριές ή παλιά χρώματα που ξεφλουδίζουν και ξεσκονίζουμε.",
+   "s": "Τρίβουμε, βγάζουμε σκουριά ή παλιό χρώμα που φεύγει και καθαρίζουμε τη σκόνη.",
+   "c": "Τρίψιμο, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.preparation.2",
+    "hash": "2018bfaee656",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει το χρώμα και το φινίρισμα, π.χ. ματ ή γυαλιστερό.",
+   "s": "Να έχουμε διαλέξει χρώμα και αν θα είναι ματ ή γυαλιστερό.",
+   "c": "Χρώμα και φινίρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.prerequisites.1",
+    "hash": "b8035e1703a5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Για εξωτερικές επιφάνειες, καιρός χωρίς βροχή και υγρασία.",
+   "s": "Για έξω, μέρες χωρίς βροχή και υγρασία.",
+   "c": "Έξω: χωρίς βροχή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.prerequisites.2",
+    "hash": "052b9f4a5b15",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.steps.1": {
+   "section": "steps",
+   "n": "Περνάμε αστάρι κατάλληλο για το υλικό, π.χ. αντισκωριακό για μέταλλο.",
+   "s": "Βάζουμε αστάρι που κάνει για το υλικό, π.χ. για μέταλλο αστάρι που κόβει τη σκουριά.",
+   "c": "Κατάλληλο αστάρι.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.steps.1",
+    "hash": "7048b60c80e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.steps.2": {
+   "section": "steps",
+   "n": "Βάφουμε {είδος} με δύο χέρια, αφήνοντας να στεγνώσει ανάμεσα όσο ορίζει ο κατασκευαστής.",
+   "s": "Βάφουμε {είδος} δύο φορές και περιμένουμε ανάμεσα να στεγνώσει, όσο λέει ο κατασκευαστής.",
+   "c": "Δύο χέρια με στέγνωμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.steps.2",
+    "hash": "46d914c9acd7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.paint-coat.steps.3": {
+   "section": "steps",
+   "n": "Τρίβουμε ελαφρά ανάμεσα στα χέρια, όπου το ζητά το υλικό.",
+   "s": "Τρίβουμε λίγο ανάμεσα στα χέρια, όπου το θέλει το υλικό.",
+   "c": "Τρίψιμο ανάμεσα, όπου χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.paint-coat.steps.3",
+    "hash": "4c68e07014d1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.checks.1": {
+   "section": "checks",
+   "n": "Περνάμε στεγνό χαρτί από κάθε ένωση: μένει στεγνό.",
+   "s": "Ακουμπάμε στεγνό χαρτί σε κάθε ένωση: δεν βρέχεται.",
+   "c": "Στεγνές ενώσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.checks.1",
+    "hash": "ec016b586da8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.checks.2": {
+   "section": "checks",
+   "n": "Κάνουμε δοκιμαστική λειτουργία: η συσκευή παίρνει και αδειάζει νερό κανονικά.",
+   "s": "Βάζουμε τη συσκευή να δουλέψει: παίρνει νερό και το βγάζει κανονικά.",
+   "c": "Δοκιμαστική λειτουργία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.checks.2",
+    "hash": "c9414da18905",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.checks.3": {
+   "section": "checks",
+   "n": "Ο διακόπτης κόβει πλήρως το νερό της συσκευής.",
+   "s": "Ο διακόπτης κλείνει τελείως το νερό της συσκευής.",
+   "c": "Κόβει πλήρως.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.checks.3",
+    "hash": "3ba611807e54",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε τα νερά.",
+   "s": "Μαζεύουμε ό,τι νερό έπεσε.",
+   "c": "Σκούπισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.handover.1",
+    "hash": "e030b1947a2b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε από πού κλείνει το νερό της συσκευής.",
+   "s": "Σας δείχνουμε ποιο διακοπτάκι κόβει το νερό της συσκευής.",
+   "c": "Πού κλείνει το νερό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.handover.2",
+    "hash": "3576f9f52d5e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό και βάζουμε πανί και λεκάνη.",
+   "s": "Κόβουμε το νερό και βάζουμε πανί και λεκάνη από κάτω.",
+   "c": "Κλείσιμο νερού.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.preparation.1",
+    "hash": "f0019dc73784",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε ότι τα σπειρώματα ταιριάζουν, αλλιώς βάζουμε κατάλληλη μετατροπή.",
+   "s": "Κοιτάμε ότι οι βόλτες ταιριάζουν· αν όχι, βάζουμε ενδιάμεσο κομμάτι.",
+   "c": "Συμβατά σπειρώματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.preparation.2",
+    "hash": "433c917407fd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Παροχή νερού με διακόπτη κοντά στη θέση της συσκευής και, όπου χρειάζεται, αποχέτευση.",
+   "s": "Να υπάρχει νερό με διακοπτάκι κοντά στη συσκευή και, αν θέλει, σωλήνας για τα νερά που φεύγουν.",
+   "c": "Παροχή με διακόπτη, αποχέτευση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.prerequisites.1",
+    "hash": "469c97653041",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε τις οδηγίες σύνδεσης της συσκευής.",
+   "s": "Να έχουμε τις οδηγίες της συσκευής για το πώς συνδέεται.",
+   "c": "Οδηγίες σύνδεσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.prerequisites.2",
+    "hash": "6556f5acfc0e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.steps.1": {
+   "section": "steps",
+   "n": "Συνδέουμε {είδος} στην παροχή με τα σπιράλ και τα παρεμβύσματα της συσκευής.",
+   "s": "Ενώνουμε {είδος} με το νερό, με τα σωληνάκια και τα λαστιχάκια που έχει η συσκευή.",
+   "c": "Σύνδεση στην παροχή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.steps.1",
+    "hash": "9f0a4a442314",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.steps.2": {
+   "section": "steps",
+   "n": "Συνδέουμε την αποχέτευση, όπου υπάρχει, με κλίση και χωρίς τσακίσματα.",
+   "s": "Ενώνουμε τον σωλήνα για τα νερά που φεύγουν, αν υπάρχει, να γέρνει και να μη διπλώνει.",
+   "c": "Αποχέτευση με κλίση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.steps.2",
+    "hash": "58aabfd5cd31",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.plumb-connect.steps.3": {
+   "section": "steps",
+   "n": "Ανοίγουμε σιγά το νερό και ξεπλένουμε τη συσκευή, όπου το ζητούν οι οδηγίες.",
+   "s": "Ανοίγουμε σιγά-σιγά το νερό και, αν το λένε οι οδηγίες, αφήνουμε να τρέξει λίγο για ξέπλυμα.",
+   "c": "Άνοιγμα νερού, ξέπλυμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.plumb-connect.steps.3",
+    "hash": "1f656b73e9e7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.checks.1": {
+   "section": "checks",
+   "n": "Οι σωλήνες και τα καλώδια που έμειναν είναι ταπωμένα και ασφαλή.",
+   "s": "Όσοι σωλήνες και καλώδια έμειναν έχουν κλειστεί και δεν είναι επικίνδυνοι.",
+   "c": "Ασφαλή ελεύθερα σημεία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.checks.1",
+    "hash": "f7d2c23a58ec",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.checks.2": {
+   "section": "checks",
+   "n": "Τα σημεία που μένουν δεν έχουν ζημιές από την αποξήλωση.",
+   "s": "Ό,τι έμεινε δεν χάλασε από το ξήλωμα.",
+   "c": "Χωρίς ζημιές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.checks.2",
+    "hash": "ae3224c9dc53",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.checks.3": {
+   "section": "checks",
+   "n": "Δεν στάζει νερό και δεν υπάρχει καλώδιο με ρεύμα ακάλυπτο.",
+   "s": "Δεν τρέχει νερό από πουθενά και δεν υπάρχει γυμνό καλώδιο με ρεύμα.",
+   "c": "Χωρίς διαρροή ή γυμνά καλώδια.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.checks.3",
+    "hash": "a48946ddb6d8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε τον χώρο.",
+   "s": "Καθαρίζουμε τον χώρο από σκόνη και κομμάτια.",
+   "c": "Σκούπισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.handover.1",
+    "hash": "12f2a150d115",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε τι μένει να γίνει στα σημεία που άδειασαν.",
+   "s": "Σας λέμε τι πρέπει να γίνει μετά εκεί που βγάλαμε τα παλιά.",
+   "c": "Τι ακολουθεί.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.handover.2",
+    "hash": "16a08e3373a6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.preparation.1": {
+   "section": "preparation",
+   "n": "Κόβουμε νερό ή ρεύμα, όπου συνδέεται κάτι που αφαιρείται.",
+   "s": "Αν κάτι από αυτά έχει νερό ή ρεύμα, τα κόβουμε πρώτα.",
+   "c": "Διακοπή νερού ή ρεύματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.preparation.1",
+    "hash": "bd57f90fbc94",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.preparation.2": {
+   "section": "preparation",
+   "n": "Προστατεύουμε δάπεδα, πόρτες και ό,τι μένει στη διαδρομή.",
+   "s": "Σκεπάζουμε πατώματα, πόρτες και ό,τι μένει από εκεί που θα περάσουμε.",
+   "c": "Προστασία διαδρομής.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.preparation.2",
+    "hash": "828b37683a58",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τι ακριβώς αφαιρείται και τι μένει.",
+   "s": "Να έχουμε πει μαζί τι βγαίνει και τι μένει.",
+   "c": "Τι φεύγει, τι μένει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.prerequisites.1",
+    "hash": "fe8fb98e4fde",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Συνεννόηση για τα μπάζα: σακιά, κάδος ή μεταφορά.",
+   "s": "Να έχουμε πει πού θα πάνε τα μπάζα: σακιά, κάδος ή φορτηγό.",
+   "c": "Συμφωνία για τα μπάζα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.prerequisites.2",
+    "hash": "becf9742202e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.steps.1": {
+   "section": "steps",
+   "n": "Αποσυνδέουμε και ταπώνουμε σωλήνες ή καλώδια που μένουν ελεύθερα.",
+   "s": "Λύνουμε σωλήνες ή καλώδια και κλείνουμε με καπάκι όσα μένουν ανοιχτά.",
+   "c": "Τάπωμα ελεύθερων σημείων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.steps.1",
+    "hash": "2b00157e6c8e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.steps.2": {
+   "section": "steps",
+   "n": "Αφαιρούμε {είδος} προσεκτικά, χωρίς να πειράξουμε ό,τι μένει.",
+   "s": "Βγάζουμε {είδος} προσεκτικά, χωρίς να χαλάσουμε ό,τι μένει.",
+   "c": "Αφαίρεση χωρίς ζημιές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.steps.2",
+    "hash": "6537391be0a2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.remove.steps.3": {
+   "section": "steps",
+   "n": "Μεταφέρουμε τα υλικά στα σακιά ή στον κάδο, όπως συμφωνήσαμε.",
+   "s": "Κατεβάζουμε τα πράγματα στα σακιά ή στον κάδο, όπως έχουμε πει.",
+   "c": "Μεταφορά στον κάδο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.remove.steps.3",
+    "hash": "efefe5867dc4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε με πήχη ότι η επισκευή δεν εξέχει.",
+   "s": "Κοιτάμε με πήχη ότι το μπάλωμα δεν πετάει έξω.",
+   "c": "Δεν εξέχει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.checks.1",
+    "hash": "248e22f641f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.checks.2": {
+   "section": "checks",
+   "n": "Χτυπάμε ελαφρά: δεν ακούγεται κούφιο.",
+   "s": "Χτυπάμε λίγο: δεν ακούγεται άδειο από πίσω.",
+   "c": "Χωρίς κούφιο ήχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.checks.2",
+    "hash": "42fefafd70f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.checks.3": {
+   "section": "checks",
+   "n": "Μετά το στέγνωμα, η επισκευή δεν ξεχωρίζει από τη γύρω επιφάνεια.",
+   "s": "Όταν στεγνώσει, δεν φαίνεται πού έγινε η επισκευή.",
+   "c": "Δεν ξεχωρίζει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.checks.3",
+    "hash": "48f09b219474",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα υπολείμματα.",
+   "s": "Καθαρίζουμε ό,τι περίσσεψε.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.handover.1",
+    "hash": "13a48ae36bc5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να βαφτεί ή να χρησιμοποιηθεί.",
+   "s": "Σας λέμε πόσο να περιμένετε πριν το βάψιμο ή τη χρήση.",
+   "c": "Πότε βάφεται ή χρησιμοποιείται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.handover.2",
+    "hash": "7801adff1698",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε ό,τι υπάρχει γύρω από το σημείο.",
+   "s": "Σκεπάζουμε όλα όσα είναι γύρω.",
+   "c": "Προστασία γύρω.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.preparation.1",
+    "hash": "fe5b7a17602c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε ό,τι δεν κρατάει και καθαρίζουμε τη σκόνη.",
+   "s": "Βγάζουμε ό,τι έχει ξεκολλήσει και καθαρίζουμε τη σκόνη.",
+   "c": "Αφαίρεση σαθρών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.preparation.2",
+    "hash": "09e430bcc829",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχει βρεθεί η αιτία της φθοράς, π.χ. υγρασία ή κίνηση, ώστε να μην ξαναγίνει.",
+   "s": "Να ξέρουμε γιατί χάλασε, π.χ. από υγρασία ή κούνημα, για να μην ξαναχαλάσει.",
+   "c": "Γνωστή αιτία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.prerequisites.1",
+    "hash": "1203da3f58ee",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Χώρος προσβάσιμος και προστατευμένος από τη βροχή.",
+   "s": "Να φτάνουμε το σημείο και να μην το πιάνει η βροχή.",
+   "c": "Πρόσβαση, χωρίς βροχή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.prerequisites.2",
+    "hash": "fd3c2b181201",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.steps.1": {
+   "section": "steps",
+   "n": "Επισκευάζουμε {είδος} με το υλικό που ταιριάζει στην επιφάνεια, σε στρώσεις όπου χρειάζεται.",
+   "s": "Φτιάχνουμε {είδος} με υλικό που κάνει για την επιφάνεια, σε χέρια αν χρειάζεται.",
+   "c": "Επισκευή με κατάλληλο υλικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.steps.1",
+    "hash": "77f33cee64c6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.steps.2": {
+   "section": "steps",
+   "n": "Βάζουμε πλέγμα ή ταινία οπλισμού, όπου χρειάζεται για να μην ξανανοίξει.",
+   "s": "Βάζουμε ειδικό πλέγμα ή ταινία, όπου χρειάζεται, για να μην ξανανοίξει.",
+   "c": "Οπλισμός, όπου χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.steps.2",
+    "hash": "ff07668da5dc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.repair.steps.3": {
+   "section": "steps",
+   "n": "Φινίρουμε στο επίπεδο και με την υφή της γύρω επιφάνειας.",
+   "s": "Τελειώνουμε στο ίδιο επίπεδο και με την ίδια υφή με ό,τι υπάρχει γύρω.",
+   "c": "Φινίρισμα όπως γύρω.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.repair.steps.3",
+    "hash": "9636519c8ae7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.checks.1": {
+   "section": "checks",
+   "n": "Το σημείο λειτουργεί κανονικά.",
+   "s": "Όλα δουλεύουν όπως πρέπει.",
+   "c": "Κανονική λειτουργία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.checks.1",
+    "hash": "c5d007d471b9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.checks.2": {
+   "section": "checks",
+   "n": "Δεν στάζει και δεν ζεσταίνεται κάτι που δεν πρέπει.",
+   "s": "Δεν τρέχει νερό από πουθενά και τίποτα δεν ζεσταίνεται περίεργα.",
+   "c": "Χωρίς διαρροή ή ζέστη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.checks.2",
+    "hash": "d1cfb9997b9b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.checks.3": {
+   "section": "checks",
+   "n": "Μετά από λίγη ώρα ελέγχουμε ξανά για σταγόνες.",
+   "s": "Ξανακοιτάμε μετά από λίγο για σταγόνες.",
+   "c": "Δεύτερος έλεγχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.checks.3",
+    "hash": "773f8633030f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε και καθαρίζουμε τον χώρο.",
+   "s": "Μαζεύουμε τα νερά και καθαρίζουμε.",
+   "c": "Καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.handover.1",
+    "hash": "6e29a7e0ca5f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.handover.2": {
+   "section": "handover",
+   "n": "Σας δίνουμε το παλιό εξάρτημα, αν το θέλετε.",
+   "s": "Σας αφήνουμε το παλιό κομμάτι, αν το θέλετε.",
+   "c": "Το παλιό, αν το θέλετε.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.handover.2",
+    "hash": "76b3d7cbc128",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό ή το ρεύμα και ελέγχουμε ότι κόπηκε.",
+   "s": "Κόβουμε το νερό ή το ρεύμα και σιγουρευόμαστε ότι κόπηκε.",
+   "c": "Διακοπή, έλεγχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.preparation.1",
+    "hash": "093ddc3e745b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τι ακριβώς έχει χαλάσει, πριν αφαιρέσουμε το παλιό.",
+   "s": "Βρίσκουμε τι ακριβώς χάλασε, πριν βγάλουμε το παλιό.",
+   "c": "Εντοπισμός βλάβης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.preparation.2",
+    "hash": "6510ad383e60",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε τον τύπο ή το μοντέλο, για να φέρουμε συμβατό ανταλλακτικό.",
+   "s": "Να ξέρουμε τι μοντέλο είναι, για να φέρουμε κομμάτι που ταιριάζει.",
+   "c": "Συμβατό ανταλλακτικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.prerequisites.1",
+    "hash": "c9af306215bb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να κλείνει ο διακόπτης νερού ή η ασφάλεια που τροφοδοτεί το σημείο.",
+   "s": "Να μπορούμε να κόψουμε το νερό ή το ρεύμα εκεί που δουλεύουμε.",
+   "c": "Διακοπή νερού ή ρεύματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.prerequisites.2",
+    "hash": "c3993ca9d548",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.steps.1": {
+   "section": "steps",
+   "n": "Αφαιρούμε το φθαρμένο εξάρτημα και καθαρίζουμε τη θέση του από άλατα και βρωμιές.",
+   "s": "Βγάζουμε το χαλασμένο κομμάτι και καθαρίζουμε το σημείο από άλατα και βρωμιές.",
+   "c": "Αφαίρεση, καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.steps.1",
+    "hash": "dd30159d984d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} και σφίγγουμε όσο χρειάζεται, χωρίς υπερβολή.",
+   "s": "Βάζουμε {είδος} και σφίγγουμε όσο πρέπει, όχι παραπάνω.",
+   "c": "Τοποθέτηση, σωστό σφίξιμο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.steps.2",
+    "hash": "9afd9d1e785d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.replace-part.steps.3": {
+   "section": "steps",
+   "n": "Ανοίγουμε ξανά το νερό ή το ρεύμα.",
+   "s": "Ξαναδίνουμε νερό ή ρεύμα.",
+   "c": "Επαναφορά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.replace-part.steps.3",
+    "hash": "f02a6efaf272",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.checks.1": {
+   "section": "checks",
+   "n": "Ρίχνουμε νερό: κυλά προς τις υδρορροές χωρίς να μπαίνει μέσα.",
+   "s": "Ρίχνουμε νερό: φεύγει προς τις υδρορροές και δεν μπαίνει μέσα.",
+   "c": "Δοκιμή με νερό.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.checks.1",
+    "hash": "5dc230844d76",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.checks.2": {
+   "section": "checks",
+   "n": "Τα υλικά είναι σταθερά και δεν σηκώνονται με τον αέρα.",
+   "s": "Τίποτα δεν κουνιέται και δεν θα το σηκώσει ο αέρας.",
+   "c": "Σταθερά υλικά.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.checks.2",
+    "hash": "fdfd1ae6c748",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.checks.3": {
+   "section": "checks",
+   "n": "Οι υδρορροές είναι ανοιχτές ως κάτω.",
+   "s": "Οι σωλήνες της βροχής είναι ανοιχτοί μέχρι κάτω.",
+   "c": "Ανοιχτές υδρορροές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.checks.3",
+    "hash": "0545a7bdda7f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε υλικά και υπολείμματα από την ταράτσα ή τη στέγη.",
+   "s": "Κατεβάζουμε ό,τι περίσσεψε από ψηλά.",
+   "c": "Μάζεμα υλικών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.handover.1",
+    "hash": "66ae2d1bcd68",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πόσο συχνά να ελέγχετε και να καθαρίζετε υδρορροές και ενώσεις.",
+   "s": "Σας λέμε κάθε πότε να κοιτάτε και να καθαρίζετε υδρορροές και ενώσεις.",
+   "c": "Συχνότητα ελέγχου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.handover.2",
+    "hash": "e31441a986ee",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.preparation.1": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε την περιοχή από φύλλα, χώματα και σαθρά υλικά.",
+   "s": "Καθαρίζουμε από φύλλα, χώματα και ό,τι ξεκολλάει.",
+   "c": "Καθάρισμα περιοχής.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.preparation.1",
+    "hash": "1dd154fd8376",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τη φθορά και σημαδεύουμε τα σημεία που χρειάζονται δουλειά.",
+   "s": "Κοιτάμε τι έχει χαλάσει και σημαδεύουμε πού χρειάζεται δουλειά.",
+   "c": "Εντοπισμός φθορών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.preparation.2",
+    "hash": "1958ccfcdd45",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Καιρός χωρίς βροχή και δυνατό αέρα για τις ημέρες της δουλειάς.",
+   "s": "Να μη βρέχει και να μη φυσάει δυνατά τις μέρες που δουλεύουμε.",
+   "c": "Χωρίς βροχή και αέρα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.prerequisites.1",
+    "hash": "c1cfb4b71bca",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Ασφαλής πρόσβαση στην ταράτσα ή στη στέγη, με μέτρα για την εργασία σε ύψος.",
+   "s": "Να ανεβαίνουμε με ασφάλεια, με ό,τι χρειάζεται για να μην πέσει κανείς.",
+   "c": "Ασφαλής πρόσβαση σε ύψος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.prerequisites.2",
+    "hash": "ee30bbbb103e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.steps.1": {
+   "section": "steps",
+   "n": "Αφαιρούμε τα κατεστραμμένα υλικά, όπου υπάρχουν.",
+   "s": "Βγάζουμε ό,τι έχει χαλάσει, αν υπάρχει.",
+   "c": "Αφαίρεση φθαρμένων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.steps.1",
+    "hash": "f8cd202a8e59",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} με τα στηρίγματα και τις επικαλύψεις που ορίζει ο κατασκευαστής.",
+   "s": "Βάζουμε {είδος} με τα σωστά στηρίγματα και τις ενώσεις να καλύπτουν όσο λέει ο κατασκευαστής.",
+   "c": "Τοποθέτηση με σωστές επικαλύψεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.steps.2",
+    "hash": "07de308bfde3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.roof.steps.3": {
+   "section": "steps",
+   "n": "Σφραγίζουμε τα σημεία γύρω από σωλήνες, καμινάδες και ενώσεις με τοίχους.",
+   "s": "Κλείνουμε καλά γύρω από σωλήνες, καμινάδες και εκεί που ακουμπάει σε τοίχους.",
+   "c": "Σφράγισμα κρίσιμων σημείων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.roof.steps.3",
+    "hash": "787ebeeb560d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.checks.1": {
+   "section": "checks",
+   "n": "Η κλίση ή η οριζοντίωση είναι σωστή, με έλεγχο αλφαδιού.",
+   "s": "Το αλφάδι δείχνει σωστή κλίση ή σωστό ίσιωμα.",
+   "c": "Σωστή κλίση, αλφάδι.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.checks.1",
+    "hash": "2548e56e341f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.checks.2": {
+   "section": "checks",
+   "n": "Χτυπάμε ελαφρά: κανένα κομμάτι δεν ακούγεται κούφιο.",
+   "s": "Χτυπάμε λίγο: κανένα κομμάτι δεν ακούγεται άδειο από κάτω.",
+   "c": "Χωρίς κούφιο ήχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.checks.2",
+    "hash": "84e9c9db7bde",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.checks.3": {
+   "section": "checks",
+   "n": "Οι ακμές και οι ενώσεις είναι ίσιες, χωρίς σκαλοπάτια.",
+   "s": "Οι άκρες και οι ενώσεις είναι ίσιες και δεν σκοντάφτει κανείς.",
+   "c": "Ίσιες ακμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.checks.3",
+    "hash": "9f4b9e2ecf68",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα υπολείμματα κόλλας από τις επιφάνειες.",
+   "s": "Καθαρίζουμε την κόλλα που έμεινε πάνω στις πέτρες.",
+   "c": "Καθάρισμα κόλλας.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.handover.1",
+    "hash": "8928bb0eff72",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε πατιέται και πώς καθαρίζεται το μάρμαρο.",
+   "s": "Σας λέμε από πότε πατιέται και με τι καθαρίζεται το μάρμαρο.",
+   "c": "Πότε πατιέται, φροντίδα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.handover.2",
+    "hash": "ed95fddcd05d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.preparation.1": {
+   "section": "preparation",
+   "n": "Προστατεύουμε κουφώματα και δάπεδα γύρω από τη θέση.",
+   "s": "Σκεπάζουμε πόρτες, παράθυρα και πατώματα γύρω-γύρω.",
+   "c": "Προστασία γύρω.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.preparation.1",
+    "hash": "8d552feb03c1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε τα παλιά κομμάτια, όπου υπάρχουν, και καθαρίζουμε τη βάση.",
+   "s": "Βγάζουμε τα παλιά, αν υπάρχουν, και καθαρίζουμε από κάτω.",
+   "c": "Αφαίρεση παλιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.preparation.2",
+    "hash": "caab83e1cfbe",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουν κοπεί τα κομμάτια στα μέτρα που πήραμε εμείς.",
+   "s": "Τα κομμάτια να έχουν κοπεί στα μέτρα που μετρήσαμε εμείς στο σημείο.",
+   "c": "Κομμάτια στα μέτρα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.prerequisites.1",
+    "hash": "c64fde1626a1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Βάση γερή και καθαρή στη θέση τοποθέτησης.",
+   "s": "Το σημείο που θα μπουν να είναι γερό και καθαρό.",
+   "c": "Γερή, καθαρή βάση.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.prerequisites.2",
+    "hash": "20804f6eaf2b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.steps.1": {
+   "section": "steps",
+   "n": "Δοκιμάζουμε κάθε κομμάτι στη θέση του πριν την κόλληση.",
+   "s": "Βάζουμε πρώτα κάθε κομμάτι χωρίς κόλλα, να δούμε ότι ταιριάζει.",
+   "c": "Στεγνή δοκιμή.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.steps.1",
+    "hash": "9f92a5dc7a1a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε {είδος} με κόλλα ή κονίαμα, με κλίση προς τα έξω όπου βρέχεται, για να φεύγει το νερό.",
+   "s": "Κολλάμε {είδος} με κόλλα ή λάσπη, με μικρή κλίση προς τα έξω όπου βρέχεται, για να φεύγει το νερό.",
+   "c": "Κόλληση με κλίση νερού.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.steps.2",
+    "hash": "d1703bab8139",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.stone.steps.3": {
+   "section": "steps",
+   "n": "Γεμίζουμε τους αρμούς και σφραγίζουμε με σιλικόνη την επαφή με κουφώματα.",
+   "s": "Γεμίζουμε τα κενά και βάζουμε σιλικόνη εκεί που ακουμπάει σε πόρτες ή παράθυρα.",
+   "c": "Αρμοί, σιλικόνη.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.stone.steps.3",
+    "hash": "109dcbaabc73",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.checks.1": {
+   "section": "checks",
+   "n": "Τραβάμε ελαφρά προς τα κάτω και προς τα έξω: τίποτα δεν κουνιέται.",
+   "s": "Τραβάμε λίγο κάτω και προς εμάς: δεν κουνιέται καθόλου.",
+   "c": "Δεν κουνιέται.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.checks.1",
+    "hash": "d64fd77b6ba4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.checks.2": {
+   "section": "checks",
+   "n": "Ελέγχουμε με αλφάδι ότι στέκεται ίσια.",
+   "s": "Το αλφάδι δείχνει ότι στέκεται ίσια.",
+   "c": "Ίσια, με αλφάδι.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.checks.2",
+    "hash": "84ea398af379",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.checks.3": {
+   "section": "checks",
+   "n": "Γύρω από τις τρύπες ο τοίχος δεν έχει ραγίσει.",
+   "s": "Ο τοίχος γύρω από τις βίδες δεν έχει σπάσει ούτε ραγίσει.",
+   "c": "Χωρίς ρωγμές γύρω.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.checks.3",
+    "hash": "08f2098a9cfa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τη σκόνη από το τρύπημα.",
+   "s": "Σκουπίζουμε τη σκόνη από τις τρύπες.",
+   "c": "Καθάρισμα σκόνης.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.handover.1",
+    "hash": "a5a45ca9fb2b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πόσο βάρος σηκώνει η στήριξη, όπου έχει σημασία, π.χ. σε ράφια.",
+   "s": "Σας λέμε πόσο βάρος αντέχει, αν έχει σημασία, π.χ. για ράφια.",
+   "c": "Πόσο βάρος σηκώνει.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.handover.2",
+    "hash": "6bc5ff8dcee9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.preparation.1": {
+   "section": "preparation",
+   "n": "Ελέγχουμε με ανιχνευτή για σωλήνες και καλώδια στα σημεία που θα τρυπήσουμε.",
+   "s": "Ψάχνουμε με ειδικό όργανο μήπως περνάνε σωλήνες ή καλώδια εκεί που θα τρυπήσουμε.",
+   "c": "Ανίχνευση σωλήνων και καλωδίων.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.preparation.1",
+    "hash": "19638ab4431d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε τις τρύπες με αλφάδι και σκεπάζουμε ό,τι είναι από κάτω.",
+   "s": "Σημαδεύουμε ίσια τις τρύπες και σκεπάζουμε ό,τι υπάρχει από κάτω.",
+   "c": "Σημάδεμα, προστασία.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.preparation.2",
+    "hash": "2d0146ab358a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε το βάρος, τη θέση και από τι υλικό είναι ο τοίχος.",
+   "s": "Να ξέρουμε πόσο βαρύ είναι, πού θα μπει και από τι είναι φτιαγμένος ο τοίχος.",
+   "c": "Βάρος, θέση, είδος τοίχου.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.prerequisites.1",
+    "hash": "02fad303277c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει το ύψος και, όπου χρειάζεται ρεύμα, πού βρίσκεται η πρίζα.",
+   "s": "Να έχουμε πει σε τι ύψος μπαίνει και, αν θέλει ρεύμα, πού είναι η πρίζα.",
+   "c": "Ύψος και πρίζα συμφωνημένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.prerequisites.2",
+    "hash": "bc6810e5c25d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.steps.1": {
+   "section": "steps",
+   "n": "Ανοίγουμε τις τρύπες με το τρυπάνι που ταιριάζει στον τοίχο.",
+   "s": "Τρυπάμε με το τρυπάνι που κάνει για τον συγκεκριμένο τοίχο.",
+   "c": "Τρύπημα.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.steps.1",
+    "hash": "6b90dd96160a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.steps.2": {
+   "section": "steps",
+   "n": "Βάζουμε ούπα ή βύσματα κατάλληλα για τον τοίχο και το βάρος, π.χ. ειδικά για γυψοσανίδα.",
+   "s": "Βάζουμε στις τρύπες βύσματα που κάνουν για τον τοίχο και το βάρος, π.χ. ειδικά για γυψοσανίδα.",
+   "c": "Ούπα για τοίχο και βάρος.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.steps.2",
+    "hash": "1b7db8cc1276",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "generic.wall-fix.steps.3": {
+   "section": "steps",
+   "n": "Στερεώνουμε {είδος} στον τοίχο και ελέγχουμε το αλφάδι.",
+   "s": "Βιδώνουμε {είδος} στον τοίχο και κοιτάμε με αλφάδι ότι στέκεται ίσια.",
+   "c": "Στερέωση και αλφάδι.",
+   "source": "new",
+   "review": {
+    "key": "sc:generic.wall-fix.steps.3",
+    "hash": "ad7028715b8e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

@@ -1,0 +1,1609 @@
+{
+ "material": "heater",
+ "name": "Θερμοσίφωνας",
+ "cases": [
+  {
+   "id": "heater:replace.vertical.masonry.electric",
+   "label": "Αλλαγή παλιού · Κάθετος στον τοίχο · Τούβλο ή μπετό · Μόνο με ρεύμα",
+   "answers": {
+    "job": "replace",
+    "mount": "vertical",
+    "wall": "masonry",
+    "energy": "electric"
+   },
+   "source": "base",
+   "task": "plumb-water-heater",
+   "title": "Τοποθέτηση ή αντικατάσταση ηλεκτρικού θερμοσίφωνα",
+   "duration": "ενδεικτικά 2–3 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-water-heater.prerequisites.1",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3"
+    ],
+    "steps": [
+     "plumb-water-heater.steps.1",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "heater:replace.vertical.masonry.dual",
+   "label": "Αλλαγή παλιού · Κάθετος στον τοίχο · Τούβλο ή μπετό · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "replace",
+    "mount": "vertical",
+    "wall": "masonry",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση θερμοσίφωνα διπλής ενέργειας",
+   "duration": "ενδεικτικά 4–6 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-water-heater.prerequisites.1",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "plumb-water-heater.steps.1",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.vertical.masonry.dual",
+    "hash": "c1688b3086fb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.vertical.drywall.electric",
+   "label": "Αλλαγή παλιού · Κάθετος στον τοίχο · Ελαφρύς τοίχος ή γυψοσανίδα · Μόνο με ρεύμα",
+   "answers": {
+    "job": "replace",
+    "mount": "vertical",
+    "wall": "drywall",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση ηλεκτρικού θερμοσίφωνα σε ελαφρύ τοίχο",
+   "duration": "ενδεικτικά 3–5 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.drywall-support",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3"
+    ],
+    "steps": [
+     "heater.steps.drywall-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.vertical.drywall.electric",
+    "hash": "0719a5696c84",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.vertical.drywall.dual",
+   "label": "Αλλαγή παλιού · Κάθετος στον τοίχο · Ελαφρύς τοίχος ή γυψοσανίδα · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "replace",
+    "mount": "vertical",
+    "wall": "drywall",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση θερμοσίφωνα διπλής ενέργειας σε ελαφρύ τοίχο",
+   "duration": "ενδεικτικά 4–6 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.drywall-support",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.drywall-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.vertical.drywall.dual",
+    "hash": "f73a49c6629c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.horizontal.masonry.electric",
+   "label": "Αλλαγή παλιού · Οριζόντιος (π.χ. πάνω από την πόρτα) · Τούβλο ή μπετό · Μόνο με ρεύμα",
+   "answers": {
+    "job": "replace",
+    "mount": "horizontal",
+    "wall": "masonry",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση ηλεκτρικού θερμοσίφωνα σε οριζόντια θέση",
+   "duration": "ενδεικτικά 3–5 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.horizontal-space",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3"
+    ],
+    "steps": [
+     "heater.steps.horizontal-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.horizontal.masonry.electric",
+    "hash": "7e3205f5c87e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.horizontal.masonry.dual",
+   "label": "Αλλαγή παλιού · Οριζόντιος (π.χ. πάνω από την πόρτα) · Τούβλο ή μπετό · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "replace",
+    "mount": "horizontal",
+    "wall": "masonry",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση θερμοσίφωνα διπλής ενέργειας σε οριζόντια θέση",
+   "duration": "ενδεικτικά 4–6 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.horizontal-space",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.horizontal-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.horizontal.masonry.dual",
+    "hash": "3269f305f2f5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.floor.electric",
+   "label": "Αλλαγή παλιού · Δαπέδου · Μόνο με ρεύμα",
+   "answers": {
+    "job": "replace",
+    "mount": "floor",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση ηλεκτρικού θερμοσίφωνα δαπέδου",
+   "duration": "ενδεικτικά 3–5 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.floor-base",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3"
+    ],
+    "steps": [
+     "heater.steps.floor-set",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.floor.electric",
+    "hash": "fa1c47a9f2fd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:replace.floor.dual",
+   "label": "Αλλαγή παλιού · Δαπέδου · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "replace",
+    "mount": "floor",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση θερμοσίφωνα διπλής ενέργειας δαπέδου",
+   "duration": "ενδεικτικά 4–6 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.floor-base",
+     "plumb-water-heater.prerequisites.2",
+     "plumb-water-heater.prerequisites.3",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "plumb-water-heater.preparation.1",
+     "plumb-water-heater.preparation.2",
+     "plumb-water-heater.preparation.3",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.floor-set",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "plumb-water-heater.handover.1",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:replace.floor.dual",
+    "hash": "de449d8891b0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.vertical.masonry.electric",
+   "label": "Καινούργιος σε νέα θέση · Κάθετος στον τοίχο · Τούβλο ή μπετό · Μόνο με ρεύμα",
+   "answers": {
+    "job": "new",
+    "mount": "vertical",
+    "wall": "masonry",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ηλεκτρικού θερμοσίφωνα σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-water-heater.prerequisites.1",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines"
+    ],
+    "steps": [
+     "plumb-water-heater.steps.1",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.vertical.masonry.electric",
+    "hash": "5ac547d86fc6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.vertical.masonry.dual",
+   "label": "Καινούργιος σε νέα θέση · Κάθετος στον τοίχο · Τούβλο ή μπετό · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "new",
+    "mount": "vertical",
+    "wall": "masonry",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση θερμοσίφωνα διπλής ενέργειας σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-water-heater.prerequisites.1",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "plumb-water-heater.steps.1",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.vertical.masonry.dual",
+    "hash": "34b996ef833d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.vertical.drywall.electric",
+   "label": "Καινούργιος σε νέα θέση · Κάθετος στον τοίχο · Ελαφρύς τοίχος ή γυψοσανίδα · Μόνο με ρεύμα",
+   "answers": {
+    "job": "new",
+    "mount": "vertical",
+    "wall": "drywall",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ηλεκτρικού θερμοσίφωνα σε ελαφρύ τοίχο σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.drywall-support",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines"
+    ],
+    "steps": [
+     "heater.steps.drywall-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.vertical.drywall.electric",
+    "hash": "d640d10413e3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.vertical.drywall.dual",
+   "label": "Καινούργιος σε νέα θέση · Κάθετος στον τοίχο · Ελαφρύς τοίχος ή γυψοσανίδα · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "new",
+    "mount": "vertical",
+    "wall": "drywall",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση θερμοσίφωνα διπλής ενέργειας σε ελαφρύ τοίχο σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.drywall-support",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.drywall-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.vertical.drywall.dual",
+    "hash": "675d2aa20359",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.horizontal.masonry.electric",
+   "label": "Καινούργιος σε νέα θέση · Οριζόντιος (π.χ. πάνω από την πόρτα) · Τούβλο ή μπετό · Μόνο με ρεύμα",
+   "answers": {
+    "job": "new",
+    "mount": "horizontal",
+    "wall": "masonry",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ηλεκτρικού θερμοσίφωνα σε οριζόντια θέση σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.horizontal-space",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines"
+    ],
+    "steps": [
+     "heater.steps.horizontal-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.horizontal.masonry.electric",
+    "hash": "f722a4324fe3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.horizontal.masonry.dual",
+   "label": "Καινούργιος σε νέα θέση · Οριζόντιος (π.χ. πάνω από την πόρτα) · Τούβλο ή μπετό · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "new",
+    "mount": "horizontal",
+    "wall": "masonry",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση θερμοσίφωνα διπλής ενέργειας σε οριζόντια θέση σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.horizontal-space",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.horizontal-mount",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.horizontal.masonry.dual",
+    "hash": "f32c70a2b93e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.floor.electric",
+   "label": "Καινούργιος σε νέα θέση · Δαπέδου · Μόνο με ρεύμα",
+   "answers": {
+    "job": "new",
+    "mount": "floor",
+    "energy": "electric"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ηλεκτρικού θερμοσίφωνα δαπέδου σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.floor-base",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines"
+    ],
+    "steps": [
+     "heater.steps.floor-set",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.floor.electric",
+    "hash": "a0182155e704",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:new.floor.dual",
+   "label": "Καινούργιος σε νέα θέση · Δαπέδου · Διπλής ενέργειας (με ηλιακό ή καλοριφέρ)",
+   "answers": {
+    "job": "new",
+    "mount": "floor",
+    "energy": "dual"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση θερμοσίφωνα διπλής ενέργειας δαπέδου σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τις νέες σωληνώσεις",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "heater.prerequisites.floor-base",
+     "plumb-water-heater.prerequisites.2",
+     "heater.prerequisites.new-lines",
+     "heater.prerequisites.dual-source"
+    ],
+    "preparation": [
+     "heater.preparation.new-mark",
+     "heater.preparation.new-lines",
+     "heater.preparation.dual-drain"
+    ],
+    "steps": [
+     "heater.steps.floor-set",
+     "plumb-water-heater.steps.2",
+     "plumb-water-heater.steps.3",
+     "heater.steps.dual-coil",
+     "plumb-water-heater.steps.4",
+     "plumb-water-heater.steps.5"
+    ],
+    "checks": [
+     "plumb-water-heater.checks.1",
+     "plumb-water-heater.checks.2",
+     "plumb-water-heater.checks.3",
+     "heater.checks.dual-heat"
+    ],
+    "handover": [
+     "heater.handover.clean",
+     "plumb-water-heater.handover.2",
+     "heater.handover.dual-use"
+    ]
+   },
+   "review": {
+    "key": "case:heater:new.floor.dual",
+    "hash": "70e68679302f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater:element",
+   "label": "Μόνο αλλαγή αντίστασης",
+   "answers": {
+    "job": "element"
+   },
+   "source": "existing",
+   "task": "plumb-heater-element",
+   "title": "Αντικατάσταση αντίστασης θερμοσίφωνα",
+   "duration": "ενδεικτικά 1,5–3 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-heater-element.prerequisites.1",
+     "plumb-heater-element.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-heater-element.preparation.1",
+     "plumb-heater-element.preparation.2",
+     "plumb-heater-element.preparation.3"
+    ],
+    "steps": [
+     "plumb-heater-element.steps.1",
+     "plumb-heater-element.steps.2",
+     "plumb-heater-element.steps.3",
+     "plumb-heater-element.steps.4",
+     "plumb-heater-element.steps.5"
+    ],
+    "checks": [
+     "plumb-heater-element.checks.1",
+     "plumb-heater-element.checks.2",
+     "plumb-heater-element.checks.3"
+    ],
+    "handover": [
+     "plumb-heater-element.handover.1",
+     "plumb-heater-element.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:heater:element",
+    "hash": "6a8d1083a11a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "plumb-heater-element.steps.3",
+   "section": "steps",
+   "when": {
+    "job": [
+     "replace"
+    ]
+   },
+   "review": {
+    "key": "extra:heater:plumb-heater-element.steps.3",
+    "hash": "3a4eafd90eab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater.x.mixing-valve",
+   "section": "steps",
+   "when": {
+    "energy": [
+     "dual"
+    ]
+   },
+   "review": {
+    "key": "extra:heater:heater.x.mixing-valve",
+    "hash": "fb5cbb326de1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater.x.drip-tray",
+   "section": "steps",
+   "when": {
+    "mount": [
+     "horizontal"
+    ]
+   },
+   "review": {
+    "key": "extra:heater:heater.x.drip-tray",
+    "hash": "a46946a1f041",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "heater.x.isolation-valves",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:heater:heater.x.isolation-valves",
+    "hash": "880888e9560d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "heater.checks.dual-heat": {
+   "section": "checks",
+   "n": "Ανοίγουμε τον ηλιακό ή τον λέβητα: το νερό ζεσταίνεται χωρίς ρεύμα και οι συνδέσεις της σερπαντίνας δεν στάζουν.",
+   "s": "Με τον ηλιακό ή το καλοριφέρ ανοιχτά, το νερό ζεσταίνεται χωρίς ρεύμα και οι νέες ενώσεις μένουν στεγνές.",
+   "c": "Ζεσταίνει χωρίς ρεύμα, στεγνή σερπαντίνα.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.checks.dual-heat",
+    "hash": "713c0f92b47a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.handover.clean": {
+   "section": "handover",
+   "n": "Μαζεύουμε τις συσκευασίες και καθαρίζουμε τον χώρο.",
+   "s": "Παίρνουμε τα κουτιά και τα υλικά που περίσσεψαν και αφήνουμε τον χώρο καθαρό.",
+   "c": "Συσκευασίες και καθάρισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.handover.clean",
+    "hash": "3dffa9a246ac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.handover.dual-use": {
+   "section": "handover",
+   "n": "Σας εξηγούμε πότε χρειάζεται το ρεύμα και πότε φτάνει ο ηλιακός ή ο λέβητας.",
+   "s": "Σας λέμε πότε να ανάβετε τον θερμοσίφωνα και πότε το νερό ζεσταίνεται μόνο του από τον ηλιακό ή το καλοριφέρ.",
+   "c": "Πότε ρεύμα και πότε ηλιακός ή λέβητας.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.handover.dual-use",
+    "hash": "a7f154b7ceb0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.preparation.dual-drain": {
+   "section": "preparation",
+   "n": "Κλείνουμε και αδειάζουμε το κύκλωμα του ηλιακού ή του λέβητα πριν από τη σύνδεση.",
+   "s": "Κλείνουμε και αδειάζουμε τους σωλήνες από τον ηλιακό ή το καλοριφέρ πριν τους ενώσουμε.",
+   "c": "Κλείσιμο και άδειασμα κυκλώματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.preparation.dual-drain",
+    "hash": "cb051e1182e7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.preparation.new-lines": {
+   "section": "preparation",
+   "n": "Φέρνουμε κρύο και ζεστό νερό και αποχέτευση για τη βαλβίδα ασφαλείας στη νέα θέση.",
+   "s": "Περνάμε σωλήνες για κρύο και ζεστό νερό και για τα νερά της βαλβίδας ασφαλείας.",
+   "c": "Νέες σωληνώσεις και αποχέτευση βαλβίδας.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.preparation.new-lines",
+    "hash": "3c70a32078fb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.preparation.new-mark": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε θέση και ύψος, ώστε να φτάνουμε άνετα τη βαλβίδα ασφαλείας και το ηλεκτρικό κουτί.",
+   "s": "Σημαδεύουμε πού ακριβώς θα μπει, ώστε να φτάνει κανείς τη βαλβίδα και το καπάκι με τα ηλεκτρικά.",
+   "c": "Σημάδεμα θέσης για εύκολη πρόσβαση.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.preparation.new-mark",
+    "hash": "ea217da0aa1d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.prerequisites.drywall-support": {
+   "section": "prerequisites",
+   "n": "Σε ελαφρύ τοίχο ή γυψοσανίδα, ο θερμοσίφωνας στηρίζεται σε ενισχυμένο σκελετό ή σε βάση δαπέδου· το ελέγχουμε πριν ξεκινήσουμε.",
+   "s": "Ο ελαφρύς τοίχος δεν κρατά μόνος του τον γεμάτο θερμοσίφωνα· χρειάζεται ενίσχυση ή βάση στο πάτωμα, και το κοιτάμε από πριν.",
+   "c": "Ελαφρύς τοίχος: ενίσχυση ή βάση δαπέδου.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.prerequisites.drywall-support",
+    "hash": "793884bbe074",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.prerequisites.dual-source": {
+   "section": "prerequisites",
+   "n": "Σωληνώσεις από τον ηλιακό ή τον λέβητα ως τη θέση του θερμοσίφωνα, με τους διακόπτες τους.",
+   "s": "Να έρχονται ως τον θερμοσίφωνα οι σωλήνες από τον ηλιακό ή από το καλοριφέρ, με διακόπτες.",
+   "c": "Σωληνώσεις ηλιακού ή λέβητα στη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.prerequisites.dual-source",
+    "hash": "b0ef78e77394",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.prerequisites.floor-base": {
+   "section": "prerequisites",
+   "n": "Σταθερό, επίπεδο δάπεδο που αντέχει τον γεμάτο θερμοσίφωνα, με χώρο γύρω του για το σέρβις.",
+   "s": "Το πάτωμα πρέπει να είναι γερό και ίσιο για το βάρος, και να υπάρχει χώρος γύρω για συντήρηση.",
+   "c": "Δάπεδο που αντέχει, με χώρο για σέρβις.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.prerequisites.floor-base",
+    "hash": "bd4d0a47713d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.prerequisites.horizontal-space": {
+   "section": "prerequisites",
+   "n": "Χώρος πάνω από πόρτα ή σε πατάρι, με τοίχο ή ταβάνι που αντέχει τον γεμάτο θερμοσίφωνα και πρόσβαση για το σέρβις.",
+   "s": "Χρειάζεται θέση ψηλά, π.χ. πάνω από την πόρτα, σε τοίχο που αντέχει το βάρος, και να φτάνουμε για συντήρηση.",
+   "c": "Θέση για οριζόντιο, με στήριξη και πρόσβαση.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.prerequisites.horizontal-space",
+    "hash": "9f113c6d2592",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.prerequisites.new-lines": {
+   "section": "prerequisites",
+   "n": "Νέα παροχή κρύου νερού, έξοδος ζεστού και αποχέτευση για τη βαλβίδα ασφαλείας στη νέα θέση.",
+   "s": "Στη νέα θέση χρειάζεται κρύο νερό, σωλήνας για το ζεστό και αποχέτευση για τη βαλβίδα ασφαλείας.",
+   "c": "Νέες παροχές και αποχέτευση στη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.prerequisites.new-lines",
+    "hash": "ffa14663c1e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.steps.drywall-mount": {
+   "section": "steps",
+   "n": "Στερεώνουμε τα στηρίγματα στην ενίσχυση του τοίχου ή στη βάση δαπέδου και κρεμάμε τον θερμοσίφωνα αλφαδιασμένο.",
+   "s": "Βιδώνουμε τα στηρίγματα στην ενίσχυση ή στη βάση και κρεμάμε τον θερμοσίφωνα ίσιο.",
+   "c": "Στηρίγματα στην ενίσχυση, κρέμασμα αλφαδιασμένο.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.steps.drywall-mount",
+    "hash": "5d23221f5e26",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.steps.dual-coil": {
+   "section": "steps",
+   "n": "Συνδέουμε τη σερπαντίνα στο κύκλωμα του ηλιακού ή του λέβητα, με διακόπτες και εξαεριστικό.",
+   "s": "Ενώνουμε τον σωλήνα που ζεσταίνει το νερό από τον ηλιακό ή το καλοριφέρ, με διακόπτες και βαλβίδα για τον αέρα.",
+   "c": "Σερπαντίνα στο κύκλωμα, με διακόπτες.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.steps.dual-coil",
+    "hash": "94e079421bb0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.steps.floor-set": {
+   "section": "steps",
+   "n": "Στήνουμε τον θερμοσίφωνα στη βάση του, αλφαδιασμένο, και τον ασφαλίζουμε στον τοίχο όπου το ορίζει ο κατασκευαστής.",
+   "s": "Βάζουμε τον θερμοσίφωνα όρθιο στη βάση του, ίσιο, και τον δένουμε στον τοίχο αν το λένε οι οδηγίες.",
+   "c": "Στη βάση, αλφαδιασμένος, ασφαλισμένος.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.steps.floor-set",
+    "hash": "ec554e5be7bc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.steps.horizontal-mount": {
+   "section": "steps",
+   "n": "Στερεώνουμε στηρίγματα για οριζόντια τοποθέτηση και ανεβάζουμε τον θερμοσίφωνα με δύο άτομα, αλφαδιασμένο.",
+   "s": "Βάζουμε ειδικά στηρίγματα για ξαπλωτό θερμοσίφωνα και τον ανεβάζουμε δύο άτομα, ίσιο.",
+   "c": "Στηρίγματα για οριζόντιο, ανέβασμα από δύο.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.steps.horizontal-mount",
+    "hash": "28e9fce923dc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.x.drip-tray": {
+   "section": "steps",
+   "n": "Βάζουμε λεκάνη συλλογής κάτω από τον θερμοσίφωνα, όπου μια διαρροή θα έβρεχε ταβάνι ή ντουλάπι.",
+   "s": "Βάζουμε από κάτω ένα ταψί για νερά, ώστε αν στάξει ποτέ να μη βραχεί το ταβάνι ή το ντουλάπι.",
+   "c": "Λεκάνη συλλογής από κάτω.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.x.drip-tray",
+    "hash": "4da45843a089",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.x.isolation-valves": {
+   "section": "preparation",
+   "n": "Τοποθετούμε διακόπτες στο κρύο και στο ζεστό, ώστε ο θερμοσίφωνας να απομονώνεται για το σέρβις.",
+   "s": "Βάζουμε διακόπτες πριν και μετά τον θερμοσίφωνα, για να κλείνει μόνο αυτός όταν χρειάζεται συντήρηση.",
+   "c": "Διακόπτες απομόνωσης κρύου και ζεστού.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.x.isolation-valves",
+    "hash": "4e2c67c8bdd9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "heater.x.mixing-valve": {
+   "section": "steps",
+   "n": "Τοποθετούμε θερμοστατική βαλβίδα ανάμειξης στην έξοδο, για να μη βγαίνει καυτό νερό στις βρύσες.",
+   "s": "Βάζουμε μια βαλβίδα που ανακατεύει κρύο, για να μην καίει το νερό στις βρύσες όταν ο ηλιακός το ζεσταίνει πολύ.",
+   "c": "Θερμοστατική βαλβίδα ανάμειξης στην έξοδο.",
+   "source": "new",
+   "review": {
+    "key": "sc:heater.x.mixing-valve",
+    "hash": "3a1c3f13cf99",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε τη φλάντζα για σταγόνες, πριν δώσουμε ρεύμα.",
+   "s": "Κοιτάμε ότι δεν στάζει από τη φλάντζα, πριν δώσουμε ρεύμα.",
+   "c": "Στεγνή φλάντζα πριν το ρεύμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.checks.1",
+    "hash": "d15107ea74c5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.checks.2": {
+   "section": "checks",
+   "n": "Ανεβάζουμε την ασφάλεια: η ένδειξη ανάβει και το νερό ζεσταίνεται.",
+   "s": "Ανεβάζουμε την ασφάλεια: ανάβει το λαμπάκι και το νερό ζεσταίνεται.",
+   "c": "Ανάβει και ζεσταίνει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.checks.2",
+    "hash": "f5a69ec4bf30",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.checks.3": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι η ασφάλεια και το ρελέ διαρροής δεν πέφτουν όσο δουλεύει ο θερμοσίφωνας.",
+   "s": "Η ασφάλεια και ο διακόπτης διαρροής δεν πέφτουν όσο δουλεύει.",
+   "c": "Δεν πέφτει ασφάλεια ή ρελέ.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.checks.3",
+    "hash": "729e5d77a1e4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα νερά και τα άλατα.",
+   "s": "Σκουπίζουμε τα νερά και τα άλατα.",
+   "c": "Καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.handover.1",
+    "hash": "67b9e1ed32ee",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε σε τι κατάσταση ήταν το ανόδιο και πότε καλό είναι να ξαναελεγχθεί.",
+   "s": "Σας λέμε πώς ήταν η ράβδος προστασίας και πότε να ξαναελεγχθεί.",
+   "c": "Κατάσταση ανοδίου και επόμενος έλεγχος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.handover.2",
+    "hash": "9dd6f151e90b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.preparation.1": {
+   "section": "preparation",
+   "n": "Κατεβάζουμε την ασφάλεια του θερμοσίφωνα και κλείνουμε το νερό.",
+   "s": "Κόβουμε το ρεύμα του θερμοσίφωνα από τον πίνακα και κλείνουμε το νερό.",
+   "c": "Ασφάλεια κάτω, νερό κλειστό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.preparation.1",
+    "hash": "2a1cd222226b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.preparation.2": {
+   "section": "preparation",
+   "n": "Αδειάζουμε τον θερμοσίφωνα σε αποχέτευση, ανοίγοντας μια βρύση ζεστού για να μπει αέρας.",
+   "s": "Αδειάζουμε τον θερμοσίφωνα και ανοίγουμε μια βρύση ζεστού για να μπει αέρας και να αδειάσει.",
+   "c": "Άδειασμα με ανοιχτή βρύση ζεστού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.preparation.2",
+    "hash": "95a0c381ab51",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.preparation.3": {
+   "section": "preparation",
+   "n": "Αφαιρούμε το καπάκι και αποσυνδέουμε τα καλώδια.",
+   "s": "Βγάζουμε το καπάκι και ξεβιδώνουμε τα καλώδια.",
+   "c": "Καπάκι και καλώδια.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.preparation.3",
+    "hash": "900e4fbf7e37",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε μάρκα και τύπο του θερμοσίφωνα, για να φέρουμε τη σωστή αντίσταση και φλάντζα.",
+   "s": "Να ξέρουμε μάρκα και μοντέλο, για να φέρουμε την αντίσταση και τη φλάντζα που ταιριάζουν.",
+   "c": "Μάρκα και τύπος για σωστό ανταλλακτικό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.prerequisites.1",
+    "hash": "34af5fb3551e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στο κάτω μέρος του θερμοσίφωνα και σε αποχέτευση για το άδειασμα.",
+   "s": "Να φτάνουμε το κάτω μέρος του θερμοσίφωνα και να υπάρχει αποχέτευση για να τον αδειάσουμε.",
+   "c": "Πρόσβαση από κάτω και αποχέτευση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.prerequisites.2",
+    "hash": "dded5a8b2dd6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.steps.1": {
+   "section": "steps",
+   "n": "Ξεβιδώνουμε τη φλάντζα και βγάζουμε την παλιά αντίσταση.",
+   "s": "Ξεβιδώνουμε το στρογγυλό καπάκι και βγάζουμε την παλιά αντίσταση.",
+   "c": "Αφαιρούμε την παλιά αντίσταση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.steps.1",
+    "hash": "c6ea2d95d4d9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.steps.2": {
+   "section": "steps",
+   "n": "Καθαρίζουμε τα άλατα από τον πάτο του θερμοσίφωνα.",
+   "s": "Βγάζουμε τα άλατα από τον πάτο του θερμοσίφωνα.",
+   "c": "Καθαρισμός αλάτων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.steps.2",
+    "hash": "b1fbd1d8d220",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.steps.3": {
+   "section": "steps",
+   "n": "Ελέγχουμε το ανόδιο, τη ράβδο που προστατεύει το δοχείο από τη διάβρωση, και το αλλάζουμε αν έχει φθαρεί.",
+   "s": "Κοιτάμε τη ράβδο που προστατεύει το δοχείο από τη σκουριά και, αν έχει φαγωθεί, την αλλάζουμε.",
+   "c": "Έλεγχος και αλλαγή ανοδίου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.steps.3",
+    "hash": "68e059dd3dee",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.steps.4": {
+   "section": "steps",
+   "n": "Τοποθετούμε τη νέα αντίσταση με καινούργιο παρέμβυσμα και συνδέουμε ξανά τα καλώδια και τον θερμοστάτη.",
+   "s": "Βάζουμε τη νέα αντίσταση με καινούργιο λάστιχο και ξαναενώνουμε καλώδια και θερμοστάτη.",
+   "c": "Νέα αντίσταση, καλώδια, θερμοστάτης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.steps.4",
+    "hash": "3baf46e57200",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-heater-element.steps.5": {
+   "section": "steps",
+   "n": "Γεμίζουμε τον θερμοσίφωνα με νερό, μέχρι να βγει όλος ο αέρας από τη βρύση του ζεστού.",
+   "s": "Γεμίζουμε με νερό ώσπου να φύγει όλος ο αέρας από τη βρύση του ζεστού.",
+   "c": "Γέμισμα ώσπου να φύγει ο αέρας.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-heater-element.steps.5",
+    "hash": "4d1d36a65626",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε τις συνδέσεις του νερού για σταγόνες.",
+   "s": "Κοιτάμε τις ενώσεις του νερού για σταγόνες.",
+   "c": "Καμία σταγόνα στις ενώσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.checks.1",
+    "hash": "b9b1f58f483e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.checks.2": {
+   "section": "checks",
+   "n": "Ανεβάζουμε την ασφάλεια: ανάβει η ένδειξη λειτουργίας και το νερό ζεσταίνεται.",
+   "s": "Ανεβάζουμε την ασφάλεια: ανάβει το λαμπάκι και το νερό ζεσταίνεται.",
+   "c": "Ανάβει και ζεσταίνει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.checks.2",
+    "hash": "174680e737ad",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.checks.3": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι η βαλβίδα ασφαλείας αφήνει λίγο νερό όσο ζεσταίνεται και δεν τρέχει συνέχεια.",
+   "s": "Η βαλβίδα ασφαλείας αφήνει λίγο νερό όσο ζεσταίνεται, αλλά δεν τρέχει συνέχεια.",
+   "c": "Η βαλβίδα δεν τρέχει συνέχεια.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.checks.3",
+    "hash": "041f6ebda678",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.handover.1": {
+   "section": "handover",
+   "n": "Παίρνουμε τον παλιό θερμοσίφωνα, αν το συμφωνήσαμε, και καθαρίζουμε τον χώρο.",
+   "s": "Παίρνουμε τον παλιό θερμοσίφωνα, αν το συμφωνήσαμε, και καθαρίζουμε.",
+   "c": "Παλιός θερμοσίφωνας και καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.handover.1",
+    "hash": "d59c3beec521",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.handover.2": {
+   "section": "handover",
+   "n": "Σας εξηγούμε τον θερμοστάτη και ότι ο θερμοσίφωνας δεν πρέπει να ανάβει όταν είναι άδειος.",
+   "s": "Σας εξηγούμε τον θερμοστάτη και ότι δεν τον ανάβουμε ποτέ όταν είναι άδειος.",
+   "c": "Θερμοστάτης· ποτέ αναμμένος άδειος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.handover.2",
+    "hash": "ac25d419ca8c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε το νερό, κατεβάζουμε την ασφάλεια και αδειάζουμε τον παλιό θερμοσίφωνα.",
+   "s": "Κλείνουμε το νερό, κόβουμε το ρεύμα του από τον πίνακα και βγάζουμε το νερό από τον παλιό θερμοσίφωνα.",
+   "c": "Νερό, ασφάλεια, άδειασμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.preparation.1",
+    "hash": "afd768140b92",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.preparation.2": {
+   "section": "preparation",
+   "n": "Αφαιρούμε τον παλιό θερμοσίφωνα και τα στηρίγματά του.",
+   "s": "Βγάζουμε τον παλιό θερμοσίφωνα και τα στηρίγματά του.",
+   "c": "Αφαιρούμε τον παλιό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.preparation.2",
+    "hash": "fcd24f294932",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.preparation.3": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τις σωλήνες και τους διακόπτες στο σημείο σύνδεσης.",
+   "s": "Κοιτάμε τους σωλήνες και τους διακόπτες εκεί που θα ενωθεί.",
+   "c": "Έλεγχος σωλήνων και διακοπτών.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.preparation.3",
+    "hash": "77934860f023",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Τοίχος που αντέχει το βάρος του γεμάτου θερμοσίφωνα· σε ελαφρύ τοίχο χρειάζεται άλλη στήριξη.",
+   "s": "Ο τοίχος πρέπει να αντέχει τον γεμάτο θερμοσίφωνα· αν είναι ελαφρύς, χρειάζεται άλλη στήριξη.",
+   "c": "Τοίχος για το βάρος του γεμάτου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.prerequisites.1",
+    "hash": "b8773fd20b3c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Ηλεκτρική παροχή με δική της ασφάλεια στη θέση του θερμοσίφωνα· αν δεν υπάρχει, τη φτιάχνει ηλεκτρολόγος.",
+   "s": "Χρειάζεται δικό του καλώδιο με δική του ασφάλεια· αν δεν υπάρχει, το φτιάχνει ηλεκτρολόγος.",
+   "c": "Δική του γραμμή και ασφάλεια.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.prerequisites.2",
+    "hash": "8294f1b98477",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Παροχή κρύου νερού και έξοδος ζεστού στη θέση του.",
+   "s": "Να υπάρχει κρύο νερό που μπαίνει και σωλήνας για το ζεστό που βγαίνει.",
+   "c": "Παροχή κρύου και έξοδος ζεστού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.prerequisites.3",
+    "hash": "db1e8096159c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε τα στηρίγματα στον τοίχο και κρεμάμε τον θερμοσίφωνα αλφαδιασμένο.",
+   "s": "Βιδώνουμε τα στηρίγματα στον τοίχο και κρεμάμε τον θερμοσίφωνα ίσιο.",
+   "c": "Στηρίγματα και κρέμασμα, αλφαδιασμένο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.steps.1",
+    "hash": "30f20ff2183a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε τη βαλβίδα ασφαλείας στην είσοδο του κρύου νερού, με σωληνάκι που οδηγεί τα νερά της σε αποχέτευση.",
+   "s": "Βάζουμε τη βαλβίδα ασφαλείας εκεί που μπαίνει το κρύο, με σωληνάκι που πάει τα νερά της στην αποχέτευση.",
+   "c": "Βαλβίδα ασφαλείας με απορροή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.steps.2",
+    "hash": "63a0baa5a395",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.steps.3": {
+   "section": "steps",
+   "n": "Συνδέουμε το κρύο και το ζεστό νερό.",
+   "s": "Ενώνουμε το κρύο και το ζεστό νερό.",
+   "c": "Σύνδεση κρύου και ζεστού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.steps.3",
+    "hash": "efd105d9fd32",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.steps.4": {
+   "section": "steps",
+   "n": "Γεμίζουμε τον θερμοσίφωνα, ανοίγοντας μια βρύση ζεστού μέχρι να βγει όλος ο αέρας.",
+   "s": "Γεμίζουμε τον θερμοσίφωνα και αφήνουμε μια βρύση ζεστού ανοιχτή ώσπου να φύγει όλος ο αέρας.",
+   "c": "Γέμισμα ώσπου να φύγει ο αέρας.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.steps.4",
+    "hash": "63e330c3430d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-water-heater.steps.5": {
+   "section": "steps",
+   "n": "Συνδέουμε τον θερμοσίφωνα στην ηλεκτρική παροχή μόνο αφού γεμίσει με νερό.",
+   "s": "Τον συνδέουμε στο ρεύμα μόνο αφού γεμίσει με νερό.",
+   "c": "Ρεύμα μόνο αφού γεμίσει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-water-heater.steps.5",
+    "hash": "e5c24057dbc9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

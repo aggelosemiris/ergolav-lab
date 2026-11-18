@@ -1,0 +1,879 @@
+{
+ "material": "paint",
+ "name": "Βάψιμο",
+ "cases": [
+  {
+   "id": "paint:interior.repaint",
+   "label": "Μέσα (τοίχοι και ταβάνια) · Ήδη βαμμένοι, σε καλή κατάσταση",
+   "answers": {
+    "where": "interior",
+    "condition": "repaint"
+   },
+   "source": "base",
+   "task": "paint-interior-walls",
+   "title": "Βάψιμο εσωτερικών τοίχων και οροφών με πλαστικό χρώμα",
+   "duration": "ενδεικτικά 1–2 ημέρες για δωμάτιο 12–15 τ.μ., ανάλογα με την κατάσταση των τοίχων",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint-interior-walls.prerequisites.1",
+     "paint-interior-walls.prerequisites.2",
+     "paint-interior-walls.prerequisites.3"
+    ],
+    "preparation": [
+     "paint-interior-walls.preparation.1",
+     "paint-interior-walls.preparation.2",
+     "paint-interior-walls.preparation.3",
+     "paint-interior-walls.preparation.4"
+    ],
+    "steps": [
+     "paint-interior-walls.steps.1",
+     "paint-interior-walls.steps.2",
+     "paint-interior-walls.steps.3",
+     "paint-interior-walls.steps.4"
+    ],
+    "checks": [
+     "paint-interior-walls.checks.1",
+     "paint-interior-walls.checks.2",
+     "paint-interior-walls.checks.3"
+    ],
+    "handover": [
+     "paint-interior-walls.handover.1",
+     "paint-interior-walls.handover.2",
+     "paint-interior-walls.handover.3"
+    ]
+   }
+  },
+  {
+   "id": "paint:interior.fresh",
+   "label": "Μέσα (τοίχοι και ταβάνια) · Καινούργιος σοβάς ή γυψοσανίδα (πρώτο βάψιμο)",
+   "answers": {
+    "where": "interior",
+    "condition": "fresh"
+   },
+   "source": "new",
+   "title": "Πρώτο βάψιμο σε καινούργιο σοβά ή γυψοσανίδα (εσωτερικοί χώροι)",
+   "duration": "ενδεικτικά 1–2 ημέρες για δωμάτιο 12–15 τ.μ., χωρίς τον χρόνο στεγνώματος του σοβά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint.prerequisites.fresh-dry",
+     "paint-interior-walls.prerequisites.1",
+     "paint-interior-walls.prerequisites.2"
+    ],
+    "preparation": [
+     "paint-interior-walls.preparation.1",
+     "paint.preparation.fresh-sand",
+     "paint.preparation.fresh-primer"
+    ],
+    "steps": [
+     "paint-interior-walls.steps.1",
+     "paint-interior-walls.steps.2",
+     "paint-interior-walls.steps.3",
+     "paint-interior-walls.steps.4"
+    ],
+    "checks": [
+     "paint-interior-walls.checks.1",
+     "paint-interior-walls.checks.2",
+     "paint-interior-walls.checks.3"
+    ],
+    "handover": [
+     "paint-interior-walls.handover.1",
+     "paint-interior-walls.handover.2",
+     "paint-interior-walls.handover.3"
+    ]
+   },
+   "review": {
+    "key": "case:paint:interior.fresh",
+    "hash": "d8d3a0f0fbc8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "paint:interior.damaged",
+   "label": "Μέσα (τοίχοι και ταβάνια) · Με μούχλα, υγρασία ή φουσκώματα",
+   "answers": {
+    "where": "interior",
+    "condition": "damaged"
+   },
+   "source": "base",
+   "task": "paint-interior-walls",
+   "title": "Βάψιμο εσωτερικών τοίχων και οροφών με πλαστικό χρώμα",
+   "duration": "ενδεικτικά 1–2 ημέρες για δωμάτιο 12–15 τ.μ., ανάλογα με την κατάσταση των τοίχων",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint-interior-walls.prerequisites.1",
+     "paint-interior-walls.prerequisites.2",
+     "paint-interior-walls.prerequisites.3"
+    ],
+    "preparation": [
+     "paint-interior-walls.preparation.1",
+     "paint-interior-walls.preparation.2",
+     "paint-interior-walls.preparation.3",
+     "paint-interior-walls.preparation.4"
+    ],
+    "steps": [
+     "paint-interior-walls.steps.1",
+     "paint-interior-walls.steps.2",
+     "paint-interior-walls.steps.3",
+     "paint-interior-walls.steps.4"
+    ],
+    "checks": [
+     "paint-interior-walls.checks.1",
+     "paint-interior-walls.checks.2",
+     "paint-interior-walls.checks.3"
+    ],
+    "handover": [
+     "paint-interior-walls.handover.1",
+     "paint-interior-walls.handover.2",
+     "paint-interior-walls.handover.3"
+    ]
+   }
+  },
+  {
+   "id": "paint:exterior.repaint",
+   "label": "Έξω (εξωτερικοί τοίχοι) · Ήδη βαμμένοι, σε καλή κατάσταση",
+   "answers": {
+    "where": "exterior",
+    "condition": "repaint"
+   },
+   "source": "existing",
+   "task": "paint-exterior",
+   "title": "Βάψιμο εξωτερικών επιφανειών με ακρυλικό χρώμα",
+   "duration": "ενδεικτικά 2–5 ημέρες για πρόσοψη μονοκατοικίας, ανάλογα με τον καιρό και τις φθορές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint-exterior.prerequisites.1",
+     "paint-exterior.prerequisites.2",
+     "paint-exterior.prerequisites.3"
+    ],
+    "preparation": [
+     "paint-exterior.preparation.1",
+     "paint-exterior.preparation.2",
+     "paint-exterior.preparation.3"
+    ],
+    "steps": [
+     "paint-exterior.steps.1",
+     "paint-exterior.steps.2",
+     "paint-exterior.steps.3"
+    ],
+    "checks": [
+     "paint-exterior.checks.1",
+     "paint-exterior.checks.2",
+     "paint-exterior.checks.3"
+    ],
+    "handover": [
+     "paint-exterior.handover.1",
+     "paint-exterior.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:paint:exterior.repaint",
+    "hash": "23ace01c2bed",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "paint:exterior.fresh",
+   "label": "Έξω (εξωτερικοί τοίχοι) · Καινούργιος σοβάς ή γυψοσανίδα (πρώτο βάψιμο)",
+   "answers": {
+    "where": "exterior",
+    "condition": "fresh"
+   },
+   "source": "new",
+   "title": "Πρώτο βάψιμο εξωτερικών επιφανειών σε καινούργιο σοβά",
+   "duration": "ενδεικτικά 2–5 ημέρες για πρόσοψη μονοκατοικίας, ανάλογα με τον καιρό",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint.prerequisites.exterior-cure",
+     "paint-exterior.prerequisites.1",
+     "paint-exterior.prerequisites.2"
+    ],
+    "preparation": [
+     "paint-exterior.preparation.1",
+     "paint.preparation.exterior-dust",
+     "paint.preparation.exterior-primer"
+    ],
+    "steps": [
+     "paint-exterior.steps.1",
+     "paint-exterior.steps.2",
+     "paint-exterior.steps.3"
+    ],
+    "checks": [
+     "paint-exterior.checks.1",
+     "paint-exterior.checks.2",
+     "paint-exterior.checks.3"
+    ],
+    "handover": [
+     "paint-exterior.handover.1",
+     "paint-exterior.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:paint:exterior.fresh",
+    "hash": "4588753499fa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "paint:exterior.damaged",
+   "label": "Έξω (εξωτερικοί τοίχοι) · Με μούχλα, υγρασία ή φουσκώματα",
+   "answers": {
+    "where": "exterior",
+    "condition": "damaged"
+   },
+   "source": "existing",
+   "task": "paint-exterior",
+   "title": "Βάψιμο εξωτερικών επιφανειών με ακρυλικό χρώμα",
+   "duration": "ενδεικτικά 2–5 ημέρες για πρόσοψη μονοκατοικίας, ανάλογα με τον καιρό και τις φθορές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "paint-exterior.prerequisites.1",
+     "paint-exterior.prerequisites.2",
+     "paint-exterior.prerequisites.3"
+    ],
+    "preparation": [
+     "paint-exterior.preparation.1",
+     "paint-exterior.preparation.2",
+     "paint-exterior.preparation.3"
+    ],
+    "steps": [
+     "paint-exterior.steps.1",
+     "paint-exterior.steps.2",
+     "paint-exterior.steps.3"
+    ],
+    "checks": [
+     "paint-exterior.checks.1",
+     "paint-exterior.checks.2",
+     "paint-exterior.checks.3"
+    ],
+    "handover": [
+     "paint-exterior.handover.1",
+     "paint-exterior.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:paint:exterior.damaged",
+    "hash": "23ace01c2bed",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "paint.x.move-furniture",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:paint:paint.x.move-furniture",
+    "hash": "f689827a1ca9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "paint.x.anti-mould",
+   "section": "steps",
+   "when": {
+    "where": [
+     "interior"
+    ]
+   },
+   "review": {
+    "key": "extra:paint:paint.x.anti-mould",
+    "hash": "964241feea95",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "paint.x.crack-mesh",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:paint:paint.x.crack-mesh",
+    "hash": "7dfef26a528c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "paint-exterior.checks.1": {
+   "section": "checks",
+   "n": "Δεν φαίνονται διαφορές απόχρωσης ούτε σημεία όπου διακρίνεται το παλιό χρώμα.",
+   "s": "Το χρώμα είναι παντού ίδιο και δεν φαίνεται πουθενά το παλιό.",
+   "c": "Ομοιόμορφο, χωρίς να φαίνεται το παλιό.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.checks.1",
+    "hash": "f10fee04317f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.checks.2": {
+   "section": "checks",
+   "n": "Οι ενώσεις με κουφώματα και υδρορροές είναι καθαρές και ευθείες.",
+   "s": "Όπου ο τοίχος συναντά κουφώματα και υδρορροές, η γραμμή είναι καθαρή και ίσια.",
+   "c": "Καθαρές ενώσεις με κουφώματα.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.checks.2",
+    "hash": "788a1397ad74",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.checks.3": {
+   "section": "checks",
+   "n": "Δεν υπάρχουν πιτσιλιές σε τζάμια, κάγκελα και δάπεδα.",
+   "s": "Δεν υπάρχουν πιτσιλιές σε τζάμια, κάγκελα και πατώματα.",
+   "c": "Χωρίς πιτσιλιές.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.checks.3",
+    "hash": "6cf07305b15d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.handover.1": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα προστατευτικά και τα υλικά.",
+   "s": "Μαζεύουμε τα σκεπάσματα και τα υλικά.",
+   "c": "Μάζεμα προστατευτικών και υλικών.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.handover.1",
+    "hash": "e426467b0212",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.handover.2": {
+   "section": "handover",
+   "n": "Σας αφήνουμε τον κωδικό της απόχρωσης.",
+   "s": "Σας αφήνουμε τον κωδικό του χρώματος.",
+   "c": "Κωδικός απόχρωσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.handover.2",
+    "hash": "daa514b6abd1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε κουφώματα, δάπεδα, φυτά και κάγκελα.",
+   "s": "Σκεπάζουμε παράθυρα, πατώματα, φυτά και κάγκελα.",
+   "c": "Σκέπασμα κουφωμάτων, φυτών, καγκέλων.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.preparation.1",
+    "hash": "1ea6e7325c1b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.preparation.2": {
+   "section": "preparation",
+   "n": "Πλένουμε την επιφάνεια και αφαιρούμε τα χρώματα που ξεφλουδίζουν.",
+   "s": "Πλένουμε τους τοίχους και ξύνουμε τις μπογιές που ξεφλουδίζουν.",
+   "c": "Πλύσιμο και ξύσιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.preparation.2",
+    "hash": "e3ef288a3a25",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.preparation.3": {
+   "section": "preparation",
+   "n": "Επισκευάζουμε ρωγμές και φθορές στον σοβά και περνάμε σταθεροποιητικό αστάρι.",
+   "s": "Φτιάχνουμε ρωγμές και χαλασμένα σημεία στον σοβά και περνάμε αστάρι που δένει την επιφάνεια.",
+   "c": "Επισκευές και σταθεροποιητικό αστάρι.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.preparation.3",
+    "hash": "3ec419ebc330",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Μέρες χωρίς βροχή και χωρίς ακραία ζέστη ή κρύο.",
+   "s": "Χρειαζόμαστε μέρες χωρίς βροχή και χωρίς πολλή ζέστη ή κρύο.",
+   "c": "Καιρός χωρίς βροχή και ακρότητες.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.prerequisites.1",
+    "hash": "008e9197e4aa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στις επιφάνειες· για ύψος, σκαλωσιά ή εξοπλισμός ανάβασης.",
+   "s": "Να φτάνουμε όλους τους τοίχους· για τα ψηλά, χρειάζεται σκαλωσιά ή ανυψωτικό.",
+   "c": "Πρόσβαση, σκαλωσιά για ύψος.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.prerequisites.2",
+    "hash": "bc126158106b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Σε πολυκατοικία, να έχει συμφωνηθεί το χρώμα της πρόσοψης.",
+   "s": "Στην πολυκατοικία, να έχει συμφωνηθεί το χρώμα της πρόσοψης.",
+   "c": "Συμφωνημένο χρώμα πρόσοψης.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.prerequisites.3",
+    "hash": "2d8b794a725b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.steps.1": {
+   "section": "steps",
+   "n": "Περνάμε το πρώτο χέρι ακρυλικού χρώματος με ρολό ή πινέλο, από πάνω προς τα κάτω.",
+   "s": "Περνάμε το πρώτο χέρι με ρολό ή πινέλο, από πάνω προς τα κάτω.",
+   "c": "Πρώτο χέρι από πάνω προς τα κάτω.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.steps.1",
+    "hash": "80df2641f526",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.steps.2": {
+   "section": "steps",
+   "n": "Αφήνουμε να στεγνώσει όσο ορίζει ο κατασκευαστής.",
+   "s": "Περιμένουμε να στεγνώσει όσο λένε οι οδηγίες.",
+   "c": "Στέγνωμα κατά τον κατασκευαστή.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.steps.2",
+    "hash": "178258559d89",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-exterior.steps.3": {
+   "section": "steps",
+   "n": "Περνάμε το δεύτερο χέρι, ή όσα χέρια συμφωνήσαμε, για ομοιόμορφη κάλυψη.",
+   "s": "Περνάμε το δεύτερο χέρι, ή όσα συμφωνήσαμε, για να βγει παντού ίδιο.",
+   "c": "Δεύτερο χέρι ή όσα συμφωνήθηκαν.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-exterior.steps.3",
+    "hash": "88ab2d813971",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.checks.1": {
+   "section": "checks",
+   "n": "Κοιτάμε τους τοίχους με πλάγιο φως: δεν φαίνονται λωρίδες, διαφάνειες ή διαφορές απόχρωσης.",
+   "s": "Κοιτάμε τους τοίχους με φως από το πλάι: δεν φαίνονται γραμμές, «νερά» ή διαφορές στο χρώμα.",
+   "c": "Ομοιόμορφο στο πλάγιο φως.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.checks.1",
+    "hash": "1537ea93bc98",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.checks.2": {
+   "section": "checks",
+   "n": "Οι ενώσεις δύο χρωμάτων στις γωνίες και στην οροφή είναι καθαρές και ευθείες.",
+   "s": "Όπου αλλάζει το χρώμα, σε γωνίες και ταβάνι, η γραμμή είναι καθαρή και ίσια.",
+   "c": "Καθαρές ενώσεις χρωμάτων.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.checks.2",
+    "hash": "73964d082968",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.checks.3": {
+   "section": "checks",
+   "n": "Δεν υπάρχουν πιτσιλιές σε κουφώματα, δάπεδα και πρίζες.",
+   "s": "Δεν υπάρχουν πιτσιλιές σε κουφώματα, πατώματα και πρίζες.",
+   "c": "Χωρίς πιτσιλιές.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.checks.3",
+    "hash": "0094e86282f5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.handover.1": {
+   "section": "handover",
+   "n": "Ξεκολλάμε τις ταινίες και μαζεύουμε τα προστατευτικά.",
+   "s": "Βγάζουμε τις ταινίες και μαζεύουμε τα σκεπάσματα.",
+   "c": "Ταινίες και σκεπάσματα έξω.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.handover.1",
+    "hash": "60bd649a1538",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.handover.2": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τυχόν πιτσιλιές και αφήνουμε τον χώρο σκουπισμένο.",
+   "s": "Σβήνουμε όποια πιτσιλιά έμεινε και αφήνουμε σκουπισμένα.",
+   "c": "Καθάρισμα πιτσιλιών.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.handover.2",
+    "hash": "10ccb2e2c666",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.handover.3": {
+   "section": "handover",
+   "n": "Σας αφήνουμε τον κωδικό της απόχρωσης και λίγο χρώμα για μικροδιορθώσεις.",
+   "s": "Σας αφήνουμε τον κωδικό του χρώματος και λίγη μπογιά για μικρές διορθώσεις.",
+   "c": "Κωδικός απόχρωσης και λίγο χρώμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.handover.3",
+    "hash": "3527a555e01d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και έπιπλα και κολλάμε χαρτοταινία σε κουφώματα, πρίζες και σοβατεπί.",
+   "s": "Σκεπάζουμε πατώματα και έπιπλα και κολλάμε ταινία σε κουφώματα, πρίζες και σοβατεπί.",
+   "c": "Σκέπασμα και χαρτοταινία.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.preparation.1",
+    "hash": "08c85e5d96f3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.preparation.2": {
+   "section": "preparation",
+   "n": "Ξύνουμε τα φουσκωμένα χρώματα και καθαρίζουμε τη μούχλα με κατάλληλο καθαριστικό.",
+   "s": "Ξύνουμε τις φουσκωμένες μπογιές και καθαρίζουμε τη μούχλα με το κατάλληλο υγρό.",
+   "c": "Ξύσιμο και καθαρισμός μούχλας.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.preparation.2",
+    "hash": "e7cbcf3c18ff",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.preparation.3": {
+   "section": "preparation",
+   "n": "Στοκάρουμε τρύπες και ρωγμές και τρίβουμε μετά το στέγνωμα, για λεία επιφάνεια.",
+   "s": "Γεμίζουμε τρύπες και ρωγμές με στόκο και τον τρίβουμε όταν στεγνώσει, για να είναι λείο.",
+   "c": "Στοκάρισμα και τρίψιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.preparation.3",
+    "hash": "b2b5c4b69773",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.preparation.4": {
+   "section": "preparation",
+   "n": "Βάζουμε αστάρι στα στοκαρισμένα σημεία ή σε όλη την επιφάνεια, όταν χρειάζεται για ομοιόμορφο αποτέλεσμα.",
+   "s": "Περνάμε αστάρι στα σημεία με στόκο, ή σε όλο τον τοίχο όταν χρειάζεται, για να βγει ομοιόμορφα.",
+   "c": "Αστάρι όπου χρειάζεται.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.preparation.4",
+    "hash": "804d594d83de",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Άδειοι χώροι ή έπιπλα μαζεμένα στη μέση, ώστε να φτάνουμε τους τοίχους.",
+   "s": "Οι χώροι να είναι άδειοι, ή τα έπιπλα μαζεμένα στη μέση, για να φτάνουμε τους τοίχους.",
+   "c": "Χώροι άδειοι ή έπιπλα στη μέση.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.prerequisites.1",
+    "hash": "40616a814980",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχετε διαλέξει τις αποχρώσεις· αν θέλετε, κάνουμε δοκιμή σε ένα κομμάτι τοίχου.",
+   "s": "Να έχετε διαλέξει χρώματα· αν θέλετε, βάφουμε πρώτα ένα κομμάτι για δοκιμή.",
+   "c": "Επιλεγμένες αποχρώσεις, με δοκιμή αν θέλετε.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.prerequisites.2",
+    "hash": "42039d2e13ec",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Οι τοίχοι να μην έχουν ενεργή υγρασία· αν έχουν, χρειάζεται πρώτα να αντιμετωπιστεί.",
+   "s": "Οι τοίχοι να μην έχουν υγρασία που συνεχίζεται· αν έχουν, πρέπει να λυθεί πρώτα.",
+   "c": "Χωρίς ενεργή υγρασία.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.prerequisites.3",
+    "hash": "8e5be2086b3a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.steps.1": {
+   "section": "steps",
+   "n": "Βάφουμε πρώτα την οροφή και μετά τους τοίχους.",
+   "s": "Βάφουμε πρώτα το ταβάνι και μετά τους τοίχους.",
+   "c": "Πρώτα οροφή, μετά τοίχοι.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.steps.1",
+    "hash": "ad789b3d22ba",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.steps.2": {
+   "section": "steps",
+   "n": "Περνάμε με πινέλο τις γωνίες και τα σημεία κοντά σε κουφώματα, και με ρολό τις μεγάλες επιφάνειες.",
+   "s": "Με πινέλο βάφουμε γωνίες και σημεία δίπλα σε κουφώματα, και με ρολό τα μεγάλα κομμάτια.",
+   "c": "Πινέλο στις γωνίες, ρολό στα μεγάλα.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.steps.2",
+    "hash": "0e9a63e5b261",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.steps.3": {
+   "section": "steps",
+   "n": "Περνάμε το πρώτο χέρι και αφήνουμε να στεγνώσει όσο ορίζει ο κατασκευαστής.",
+   "s": "Περνάμε το πρώτο χέρι και περιμένουμε να στεγνώσει όσο λένε οι οδηγίες.",
+   "c": "Πρώτο χέρι και στέγνωμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.steps.3",
+    "hash": "2f935d43d1dc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint-interior-walls.steps.4": {
+   "section": "steps",
+   "n": "Περνάμε το δεύτερο χέρι, ή όσα χέρια συμφωνήσαμε, για ομοιόμορφη κάλυψη.",
+   "s": "Περνάμε το δεύτερο χέρι, ή όσα συμφωνήσαμε, για να βγει παντού ίδιο.",
+   "c": "Δεύτερο χέρι ή όσα συμφωνήθηκαν.",
+   "source": "current",
+   "review": {
+    "key": "sc:paint-interior-walls.steps.4",
+    "hash": "88ab2d813971",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.preparation.exterior-dust": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τη σκόνη και τα υπολείμματα κονιάματος από την επιφάνεια.",
+   "s": "Σκουπίζουμε τη σκόνη και τα κομματάκια τσιμέντου από τον τοίχο.",
+   "c": "Καθαρισμός σκόνης και κονιάματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.preparation.exterior-dust",
+    "hash": "17f4d81a0b93",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.preparation.exterior-primer": {
+   "section": "preparation",
+   "n": "Περνάμε αστάρι κατάλληλο για καινούργιο εξωτερικό σοβά.",
+   "s": "Περνάμε πρώτα ένα ειδικό υγρό για καινούργιο σοβά που είναι έξω.",
+   "c": "Αστάρι για νέο εξωτερικό σοβά.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.preparation.exterior-primer",
+    "hash": "64abb6e5e131",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.preparation.fresh-primer": {
+   "section": "preparation",
+   "n": "Περνάμε σε όλη την επιφάνεια αστάρι για καινούργιο σοβά ή γυψοσανίδα, για να απορροφά παντού το ίδιο.",
+   "s": "Περνάμε παντού ένα πρώτο χέρι ειδικό για καινούργιους τοίχους, για να πιάσει η μπογιά ομοιόμορφα.",
+   "c": "Αστάρι για καινούργιες επιφάνειες.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.preparation.fresh-primer",
+    "hash": "fa3f1d245179",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.preparation.fresh-sand": {
+   "section": "preparation",
+   "n": "Τρίβουμε ελαφρά την επιφάνεια και καθαρίζουμε τη σκόνη.",
+   "s": "Περνάμε ελαφρά γυαλόχαρτο και σκουπίζουμε τη σκόνη.",
+   "c": "Ελαφρύ τρίψιμο και ξεσκόνισμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.preparation.fresh-sand",
+    "hash": "5e9843cf13ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.prerequisites.exterior-cure": {
+   "section": "prerequisites",
+   "n": "Ο καινούργιος εξωτερικός σοβάς να έχει ωριμάσει όσο ορίζει ο κατασκευαστής, πριν βαφτεί.",
+   "s": "Ο καινούργιος σοβάς έξω πρέπει να «δέσει» για όσο χρόνο λένε οι οδηγίες, πριν τον βάψουμε.",
+   "c": "Ωριμασμένος εξωτερικός σοβάς.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.prerequisites.exterior-cure",
+    "hash": "9ec3054fa3d5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.prerequisites.fresh-dry": {
+   "section": "prerequisites",
+   "n": "Ο καινούργιος σοβάς να έχει στεγνώσει όσο ορίζει ο κατασκευαστής και οι αρμοί της γυψοσανίδας να έχουν στοκαριστεί και τριφτεί.",
+   "s": "Ο καινούργιος σοβάς πρέπει να έχει στεγνώσει καλά και οι ενώσεις της γυψοσανίδας να είναι ήδη λείες.",
+   "c": "Σοβάς στεγνός, αρμοί γυψοσανίδας έτοιμοι.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.prerequisites.fresh-dry",
+    "hash": "838564119e5a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.x.anti-mould": {
+   "section": "steps",
+   "n": "Στο μπάνιο και στην κουζίνα βάφουμε με χρώμα που έχει αντιμουχλική προστασία.",
+   "s": "Σε μπάνιο και κουζίνα βάζουμε μπογιά που δεν αφήνει να πιάσει μούχλα.",
+   "c": "Αντιμουχλικό χρώμα σε μπάνιο και κουζίνα.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.x.anti-mould",
+    "hash": "2896788f1bc8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.x.crack-mesh": {
+   "section": "preparation",
+   "n": "Βάζουμε υαλόπλεγμα στις ρωγμές που ξανανοίγουν, πριν από το στοκάρισμα.",
+   "s": "Στις ρωγμές που ανοίγουν ξανά βάζουμε ένα λεπτό πλέγμα πριν τον στόκο, για να μη φανούν πάλι.",
+   "c": "Υαλόπλεγμα στις ρωγμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.x.crack-mesh",
+    "hash": "0cf38390274d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "paint.x.move-furniture": {
+   "section": "preparation",
+   "n": "Μετακινούμε και σκεπάζουμε τα έπιπλα, αν το έχουμε συμφωνήσει.",
+   "s": "Αν το έχουμε πει, μετακινούμε εμείς τα έπιπλα και τα σκεπάζουμε.",
+   "c": "Μετακίνηση επίπλων, αν συμφωνήθηκε.",
+   "source": "new",
+   "review": {
+    "key": "sc:paint.x.move-furniture",
+    "hash": "5058410e0e11",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}
