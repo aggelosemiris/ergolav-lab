@@ -79,9 +79,9 @@
    "review": {
     "key": "case:angle-valve:new",
     "hash": "61eb59aae341",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -93,9 +93,9 @@
    "review": {
     "key": "extra:angle-valve:angle.x.filter",
     "hash": "74ef888bcdee",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -105,9 +105,9 @@
    "review": {
     "key": "extra:angle-valve:angle.x.check-hoses",
     "hash": "72ecfd493bd8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -121,9 +121,9 @@
    "review": {
     "key": "sc:angle.prerequisites.new-stub",
     "hash": "b44bae28a8c2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "angle.steps.new-cut": {
@@ -135,9 +135,9 @@
    "review": {
     "key": "sc:angle.steps.new-cut",
     "hash": "394dfc4febbc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "angle.steps.rosette": {
@@ -149,9 +149,9 @@
    "review": {
     "key": "sc:angle.steps.rosette",
     "hash": "634ed7606d93",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "angle.x.check-hoses": {
@@ -163,9 +163,9 @@
    "review": {
     "key": "sc:angle.x.check-hoses",
     "hash": "5ed7c03cca24",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "angle.x.filter": {
@@ -177,9 +177,9 @@
    "review": {
     "key": "sc:angle.x.filter",
     "hash": "61b6164017aa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.checks.1": {
@@ -191,9 +191,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.checks.1",
     "hash": "27d47dff2d6f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.checks.2": {
@@ -205,9 +205,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.checks.2",
     "hash": "c994bbbc72cb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.checks.3": {
@@ -219,9 +219,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.checks.3",
     "hash": "160012aa4bf5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.handover.1": {
@@ -233,9 +233,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.handover.1",
     "hash": "2f2000bf2e09",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.handover.2": {
@@ -247,9 +247,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.handover.2",
     "hash": "7e447e553cbb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.preparation.1": {
@@ -261,9 +261,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.preparation.1",
     "hash": "3cc6723d5c29",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.preparation.2": {
@@ -275,9 +275,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.preparation.2",
     "hash": "3f5521a82078",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.preparation.3": {
@@ -289,9 +289,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.preparation.3",
     "hash": "ae476a21ecf5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.prerequisites.1": {
@@ -303,9 +303,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.prerequisites.1",
     "hash": "6fbb9c450268",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.prerequisites.2": {
@@ -317,9 +317,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.prerequisites.2",
     "hash": "a53913764c9d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.steps.1": {
@@ -331,9 +331,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.steps.1",
     "hash": "5e35fd46df07",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.steps.2": {
@@ -345,9 +345,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.steps.2",
     "hash": "b8cd2a5c2f64",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.steps.3": {
@@ -359,9 +359,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.steps.3",
     "hash": "6ece43553503",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-angle-valve.steps.4": {
@@ -373,9 +373,9 @@
    "review": {
     "key": "sc:plumb-angle-valve.steps.4",
     "hash": "d680b1f855f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

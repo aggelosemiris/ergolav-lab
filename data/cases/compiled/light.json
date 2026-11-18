@@ -79,9 +79,9 @@
    "review": {
     "key": "case:light:downlight.replace",
     "hash": "ef76239c2f94",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -124,9 +124,9 @@
    "review": {
     "key": "case:light:ceiling.new",
     "hash": "e7437a59b272",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -169,9 +169,9 @@
    "review": {
     "key": "case:light:ceiling.replace",
     "hash": "e7437a59b272",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -213,9 +213,9 @@
    "review": {
     "key": "case:light:track.new",
     "hash": "7312d7720d2b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -257,9 +257,9 @@
    "review": {
     "key": "case:light:track.replace",
     "hash": "2b8ad7d21af0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -302,9 +302,9 @@
    "review": {
     "key": "case:light:strip.new",
     "hash": "1f558557e9c1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -345,9 +345,9 @@
    "review": {
     "key": "case:light:strip.replace",
     "hash": "cfa3145eb089",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -359,9 +359,9 @@
    "review": {
     "key": "extra:light:light.x.dimmer",
     "hash": "e220648758bf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -371,9 +371,9 @@
    "review": {
     "key": "extra:light:light.x.sensor",
     "hash": "d1b56748b7ac",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -387,9 +387,9 @@
    "review": {
     "key": "extra:light:light.x.cover",
     "hash": "c3669bda75aa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -403,9 +403,9 @@
    "review": {
     "key": "sc:elec-downlight.checks.1",
     "hash": "63267402e655",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.checks.2": {
@@ -417,9 +417,9 @@
    "review": {
     "key": "sc:elec-downlight.checks.2",
     "hash": "e3c58b0c2e94",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.checks.3": {
@@ -431,9 +431,9 @@
    "review": {
     "key": "sc:elec-downlight.checks.3",
     "hash": "eb9546211738",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.handover.1": {
@@ -445,9 +445,9 @@
    "review": {
     "key": "sc:elec-downlight.handover.1",
     "hash": "a5a45ca9fb2b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.handover.2": {
@@ -459,9 +459,9 @@
    "review": {
     "key": "sc:elec-downlight.handover.2",
     "hash": "ef98cc8ed09b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.preparation.1": {
@@ -473,9 +473,9 @@
    "review": {
     "key": "sc:elec-downlight.preparation.1",
     "hash": "b5290c13a781",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.preparation.2": {
@@ -487,9 +487,9 @@
    "review": {
     "key": "sc:elec-downlight.preparation.2",
     "hash": "2e6dc6bd68b0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.preparation.3": {
@@ -501,9 +501,9 @@
    "review": {
     "key": "sc:elec-downlight.preparation.3",
     "hash": "bc297d4e7315",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.prerequisites.1": {
@@ -515,9 +515,9 @@
    "review": {
     "key": "sc:elec-downlight.prerequisites.1",
     "hash": "2d9c98862831",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.prerequisites.2": {
@@ -529,9 +529,9 @@
    "review": {
     "key": "sc:elec-downlight.prerequisites.2",
     "hash": "7a1084255cef",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.steps.1": {
@@ -543,9 +543,9 @@
    "review": {
     "key": "sc:elec-downlight.steps.1",
     "hash": "f1c53d254a9a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.steps.2": {
@@ -557,9 +557,9 @@
    "review": {
     "key": "sc:elec-downlight.steps.2",
     "hash": "0603a2533745",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.steps.3": {
@@ -571,9 +571,9 @@
    "review": {
     "key": "sc:elec-downlight.steps.3",
     "hash": "3fea516a9c18",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-downlight.steps.4": {
@@ -585,9 +585,9 @@
    "review": {
     "key": "sc:elec-downlight.steps.4",
     "hash": "7576d66350c2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.checks.1": {
@@ -599,9 +599,9 @@
    "review": {
     "key": "sc:elec-led-strip.checks.1",
     "hash": "9e443c193efd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.checks.2": {
@@ -613,9 +613,9 @@
    "review": {
     "key": "sc:elec-led-strip.checks.2",
     "hash": "47071bf38c9b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.checks.3": {
@@ -627,9 +627,9 @@
    "review": {
     "key": "sc:elec-led-strip.checks.3",
     "hash": "b9934672ee75",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.handover.1": {
@@ -641,9 +641,9 @@
    "review": {
     "key": "sc:elec-led-strip.handover.1",
     "hash": "0e6a84bea7db",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.handover.2": {
@@ -655,9 +655,9 @@
    "review": {
     "key": "sc:elec-led-strip.handover.2",
     "hash": "2cc70331f881",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.preparation.1": {
@@ -669,9 +669,9 @@
    "review": {
     "key": "sc:elec-led-strip.preparation.1",
     "hash": "07c9cc156f50",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.preparation.2": {
@@ -683,9 +683,9 @@
    "review": {
     "key": "sc:elec-led-strip.preparation.2",
     "hash": "7f2f230107fe",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.prerequisites.1": {
@@ -697,9 +697,9 @@
    "review": {
     "key": "sc:elec-led-strip.prerequisites.1",
     "hash": "b5a84583c5a1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.prerequisites.2": {
@@ -711,9 +711,9 @@
    "review": {
     "key": "sc:elec-led-strip.prerequisites.2",
     "hash": "39f7fb6ace03",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.steps.1": {
@@ -725,9 +725,9 @@
    "review": {
     "key": "sc:elec-led-strip.steps.1",
     "hash": "3291d49301ec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.steps.2": {
@@ -739,9 +739,9 @@
    "review": {
     "key": "sc:elec-led-strip.steps.2",
     "hash": "3333bde68916",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.steps.3": {
@@ -753,9 +753,9 @@
    "review": {
     "key": "sc:elec-led-strip.steps.3",
     "hash": "53facffdec53",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-led-strip.steps.4": {
@@ -767,9 +767,9 @@
    "review": {
     "key": "sc:elec-led-strip.steps.4",
     "hash": "33e4f3912b87",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.checks.1": {
@@ -781,9 +781,9 @@
    "review": {
     "key": "sc:elec-light-fixture.checks.1",
     "hash": "6d4823115be8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.checks.2": {
@@ -795,9 +795,9 @@
    "review": {
     "key": "sc:elec-light-fixture.checks.2",
     "hash": "203b66371693",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.checks.3": {
@@ -809,9 +809,9 @@
    "review": {
     "key": "sc:elec-light-fixture.checks.3",
     "hash": "6c4bfd0a74b7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.handover.1": {
@@ -823,9 +823,9 @@
    "review": {
     "key": "sc:elec-light-fixture.handover.1",
     "hash": "4d6147d273f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.handover.2": {
@@ -837,9 +837,9 @@
    "review": {
     "key": "sc:elec-light-fixture.handover.2",
     "hash": "dc3f033fad78",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.preparation.1": {
@@ -851,9 +851,9 @@
    "review": {
     "key": "sc:elec-light-fixture.preparation.1",
     "hash": "4f05142b6ce0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.preparation.2": {
@@ -865,9 +865,9 @@
    "review": {
     "key": "sc:elec-light-fixture.preparation.2",
     "hash": "99b799218b7a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.preparation.3": {
@@ -879,9 +879,9 @@
    "review": {
     "key": "sc:elec-light-fixture.preparation.3",
     "hash": "4164ef33e412",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.prerequisites.1": {
@@ -893,9 +893,9 @@
    "review": {
     "key": "sc:elec-light-fixture.prerequisites.1",
     "hash": "e04fd44008a0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.prerequisites.2": {
@@ -907,9 +907,9 @@
    "review": {
     "key": "sc:elec-light-fixture.prerequisites.2",
     "hash": "d58a2132ca16",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.steps.1": {
@@ -921,9 +921,9 @@
    "review": {
     "key": "sc:elec-light-fixture.steps.1",
     "hash": "cae7c78e38cc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.steps.2": {
@@ -935,9 +935,9 @@
    "review": {
     "key": "sc:elec-light-fixture.steps.2",
     "hash": "898c2f4c5f13",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-light-fixture.steps.3": {
@@ -949,9 +949,9 @@
    "review": {
     "key": "sc:elec-light-fixture.steps.3",
     "hash": "14deae9d13a8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.checks.1": {
@@ -963,9 +963,9 @@
    "review": {
     "key": "sc:elec-track-light.checks.1",
     "hash": "c4a8d2b0eef8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.checks.2": {
@@ -977,9 +977,9 @@
    "review": {
     "key": "sc:elec-track-light.checks.2",
     "hash": "d1213ef3d619",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.checks.3": {
@@ -991,9 +991,9 @@
    "review": {
     "key": "sc:elec-track-light.checks.3",
     "hash": "db36bacb4cb8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.handover.1": {
@@ -1005,9 +1005,9 @@
    "review": {
     "key": "sc:elec-track-light.handover.1",
     "hash": "be5ff852a4a2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.handover.2": {
@@ -1019,9 +1019,9 @@
    "review": {
     "key": "sc:elec-track-light.handover.2",
     "hash": "2ea82473bd83",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.preparation.1": {
@@ -1033,9 +1033,9 @@
    "review": {
     "key": "sc:elec-track-light.preparation.1",
     "hash": "ff3bc1b2f97d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.preparation.2": {
@@ -1047,9 +1047,9 @@
    "review": {
     "key": "sc:elec-track-light.preparation.2",
     "hash": "8d27aecdd596",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.prerequisites.1": {
@@ -1061,9 +1061,9 @@
    "review": {
     "key": "sc:elec-track-light.prerequisites.1",
     "hash": "5c8cb260f0ce",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.prerequisites.2": {
@@ -1075,9 +1075,9 @@
    "review": {
     "key": "sc:elec-track-light.prerequisites.2",
     "hash": "b0767bb274ac",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.steps.1": {
@@ -1089,9 +1089,9 @@
    "review": {
     "key": "sc:elec-track-light.steps.1",
     "hash": "44f166344173",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.steps.2": {
@@ -1103,9 +1103,9 @@
    "review": {
     "key": "sc:elec-track-light.steps.2",
     "hash": "cb651de7c688",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-track-light.steps.3": {
@@ -1117,9 +1117,9 @@
    "review": {
     "key": "sc:elec-track-light.steps.3",
     "hash": "30f58b6bf61e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.preparation.remove-old": {
@@ -1131,9 +1131,9 @@
    "review": {
     "key": "sc:light.preparation.remove-old",
     "hash": "8b5177c0db39",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.preparation.remove-strip": {
@@ -1145,9 +1145,9 @@
    "review": {
     "key": "sc:light.preparation.remove-strip",
     "hash": "eb507e3943c5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.preparation.remove-track": {
@@ -1159,9 +1159,9 @@
    "review": {
     "key": "sc:light.preparation.remove-track",
     "hash": "5bb739faa5ce",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.prerequisites.replace-match": {
@@ -1173,9 +1173,9 @@
    "review": {
     "key": "sc:light.prerequisites.replace-match",
     "hash": "45975dfe6ac1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.prerequisites.same-switch": {
@@ -1187,9 +1187,9 @@
    "review": {
     "key": "sc:light.prerequisites.same-switch",
     "hash": "a724a087a3ab",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.prerequisites.strip-driver": {
@@ -1201,9 +1201,9 @@
    "review": {
     "key": "sc:light.prerequisites.strip-driver",
     "hash": "e27778260d20",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.prerequisites.track-same": {
@@ -1215,9 +1215,9 @@
    "review": {
     "key": "sc:light.prerequisites.track-same",
     "hash": "0e7bc0c06093",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.steps.widen": {
@@ -1229,9 +1229,9 @@
    "review": {
     "key": "sc:light.steps.widen",
     "hash": "e09a13cdf740",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.x.cover": {
@@ -1243,9 +1243,9 @@
    "review": {
     "key": "sc:light.x.cover",
     "hash": "3c1aefc8048e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.x.dimmer": {
@@ -1257,9 +1257,9 @@
    "review": {
     "key": "sc:light.x.dimmer",
     "hash": "f5ff2982c345",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "light.x.sensor": {
@@ -1271,9 +1271,9 @@
    "review": {
     "key": "sc:light.x.sensor",
     "hash": "825804a52854",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

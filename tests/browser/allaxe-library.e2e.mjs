@@ -25,7 +25,7 @@ async function page(ctx, {flag = true, data = ALL} = {}){
   p.on('pageerror', e => p.errs.push(e.message));
   p.on('request', r => p.paths.push(new URL(r.url()).pathname));
   await p.route(/fonts\.(googleapis|gstatic)\.com|supabase\.co|challenges\.cloudflare\.com/, r => r.abort());
-  await p.route('**/src/config.js', r => r.fulfill({contentType: 'text/javascript', body: CONFIG.replace('export const ALLAXE_BOT_ENABLED = false;', `export const ALLAXE_BOT_ENABLED = ${flag};`)}));
+  await p.route('**/src/config.js', r => r.fulfill({contentType: 'text/javascript', body: CONFIG.replace(/export const ALLAXE_BOT_ENABLED = (true|false);/, `export const ALLAXE_BOT_ENABLED = ${flag};`)}));
   if(flag) await p.route('**/src/cases-data.js', r => r.fulfill({contentType: 'text/javascript', body: appDataSource(data)}));
   await p.addInitScript(profile => {
     try { if(!localStorage.getItem('ergolav.profile')) localStorage.setItem('ergolav.profile', profile); } catch {}

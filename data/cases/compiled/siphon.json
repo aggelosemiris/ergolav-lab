@@ -78,9 +78,9 @@
    "review": {
     "key": "case:siphon:basin.new",
     "hash": "be0f9f30581b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -159,9 +159,9 @@
    "review": {
     "key": "case:siphon:sink.new",
     "hash": "b6f048363db9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -202,9 +202,9 @@
    "review": {
     "key": "case:siphon:tub.replace",
     "hash": "3c77492497cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -247,9 +247,9 @@
    "review": {
     "key": "case:siphon:floor.replace",
     "hash": "92683b4599b1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -292,9 +292,9 @@
    "review": {
     "key": "case:siphon:floor.new",
     "hash": "92683b4599b1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -306,9 +306,9 @@
    "review": {
     "key": "extra:siphon:siphon.x.clean-valve",
     "hash": "701b9d851f54",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -318,9 +318,9 @@
    "review": {
     "key": "extra:siphon:siphon.x.anti-odour",
     "hash": "7c6bb8f9b474",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -334,9 +334,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.checks.1",
     "hash": "45441fedf385",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.checks.2": {
@@ -348,9 +348,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.checks.2",
     "hash": "cbd0c569bcea",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.checks.3": {
@@ -362,9 +362,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.checks.3",
     "hash": "78bd6db36b51",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.handover.1": {
@@ -376,9 +376,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.handover.1",
     "hash": "dcd5dabecdc1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.handover.2": {
@@ -390,9 +390,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.handover.2",
     "hash": "36d2c00d0d32",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.preparation.1": {
@@ -404,9 +404,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.preparation.1",
     "hash": "a379f8a2b8e0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.preparation.2": {
@@ -418,9 +418,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.preparation.2",
     "hash": "787350522946",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.prerequisites.1": {
@@ -432,9 +432,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.prerequisites.1",
     "hash": "dbfcf7ba2d77",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.prerequisites.2": {
@@ -446,9 +446,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.prerequisites.2",
     "hash": "daaac4f9b909",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.steps.1": {
@@ -460,9 +460,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.steps.1",
     "hash": "575c4d20e235",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.steps.2": {
@@ -474,9 +474,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.steps.2",
     "hash": "8fa8d8938903",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.steps.3": {
@@ -488,9 +488,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.steps.3",
     "hash": "e5b331cb091b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-floor-drain.steps.4": {
@@ -502,9 +502,9 @@
    "review": {
     "key": "sc:plumb-floor-drain.steps.4",
     "hash": "66ab2130a81c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.checks.1": {
@@ -516,9 +516,9 @@
    "review": {
     "key": "sc:plumb-siphon.checks.1",
     "hash": "537f2673c86c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.checks.2": {
@@ -530,9 +530,9 @@
    "review": {
     "key": "sc:plumb-siphon.checks.2",
     "hash": "2aaa1f5da5bd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.checks.3": {
@@ -544,9 +544,9 @@
    "review": {
     "key": "sc:plumb-siphon.checks.3",
     "hash": "ce0c16f25677",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.handover.1": {
@@ -558,9 +558,9 @@
    "review": {
     "key": "sc:plumb-siphon.handover.1",
     "hash": "8b57e3aff9a4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.handover.2": {
@@ -572,9 +572,9 @@
    "review": {
     "key": "sc:plumb-siphon.handover.2",
     "hash": "eedf714a8937",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.preparation.1": {
@@ -586,9 +586,9 @@
    "review": {
     "key": "sc:plumb-siphon.preparation.1",
     "hash": "85ef3fcbcdf7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.preparation.2": {
@@ -600,9 +600,9 @@
    "review": {
     "key": "sc:plumb-siphon.preparation.2",
     "hash": "d9d5c10545f5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.preparation.3": {
@@ -614,9 +614,9 @@
    "review": {
     "key": "sc:plumb-siphon.preparation.3",
     "hash": "6eeb6878f72c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.prerequisites.1": {
@@ -628,9 +628,9 @@
    "review": {
     "key": "sc:plumb-siphon.prerequisites.1",
     "hash": "09645bf15a4c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.prerequisites.2": {
@@ -642,9 +642,9 @@
    "review": {
     "key": "sc:plumb-siphon.prerequisites.2",
     "hash": "d723395f24ae",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.steps.1": {
@@ -656,9 +656,9 @@
    "review": {
     "key": "sc:plumb-siphon.steps.1",
     "hash": "57d9e5d1caba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.steps.2": {
@@ -670,9 +670,9 @@
    "review": {
     "key": "sc:plumb-siphon.steps.2",
     "hash": "9c5aac27cc9d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-siphon.steps.3": {
@@ -684,9 +684,9 @@
    "review": {
     "key": "sc:plumb-siphon.steps.3",
     "hash": "968edfe69db2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.checks.tub-fill": {
@@ -698,9 +698,9 @@
    "review": {
     "key": "sc:siphon.checks.tub-fill",
     "hash": "58fe1bcf059f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.handover.clean-tip": {
@@ -712,9 +712,9 @@
    "review": {
     "key": "sc:siphon.handover.clean-tip",
     "hash": "5521f2859b78",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.handover.close-access": {
@@ -726,9 +726,9 @@
    "review": {
     "key": "sc:siphon.handover.close-access",
     "hash": "69201b1d3a4e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.preparation.check-outlet": {
@@ -740,9 +740,9 @@
    "review": {
     "key": "sc:siphon.preparation.check-outlet",
     "hash": "481b906d78bf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.preparation.open-access": {
@@ -754,9 +754,9 @@
    "review": {
     "key": "sc:siphon.preparation.open-access",
     "hash": "0a524bbc7ff5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.preparation.remove-tub-trap": {
@@ -768,9 +768,9 @@
    "review": {
     "key": "sc:siphon.preparation.remove-tub-trap",
     "hash": "d35520f50439",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.prerequisites.new-outlet": {
@@ -782,9 +782,9 @@
    "review": {
     "key": "sc:siphon.prerequisites.new-outlet",
     "hash": "58c313c9a25d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.prerequisites.tub-access": {
@@ -796,9 +796,9 @@
    "review": {
     "key": "sc:siphon.prerequisites.tub-access",
     "hash": "4400ba2738a0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.steps.tub-connect": {
@@ -810,9 +810,9 @@
    "review": {
     "key": "sc:siphon.steps.tub-connect",
     "hash": "9e538195caa4",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.steps.tub-fit": {
@@ -824,9 +824,9 @@
    "review": {
     "key": "sc:siphon.steps.tub-fit",
     "hash": "c808863fbfa3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.steps.tub-plug": {
@@ -838,9 +838,9 @@
    "review": {
     "key": "sc:siphon.steps.tub-plug",
     "hash": "1357c3a22e74",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.x.anti-odour": {
@@ -852,9 +852,9 @@
    "review": {
     "key": "sc:siphon.x.anti-odour",
     "hash": "c3d717e1169f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "siphon.x.clean-valve": {
@@ -866,9 +866,9 @@
    "review": {
     "key": "sc:siphon.x.clean-valve",
     "hash": "e5a278eb0a37",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

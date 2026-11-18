@@ -30,7 +30,7 @@ async function page(ctx, {flag = true} = {}){
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
   await p.route(/supabase\.co|challenges\.cloudflare\.com/, r => r.abort());
   await p.route('**/src/config.js', r => r.fulfill({contentType: 'text/javascript',
-    body: CONFIG.replace('export const ALLAXE_BOT_ENABLED = false;', `export const ALLAXE_BOT_ENABLED = ${flag};`)
+    body: CONFIG.replace(/export const ALLAXE_BOT_ENABLED = (true|false);/, `export const ALLAXE_BOT_ENABLED = ${flag};`)
       .replace('export const AUTH_ENABLED = true;', 'export const AUTH_ENABLED = false;')}));
   if(flag) await p.route('**/src/cases-data.js', r => r.fulfill({contentType: 'text/javascript', body: CASES_JS}));
   await p.addInitScript(profile => {

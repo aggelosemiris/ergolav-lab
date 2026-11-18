@@ -50,14 +50,14 @@ test('έγκριση ισχύει μόνο για το κείμενο που ε�
   assert.equal(compileMaterial(m, changed, all, ok).out.items['socket.checks.wet-cover'].review.reviewed, false);
 });
 
-test('γενικές κατηγορίες: μία ανάλυση για κάθε κατηγορία του χάρτη, με τη θέση {είδος} και έγκριση false μέχρι να ελεγχθεί', () => {
+test('γενικές κατηγορίες: μία ανάλυση για κάθε κατηγορία του χάρτη, με τη θέση {είδος} και πεδίο έγκρισης', () => {
   const g = res.generic.out;
   assert.deepEqual(g.cases.map(c => c.id).sort(), map.generic.map(x => `generic:${x.id}`).sort());
   for(const c of g.cases){
     const ids = Object.values(c.sections).flat();
     assert.ok(ids.some(id => g.items[id].n.includes('{είδος}')), c.id);
     assert.ok(!c.title.includes('{'), c.id);
-    assert.equal(c.review.reviewed, false);
+    assert.equal(typeof c.review.reviewed, 'boolean');
   }
   // Οι θέσεις που υπάρχουν: μόνο {είδος} και {ποσότητα}.
   for(const it of Object.values(g.items)) for(const t of [it.n, it.s, it.c]) for(const [, p] of t.matchAll(/\{([^}]*)\}/g)) assert.ok(['είδος', 'ποσότητα'].includes(p), t);

@@ -128,9 +128,9 @@
    "review": {
     "key": "case:pipe-water:renovation.exposed.multilayer",
     "hash": "35e82905dc85",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -175,9 +175,9 @@
    "review": {
     "key": "case:pipe-water:renovation.exposed.ppr",
     "hash": "2bdde88290d2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -224,9 +224,9 @@
    "review": {
     "key": "case:pipe-water:extend.inwall.multilayer",
     "hash": "e174f6b18133",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -273,9 +273,9 @@
    "review": {
     "key": "case:pipe-water:extend.inwall.ppr",
     "hash": "f34c05dadbb0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -319,9 +319,9 @@
    "review": {
     "key": "case:pipe-water:extend.exposed.multilayer",
     "hash": "329e6b63843d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -365,9 +365,9 @@
    "review": {
     "key": "case:pipe-water:extend.exposed.ppr",
     "hash": "355f71407601",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -411,9 +411,9 @@
    "review": {
     "key": "case:pipe-water:leak.inwall.multilayer",
     "hash": "663c55473bc8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -457,9 +457,9 @@
    "review": {
     "key": "case:pipe-water:leak.inwall.ppr",
     "hash": "f0704c501141",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -502,9 +502,9 @@
    "review": {
     "key": "case:pipe-water:leak.exposed.multilayer",
     "hash": "9da27803f2f9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -547,9 +547,9 @@
    "review": {
     "key": "case:pipe-water:leak.exposed.ppr",
     "hash": "8875153a2c95",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -565,9 +565,9 @@
    "review": {
     "key": "extra:pipe-water:pipe.steps.insulate-hot",
     "hash": "f60f85433877",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -577,9 +577,9 @@
    "review": {
     "key": "extra:pipe-water:pipe.x.pressure-reducer",
     "hash": "3ebb275c0caa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -589,9 +589,9 @@
    "review": {
     "key": "extra:pipe-water:pipe.x.label-valves",
     "hash": "0e0bbac5b953",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -601,9 +601,9 @@
    "review": {
     "key": "extra:pipe-water:pipe.x.flush-lines",
     "hash": "f32f02e113be",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -617,9 +617,9 @@
    "review": {
     "key": "sc:pipe.checks.flow",
     "hash": "823f586d91aa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.checks.meter": {
@@ -631,9 +631,9 @@
    "review": {
     "key": "sc:pipe.checks.meter",
     "hash": "c5897740b530",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.checks.tie-in-dry": {
@@ -645,9 +645,9 @@
    "review": {
     "key": "sc:pipe.checks.tie-in-dry",
     "hash": "c7dad6bbb69b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.handover.clean": {
@@ -659,9 +659,9 @@
    "review": {
     "key": "sc:pipe.handover.clean",
     "hash": "5ec190f9c140",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.handover.repair-note": {
@@ -673,9 +673,9 @@
    "review": {
     "key": "sc:pipe.handover.repair-note",
     "hash": "06c0b3d999b3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.handover.valves": {
@@ -687,9 +687,9 @@
    "review": {
     "key": "sc:pipe.handover.valves",
     "hash": "ad991acb3dbb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.preparation.expose-join": {
@@ -701,9 +701,9 @@
    "review": {
     "key": "sc:pipe.preparation.expose-join",
     "hash": "cf14654d9ce5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.preparation.open-spot": {
@@ -715,9 +715,9 @@
    "review": {
     "key": "sc:pipe.preparation.open-spot",
     "hash": "7d62ca363e29",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.preparation.protect": {
@@ -729,9 +729,9 @@
    "review": {
     "key": "sc:pipe.preparation.protect",
     "hash": "b3f59a334bee",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.preparation.shut-drain": {
@@ -743,9 +743,9 @@
    "review": {
     "key": "sc:pipe.preparation.shut-drain",
     "hash": "b9fec9e25198",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.access": {
@@ -757,9 +757,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.access",
     "hash": "0c8ce1976abf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.existing-pipe": {
@@ -771,9 +771,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.existing-pipe",
     "hash": "ea0ba48e3b2e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.exposed-route": {
@@ -785,9 +785,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.exposed-route",
     "hash": "f2bd7d1243e2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.extend-point": {
@@ -799,9 +799,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.extend-point",
     "hash": "b86205c73a3e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.leak-locate": {
@@ -813,9 +813,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.leak-locate",
     "hash": "12ade0a0708f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.prerequisites.repair-finish": {
@@ -827,9 +827,9 @@
    "review": {
     "key": "sc:pipe.prerequisites.repair-finish",
     "hash": "4f129b6bc6eb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.cut-damaged": {
@@ -841,9 +841,9 @@
    "review": {
     "key": "sc:pipe.steps.cut-damaged",
     "hash": "9d09321e88ce",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.exposed-clips": {
@@ -855,9 +855,9 @@
    "review": {
     "key": "sc:pipe.steps.exposed-clips",
     "hash": "31b5a9856e2e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.insulate-hot": {
@@ -869,9 +869,9 @@
    "review": {
     "key": "sc:pipe.steps.insulate-hot",
     "hash": "72c79f39582b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.join-ppr": {
@@ -883,9 +883,9 @@
    "review": {
     "key": "sc:pipe.steps.join-ppr",
     "hash": "83a1a414f73d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.join-press": {
@@ -897,9 +897,9 @@
    "review": {
     "key": "sc:pipe.steps.join-press",
     "hash": "83759f849a8f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.reclip": {
@@ -911,9 +911,9 @@
    "review": {
     "key": "sc:pipe.steps.reclip",
     "hash": "8366582c9622",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.splice": {
@@ -925,9 +925,9 @@
    "review": {
     "key": "sc:pipe.steps.splice",
     "hash": "59db807bfee3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.steps.tie-in": {
@@ -939,9 +939,9 @@
    "review": {
     "key": "sc:pipe.steps.tie-in",
     "hash": "aac01f4ba1c8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.x.flush-lines": {
@@ -953,9 +953,9 @@
    "review": {
     "key": "sc:pipe.x.flush-lines",
     "hash": "a69d44f8461c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.x.label-valves": {
@@ -967,9 +967,9 @@
    "review": {
     "key": "sc:pipe.x.label-valves",
     "hash": "fffde1f2e8b2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "pipe.x.pressure-reducer": {
@@ -981,9 +981,9 @@
    "review": {
     "key": "sc:pipe.x.pressure-reducer",
     "hash": "d793c4888402",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.checks.1": {
@@ -995,9 +995,9 @@
    "review": {
     "key": "sc:plumb-water-network.checks.1",
     "hash": "1c9fca6a98ec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.checks.2": {
@@ -1009,9 +1009,9 @@
    "review": {
     "key": "sc:plumb-water-network.checks.2",
     "hash": "70d71ff649ec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.checks.3": {
@@ -1023,9 +1023,9 @@
    "review": {
     "key": "sc:plumb-water-network.checks.3",
     "hash": "dc603b7a991e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.handover.1": {
@@ -1037,9 +1037,9 @@
    "review": {
     "key": "sc:plumb-water-network.handover.1",
     "hash": "8f9fa7dbe81b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.handover.2": {
@@ -1051,9 +1051,9 @@
    "review": {
     "key": "sc:plumb-water-network.handover.2",
     "hash": "133c3134d89d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.preparation.1": {
@@ -1065,9 +1065,9 @@
    "review": {
     "key": "sc:plumb-water-network.preparation.1",
     "hash": "64614a47194a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.preparation.2": {
@@ -1079,9 +1079,9 @@
    "review": {
     "key": "sc:plumb-water-network.preparation.2",
     "hash": "22e2cdfe8359",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.preparation.3": {
@@ -1093,9 +1093,9 @@
    "review": {
     "key": "sc:plumb-water-network.preparation.3",
     "hash": "d33311f38680",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.prerequisites.1": {
@@ -1107,9 +1107,9 @@
    "review": {
     "key": "sc:plumb-water-network.prerequisites.1",
     "hash": "4c1b42be0865",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.prerequisites.2": {
@@ -1121,9 +1121,9 @@
    "review": {
     "key": "sc:plumb-water-network.prerequisites.2",
     "hash": "758600e86719",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.prerequisites.3": {
@@ -1135,9 +1135,9 @@
    "review": {
     "key": "sc:plumb-water-network.prerequisites.3",
     "hash": "f204e244255e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.steps.1": {
@@ -1149,9 +1149,9 @@
    "review": {
     "key": "sc:plumb-water-network.steps.1",
     "hash": "810b52b5d9b2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.steps.2": {
@@ -1163,9 +1163,9 @@
    "review": {
     "key": "sc:plumb-water-network.steps.2",
     "hash": "5ba8a8073bde",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.steps.3": {
@@ -1177,9 +1177,9 @@
    "review": {
     "key": "sc:plumb-water-network.steps.3",
     "hash": "0a74f5085aed",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.steps.4": {
@@ -1191,9 +1191,9 @@
    "review": {
     "key": "sc:plumb-water-network.steps.4",
     "hash": "b2d6b13f2dfb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-water-network.steps.5": {
@@ -1205,9 +1205,9 @@
    "review": {
     "key": "sc:plumb-water-network.steps.5",
     "hash": "14d48fee0a15",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

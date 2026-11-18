@@ -86,9 +86,9 @@
    "review": {
     "key": "case:paint:interior.fresh",
     "hash": "d8d3a0f0fbc8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -174,9 +174,9 @@
    "review": {
     "key": "case:paint:exterior.repaint",
     "hash": "23ace01c2bed",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -219,9 +219,9 @@
    "review": {
     "key": "case:paint:exterior.fresh",
     "hash": "4588753499fa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -265,9 +265,9 @@
    "review": {
     "key": "case:paint:exterior.damaged",
     "hash": "23ace01c2bed",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -279,9 +279,9 @@
    "review": {
     "key": "extra:paint:paint.x.move-furniture",
     "hash": "f689827a1ca9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -295,9 +295,9 @@
    "review": {
     "key": "extra:paint:paint.x.anti-mould",
     "hash": "964241feea95",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -307,9 +307,9 @@
    "review": {
     "key": "extra:paint:paint.x.crack-mesh",
     "hash": "7dfef26a528c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -323,9 +323,9 @@
    "review": {
     "key": "sc:paint-exterior.checks.1",
     "hash": "f10fee04317f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.checks.2": {
@@ -337,9 +337,9 @@
    "review": {
     "key": "sc:paint-exterior.checks.2",
     "hash": "788a1397ad74",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.checks.3": {
@@ -351,9 +351,9 @@
    "review": {
     "key": "sc:paint-exterior.checks.3",
     "hash": "6cf07305b15d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.handover.1": {
@@ -365,9 +365,9 @@
    "review": {
     "key": "sc:paint-exterior.handover.1",
     "hash": "e426467b0212",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.handover.2": {
@@ -379,9 +379,9 @@
    "review": {
     "key": "sc:paint-exterior.handover.2",
     "hash": "daa514b6abd1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.preparation.1": {
@@ -393,9 +393,9 @@
    "review": {
     "key": "sc:paint-exterior.preparation.1",
     "hash": "1ea6e7325c1b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.preparation.2": {
@@ -407,9 +407,9 @@
    "review": {
     "key": "sc:paint-exterior.preparation.2",
     "hash": "e3ef288a3a25",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.preparation.3": {
@@ -421,9 +421,9 @@
    "review": {
     "key": "sc:paint-exterior.preparation.3",
     "hash": "3ec419ebc330",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.prerequisites.1": {
@@ -435,9 +435,9 @@
    "review": {
     "key": "sc:paint-exterior.prerequisites.1",
     "hash": "008e9197e4aa",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.prerequisites.2": {
@@ -449,9 +449,9 @@
    "review": {
     "key": "sc:paint-exterior.prerequisites.2",
     "hash": "bc126158106b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.prerequisites.3": {
@@ -463,9 +463,9 @@
    "review": {
     "key": "sc:paint-exterior.prerequisites.3",
     "hash": "2d8b794a725b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.steps.1": {
@@ -477,9 +477,9 @@
    "review": {
     "key": "sc:paint-exterior.steps.1",
     "hash": "80df2641f526",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.steps.2": {
@@ -491,9 +491,9 @@
    "review": {
     "key": "sc:paint-exterior.steps.2",
     "hash": "178258559d89",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-exterior.steps.3": {
@@ -505,9 +505,9 @@
    "review": {
     "key": "sc:paint-exterior.steps.3",
     "hash": "88ab2d813971",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.checks.1": {
@@ -519,9 +519,9 @@
    "review": {
     "key": "sc:paint-interior-walls.checks.1",
     "hash": "1537ea93bc98",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.checks.2": {
@@ -533,9 +533,9 @@
    "review": {
     "key": "sc:paint-interior-walls.checks.2",
     "hash": "73964d082968",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.checks.3": {
@@ -547,9 +547,9 @@
    "review": {
     "key": "sc:paint-interior-walls.checks.3",
     "hash": "0094e86282f5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.handover.1": {
@@ -561,9 +561,9 @@
    "review": {
     "key": "sc:paint-interior-walls.handover.1",
     "hash": "60bd649a1538",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.handover.2": {
@@ -575,9 +575,9 @@
    "review": {
     "key": "sc:paint-interior-walls.handover.2",
     "hash": "10ccb2e2c666",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.handover.3": {
@@ -589,9 +589,9 @@
    "review": {
     "key": "sc:paint-interior-walls.handover.3",
     "hash": "3527a555e01d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.preparation.1": {
@@ -603,9 +603,9 @@
    "review": {
     "key": "sc:paint-interior-walls.preparation.1",
     "hash": "08c85e5d96f3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.preparation.2": {
@@ -617,9 +617,9 @@
    "review": {
     "key": "sc:paint-interior-walls.preparation.2",
     "hash": "e7cbcf3c18ff",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.preparation.3": {
@@ -631,9 +631,9 @@
    "review": {
     "key": "sc:paint-interior-walls.preparation.3",
     "hash": "b2b5c4b69773",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.preparation.4": {
@@ -645,9 +645,9 @@
    "review": {
     "key": "sc:paint-interior-walls.preparation.4",
     "hash": "804d594d83de",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.prerequisites.1": {
@@ -659,9 +659,9 @@
    "review": {
     "key": "sc:paint-interior-walls.prerequisites.1",
     "hash": "40616a814980",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.prerequisites.2": {
@@ -673,9 +673,9 @@
    "review": {
     "key": "sc:paint-interior-walls.prerequisites.2",
     "hash": "42039d2e13ec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.prerequisites.3": {
@@ -687,9 +687,9 @@
    "review": {
     "key": "sc:paint-interior-walls.prerequisites.3",
     "hash": "8e5be2086b3a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.steps.1": {
@@ -701,9 +701,9 @@
    "review": {
     "key": "sc:paint-interior-walls.steps.1",
     "hash": "ad789b3d22ba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.steps.2": {
@@ -715,9 +715,9 @@
    "review": {
     "key": "sc:paint-interior-walls.steps.2",
     "hash": "0e9a63e5b261",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.steps.3": {
@@ -729,9 +729,9 @@
    "review": {
     "key": "sc:paint-interior-walls.steps.3",
     "hash": "2f935d43d1dc",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint-interior-walls.steps.4": {
@@ -743,9 +743,9 @@
    "review": {
     "key": "sc:paint-interior-walls.steps.4",
     "hash": "88ab2d813971",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.preparation.exterior-dust": {
@@ -757,9 +757,9 @@
    "review": {
     "key": "sc:paint.preparation.exterior-dust",
     "hash": "17f4d81a0b93",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.preparation.exterior-primer": {
@@ -771,9 +771,9 @@
    "review": {
     "key": "sc:paint.preparation.exterior-primer",
     "hash": "64abb6e5e131",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.preparation.fresh-primer": {
@@ -785,9 +785,9 @@
    "review": {
     "key": "sc:paint.preparation.fresh-primer",
     "hash": "fa3f1d245179",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.preparation.fresh-sand": {
@@ -799,9 +799,9 @@
    "review": {
     "key": "sc:paint.preparation.fresh-sand",
     "hash": "5e9843cf13ea",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.prerequisites.exterior-cure": {
@@ -813,9 +813,9 @@
    "review": {
     "key": "sc:paint.prerequisites.exterior-cure",
     "hash": "9ec3054fa3d5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.prerequisites.fresh-dry": {
@@ -827,9 +827,9 @@
    "review": {
     "key": "sc:paint.prerequisites.fresh-dry",
     "hash": "838564119e5a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.x.anti-mould": {
@@ -841,9 +841,9 @@
    "review": {
     "key": "sc:paint.x.anti-mould",
     "hash": "2896788f1bc8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.x.crack-mesh": {
@@ -855,9 +855,9 @@
    "review": {
     "key": "sc:paint.x.crack-mesh",
     "hash": "0cf38390274d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "paint.x.move-furniture": {
@@ -869,9 +869,9 @@
    "review": {
     "key": "sc:paint.x.move-furniture",
     "hash": "5058410e0e11",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

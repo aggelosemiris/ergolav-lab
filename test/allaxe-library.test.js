@@ -97,7 +97,8 @@ test('είδος δουλειάς: 6 πιο πιθανές, «Άλλο είδο�
   const kept = run('Σίτες', [0, CARD.keep]);
   assert.deepEqual([kept.out.effects[0].entry.kind, kept.out.effects[0].entry.category, kept.out.effects[1].category], ['generic', 'frame', 'frame']);
   // Χωρίς εγκεκριμένες γενικές: κατευθείαν «Θα το πω εγώ».
-  const none = createLibraryEngine({data: appData(map, res), base: ANALYSES}).start({item: {name: 'Σίτες'}}).out;
+  const noGeneric = {...ALL, generic: {}};
+  const none = createLibraryEngine({data: noGeneric, base: ANALYSES}).start({item: {name: 'Σίτες'}}).out;
   assert.equal(none.question, 'Πες μου με δικά σου λόγια. Τι κάνεις πρώτα;');
 });
 

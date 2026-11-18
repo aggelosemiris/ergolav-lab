@@ -20,7 +20,12 @@ const { ALLAXE_BOT_ENABLED } = await import('../src/config.js');
 
 const {map, res} = await compileAll();
 // Δύο κόσμοι: «τίποτα εγκεκριμένο» (όπως σήμερα) και «όλα εγκεκριμένα» (σαν να πέρασαν όλα τον έλεγχο).
-const NONE = appData(map, res);
+// «Τίποτα εγκεκριμένο»: όπως πριν από τον έλεγχο, ανεξάρτητα από το data/cases/reviews.json.
+const unapprove = r => ({...r, out: {...r.out,
+  cases: r.out.cases.map(c => c.review ? {...c, review: {...c.review, reviewed: false}} : c),
+  extras: r.out.extras.map(x => ({...x, review: {...x.review, reviewed: false}})),
+  items: Object.fromEntries(Object.entries(r.out.items).map(([id, it]) => [id, {...it, review: {...it.review, reviewed: false}}]))}});
+const NONE = appData(map, Object.fromEntries(Object.entries(res).map(([k, r]) => [k, unapprove(r)])));
 const approveAll = r => ({...r, out: {...r.out,
   cases: r.out.cases.map(c => c.review ? {...c, review: {...c.review, reviewed: true}} : c),
   extras: r.out.extras.map(x => ({...x, review: {...x.review, reviewed: true}})),
@@ -31,10 +36,13 @@ const line = (id, label) => { const l = lineFor(id, 1); if(label){ const o = l.o
 const wcHung = line('wc', 'κρεμαστή'), wcFloor = line('wc', 'δαπέδου');
 const pick = (data, extra = {}) => pickAnalysis({data, base: ANALYSES, task: 'plumb-wc-wall-hung', lines: [wcHung], ...extra});
 
-test('το flag είναι κλειστό και τα δεδομένα της εφαρμογής έχουν μόνο ό,τι έχει εγκριθεί (σήμερα: τίποτα)', () => {
-  assert.equal(ALLAXE_BOT_ENABLED, false);
-  assert.equal(fs.readFileSync(new URL('../src/cases-data.js', import.meta.url), 'utf8'), appDataSource(NONE), 'τρέξε: node tools/catalog/case-texts.mjs');
-  assert.deepEqual([Object.keys(CASE_DATA.cases).length, Object.keys(CASE_DATA.items).length, Object.keys(CASE_DATA.generic).length], [0, 0, 0]);
+test('το flag είναι ανοιχτό και τα δεδομένα της εφαρμογής έχουν μόνο ό,τι έχει εγκριθεί (data/cases/reviews.json)', () => {
+  assert.equal(ALLAXE_BOT_ENABLED, true);
+  assert.equal(fs.readFileSync(new URL('../src/cases-data.js', import.meta.url), 'utf8'), appDataSource(appData(map, res)), 'τρέξε: node tools/catalog/case-texts.mjs');
+  // Μόνο εγκεκριμένες περιπτώσεις: όσες έχουν reviewed: true με το ίδιο αποτύπωμα.
+  const approved = Object.values(res).flatMap(r => r.out.cases).filter(c => c.source !== 'base' && !c.id.startsWith('generic:') && c.review?.reviewed);
+  assert.equal(Object.keys(CASE_DATA.cases).length, approved.length);
+  assert.deepEqual([Object.keys(NONE.cases).length, Object.keys(NONE.items).length, Object.keys(NONE.generic).length], [0, 0, 0]);
   assert.equal(CASE_DATA.materials.length, map.materials.length);
   // Με όλα εγκεκριμένα: κάθε μη βασική περίπτωση μπαίνει, με τα κείμενα όλων των σημείων της.
   const fresh = Object.values(res).flatMap(r => r.out.cases).filter(c => c.source !== 'base' && !c.id.startsWith('generic:'));

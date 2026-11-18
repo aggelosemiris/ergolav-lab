@@ -83,9 +83,9 @@
    "review": {
     "key": "case:socket:socket.replace.wet",
     "hash": "d06a0f64c80e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -173,9 +173,9 @@
    "review": {
     "key": "case:socket:socket.new.masonry.wet",
     "hash": "625a9fe58a93",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -220,9 +220,9 @@
    "review": {
     "key": "case:socket:socket.new.drywall.indoor",
     "hash": "868744d9e010",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -268,9 +268,9 @@
    "review": {
     "key": "case:socket:socket.new.drywall.wet",
     "hash": "c00f7f9b3213",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -354,9 +354,9 @@
    "review": {
     "key": "case:socket:switch.replace.wet",
     "hash": "cbade91d7ef8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -444,9 +444,9 @@
    "review": {
     "key": "case:socket:switch.new.masonry.wet",
     "hash": "432ef3f0faff",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -491,9 +491,9 @@
    "review": {
     "key": "case:socket:switch.new.drywall.indoor",
     "hash": "d489533a6789",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -539,9 +539,9 @@
    "review": {
     "key": "case:socket:switch.new.drywall.wet",
     "hash": "4da4c0bc2d5b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -553,9 +553,9 @@
    "review": {
     "key": "extra:socket:socket.x.check-load",
     "hash": "8a495feb4d0d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -569,9 +569,9 @@
    "review": {
     "key": "extra:socket:socket.x.label-panel",
     "hash": "2dd87d4bd1ac",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -581,9 +581,9 @@
    "review": {
     "key": "extra:socket:socket.x.earth-test",
     "hash": "44cbe607c58f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -600,9 +600,9 @@
    "review": {
     "key": "extra:socket:socket.x.paint-patch",
     "hash": "f76bb1c735db",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -616,9 +616,9 @@
    "review": {
     "key": "sc:elec-socket.checks.1",
     "hash": "1c882f12d9b5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.checks.2": {
@@ -630,9 +630,9 @@
    "review": {
     "key": "sc:elec-socket.checks.2",
     "hash": "943dc533c034",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.checks.3": {
@@ -644,9 +644,9 @@
    "review": {
     "key": "sc:elec-socket.checks.3",
     "hash": "727197cd18ab",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.checks.4": {
@@ -658,9 +658,9 @@
    "review": {
     "key": "sc:elec-socket.checks.4",
     "hash": "5a6a22b9d681",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.handover.1": {
@@ -672,9 +672,9 @@
    "review": {
     "key": "sc:elec-socket.handover.1",
     "hash": "f5aed600845a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.handover.2": {
@@ -686,9 +686,9 @@
    "review": {
     "key": "sc:elec-socket.handover.2",
     "hash": "abc454b2132f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.preparation.1": {
@@ -700,9 +700,9 @@
    "review": {
     "key": "sc:elec-socket.preparation.1",
     "hash": "d9c3c0c7c5f2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.preparation.2": {
@@ -714,9 +714,9 @@
    "review": {
     "key": "sc:elec-socket.preparation.2",
     "hash": "ce85648b298b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.preparation.3": {
@@ -728,9 +728,9 @@
    "review": {
     "key": "sc:elec-socket.preparation.3",
     "hash": "05d9e8375e4d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.prerequisites.1": {
@@ -742,9 +742,9 @@
    "review": {
     "key": "sc:elec-socket.prerequisites.1",
     "hash": "18e1aac30ca3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.prerequisites.2": {
@@ -756,9 +756,9 @@
    "review": {
     "key": "sc:elec-socket.prerequisites.2",
     "hash": "d6a65d4b4344",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.steps.1": {
@@ -770,9 +770,9 @@
    "review": {
     "key": "sc:elec-socket.steps.1",
     "hash": "3816ed7d9a62",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.steps.2": {
@@ -784,9 +784,9 @@
    "review": {
     "key": "sc:elec-socket.steps.2",
     "hash": "632d9d69a56f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.steps.3": {
@@ -798,9 +798,9 @@
    "review": {
     "key": "sc:elec-socket.steps.3",
     "hash": "6f94ff5f770e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "elec-socket.steps.4": {
@@ -812,9 +812,9 @@
    "review": {
     "key": "sc:elec-socket.steps.4",
     "hash": "d9356ae28171",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.checks.wet-cover": {
@@ -826,9 +826,9 @@
    "review": {
     "key": "sc:socket.checks.wet-cover",
     "hash": "5584975a8be3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.preparation.drywall-hole": {
@@ -840,9 +840,9 @@
    "review": {
     "key": "sc:socket.preparation.drywall-hole",
     "hash": "329adaa319fd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.prerequisites.bath-zones": {
@@ -854,9 +854,9 @@
    "review": {
     "key": "sc:socket.prerequisites.bath-zones",
     "hash": "605742ff7061",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.prerequisites.drywall-route": {
@@ -868,9 +868,9 @@
    "review": {
     "key": "sc:socket.prerequisites.drywall-route",
     "hash": "4b14b7c6cf61",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.prerequisites.rcd": {
@@ -882,9 +882,9 @@
    "review": {
     "key": "sc:socket.prerequisites.rcd",
     "hash": "835ad08d5a45",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.prerequisites.wet-type": {
@@ -896,9 +896,9 @@
    "review": {
     "key": "sc:socket.prerequisites.wet-type",
     "hash": "dc4d731c2942",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.steps.drywall-box": {
@@ -910,9 +910,9 @@
    "review": {
     "key": "sc:socket.steps.drywall-box",
     "hash": "a05a3e070b3d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.steps.wet-mount": {
@@ -924,9 +924,9 @@
    "review": {
     "key": "sc:socket.steps.wet-mount",
     "hash": "a3f013250c41",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.x.check-load": {
@@ -938,9 +938,9 @@
    "review": {
     "key": "sc:socket.x.check-load",
     "hash": "28b8bb7ef8e6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.x.earth-test": {
@@ -952,9 +952,9 @@
    "review": {
     "key": "sc:socket.x.earth-test",
     "hash": "451075ce43ab",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.x.label-panel": {
@@ -966,9 +966,9 @@
    "review": {
     "key": "sc:socket.x.label-panel",
     "hash": "a39e08178c40",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "socket.x.paint-patch": {
@@ -980,9 +980,9 @@
    "review": {
     "key": "sc:socket.x.paint-patch",
     "hash": "ebb5f20c2b91",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

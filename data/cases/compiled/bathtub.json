@@ -87,9 +87,9 @@
    "review": {
     "key": "case:bathtub:replace.whirlpool",
     "hash": "c74f89c2cf76",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -134,9 +134,9 @@
    "review": {
     "key": "case:bathtub:renovation.built",
     "hash": "dcc91cd81976",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -179,9 +179,9 @@
    "review": {
     "key": "case:bathtub:renovation.freestanding",
     "hash": "f4a26a2326a0",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -230,9 +230,9 @@
    "review": {
     "key": "case:bathtub:renovation.whirlpool",
     "hash": "c97b6b7cba94",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -276,9 +276,9 @@
    "review": {
     "key": "case:bathtub:new.built",
     "hash": "df357ac6a405",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -321,9 +321,9 @@
    "review": {
     "key": "case:bathtub:new.freestanding",
     "hash": "233711e5b7d1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -371,9 +371,9 @@
    "review": {
     "key": "case:bathtub:new.whirlpool",
     "hash": "effb00c77db2",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -385,9 +385,9 @@
    "review": {
     "key": "extra:bathtub:bath.x.grab-bar",
     "hash": "2f8727380db5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -401,9 +401,9 @@
    "review": {
     "key": "extra:bathtub:bath.x.screen",
     "hash": "8c43888a6ba7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -418,9 +418,9 @@
    "review": {
     "key": "extra:bathtub:bath.x.sound",
     "hash": "aa08e74696cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -434,9 +434,9 @@
    "review": {
     "key": "sc:bath.checks.free-stable",
     "hash": "6554f81a2ac1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.checks.whirl-run": {
@@ -448,9 +448,9 @@
    "review": {
     "key": "sc:bath.checks.whirl-run",
     "hash": "07c2f9635ac6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.handover.free-seal": {
@@ -462,9 +462,9 @@
    "review": {
     "key": "sc:bath.handover.free-seal",
     "hash": "f7e9983785a7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.handover.whirl-use": {
@@ -476,9 +476,9 @@
    "review": {
     "key": "sc:bath.handover.whirl-use",
     "hash": "198b9e93151a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.preparation.level": {
@@ -490,9 +490,9 @@
    "review": {
     "key": "sc:bath.preparation.level",
     "hash": "40aff16ba3ef",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.preparation.new-lines": {
@@ -504,9 +504,9 @@
    "review": {
     "key": "sc:bath.preparation.new-lines",
     "hash": "44eb599af6cf",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.preparation.renovation-check": {
@@ -518,9 +518,9 @@
    "review": {
     "key": "sc:bath.preparation.renovation-check",
     "hash": "60c6e24d735d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.prerequisites.free-floor": {
@@ -532,9 +532,9 @@
    "review": {
     "key": "sc:bath.prerequisites.free-floor",
     "hash": "fb28422198fe",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.prerequisites.new-points": {
@@ -546,9 +546,9 @@
    "review": {
     "key": "sc:bath.prerequisites.new-points",
     "hash": "a27d3c509590",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.prerequisites.whirl-power": {
@@ -560,9 +560,9 @@
    "review": {
     "key": "sc:bath.prerequisites.whirl-power",
     "hash": "ac27e1974f37",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.steps.free-drain": {
@@ -574,9 +574,9 @@
    "review": {
     "key": "sc:bath.steps.free-drain",
     "hash": "2d9ecd779a00",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.steps.free-mixer": {
@@ -588,9 +588,9 @@
    "review": {
     "key": "sc:bath.steps.free-mixer",
     "hash": "964037cd5eed",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.steps.free-place": {
@@ -602,9 +602,9 @@
    "review": {
     "key": "sc:bath.steps.free-place",
     "hash": "6ab560c3d48f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.steps.whirl-access": {
@@ -616,9 +616,9 @@
    "review": {
     "key": "sc:bath.steps.whirl-access",
     "hash": "919cb96ca22f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.steps.whirl-connect": {
@@ -630,9 +630,9 @@
    "review": {
     "key": "sc:bath.steps.whirl-connect",
     "hash": "18091c6fdb6a",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.x.grab-bar": {
@@ -644,9 +644,9 @@
    "review": {
     "key": "sc:bath.x.grab-bar",
     "hash": "92c12d6c0549",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.x.screen": {
@@ -658,9 +658,9 @@
    "review": {
     "key": "sc:bath.x.screen",
     "hash": "84d11312e00e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "bath.x.sound": {
@@ -672,9 +672,9 @@
    "review": {
     "key": "sc:bath.x.sound",
     "hash": "c31fda5c4cf5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.checks.1": {
@@ -686,9 +686,9 @@
    "review": {
     "key": "sc:plumb-bathtub.checks.1",
     "hash": "842bdad91f5b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.checks.2": {
@@ -700,9 +700,9 @@
    "review": {
     "key": "sc:plumb-bathtub.checks.2",
     "hash": "41567e3bee16",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.checks.3": {
@@ -714,9 +714,9 @@
    "review": {
     "key": "sc:plumb-bathtub.checks.3",
     "hash": "2a6454e70331",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.handover.1": {
@@ -728,9 +728,9 @@
    "review": {
     "key": "sc:plumb-bathtub.handover.1",
     "hash": "578030f1cca7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.handover.2": {
@@ -742,9 +742,9 @@
    "review": {
     "key": "sc:plumb-bathtub.handover.2",
     "hash": "fe42605781f6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.preparation.1": {
@@ -756,9 +756,9 @@
    "review": {
     "key": "sc:plumb-bathtub.preparation.1",
     "hash": "d581fa78d92c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.preparation.2": {
@@ -770,9 +770,9 @@
    "review": {
     "key": "sc:plumb-bathtub.preparation.2",
     "hash": "2488a730970d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.prerequisites.1": {
@@ -784,9 +784,9 @@
    "review": {
     "key": "sc:plumb-bathtub.prerequisites.1",
     "hash": "7804499648e1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.prerequisites.2": {
@@ -798,9 +798,9 @@
    "review": {
     "key": "sc:plumb-bathtub.prerequisites.2",
     "hash": "013a50f38dec",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.prerequisites.3": {
@@ -812,9 +812,9 @@
    "review": {
     "key": "sc:plumb-bathtub.prerequisites.3",
     "hash": "5f67aeb3e32c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.steps.1": {
@@ -826,9 +826,9 @@
    "review": {
     "key": "sc:plumb-bathtub.steps.1",
     "hash": "ffeda4e9d2c9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.steps.2": {
@@ -840,9 +840,9 @@
    "review": {
     "key": "sc:plumb-bathtub.steps.2",
     "hash": "115bc155dd16",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.steps.3": {
@@ -854,9 +854,9 @@
    "review": {
     "key": "sc:plumb-bathtub.steps.3",
     "hash": "2675af86c5d6",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.steps.4": {
@@ -868,9 +868,9 @@
    "review": {
     "key": "sc:plumb-bathtub.steps.4",
     "hash": "130149956250",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-bathtub.steps.5": {
@@ -882,9 +882,9 @@
    "review": {
     "key": "sc:plumb-bathtub.steps.5",
     "hash": "e4527e4f6c5f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },

@@ -80,9 +80,9 @@
    "review": {
     "key": "case:sink:replace.under",
     "hash": "dea2a8924242",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -125,9 +125,9 @@
    "review": {
     "key": "case:sink:replace.cabinet",
     "hash": "e1d5ad90ca1d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -170,9 +170,9 @@
    "review": {
     "key": "case:sink:new.inset",
     "hash": "3f48bf7c0704",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -214,9 +214,9 @@
    "review": {
     "key": "case:sink:new.under",
     "hash": "2209e6c8d83f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -259,9 +259,9 @@
    "review": {
     "key": "case:sink:new.cabinet",
     "hash": "87e05f7bf6ba",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -273,9 +273,9 @@
    "review": {
     "key": "extra:sink:sink.x.dishwasher-valve",
     "hash": "ebd0bfb690bd",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -285,9 +285,9 @@
    "review": {
     "key": "extra:sink:sink.x.filter",
     "hash": "45e43b5fde3f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   {
@@ -302,9 +302,9 @@
    "review": {
     "key": "extra:sink:sink.x.cabinet-protect",
     "hash": "a670c9c743af",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  ],
@@ -318,9 +318,9 @@
    "review": {
     "key": "sc:plumb-sink.checks.1",
     "hash": "e2ae010006f9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.checks.2": {
@@ -332,9 +332,9 @@
    "review": {
     "key": "sc:plumb-sink.checks.2",
     "hash": "d66d0fc51547",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.checks.3": {
@@ -346,9 +346,9 @@
    "review": {
     "key": "sc:plumb-sink.checks.3",
     "hash": "1ccf244eccf9",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.handover.1": {
@@ -360,9 +360,9 @@
    "review": {
     "key": "sc:plumb-sink.handover.1",
     "hash": "fa683d8cb802",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.handover.2": {
@@ -374,9 +374,9 @@
    "review": {
     "key": "sc:plumb-sink.handover.2",
     "hash": "c71a1a45cd6c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.preparation.1": {
@@ -388,9 +388,9 @@
    "review": {
     "key": "sc:plumb-sink.preparation.1",
     "hash": "8a48e8079c7b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.preparation.2": {
@@ -402,9 +402,9 @@
    "review": {
     "key": "sc:plumb-sink.preparation.2",
     "hash": "b372ad804e76",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.prerequisites.1": {
@@ -416,9 +416,9 @@
    "review": {
     "key": "sc:plumb-sink.prerequisites.1",
     "hash": "c54d1a2267ac",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.prerequisites.2": {
@@ -430,9 +430,9 @@
    "review": {
     "key": "sc:plumb-sink.prerequisites.2",
     "hash": "86638d694b50",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.steps.1": {
@@ -444,9 +444,9 @@
    "review": {
     "key": "sc:plumb-sink.steps.1",
     "hash": "452e23f47be1",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.steps.2": {
@@ -458,9 +458,9 @@
    "review": {
     "key": "sc:plumb-sink.steps.2",
     "hash": "0cb0718a0654",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.steps.3": {
@@ -472,9 +472,9 @@
    "review": {
     "key": "sc:plumb-sink.steps.3",
     "hash": "62d8161ba848",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.steps.4": {
@@ -486,9 +486,9 @@
    "review": {
     "key": "sc:plumb-sink.steps.4",
     "hash": "a282bf6471eb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "plumb-sink.steps.5": {
@@ -500,9 +500,9 @@
    "review": {
     "key": "sc:plumb-sink.steps.5",
     "hash": "89a23d2e8bc3",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.checks.cabinet-firm": {
@@ -514,9 +514,9 @@
    "review": {
     "key": "sc:sink.checks.cabinet-firm",
     "hash": "1a3d5535e4f8",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.checks.under-seal": {
@@ -528,9 +528,9 @@
    "review": {
     "key": "sc:sink.checks.under-seal",
     "hash": "4e06e72ce63b",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.preparation.cabinet-level": {
@@ -542,9 +542,9 @@
    "review": {
     "key": "sc:sink.preparation.cabinet-level",
     "hash": "171fdfb37b0d",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.preparation.cabinet-remove": {
@@ -556,9 +556,9 @@
    "review": {
     "key": "sc:sink.preparation.cabinet-remove",
     "hash": "5d308f643450",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.preparation.new-check": {
@@ -570,9 +570,9 @@
    "review": {
     "key": "sc:sink.preparation.new-check",
     "hash": "c5f75ae4294c",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.preparation.under-remove": {
@@ -584,9 +584,9 @@
    "review": {
     "key": "sc:sink.preparation.under-remove",
     "hash": "a4208f6dd3f5",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.prerequisites.cabinet-size": {
@@ -598,9 +598,9 @@
    "review": {
     "key": "sc:sink.prerequisites.cabinet-size",
     "hash": "8be0011b5658",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.prerequisites.new-points": {
@@ -612,9 +612,9 @@
    "review": {
     "key": "sc:sink.prerequisites.new-points",
     "hash": "6bae65172d05",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.prerequisites.under-cutout": {
@@ -626,9 +626,9 @@
    "review": {
     "key": "sc:sink.prerequisites.under-cutout",
     "hash": "a4e1ae71c67e",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.steps.cabinet-set": {
@@ -640,9 +640,9 @@
    "review": {
     "key": "sc:sink.steps.cabinet-set",
     "hash": "6dcb619cff80",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.steps.cabinet-top": {
@@ -654,9 +654,9 @@
    "review": {
     "key": "sc:sink.steps.cabinet-top",
     "hash": "2f39b24361a7",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.steps.under-fix": {
@@ -668,9 +668,9 @@
    "review": {
     "key": "sc:sink.steps.under-fix",
     "hash": "f957125e3cdb",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.steps.under-tap": {
@@ -682,9 +682,9 @@
    "review": {
     "key": "sc:sink.steps.under-tap",
     "hash": "9078eba47980",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.x.cabinet-protect": {
@@ -696,9 +696,9 @@
    "review": {
     "key": "sc:sink.x.cabinet-protect",
     "hash": "872654c8cc3f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.x.dishwasher-valve": {
@@ -710,9 +710,9 @@
    "review": {
     "key": "sc:sink.x.dishwasher-valve",
     "hash": "51d02e52030f",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   },
   "sink.x.filter": {
@@ -724,9 +724,9 @@
    "review": {
     "key": "sc:sink.x.filter",
     "hash": "b380d9c1fe08",
-    "reviewed": false,
-    "reviewer": null,
-    "reviewed_at": null
+    "reviewed": true,
+    "reviewer": "Φίλιππος (μαζική έγκριση)",
+    "reviewed_at": "2026-11-18T09:46:54.515Z"
    }
   }
  },
