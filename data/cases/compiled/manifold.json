@@ -1,0 +1,597 @@
+{
+ "material": "manifold",
+ "name": "Συλλέκτης νερού",
+ "cases": [
+  {
+   "id": "manifold:new.recessed",
+   "label": "Καινούργιος · Σε χωνευτό κουτί στον τοίχο",
+   "answers": {
+    "job": "new",
+    "box": "recessed"
+   },
+   "source": "base",
+   "task": "plumb-manifold",
+   "title": "Τοποθέτηση συλλέκτη ύδρευσης",
+   "duration": "ενδεικτικά 3–6 ώρες, ανάλογα με τις εξόδους",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-manifold.prerequisites.1",
+     "plumb-manifold.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-manifold.preparation.1",
+     "plumb-manifold.preparation.2"
+    ],
+    "steps": [
+     "plumb-manifold.steps.1",
+     "plumb-manifold.steps.2",
+     "plumb-manifold.steps.3",
+     "plumb-manifold.steps.4"
+    ],
+    "checks": [
+     "plumb-manifold.checks.1",
+     "plumb-manifold.checks.2",
+     "plumb-manifold.checks.3"
+    ],
+    "handover": [
+     "plumb-manifold.handover.1",
+     "plumb-manifold.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "manifold:new.surface",
+   "label": "Καινούργιος · Ορατός ή μέσα σε ντουλάπι",
+   "answers": {
+    "job": "new",
+    "box": "surface"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση ορατού συλλέκτη ύδρευσης",
+   "duration": "ενδεικτικά 3–5 ώρες, ανάλογα με τις εξόδους",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-manifold.prerequisites.1",
+     "manifold.prerequisites.surface-place"
+    ],
+    "preparation": [
+     "manifold.preparation.mark",
+     "manifold.preparation.routes"
+    ],
+    "steps": [
+     "manifold.steps.brackets",
+     "plumb-manifold.steps.2",
+     "plumb-manifold.steps.3",
+     "plumb-manifold.steps.4"
+    ],
+    "checks": [
+     "plumb-manifold.checks.1",
+     "plumb-manifold.checks.2",
+     "manifold.checks.joints"
+    ],
+    "handover": [
+     "plumb-manifold.handover.1",
+     "manifold.handover.clean"
+    ]
+   },
+   "review": {
+    "key": "case:manifold:new.surface",
+    "hash": "d44ee1da6a77",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "manifold:replace.recessed",
+   "label": "Αλλαγή παλιού · Σε χωνευτό κουτί στον τοίχο",
+   "answers": {
+    "job": "replace",
+    "box": "recessed"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση χωνευτού συλλέκτη ύδρευσης",
+   "duration": "ενδεικτικά 2–4 ώρες, ανάλογα με τις εξόδους",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "manifold.prerequisites.replace-match",
+     "manifold.prerequisites.main-off"
+    ],
+    "preparation": [
+     "manifold.preparation.label-old",
+     "manifold.preparation.remove-old"
+    ],
+    "steps": [
+     "manifold.steps.fix-in-box",
+     "plumb-manifold.steps.2",
+     "plumb-manifold.steps.3",
+     "manifold.steps.leak-test"
+    ],
+    "checks": [
+     "manifold.checks.joints",
+     "plumb-manifold.checks.2",
+     "manifold.checks.flow"
+    ],
+    "handover": [
+     "plumb-manifold.handover.1",
+     "plumb-manifold.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:manifold:replace.recessed",
+    "hash": "cf3fae2771cd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "manifold:replace.surface",
+   "label": "Αλλαγή παλιού · Ορατός ή μέσα σε ντουλάπι",
+   "answers": {
+    "job": "replace",
+    "box": "surface"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση ορατού συλλέκτη ύδρευσης",
+   "duration": "ενδεικτικά 2–4 ώρες, ανάλογα με τις εξόδους",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "manifold.prerequisites.replace-match",
+     "manifold.prerequisites.main-off"
+    ],
+    "preparation": [
+     "manifold.preparation.label-old",
+     "manifold.preparation.remove-old"
+    ],
+    "steps": [
+     "manifold.steps.brackets",
+     "plumb-manifold.steps.2",
+     "plumb-manifold.steps.3",
+     "manifold.steps.leak-test"
+    ],
+    "checks": [
+     "manifold.checks.joints",
+     "plumb-manifold.checks.2",
+     "manifold.checks.flow"
+    ],
+    "handover": [
+     "plumb-manifold.handover.1",
+     "manifold.handover.clean"
+    ]
+   },
+   "review": {
+    "key": "case:manifold:replace.surface",
+    "hash": "492a814faa9f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "manifold.x.drain",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:manifold:manifold.x.drain",
+    "hash": "79f3dccd5c93",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "manifold.x.spare",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:manifold:manifold.x.spare",
+    "hash": "c1c5844f3231",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "manifold.checks.flow": {
+   "section": "checks",
+   "n": "Ανοίγουμε κάθε σημείο νερού: η πίεση είναι κανονική παντού.",
+   "s": "Ανοίγουμε όλες τις βρύσες: το νερό έρχεται κανονικά σε όλες.",
+   "c": "Κανονική πίεση σε όλα τα σημεία.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.checks.flow",
+    "hash": "7c757dd4c663",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.checks.joints": {
+   "section": "checks",
+   "n": "Ελέγχουμε όλες τις ενώσεις του συλλέκτη για σταγόνες.",
+   "s": "Κοιτάμε κάθε ένωση του συλλέκτη: δεν στάζει πουθενά.",
+   "c": "Ενώσεις χωρίς σταγόνες.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.checks.joints",
+    "hash": "7ee40b8d8f61",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.handover.clean": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τον χώρο γύρω από τον συλλέκτη.",
+   "s": "Καθαρίζουμε γύρω από τον συλλέκτη.",
+   "c": "Καθάρισμα χώρου.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.handover.clean",
+    "hash": "5998eecf934e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.preparation.label-old": {
+   "section": "preparation",
+   "n": "Κόβουμε το νερό και σημαδεύουμε ποιο σημείο τροφοδοτεί κάθε σωλήνας του παλιού συλλέκτη.",
+   "s": "Κόβουμε το νερό και γράφουμε σε κάθε σωλήνα του παλιού συλλέκτη πού πηγαίνει.",
+   "c": "Σήμανση σωλήνων παλιού συλλέκτη.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.preparation.label-old",
+    "hash": "538fb504c5f9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.preparation.mark": {
+   "section": "preparation",
+   "n": "Κόβουμε το νερό και σημαδεύουμε τη θέση των στηριγμάτων του συλλέκτη.",
+   "s": "Κόβουμε το νερό και σημαδεύουμε πού θα βιδωθούν τα στηρίγματα του συλλέκτη.",
+   "c": "Κλείσιμο νερού, σημάδεμα στηριγμάτων.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.preparation.mark",
+    "hash": "6a039a9e0418",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.preparation.remove-old": {
+   "section": "preparation",
+   "n": "Αποσυνδέουμε τους σωλήνες και αφαιρούμε τον παλιό συλλέκτη.",
+   "s": "Λύνουμε τους σωλήνες και βγάζουμε τον παλιό συλλέκτη.",
+   "c": "Αφαίρεση παλιού συλλέκτη.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.preparation.remove-old",
+    "hash": "5ed1e25b66cf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.preparation.routes": {
+   "section": "preparation",
+   "n": "Ανοίγουμε τις διαδρομές για τους σωλήνες ως τη θέση του συλλέκτη.",
+   "s": "Ανοίγουμε δρόμο για τους σωλήνες ως εκεί που μπαίνει ο συλλέκτης.",
+   "c": "Διαδρομές σωλήνων.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.preparation.routes",
+    "hash": "45c6c024abd5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.prerequisites.main-off": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στον κεντρικό διακόπτη, για να κοπεί το νερό σε όλο το σπίτι όσο κρατά η αλλαγή.",
+   "s": "Να φτάνουμε τον κεντρικό διακόπτη, γιατί όσο αλλάζουμε τον συλλέκτη δεν θα έχει νερό το σπίτι.",
+   "c": "Πρόσβαση στον κεντρικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.prerequisites.main-off",
+    "hash": "f3bb0d63d0cc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.prerequisites.replace-match": {
+   "section": "prerequisites",
+   "n": "Ο νέος συλλέκτης να έχει τουλάχιστον όσες εξόδους είχε ο παλιός, με τις ίδιες διαστάσεις σύνδεσης.",
+   "s": "Ο καινούργιος συλλέκτης να έχει τουλάχιστον τόσες εξόδους όσες ο παλιός, και να ταιριάζει στους σωλήνες.",
+   "c": "Συμβατός συλλέκτης, ίδιες έξοδοι.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.prerequisites.replace-match",
+    "hash": "187b52740484",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.prerequisites.surface-place": {
+   "section": "prerequisites",
+   "n": "Θέση για τον συλλέκτη σε ντουλάπι ή σε τοίχο, προσβάσιμη και κοντά στους χώρους που τροφοδοτεί.",
+   "s": "Να υπάρχει σημείο σε ντουλάπι ή τοίχο για τον συλλέκτη, που να το φτάνετε και να είναι κοντά στα δωμάτια με νερό.",
+   "c": "Προσβάσιμη θέση σε ντουλάπι ή τοίχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.prerequisites.surface-place",
+    "hash": "a3fdfeced870",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.steps.brackets": {
+   "section": "steps",
+   "n": "Στερεώνουμε τους συλλέκτες ζεστού και κρύου νερού στον τοίχο ή στο ντουλάπι με τα στηρίγματά τους.",
+   "s": "Βιδώνουμε τους συλλέκτες του ζεστού και του κρύου στον τοίχο ή μέσα στο ντουλάπι.",
+   "c": "Στερέωση συλλεκτών.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.steps.brackets",
+    "hash": "facd61da4ea0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.steps.fix-in-box": {
+   "section": "steps",
+   "n": "Στερεώνουμε τους νέους συλλέκτες μέσα στο υπάρχον κουτί.",
+   "s": "Βιδώνουμε τους καινούργιους συλλέκτες μέσα στο κουτί που υπάρχει ήδη.",
+   "c": "Νέοι συλλέκτες στο υπάρχον κουτί.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.steps.fix-in-box",
+    "hash": "600d5824f417",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.steps.leak-test": {
+   "section": "steps",
+   "n": "Ανοίγουμε σιγά το νερό και κάνουμε δοκιμή πίεσης στον συλλέκτη.",
+   "s": "Ανοίγουμε σιγά-σιγά το νερό και ελέγχουμε τον συλλέκτη με πίεση.",
+   "c": "Δοκιμή πίεσης συλλέκτη.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.steps.leak-test",
+    "hash": "114ddeb1da9d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.x.drain": {
+   "section": "steps",
+   "n": "Τοποθετούμε βάνα εκκένωσης στον συλλέκτη, ώστε να αδειάζει το δίκτυο όταν χρειαστεί.",
+   "s": "Βάζουμε στον συλλέκτη ένα διακοπτάκι που αδειάζει τους σωλήνες, όταν χρειαστεί επισκευή.",
+   "c": "Βάνα εκκένωσης.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.x.drain",
+    "hash": "e3ad8d54de54",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "manifold.x.spare": {
+   "section": "steps",
+   "n": "Αφήνουμε μία έξοδο με τάπα για σημείο νερού που ίσως προστεθεί αργότερα.",
+   "s": "Αφήνουμε μία έξοδο κλειστή με καπάκι, αν θέλετε αργότερα να προσθέσετε βρύση.",
+   "c": "Εφεδρική έξοδος με τάπα.",
+   "source": "new",
+   "review": {
+    "key": "sc:manifold.x.spare",
+    "hash": "8be6b3e0f9d1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.checks.1": {
+   "section": "checks",
+   "n": "Η δοκιμή πίεσης κρατά σταθερή την ένδειξη του μανομέτρου στον χρόνο της δοκιμής.",
+   "s": "Στη δοκιμή, η βελόνα του οργάνου μένει στο ίδιο σημείο όσο κρατάει.",
+   "c": "Σταθερό μανόμετρο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.checks.1",
+    "hash": "73652081e115",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.checks.2": {
+   "section": "checks",
+   "n": "Κλείνουμε κάθε διακόπτη του συλλέκτη χωριστά: κόβει μόνο το σημείο που γράφει η ετικέτα του.",
+   "s": "Κλείνουμε κάθε διακόπτη χωριστά: κόβει μόνο ό,τι γράφει η ετικέτα του.",
+   "c": "Κάθε διακόπτης κόβει το σημείο του.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.checks.2",
+    "hash": "2d0f77d75c8a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.checks.3": {
+   "section": "checks",
+   "n": "Ελέγχουμε τις ενώσεις μέσα στο κουτί για σταγόνες.",
+   "s": "Κοιτάμε τις ενώσεις μέσα στο κουτί: δεν στάζουν.",
+   "c": "Χωρίς σταγόνες στο κουτί.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.checks.3",
+    "hash": "fd3d28f46ec7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.handover.1": {
+   "section": "handover",
+   "n": "Σας αφήνουμε ετικέτες στον συλλέκτη και σας εξηγούμε πώς κλείνετε ένα σημείο χωρίς να κόψετε όλο το νερό.",
+   "s": "Σας αφήνουμε ετικέτες και σας δείχνουμε πώς κλείνετε ένα μόνο σημείο, χωρίς να κόψετε όλο το νερό.",
+   "c": "Ετικέτες, κλείσιμο ενός σημείου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.handover.1",
+    "hash": "e4fd3c84057d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.handover.2": {
+   "section": "handover",
+   "n": "Κλείνουμε το κουτί με το καπάκι του και καθαρίζουμε τον χώρο.",
+   "s": "Κλείνουμε το κουτί με το καπάκι του και καθαρίζουμε.",
+   "c": "Καπάκι, καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.handover.2",
+    "hash": "36e7c2aa72b1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.preparation.1": {
+   "section": "preparation",
+   "n": "Κόβουμε το νερό και σημαδεύουμε τη θέση του κουτιού.",
+   "s": "Κόβουμε το νερό και σημαδεύουμε πού θα μπει το κουτί.",
+   "c": "Κλείσιμο νερού, σημάδεμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.preparation.1",
+    "hash": "1c59f6a62b68",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.preparation.2": {
+   "section": "preparation",
+   "n": "Ανοίγουμε στον τοίχο την εσοχή για το κουτί και τις διαδρομές για τις σωλήνες.",
+   "s": "Σκάβουμε τον τοίχο για το κουτί και για τους σωλήνες.",
+   "c": "Εσοχή κουτιού και διαδρομές.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.preparation.2",
+    "hash": "29b827027194",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε αποφασίσει πόσες εξόδους θα έχει ο συλλέκτης, μία για κάθε σημείο νερού ή ομάδα σημείων.",
+   "s": "Να έχουμε πει πόσες εξόδους θα έχει ο συλλέκτης: μία για κάθε βρύση ή για κάθε ομάδα από βρύσες.",
+   "c": "Συμφωνημένος αριθμός εξόδων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.prerequisites.1",
+    "hash": "82880cccb635",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Θέση για το κουτί του συλλέκτη, προσβάσιμη και κοντά στους χώρους που τροφοδοτεί.",
+   "s": "Να υπάρχει σημείο για το κουτί του συλλέκτη, που να το φτάνετε και να είναι κοντά στα δωμάτια με νερό.",
+   "c": "Προσβάσιμη θέση για το κουτί.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.prerequisites.2",
+    "hash": "e5cac9285dbb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε το κουτί και μέσα του τους συλλέκτες ζεστού και κρύου νερού.",
+   "s": "Στερεώνουμε το κουτί και μέσα του τους συλλέκτες του ζεστού και του κρύου.",
+   "c": "Κουτί και συλλέκτες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.steps.1",
+    "hash": "cbcf75c0fa1b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.steps.2": {
+   "section": "steps",
+   "n": "Συνδέουμε τις κεντρικές παροχές στους συλλέκτες.",
+   "s": "Ενώνουμε τους κεντρικούς σωλήνες του νερού με τους συλλέκτες.",
+   "c": "Κεντρικές παροχές στους συλλέκτες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.steps.2",
+    "hash": "43bc1e0a8e8d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.steps.3": {
+   "section": "steps",
+   "n": "Συνδέουμε κάθε σωλήνα σε δική του έξοδο με διακόπτη και σημειώνουμε σε ποιο σημείο πηγαίνει.",
+   "s": "Ενώνουμε κάθε σωλήνα σε δική του έξοδο με διακόπτη και γράφουμε πού πηγαίνει.",
+   "c": "Κάθε σωλήνας σε έξοδο, με σήμανση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.steps.3",
+    "hash": "87b3b19a9fe9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-manifold.steps.4": {
+   "section": "steps",
+   "n": "Κάνουμε δοκιμή πίεσης πριν κλείσει ο τοίχος.",
+   "s": "Ελέγχουμε με πίεση ότι δεν τρέχει νερό, πριν κλείσει ο τοίχος.",
+   "c": "Δοκιμή πίεσης πριν κλείσει ο τοίχος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-manifold.steps.4",
+    "hash": "c9af447ec834",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

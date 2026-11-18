@@ -1,0 +1,1039 @@
+{
+ "material": "cabin",
+ "name": "Καμπίνα ντουζιέρας",
+ "cases": [
+  {
+   "id": "cabin:new.corner.sliding",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Γωνιακή (δύο πλευρές) · Συρόμενη",
+   "answers": {
+    "job": "new",
+    "kind": "corner",
+    "door": "sliding"
+   },
+   "source": "base",
+   "task": "plumb-shower-enclosure",
+   "title": "Τοποθέτηση καμπίνας ή διαχωριστικού ντουζιέρας",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cabin:new.corner.hinged",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Γωνιακή (δύο πλευρές) · Ανοιγόμενη",
+   "answers": {
+    "job": "new",
+    "kind": "corner",
+    "door": "hinged"
+   },
+   "source": "base",
+   "task": "plumb-shower-enclosure",
+   "title": "Τοποθέτηση καμπίνας ή διαχωριστικού ντουζιέρας",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "cabin:new.front.sliding",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Σε εσοχή (μία πλευρά) · Συρόμενη",
+   "answers": {
+    "job": "new",
+    "kind": "front",
+    "door": "sliding"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση καμπίνας ντουζιέρας σε εσοχή με συρόμενη πόρτα",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "cabin.steps.recess-fit",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:new.front.sliding",
+    "hash": "53abbcd4e177",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:new.front.hinged",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Σε εσοχή (μία πλευρά) · Ανοιγόμενη",
+   "answers": {
+    "job": "new",
+    "kind": "front",
+    "door": "hinged"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση καμπίνας ντουζιέρας σε εσοχή με ανοιγόμενη πόρτα",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "cabin.steps.recess-fit",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:new.front.hinged",
+    "hash": "427af5abb654",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:new.walkin",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Σταθερό τζάμι, χωρίς πόρτα",
+   "answers": {
+    "job": "new",
+    "kind": "walkin"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση σταθερού τζαμιού ντουζιέρας (walk-in)",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.walkin-slope"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "cabin.steps.walkin-profile",
+     "cabin.steps.walkin-glass",
+     "cabin.steps.walkin-seal"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3",
+     "cabin.checks.glass-firm"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:new.walkin",
+    "hash": "31dd8c5a55af",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:new.bath",
+   "label": "Καινούργια (τελείωσαν τα πλακάκια) · Παραβάν μπανιέρας",
+   "answers": {
+    "job": "new",
+    "kind": "bath"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση παραβάν μπανιέρας",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.bath-rim"
+    ],
+    "preparation": [
+     "plumb-shower-enclosure.preparation.1",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "cabin.steps.bath-hinge",
+     "cabin.steps.bath-panel",
+     "cabin.steps.bath-seal"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3",
+     "cabin.checks.glass-firm",
+     "cabin.checks.bath-swing"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:new.bath",
+    "hash": "890a9bee5865",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.corner.sliding",
+   "label": "Αλλαγή παλιάς · Γωνιακή (δύο πλευρές) · Συρόμενη",
+   "answers": {
+    "job": "replace",
+    "kind": "corner",
+    "door": "sliding"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση γωνιακής καμπίνας ντουζιέρας με συρόμενη πόρτα",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.corner.sliding",
+    "hash": "754ce0755678",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.corner.hinged",
+   "label": "Αλλαγή παλιάς · Γωνιακή (δύο πλευρές) · Ανοιγόμενη",
+   "answers": {
+    "job": "replace",
+    "kind": "corner",
+    "door": "hinged"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση γωνιακής καμπίνας ντουζιέρας με ανοιγόμενη πόρτα",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.corner.hinged",
+    "hash": "7f4d2bdeb5b4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.front.sliding",
+   "label": "Αλλαγή παλιάς · Σε εσοχή (μία πλευρά) · Συρόμενη",
+   "answers": {
+    "job": "replace",
+    "kind": "front",
+    "door": "sliding"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση καμπίνας ντουζιέρας σε εσοχή με συρόμενη πόρτα",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "cabin.steps.recess-fit",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.front.sliding",
+    "hash": "51452a8d51f2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.front.hinged",
+   "label": "Αλλαγή παλιάς · Σε εσοχή (μία πλευρά) · Ανοιγόμενη",
+   "answers": {
+    "job": "replace",
+    "kind": "front",
+    "door": "hinged"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση καμπίνας ντουζιέρας σε εσοχή με ανοιγόμενη πόρτα",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "plumb-shower-enclosure.steps.1",
+     "cabin.steps.recess-fit",
+     "plumb-shower-enclosure.steps.2",
+     "plumb-shower-enclosure.steps.3",
+     "plumb-shower-enclosure.steps.4"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.1",
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.front.hinged",
+    "hash": "0615e24d629f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.walkin",
+   "label": "Αλλαγή παλιάς · Σταθερό τζάμι, χωρίς πόρτα",
+   "answers": {
+    "job": "replace",
+    "kind": "walkin"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση σταθερού τζαμιού ντουζιέρας (walk-in)",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.walkin-slope",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "cabin.steps.walkin-profile",
+     "cabin.steps.walkin-glass",
+     "cabin.steps.walkin-seal"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3",
+     "cabin.checks.glass-firm"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.walkin",
+    "hash": "d58f5364c404",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin:replace.bath",
+   "label": "Αλλαγή παλιάς · Παραβάν μπανιέρας",
+   "answers": {
+    "job": "replace",
+    "kind": "bath"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση παραβάν μπανιέρας",
+   "duration": "ενδεικτικά 3–5 ώρες, μαζί με την αφαίρεση της παλιάς",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-shower-enclosure.prerequisites.1",
+     "plumb-shower-enclosure.prerequisites.2",
+     "cabin.prerequisites.bath-rim",
+     "cabin.prerequisites.replace-measure"
+    ],
+    "preparation": [
+     "cabin.preparation.remove-old",
+     "cabin.preparation.fill-holes",
+     "plumb-shower-enclosure.preparation.2",
+     "plumb-shower-enclosure.preparation.3"
+    ],
+    "steps": [
+     "cabin.steps.bath-hinge",
+     "cabin.steps.bath-panel",
+     "cabin.steps.bath-seal"
+    ],
+    "checks": [
+     "plumb-shower-enclosure.checks.2",
+     "plumb-shower-enclosure.checks.3",
+     "cabin.checks.glass-firm",
+     "cabin.checks.bath-swing"
+    ],
+    "handover": [
+     "plumb-shower-enclosure.handover.1",
+     "plumb-shower-enclosure.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:cabin:replace.bath",
+    "hash": "112d3a3f9fa3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "cabin.x.glass-coat",
+   "section": "handover",
+   "when": null,
+   "review": {
+    "key": "extra:cabin:cabin.x.glass-coat",
+    "hash": "5bc7f8b655e6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin.x.take-old",
+   "section": "handover",
+   "when": {
+    "job": [
+     "replace"
+    ]
+   },
+   "review": {
+    "key": "extra:cabin:cabin.x.take-old",
+    "hash": "1c529bce4d91",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "cabin.x.tile-drill",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:cabin:cabin.x.tile-drill",
+    "hash": "1feef5ffb2c3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "cabin.checks.bath-swing": {
+   "section": "checks",
+   "n": "Το παραβάν ανοιγοκλείνει χωρίς να χτυπά στη μπαταρία ή στον τοίχο.",
+   "s": "Το τζάμι ανοίγει και κλείνει χωρίς να ακουμπά τη μπαταρία ή τον τοίχο.",
+   "c": "Ανοίγει χωρίς να χτυπά.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.checks.bath-swing",
+    "hash": "bcfb3842e707",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.checks.glass-firm": {
+   "section": "checks",
+   "n": "Σπρώχνουμε ελαφρά το τζάμι: είναι σταθερό και δεν τρέμει.",
+   "s": "Σπρώχνουμε λίγο το τζάμι: μένει σταθερό.",
+   "c": "Το τζάμι δεν τρέμει.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.checks.glass-firm",
+    "hash": "08e14e8fc4f2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.preparation.fill-holes": {
+   "section": "preparation",
+   "n": "Κλείνουμε τις παλιές τρύπες στα πλακάκια με υλικό στο χρώμα του αρμού.",
+   "s": "Γεμίζουμε τις παλιές τρύπες στα πλακάκια με υλικό που ταιριάζει στο χρώμα.",
+   "c": "Κλείσιμο παλιών οπών.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.preparation.fill-holes",
+    "hash": "697790226f74",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.preparation.remove-old": {
+   "section": "preparation",
+   "n": "Αφαιρούμε την παλιά καμπίνα, τα προφίλ και τις παλιές σιλικόνες.",
+   "s": "Βγάζουμε την παλιά καμπίνα, τα αλουμίνια και την παλιά σιλικόνη.",
+   "c": "Αφαίρεση παλιάς καμπίνας και σιλικονών.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.preparation.remove-old",
+    "hash": "f4159262ce7c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.prerequisites.bath-rim": {
+   "section": "prerequisites",
+   "n": "Η μπανιέρα να είναι στερεωμένη και σφραγισμένη, γιατί το παραβάν πατά στο χείλος της.",
+   "s": "Η μπανιέρα πρέπει να είναι ήδη σταθερή και με σιλικόνη, γιατί το τζάμι ακουμπά στην άκρη της.",
+   "c": "Μπανιέρα στερεωμένη και σφραγισμένη.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.prerequisites.bath-rim",
+    "hash": "866002ba93fb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.prerequisites.replace-measure": {
+   "section": "prerequisites",
+   "n": "Τα μέτρα της νέας καμπίνας τα παίρνουμε πάνω στα υπάρχοντα πλακάκια, και οι τρύπες των παλιών προφίλ πρέπει να καλυφθούν.",
+   "s": "Μετράμε για τη νέα καμπίνα πάνω στα πλακάκια που υπάρχουν· οι παλιές τρύπες θα κλείσουν ή θα κρυφτούν.",
+   "c": "Μέτρα πάνω στα υπάρχοντα πλακάκια.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.prerequisites.replace-measure",
+    "hash": "fae93212777a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.prerequisites.walkin-slope": {
+   "section": "prerequisites",
+   "n": "Το δάπεδο της ντουζιέρας να έχει κλίση προς το σιφώνι, ώστε το νερό να μη φεύγει έξω από το τζάμι.",
+   "s": "Το πάτωμα του ντους πρέπει να γέρνει προς το σιφώνι, για να μη βγαίνει νερό έξω από το τζάμι.",
+   "c": "Κλίση δαπέδου προς το σιφώνι.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.prerequisites.walkin-slope",
+    "hash": "5ccfb7ccef08",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.bath-hinge": {
+   "section": "steps",
+   "n": "Στερεώνουμε το προφίλ ή τους μεντεσέδες του παραβάν στον τοίχο, κατακόρυφα.",
+   "s": "Βιδώνουμε στον τοίχο το αλουμίνιο ή τους μεντεσέδες του τζαμιού, απόλυτα όρθια.",
+   "c": "Προφίλ ή μεντεσέδες κατακόρυφα.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.bath-hinge",
+    "hash": "2cfcda9fb206",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.bath-panel": {
+   "section": "steps",
+   "n": "Τοποθετούμε το παραβάν ώστε να πατά στο χείλος της μπανιέρας και ρυθμίζουμε το άνοιγμά του.",
+   "s": "Βάζουμε το τζάμι πάνω στην άκρη της μπανιέρας και ρυθμίζουμε πόσο ανοίγει.",
+   "c": "Παραβάν στο χείλος, ρυθμισμένο άνοιγμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.bath-panel",
+    "hash": "bbff2a08467d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.bath-seal": {
+   "section": "steps",
+   "n": "Βάζουμε το λάστιχο στη βάση του τζαμιού, για να μη βγαίνει νερό από κάτω.",
+   "s": "Βάζουμε λάστιχο στο κάτω μέρος του τζαμιού, για να μη φεύγει νερό.",
+   "c": "Λάστιχο στη βάση, κατά του νερού.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.bath-seal",
+    "hash": "6977a1f53df9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.recess-fit": {
+   "section": "steps",
+   "n": "Ελέγχουμε ότι το πλάτος της εσοχής είναι ίδιο πάνω και κάτω και ρυθμίζουμε τα προφίλ στη διαφορά.",
+   "s": "Μετράμε την εσοχή πάνω και κάτω και ρυθμίζουμε τα αλουμίνια, για να κλείνει σωστά.",
+   "c": "Ρύθμιση προφίλ στο πλάτος της εσοχής.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.recess-fit",
+    "hash": "6500bab168ca",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.walkin-glass": {
+   "section": "steps",
+   "n": "Τοποθετούμε το τζάμι, το ρυθμίζουμε κατακόρυφο και στερεώνουμε τη μπάρα στήριξης στον τοίχο ή στην οροφή.",
+   "s": "Βάζουμε το τζάμι, το κάνουμε απόλυτα όρθιο και βιδώνουμε τη μπάρα που το κρατά.",
+   "c": "Τζάμι κατακόρυφο, με μπάρα στήριξης.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.walkin-glass",
+    "hash": "d721f3e7f237",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.walkin-profile": {
+   "section": "steps",
+   "n": "Στερεώνουμε το προφίλ ή τα στηρίγματα του σταθερού τζαμιού στον τοίχο και, όπου προβλέπεται, στο δάπεδο.",
+   "s": "Βιδώνουμε το αλουμίνιο ή τα στηρίγματα του τζαμιού στον τοίχο και, αν χρειάζεται, στο πάτωμα.",
+   "c": "Προφίλ ή στηρίγματα σταθερού τζαμιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.walkin-profile",
+    "hash": "a9f3c1c260d7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.steps.walkin-seal": {
+   "section": "steps",
+   "n": "Τοποθετούμε το λάστιχο στη βάση του τζαμιού, όπου υπάρχει.",
+   "s": "Βάζουμε το λάστιχο στο κάτω μέρος του τζαμιού, αν έχει.",
+   "c": "Λάστιχο στη βάση του τζαμιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.steps.walkin-seal",
+    "hash": "87e68e441af7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.x.glass-coat": {
+   "section": "handover",
+   "n": "Περνάμε προστατευτικό κατά των αλάτων στα τζάμια, αν το έχουμε συμφωνήσει.",
+   "s": "Αν το έχουμε πει, περνάμε στα τζάμια ένα υγρό που δεν αφήνει να κολλάνε τα άλατα.",
+   "c": "Προστατευτικό κατά των αλάτων.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.x.glass-coat",
+    "hash": "9460b642ddf0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.x.take-old": {
+   "section": "handover",
+   "n": "Παίρνουμε την παλιά καμπίνα, αν το έχουμε συμφωνήσει.",
+   "s": "Παίρνουμε μαζί μας την παλιά καμπίνα, αν το θέλετε.",
+   "c": "Παίρνουμε την παλιά, αν συμφωνήθηκε.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.x.take-old",
+    "hash": "12b9ef091e47",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "cabin.x.tile-drill": {
+   "section": "preparation",
+   "n": "Τρυπάμε τα πλακάκια με τρυπάνι για πλακάκι, χωρίς κρούση, για να μη ραγίσουν.",
+   "s": "Τρυπάμε τα πλακάκια με ειδικό τρυπάνι, χωρίς χτυπήματα, για να μη σπάσουν.",
+   "c": "Τρύπημα πλακιδίων χωρίς κρούση.",
+   "source": "new",
+   "review": {
+    "key": "sc:cabin.x.tile-drill",
+    "hash": "3308064e65b0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.checks.1": {
+   "section": "checks",
+   "n": "Ανοιγοκλείνουμε τις πόρτες αρκετές φορές: κλείνουν χωρίς να κολλάνε και χωρίς κενά.",
+   "s": "Ανοιγοκλείνουμε τις πόρτες πολλές φορές: κλείνουν καλά, χωρίς να κολλάνε.",
+   "c": "Οι πόρτες κλείνουν ομαλά.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.checks.1",
+    "hash": "3bedc417fca3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.checks.2": {
+   "section": "checks",
+   "n": "Ρίχνουμε νερό με το τηλέφωνο προς τις ενώσεις και τις πόρτες: δεν βγαίνει νερό έξω.",
+   "s": "Ρίχνουμε νερό με το τηλέφωνο στις ενώσεις και στις πόρτες: δεν βγαίνει νερό έξω.",
+   "c": "Δοκιμή με νερό: τίποτα έξω.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.checks.2",
+    "hash": "ac9e9e639280",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.checks.3": {
+   "section": "checks",
+   "n": "Τα προφίλ είναι κατακόρυφα και δεν κουνιούνται.",
+   "s": "Τα αλουμίνια είναι όρθια και δεν κουνιούνται.",
+   "c": "Προφίλ σταθερά και κατακόρυφα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.checks.3",
+    "hash": "38dcb8e6bc1a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.handover.1": {
+   "section": "handover",
+   "n": "Σφραγίζουμε εξωτερικά με σιλικόνη τις επαφές με τον τοίχο και τη βάση.",
+   "s": "Βάζουμε σιλικόνη από έξω, εκεί που η καμπίνα ακουμπά σε τοίχο και βάση.",
+   "c": "Εξωτερική σιλικόνη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.handover.1",
+    "hash": "2e0ab968b4d1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πόσες ώρες να μη χρησιμοποιηθεί το ντους για να στεγνώσει η σιλικόνη, και πώς καθαρίζονται τα τζάμια από τα άλατα.",
+   "s": "Σας λέμε πόσες ώρες να μην κάνετε ντους για να στεγνώσει η σιλικόνη, και πώς καθαρίζονται τα τζάμια από τα άλατα.",
+   "c": "Χρόνος στεγνώματος και καθαρισμός τζαμιών.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.handover.2",
+    "hash": "14859c3a314e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.preparation.1": {
+   "section": "preparation",
+   "n": "Ελέγχουμε με αλφάδι τους τοίχους και τη βάση, γιατί η καμπίνα θέλει κατακόρυφους τοίχους.",
+   "s": "Κοιτάμε με αλφάδι τους τοίχους και τη βάση, γιατί η καμπίνα θέλει ίσιους τοίχους.",
+   "c": "Έλεγχος τοίχων και βάσης με αλφάδι.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.preparation.1",
+    "hash": "7377b7eed186",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.preparation.2": {
+   "section": "preparation",
+   "n": "Ανοίγουμε τη συσκευασία και ελέγχουμε ότι τα τζάμια δεν έχουν ζημιά.",
+   "s": "Ανοίγουμε τα κουτιά και κοιτάμε ότι τα τζάμια είναι ακέραια.",
+   "c": "Έλεγχος τζαμιών για ζημιές.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.preparation.2",
+    "hash": "8127a82213f7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.preparation.3": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε τις θέσεις των προφίλ τοίχου και εντοπίζουμε τους σωλήνες, για να μην τους τρυπήσουμε.",
+   "s": "Σημαδεύουμε πού μπαίνουν τα αλουμίνια και βρίσκουμε τους σωλήνες, για να μην τους τρυπήσουμε.",
+   "c": "Σημάδεμα προφίλ, εντοπισμός σωλήνων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.preparation.3",
+    "hash": "8fcf1afbdd6e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουν τελειώσει τα πλακάκια και η βάση ή το δάπεδο της ντουζιέρας.",
+   "s": "Να έχουν μπει τα πλακάκια και η βάση ή το πάτωμα του ντους.",
+   "c": "Πλακάκια και βάση τελειωμένα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.prerequisites.1",
+    "hash": "2ea1c3993afb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχει παραδοθεί η καμπίνα στη σωστή διάσταση· τα μέτρα τα παίρνουμε εμείς πριν την παραγγελία.",
+   "s": "Η καμπίνα να έχει έρθει στο σωστό μέγεθος· τα μέτρα τα παίρνουμε εμείς πριν την παραγγελία.",
+   "c": "Καμπίνα στη σωστή διάσταση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.prerequisites.2",
+    "hash": "3fd5419d95d6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε τα προφίλ στους τοίχους, κατακόρυφα.",
+   "s": "Βιδώνουμε τα αλουμίνια στους τοίχους, απόλυτα όρθια.",
+   "c": "Προφίλ κατακόρυφα στους τοίχους.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.steps.1",
+    "hash": "8740269272cf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε τα σταθερά τζάμια και μετά τις πόρτες, συρόμενες ή ανοιγόμενες.",
+   "s": "Βάζουμε πρώτα τα σταθερά τζάμια και μετά τις πόρτες, συρόμενες ή ανοιγόμενες.",
+   "c": "Σταθερά τζάμια, μετά πόρτες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.steps.2",
+    "hash": "bc51afabeeae",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.steps.3": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε ράουλα ή μεντεσέδες, ώστε οι πόρτες να κλείνουν ομαλά και να ακουμπούν στα λάστιχα.",
+   "s": "Ρυθμίζουμε ροδάκια ή μεντεσέδες, για να κλείνουν οι πόρτες μαλακά και να ακουμπούν στα λάστιχα.",
+   "c": "Ρύθμιση ράουλων ή μεντεσέδων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.steps.3",
+    "hash": "18ac865fb7db",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-shower-enclosure.steps.4": {
+   "section": "steps",
+   "n": "Τοποθετούμε τα λάστιχα στεγάνωσης και τα χερούλια.",
+   "s": "Βάζουμε τα λάστιχα και τα χερούλια.",
+   "c": "Λάστιχα και χερούλια.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-shower-enclosure.steps.4",
+    "hash": "285e49662ead",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος: Σετ ντους</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><main>
+<p class="small"><a href="index.html">← Όλα τα υλικά</a></p>
+<h1>Έλεγχος κειμένων: Σετ ντους</h1>
+<p class="lede">Άνοιξε κάθε περίπτωση. Για κάθε σημείο: κανονική | απλή | σύντομη. Η εφαρμογή χρησιμοποιεί μόνο ό,τι εγκρίνεις. Οι αποφάσεις μένουν σε αυτόν τον browser· στο τέλος πάτα «Εξαγωγή» και στείλε το αρχείο.</p>
+
+<div class="bar">
+  <label>Ελέγχει <input id="reviewer" autocomplete="name" placeholder="Το όνομά σου"></label>
+  <label>Δείξε <select id="filter"><option value="all">όλες</option><option value="todo">χωρίς απόφαση</option><option value="fix">για διόρθωση</option></select></label>
+  <button type="button" id="approveSc">Εγκρίνω τις απλές/σύντομες των ανοιχτών</button>
+  <button type="button" class="primary" id="export">Εξαγωγή αποφάσεων</button>
+  <span class="progress" id="progress"></span>
+</div>
+<div id="cases"></div>
+</main>
+<script id="data" type="application/json">{"material":"showerset","name":"Σετ ντους","cases":[{"id":"showerset:bar.replace","label":"Απλό, με μπάρα · Αλλαγή παλιού","answers":{"kind":"bar","job":"replace"},"source":"base","task":"plumb-shower-column","title":"Τοποθέτηση στήλης ή σετ ντους","duration":"ενδεικτικά 1–2 ώρες","licensed":false,"sections":{"prerequisites":["plumb-shower-column.prerequisites.1","plumb-shower-column.prerequisites.2"],"preparation":["plumb-shower-column.preparation.1","plumb-shower-column.preparation.2","plumb-shower-column.preparation.3"],"steps":["plumb-shower-column.steps.1","plumb-shower-column.steps.2","plumb-shower-column.steps.3"],"checks":["plumb-shower-column.checks.1","plumb-shower-column.checks.2","plumb-shower-column.checks.3"],"handover":["plumb-shower-column.handover.1","plumb-shower-column.handover.2"]}},{"id":"showerset:bar.new","label":"Απλό, με μπάρα · Καινούργιο (μετά την ανακαίνιση)","answers":{"kind":"bar","job":"new"},"source":"new","title":"Τοποθέτηση σετ ντους με μπάρα μετά την ανακαίνιση","duration":"ενδεικτικά 30–60 λεπτά","licensed":false,"sections":{"prerequisites":["showerset.prerequisites.new-mixer","plumb-shower-column.prerequisites.2"],"preparation":["plumb-shower-column.preparation.2","plumb-shower-column.preparation.3"],"steps":["showerset.steps.bar-fix","showerset.steps.hose","showerset.steps.slider"],"checks":["plumb-shower-column.checks.1","plumb-shower-column.checks.2","showerset.checks.bar-firm"],"handover":["plumb-shower-column.handover.1","plumb-shower-column.handover.2"]},"review":{"key":"case:showerset:bar.new","hash":"be4022e5127f","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"showerset:column.replace","label":"Στήλη με δική της μπαταρία · Αλλαγή παλιού","answers":{"kind":"column","job":"replace"},"source":"base","task":"plumb-shower-column","title":"Τοποθέτηση στήλης ή σετ ντους","duration":"ενδεικτικά 1–2 ώρες","licensed":false,"sections":{"prerequisites":["plumb-shower-column.prerequisites.1","plumb-shower-column.prerequisites.2"],"preparation":["plumb-shower-column.preparation.1","plumb-shower-column.preparation.2","plumb-shower-column.preparation.3"],"steps":["plumb-shower-column.steps.1","plumb-shower-column.steps.2","plumb-shower-column.steps.3"],"checks":["plumb-shower-column.checks.1","plumb-shower-column.checks.2","plumb-shower-column.checks.3"],"handover":["plumb-shower-column.handover.1","plumb-shower-column.handover.2"]}},{"id":"showerset:column.new","label":"Στήλη με δική της μπαταρία · Καινούργιο (μετά την ανακαίνιση)","answers":{"kind":"column","job":"new"},"source":"new","title":"Τοποθέτηση στήλης ντους σε νέες αναμονές","duration":"ενδεικτικά 1–2 ώρες","licensed":false,"sections":{"prerequisites":["showerset.prerequisites.new-stubs","plumb-shower-column.prerequisites.2"],"preparation":["plumb-shower-column.preparation.2","plumb-shower-column.preparation.3"],"steps":["plumb-shower-column.steps.1","plumb-shower-column.steps.2","plumb-shower-column.steps.3"],"checks":["plumb-shower-column.checks.1","plumb-shower-column.checks.2","plumb-shower-column.checks.3"],"handover":["plumb-shower-column.handover.1","plumb-shower-column.handover.2"]},"review":{"key":"case:showerset:column.new","hash":"0642ca5d7061","reviewed":false,"reviewer":null,"reviewed_at":null}}],"extras":[{"id":"showerset.x.thermo","section":"steps","when":null,"review":{"key":"extra:showerset:showerset.x.thermo","hash":"a183508bd7be","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"showerset.x.shelf","section":"steps","when":null,"review":{"key":"extra:showerset:showerset.x.shelf","hash":"9cfd5cfabfb1","reviewed":false,"reviewer":null,"reviewed_at":null}}],"items":{"plumb-shower-column.checks.1":{"section":"checks","n":"Ανοίγουμε το νερό και ελέγχουμε για σταγόνες σε κάθε ένωση.","s":"Ανοίγουμε το νερό και κοιτάμε ότι δεν στάζει καμία ένωση.","c":"Χωρίς σταγόνες στις ενώσεις.","source":"current","review":{"key":"sc:plumb-shower-column.checks.1","hash":"e482a145c197","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.checks.2":{"section":"checks","n":"Δοκιμάζουμε την εναλλαγή ανάμεσα σε κεφαλή, τηλέφωνο και ρουξούνι, όπου υπάρχει.","s":"Δοκιμάζουμε ότι το νερό αλλάζει σωστά από το μεγάλο ντους στο τηλέφωνο και στη βρύση, όπου υπάρχει.","c":"Δοκιμή εναλλαγής.","source":"current","review":{"key":"sc:plumb-shower-column.checks.2","hash":"11a42a0c4712","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.checks.3":{"section":"checks","n":"Ελέγχουμε με αλφάδι ότι η στήλη είναι κατακόρυφη και δεν κουνιέται.","s":"Κοιτάμε με αλφάδι ότι η στήλη είναι ίσια και δεν κουνιέται.","c":"Κατακόρυφη, σταθερή.","source":"current","review":{"key":"sc:plumb-shower-column.checks.3","hash":"b63081c24482","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.handover.1":{"section":"handover","n":"Σφραγίζουμε με σιλικόνη τις τρύπες στήριξης, για να μην μπαίνει νερό στον τοίχο.","s":"Βάζουμε σιλικόνη στις τρύπες των βιδών, για να μη μπαίνει νερό στον τοίχο.","c":"Σιλικόνη στις τρύπες στήριξης.","source":"current","review":{"key":"sc:plumb-shower-column.handover.1","hash":"cfcb792dcfca","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.handover.2":{"section":"handover","n":"Καθαρίζουμε τα πλακάκια και σας δείχνουμε πώς καθαρίζονται τα ακροφύσια της κεφαλής από τα άλατα.","s":"Καθαρίζουμε τα πλακάκια και σας δείχνουμε πώς βγάζετε τα άλατα από τις τρυπούλες του ντους.","c":"Καθάρισμα, φροντίδα ακροφυσίων.","source":"current","review":{"key":"sc:plumb-shower-column.handover.2","hash":"4576fed3bd7b","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.preparation.1":{"section":"preparation","n":"Κλείνουμε το νερό και αφαιρούμε το παλιό σετ ή την παλιά μπαταρία.","s":"Κλείνουμε το νερό και βγάζουμε το παλιό σετ ή την παλιά βρύση.","c":"Κλείσιμο νερού, αφαίρεση παλιού.","source":"current","review":{"key":"sc:plumb-shower-column.preparation.1","hash":"16bbbe9fd124","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.preparation.2":{"section":"preparation","n":"Εντοπίζουμε πού περνούν οι σωλήνες στον τοίχο, για να μην τους τρυπήσουμε.","s":"Βρίσκουμε από πού περνάνε οι σωλήνες στον τοίχο, για να μην τους τρυπήσουμε.","c":"Εντοπισμός σωλήνων.","source":"current","review":{"key":"sc:plumb-shower-column.preparation.2","hash":"0349cd9ad95f","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.preparation.3":{"section":"preparation","n":"Σημαδεύουμε με αλφάδι τη θέση του πάνω στηρίγματος.","s":"Σημαδεύουμε με αλφάδι πού θα μπει το πάνω στήριγμα.","c":"Σημάδεμα πάνω στηρίγματος.","source":"current","review":{"key":"sc:plumb-shower-column.preparation.3","hash":"a4f0d98456e9","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.prerequisites.1":{"section":"prerequisites","n":"Να έχει επιλεγεί στήλη ή σετ ντους που ταιριάζει με την υπάρχουσα μπαταρία, ή στήλη με δική της μπαταρία.","s":"Να έχουμε διαλέξει σετ ή στήλη που κάνει για τη βρύση που υπάρχει, ή στήλη που έχει δική της βρύση.","c":"Σετ συμβατό με την μπαταρία.","source":"current","review":{"key":"sc:plumb-shower-column.prerequisites.1","hash":"b4175decae39","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.prerequisites.2":{"section":"prerequisites","n":"Τοίχος όπου μπορεί να στερεωθεί η στήλη χωρίς να τρυπηθούν σωλήνες.","s":"Ο τοίχος να σηκώνει βίδες εκεί που μπαίνει η στήλη, χωρίς να πετύχουμε σωλήνες.","c":"Τοίχος κατάλληλος για στήριξη.","source":"current","review":{"key":"sc:plumb-shower-column.prerequisites.2","hash":"5643eb806e2e","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.steps.1":{"section":"steps","n":"Συνδέουμε τη στήλη στη μπαταρία ή, αν έχει δική της, στις αναμονές με έκκεντρα ρακόρ.","s":"Ενώνουμε τη στήλη με τη βρύση ή, αν έχει δική της, με τους σωλήνες του τοίχου, με ειδικά ρυθμιζόμενα ρακόρ.","c":"Σύνδεση στήλης με έκκεντρα.","source":"current","review":{"key":"sc:plumb-shower-column.steps.1","hash":"eea80b13823d","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.steps.2":{"section":"steps","n":"Στερεώνουμε το πάνω στήριγμα στον τοίχο με τα παρεμβύσματά του.","s":"Βιδώνουμε το πάνω στήριγμα στον τοίχο με τα λαστιχάκια του.","c":"Πάνω στήριγμα στον τοίχο.","source":"current","review":{"key":"sc:plumb-shower-column.steps.2","hash":"7fd1d022fec1","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-shower-column.steps.3":{"section":"steps","n":"Τοποθετούμε την κεφαλή, το σπιράλ και το τηλέφωνο.","s":"Βάζουμε το μεγάλο ντους, το σωληνάκι και το τηλέφωνο.","c":"Κεφαλή, σπιράλ, τηλέφωνο.","source":"current","review":{"key":"sc:plumb-shower-column.steps.3","hash":"c6a4afffb299","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.checks.bar-firm":{"section":"checks","n":"Η μπάρα είναι ίσια και δεν κουνιέται όταν μετακινούμε τη βάση.","s":"Η μπάρα είναι ίσια και μένει ακίνητη όταν ανεβοκατεβάζουμε τη θήκη.","c":"Ίσια, σταθερή μπάρα.","source":"new","review":{"key":"sc:showerset.checks.bar-firm","hash":"2dca93407589","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.prerequisites.new-mixer":{"section":"prerequisites","n":"Η μπαταρία του ντους να έχει μπει μετά την ανακαίνιση και τα πλακάκια να έχουν τελειώσει.","s":"Να έχει μπει η βρύση του ντους και να έχουν τελειώσει τα πλακάκια.","c":"Μπαταρία στη θέση, πλακάκια τελειωμένα.","source":"new","review":{"key":"sc:showerset.prerequisites.new-mixer","hash":"21bfc6018125","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.prerequisites.new-stubs":{"section":"prerequisites","n":"Αναμονές ζεστού και κρύου στον τοίχο, στην απόσταση και στο ύψος που ζητά η στήλη, με τα πλακάκια τελειωμένα.","s":"Οι σωλήνες του ζεστού και του κρύου να βγαίνουν από τον τοίχο εκεί που τους θέλει η στήλη, με τα πλακάκια να έχουν μπει.","c":"Αναμονές στις θέσεις της στήλης.","source":"new","review":{"key":"sc:showerset.prerequisites.new-stubs","hash":"99cbdf5b1120","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.steps.bar-fix":{"section":"steps","n":"Στερεώνουμε τη μπάρα στον τοίχο με τα στηρίγματά της, αλφαδιασμένη.","s":"Βιδώνουμε ίσια τη μπάρα του ντους στον τοίχο.","c":"Μπάρα αλφαδιασμένη στον τοίχο.","source":"new","review":{"key":"sc:showerset.steps.bar-fix","hash":"50ccd4cc15c9","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.steps.hose":{"section":"steps","n":"Συνδέουμε το σπιράλ στην έξοδο της μπαταρίας και το τηλέφωνο στη βάση του.","s":"Ενώνουμε το σωληνάκι του ντους με τη βρύση και βάζουμε το τηλέφωνο στη θήκη του.","c":"Σπιράλ και τηλέφωνο.","source":"new","review":{"key":"sc:showerset.steps.hose","hash":"3ba8c814c8ab","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.steps.slider":{"section":"steps","n":"Ρυθμίζουμε τη βάση του τηλεφώνου ώστε να γλιστρά και να κρατά σε κάθε ύψος της μπάρας.","s":"Ρυθμίζουμε τη θήκη του τηλεφώνου να ανεβοκατεβαίνει και να μένει όπου την αφήνετε.","c":"Ρύθμιση βάσης τηλεφώνου.","source":"new","review":{"key":"sc:showerset.steps.slider","hash":"cd4ea15f9dcb","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.x.shelf":{"section":"steps","n":"Τοποθετούμε ραφάκι ή σαπουνοθήκη στη μπάρα ή στη στήλη, όπου έχει συμφωνηθεί.","s":"Αν το έχουμε πει, βάζουμε ραφάκι ή θήκη για το σαπούνι πάνω στη μπάρα ή στη στήλη.","c":"Ραφάκι ή σαπουνοθήκη.","source":"new","review":{"key":"sc:showerset.x.shelf","hash":"7278993d80c7","reviewed":false,"reviewer":null,"reviewed_at":null}},"showerset.x.thermo":{"section":"steps","n":"Τοποθετούμε θερμοστατική μπαταρία ή στήλη, όπου έχει συμφωνηθεί, ώστε η θερμοκρασία να μένει σταθερή.","s":"Αν το έχουμε πει, βάζουμε βρύση που κρατάει μόνη της το νερό στην ίδια θερμοκρασία.","c":"Θερμοστατική, αν συμφωνήθηκε.","source":"new","review":{"key":"sc:showerset.x.thermo","hash":"d85a31f0a3f2","reviewed":false,"reviewer":null,"reviewed_at":null}}},"licensedNote":"Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία.","sections":[{"key":"prerequisites","title":"Τι χρειάζεται πριν ξεκινήσουμε"},{"key":"preparation","title":"Προεργασία"},{"key":"steps","title":"Στάδια τοποθέτησης"},{"key":"checks","title":"Έλεγχοι πριν την παράδοση"},{"key":"handover","title":"Καθαρισμός και παράδοση"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'ergolav-review:' + D.material;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = {reviewer: '', decisions: {}};
+try { S = Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} paint(); };
+$('reviewer').value = S.reviewer || '';
+$('reviewer').oninput = e => { S.reviewer = e.target.value; save(); };
+// Αποφάσεις: μόνο για το κείμενο που φαίνεται (ίδιο αποτύπωμα)· ό,τι άλλαξε από τότε ξαναζητά έλεγχο.
+const keys = {};
+for(const c of D.cases) if(c.review) keys[c.review.key] = c.review;
+for(const [, it] of Object.entries(D.items)) keys[it.review.key] = it.review;
+for(const x of D.extras) keys[x.review.key] = x.review;
+const verdict = k => { const d = S.decisions[k]; return d && d.hash === keys[k].hash ? d.verdict : (keys[k].reviewed ? 'ok' : null); };
+const decideHtml = (k, what) => {
+  const d = S.decisions[k] && S.decisions[k].hash === keys[k].hash ? S.decisions[k] : null, v = verdict(k);
+  return '<div class="decide" data-key="' + esc(k) + '"><span class="what">' + what + '</span>'
+    + '<button type="button" class="ok' + (v === 'ok' ? ' on' : '') + '" data-v="ok" aria-pressed="' + (v === 'ok') + '">Εγκρίνω</button>'
+    + '<button type="button" class="fix' + (v === 'fix' ? ' on' : '') + '" data-v="fix" aria-pressed="' + (v === 'fix') + '">Θέλει διόρθωση</button>'
+    + '<textarea placeholder="Τι να διορθωθεί;" aria-label="Σχόλιο"' + (v === 'fix' ? '' : ' hidden') + '>' + esc(d && d.comment || '') + '</textarea></div>';
+};
+const item = (id, withSc) => {
+  const it = D.items[id];
+  return '<div class="row" data-item="' + esc(id) + '">'
+    + '<div class="v"><small>Κανονική <span class="tag ' + (it.source === 'new' ? 'new">νέο' : 'cur">σημερινό') + '</span></small>' + esc(it.n) + '</div>'
+    + '<div class="v"><small>Απλή</small>' + esc(it.s) + '</div>'
+    + '<div class="v"><small>Σύντομη</small>' + esc(it.c) + '</div>'
+    + (withSc ? '<div class="acts">' + decideHtml(it.review.key, 'Απλή και σύντομη:') + '</div>' : '') + '</div>';
+};
+const body = c => {
+  let h = '<p class="meta">Περίπτωση: ' + esc(c.label) + ' · ' + esc(c.duration) + (c.task ? ' · κείμενο: ' + esc(c.task) : '') + '</p>';
+  if(c.licensed) h += '<p class="note">' + esc(D.licensedNote) + '</p>';
+  if(c.safety) h += '<p class="note">Ασφάλεια: ' + esc(c.safety) + '</p>';
+  for(const s of D.sections){ const ids = c.sections[s.key] || []; if(!ids.length) continue;
+    h += '<div class="sec"><h3>' + esc(s.title) + '</h3>' + ids.map(id => item(id, true)).join('') + '</div>'; }
+  if(c.review) h += decideHtml(c.review.key, c.source === 'existing' ? 'Η περίπτωση (έτοιμο κείμενο):' : 'Η περίπτωση (σύνθεση και νέα κείμενα):');
+  return h;
+};
+const groups = [['base', 'Βασικές περιπτώσεις (σημερινές αναλύσεις)', 'Τα κείμενα δεν αλλάζουν· ελέγχεις μόνο την απλή και τη σύντομη εκδοχή.'],
+  ['existing', 'Περιπτώσεις με έτοιμο κείμενο', 'Από τις 96 γραμμένες αναλύσεις.'], ['new', D.material === 'generic' ? 'Κατηγορίες' : 'Νέες περιπτώσεις', '']];
+let html = '';
+for(const [src, title, sub] of groups){
+  const list = D.cases.filter(c => c.source === src); if(!list.length) continue;
+  html += '<h2>' + title + ' (' + list.length + ')</h2>' + (sub ? '<p class="small meta">' + sub + '</p>' : '');
+  for(const c of list) html += '<details class="case" data-case="' + esc(c.id) + '"><summary><b>' + esc(c.title) + '</b><span class="state" data-state="' + esc(c.id) + '"></span><span class="lbl">' + esc(c.label) + '</span></summary><div class="body"></div></details>';
+}
+if(D.extras.length){
+  html += '<h2>Επιπλέον βήματα για το «Λείπει κάτι» (' + D.extras.length + ')</h2>';
+  html += '<div class="case" style="padding:0 14px 14px">' + D.extras.map(x => '<div class="sec"><h3>' + esc((D.sections.find(s => s.key === x.section) || {}).title || x.section)
+    + (x.when ? ' · <span class="meta">μόνο όταν ' + esc(Object.entries(x.when).map(([k, v]) => k + ' = ' + v.join(' ή ')).join(', ')) + '</span>' : '') + '</h3>'
+    + item(x.id, true) + decideHtml(x.review.key, 'Να μπαίνει ως επιπλέον βήμα:') + '</div>').join('') + '</div>';
+}
+$('cases').innerHTML = html;
+// Το σώμα κάθε περίπτωσης φτιάχνεται όταν ανοίξει (οι σελίδες έχουν εκατοντάδες σημεία).
+document.querySelectorAll('details.case').forEach(d => d.addEventListener('toggle', () => {
+  const b = d.querySelector('.body'); if(d.open && !b.innerHTML) b.innerHTML = body(D.cases.find(c => c.id === d.dataset.case));
+}));
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.decide button'); if(!btn) return;
+  const k = btn.closest('.decide').dataset.key, v = btn.dataset.v, prev = S.decisions[k];
+  S.decisions[k] = {verdict: v, hash: keys[k].hash, comment: v === 'fix' ? (prev && prev.comment || '') : ''};
+  save();
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest('.decide'); if(!box || e.target.tagName !== 'TEXTAREA') return;
+  const k = box.dataset.key; S.decisions[k] = Object.assign({verdict: 'fix', hash: keys[k].hash}, S.decisions[k], {comment: e.target.value});
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+});
+function paint(){
+  // Ίδιο σημείο σε πολλές περιπτώσεις: η απόφαση φαίνεται παντού.
+  document.querySelectorAll('.decide').forEach(box => {
+    const v = verdict(box.dataset.key);
+    box.querySelectorAll('button').forEach(b => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    box.querySelector('textarea').hidden = v !== 'fix';
+  });
+  for(const c of D.cases){
+    const el = document.querySelector('[data-state="' + CSS.escape(c.id) + '"]'); if(!el) continue;
+    const ks = [...(c.review ? [c.review.key] : []), ...Object.values(c.sections).flat().map(id => D.items[id].review.key)];
+    const vs = ks.map(verdict), fix = vs.includes('fix'), done = vs.every(v => v === 'ok');
+    el.className = 'state ' + (fix ? 'fix' : done ? 'ok' : 'todo');
+    el.textContent = fix ? 'θέλει διόρθωση' : done ? 'εγκρίθηκε' : vs.filter(Boolean).length + '/' + vs.length;
+  }
+  const all = Object.keys(keys), dec = all.filter(k => verdict(k));
+  $('progress').textContent = dec.length + ' από ' + all.length + ' αποφάσεις · ' + all.filter(k => verdict(k) === 'fix').length + ' για διόρθωση';
+}
+document.addEventListener('toggle', paint, true);
+$('filter').onchange = e => {
+  const f = e.target.value;
+  document.querySelectorAll('details.case').forEach(d => {
+    const st = d.querySelector('.state').className;
+    d.classList.toggle('hidden', f === 'todo' ? /\b(ok)\b/.test(st) : f === 'fix' ? !/\bfix\b/.test(st) : false);
+  });
+};
+$('export').onclick = () => {
+  if(!S.reviewer.trim()){ $('reviewer').focus(); alert('Γράψε πρώτα το όνομά σου (ποιος ελέγχει).'); return; }
+  const decisions = Object.entries(S.decisions).filter(([k, d]) => keys[k] && d.hash === keys[k].hash).map(([key, d]) => ({key, hash: d.hash, verdict: d.verdict, comment: d.comment || ''}));
+  const file = {format: 'ergolav-reviews', version: 1, material: D.material, reviewer: S.reviewer.trim(), exported_at: new Date().toISOString(), decisions};
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], {type: 'application/json'}));
+  a.download = 'ergolav-elegxos-' + D.material + '-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+$('approveSc').onclick = () => {
+  // Γρήγορα: όσες απλές/σύντομες δεν έχουν απόφαση, στις ανοιχτές περιπτώσεις.
+  document.querySelectorAll('details.case[open] .row .decide').forEach(box => { const k = box.dataset.key; if(!verdict(k)) S.decisions[k] = {verdict: 'ok', hash: keys[k].hash, comment: ''}; });
+  save();
+};
+paint();
+</script>
+</body></html>

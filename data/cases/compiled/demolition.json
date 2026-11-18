@@ -1,0 +1,905 @@
+{
+ "material": "demolition",
+ "name": "Αποξήλωση",
+ "cases": [
+  {
+   "id": "demolition:bathroom.container",
+   "label": "Μπάνιο · Με κάδο",
+   "answers": {
+    "what": "bathroom",
+    "debris": "container"
+   },
+   "source": "base",
+   "task": "gen-demolition",
+   "title": "Αποξήλωση παλιών ειδών και πλακιδίων, απομάκρυνση μπαζών",
+   "duration": "ενδεικτικά 1–2 ημέρες για μπάνιο 4–6 τ.μ.",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "gen-demolition.steps.1",
+     "gen-demolition.steps.2",
+     "gen-demolition.steps.3",
+     "gen-demolition.steps.4"
+    ],
+    "checks": [
+     "gen-demolition.checks.1",
+     "gen-demolition.checks.2",
+     "gen-demolition.checks.3"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "gen-demolition.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "demolition:bathroom.bags",
+   "label": "Μπάνιο · Σε σακιά, χωρίς κάδο",
+   "answers": {
+    "what": "bathroom",
+    "debris": "bags"
+   },
+   "source": "base",
+   "task": "gen-demolition",
+   "title": "Αποξήλωση παλιών ειδών και πλακιδίων, απομάκρυνση μπαζών",
+   "duration": "ενδεικτικά 1–2 ημέρες για μπάνιο 4–6 τ.μ.",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "gen-demolition.steps.1",
+     "gen-demolition.steps.2",
+     "gen-demolition.steps.3",
+     "gen-demolition.steps.4"
+    ],
+    "checks": [
+     "gen-demolition.checks.1",
+     "gen-demolition.checks.2",
+     "gen-demolition.checks.3"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "gen-demolition.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "demolition:kitchen.container",
+   "label": "Κουζίνα · Με κάδο",
+   "answers": {
+    "what": "kitchen",
+    "debris": "container"
+   },
+   "source": "new",
+   "title": "Αποξήλωση κουζίνας (μπάζα σε κάδο)",
+   "duration": "ενδεικτικά 1–2 ημέρες για μια κουζίνα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "demo.prerequisites.kitchen-empty",
+     "demo.prerequisites.gas",
+     "gen-demolition.prerequisites.2"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.kitchen-units",
+     "gen-demolition.steps.2",
+     "gen-demolition.steps.3",
+     "gen-demolition.steps.4"
+    ],
+    "checks": [
+     "gen-demolition.checks.1",
+     "gen-demolition.checks.2",
+     "gen-demolition.checks.3"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "gen-demolition.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:kitchen.container",
+    "hash": "f3d899305546",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demolition:kitchen.bags",
+   "label": "Κουζίνα · Σε σακιά, χωρίς κάδο",
+   "answers": {
+    "what": "kitchen",
+    "debris": "bags"
+   },
+   "source": "new",
+   "title": "Αποξήλωση κουζίνας (μπάζα σε σακιά)",
+   "duration": "ενδεικτικά 1–2 ημέρες για μια κουζίνα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "demo.prerequisites.kitchen-empty",
+     "demo.prerequisites.gas",
+     "gen-demolition.prerequisites.2"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.kitchen-units",
+     "gen-demolition.steps.2",
+     "gen-demolition.steps.3",
+     "demo.steps.bags-out"
+    ],
+    "checks": [
+     "gen-demolition.checks.1",
+     "gen-demolition.checks.2",
+     "gen-demolition.checks.3"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "demo.handover.bags-pickup"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:kitchen.bags",
+    "hash": "0b699627c450",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demolition:floor.container",
+   "label": "Μόνο πλακάκια δαπέδου · Με κάδο",
+   "answers": {
+    "what": "floor",
+    "debris": "container"
+   },
+   "source": "new",
+   "title": "Αποξήλωση πλακιδίων δαπέδου (μπάζα σε κάδο)",
+   "duration": "ενδεικτικά 1–2 ημέρες για 20–30 τ.μ.",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "demo.preparation.furniture-out",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.floor-tiles",
+     "demo.steps.floor-scrape",
+     "gen-demolition.steps.4"
+    ],
+    "checks": [
+     "demo.checks.floor-level",
+     "demo.checks.floor-services",
+     "gen-demolition.checks.2"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "gen-demolition.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:floor.container",
+    "hash": "c7259f5b4024",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demolition:floor.bags",
+   "label": "Μόνο πλακάκια δαπέδου · Σε σακιά, χωρίς κάδο",
+   "answers": {
+    "what": "floor",
+    "debris": "bags"
+   },
+   "source": "new",
+   "title": "Αποξήλωση πλακιδίων δαπέδου (μπάζα σε σακιά)",
+   "duration": "ενδεικτικά 1–2 ημέρες για 20–30 τ.μ.",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "gen-demolition.prerequisites.1",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "demo.preparation.furniture-out",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.floor-tiles",
+     "demo.steps.floor-scrape",
+     "demo.steps.bags-out"
+    ],
+    "checks": [
+     "demo.checks.floor-level",
+     "demo.checks.floor-services",
+     "gen-demolition.checks.2"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "demo.handover.bags-pickup"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:floor.bags",
+    "hash": "5f9427a9e08e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demolition:wall.container",
+   "label": "Τοίχος (που δεν σηκώνει βάρος) · Με κάδο",
+   "answers": {
+    "what": "wall",
+    "debris": "container"
+   },
+   "source": "new",
+   "title": "Αποξήλωση τοίχου που δεν σηκώνει βάρος (μπάζα σε κάδο)",
+   "duration": "ενδεικτικά 1–2 ημέρες ανά τοίχο, χωρίς τις επισκευές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "demo.prerequisites.non-bearing",
+     "demo.prerequisites.wall-services",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.wall-cut",
+     "demo.steps.wall-edges",
+     "gen-demolition.steps.4"
+    ],
+    "checks": [
+     "demo.checks.wall-cracks",
+     "demo.checks.wall-services",
+     "gen-demolition.checks.2"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "gen-demolition.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:wall.container",
+    "hash": "2d05593e8ad4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demolition:wall.bags",
+   "label": "Τοίχος (που δεν σηκώνει βάρος) · Σε σακιά, χωρίς κάδο",
+   "answers": {
+    "what": "wall",
+    "debris": "bags"
+   },
+   "source": "new",
+   "title": "Αποξήλωση τοίχου που δεν σηκώνει βάρος (μπάζα σε σακιά)",
+   "duration": "ενδεικτικά 1–2 ημέρες ανά τοίχο, χωρίς τις επισκευές",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "demo.prerequisites.non-bearing",
+     "demo.prerequisites.wall-services",
+     "gen-demolition.prerequisites.2",
+     "gen-demolition.prerequisites.3"
+    ],
+    "preparation": [
+     "gen-demolition.preparation.1",
+     "gen-demolition.preparation.2",
+     "gen-demolition.preparation.3"
+    ],
+    "steps": [
+     "demo.steps.wall-cut",
+     "demo.steps.wall-edges",
+     "demo.steps.bags-out"
+    ],
+    "checks": [
+     "demo.checks.wall-cracks",
+     "demo.checks.wall-services",
+     "gen-demolition.checks.2"
+    ],
+    "handover": [
+     "gen-demolition.handover.1",
+     "demo.handover.bags-pickup"
+    ]
+   },
+   "review": {
+    "key": "case:demolition:wall.bags",
+    "hash": "3cda1032948d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "demo.x.asbestos",
+   "section": "checks",
+   "when": null,
+   "review": {
+    "key": "extra:demolition:demo.x.asbestos",
+    "hash": "9f4ee69e563f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demo.x.dust-tools",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:demolition:demo.x.dust-tools",
+    "hash": "112b9a3a4adc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demo.x.keep-items",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:demolition:demo.x.keep-items",
+    "hash": "25e50f7bb623",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "demo.x.lift-protect",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:demolition:demo.x.lift-protect",
+    "hash": "2424c990bd4e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "demo.checks.floor-level": {
+   "section": "checks",
+   "n": "Ελέγχουμε τα επίπεδα του δαπέδου που αποκαλύφθηκε, για να ξέρουμε αν χρειάζεται εξομάλυνση.",
+   "s": "Κοιτάμε πόσο ίσιο είναι το πάτωμα που φάνηκε, για να ξέρουμε αν θέλει ίσιωμα.",
+   "c": "Έλεγχος επιπέδων δαπέδου.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.checks.floor-level",
+    "hash": "ca1ebfdd548e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.checks.floor-services": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι δεν χτυπήθηκαν σωλήνες ή καλώδια που περνούν στο δάπεδο.",
+   "s": "Κοιτάμε ότι δεν πειράξαμε σωλήνες ή καλώδια μέσα στο πάτωμα.",
+   "c": "Ακέραιοι σωλήνες και καλώδια δαπέδου.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.checks.floor-services",
+    "hash": "876714706d6f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.checks.wall-cracks": {
+   "section": "checks",
+   "n": "Ελέγχουμε τους γειτονικούς τοίχους και την οροφή για ρωγμές μετά την αποξήλωση.",
+   "s": "Κοιτάμε αν άνοιξαν ρωγμές στους άλλους τοίχους ή στο ταβάνι.",
+   "c": "Έλεγχος για ρωγμές γύρω.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.checks.wall-cracks",
+    "hash": "4b858424b967",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.checks.wall-services": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι τα καλώδια και οι σωλήνες που υπήρχαν στον τοίχο είναι ασφαλισμένοι.",
+   "s": "Κοιτάμε ότι τα καλώδια και οι σωλήνες που περνούσαν από τον τοίχο είναι κλεισμένα με ασφάλεια.",
+   "c": "Ασφαλισμένα καλώδια και σωλήνες.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.checks.wall-services",
+    "hash": "8078b5a0348c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.handover.bags-pickup": {
+   "section": "handover",
+   "n": "Φροντίζουμε να παραληφθούν τα σακιά με τα μπάζα, όπως έχουμε συμφωνήσει.",
+   "s": "Κανονίζουμε να φύγουν τα σακιά με τα μπάζα, όπως έχουμε πει.",
+   "c": "Παραλαβή των σακιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.handover.bags-pickup",
+    "hash": "4c049e2098d7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.preparation.furniture-out": {
+   "section": "preparation",
+   "n": "Αδειάζουμε τον χώρο από έπιπλα, ή τα μετακινούμε όπως έχουμε συμφωνήσει.",
+   "s": "Βγάζουμε ή μετακινούμε τα έπιπλα, όπως έχουμε πει.",
+   "c": "Άδειασμα χώρου από έπιπλα.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.preparation.furniture-out",
+    "hash": "bdd798b3c813",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.prerequisites.gas": {
+   "section": "prerequisites",
+   "n": "Αν υπάρχει συσκευή αερίου, την αποσυνδέει αδειούχος τεχνικός πριν ξεκινήσουμε.",
+   "s": "Αν η κουζίνα έχει γκάζι, το αποσυνδέει πρώτα τεχνικός με άδεια.",
+   "c": "Συσκευή αερίου: αποσύνδεση από αδειούχο.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.prerequisites.gas",
+    "hash": "08255f832c54",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.prerequisites.kitchen-empty": {
+   "section": "prerequisites",
+   "n": "Να έχουν αδειάσει τα ντουλάπια και να έχουν αποσυνδεθεί οι συσκευές, ή να το κάνουμε εμείς αν το συμφωνήσαμε.",
+   "s": "Τα ντουλάπια να είναι άδεια και οι συσκευές αποσυνδεδεμένες· αν το έχουμε πει, το κάνουμε εμείς.",
+   "c": "Ντουλάπια άδεια, συσκευές αποσυνδεδεμένες.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.prerequisites.kitchen-empty",
+    "hash": "296f9bfdff07",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.prerequisites.non-bearing": {
+   "section": "prerequisites",
+   "n": "Ο τοίχος να μην είναι φέρων· αν υπάρχει αμφιβολία, τον ελέγχει πρώτα μηχανικός.",
+   "s": "Ο τοίχος δεν πρέπει να κρατά βάρος του κτιρίου· αν δεν είμαστε σίγουροι, το κοιτά πρώτα μηχανικός.",
+   "c": "Μόνο μη φέρων τοίχος· αλλιώς μηχανικός.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.prerequisites.non-bearing",
+    "hash": "c60de428fece",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.prerequisites.wall-services": {
+   "section": "prerequisites",
+   "n": "Να έχουν εντοπιστεί σωλήνες και καλώδια μέσα στον τοίχο και να έχουν κοπεί ή μεταφερθεί.",
+   "s": "Βρίσκουμε πρώτα τους σωλήνες και τα καλώδια μέσα στον τοίχο και τα κλείνουμε ή τα μεταφέρουμε.",
+   "c": "Σωλήνες και καλώδια του τοίχου ασφαλισμένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.prerequisites.wall-services",
+    "hash": "5d9d42f26608",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.bags-out": {
+   "section": "steps",
+   "n": "Μαζεύουμε τα μπάζα σε σακιά και τα μεταφέρουμε στο σημείο που συμφωνήσαμε για παραλαβή.",
+   "s": "Βάζουμε τα μπάζα σε σακιά και τα πάμε εκεί που έχουμε πει, για να τα πάρουν.",
+   "c": "Μπάζα σε σακιά, στο σημείο παραλαβής.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.bags-out",
+    "hash": "bcaacb0b48c0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.floor-scrape": {
+   "section": "steps",
+   "n": "Αφαιρούμε τις παλιές κόλλες ή το κονίαμα, όσο χρειάζεται για το νέο δάπεδο.",
+   "s": "Ξύνουμε την παλιά κόλλα ή το τσιμέντο, όσο χρειάζεται για να μπει το καινούργιο πάτωμα.",
+   "c": "Αφαίρεση κόλλας ή κονιάματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.floor-scrape",
+    "hash": "354645acc695",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.floor-tiles": {
+   "section": "steps",
+   "n": "Ξηλώνουμε τα πλακάκια του δαπέδου και τα σοβατεπί.",
+   "s": "Βγάζουμε τα πλακάκια από το πάτωμα και τις λωρίδες στη βάση των τοίχων.",
+   "c": "Ξήλωμα πλακιδίων και σοβατεπί.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.floor-tiles",
+    "hash": "a4dd2f380254",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.kitchen-units": {
+   "section": "steps",
+   "n": "Ξεβιδώνουμε και αφαιρούμε πάγκο, ντουλάπια και νεροχύτη.",
+   "s": "Βγάζουμε τον πάγκο, τα ντουλάπια και τον νεροχύτη.",
+   "c": "Αφαιρούμε πάγκο, ντουλάπια, νεροχύτη.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.kitchen-units",
+    "hash": "b928bf3294d8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.wall-cut": {
+   "section": "steps",
+   "n": "Ρίχνουμε τον τοίχο από πάνω προς τα κάτω, σε κομμάτια, χωρίς να χτυπάμε τους γύρω τοίχους και την οροφή.",
+   "s": "Γκρεμίζουμε τον τοίχο σιγά-σιγά από πάνω προς τα κάτω, προσέχοντας να μην πειράξουμε τους άλλους τοίχους και το ταβάνι.",
+   "c": "Αποξήλωση από πάνω προς τα κάτω, σε κομμάτια.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.wall-cut",
+    "hash": "7db718df8772",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.steps.wall-edges": {
+   "section": "steps",
+   "n": "Καθαρίζουμε τις άκρες σε τοίχους, οροφή και δάπεδο, έτοιμες για επισκευή.",
+   "s": "Ισιώνουμε τα σημεία όπου ακουμπούσε ο τοίχος, για να φτιαχτούν μετά.",
+   "c": "Καθαρές άκρες, έτοιμες για επισκευή.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.steps.wall-edges",
+    "hash": "a084f5654a83",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.x.asbestos": {
+   "section": "checks",
+   "n": "Αν βρούμε υλικά που μπορεί να έχουν αμίαντο, σταματάμε και σας ενημερώνουμε πριν συνεχίσουμε.",
+   "s": "Σε παλιά σπίτια, αν δούμε υλικό που μπορεί να είναι αμίαντος, σταματάμε και σας το λέμε πριν πάμε παρακάτω.",
+   "c": "Πιθανός αμίαντος: σταματάμε και ενημερώνουμε.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.x.asbestos",
+    "hash": "f37eec7314f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.x.dust-tools": {
+   "section": "preparation",
+   "n": "Χρησιμοποιούμε εργαλεία με αναρρόφηση σκόνης, όπου γίνεται.",
+   "s": "Όπου γίνεται, δουλεύουμε με εργαλεία που ρουφούν τη σκόνη.",
+   "c": "Εργαλεία με αναρρόφηση σκόνης.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.x.dust-tools",
+    "hash": "4493d9c91081",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.x.keep-items": {
+   "section": "steps",
+   "n": "Ξεβιδώνουμε προσεκτικά όσα θέλετε να κρατήσετε και τα αφήνουμε σε σημείο που συμφωνήσαμε.",
+   "s": "Ό,τι θέλετε να κρατήσετε το βγάζουμε προσεκτικά και το αφήνουμε εκεί που μας είπατε.",
+   "c": "Προσεκτική αφαίρεση όσων κρατάτε.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.x.keep-items",
+    "hash": "a81740ef8062",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "demo.x.lift-protect": {
+   "section": "preparation",
+   "n": "Προστατεύουμε τον ανελκυστήρα με χαρτόνι ή νάιλον, αν θα τον χρησιμοποιήσουμε.",
+   "s": "Αν θα πάρουμε το ασανσέρ, το ντύνουμε με χαρτόνι ή νάιλον για να μη χτυπήσει.",
+   "c": "Προστασία ανελκυστήρα.",
+   "source": "new",
+   "review": {
+    "key": "sc:demo.x.lift-protect",
+    "hash": "e01ac3183bdc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι οι σωλήνες που μένουν είναι ταπωμένοι και δεν στάζουν.",
+   "s": "Κοιτάμε ότι οι σωλήνες που μένουν είναι κλεισμένοι και δεν στάζουν.",
+   "c": "Ταπωμένοι σωλήνες, χωρίς στάξιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.checks.1",
+    "hash": "0cca7a84285b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.checks.2": {
+   "section": "checks",
+   "n": "Ελέγχουμε τοίχους και δάπεδα για ζημιές ή σημεία που δεν κρατούν και πρέπει να επισκευαστούν πριν από τις νέες εργασίες.",
+   "s": "Κοιτάμε τοίχους και πατώματα για ζημιές ή σημεία που πρέπει να φτιαχτούν πριν τις νέες δουλειές.",
+   "c": "Έλεγχος για ζημιές προς επισκευή.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.checks.2",
+    "hash": "9528f201f48f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.checks.3": {
+   "section": "checks",
+   "n": "Σας δείχνουμε ό,τι βρήκαμε κάτω από τα πλακάκια, π.χ. φθαρμένες σωλήνες, πριν συνεχίσουμε.",
+   "s": "Σας δείχνουμε ό,τι βρήκαμε κάτω από τα πλακάκια, π.χ. χαλασμένους σωλήνες, πριν προχωρήσουμε.",
+   "c": "Σας δείχνουμε ό,τι βρέθηκε.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.checks.3",
+    "hash": "b792907720bc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε τους χώρους και τους διαδρόμους.",
+   "s": "Αφήνουμε σκουπισμένα τα δωμάτια και τους διαδρόμους.",
+   "c": "Σκούπισμα χώρων και διαδρόμων.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.handover.1",
+    "hash": "9a785c905738",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.handover.2": {
+   "section": "handover",
+   "n": "Φροντίζουμε να απομακρυνθεί ο κάδος, ή σας λέμε πότε θα τον πάρει η εταιρεία.",
+   "s": "Φροντίζουμε να φύγει ο κάδος, ή σας λέμε πότε θα τον πάρει η εταιρεία.",
+   "c": "Απομάκρυνση κάδου.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.handover.2",
+    "hash": "667c34039bf5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε νερό και ρεύμα στους χώρους της αποξήλωσης.",
+   "s": "Κλείνουμε νερό και ρεύμα εκεί που θα ξηλώσουμε.",
+   "c": "Κλείσιμο νερού και ρεύματος.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.preparation.1",
+    "hash": "0ef1584cfaa3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.preparation.2": {
+   "section": "preparation",
+   "n": "Προστατεύουμε δάπεδα, κουφώματα και τους διαδρόμους από όπου θα περάσουν τα μπάζα.",
+   "s": "Σκεπάζουμε πατώματα, πόρτες και παράθυρα, και τους διαδρόμους από όπου θα περάσουν τα μπάζα.",
+   "c": "Προστασία δαπέδων, κουφωμάτων, διαδρόμων.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.preparation.2",
+    "hash": "a0b4e0d1c929",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.preparation.3": {
+   "section": "preparation",
+   "n": "Σφραγίζουμε με νάιλον τις πόρτες προς τους άλλους χώρους, για να μην περνά σκόνη.",
+   "s": "Κλείνουμε με νάιλον τις πόρτες προς τα άλλα δωμάτια, για να μην περνά σκόνη.",
+   "c": "Νάιλον στις πόρτες κατά της σκόνης.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.preparation.3",
+    "hash": "1b01a6a95a93",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τι ακριβώς αφαιρείται και τι μένει, π.χ. αν μένει η μπανιέρα ή το δάπεδο του διαδρόμου.",
+   "s": "Να ξέρουμε ακριβώς τι βγαίνει και τι μένει, π.χ. αν μένει η μπανιέρα ή το πάτωμα του διαδρόμου.",
+   "c": "Συμφωνημένο τι βγαίνει και τι μένει.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.prerequisites.1",
+    "hash": "72844fdd11ca",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Συνεννόηση για τον κάδο ή τα σακιά μπαζών, και για την άδεια κάδου στον δρόμο όπου χρειάζεται.",
+   "s": "Κανονίζουμε κάδο ή σακιά για τα μπάζα, και την άδεια για κάδο στον δρόμο όπου χρειάζεται.",
+   "c": "Κάδος ή σακιά, και άδεια κάδου.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.prerequisites.2",
+    "hash": "67740cc90d84",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Σε πολυκατοικία, ενημέρωση της διαχείρισης για τον θόρυβο και τη χρήση του ανελκυστήρα.",
+   "s": "Στην πολυκατοικία, ενημερώνουμε τον διαχειριστή για τον θόρυβο και το ασανσέρ.",
+   "c": "Ενημέρωση διαχείρισης.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.prerequisites.3",
+    "hash": "3b320bb86ae6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.steps.1": {
+   "section": "steps",
+   "n": "Αφαιρούμε τα είδη υγιεινής, τα έπιπλα και τα εξαρτήματα που θα αλλάξουν.",
+   "s": "Βγάζουμε τα είδη του μπάνιου, τα έπιπλα και ό,τι άλλο θα αλλάξει.",
+   "c": "Αφαίρεση ειδών και επίπλων.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.steps.1",
+    "hash": "b3104989571a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.steps.2": {
+   "section": "steps",
+   "n": "Ταπώνουμε προσωρινά τις σωλήνες νερού και αποχέτευσης.",
+   "s": "Κλείνουμε προσωρινά τους σωλήνες του νερού και της αποχέτευσης.",
+   "c": "Προσωρινές τάπες στους σωλήνες.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.steps.2",
+    "hash": "bf21ae04c08e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.steps.3": {
+   "section": "steps",
+   "n": "Ξηλώνουμε τα πλακάκια και, όπου χρειάζεται, τις κόλλες ή τον σοβά από κάτω.",
+   "s": "Ξηλώνουμε τα πλακάκια και, όπου χρειάζεται, την κόλλα ή τον σοβά από κάτω.",
+   "c": "Ξήλωμα πλακιδίων και υποστρωμάτων.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.steps.3",
+    "hash": "9b3d9925d688",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "gen-demolition.steps.4": {
+   "section": "steps",
+   "n": "Μαζεύουμε τα μπάζα σε σακιά και τα κατεβάζουμε στον κάδο.",
+   "s": "Βάζουμε τα μπάζα σε σακιά και τα κατεβάζουμε στον κάδο.",
+   "c": "Μπάζα σε σακιά, στον κάδο.",
+   "source": "current",
+   "review": {
+    "key": "sc:gen-demolition.steps.4",
+    "hash": "50014420f625",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

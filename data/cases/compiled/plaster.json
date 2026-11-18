@@ -1,0 +1,1054 @@
+{
+ "material": "plaster",
+ "name": "Σοβάς",
+ "cases": [
+  {
+   "id": "plaster:new.interior.traditional",
+   "label": "Καινούργιος, σε τούβλο ή μπετό · Μέσα · Παραδοσιακός (τρία χέρια)",
+   "answers": {
+    "job": "new",
+    "where": "interior",
+    "type": "traditional"
+   },
+   "source": "base",
+   "task": "plaster-wall",
+   "title": "Σοβάτισμα τοίχων",
+   "duration": "ενδεικτικά 2–3 ημέρες για ένα δωμάτιο, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-wall.prerequisites.1",
+     "plaster-wall.prerequisites.2",
+     "plaster-wall.prerequisites.3"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster-wall.steps.1",
+     "plaster-wall.steps.2",
+     "plaster-wall.steps.3"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "plaster:new.interior.machine",
+   "label": "Καινούργιος, σε τούβλο ή μπετό · Μέσα · Έτοιμος, με μηχανή",
+   "answers": {
+    "job": "new",
+    "where": "interior",
+    "type": "machine"
+   },
+   "source": "new",
+   "title": "Σοβάτισμα τοίχων με έτοιμο σοβά μηχανής",
+   "duration": "ενδεικτικά 1–2 ημέρες για ένα δωμάτιο, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-wall.prerequisites.1",
+     "plaster-wall.prerequisites.3",
+     "plaster.prerequisites.machine-access"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster.steps.machine-spray",
+     "plaster.steps.machine-level",
+     "plaster.steps.machine-finish"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:new.interior.machine",
+    "hash": "d7b45581b7c4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:new.exterior.traditional",
+   "label": "Καινούργιος, σε τούβλο ή μπετό · Έξω (πρόσοψη) · Παραδοσιακός (τρία χέρια)",
+   "answers": {
+    "job": "new",
+    "where": "exterior",
+    "type": "traditional"
+   },
+   "source": "base",
+   "task": "plaster-wall",
+   "title": "Σοβάτισμα τοίχων",
+   "duration": "ενδεικτικά 2–3 ημέρες για ένα δωμάτιο, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-wall.prerequisites.1",
+     "plaster-wall.prerequisites.2",
+     "plaster-wall.prerequisites.3"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster-wall.steps.1",
+     "plaster-wall.steps.2",
+     "plaster-wall.steps.3"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "plaster:new.exterior.machine",
+   "label": "Καινούργιος, σε τούβλο ή μπετό · Έξω (πρόσοψη) · Έτοιμος, με μηχανή",
+   "answers": {
+    "job": "new",
+    "where": "exterior",
+    "type": "machine"
+   },
+   "source": "new",
+   "title": "Σοβάτισμα εξωτερικών τοίχων με έτοιμο σοβά μηχανής",
+   "duration": "ενδεικτικά 1–2 ημέρες για ένα δωμάτιο, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-wall.prerequisites.1",
+     "plaster-wall.prerequisites.2",
+     "plaster-wall.prerequisites.3",
+     "plaster.prerequisites.machine-access"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster.steps.machine-spray",
+     "plaster.steps.machine-level",
+     "plaster.steps.machine-finish"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:new.exterior.machine",
+    "hash": "b5267f39a99d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:repair.interior",
+   "label": "Επισκευή ή μπάλωμα · Μέσα",
+   "answers": {
+    "job": "repair",
+    "where": "interior"
+   },
+   "source": "existing",
+   "task": "plaster-repair",
+   "title": "Επισκευή σοβάδων και ρωγμών",
+   "duration": "ενδεικτικά 2–6 ώρες, ανάλογα με το μήκος των ρωγμών",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-repair.prerequisites.1",
+     "plaster-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plaster-repair.preparation.1",
+     "plaster-repair.preparation.2",
+     "plaster-repair.preparation.3"
+    ],
+    "steps": [
+     "plaster-repair.steps.1",
+     "plaster-repair.steps.2",
+     "plaster-repair.steps.3"
+    ],
+    "checks": [
+     "plaster-repair.checks.1",
+     "plaster-repair.checks.2",
+     "plaster-repair.checks.3"
+    ],
+    "handover": [
+     "plaster-repair.handover.1",
+     "plaster-repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:repair.interior",
+    "hash": "4d54104af6f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:repair.exterior",
+   "label": "Επισκευή ή μπάλωμα · Έξω (πρόσοψη)",
+   "answers": {
+    "job": "repair",
+    "where": "exterior"
+   },
+   "source": "existing",
+   "task": "plaster-repair",
+   "title": "Επισκευή σοβάδων και ρωγμών",
+   "duration": "ενδεικτικά 2–6 ώρες, ανάλογα με το μήκος των ρωγμών",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster-repair.prerequisites.1",
+     "plaster-repair.prerequisites.2"
+    ],
+    "preparation": [
+     "plaster-repair.preparation.1",
+     "plaster-repair.preparation.2",
+     "plaster-repair.preparation.3"
+    ],
+    "steps": [
+     "plaster-repair.steps.1",
+     "plaster-repair.steps.2",
+     "plaster-repair.steps.3"
+    ],
+    "checks": [
+     "plaster-repair.checks.1",
+     "plaster-repair.checks.2",
+     "plaster-repair.checks.3"
+    ],
+    "handover": [
+     "plaster-repair.handover.1",
+     "plaster-repair.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:repair.exterior",
+    "hash": "4d54104af6f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:replace.interior.traditional",
+   "label": "Ξήλωμα και νέος σοβάς · Μέσα · Παραδοσιακός (τρία χέρια)",
+   "answers": {
+    "job": "replace",
+    "where": "interior",
+    "type": "traditional"
+   },
+   "source": "new",
+   "title": "Ξήλωμα και νέο σοβάτισμα τοίχων",
+   "duration": "ενδεικτικά 3–5 ημέρες για ένα δωμάτιο, μαζί με το ξήλωμα, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster.prerequisites.replace-agree",
+     "plaster-wall.prerequisites.3"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster.preparation.strip",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster-wall.steps.1",
+     "plaster-wall.steps.2",
+     "plaster-wall.steps.3"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:replace.interior.traditional",
+    "hash": "71ce7f42f065",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:replace.interior.machine",
+   "label": "Ξήλωμα και νέος σοβάς · Μέσα · Έτοιμος, με μηχανή",
+   "answers": {
+    "job": "replace",
+    "where": "interior",
+    "type": "machine"
+   },
+   "source": "new",
+   "title": "Ξήλωμα και νέο σοβάτισμα τοίχων με έτοιμο σοβά μηχανής",
+   "duration": "ενδεικτικά 2–4 ημέρες για ένα δωμάτιο, μαζί με το ξήλωμα, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster.prerequisites.replace-agree",
+     "plaster-wall.prerequisites.3",
+     "plaster.prerequisites.machine-access"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster.preparation.strip",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster.steps.machine-spray",
+     "plaster.steps.machine-level",
+     "plaster.steps.machine-finish"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:replace.interior.machine",
+    "hash": "f359d2079137",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:replace.exterior.traditional",
+   "label": "Ξήλωμα και νέος σοβάς · Έξω (πρόσοψη) · Παραδοσιακός (τρία χέρια)",
+   "answers": {
+    "job": "replace",
+    "where": "exterior",
+    "type": "traditional"
+   },
+   "source": "new",
+   "title": "Ξήλωμα και νέο σοβάτισμα εξωτερικών τοίχων",
+   "duration": "ενδεικτικά 3–5 ημέρες για ένα δωμάτιο, μαζί με το ξήλωμα, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster.prerequisites.replace-agree",
+     "plaster-wall.prerequisites.2",
+     "plaster-wall.prerequisites.3"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster.preparation.strip",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster-wall.steps.1",
+     "plaster-wall.steps.2",
+     "plaster-wall.steps.3"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:replace.exterior.traditional",
+    "hash": "1d84aa7e7f78",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster:replace.exterior.machine",
+   "label": "Ξήλωμα και νέος σοβάς · Έξω (πρόσοψη) · Έτοιμος, με μηχανή",
+   "answers": {
+    "job": "replace",
+    "where": "exterior",
+    "type": "machine"
+   },
+   "source": "new",
+   "title": "Ξήλωμα και νέο σοβάτισμα εξωτερικών τοίχων με έτοιμο σοβά μηχανής",
+   "duration": "ενδεικτικά 2–4 ημέρες για ένα δωμάτιο, μαζί με το ξήλωμα, χωρίς τον χρόνο στεγνώματος πριν το βάψιμο",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plaster.prerequisites.replace-agree",
+     "plaster-wall.prerequisites.2",
+     "plaster-wall.prerequisites.3",
+     "plaster.prerequisites.machine-access"
+    ],
+    "preparation": [
+     "plaster-wall.preparation.1",
+     "plaster.preparation.strip",
+     "plaster-wall.preparation.2",
+     "plaster-wall.preparation.3",
+     "plaster-wall.preparation.4"
+    ],
+    "steps": [
+     "plaster.steps.machine-spray",
+     "plaster.steps.machine-level",
+     "plaster.steps.machine-finish"
+    ],
+    "checks": [
+     "plaster-wall.checks.1",
+     "plaster-wall.checks.2",
+     "plaster-wall.checks.3",
+     "plaster-wall.checks.4"
+    ],
+    "handover": [
+     "plaster-wall.handover.1",
+     "plaster-wall.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:plaster:replace.exterior.machine",
+    "hash": "a0656f8445a4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "plaster.x.mesh-all",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:plaster:plaster.x.mesh-all",
+    "hash": "7cb99ba442cd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster.x.repellent",
+   "section": "steps",
+   "when": {
+    "where": [
+     "exterior"
+    ]
+   },
+   "review": {
+    "key": "extra:plaster:plaster.x.repellent",
+    "hash": "2c194ca4bd4c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "plaster.x.debris",
+   "section": "handover",
+   "when": {
+    "job": [
+     "replace"
+    ]
+   },
+   "review": {
+    "key": "extra:plaster:plaster.x.debris",
+    "hash": "ecec1543df08",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "plaster-repair.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε με πήχη ότι η επισκευή δεν εξέχει από τον τοίχο.",
+   "s": "Κοιτάμε με τον πήχη ότι το μπάλωμα δεν πετάει έξω από τον τοίχο.",
+   "c": "Δεν εξέχει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.checks.1",
+    "hash": "4529e55262fa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.checks.2": {
+   "section": "checks",
+   "n": "Χτυπάμε ελαφρά: δεν ακούγεται κούφιο.",
+   "s": "Χτυπάμε ελαφρά: δεν ακούγεται άδειο από πίσω.",
+   "c": "Χωρίς κούφιο ήχο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.checks.2",
+    "hash": "c7c60ee38c08",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.checks.3": {
+   "section": "checks",
+   "n": "Μετά το στέγνωμα η υφή ταιριάζει με τον υπόλοιπο τοίχο.",
+   "s": "Όταν στεγνώσει, η υφή μοιάζει με τον υπόλοιπο τοίχο.",
+   "c": "Ίδια υφή μετά το στέγνωμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.checks.3",
+    "hash": "9f54ca188e7e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τα υπολείμματα.",
+   "s": "Καθαρίζουμε ό,τι περίσσεψε.",
+   "c": "Καθάρισμα υπολειμμάτων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.handover.1",
+    "hash": "e663442d8f36",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πότε μπορεί να βαφτεί.",
+   "s": "Σας λέμε από πότε μπορεί να βαφτεί.",
+   "c": "Πότε βάφεται.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.handover.2",
+    "hash": "db9f36a766b3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και έπιπλα.",
+   "s": "Σκεπάζουμε τα πατώματα και τα έπιπλα.",
+   "c": "Σκέπασμα δαπέδων, επίπλων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.preparation.1",
+    "hash": "46160e0bfb83",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.preparation.2": {
+   "section": "preparation",
+   "n": "Ανοίγουμε τη ρωγμή σε σχήμα V και αφαιρούμε τον σοβά που δεν κρατάει.",
+   "s": "Ανοίγουμε λίγο τη ρωγμή σε σχήμα V και βγάζουμε τον σοβά που δεν κρατάει.",
+   "c": "Άνοιγμα ρωγμής, αφαίρεση σαθρών.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.preparation.2",
+    "hash": "0a09fbacf0fb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.preparation.3": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τη σκόνη και βρέχουμε την επιφάνεια ή βάζουμε αστάρι.",
+   "s": "Καθαρίζουμε τη σκόνη και βρέχουμε ή περνάμε αστάρι.",
+   "c": "Καθάρισμα, βρέξιμο ή αστάρι.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.preparation.3",
+    "hash": "3d6f774ce9ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Αν οι ρωγμές είναι μεγάλες ή ξανανοίγουν, να έχει βρεθεί η αιτία, γιατί μπορεί να χρειάζεται έλεγχο από μηχανικό.",
+   "s": "Αν οι ρωγμές είναι μεγάλες ή ξανανοίγουν, να έχει βρεθεί γιατί, γιατί ίσως πρέπει να τις δει μηχανικός.",
+   "c": "Αιτία μεγάλων ρωγμών γνωστή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.prerequisites.1",
+    "hash": "a88b9bc06003",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Χώρος προσβάσιμος και σκεπασμένος.",
+   "s": "Να φτάνουμε το σημείο και να είναι σκεπασμένο από τη βροχή.",
+   "c": "Προσβάσιμος, σκεπαστός χώρος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.prerequisites.2",
+    "hash": "946eab3cd5c5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.steps.1": {
+   "section": "steps",
+   "n": "Βάζουμε υαλόπλεγμα ή ταινία οπλισμού πάνω από τη ρωγμή, όπου χρειάζεται.",
+   "s": "Βάζουμε πάνω από τη ρωγμή ειδικό πλέγμα ή ταινία, όπου χρειάζεται.",
+   "c": "Υαλόπλεγμα ή ταινία.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.steps.1",
+    "hash": "869367aa1b11",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.steps.2": {
+   "section": "steps",
+   "n": "Γεμίζουμε με επισκευαστικό κονίαμα σε στρώσεις, με το πάχος που ορίζει ο κατασκευαστής.",
+   "s": "Γεμίζουμε με υλικό επισκευής σε χέρια, στο πάχος που λέει ο κατασκευαστής.",
+   "c": "Επισκευαστικό σε στρώσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.steps.2",
+    "hash": "af2a72aebbd0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-repair.steps.3": {
+   "section": "steps",
+   "n": "Ισιώνουμε στο επίπεδο του τοίχου και φινίρουμε με την ίδια υφή.",
+   "s": "Ισιώνουμε να είναι στο ίδιο επίπεδο με τον τοίχο και τελειώνουμε με την ίδια υφή.",
+   "c": "Ίσιωμα και ίδια υφή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-repair.steps.3",
+    "hash": "1595fac28708",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε με πήχη ότι ο τοίχος είναι ίσιος και με αλφάδι ότι είναι κατακόρυφος.",
+   "s": "Κοιτάμε με τον πήχη ότι ο τοίχος είναι ίσιος και με αλφάδι ότι είναι όρθιος.",
+   "c": "Επίπεδος και κατακόρυφος.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.checks.1",
+    "hash": "b41768602a7b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.checks.2": {
+   "section": "checks",
+   "n": "Οι γωνίες είναι ευθείες.",
+   "s": "Οι γωνίες είναι ίσιες.",
+   "c": "Ευθείες γωνίες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.checks.2",
+    "hash": "3771a1d5e2a5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.checks.3": {
+   "section": "checks",
+   "n": "Χτυπάμε ελαφρά τον σοβά: δεν ακούγεται κούφιος και δεν έχει ρωγμές.",
+   "s": "Χτυπάμε ελαφρά τον σοβά: δεν ακούγεται άδειος από πίσω και δεν έχει ραγίσει.",
+   "c": "Χωρίς κούφιο ήχο ή ρωγμές.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.checks.3",
+    "hash": "a44509cdf37b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.checks.4": {
+   "section": "checks",
+   "n": "Η υφή είναι ίδια σε όλη την επιφάνεια.",
+   "s": "Η επιφάνεια έχει την ίδια υφή παντού.",
+   "c": "Ομοιόμορφη υφή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.checks.4",
+    "hash": "fd48a6f7411b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε κουφώματα και δάπεδα από υπολείμματα σοβά.",
+   "s": "Καθαρίζουμε τα πατώματα, τις πόρτες και τα παράθυρα από τον σοβά που έπεσε.",
+   "c": "Καθάρισμα κουφωμάτων και δαπέδων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.handover.1",
+    "hash": "450e032c04b4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε πόσες ημέρες χρειάζεται για να στεγνώσει πριν βαφτεί.",
+   "s": "Σας λέμε πόσες μέρες θέλει να στεγνώσει πριν βαφτεί.",
+   "c": "Χρόνος στεγνώματος πριν το βάψιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.handover.2",
+    "hash": "6f9005b2d48d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε δάπεδα και κουφώματα.",
+   "s": "Σκεπάζουμε τα πατώματα, τις πόρτες και τα παράθυρα.",
+   "c": "Σκέπασμα δαπέδων, κουφωμάτων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.preparation.1",
+    "hash": "bb1235fa4112",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.preparation.2": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τον τοίχο από σαθρά υλικά και σκόνη και τον βρέχουμε όπου χρειάζεται.",
+   "s": "Καθαρίζουμε τον τοίχο από ό,τι ξεκολλάει και τη σκόνη και τον βρέχουμε όπου πρέπει.",
+   "c": "Καθάρισμα, βρέξιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.preparation.2",
+    "hash": "af6a584b51c6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.preparation.3": {
+   "section": "preparation",
+   "n": "Τοποθετούμε γωνιόκρανα στις εξωτερικές γωνίες και οδηγούς για να βγει ίσια η επιφάνεια.",
+   "s": "Βάζουμε μεταλλικές γωνίες στις άκρες και οδηγούς, για να βγει ίσιος ο τοίχος.",
+   "c": "Γωνιόκρανα και οδηγοί.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.preparation.3",
+    "hash": "44ec4c850071",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.preparation.4": {
+   "section": "preparation",
+   "n": "Στις ενώσεις διαφορετικών υλικών, π.χ. τούβλου με μπετόν, βάζουμε πλέγμα για να μη ραγίσει ο σοβάς.",
+   "s": "Εκεί που το τούβλο ενώνεται με το μπετόν, βάζουμε πλέγμα για να μη ραγίσει ο σοβάς.",
+   "c": "Πλέγμα στις ενώσεις υλικών.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.preparation.4",
+    "hash": "14a78a13dd09",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουν τελειώσει οι σωληνώσεις και οι καλωδιώσεις μέσα στους τοίχους.",
+   "s": "Να έχουν περάσει όλοι οι σωλήνες και τα καλώδια μέσα στους τοίχους.",
+   "c": "Σωληνώσεις και καλωδιώσεις έτοιμες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.prerequisites.1",
+    "hash": "d45b3e222b16",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Για εξωτερικούς τοίχους, ημέρες χωρίς παγετό και χωρίς βροχή.",
+   "s": "Για τους τοίχους απ’ έξω, να έχει μέρες χωρίς παγωνιά και χωρίς βροχή.",
+   "c": "Έξω: χωρίς παγετό και βροχή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.prerequisites.2",
+    "hash": "b6a12a8cad30",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Παροχή νερού και ρεύματος στον χώρο.",
+   "s": "Να υπάρχει νερό και ρεύμα στον χώρο.",
+   "c": "Νερό και ρεύμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.prerequisites.3",
+    "hash": "888c30a6005f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.steps.1": {
+   "section": "steps",
+   "n": "Περνάμε το πρώτο λεπτό στρώμα, το πεταχτό, για να πιάσει καλά ο σοβάς.",
+   "s": "Ρίχνουμε ένα πρώτο λεπτό χέρι, για να πιάσει καλά ο σοβάς στον τοίχο.",
+   "c": "Πεταχτό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.steps.1",
+    "hash": "c4f46bd422dc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.steps.2": {
+   "section": "steps",
+   "n": "Περνάμε το κύριο στρώμα και το ισιώνουμε με πήχη πάνω στους οδηγούς.",
+   "s": "Ρίχνουμε το κυρίως χέρι και το ισιώνουμε με τον πήχη πάνω στους οδηγούς.",
+   "c": "Κύριο στρώμα με πήχη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.steps.2",
+    "hash": "f7252773dd1c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster-wall.steps.3": {
+   "section": "steps",
+   "n": "Περνάμε την τελική στρώση και τη φινίρουμε, τριφτή ή πατητή, όπως συμφωνήσαμε και όπως ορίζει ο τύπος του σοβά.",
+   "s": "Περνάμε το τελευταίο χέρι και το τελειώνουμε τριφτό ή πατητό, όπως έχουμε πει.",
+   "c": "Τελική στρώση, τριφτή ή πατητή.",
+   "source": "current",
+   "review": {
+    "key": "sc:plaster-wall.steps.3",
+    "hash": "1fd4e20dc8cd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.preparation.strip": {
+   "section": "preparation",
+   "n": "Ξηλώνουμε τον παλιό σοβά ως το τούβλο ή το μπετόν και απομακρύνουμε τα μπάζα.",
+   "s": "Βγάζουμε τον παλιό σοβά μέχρι να φανεί το τούβλο ή το μπετόν και μαζεύουμε τα μπάζα.",
+   "c": "Ξήλωμα παλιού σοβά, μπάζα.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.preparation.strip",
+    "hash": "e91281fded46",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.prerequisites.machine-access": {
+   "section": "prerequisites",
+   "n": "Χώρος για τη μηχανή σοβά και πρόσβαση για τα σακιά του έτοιμου κονιάματος.",
+   "s": "Να χωράει η μηχανή του σοβά και να μπορούμε να φέρουμε τα σακιά με το έτοιμο υλικό.",
+   "c": "Χώρος για μηχανή και υλικά.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.prerequisites.machine-access",
+    "hash": "b3a5f7a5e6f6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.prerequisites.replace-agree": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει ποιες επιφάνειες ξηλώνονται, ως το τούβλο ή ως το μπετόν.",
+   "s": "Να έχουμε πει μαζί ποιοι τοίχοι ξύνονται μέχρι να φανεί το τούβλο ή το μπετόν.",
+   "c": "Συμφωνημένες επιφάνειες ξηλώματος.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.prerequisites.replace-agree",
+    "hash": "496a6a15c3b2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.steps.machine-finish": {
+   "section": "steps",
+   "n": "Όταν τραβήξει, φινίρουμε την επιφάνεια με την υφή που συμφωνήσαμε.",
+   "s": "Όταν σφίξει λίγο, τελειώνουμε την επιφάνεια με την υφή που έχουμε πει.",
+   "c": "Φινίρισμα στη συμφωνημένη υφή.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.steps.machine-finish",
+    "hash": "8b28d0a382a0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.steps.machine-level": {
+   "section": "steps",
+   "n": "Ισιώνουμε με πήχη πάνω στους οδηγούς και γεμίζουμε τα κενά.",
+   "s": "Ισιώνουμε με τον πήχη πάνω στους οδηγούς και κλείνουμε όσα σημεία έμειναν άδεια.",
+   "c": "Ίσιωμα με πήχη, γέμισμα κενών.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.steps.machine-level",
+    "hash": "b458223df071",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.steps.machine-spray": {
+   "section": "steps",
+   "n": "Ψεκάζουμε το έτοιμο κονίαμα με τη μηχανή σε ομοιόμορφο πάχος, όπως ορίζει ο κατασκευαστής.",
+   "s": "Ρίχνουμε με τη μηχανή τον έτοιμο σοβά στον τοίχο, στο ίδιο πάχος παντού, όπως λέει ο κατασκευαστής.",
+   "c": "Ψεκασμός με μηχανή, ομοιόμορφο πάχος.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.steps.machine-spray",
+    "hash": "aa3816fd0875",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.x.debris": {
+   "section": "handover",
+   "n": "Απομακρύνουμε τα μπάζα σε σακιά ή σε κάδο, όπως έχουμε συμφωνήσει.",
+   "s": "Παίρνουμε τα μπάζα σε σακιά ή σε κάδο, όπως έχουμε πει.",
+   "c": "Απομάκρυνση μπαζών.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.x.debris",
+    "hash": "a56abf2b1f44",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.x.mesh-all": {
+   "section": "steps",
+   "n": "Περνάμε υαλόπλεγμα σε όλη την επιφάνεια, όπου ο τοίχος έχει πολλές ρωγμές.",
+   "s": "Αν ο τοίχος έχει πολλές ρωγμές, βάζουμε ειδικό πλέγμα σε όλη την επιφάνεια για να μην ξαναβγούν.",
+   "c": "Υαλόπλεγμα σε όλη την επιφάνεια.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.x.mesh-all",
+    "hash": "646bb37161e8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plaster.x.repellent": {
+   "section": "steps",
+   "n": "Προσθέτουμε υδαταπωθητικό στην τελική στρώση, όπου έχει συμφωνηθεί.",
+   "s": "Αν το έχουμε πει, βάζουμε στο τελευταίο χέρι υλικό που διώχνει το νερό της βροχής.",
+   "c": "Υδαταπωθητικό, αν συμφωνήθηκε.",
+   "source": "new",
+   "review": {
+    "key": "sc:plaster.x.repellent",
+    "hash": "5b70a496ca5c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

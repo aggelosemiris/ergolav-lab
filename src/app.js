@@ -993,7 +993,7 @@ installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>
 // Ανάλυση εργασιών (δεύτερο PDF) από τις έτοιμες αναλύσεις, με «Άλλαξέ το» και «Οι κανόνες μου».
 analysisPanel = mountAnalysis({
   show, cta,
-  quote: () => ({no: SHOWN.no, at: SHOWN.at, client: SHOWN.client, profile: SHOWN.profile, lines: okLines()}),
+  quote: () => ({no: SHOWN.no, at: SHOWN.at, client: SHOWN.client, profile: SHOWN.profile, lines: okLines(), status: getQuote(SHOWN.no)?.status ?? SHOWN.status, voice: lastText}),
   head: () => pdfHead(SHOWN),
   fileName: () => `Analysi-Ergasion-${SHOWN.no}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf',
   quoteFile,
@@ -1001,6 +1001,7 @@ analysisPanel = mountAnalysis({
   onDiscard: () => { companionFile = null; if(onPdfScreen()) quoteCta(); },
   onSend: sendPdf,
   onBack: () => { show('s-pdf', 'Προεπισκόπηση'); analysisPanel.refreshEntry(); quoteCta(); },
+  db: () => authUi?.db?.() ?? null,
 });
 const syncRulesButton = () => {
   const n = analysisPanel.rulesCount();

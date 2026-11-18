@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος: Μπανιέρα</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><main>
+<p class="small"><a href="index.html">← Όλα τα υλικά</a></p>
+<h1>Έλεγχος κειμένων: Μπανιέρα</h1>
+<p class="lede">Άνοιξε κάθε περίπτωση. Για κάθε σημείο: κανονική | απλή | σύντομη. Η εφαρμογή χρησιμοποιεί μόνο ό,τι εγκρίνεις. Οι αποφάσεις μένουν σε αυτόν τον browser· στο τέλος πάτα «Εξαγωγή» και στείλε το αρχείο.</p>
+
+<div class="bar">
+  <label>Ελέγχει <input id="reviewer" autocomplete="name" placeholder="Το όνομά σου"></label>
+  <label>Δείξε <select id="filter"><option value="all">όλες</option><option value="todo">χωρίς απόφαση</option><option value="fix">για διόρθωση</option></select></label>
+  <button type="button" id="approveSc">Εγκρίνω τις απλές/σύντομες των ανοιχτών</button>
+  <button type="button" class="primary" id="export">Εξαγωγή αποφάσεων</button>
+  <span class="progress" id="progress"></span>
+</div>
+<div id="cases"></div>
+</main>
+<script id="data" type="application/json">{"material":"bathtub","name":"Μπανιέρα","cases":[{"id":"bathtub:replace.built","label":"Αλλαγή παλιάς · Σε γωνία ή εσοχή, με ποδιά","answers":{"job":"replace","kind":"built"},"source":"base","task":"plumb-bathtub","title":"Τοποθέτηση μπανιέρας","duration":"ενδεικτικά 4–6 ώρες, χωρίς την ποδιά με πλακάκι","licensed":false,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","plumb-bathtub.prerequisites.2","plumb-bathtub.prerequisites.3"],"preparation":["plumb-bathtub.preparation.1","plumb-bathtub.preparation.2"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","plumb-bathtub.steps.5"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3"],"handover":["plumb-bathtub.handover.1","plumb-bathtub.handover.2"]}},{"id":"bathtub:replace.whirlpool","label":"Αλλαγή παλιάς · Υδρομασάζ","answers":{"job":"replace","kind":"whirlpool"},"source":"new","title":"Αντικατάσταση μπανιέρας υδρομασάζ","duration":"ενδεικτικά 6–8 ώρες, χωρίς την ηλεκτρική γραμμή","licensed":true,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","plumb-bathtub.prerequisites.2","bath.prerequisites.whirl-power","plumb-bathtub.prerequisites.3"],"preparation":["plumb-bathtub.preparation.1","plumb-bathtub.preparation.2"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","bath.steps.whirl-connect","bath.steps.whirl-access"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3","bath.checks.whirl-run"],"handover":["plumb-bathtub.handover.1","bath.handover.whirl-use","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:replace.whirlpool","hash":"c74f89c2cf76","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:renovation.built","label":"Σε ανακαίνιση μπάνιου · Σε γωνία ή εσοχή, με ποδιά","answers":{"job":"renovation","kind":"built"},"source":"new","title":"Τοποθέτηση μπανιέρας σε ανακαίνιση","duration":"ενδεικτικά 4–6 ώρες, χωρίς την ποδιά με πλακάκι","licensed":false,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","plumb-bathtub.prerequisites.2","plumb-bathtub.prerequisites.3"],"preparation":["plumb-bathtub.preparation.1","bath.preparation.renovation-check","bath.preparation.level"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","plumb-bathtub.steps.5"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3"],"handover":["plumb-bathtub.handover.1","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:renovation.built","hash":"dcc91cd81976","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:renovation.freestanding","label":"Σε ανακαίνιση μπάνιου · Ελεύθερη (στη μέση)","answers":{"job":"renovation","kind":"freestanding"},"source":"new","title":"Τοποθέτηση ελεύθερης μπανιέρας σε ανακαίνιση","duration":"ενδεικτικά 3–5 ώρες","licensed":false,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","bath.prerequisites.free-floor","plumb-bathtub.prerequisites.3"],"preparation":["bath.preparation.renovation-check","bath.preparation.level"],"steps":["plumb-bathtub.steps.2","bath.steps.free-drain","bath.steps.free-place","bath.steps.free-mixer"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","bath.checks.free-stable"],"handover":["bath.handover.free-seal","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:renovation.freestanding","hash":"f4a26a2326a0","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:renovation.whirlpool","label":"Σε ανακαίνιση μπάνιου · Υδρομασάζ","answers":{"job":"renovation","kind":"whirlpool"},"source":"new","title":"Τοποθέτηση μπανιέρας υδρομασάζ σε ανακαίνιση","duration":"ενδεικτικά 6–8 ώρες, χωρίς την ηλεκτρική γραμμή","licensed":true,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","plumb-bathtub.prerequisites.2","bath.prerequisites.whirl-power","plumb-bathtub.prerequisites.3"],"preparation":["plumb-bathtub.preparation.1","bath.preparation.renovation-check","bath.preparation.level"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","bath.steps.whirl-connect","bath.steps.whirl-access"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3","bath.checks.whirl-run"],"handover":["plumb-bathtub.handover.1","bath.handover.whirl-use","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:renovation.whirlpool","hash":"c97b6b7cba94","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:new.built","label":"Σε νέα θέση · Σε γωνία ή εσοχή, με ποδιά","answers":{"job":"new","kind":"built"},"source":"new","title":"Τοποθέτηση μπανιέρας σε νέο σημείο","duration":"ενδεικτικά 1–2 ημέρες, μαζί με τη νέα αποχέτευση","licensed":false,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","bath.prerequisites.new-points","plumb-bathtub.prerequisites.3"],"preparation":["bath.preparation.new-lines","bath.preparation.level"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","plumb-bathtub.steps.5"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3"],"handover":["plumb-bathtub.handover.1","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:new.built","hash":"df357ac6a405","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:new.freestanding","label":"Σε νέα θέση · Ελεύθερη (στη μέση)","answers":{"job":"new","kind":"freestanding"},"source":"new","title":"Τοποθέτηση ελεύθερης μπανιέρας σε νέο σημείο","duration":"ενδεικτικά 1–2 ημέρες, μαζί με τη νέα αποχέτευση","licensed":false,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","bath.prerequisites.free-floor","plumb-bathtub.prerequisites.3"],"preparation":["bath.preparation.new-lines","bath.preparation.level"],"steps":["plumb-bathtub.steps.2","bath.steps.free-drain","bath.steps.free-place","bath.steps.free-mixer"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","bath.checks.free-stable"],"handover":["bath.handover.free-seal","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:new.freestanding","hash":"233711e5b7d1","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bathtub:new.whirlpool","label":"Σε νέα θέση · Υδρομασάζ","answers":{"job":"new","kind":"whirlpool"},"source":"new","title":"Τοποθέτηση μπανιέρας υδρομασάζ σε νέο σημείο","duration":"ενδεικτικά 1–2 ημέρες, μαζί με τη νέα αποχέτευση","licensed":true,"sections":{"prerequisites":["plumb-bathtub.prerequisites.1","bath.prerequisites.new-points","bath.prerequisites.whirl-power","plumb-bathtub.prerequisites.3"],"preparation":["bath.preparation.new-lines","bath.preparation.level"],"steps":["plumb-bathtub.steps.1","plumb-bathtub.steps.2","plumb-bathtub.steps.3","plumb-bathtub.steps.4","bath.steps.whirl-connect","bath.steps.whirl-access"],"checks":["plumb-bathtub.checks.1","plumb-bathtub.checks.2","plumb-bathtub.checks.3","bath.checks.whirl-run"],"handover":["plumb-bathtub.handover.1","bath.handover.whirl-use","plumb-bathtub.handover.2"]},"review":{"key":"case:bathtub:new.whirlpool","hash":"effb00c77db2","reviewed":false,"reviewer":null,"reviewed_at":null}}],"extras":[{"id":"bath.x.grab-bar","section":"steps","when":null,"review":{"key":"extra:bathtub:bath.x.grab-bar","hash":"2f8727380db5","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bath.x.screen","section":"steps","when":{"kind":["built"]},"review":{"key":"extra:bathtub:bath.x.screen","hash":"8c43888a6ba7","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"bath.x.sound","section":"steps","when":{"kind":["built","whirlpool"]},"review":{"key":"extra:bathtub:bath.x.sound","hash":"aa08e74696cf","reviewed":false,"reviewer":null,"reviewed_at":null}}],"items":{"bath.checks.free-stable":{"section":"checks","n":"Η μπανιέρα πατάει σε όλα τα πόδια της και δεν κουνιέται όταν μπαίνουμε μέσα.","s":"Όταν μπαίνουμε μέσα, η μπανιέρα στέκεται σε όλα τα ποδαράκια της και δεν κουνιέται.","c":"Σταθερή σε όλα τα πόδια.","source":"new","review":{"key":"sc:bath.checks.free-stable","hash":"6554f81a2ac1","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.checks.whirl-run":{"section":"checks","n":"Γεμίζουμε πάνω από τα ακροφύσια και λειτουργούμε την υδρομασάζ: δουλεύει χωρίς διαρροές.","s":"Γεμίζουμε πάνω από τις τρυπούλες του νερού και ανοίγουμε την υδρομασάζ: δουλεύει και δεν τρέχει νερό.","c":"Δοκιμή υδρομασάζ χωρίς διαρροές.","source":"new","review":{"key":"sc:bath.checks.whirl-run","hash":"07c2f9635ac6","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.handover.free-seal":{"section":"handover","n":"Σφραγίζουμε με σιλικόνη τη βάση στο δάπεδο, όπου το προβλέπει η μπανιέρα.","s":"Αν το θέλει η μπανιέρα, βάζουμε σιλικόνη εκεί που ακουμπάει στο πάτωμα.","c":"Σιλικόνη στη βάση, όπου προβλέπεται.","source":"new","review":{"key":"sc:bath.handover.free-seal","hash":"f7e9983785a7","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.handover.whirl-use":{"section":"handover","n":"Σας δείχνουμε πώς λειτουργεί η υδρομασάζ και πώς καθαρίζεται το κύκλωμά της.","s":"Σας δείχνουμε πώς ανοίγει η υδρομασάζ και πώς καθαρίζετε τους σωλήνες της.","c":"Χρήση και καθάρισμα υδρομασάζ.","source":"new","review":{"key":"sc:bath.handover.whirl-use","hash":"198b9e93151a","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.preparation.level":{"section":"preparation","n":"Ελέγχουμε το αλφάδι του δαπέδου στη θέση της μπανιέρας.","s":"Κοιτάμε με το αλφάδι αν είναι ίσιο το πάτωμα εκεί που θα μπει η μπανιέρα.","c":"Αλφάδι δαπέδου στη θέση.","source":"new","review":{"key":"sc:bath.preparation.level","hash":"40aff16ba3ef","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.preparation.new-lines":{"section":"preparation","n":"Περνάμε τη νέα αποχέτευση με κλίση και τις παροχές νερού ως τη θέση της μπανιέρας.","s":"Φέρνουμε τους καινούργιους σωλήνες του νερού και της αποχέτευσης ως τη μπανιέρα, με την αποχέτευση να γέρνει προς τα κάτω.","c":"Νέα αποχέτευση με κλίση και παροχές.","source":"new","review":{"key":"sc:bath.preparation.new-lines","hash":"44eb599af6cf","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.preparation.renovation-check":{"section":"preparation","n":"Ελέγχουμε, πριν κλείσουν οι τοίχοι, ότι η αποχέτευση και οι παροχές είναι στις θέσεις της νέας μπανιέρας.","s":"Πριν κλείσουν οι τοίχοι, κοιτάμε ότι οι σωλήνες του νερού και της αποχέτευσης είναι εκεί που τους θέλει η καινούργια μπανιέρα.","c":"Έλεγχος θέσεων πριν κλείσουν οι τοίχοι.","source":"new","review":{"key":"sc:bath.preparation.renovation-check","hash":"60c6e24d735d","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.prerequisites.free-floor":{"section":"prerequisites","n":"Δάπεδο τελειωμένο και αλφαδιασμένο στη θέση της μπανιέρας, με την αποχέτευση στο σημείο του σιφωνιού.","s":"Το πάτωμα να είναι τελειωμένο και ίσιο εκεί που θα μπει η μπανιέρα και η αποχέτευση να βγαίνει ακριβώς κάτω από το σιφόνι.","c":"Τελειωμένο, ίσιο δάπεδο με αποχέτευση στη θέση.","source":"new","review":{"key":"sc:bath.prerequisites.free-floor","hash":"fb28422198fe","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.prerequisites.new-points":{"section":"prerequisites","n":"Νέα αποχέτευση και παροχές νερού στη θέση της μπανιέρας, όπως τις έχουμε σχεδιάσει μαζί.","s":"Να έχουμε αποφασίσει μαζί πού θα περάσουν οι καινούργιοι σωλήνες του νερού και της αποχέτευσης για τη μπανιέρα.","c":"Νέα αποχέτευση και παροχές στη θέση.","source":"new","review":{"key":"sc:bath.prerequisites.new-points","hash":"a27d3c509590","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.prerequisites.whirl-power":{"section":"prerequisites","n":"Ξεχωριστή ηλεκτρική γραμμή με διακόπτη διαφυγής για την υδρομασάζ, από αδειούχο ηλεκτρολόγο.","s":"Η υδρομασάζ θέλει δική της γραμμή ρεύματος με διακόπτη προστασίας, που τη φτιάχνει αδειούχος ηλεκτρολόγος.","c":"Δική της γραμμή με διαφυγής, από ηλεκτρολόγο.","source":"new","review":{"key":"sc:bath.prerequisites.whirl-power","hash":"ac27e1974f37","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.steps.free-drain":{"section":"steps","n":"Συνδέουμε το σιφώνι της μπανιέρας στην αποχέτευση του δαπέδου, με εύκαμπτο κομμάτι που φτάνει από κάτω.","s":"Ενώνουμε το σιφόνι της μπανιέρας με την τρύπα στο πάτωμα, με σωλήνα που λυγίζει.","c":"Σιφώνι στην αποχέτευση δαπέδου.","source":"new","review":{"key":"sc:bath.steps.free-drain","hash":"2d9ecd779a00","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.steps.free-mixer":{"section":"steps","n":"Τοποθετούμε τη μπαταρία δαπέδου ή τοίχου και τη συνδέουμε στις παροχές.","s":"Βάζουμε τη βρύση, στο πάτωμα ή στον τοίχο, και την ενώνουμε με τους σωλήνες του νερού.","c":"Μπαταρία δαπέδου ή τοίχου.","source":"new","review":{"key":"sc:bath.steps.free-mixer","hash":"964037cd5eed","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.steps.free-place":{"section":"steps","n":"Βάζουμε τη μπανιέρα στη θέση της και την αλφαδιάζουμε με τα ρυθμιζόμενα πόδια της.","s":"Βάζουμε τη μπανιέρα στη θέση της και την ισιώνουμε από τα ποδαράκια της.","c":"Τοποθέτηση και αλφάδιασμα.","source":"new","review":{"key":"sc:bath.steps.free-place","hash":"6ab560c3d48f","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.steps.whirl-access":{"section":"steps","n":"Κλείνουμε το μπροστινό μέρος με ποδιά που ανοίγει, ώστε να φτάνουμε την αντλία για σέρβις.","s":"Κλείνουμε μπροστά με καπάκι που βγαίνει, για να φτάνουμε τη μηχανή όταν θέλει συντήρηση.","c":"Ποδιά που ανοίγει για την αντλία.","source":"new","review":{"key":"sc:bath.steps.whirl-access","hash":"919cb96ca22f","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.steps.whirl-connect":{"section":"steps","n":"Συνδέουμε την αντλία στην ηλεκτρική παροχή που έχει ετοιμάσει ο ηλεκτρολόγος.","s":"Ενώνουμε τη μηχανή της υδρομασάζ με το ρεύμα που έχει φέρει ο ηλεκτρολόγος.","c":"Σύνδεση αντλίας στην παροχή.","source":"new","review":{"key":"sc:bath.steps.whirl-connect","hash":"18091c6fdb6a","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.x.grab-bar":{"section":"steps","n":"Τοποθετούμε λαβή στήριξης στον τοίχο δίπλα στη μπανιέρα, όπου έχει συμφωνηθεί.","s":"Αν το έχουμε πει, βάζουμε χερούλι στον τοίχο για να πιάνεστε όταν μπαίνετε και βγαίνετε.","c":"Λαβή στήριξης, αν συμφωνήθηκε.","source":"new","review":{"key":"sc:bath.x.grab-bar","hash":"92c12d6c0549","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.x.screen":{"section":"steps","n":"Τοποθετούμε σταθερό ή ανοιγόμενο τζάμι πάνω στο χείλος της μπανιέρας, όπου έχει συμφωνηθεί.","s":"Αν το έχουμε πει, βάζουμε τζάμι πάνω στη μπανιέρα, για να μη βγαίνουν νερά στο ντους.","c":"Τζάμι μπανιέρας, αν συμφωνήθηκε.","source":"new","review":{"key":"sc:bath.x.screen","hash":"84d11312e00e","reviewed":false,"reviewer":null,"reviewed_at":null}},"bath.x.sound":{"section":"steps","n":"Γεμίζουμε τον χώρο κάτω από τη μπανιέρα με ηχομονωτικό υλικό, ώστε να κάνει λιγότερο θόρυβο.","s":"Βάζουμε από κάτω υλικό που κόβει τον θόρυβο, για να μην ακούγεται τόσο το νερό.","c":"Ηχομόνωση κάτω από τη μπανιέρα.","source":"new","review":{"key":"sc:bath.x.sound","hash":"c31fda5c4cf5","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.checks.1":{"section":"checks","n":"Γεμίζουμε τη μπανιέρα ως την υπερχείλιση και την αδειάζουμε: το σιφώνι δεν στάζει πουθενά.","s":"Γεμίζουμε ως πάνω και αδειάζουμε: από κάτω δεν στάζει τίποτα.","c":"Γέμισμα ως την υπερχείλιση, χωρίς στάξιμο.","source":"current","review":{"key":"sc:plumb-bathtub.checks.1","hash":"842bdad91f5b","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.checks.2":{"section":"checks","n":"Ελέγχουμε ότι αδειάζει χωρίς να μένει νερό στον πάτο.","s":"Κοιτάμε ότι αδειάζει όλη και δεν μένουν νερά στον πάτο.","c":"Αδειάζει πλήρως.","source":"current","review":{"key":"sc:plumb-bathtub.checks.2","hash":"41567e3bee16","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.checks.3":{"section":"checks","n":"Μπαίνουμε στη μπανιέρα: δεν κουνιέται και δεν τρίζει.","s":"Μπαίνουμε μέσα: η μπανιέρα δεν κουνιέται και δεν κάνει θόρυβο.","c":"Σταθερή, χωρίς τρίξιμο.","source":"current","review":{"key":"sc:plumb-bathtub.checks.3","hash":"2a6454e70331","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.handover.1":{"section":"handover","n":"Σφραγίζουμε με σιλικόνη την επαφή με τους τοίχους, με τη μπανιέρα γεμάτη νερό, ώστε να μην ανοίξει αργότερα η σιλικόνη.","s":"Βάζουμε σιλικόνη εκεί που ακουμπάει στους τοίχους, με τη μπανιέρα γεμάτη, για να μην ανοίξει μετά.","c":"Σιλικόνη με γεμάτη μπανιέρα.","source":"current","review":{"key":"sc:plumb-bathtub.handover.1","hash":"578030f1cca7","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.handover.2":{"section":"handover","n":"Καθαρίζουμε τον χώρο και σας λέμε πότε μπορεί να χρησιμοποιηθεί.","s":"Καθαρίζουμε και σας λέμε από πότε μπορείτε να τη χρησιμοποιήσετε.","c":"Καθάρισμα, πότε μπαίνει σε χρήση.","source":"current","review":{"key":"sc:plumb-bathtub.handover.2","hash":"fe42605781f6","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.preparation.1":{"section":"preparation","n":"Αφαιρούμε την παλιά μπανιέρα, αν υπάρχει, και καθαρίζουμε τη θέση.","s":"Βγάζουμε την παλιά μπανιέρα, αν υπάρχει, και καθαρίζουμε το σημείο.","c":"Αφαίρεση παλιάς, καθαρισμός.","source":"current","review":{"key":"sc:plumb-bathtub.preparation.1","hash":"d581fa78d92c","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.preparation.2":{"section":"preparation","n":"Ελέγχουμε την αποχέτευση και τις παροχές και, αν χρειάζεται, τις μετακινούμε.","s":"Κοιτάμε τους σωλήνες του νερού και της αποχέτευσης και, αν πρέπει, τους μετακινούμε.","c":"Έλεγχος και μετακίνηση παροχών.","source":"current","review":{"key":"sc:plumb-bathtub.preparation.2","hash":"2488a730970d","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.prerequisites.1":{"section":"prerequisites","n":"Να έχει επιλεγεί η μπανιέρα (διάσταση, πλευρά σιφωνιού) σε σχέση με τον χώρο.","s":"Να έχουμε διαλέξει τη μπανιέρα με το σωστό μέγεθος και το σιφόνι στη σωστή πλευρά για τον χώρο.","c":"Επιλεγμένη μπανιέρα για τον χώρο.","source":"current","review":{"key":"sc:plumb-bathtub.prerequisites.1","hash":"7804499648e1","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.prerequisites.2":{"section":"prerequisites","n":"Αποχέτευση στη θέση του σιφωνιού και παροχές νερού για τη μπαταρία.","s":"Να φτάνουν ως τη μπανιέρα η αποχέτευση και οι σωλήνες του νερού για τη βρύση.","c":"Αποχέτευση και παροχές στη θέση.","source":"current","review":{"key":"sc:plumb-bathtub.prerequisites.2","hash":"013a50f38dec","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.prerequisites.3":{"section":"prerequisites","n":"Δάπεδο σταθερό, που αντέχει το βάρος της γεμάτης μπανιέρας.","s":"Το πάτωμα να είναι γερό και να σηκώνει τη μπανιέρα γεμάτη νερό.","c":"Δάπεδο που αντέχει το βάρος.","source":"current","review":{"key":"sc:plumb-bathtub.prerequisites.3","hash":"5f67aeb3e32c","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.steps.1":{"section":"steps","n":"Συναρμολογούμε τα πόδια ή τον σκελετό στήριξης της μπανιέρας.","s":"Στήνουμε τα πόδια ή τη βάση που θα κρατάει τη μπανιέρα.","c":"Πόδια ή σκελετός στήριξης.","source":"current","review":{"key":"sc:plumb-bathtub.steps.1","hash":"ffeda4e9d2c9","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.steps.2":{"section":"steps","n":"Τοποθετούμε τη βαλβίδα και το σιφώνι μαζί με την υπερχείλιση, την τρύπα που δεν αφήνει το νερό να ξεχειλίσει.","s":"Βάζουμε την τάπα, το σιφόνι και το σωληνάκι που δεν αφήνει το νερό να ξεχειλίσει.","c":"Βαλβίδα, σιφώνι, υπερχείλιση.","source":"current","review":{"key":"sc:plumb-bathtub.steps.2","hash":"115bc155dd16","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.steps.3":{"section":"steps","n":"Βάζουμε τη μπανιέρα στη θέση της, την αλφαδιάζουμε και τη στερεώνουμε στον τοίχο με τα στηρίγματά της.","s":"Βάζουμε τη μπανιέρα στη θέση της, την ισιώνουμε και τη στερεώνουμε στον τοίχο.","c":"Τοποθέτηση, αλφάδι, στερέωση.","source":"current","review":{"key":"sc:plumb-bathtub.steps.3","hash":"2675af86c5d6","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.steps.4":{"section":"steps","n":"Συνδέουμε το σιφώνι στην αποχέτευση.","s":"Ενώνουμε το σιφόνι με τον σωλήνα της αποχέτευσης.","c":"Σιφώνι στην αποχέτευση.","source":"current","review":{"key":"sc:plumb-bathtub.steps.4","hash":"130149956250","reviewed":false,"reviewer":null,"reviewed_at":null}},"plumb-bathtub.steps.5":{"section":"steps","n":"Κλείνουμε το μπροστινό μέρος με την ποδιά της μπανιέρας ή με κατασκευή για πλακάκι, αφήνοντας θυρίδα επίσκεψης.","s":"Κλείνουμε μπροστά με το καπάκι της μπανιέρας ή με κατασκευή για πλακάκι, αφήνοντας ένα πορτάκι για να φτάνουμε το σιφόνι.","c":"Ποδιά με θυρίδα επίσκεψης.","source":"current","review":{"key":"sc:plumb-bathtub.steps.5","hash":"e4527e4f6c5f","reviewed":false,"reviewer":null,"reviewed_at":null}}},"licensedNote":"Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία.","sections":[{"key":"prerequisites","title":"Τι χρειάζεται πριν ξεκινήσουμε"},{"key":"preparation","title":"Προεργασία"},{"key":"steps","title":"Στάδια τοποθέτησης"},{"key":"checks","title":"Έλεγχοι πριν την παράδοση"},{"key":"handover","title":"Καθαρισμός και παράδοση"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'ergolav-review:' + D.material;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = {reviewer: '', decisions: {}};
+try { S = Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} paint(); };
+$('reviewer').value = S.reviewer || '';
+$('reviewer').oninput = e => { S.reviewer = e.target.value; save(); };
+// Αποφάσεις: μόνο για το κείμενο που φαίνεται (ίδιο αποτύπωμα)· ό,τι άλλαξε από τότε ξαναζητά έλεγχο.
+const keys = {};
+for(const c of D.cases) if(c.review) keys[c.review.key] = c.review;
+for(const [, it] of Object.entries(D.items)) keys[it.review.key] = it.review;
+for(const x of D.extras) keys[x.review.key] = x.review;
+const verdict = k => { const d = S.decisions[k]; return d && d.hash === keys[k].hash ? d.verdict : (keys[k].reviewed ? 'ok' : null); };
+const decideHtml = (k, what) => {
+  const d = S.decisions[k] && S.decisions[k].hash === keys[k].hash ? S.decisions[k] : null, v = verdict(k);
+  return '<div class="decide" data-key="' + esc(k) + '"><span class="what">' + what + '</span>'
+    + '<button type="button" class="ok' + (v === 'ok' ? ' on' : '') + '" data-v="ok" aria-pressed="' + (v === 'ok') + '">Εγκρίνω</button>'
+    + '<button type="button" class="fix' + (v === 'fix' ? ' on' : '') + '" data-v="fix" aria-pressed="' + (v === 'fix') + '">Θέλει διόρθωση</button>'
+    + '<textarea placeholder="Τι να διορθωθεί;" aria-label="Σχόλιο"' + (v === 'fix' ? '' : ' hidden') + '>' + esc(d && d.comment || '') + '</textarea></div>';
+};
+const item = (id, withSc) => {
+  const it = D.items[id];
+  return '<div class="row" data-item="' + esc(id) + '">'
+    + '<div class="v"><small>Κανονική <span class="tag ' + (it.source === 'new' ? 'new">νέο' : 'cur">σημερινό') + '</span></small>' + esc(it.n) + '</div>'
+    + '<div class="v"><small>Απλή</small>' + esc(it.s) + '</div>'
+    + '<div class="v"><small>Σύντομη</small>' + esc(it.c) + '</div>'
+    + (withSc ? '<div class="acts">' + decideHtml(it.review.key, 'Απλή και σύντομη:') + '</div>' : '') + '</div>';
+};
+const body = c => {
+  let h = '<p class="meta">Περίπτωση: ' + esc(c.label) + ' · ' + esc(c.duration) + (c.task ? ' · κείμενο: ' + esc(c.task) : '') + '</p>';
+  if(c.licensed) h += '<p class="note">' + esc(D.licensedNote) + '</p>';
+  if(c.safety) h += '<p class="note">Ασφάλεια: ' + esc(c.safety) + '</p>';
+  for(const s of D.sections){ const ids = c.sections[s.key] || []; if(!ids.length) continue;
+    h += '<div class="sec"><h3>' + esc(s.title) + '</h3>' + ids.map(id => item(id, true)).join('') + '</div>'; }
+  if(c.review) h += decideHtml(c.review.key, c.source === 'existing' ? 'Η περίπτωση (έτοιμο κείμενο):' : 'Η περίπτωση (σύνθεση και νέα κείμενα):');
+  return h;
+};
+const groups = [['base', 'Βασικές περιπτώσεις (σημερινές αναλύσεις)', 'Τα κείμενα δεν αλλάζουν· ελέγχεις μόνο την απλή και τη σύντομη εκδοχή.'],
+  ['existing', 'Περιπτώσεις με έτοιμο κείμενο', 'Από τις 96 γραμμένες αναλύσεις.'], ['new', D.material === 'generic' ? 'Κατηγορίες' : 'Νέες περιπτώσεις', '']];
+let html = '';
+for(const [src, title, sub] of groups){
+  const list = D.cases.filter(c => c.source === src); if(!list.length) continue;
+  html += '<h2>' + title + ' (' + list.length + ')</h2>' + (sub ? '<p class="small meta">' + sub + '</p>' : '');
+  for(const c of list) html += '<details class="case" data-case="' + esc(c.id) + '"><summary><b>' + esc(c.title) + '</b><span class="state" data-state="' + esc(c.id) + '"></span><span class="lbl">' + esc(c.label) + '</span></summary><div class="body"></div></details>';
+}
+if(D.extras.length){
+  html += '<h2>Επιπλέον βήματα για το «Λείπει κάτι» (' + D.extras.length + ')</h2>';
+  html += '<div class="case" style="padding:0 14px 14px">' + D.extras.map(x => '<div class="sec"><h3>' + esc((D.sections.find(s => s.key === x.section) || {}).title || x.section)
+    + (x.when ? ' · <span class="meta">μόνο όταν ' + esc(Object.entries(x.when).map(([k, v]) => k + ' = ' + v.join(' ή ')).join(', ')) + '</span>' : '') + '</h3>'
+    + item(x.id, true) + decideHtml(x.review.key, 'Να μπαίνει ως επιπλέον βήμα:') + '</div>').join('') + '</div>';
+}
+$('cases').innerHTML = html;
+// Το σώμα κάθε περίπτωσης φτιάχνεται όταν ανοίξει (οι σελίδες έχουν εκατοντάδες σημεία).
+document.querySelectorAll('details.case').forEach(d => d.addEventListener('toggle', () => {
+  const b = d.querySelector('.body'); if(d.open && !b.innerHTML) b.innerHTML = body(D.cases.find(c => c.id === d.dataset.case));
+}));
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.decide button'); if(!btn) return;
+  const k = btn.closest('.decide').dataset.key, v = btn.dataset.v, prev = S.decisions[k];
+  S.decisions[k] = {verdict: v, hash: keys[k].hash, comment: v === 'fix' ? (prev && prev.comment || '') : ''};
+  save();
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest('.decide'); if(!box || e.target.tagName !== 'TEXTAREA') return;
+  const k = box.dataset.key; S.decisions[k] = Object.assign({verdict: 'fix', hash: keys[k].hash}, S.decisions[k], {comment: e.target.value});
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+});
+function paint(){
+  // Ίδιο σημείο σε πολλές περιπτώσεις: η απόφαση φαίνεται παντού.
+  document.querySelectorAll('.decide').forEach(box => {
+    const v = verdict(box.dataset.key);
+    box.querySelectorAll('button').forEach(b => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    box.querySelector('textarea').hidden = v !== 'fix';
+  });
+  for(const c of D.cases){
+    const el = document.querySelector('[data-state="' + CSS.escape(c.id) + '"]'); if(!el) continue;
+    const ks = [...(c.review ? [c.review.key] : []), ...Object.values(c.sections).flat().map(id => D.items[id].review.key)];
+    const vs = ks.map(verdict), fix = vs.includes('fix'), done = vs.every(v => v === 'ok');
+    el.className = 'state ' + (fix ? 'fix' : done ? 'ok' : 'todo');
+    el.textContent = fix ? 'θέλει διόρθωση' : done ? 'εγκρίθηκε' : vs.filter(Boolean).length + '/' + vs.length;
+  }
+  const all = Object.keys(keys), dec = all.filter(k => verdict(k));
+  $('progress').textContent = dec.length + ' από ' + all.length + ' αποφάσεις · ' + all.filter(k => verdict(k) === 'fix').length + ' για διόρθωση';
+}
+document.addEventListener('toggle', paint, true);
+$('filter').onchange = e => {
+  const f = e.target.value;
+  document.querySelectorAll('details.case').forEach(d => {
+    const st = d.querySelector('.state').className;
+    d.classList.toggle('hidden', f === 'todo' ? /\b(ok)\b/.test(st) : f === 'fix' ? !/\bfix\b/.test(st) : false);
+  });
+};
+$('export').onclick = () => {
+  if(!S.reviewer.trim()){ $('reviewer').focus(); alert('Γράψε πρώτα το όνομά σου (ποιος ελέγχει).'); return; }
+  const decisions = Object.entries(S.decisions).filter(([k, d]) => keys[k] && d.hash === keys[k].hash).map(([key, d]) => ({key, hash: d.hash, verdict: d.verdict, comment: d.comment || ''}));
+  const file = {format: 'ergolav-reviews', version: 1, material: D.material, reviewer: S.reviewer.trim(), exported_at: new Date().toISOString(), decisions};
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], {type: 'application/json'}));
+  a.download = 'ergolav-elegxos-' + D.material + '-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+$('approveSc').onclick = () => {
+  // Γρήγορα: όσες απλές/σύντομες δεν έχουν απόφαση, στις ανοιχτές περιπτώσεις.
+  document.querySelectorAll('details.case[open] .row .decide').forEach(box => { const k = box.dataset.key; if(!verdict(k)) S.decisions[k] = {verdict: 'ok', hash: keys[k].hash, comment: ''}; });
+  save();
+};
+paint();
+</script>
+</body></html>

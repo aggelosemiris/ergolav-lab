@@ -39,7 +39,7 @@ const LEDE = 'Ο λογαριασμός κρατά τα στοιχεία της 
  */
 export function mountAccount({show, cta, here, home = () => {}, busy = () => false, onProfileChange = () => {},
   needProfile = () => {}, onLockChange = () => {}, account = createAccount()}){
-  if(!account.enabled) return {enabled: false, locked: () => false, canBack: () => true, back: () => false, profileSaved: async () => ({error: ''})};
+  if(!account.enabled) return {enabled: false, locked: () => false, canBack: () => true, back: () => false, profileSaved: async () => ({error: ''}), db: async () => null};
 
   let returnTo = null, mode = 'in', email = '', locked = false, resume = null, lockedUser = null;
   let lastUserId = account.user()?.id || null;
@@ -565,6 +565,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
       return false;
     },
     profileSaved: () => account.profileSaved(),
+    db: () => account.db(),
   };
 }
 

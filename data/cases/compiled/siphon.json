@@ -1,0 +1,876 @@
+{
+ "material": "siphon",
+ "name": "Σιφόνι",
+ "cases": [
+  {
+   "id": "siphon:basin.replace",
+   "label": "Νιπτήρα · Αλλαγή παλιού",
+   "answers": {
+    "where": "basin",
+    "job": "replace"
+   },
+   "source": "base",
+   "task": "plumb-siphon",
+   "title": "Αντικατάσταση σιφωνιού",
+   "duration": "ενδεικτικά 30–60 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-siphon.prerequisites.1",
+     "plumb-siphon.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-siphon.preparation.1",
+     "plumb-siphon.preparation.2",
+     "plumb-siphon.preparation.3"
+    ],
+    "steps": [
+     "plumb-siphon.steps.1",
+     "plumb-siphon.steps.2",
+     "plumb-siphon.steps.3"
+    ],
+    "checks": [
+     "plumb-siphon.checks.1",
+     "plumb-siphon.checks.2",
+     "plumb-siphon.checks.3"
+    ],
+    "handover": [
+     "plumb-siphon.handover.1",
+     "plumb-siphon.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "siphon:basin.new",
+   "label": "Νιπτήρα · Καινούργιο σημείο",
+   "answers": {
+    "where": "basin",
+    "job": "new"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση σιφωνιού νιπτήρα σε νέο σημείο",
+   "duration": "ενδεικτικά 30–60 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-siphon.prerequisites.1",
+     "siphon.prerequisites.new-outlet"
+    ],
+    "preparation": [
+     "siphon.preparation.check-outlet",
+     "plumb-siphon.preparation.3"
+    ],
+    "steps": [
+     "plumb-siphon.steps.1",
+     "plumb-siphon.steps.2",
+     "plumb-siphon.steps.3"
+    ],
+    "checks": [
+     "plumb-siphon.checks.1",
+     "plumb-siphon.checks.2",
+     "plumb-siphon.checks.3"
+    ],
+    "handover": [
+     "plumb-siphon.handover.1",
+     "siphon.handover.clean-tip"
+    ]
+   },
+   "review": {
+    "key": "case:siphon:basin.new",
+    "hash": "be0f9f30581b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "siphon:sink.replace",
+   "label": "Νεροχύτη · Αλλαγή παλιού",
+   "answers": {
+    "where": "sink",
+    "job": "replace"
+   },
+   "source": "base",
+   "task": "plumb-siphon",
+   "title": "Αντικατάσταση σιφωνιού",
+   "duration": "ενδεικτικά 30–60 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-siphon.prerequisites.1",
+     "plumb-siphon.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-siphon.preparation.1",
+     "plumb-siphon.preparation.2",
+     "plumb-siphon.preparation.3"
+    ],
+    "steps": [
+     "plumb-siphon.steps.1",
+     "plumb-siphon.steps.2",
+     "plumb-siphon.steps.3"
+    ],
+    "checks": [
+     "plumb-siphon.checks.1",
+     "plumb-siphon.checks.2",
+     "plumb-siphon.checks.3"
+    ],
+    "handover": [
+     "plumb-siphon.handover.1",
+     "plumb-siphon.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "siphon:sink.new",
+   "label": "Νεροχύτη · Καινούργιο σημείο",
+   "answers": {
+    "where": "sink",
+    "job": "new"
+   },
+   "source": "new",
+   "title": "Τοποθέτηση σιφωνιού νεροχύτη σε νέο σημείο",
+   "duration": "ενδεικτικά 30–60 λεπτά",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-siphon.prerequisites.1",
+     "siphon.prerequisites.new-outlet"
+    ],
+    "preparation": [
+     "siphon.preparation.check-outlet",
+     "plumb-siphon.preparation.3"
+    ],
+    "steps": [
+     "plumb-siphon.steps.1",
+     "plumb-siphon.steps.2",
+     "plumb-siphon.steps.3"
+    ],
+    "checks": [
+     "plumb-siphon.checks.1",
+     "plumb-siphon.checks.2",
+     "plumb-siphon.checks.3"
+    ],
+    "handover": [
+     "plumb-siphon.handover.1",
+     "siphon.handover.clean-tip"
+    ]
+   },
+   "review": {
+    "key": "case:siphon:sink.new",
+    "hash": "b6f048363db9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "siphon:tub.replace",
+   "label": "Μπανιέρας ή ντουζιέρας · Αλλαγή παλιού",
+   "answers": {
+    "where": "tub",
+    "job": "replace"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση σιφωνιού μπανιέρας ή ντουζιέρας",
+   "duration": "ενδεικτικά 1–2 ώρες, όταν υπάρχει πρόσβαση",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "siphon.prerequisites.tub-access",
+     "plumb-siphon.prerequisites.1"
+    ],
+    "preparation": [
+     "siphon.preparation.open-access",
+     "siphon.preparation.remove-tub-trap"
+    ],
+    "steps": [
+     "siphon.steps.tub-fit",
+     "siphon.steps.tub-connect",
+     "siphon.steps.tub-plug"
+    ],
+    "checks": [
+     "siphon.checks.tub-fill",
+     "plumb-siphon.checks.2",
+     "plumb-siphon.checks.3"
+    ],
+    "handover": [
+     "siphon.handover.close-access",
+     "plumb-siphon.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:siphon:tub.replace",
+    "hash": "3c77492497cf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "siphon:floor.replace",
+   "label": "Στο πάτωμα (σιφώνι δαπέδου) · Αλλαγή παλιού",
+   "answers": {
+    "where": "floor",
+    "job": "replace"
+   },
+   "source": "existing",
+   "task": "plumb-floor-drain",
+   "title": "Τοποθέτηση σιφωνιού δαπέδου ή καναλιού ντους",
+   "duration": "ενδεικτικά 2–4 ώρες, χωρίς τη στεγάνωση και το πλακάκι",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-floor-drain.prerequisites.1",
+     "plumb-floor-drain.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-floor-drain.preparation.1",
+     "plumb-floor-drain.preparation.2"
+    ],
+    "steps": [
+     "plumb-floor-drain.steps.1",
+     "plumb-floor-drain.steps.2",
+     "plumb-floor-drain.steps.3",
+     "plumb-floor-drain.steps.4"
+    ],
+    "checks": [
+     "plumb-floor-drain.checks.1",
+     "plumb-floor-drain.checks.2",
+     "plumb-floor-drain.checks.3"
+    ],
+    "handover": [
+     "plumb-floor-drain.handover.1",
+     "plumb-floor-drain.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:siphon:floor.replace",
+    "hash": "92683b4599b1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "siphon:floor.new",
+   "label": "Στο πάτωμα (σιφώνι δαπέδου) · Καινούργιο σημείο",
+   "answers": {
+    "where": "floor",
+    "job": "new"
+   },
+   "source": "existing",
+   "task": "plumb-floor-drain",
+   "title": "Τοποθέτηση σιφωνιού δαπέδου ή καναλιού ντους",
+   "duration": "ενδεικτικά 2–4 ώρες, χωρίς τη στεγάνωση και το πλακάκι",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-floor-drain.prerequisites.1",
+     "plumb-floor-drain.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-floor-drain.preparation.1",
+     "plumb-floor-drain.preparation.2"
+    ],
+    "steps": [
+     "plumb-floor-drain.steps.1",
+     "plumb-floor-drain.steps.2",
+     "plumb-floor-drain.steps.3",
+     "plumb-floor-drain.steps.4"
+    ],
+    "checks": [
+     "plumb-floor-drain.checks.1",
+     "plumb-floor-drain.checks.2",
+     "plumb-floor-drain.checks.3"
+    ],
+    "handover": [
+     "plumb-floor-drain.handover.1",
+     "plumb-floor-drain.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:siphon:floor.new",
+    "hash": "92683b4599b1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "siphon.x.clean-valve",
+   "section": "preparation",
+   "when": null,
+   "review": {
+    "key": "extra:siphon:siphon.x.clean-valve",
+    "hash": "701b9d851f54",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "siphon.x.anti-odour",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:siphon:siphon.x.anti-odour",
+    "hash": "7c6bb8f9b474",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "plumb-floor-drain.checks.1": {
+   "section": "checks",
+   "n": "Ρίχνουμε νερό: φεύγει γρήγορα και δεν στάζει από κάτω.",
+   "s": "Ρίχνουμε νερό: χάνεται γρήγορα στο σιφώνι και από κάτω μένουν όλα στεγνά.",
+   "c": "Γρήγορη απορροή, χωρίς στάξιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.checks.1",
+    "hash": "45441fedf385",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.checks.2": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι η σχάρα είναι στο ίδιο ύψος με το πλακάκι, χωρίς να εξέχει.",
+   "s": "Η σχάρα είναι ίσια με το πλακάκι και δεν εξέχει.",
+   "c": "Σχάρα στο ύψος του πλακιδίου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.checks.2",
+    "hash": "cbd0c569bcea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.checks.3": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι το σιφώνι κρατά νερό στην παγίδα οσμών, ώστε να μη βγαίνουν μυρωδιές.",
+   "s": "Το σιφώνι κρατά λίγο νερό μέσα του, για να μη βγαίνουν μυρωδιές.",
+   "c": "Παγίδα οσμών με νερό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.checks.3",
+    "hash": "78bd6db36b51",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.handover.1": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς ανοίγει η σχάρα και πώς καθαρίζεται το σιφώνι από τρίχες.",
+   "s": "Σας δείχνουμε πώς ανοίγει η σχάρα και πώς καθαρίζουμε τις τρίχες από το σιφώνι.",
+   "c": "Σας δείχνουμε καθαρισμό σιφωνιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.handover.1",
+    "hash": "dcd5dabecdc1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.handover.2": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τον χώρο.",
+   "s": "Αφήνουμε τον χώρο καθαρό.",
+   "c": "Καθάρισμα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.handover.2",
+    "hash": "36d2c00d0d32",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.preparation.1": {
+   "section": "preparation",
+   "n": "Ανοίγουμε το δάπεδο στη θέση του σιφωνιού και ως την αποχέτευση.",
+   "s": "Ανοίγουμε το πάτωμα εκεί που μπαίνει το σιφώνι και ως τον σωλήνα των νερών.",
+   "c": "Άνοιγμα δαπέδου ως την αποχέτευση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.preparation.1",
+    "hash": "a379f8a2b8e0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε την κλίση προς τον κεντρικό σωλήνα.",
+   "s": "Κοιτάμε ότι ο σωλήνας έχει κλίση προς τον κεντρικό.",
+   "c": "Έλεγχος κλίσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.preparation.2",
+    "hash": "787350522946",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει θέση και τύπο (σιφώνι ή γραμμικό κανάλι) σε σχέση με τη ντουζιέρα στο επίπεδο του δαπέδου.",
+   "s": "Να ξέρουμε πού μπαίνει το σιφώνι και αν θα είναι στρογγυλό ή μακρόστενο κανάλι.",
+   "c": "Συμφωνημένη θέση και τύπος σιφωνιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.prerequisites.1",
+    "hash": "dbfcf7ba2d77",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Αρκετό ύψος στο δάπεδο για το σιφώνι και την κλίση της αποχέτευσης.",
+   "s": "Το πάτωμα πρέπει να έχει αρκετό ύψος για το σιφώνι και για την κλίση του σωλήνα.",
+   "c": "Ύψος δαπέδου για σιφώνι και κλίση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.prerequisites.2",
+    "hash": "daaac4f9b909",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.steps.1": {
+   "section": "steps",
+   "n": "Τοποθετούμε το σιφώνι ή το κανάλι στο σωστό ύψος, ώστε να καταλήξει λίγο πιο χαμηλά από το τελικό πλακάκι.",
+   "s": "Βάζουμε το σιφώνι ή το κανάλι λίγο πιο χαμηλά από το πλακάκι που θα μπει, για να φεύγει το νερό.",
+   "c": "Σιφώνι λίγο κάτω από το τελικό πλακάκι.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.steps.1",
+    "hash": "575c4d20e235",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.steps.2": {
+   "section": "steps",
+   "n": "Το συνδέουμε στην αποχέτευση και το στερεώνουμε ώστε να μη μετακινηθεί.",
+   "s": "Το ενώνουμε με τον σωλήνα των νερών και το στερεώνουμε καλά.",
+   "c": "Σύνδεση και στερέωση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.steps.2",
+    "hash": "8fa8d8938903",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.steps.3": {
+   "section": "steps",
+   "n": "Τοποθετούμε τη στεγανωτική του φλάντζα, που ενώνεται με τη στεγάνωση του δαπέδου.",
+   "s": "Βάζουμε το στεγανό στεφάνι του, που ενώνεται με τη στεγάνωση του πατώματος.",
+   "c": "Στεγανωτική φλάντζα στη στεγάνωση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.steps.3",
+    "hash": "e5b331cb091b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-floor-drain.steps.4": {
+   "section": "steps",
+   "n": "Μετά τη στεγάνωση και τα πλακάκια, βάζουμε τη σχάρα.",
+   "s": "Αφού γίνουν στεγάνωση και πλακάκια, βάζουμε τη σχάρα.",
+   "c": "Σχάρα μετά τα πλακάκια.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-floor-drain.steps.4",
+    "hash": "66ab2130a81c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.checks.1": {
+   "section": "checks",
+   "n": "Γεμίζουμε τον νιπτήρα ή τις γούρνες και αδειάζουμε απότομα: δεν στάζει καμία ένωση.",
+   "s": "Γεμίζουμε και αδειάζουμε απότομα: δεν στάζει καμία ένωση.",
+   "c": "Απότομο άδειασμα χωρίς στάξιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.checks.1",
+    "hash": "537f2673c86c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.checks.2": {
+   "section": "checks",
+   "n": "Το νερό φεύγει γρήγορα, χωρίς γουργουρητό.",
+   "s": "Το νερό φεύγει γρήγορα και αθόρυβα.",
+   "c": "Γρήγορη απορροή, χωρίς γουργουρητό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.checks.2",
+    "hash": "2aaa1f5da5bd",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.checks.3": {
+   "section": "checks",
+   "n": "Μετά από λίγη ώρα δεν μυρίζει αποχέτευση, γιατί το σιφόνι κρατά νερό.",
+   "s": "Μετά από λίγο δεν μυρίζει, γιατί το σιφόνι κρατά λίγο νερό μέσα του.",
+   "c": "Χωρίς οσμές.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.checks.3",
+    "hash": "ce0c16f25677",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.handover.1": {
+   "section": "handover",
+   "n": "Σκουπίζουμε και στεγνώνουμε το ντουλάπι.",
+   "s": "Αφήνουμε το ντουλάπι καθαρό και στεγνό.",
+   "c": "Στεγνό ντουλάπι.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.handover.1",
+    "hash": "8b57e3aff9a4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.handover.2": {
+   "section": "handover",
+   "n": "Παίρνουμε μαζί μας το παλιό σιφόνι.",
+   "s": "Το παλιό σιφόνι το παίρνουμε εμείς μαζί μας.",
+   "c": "Παίρνουμε το παλιό.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.handover.2",
+    "hash": "eedf714a8937",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.preparation.1": {
+   "section": "preparation",
+   "n": "Αδειάζουμε το ντουλάπι και βάζουμε λεκάνη από κάτω.",
+   "s": "Βγάζουμε τα πράγματα από το ντουλάπι και βάζουμε λεκάνη από κάτω.",
+   "c": "Άδειασμα ντουλαπιού, λεκάνη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.preparation.1",
+    "hash": "85ef3fcbcdf7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.preparation.2": {
+   "section": "preparation",
+   "n": "Ξεβιδώνουμε και αφαιρούμε το παλιό σιφόνι.",
+   "s": "Ξεβιδώνουμε και βγάζουμε το παλιό σιφόνι.",
+   "c": "Αφαίρεση παλιού σιφωνιού.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.preparation.2",
+    "hash": "d9d5c10545f5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.preparation.3": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε το στόμιο της αποχέτευσης στον τοίχο.",
+   "s": "Καθαρίζουμε την τρύπα της αποχέτευσης στον τοίχο.",
+   "c": "Καθαρισμός στομίου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.preparation.3",
+    "hash": "6eeb6878f72c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχει επιλεγεί σιφόνι που ταιριάζει στη βαλβίδα και στον σωλήνα της αποχέτευσης.",
+   "s": "Το νέο σιφόνι πρέπει να ταιριάζει με την τάπα και με τον σωλήνα της αποχέτευσης.",
+   "c": "Σιφόνι συμβατό με βαλβίδα και αποχέτευση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.prerequisites.1",
+    "hash": "09645bf15a4c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση κάτω από τον νιπτήρα ή τον νεροχύτη.",
+   "s": "Να φτάνουμε κάτω από τον νιπτήρα ή τον νεροχύτη.",
+   "c": "Πρόσβαση από κάτω.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.prerequisites.2",
+    "hash": "d723395f24ae",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.steps.1": {
+   "section": "steps",
+   "n": "Προσαρμόζουμε το μήκος του νέου σιφωνιού στην απόσταση από τη βαλβίδα ως τον τοίχο.",
+   "s": "Κόβουμε ή ρυθμίζουμε το νέο σιφόνι στην απόσταση από την τάπα ως τον τοίχο.",
+   "c": "Προσαρμογή μήκους.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.steps.1",
+    "hash": "57d9e5d1caba",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.steps.2": {
+   "section": "steps",
+   "n": "Το συνδέουμε στη βαλβίδα και στην αποχέτευση με τα παρεμβύσματά του.",
+   "s": "Το βιδώνουμε στην τάπα και στην αποχέτευση με τα λαστιχάκια του.",
+   "c": "Σύνδεση με παρεμβύσματα.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.steps.2",
+    "hash": "9c5aac27cc9d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-siphon.steps.3": {
+   "section": "steps",
+   "n": "Συνδέουμε το πλυντήριο πιάτων ή ρούχων στην αναμονή του σιφωνιού, αν υπάρχει.",
+   "s": "Ενώνουμε το πλυντήριο πιάτων ή ρούχων στο ειδικό στόμιο του σιφωνιού, αν υπάρχει.",
+   "c": "Σύνδεση πλυντηρίου, αν υπάρχει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-siphon.steps.3",
+    "hash": "968edfe69db2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.checks.tub-fill": {
+   "section": "checks",
+   "n": "Γεμίζουμε ως την υπερχείλιση και αδειάζουμε: τίποτα δεν στάζει από κάτω.",
+   "s": "Γεμίζουμε ως πάνω και αδειάζουμε: από κάτω μένουν όλα στεγνά.",
+   "c": "Γέμισμα ως την υπερχείλιση: στεγνό από κάτω.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.checks.tub-fill",
+    "hash": "58fe1bcf059f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.handover.clean-tip": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς ξεβιδώνεται το κάτω μέρος του σιφωνιού για καθάρισμα.",
+   "s": "Σας δείχνουμε πώς ανοίγει από κάτω το σιφόνι, για να το καθαρίζετε.",
+   "c": "Σας δείχνουμε το καθάρισμα σιφωνιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.handover.clean-tip",
+    "hash": "5521f2859b78",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.handover.close-access": {
+   "section": "handover",
+   "n": "Κλείνουμε τη θυρίδα ή την ποδιά.",
+   "s": "Ξανακλείνουμε το καπάκι στο πλάι.",
+   "c": "Κλείσιμο θυρίδας.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.handover.close-access",
+    "hash": "69201b1d3a4e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.preparation.check-outlet": {
+   "section": "preparation",
+   "n": "Ελέγχουμε το ύψος και την απόσταση του στομίου από τη βαλβίδα.",
+   "s": "Μετράμε πόσο ψηλά και πόσο μακριά είναι η τρύπα της αποχέτευσης από την τάπα.",
+   "c": "Ύψος και απόσταση στομίου.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.preparation.check-outlet",
+    "hash": "481b906d78bf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.preparation.open-access": {
+   "section": "preparation",
+   "n": "Ανοίγουμε τη θυρίδα επίσκεψης ή την ποδιά, για να φτάσουμε το σιφώνι.",
+   "s": "Ανοίγουμε το καπάκι στο πλάι, για να φτάσουμε το σιφώνι.",
+   "c": "Άνοιγμα θυρίδας ή ποδιάς.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.preparation.open-access",
+    "hash": "0a524bbc7ff5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.preparation.remove-tub-trap": {
+   "section": "preparation",
+   "n": "Ξεβιδώνουμε τη βαλβίδα από μέσα και αφαιρούμε το παλιό σιφώνι και την υπερχείλιση.",
+   "s": "Ξεβιδώνουμε την τάπα από μέσα και βγάζουμε το παλιό σιφώνι και το σωληνάκι του ξεχειλίσματος.",
+   "c": "Αφαίρεση παλιού σιφωνιού και υπερχείλισης.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.preparation.remove-tub-trap",
+    "hash": "d35520f50439",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.prerequisites.new-outlet": {
+   "section": "prerequisites",
+   "n": "Στόμιο αποχέτευσης στον τοίχο ή στο δάπεδο, στο ύψος που θέλει ο νιπτήρας ή ο νεροχύτης.",
+   "s": "Να υπάρχει η τρύπα της αποχέτευσης στον τοίχο ή στο πάτωμα, εκεί που τη θέλει ο νιπτήρας ή ο νεροχύτης.",
+   "c": "Στόμιο αποχέτευσης στο σωστό ύψος.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.prerequisites.new-outlet",
+    "hash": "58c313c9a25d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.prerequisites.tub-access": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στο σιφώνι από θυρίδα επίσκεψης ή από το πλάι· αν δεν υπάρχει, ανοίγεται όπως έχουμε συμφωνήσει.",
+   "s": "Πρέπει να φτάνουμε το σιφώνι από ένα καπάκι στο πλάι· αν δεν υπάρχει, ανοίγουμε όπως έχουμε πει.",
+   "c": "Πρόσβαση από θυρίδα ή από το πλάι.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.prerequisites.tub-access",
+    "hash": "4400ba2738a0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.steps.tub-connect": {
+   "section": "steps",
+   "n": "Το συνδέουμε στην αποχέτευση και ελέγχουμε ότι έχει κλίση.",
+   "s": "Το ενώνουμε με τον σωλήνα των νερών και κοιτάμε ότι γέρνει προς τα κάτω.",
+   "c": "Σύνδεση στην αποχέτευση με κλίση.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.steps.tub-connect",
+    "hash": "9e538195caa4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.steps.tub-fit": {
+   "section": "steps",
+   "n": "Τοποθετούμε το νέο σιφώνι με τη βαλβίδα και την υπερχείλιση, με καινούργια παρεμβύσματα.",
+   "s": "Βάζουμε το νέο σιφώνι, την τάπα και το σωληνάκι του ξεχειλίσματος, με καινούργια λάστιχα.",
+   "c": "Νέο σιφώνι, βαλβίδα, υπερχείλιση.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.steps.tub-fit",
+    "hash": "c808863fbfa3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.steps.tub-plug": {
+   "section": "steps",
+   "n": "Ρυθμίζουμε την τάπα ώστε να κλείνει και να ανοίγει σωστά.",
+   "s": "Ρυθμίζουμε την τάπα να κλείνει καλά και να ανοίγει εύκολα.",
+   "c": "Ρύθμιση τάπας.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.steps.tub-plug",
+    "hash": "1357c3a22e74",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.x.anti-odour": {
+   "section": "steps",
+   "n": "Τοποθετούμε σιφόνι με βαλβίδα κατά των οσμών, όπου το νερό μένει καιρό χωρίς χρήση.",
+   "s": "Αν το σημείο δεν χρησιμοποιείται συχνά, βάζουμε σιφόνι που κλείνει μόνο του για να μη μυρίζει.",
+   "c": "Σιφόνι κατά των οσμών, όπου χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.x.anti-odour",
+    "hash": "c3d717e1169f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "siphon.x.clean-valve": {
+   "section": "preparation",
+   "n": "Καθαρίζουμε τη βαλβίδα από τρίχες και άλατα πριν βάλουμε το νέο σιφόνι.",
+   "s": "Καθαρίζουμε την τάπα από τρίχες και άλατα, πριν βάλουμε το καινούργιο σιφόνι.",
+   "c": "Καθαρισμός βαλβίδας.",
+   "source": "new",
+   "review": {
+    "key": "sc:siphon.x.clean-valve",
+    "hash": "e5a278eb0a37",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

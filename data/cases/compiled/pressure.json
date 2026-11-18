@@ -1,0 +1,472 @@
+{
+ "material": "pressure",
+ "name": "Δοκιμή πίεσης",
+ "cases": [
+  {
+   "id": "pressure:new",
+   "label": "Νέο δίκτυο, πριν κλείσουν οι τοίχοι",
+   "answers": {
+    "when": "new"
+   },
+   "source": "base",
+   "task": "plumb-pressure-test",
+   "title": "Δοκιμή πίεσης δικτύου ύδρευσης",
+   "duration": "ενδεικτικά 1–3 ώρες, μαζί με τον χρόνο αναμονής",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "plumb-pressure-test.prerequisites.1",
+     "plumb-pressure-test.prerequisites.2"
+    ],
+    "preparation": [
+     "plumb-pressure-test.preparation.1",
+     "plumb-pressure-test.preparation.2"
+    ],
+    "steps": [
+     "plumb-pressure-test.steps.1",
+     "plumb-pressure-test.steps.2",
+     "plumb-pressure-test.steps.3",
+     "plumb-pressure-test.steps.4"
+    ],
+    "checks": [
+     "plumb-pressure-test.checks.1",
+     "plumb-pressure-test.checks.2",
+     "plumb-pressure-test.checks.3"
+    ],
+    "handover": [
+     "plumb-pressure-test.handover.1",
+     "plumb-pressure-test.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "pressure:existing",
+   "label": "Υπάρχον δίκτυο (έλεγχος για διαρροή)",
+   "answers": {
+    "when": "existing"
+   },
+   "source": "new",
+   "title": "Δοκιμή πίεσης σε υπάρχον δίκτυο νερού",
+   "duration": "ενδεικτικά 1–3 ώρες, μαζί με τον χρόνο αναμονής",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "pressure.prerequisites.access",
+     "pressure.prerequisites.no-use"
+    ],
+    "preparation": [
+     "pressure.preparation.close-points",
+     "pressure.preparation.meter-read"
+    ],
+    "steps": [
+     "pressure.steps.gauge",
+     "pressure.steps.hold",
+     "pressure.steps.locate"
+    ],
+    "checks": [
+     "plumb-pressure-test.checks.1",
+     "pressure.checks.meter",
+     "pressure.checks.visible"
+    ],
+    "handover": [
+     "plumb-pressure-test.handover.1",
+     "pressure.handover.report"
+    ]
+   },
+   "review": {
+    "key": "case:pressure:existing",
+    "hash": "d96adeed4de3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "pressure.x.moisture",
+   "section": "checks",
+   "when": {
+    "when": [
+     "existing"
+    ]
+   },
+   "review": {
+    "key": "extra:pressure:pressure.x.moisture",
+    "hash": "56a52a4a8889",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "pressure.x.cisterns",
+   "section": "checks",
+   "when": {
+    "when": [
+     "existing"
+    ]
+   },
+   "review": {
+    "key": "extra:pressure:pressure.x.cisterns",
+    "hash": "0f9e00c5b642",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "plumb-pressure-test.checks.1": {
+   "section": "checks",
+   "n": "Η ένδειξη του μανομέτρου μένει σταθερή σε όλη τη διάρκεια της δοκιμής.",
+   "s": "Η βελόνα του οργάνου μένει στο ίδιο σημείο σε όλη τη δοκιμή.",
+   "c": "Σταθερή ένδειξη.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.checks.1",
+    "hash": "4e910b11e039",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.checks.2": {
+   "section": "checks",
+   "n": "Καμία ένωση δεν έχει σταγόνες ή υγρασία.",
+   "s": "Καμία ένωση δεν βγάζει σταγόνες ή υγρασία.",
+   "c": "Στεγνές ενώσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.checks.2",
+    "hash": "839b50fa0046",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.checks.3": {
+   "section": "checks",
+   "n": "Αν πέσει η πίεση, βρίσκουμε τη διαρροή, τη διορθώνουμε και επαναλαμβάνουμε τη δοκιμή.",
+   "s": "Αν πέσει η πίεση, βρίσκουμε πού χάνει, το φτιάχνουμε και ξανακάνουμε τη δοκιμή.",
+   "c": "Επισκευή και επανάληψη, αν πέσει.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.checks.3",
+    "hash": "17c0d1755877",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.handover.1": {
+   "section": "handover",
+   "n": "Σας δίνουμε φωτογραφία του μανομέτρου στην αρχή και στο τέλος της δοκιμής.",
+   "s": "Σας δίνουμε φωτογραφία του οργάνου στην αρχή και στο τέλος της δοκιμής.",
+   "c": "Φωτογραφίες μανομέτρου.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.handover.1",
+    "hash": "5daf82394474",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.handover.2": {
+   "section": "handover",
+   "n": "Όπου γίνεται, αφήνουμε το δίκτυο με πίεση μέχρι να κλείσουν οι τοίχοι, ώστε να φανεί αμέσως αν τρυπηθεί σωλήνας.",
+   "s": "Όπου γίνεται, αφήνουμε τους σωλήνες με πίεση ώσπου να κλείσουν οι τοίχοι, για να φανεί αμέσως αν τρυπηθεί κάποιος.",
+   "c": "Δίκτυο υπό πίεση ως το κλείσιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.handover.2",
+    "hash": "378b42314d90",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.preparation.1": {
+   "section": "preparation",
+   "n": "Κλείνουμε όλες τις αναμονές με τάπες δοκιμής.",
+   "s": "Κλείνουμε όλες τις άκρες των σωλήνων με ειδικά καπάκια.",
+   "c": "Τάπες δοκιμής.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.preparation.1",
+    "hash": "e4ca6f9222cf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.preparation.2": {
+   "section": "preparation",
+   "n": "Γεμίζουμε το δίκτυο με νερό και βγάζουμε τον αέρα από το ψηλότερο σημείο.",
+   "s": "Γεμίζουμε τους σωλήνες με νερό και βγάζουμε τον αέρα από το πιο ψηλό σημείο.",
+   "c": "Γέμισμα, εξαέρωση.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.preparation.2",
+    "hash": "932f8a927ced",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Το δίκτυο να είναι κατασκευασμένο και οι αναμονές ταπωμένες.",
+   "s": "Οι σωλήνες να έχουν περάσει όλοι και οι άκρες τους να είναι κλεισμένες με τάπες.",
+   "c": "Δίκτυο έτοιμο, αναμονές ταπωμένες.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.prerequisites.1",
+    "hash": "ec4ef206001b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Οι τοίχοι να μην έχουν κλείσει ακόμα, ώστε να φαίνονται όλες οι ενώσεις.",
+   "s": "Οι τοίχοι να είναι ακόμα ανοιχτοί, για να βλέπουμε όλες τις ενώσεις.",
+   "c": "Τοίχοι ανοιχτοί.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.prerequisites.2",
+    "hash": "93f8e707f634",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.steps.1": {
+   "section": "steps",
+   "n": "Συνδέουμε στο δίκτυο αντλία δοκιμής με μανόμετρο.",
+   "s": "Ενώνουμε με τους σωλήνες μια αντλία με όργανο που δείχνει την πίεση.",
+   "c": "Αντλία με μανόμετρο.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.steps.1",
+    "hash": "68017372e281",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.steps.2": {
+   "section": "steps",
+   "n": "Ανεβάζουμε την πίεση πάνω από την πίεση λειτουργίας, όπως ορίζει ο κατασκευαστής των σωλήνων.",
+   "s": "Ανεβάζουμε την πίεση πιο πάνω από την κανονική, όσο λέει ο κατασκευαστής των σωλήνων.",
+   "c": "Πίεση πάνω από τη λειτουργίας.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.steps.2",
+    "hash": "1f68bddf16d3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.steps.3": {
+   "section": "steps",
+   "n": "Αφήνουμε το δίκτυο υπό πίεση για τον χρόνο που ορίζεται και σημειώνουμε την ένδειξη στην αρχή και στο τέλος.",
+   "s": "Αφήνουμε τους σωλήνες με πίεση όσο πρέπει και γράφουμε τι δείχνει το όργανο στην αρχή και στο τέλος.",
+   "c": "Αναμονή, καταγραφή ενδείξεων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.steps.3",
+    "hash": "1b3d3e4677c8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "plumb-pressure-test.steps.4": {
+   "section": "steps",
+   "n": "Ελέγχουμε μία-μία όλες τις ενώσεις για υγρασία.",
+   "s": "Κοιτάμε μία-μία όλες τις ενώσεις για υγρασία.",
+   "c": "Έλεγχος ενώσεων.",
+   "source": "current",
+   "review": {
+    "key": "sc:plumb-pressure-test.steps.4",
+    "hash": "69b6cafe86ab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.checks.meter": {
+   "section": "checks",
+   "n": "Ο υδρομετρητής δεν γυρίζει όσο δεν χρησιμοποιείται νερό.",
+   "s": "Όσο δεν ανοίγει καμία βρύση, ο μετρητής του νερού μένει ακίνητος.",
+   "c": "Ακίνητος υδρομετρητής.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.checks.meter",
+    "hash": "06cd68f622d0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.checks.visible": {
+   "section": "checks",
+   "n": "Ελέγχουμε τα ορατά σημεία, όπως ντουλάπια, σιφώνια και καζανάκια, για υγρασία.",
+   "s": "Κοιτάμε όσα σημεία φαίνονται, όπως ντουλάπια, σιφόνια και καζανάκια, μήπως έχουν υγρασία.",
+   "c": "Έλεγχος ορατών σημείων.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.checks.visible",
+    "hash": "b5fdfbf6e09c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.handover.report": {
+   "section": "handover",
+   "n": "Σας λέμε αν βρέθηκε διαρροή, σε ποιο τμήμα είναι και τι χρειάζεται για να διορθωθεί.",
+   "s": "Σας λέμε αν χάνει νερό κάπου, σε ποιο σημείο, και τι πρέπει να γίνει για να φτιαχτεί.",
+   "c": "Αποτέλεσμα και τι χρειάζεται.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.handover.report",
+    "hash": "9d80ce96b2ad",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.preparation.close-points": {
+   "section": "preparation",
+   "n": "Κλείνουμε όλες τις βρύσες και τους διακόπτες των συσκευών, ώστε να μη φεύγει νερό.",
+   "s": "Κλείνουμε όλες τις βρύσες και το νερό των συσκευών, για να μη φεύγει νερό από πουθενά.",
+   "c": "Κλείσιμο βρυσών και συσκευών.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.preparation.close-points",
+    "hash": "46aeeca85dce",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.preparation.meter-read": {
+   "section": "preparation",
+   "n": "Σημειώνουμε την ένδειξη του υδρομετρητή, για να φανεί αν γυρίζει χωρίς κατανάλωση.",
+   "s": "Γράφουμε τι δείχνει ο μετρητής του νερού, για να δούμε αν γυρίζει ενώ δεν ανοίγει καμία βρύση.",
+   "c": "Ένδειξη υδρομετρητή.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.preparation.meter-read",
+    "hash": "0b6afa9e4b02",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.prerequisites.access": {
+   "section": "prerequisites",
+   "n": "Πρόσβαση στον μετρητή ή στον κεντρικό διακόπτη, όπου συνδέεται το μανόμετρο.",
+   "s": "Να φτάνουμε τον μετρητή ή τον κεντρικό διακόπτη, για να βάλουμε το όργανο που μετράει την πίεση.",
+   "c": "Πρόσβαση σε μετρητή ή κεντρικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.prerequisites.access",
+    "hash": "442bc1cc90a1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.prerequisites.no-use": {
+   "section": "prerequisites",
+   "n": "Συνεννόηση ώστε να μη χρησιμοποιηθεί νερό στο σπίτι όσο κρατά η δοκιμή.",
+   "s": "Να ξέρετε ότι όσο κάνουμε τη δοκιμή δεν πρέπει να ανοίξει κανείς βρύση στο σπίτι.",
+   "c": "Χωρίς χρήση νερού στη δοκιμή.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.prerequisites.no-use",
+    "hash": "a3ff42205e5f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.steps.gauge": {
+   "section": "steps",
+   "n": "Συνδέουμε μανόμετρο στο δίκτυο, σε μια βρύση ή κοντά στον κεντρικό διακόπτη.",
+   "s": "Βάζουμε το όργανο που μετράει την πίεση σε μια βρύση ή κοντά στον κεντρικό διακόπτη.",
+   "c": "Σύνδεση μανομέτρου.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.steps.gauge",
+    "hash": "0e4fde439518",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.steps.hold": {
+   "section": "steps",
+   "n": "Κλείνουμε τον κεντρικό διακόπτη και αφήνουμε το δίκτυο με την πίεσή του για τον χρόνο που ορίζεται.",
+   "s": "Κλείνουμε τον κεντρικό διακόπτη και περιμένουμε όσο πρέπει, με το νερό να μένει μέσα στους σωλήνες.",
+   "c": "Αναμονή με κλειστό κεντρικό.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.steps.hold",
+    "hash": "c3000187c2f3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.steps.locate": {
+   "section": "steps",
+   "n": "Αν πέφτει η πίεση, κλείνουμε τμήματα του δικτύου ένα-ένα, για να βρούμε σε ποιο είναι η διαρροή.",
+   "s": "Αν η πίεση πέφτει, κλείνουμε ένα-ένα τα κομμάτια των σωλήνων, για να δούμε σε ποιο χάνεται νερό.",
+   "c": "Εντοπισμός τμήματος με διαρροή.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.steps.locate",
+    "hash": "3b2df9bab8c3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.x.cisterns": {
+   "section": "checks",
+   "n": "Ελέγχουμε αν τρέχει νερό από τα καζανάκια στη λεκάνη, που είναι συχνή αιτία κατανάλωσης χωρίς χρήση.",
+   "s": "Κοιτάμε αν τα καζανάκια αφήνουν νερό να τρέχει στη λεκάνη, γιατί συχνά από εκεί χάνεται νερό.",
+   "c": "Έλεγχος καζανακιών.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.x.cisterns",
+    "hash": "67117bcc7e4b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "pressure.x.moisture": {
+   "section": "checks",
+   "n": "Ελέγχουμε τοίχους και δάπεδα με υγρασιόμετρο ή θερμική κάμερα, όπου η διαρροή δεν φαίνεται.",
+   "s": "Αν η διαρροή δεν φαίνεται, ψάχνουμε στους τοίχους και στο πάτωμα με ειδικά όργανα που βρίσκουν υγρασία.",
+   "c": "Υγρασιόμετρο ή θερμική κάμερα.",
+   "source": "new",
+   "review": {
+    "key": "sc:pressure.x.moisture",
+    "hash": "5e0c820e068d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

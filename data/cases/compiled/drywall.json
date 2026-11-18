@@ -1,0 +1,1117 @@
+{
+ "material": "drywall",
+ "name": "Ψευδοροφή",
+ "cases": [
+  {
+   "id": "drywall:flat.dry",
+   "label": "Επίπεδη, σε όλο το ταβάνι · Δωμάτιο ή σαλόνι",
+   "answers": {
+    "kind": "flat",
+    "room": "dry"
+   },
+   "source": "base",
+   "task": "drywall-ceiling",
+   "title": "Κατασκευή ψευδοροφής από γυψοσανίδα",
+   "duration": "ενδεικτικά 2–3 ημέρες για δωμάτιο 15–20 τ.μ., μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-ceiling.prerequisites.1",
+     "drywall-ceiling.prerequisites.2",
+     "drywall-ceiling.prerequisites.3"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall-ceiling.preparation.2"
+    ],
+    "steps": [
+     "drywall-ceiling.steps.1",
+     "drywall-ceiling.steps.2",
+     "drywall-ceiling.steps.3",
+     "drywall-ceiling.steps.4",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall-ceiling.checks.2",
+     "drywall-ceiling.checks.3",
+     "drywall-ceiling.checks.4"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "drywall:flat.wet",
+   "label": "Επίπεδη, σε όλο το ταβάνι · Μπάνιο ή κουζίνα (ανθυγρή)",
+   "answers": {
+    "kind": "flat",
+    "room": "wet"
+   },
+   "source": "base",
+   "task": "drywall-ceiling",
+   "title": "Κατασκευή ψευδοροφής από γυψοσανίδα",
+   "duration": "ενδεικτικά 2–3 ημέρες για δωμάτιο 15–20 τ.μ., μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-ceiling.prerequisites.1",
+     "drywall-ceiling.prerequisites.2",
+     "drywall-ceiling.prerequisites.3"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall-ceiling.preparation.2"
+    ],
+    "steps": [
+     "drywall-ceiling.steps.1",
+     "drywall-ceiling.steps.2",
+     "drywall-ceiling.steps.3",
+     "drywall-ceiling.steps.4",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall-ceiling.checks.2",
+     "drywall-ceiling.checks.3",
+     "drywall-ceiling.checks.4"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   }
+  },
+  {
+   "id": "drywall:flat.outdoor",
+   "label": "Επίπεδη, σε όλο το ταβάνι · Έξω (τσιμεντοσανίδα)",
+   "answers": {
+    "kind": "flat",
+    "room": "outdoor"
+   },
+   "source": "existing",
+   "task": "drywall-cement-board",
+   "title": "Κατασκευή με τσιμεντοσανίδα",
+   "duration": "ενδεικτικά 2–3 ημέρες για 10–15 τ.μ.",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-cement-board.prerequisites.1",
+     "drywall-cement-board.prerequisites.2"
+    ],
+    "preparation": [
+     "drywall-cement-board.preparation.1",
+     "drywall-cement-board.preparation.2"
+    ],
+    "steps": [
+     "drywall-cement-board.steps.1",
+     "drywall-cement-board.steps.2",
+     "drywall-cement-board.steps.3",
+     "drywall-cement-board.steps.4"
+    ],
+    "checks": [
+     "drywall-cement-board.checks.1",
+     "drywall-cement-board.checks.2",
+     "drywall-cement-board.checks.3"
+    ],
+    "handover": [
+     "drywall-cement-board.handover.1",
+     "drywall-cement-board.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:flat.outdoor",
+    "hash": "98109d2cfe28",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:level.dry",
+   "label": "Με σκαλοπάτι ή κρυφό φωτισμό · Δωμάτιο ή σαλόνι",
+   "answers": {
+    "kind": "level",
+    "room": "dry"
+   },
+   "source": "new",
+   "title": "Ψευδοροφή με σκαλοπάτι ή κρυφό φωτισμό",
+   "duration": "ενδεικτικά 3–5 ημέρες για δωμάτιο 15–20 τ.μ., μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-ceiling.prerequisites.1",
+     "drywall-ceiling.prerequisites.2"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall-ceiling.preparation.2",
+     "drywall.preparation.level-mark"
+    ],
+    "steps": [
+     "drywall-ceiling.steps.1",
+     "drywall-ceiling.steps.2",
+     "drywall.steps.level-frame",
+     "drywall-ceiling.steps.3",
+     "drywall.steps.corner-bead",
+     "drywall-ceiling.steps.4",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall-ceiling.checks.2",
+     "drywall.checks.level-lines",
+     "drywall-ceiling.checks.3",
+     "drywall-ceiling.checks.4"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:level.dry",
+    "hash": "0e981c9961fb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:level.wet",
+   "label": "Με σκαλοπάτι ή κρυφό φωτισμό · Μπάνιο ή κουζίνα (ανθυγρή)",
+   "answers": {
+    "kind": "level",
+    "room": "wet"
+   },
+   "source": "new",
+   "title": "Ψευδοροφή με σκαλοπάτι ή κρυφό φωτισμό σε μπάνιο ή κουζίνα",
+   "duration": "ενδεικτικά 3–5 ημέρες για δωμάτιο 15–20 τ.μ., μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-ceiling.prerequisites.1",
+     "drywall-ceiling.prerequisites.2",
+     "drywall-ceiling.prerequisites.3"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall-ceiling.preparation.2",
+     "drywall.preparation.level-mark"
+    ],
+    "steps": [
+     "drywall-ceiling.steps.1",
+     "drywall-ceiling.steps.2",
+     "drywall.steps.level-frame",
+     "drywall-ceiling.steps.3",
+     "drywall.steps.corner-bead",
+     "drywall-ceiling.steps.4",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall-ceiling.checks.2",
+     "drywall.checks.level-lines",
+     "drywall-ceiling.checks.3",
+     "drywall-ceiling.checks.4"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:level.wet",
+    "hash": "d1242ad40f40",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:level.outdoor",
+   "label": "Με σκαλοπάτι ή κρυφό φωτισμό · Έξω (τσιμεντοσανίδα)",
+   "answers": {
+    "kind": "level",
+    "room": "outdoor"
+   },
+   "source": "new",
+   "title": "Ψευδοροφή με σκαλοπάτι ή κρυφό φωτισμό σε εξωτερικό χώρο, με τσιμεντοσανίδα",
+   "duration": "ενδεικτικά 3–5 ημέρες για δωμάτιο 15–20 τ.μ., μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall-ceiling.prerequisites.1",
+     "drywall-ceiling.prerequisites.2",
+     "drywall.prerequisites.outdoor-board"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall-ceiling.preparation.2",
+     "drywall.preparation.level-mark"
+    ],
+    "steps": [
+     "drywall-ceiling.steps.1",
+     "drywall-ceiling.steps.2",
+     "drywall.steps.level-frame",
+     "drywall.steps.cement-boards",
+     "drywall.steps.corner-bead",
+     "drywall-ceiling.steps.4",
+     "drywall-cement-board.steps.3",
+     "drywall.steps.outdoor-finish"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall-ceiling.checks.2",
+     "drywall.checks.level-lines",
+     "drywall-ceiling.checks.3",
+     "drywall-ceiling.checks.4"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:level.outdoor",
+    "hash": "e1c8cb06efbb",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:box.dry",
+   "label": "Μόνο κουτί για σωλήνες ή καλώδια · Δωμάτιο ή σαλόνι",
+   "answers": {
+    "kind": "box",
+    "room": "dry"
+   },
+   "source": "new",
+   "title": "Κουτί από γυψοσανίδα για σωλήνες ή καλώδια",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall.prerequisites.box-pipes",
+     "drywall.prerequisites.box-access"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall.preparation.box-mark"
+    ],
+    "steps": [
+     "drywall.steps.box-frame",
+     "drywall-ceiling.steps.3",
+     "drywall.steps.box-hatch",
+     "drywall.steps.corner-bead",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall.checks.box-plumb",
+     "drywall-ceiling.checks.3",
+     "drywall.checks.hatch"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:box.dry",
+    "hash": "0237f83b6ff7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:box.wet",
+   "label": "Μόνο κουτί για σωλήνες ή καλώδια · Μπάνιο ή κουζίνα (ανθυγρή)",
+   "answers": {
+    "kind": "box",
+    "room": "wet"
+   },
+   "source": "new",
+   "title": "Κουτί από γυψοσανίδα για σωλήνες ή καλώδια σε μπάνιο ή κουζίνα",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall.prerequisites.box-pipes",
+     "drywall.prerequisites.box-access",
+     "drywall-ceiling.prerequisites.3"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall.preparation.box-mark"
+    ],
+    "steps": [
+     "drywall.steps.box-frame",
+     "drywall-ceiling.steps.3",
+     "drywall.steps.box-hatch",
+     "drywall.steps.corner-bead",
+     "drywall-ceiling.steps.5"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall.checks.box-plumb",
+     "drywall-ceiling.checks.3",
+     "drywall.checks.hatch"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:box.wet",
+    "hash": "f473be4ffa36",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall:box.outdoor",
+   "label": "Μόνο κουτί για σωλήνες ή καλώδια · Έξω (τσιμεντοσανίδα)",
+   "answers": {
+    "kind": "box",
+    "room": "outdoor"
+   },
+   "source": "new",
+   "title": "Κουτί από τσιμεντοσανίδα για σωλήνες ή καλώδια σε εξωτερικό χώρο",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με το στοκάρισμα",
+   "licensed": false,
+   "sections": {
+    "prerequisites": [
+     "drywall.prerequisites.box-pipes",
+     "drywall.prerequisites.box-access",
+     "drywall.prerequisites.outdoor-board"
+    ],
+    "preparation": [
+     "drywall-ceiling.preparation.1",
+     "drywall.preparation.box-mark"
+    ],
+    "steps": [
+     "drywall.steps.box-frame",
+     "drywall.steps.cement-boards",
+     "drywall.steps.box-hatch",
+     "drywall.steps.corner-bead",
+     "drywall-cement-board.steps.3",
+     "drywall.steps.outdoor-finish"
+    ],
+    "checks": [
+     "drywall-ceiling.checks.1",
+     "drywall.checks.box-plumb",
+     "drywall-ceiling.checks.3",
+     "drywall.checks.hatch"
+    ],
+    "handover": [
+     "drywall-ceiling.handover.1",
+     "drywall-ceiling.handover.2"
+    ]
+   },
+   "review": {
+    "key": "case:drywall:box.outdoor",
+    "hash": "f1b560f31c54",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "drywall.x.insulation",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:drywall:drywall.x.insulation",
+    "hash": "df42ef20f4a4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall.x.hatch",
+   "section": "steps",
+   "when": {
+    "kind": [
+     "flat",
+     "level"
+    ]
+   },
+   "review": {
+    "key": "extra:drywall:drywall.x.hatch",
+    "hash": "1ecd4971fefa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "drywall.x.reinforce",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:drywall:drywall.x.reinforce",
+    "hash": "9cbdbef4723a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "drywall-ceiling.checks.1": {
+   "section": "checks",
+   "n": "Ελέγχουμε με πήχη και πλάγιο φως ότι η επιφάνεια είναι επίπεδη και οι αρμοί δεν φαίνονται.",
+   "s": "Κοιτάμε με πήχη και με φως από το πλάι ότι το ταβάνι είναι ίσιο και οι ενώσεις δεν φαίνονται.",
+   "c": "Επίπεδη, αόρατοι αρμοί.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.checks.1",
+    "hash": "d428b5cdf1a3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.checks.2": {
+   "section": "checks",
+   "n": "Η οροφή είναι οριζόντια σε όλο τον χώρο, με έλεγχο λέιζερ ή αλφαδιού.",
+   "s": "Το ταβάνι είναι ίσιο σε όλο τον χώρο, με έλεγχο από λέιζερ ή αλφάδι.",
+   "c": "Οριζόντια οροφή.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.checks.2",
+    "hash": "a9f688c7ebd9",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.checks.3": {
+   "section": "checks",
+   "n": "Καμία βίδα δεν εξέχει και δεν υπάρχουν ρωγμές στους αρμούς.",
+   "s": "Καμία βίδα δεν πετάει έξω και οι ενώσεις δεν έχουν ραγίσει.",
+   "c": "Χωρίς βίδες που εξέχουν ή ρωγμές.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.checks.3",
+    "hash": "998bb0afe182",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.checks.4": {
+   "section": "checks",
+   "n": "Οι τρύπες για φωτιστικά βρίσκονται στις θέσεις που συμφωνήσαμε.",
+   "s": "Οι τρύπες για τα φώτα είναι εκεί που έχουμε πει.",
+   "c": "Τρύπες στις σωστές θέσεις.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.checks.4",
+    "hash": "8dd9ca99419d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.handover.1": {
+   "section": "handover",
+   "n": "Η επιφάνεια μένει έτοιμη για αστάρι και βάψιμο.",
+   "s": "Η επιφάνεια είναι έτοιμη για αστάρι και μπογιά.",
+   "c": "Έτοιμη για βάψιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.handover.1",
+    "hash": "34457cec89ca",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.handover.2": {
+   "section": "handover",
+   "n": "Μαζεύουμε τα κομμάτια και καθαρίζουμε τη σκόνη από το τρίψιμο.",
+   "s": "Μαζεύουμε τα κομμάτια που περίσσεψαν και καθαρίζουμε τη σκόνη από το τρίψιμο.",
+   "c": "Μάζεμα, καθάρισμα σκόνης.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.handover.2",
+    "hash": "e6b8cf14f18e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε το δάπεδο και τα έπιπλα.",
+   "s": "Σκεπάζουμε το πάτωμα και τα έπιπλα.",
+   "c": "Σκέπασμα δαπέδου, επίπλων.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.preparation.1",
+    "hash": "6e46af746f5d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.preparation.2": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε περιμετρικά στους τοίχους το νέο ύψος της οροφής, με λέιζερ ή αλφάδι.",
+   "s": "Σημαδεύουμε γύρω-γύρω στους τοίχους το νέο ύψος του ταβανιού, με λέιζερ ή αλφάδι.",
+   "c": "Σημάδεμα νέου ύψους.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.preparation.2",
+    "hash": "9f1d93767677",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουν περάσει πριν οι καλωδιώσεις και οι σωλήνες που θα μείνουν πάνω από την ψευδοροφή.",
+   "s": "Να έχουν περάσει τα καλώδια και οι σωλήνες που θα μείνουν πάνω από την ψευδοροφή.",
+   "c": "Καλώδια και σωλήνες περασμένα.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.prerequisites.1",
+    "hash": "9b1a1e22934a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να έχουμε αποφασίσει θέσεις και τύπο φωτιστικών, για να προβλέψουμε τα ανοίγματα.",
+   "s": "Να έχουμε πει πού και τι φώτα θα μπουν, για να αφήσουμε τις τρύπες τους.",
+   "c": "Συμφωνημένα φωτιστικά.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.prerequisites.2",
+    "hash": "3af81731bdae",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Για μπάνιο ή κουζίνα, να συμφωνήσουμε ανθυγρή γυψοσανίδα.",
+   "s": "Σε μπάνιο ή κουζίνα, να έχουμε πει να μπει γυψοσανίδα για υγρασία.",
+   "c": "Ανθυγρή για μπάνιο ή κουζίνα.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.prerequisites.3",
+    "hash": "8d873aaab1d0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.steps.1": {
+   "section": "steps",
+   "n": "Στερεώνουμε περιμετρικά προφίλ στους τοίχους, πάνω στη γραμμή που σημαδέψαμε.",
+   "s": "Βιδώνουμε μεταλλικά κομμάτια γύρω-γύρω στους τοίχους, πάνω στη γραμμή.",
+   "c": "Περιμετρικά προφίλ.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.steps.1",
+    "hash": "e4a70e7d6c58",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.steps.2": {
+   "section": "steps",
+   "n": "Κρεμάμε από την πλάκα αναρτήσεις και στήνουμε τον μεταλλικό σκελετό σε κάναβο, δηλαδή σε πλέγμα.",
+   "s": "Κρεμάμε από το ταβάνι σύρματα στήριξης και στήνουμε μεταλλικό σκελετό σαν πλέγμα.",
+   "c": "Αναρτήσεις και σκελετός.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.steps.2",
+    "hash": "df4e3d2d2a03",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.steps.3": {
+   "section": "steps",
+   "n": "Βιδώνουμε τις γυψοσανίδες στον σκελετό, με τους αρμούς τους σε διαφορετικές θέσεις (κλιμακωτά).",
+   "s": "Βιδώνουμε τις γυψοσανίδες στον σκελετό, με τις ενώσεις τους να μην πέφτουν στην ίδια γραμμή.",
+   "c": "Γυψοσανίδες με κλιμακωτούς αρμούς.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.steps.3",
+    "hash": "b348c0541464",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.steps.4": {
+   "section": "steps",
+   "n": "Ανοίγουμε τις τρύπες για σποτ και θυρίδες επίσκεψης, όπου συμφωνήσαμε.",
+   "s": "Ανοίγουμε τις τρύπες για τα σποτ και για τα πορτάκια επίσκεψης, όπου έχουμε πει.",
+   "c": "Τρύπες για σποτ και θυρίδες.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.steps.4",
+    "hash": "75670e5838b4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-ceiling.steps.5": {
+   "section": "steps",
+   "n": "Περνάμε ταινία και στόκο στους αρμούς και στις βίδες, σε δύο ή τρία περάσματα, και τρίβουμε για λεία επιφάνεια.",
+   "s": "Περνάμε ταινία και στόκο στις ενώσεις και στις βίδες, δύο ή τρεις φορές, και τρίβουμε να γίνει λείο.",
+   "c": "Στόκος στους αρμούς, τρίψιμο.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-ceiling.steps.5",
+    "hash": "38e273961ca1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.checks.1": {
+   "section": "checks",
+   "n": "Η κατασκευή είναι κατακόρυφη και ίσια, με έλεγχο αλφαδιού και πήχη.",
+   "s": "Η κατασκευή είναι όρθια και ίσια, με έλεγχο από αλφάδι και πήχη.",
+   "c": "Κατακόρυφη και ίσια.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.checks.1",
+    "hash": "134b1fc82ee1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.checks.2": {
+   "section": "checks",
+   "n": "Σπρώχνουμε την κατασκευή: δεν τρέμει.",
+   "s": "Τη σπρώχνουμε: δεν κουνιέται.",
+   "c": "Δεν τρέμει.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.checks.2",
+    "hash": "ccee56b2b200",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.checks.3": {
+   "section": "checks",
+   "n": "Οι αρμοί είναι γεμάτοι και χωρίς ρωγμές.",
+   "s": "Οι ενώσεις είναι γεμάτες και δεν έχουν ραγίσει.",
+   "c": "Γεμάτοι αρμοί, χωρίς ρωγμές.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.checks.3",
+    "hash": "8337f0a2c01d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.handover.1": {
+   "section": "handover",
+   "n": "Καθαρίζουμε τη σκόνη από τα κοψίματα.",
+   "s": "Σκουπίζουμε τη σκόνη που έκαναν τα κοψίματα.",
+   "c": "Καθάρισμα σκόνης.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.handover.1",
+    "hash": "82d92fb08207",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.handover.2": {
+   "section": "handover",
+   "n": "Σας λέμε ποια εργασία ακολουθεί: στεγάνωση, πλακάκι ή βάψιμο.",
+   "s": "Σας λέμε τι δουλειά ακολουθεί: στεγάνωση, πλακάκι ή βάψιμο.",
+   "c": "Ποια εργασία ακολουθεί.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.handover.2",
+    "hash": "c1f4b1e4a8f8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.preparation.1": {
+   "section": "preparation",
+   "n": "Σκεπάζουμε το δάπεδο και σημαδεύουμε τη θέση της κατασκευής με λέιζερ ή αλφάδι.",
+   "s": "Σκεπάζουμε το πάτωμα και σημαδεύουμε με λέιζερ ή αλφάδι πού θα μπει η κατασκευή.",
+   "c": "Σκέπασμα, σημάδεμα θέσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.preparation.1",
+    "hash": "12ab90811a7f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.preparation.2": {
+   "section": "preparation",
+   "n": "Ελέγχουμε τα σημεία στήριξης στο δάπεδο, στην οροφή και στους τοίχους.",
+   "s": "Κοιτάμε πού θα στηριχτεί στο πάτωμα, στο ταβάνι και στους τοίχους.",
+   "c": "Έλεγχος σημείων στήριξης.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.preparation.2",
+    "hash": "138a3bf5b859",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει την κατασκευή: τοίχος σε υγρό χώρο, επένδυση εξωτερικού τοίχου ή βάση για πλακάκι.",
+   "s": "Να έχουμε πει τι φτιάχνουμε: τοίχο σε υγρό χώρο, ντύσιμο εξωτερικού τοίχου ή βάση για πλακάκι.",
+   "c": "Συμφωνημένη κατασκευή.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.prerequisites.1",
+    "hash": "986dfb51a5b0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Για εξωτερικούς χώρους, μέρες χωρίς βροχή.",
+   "s": "Για έξω, μέρες χωρίς βροχή.",
+   "c": "Έξω: χωρίς βροχή.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.prerequisites.2",
+    "hash": "0483cf606eb8",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.steps.1": {
+   "section": "steps",
+   "n": "Στήνουμε μεταλλικό σκελετό από γαλβανισμένα προφίλ, στις αποστάσεις που ορίζει ο κατασκευαστής, συνήθως πυκνότερα από τη γυψοσανίδα.",
+   "s": "Στήνουμε σκελετό από μεταλλικά κομμάτια που δεν σκουριάζουν, πιο πυκνά απ’ ό,τι στη γυψοσανίδα, όπως λέει ο κατασκευαστής.",
+   "c": "Γαλβανισμένος σκελετός, πυκνότερος.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.steps.1",
+    "hash": "6bde8e301bba",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.steps.2": {
+   "section": "steps",
+   "n": "Βιδώνουμε τις τσιμεντοσανίδες με τις ειδικές ανοξείδωτες βίδες τους.",
+   "s": "Βιδώνουμε τις τσιμεντοσανίδες με τις ειδικές βίδες τους που δεν σκουριάζουν.",
+   "c": "Τσιμεντοσανίδες με ειδικές βίδες.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.steps.2",
+    "hash": "82c5037c6de1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.steps.3": {
+   "section": "steps",
+   "n": "Περνάμε ταινία οπλισμού και κονίαμα στους αρμούς.",
+   "s": "Περνάμε ειδική ταινία και κονίαμα στις ενώσεις.",
+   "c": "Ταινία και κονίαμα στους αρμούς.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.steps.3",
+    "hash": "4469dd9c67e5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall-cement-board.steps.4": {
+   "section": "steps",
+   "n": "Αν θα βαφτεί, περνάμε λεπτό σοβά με υαλόπλεγμα σε όλη την επιφάνεια· αν θα μπει πλακάκι, την αφήνουμε έτοιμη για στεγάνωση ή κόλλα.",
+   "s": "Αν θα βαφτεί, περνάμε λεπτό σοβά με πλέγμα παντού· αν θα μπει πλακάκι, την αφήνουμε έτοιμη για στεγάνωση ή κόλλα.",
+   "c": "Σοβάς για βάψιμο ή έτοιμη για πλακάκι.",
+   "source": "current",
+   "review": {
+    "key": "sc:drywall-cement-board.steps.4",
+    "hash": "d0ad5ebe39ea",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.checks.box-plumb": {
+   "section": "checks",
+   "n": "Το κουτί είναι κατακόρυφο και οι ακμές του είναι ευθείες.",
+   "s": "Το κουτί είναι όρθιο και οι γωνίες του ίσιες.",
+   "c": "Κατακόρυφο κουτί, ευθείες ακμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.checks.box-plumb",
+    "hash": "4098356c785a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.checks.hatch": {
+   "section": "checks",
+   "n": "Οι θυρίδες ανοίγουν και από αυτές φτάνουμε τα σημεία που χρειάζονται.",
+   "s": "Τα πορτάκια ανοίγουν και από μέσα τους φτάνουμε ό,τι χρειάζεται.",
+   "c": "Θυρίδες που ανοίγουν και εξυπηρετούν.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.checks.hatch",
+    "hash": "23aa5598ed7e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.checks.level-lines": {
+   "section": "checks",
+   "n": "Οι ακμές του σκαλοπατιού είναι ευθείες και το κανάλι του φωτισμού έχει ίδιο άνοιγμα σε όλο το μήκος.",
+   "s": "Οι άκρες του σκαλοπατιού είναι ίσιες και το αυλάκι για το φως έχει παντού το ίδιο άνοιγμα.",
+   "c": "Ευθείες ακμές, ίδιο κανάλι.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.checks.level-lines",
+    "hash": "d7b30c3bdf4e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.preparation.box-mark": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε στους τοίχους και στην οροφή το περίγραμμα του κουτιού, με λέιζερ ή αλφάδι.",
+   "s": "Σημαδεύουμε ίσια στους τοίχους και στο ταβάνι πού θα είναι το κουτί.",
+   "c": "Σημάδεμα περιγράμματος κουτιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.preparation.box-mark",
+    "hash": "ac2dcd2e26ff",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.preparation.level-mark": {
+   "section": "preparation",
+   "n": "Σημαδεύουμε στην οροφή το περίγραμμα του σκαλοπατιού και τη θέση του κρυφού φωτισμού.",
+   "s": "Σημαδεύουμε στο ταβάνι πού θα είναι το σκαλοπάτι και πού θα μπει το κρυφό φως.",
+   "c": "Σημάδεμα σκαλοπατιού και φωτισμού.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.preparation.level-mark",
+    "hash": "db92e37526dc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.prerequisites.box-access": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει πού θα μπουν θυρίδες επίσκεψης για βάνες, ενώσεις ή φρεάτια.",
+   "s": "Να έχουμε πει πού θα αφήσουμε πορτάκια, για να φτάνετε διακόπτες, ενώσεις ή φρεάτια.",
+   "c": "Συμφωνημένες θυρίδες επίσκεψης.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.prerequisites.box-access",
+    "hash": "3e190fdbd093",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.prerequisites.box-pipes": {
+   "section": "prerequisites",
+   "n": "Να έχουν τελειώσει και δοκιμαστεί οι σωλήνες ή τα καλώδια που θα κρυφτούν μέσα στο κουτί.",
+   "s": "Οι σωλήνες ή τα καλώδια που θα κρύψουμε να είναι τελειωμένα και ελεγμένα.",
+   "c": "Σωλήνες και καλώδια έτοιμα, ελεγμένα.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.prerequisites.box-pipes",
+    "hash": "e845c8d33ba7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.prerequisites.outdoor-board": {
+   "section": "prerequisites",
+   "n": "Για εξωτερικό χώρο, τσιμεντοσανίδα και γαλβανισμένος σκελετός, με μέρες χωρίς βροχή για τη δουλειά.",
+   "s": "Έξω μπαίνει τσιμεντοσανίδα με σκελετό που δεν σκουριάζει, και θέλουμε μέρες χωρίς βροχή.",
+   "c": "Έξω: τσιμεντοσανίδα, χωρίς βροχή.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.prerequisites.outdoor-board",
+    "hash": "730b3ad9d9c1",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.box-frame": {
+   "section": "steps",
+   "n": "Στήνουμε τον σκελετό του κουτιού με προφίλ στερεωμένα στον τοίχο και στην οροφή.",
+   "s": "Φτιάχνουμε τον σκελετό του κουτιού με μεταλλικά κομμάτια βιδωμένα στον τοίχο και στο ταβάνι.",
+   "c": "Σκελετός κουτιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.box-frame",
+    "hash": "7ed10542ea5d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.box-hatch": {
+   "section": "steps",
+   "n": "Ανοίγουμε και τοποθετούμε τις θυρίδες επίσκεψης, όπου συμφωνήσαμε.",
+   "s": "Ανοίγουμε και βάζουμε τα πορτάκια επίσκεψης, εκεί που έχουμε πει.",
+   "c": "Θυρίδες επίσκεψης.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.box-hatch",
+    "hash": "b9c4d2424dde",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.cement-boards": {
+   "section": "steps",
+   "n": "Βιδώνουμε τις τσιμεντοσανίδες με τις ειδικές ανοξείδωτες βίδες τους.",
+   "s": "Βιδώνουμε τις τσιμεντοσανίδες με βίδες που δεν σκουριάζουν.",
+   "c": "Τσιμεντοσανίδες με ανοξείδωτες βίδες.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.cement-boards",
+    "hash": "3344690f0f4c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.corner-bead": {
+   "section": "steps",
+   "n": "Τοποθετούμε γωνιόκρανα στις εξωτερικές ακμές, ώστε να βγουν ίσιες και γερές.",
+   "s": "Βάζουμε μεταλλικές γωνίες στις άκρες που εξέχουν, για να βγουν ίσιες και να μη σπάνε.",
+   "c": "Γωνιόκρανα στις ακμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.corner-bead",
+    "hash": "88d4d7f2effc",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.level-frame": {
+   "section": "steps",
+   "n": "Στήνουμε τον σκελετό του σκαλοπατιού στο δεύτερο ύψος, με κανάλι για την ταινία φωτισμού όπου συμφωνήσαμε.",
+   "s": "Φτιάχνουμε τον σκελετό του σκαλοπατιού πιο χαμηλά, αφήνοντας αυλάκι για το κρυφό φως, όπου έχουμε πει.",
+   "c": "Σκελετός σκαλοπατιού με κανάλι φωτισμού.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.level-frame",
+    "hash": "522f5d772649",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.steps.outdoor-finish": {
+   "section": "steps",
+   "n": "Περνάμε λεπτό σοβά με υαλόπλεγμα σε όλη την επιφάνεια, έτοιμη για βάψιμο.",
+   "s": "Περνάμε σε όλη την επιφάνεια λεπτό σοβά με ειδικό πλέγμα, για να βαφτεί μετά.",
+   "c": "Λεπτός σοβάς με υαλόπλεγμα.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.steps.outdoor-finish",
+    "hash": "8a432dd3c48f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.x.hatch": {
+   "section": "steps",
+   "n": "Τοποθετούμε θυρίδα επίσκεψης κάτω από βάνες ή μηχανήματα που μένουν πάνω από την ψευδοροφή.",
+   "s": "Αν πάνω από το ταβάνι μένουν διακόπτες ή μηχανήματα, αφήνουμε από κάτω πορτάκι για να τα φτάνετε.",
+   "c": "Θυρίδα κάτω από βάνες ή μηχανήματα.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.x.hatch",
+    "hash": "91e10acd062f",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.x.insulation": {
+   "section": "steps",
+   "n": "Βάζουμε πετροβάμβακα πάνω από την ψευδοροφή ή μέσα στο κουτί, για ηχομόνωση.",
+   "s": "Γεμίζουμε το κενό πάνω από το ταβάνι ή μέσα στο κουτί με μαλλί που κόβει τον θόρυβο.",
+   "c": "Πετροβάμβακας για ηχομόνωση.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.x.insulation",
+    "hash": "6063ea43fe47",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "drywall.x.reinforce": {
+   "section": "steps",
+   "n": "Ενισχύουμε τον σκελετό εκεί που θα κρεμαστούν βαριά φωτιστικά ή ανεμιστήρας.",
+   "s": "Βάζουμε πιο γερό σκελετό εκεί που θα κρεμαστεί βαρύ φωτιστικό ή ανεμιστήρας.",
+   "c": "Ενίσχυση για βαριά φωτιστικά.",
+   "source": "new",
+   "review": {
+    "key": "sc:drywall.x.reinforce",
+    "hash": "494ac4c7ceac",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

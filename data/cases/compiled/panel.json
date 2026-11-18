@@ -1,0 +1,1002 @@
+{
+ "material": "panel",
+ "name": "Ηλεκτρολογικός πίνακας",
+ "cases": [
+  {
+   "id": "panel:replace.recessed.single",
+   "label": "Αλλαγή παλιού πίνακα · Χωνευτός · Μονοφασικός",
+   "answers": {
+    "job": "replace",
+    "mount": "recessed",
+    "phase": "single"
+   },
+   "source": "base",
+   "task": "elec-panel",
+   "title": "Αντικατάσταση ή αναβάθμιση ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 4–8 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "elec-panel.prerequisites.3"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "elec-panel.preparation.3"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   }
+  },
+  {
+   "id": "panel:replace.recessed.three",
+   "label": "Αλλαγή παλιού πίνακα · Χωνευτός · Τριφασικός",
+   "answers": {
+    "job": "replace",
+    "mount": "recessed",
+    "phase": "three"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση τριφασικού ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 6–10 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "elec-panel.prerequisites.3",
+     "panel.prerequisites.three-phase"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "elec-panel.preparation.3"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "panel.steps.balance",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "panel.checks.phases",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   },
+   "review": {
+    "key": "case:panel:replace.recessed.three",
+    "hash": "6ec0ec3515a6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:replace.surface.single",
+   "label": "Αλλαγή παλιού πίνακα · Επιφανειακός · Μονοφασικός",
+   "answers": {
+    "job": "replace",
+    "mount": "surface",
+    "phase": "single"
+   },
+   "source": "base",
+   "task": "elec-panel",
+   "title": "Αντικατάσταση ή αναβάθμιση ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 4–8 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "elec-panel.prerequisites.3"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "elec-panel.preparation.3"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   }
+  },
+  {
+   "id": "panel:replace.surface.three",
+   "label": "Αλλαγή παλιού πίνακα · Επιφανειακός · Τριφασικός",
+   "answers": {
+    "job": "replace",
+    "mount": "surface",
+    "phase": "three"
+   },
+   "source": "new",
+   "title": "Αντικατάσταση τριφασικού ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 6–10 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "elec-panel.prerequisites.3",
+     "panel.prerequisites.three-phase"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "elec-panel.preparation.3"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "panel.steps.balance",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "panel.checks.phases",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   },
+   "review": {
+    "key": "case:panel:replace.surface.three",
+    "hash": "6ec0ec3515a6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:upgrade.single",
+   "label": "Προσθήκη γραμμών ή ρελέ στον ίδιο · Μονοφασικός",
+   "answers": {
+    "job": "upgrade",
+    "phase": "single"
+   },
+   "source": "new",
+   "title": "Αναβάθμιση μονοφασικού ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.upgrade-space",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.3"
+    ],
+    "preparation": [
+     "panel.preparation.upgrade-check",
+     "elec-panel.preparation.2"
+    ],
+    "steps": [
+     "panel.steps.upgrade-add",
+     "panel.steps.upgrade-connect",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   },
+   "review": {
+    "key": "case:panel:upgrade.single",
+    "hash": "88c68913f002",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:upgrade.three",
+   "label": "Προσθήκη γραμμών ή ρελέ στον ίδιο · Τριφασικός",
+   "answers": {
+    "job": "upgrade",
+    "phase": "three"
+   },
+   "source": "new",
+   "title": "Αναβάθμιση τριφασικού ηλεκτρολογικού πίνακα",
+   "duration": "ενδεικτικά 2–4 ώρες",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.upgrade-space",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.3"
+    ],
+    "preparation": [
+     "panel.preparation.upgrade-check",
+     "elec-panel.preparation.2"
+    ],
+    "steps": [
+     "panel.steps.upgrade-add",
+     "panel.steps.balance",
+     "panel.steps.upgrade-connect",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "panel.checks.phases",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3"
+    ]
+   },
+   "review": {
+    "key": "case:panel:upgrade.three",
+    "hash": "659137a07866",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:new.recessed.single",
+   "label": "Καινούργιος σε νέα θέση · Χωνευτός · Μονοφασικός",
+   "answers": {
+    "job": "new",
+    "mount": "recessed",
+    "phase": "single"
+   },
+   "source": "new",
+   "title": "Νέος μονοφασικός ηλεκτρολογικός πίνακας σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τη νέα παροχή",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.new-place",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "panel.preparation.new-route",
+     "panel.preparation.recess"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3",
+     "panel.handover.old-box"
+    ]
+   },
+   "review": {
+    "key": "case:panel:new.recessed.single",
+    "hash": "6aa0c0b59e71",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:new.recessed.three",
+   "label": "Καινούργιος σε νέα θέση · Χωνευτός · Τριφασικός",
+   "answers": {
+    "job": "new",
+    "mount": "recessed",
+    "phase": "three"
+   },
+   "source": "new",
+   "title": "Νέος τριφασικός ηλεκτρολογικός πίνακας σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τη νέα παροχή",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.new-place",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "panel.prerequisites.three-phase"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "panel.preparation.new-route",
+     "panel.preparation.recess"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "panel.steps.balance",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "panel.checks.phases",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3",
+     "panel.handover.old-box"
+    ]
+   },
+   "review": {
+    "key": "case:panel:new.recessed.three",
+    "hash": "cf3f9e868eab",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:new.surface.single",
+   "label": "Καινούργιος σε νέα θέση · Επιφανειακός · Μονοφασικός",
+   "answers": {
+    "job": "new",
+    "mount": "surface",
+    "phase": "single"
+   },
+   "source": "new",
+   "title": "Νέος μονοφασικός ηλεκτρολογικός πίνακας σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τη νέα παροχή",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.new-place",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "panel.preparation.new-route"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3",
+     "panel.handover.old-box"
+    ]
+   },
+   "review": {
+    "key": "case:panel:new.surface.single",
+    "hash": "eda7089cd131",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel:new.surface.three",
+   "label": "Καινούργιος σε νέα θέση · Επιφανειακός · Τριφασικός",
+   "answers": {
+    "job": "new",
+    "mount": "surface",
+    "phase": "three"
+   },
+   "source": "new",
+   "title": "Νέος τριφασικός ηλεκτρολογικός πίνακας σε νέα θέση",
+   "duration": "ενδεικτικά 1–2 ημέρες, μαζί με τη νέα παροχή",
+   "licensed": true,
+   "sections": {
+    "prerequisites": [
+     "panel.prerequisites.new-place",
+     "elec-panel.prerequisites.1",
+     "elec-panel.prerequisites.2",
+     "panel.prerequisites.three-phase"
+    ],
+    "preparation": [
+     "elec-panel.preparation.1",
+     "elec-panel.preparation.2",
+     "panel.preparation.new-route"
+    ],
+    "steps": [
+     "elec-panel.steps.1",
+     "elec-panel.steps.2",
+     "panel.steps.balance",
+     "elec-panel.steps.3",
+     "elec-panel.steps.4",
+     "elec-panel.steps.5"
+    ],
+    "checks": [
+     "elec-panel.checks.1",
+     "elec-panel.checks.2",
+     "elec-panel.checks.3",
+     "panel.checks.phases",
+     "elec-panel.checks.4"
+    ],
+    "handover": [
+     "elec-panel.handover.1",
+     "elec-panel.handover.2",
+     "elec-panel.handover.3",
+     "panel.handover.old-box"
+    ]
+   },
+   "review": {
+    "key": "case:panel:new.surface.three",
+    "hash": "d8af34b7a790",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "extras": [
+  {
+   "id": "panel.x.surge",
+   "section": "steps",
+   "when": null,
+   "review": {
+    "key": "extra:panel:panel.x.surge",
+    "hash": "acb40a271603",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel.x.earth",
+   "section": "checks",
+   "when": null,
+   "review": {
+    "key": "extra:panel:panel.x.earth",
+    "hash": "9886b4fd0111",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  {
+   "id": "panel.x.spare",
+   "section": "steps",
+   "when": {
+    "job": [
+     "replace",
+     "new"
+    ]
+   },
+   "review": {
+    "key": "extra:panel:panel.x.spare",
+    "hash": "3010a85aa039",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ ],
+ "items": {
+  "elec-panel.checks.1": {
+   "section": "checks",
+   "n": "Μετράμε με όργανο τη γείωση και τη μόνωση των γραμμών και κρατάμε τις τιμές.",
+   "s": "Μετράμε με όργανο τη γείωση και τη μόνωση των καλωδίων και κρατάμε τις μετρήσεις.",
+   "c": "Μέτρηση γείωσης και μόνωσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.checks.1",
+    "hash": "dbe9abddacb4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.checks.2": {
+   "section": "checks",
+   "n": "Δοκιμάζουμε το ρελέ διαρροής με όργανο και με το κουμπί δοκιμής του.",
+   "s": "Δοκιμάζουμε τον διακόπτη προστασίας με όργανο και με το κουμπάκι του.",
+   "c": "Δοκιμή ρελέ διαρροής.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.checks.2",
+    "hash": "784fc6526130",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.checks.3": {
+   "section": "checks",
+   "n": "Κατεβάζουμε κάθε ασφάλεια: κόβει μόνο τη γραμμή που γράφει η ετικέτα της.",
+   "s": "Κατεβάζουμε κάθε ασφάλεια: σβήνει μόνο ό,τι γράφει η ετικέτα της.",
+   "c": "Κάθε ασφάλεια κόβει τη γραμμή της.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.checks.3",
+    "hash": "c9170ef05796",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.checks.4": {
+   "section": "checks",
+   "n": "Ελέγχουμε ότι οι συνδέσεις είναι σφιχτές και ότι το καπάκι κλείνει χωρίς να πιέζει καλώδια.",
+   "s": "Κοιτάμε ότι οι βίδες είναι σφιχτές και ότι το καπάκι κλείνει χωρίς να πατάει καλώδια.",
+   "c": "Σφιχτές συνδέσεις, καπάκι χωρίς πίεση.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.checks.4",
+    "hash": "1ff44a2c63c6",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.handover.1": {
+   "section": "handover",
+   "n": "Σας δίνουμε τη λίστα με τις γραμμές του πίνακα.",
+   "s": "Σας δίνουμε λίστα με το τι κλείνει κάθε ασφάλεια.",
+   "c": "Λίστα γραμμών.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.handover.1",
+    "hash": "a34fbdb12bf0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.handover.2": {
+   "section": "handover",
+   "n": "Σας δείχνουμε πώς δοκιμάζεται το ρελέ διαρροής, κάτι που καλό είναι να γίνεται κάθε λίγους μήνες.",
+   "s": "Σας δείχνουμε πώς δοκιμάζετε τον διακόπτη προστασίας, κάτι που καλό είναι να κάνετε κάθε λίγους μήνες.",
+   "c": "Πώς δοκιμάζεται το ρελέ.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.handover.2",
+    "hash": "869598501faa",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.handover.3": {
+   "section": "handover",
+   "n": "Συντάσσουμε τα έγγραφα που προβλέπονται για την εγκατάσταση, όπως η Υπεύθυνη Δήλωση Εγκαταστάτη, όπου απαιτούνται.",
+   "s": "Φτιάχνουμε τα χαρτιά που χρειάζονται για την εγκατάσταση, όπως η Υπεύθυνη Δήλωση Εγκαταστάτη, όπου ζητούνται.",
+   "c": "Έγγραφα εγκατάστασης, όπου απαιτούνται.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.handover.3",
+    "hash": "d31c38bda34e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.preparation.1": {
+   "section": "preparation",
+   "n": "Καταγράφουμε κάθε γραμμή του παλιού πίνακα και σημαδεύουμε τα καλώδιά της.",
+   "s": "Γράφουμε κάθε γραμμή του παλιού πίνακα και σημαδεύουμε τα καλώδιά της.",
+   "c": "Καταγραφή και σήμανση γραμμών.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.preparation.1",
+    "hash": "5fbeb61af97a",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.preparation.2": {
+   "section": "preparation",
+   "n": "Κόβουμε την κεντρική παροχή και ελέγχουμε με όργανο ότι δεν υπάρχει ρεύμα.",
+   "s": "Κόβουμε όλο το ρεύμα και ελέγχουμε με όργανο ότι δεν έχει μείνει τάση.",
+   "c": "Διακοπή και έλεγχος τάσης.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.preparation.2",
+    "hash": "717d1d57f63e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.preparation.3": {
+   "section": "preparation",
+   "n": "Αφαιρούμε τον παλιό πίνακα.",
+   "s": "Βγάζουμε τον παλιό πίνακα.",
+   "c": "Αφαίρεση παλιού πίνακα.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.preparation.3",
+    "hash": "f4b2b839d9c4",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.prerequisites.1": {
+   "section": "prerequisites",
+   "n": "Συνεννόηση για διακοπή ρεύματος σε όλο το σπίτι για μερικές ώρες.",
+   "s": "Να συνεννοηθούμε, γιατί θα κοπεί το ρεύμα σε όλο το σπίτι για μερικές ώρες.",
+   "c": "Διακοπή ρεύματος για μερικές ώρες.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.prerequisites.1",
+    "hash": "53f89c5417be",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.prerequisites.2": {
+   "section": "prerequisites",
+   "n": "Να ξέρουμε ποιες συσκευές χρειάζονται δική τους γραμμή, όπως κουζίνα, θερμοσίφωνας και κλιματιστικά.",
+   "s": "Να ξέρουμε ποιες συσκευές θέλουν δική τους γραμμή, όπως κουζίνα, θερμοσίφωνας και κλιματιστικά.",
+   "c": "Ποιες συσκευές θέλουν δική τους γραμμή.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.prerequisites.2",
+    "hash": "72ec5c15ad0e",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.prerequisites.3": {
+   "section": "prerequisites",
+   "n": "Ελεύθερη πρόσβαση στον πίνακα και στον μετρητή.",
+   "s": "Να φτάνουμε άνετα τον πίνακα και τον μετρητή.",
+   "c": "Πρόσβαση σε πίνακα και μετρητή.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.prerequisites.3",
+    "hash": "e22aaad8eddf",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.steps.1": {
+   "section": "steps",
+   "n": "Τοποθετούμε το νέο ερμάριο αλφαδιασμένο, στη θέση του παλιού ή σε νέα θέση που συμφωνήσαμε.",
+   "s": "Βάζουμε ίσιο το καινούργιο κουτί, εκεί που ήταν το παλιό ή εκεί που έχουμε πει.",
+   "c": "Νέο ερμάριο αλφαδιασμένο.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.steps.1",
+    "hash": "e3f5e9154288",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.steps.2": {
+   "section": "steps",
+   "n": "Τοποθετούμε γενικό διακόπτη, ρελέ διαρροής και αυτόματες ασφάλειες, σύμφωνα με το φορτίο κάθε γραμμής.",
+   "s": "Βάζουμε τον γενικό διακόπτη, τον διακόπτη προστασίας και τις ασφάλειες, ανάλογα με το τι σηκώνει κάθε γραμμή.",
+   "c": "Γενικός, ρελέ, ασφάλειες κατά φορτίο.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.steps.2",
+    "hash": "13da477c1230",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.steps.3": {
+   "section": "steps",
+   "n": "Συνδέουμε κάθε γραμμή στη δική της ασφάλεια και όλες τις γειώσεις στη μπάρα γείωσης.",
+   "s": "Ενώνουμε κάθε γραμμή με τη δική της ασφάλεια και όλες τις γειώσεις στο ίδιο σημείο.",
+   "c": "Γραμμές σε ασφάλειες, γειώσεις στη μπάρα.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.steps.3",
+    "hash": "8a5c0b159291",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.steps.4": {
+   "section": "steps",
+   "n": "Βάζουμε ετικέτα σε κάθε ασφάλεια με το όνομα της γραμμής.",
+   "s": "Κολλάμε σε κάθε ασφάλεια ετικέτα που λέει τι κλείνει.",
+   "c": "Ετικέτα σε κάθε ασφάλεια.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.steps.4",
+    "hash": "feaf0b2dd5c3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "elec-panel.steps.5": {
+   "section": "steps",
+   "n": "Επαναφέρουμε την παροχή και ενεργοποιούμε τις γραμμές μία-μία.",
+   "s": "Ξαναδίνουμε ρεύμα και ανεβάζουμε τις γραμμές μία-μία.",
+   "c": "Επαναφορά, γραμμές μία-μία.",
+   "source": "current",
+   "review": {
+    "key": "sc:elec-panel.steps.5",
+    "hash": "c4c897930fa2",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.checks.phases": {
+   "section": "checks",
+   "n": "Μετράμε την τάση σε κάθε φάση και ελέγχουμε ότι οι τριφασικές συσκευές γυρίζουν σωστά.",
+   "s": "Μετράμε το ρεύμα σε κάθε φάση και κοιτάμε ότι τα τριφασικά μηχανήματα δουλεύουν σωστά.",
+   "c": "Τάση ανά φάση, φορά περιστροφής.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.checks.phases",
+    "hash": "b71091453833",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.handover.old-box": {
+   "section": "handover",
+   "n": "Κλείνουμε τη θέση του παλιού πίνακα με καπάκι ή όπως έχουμε συμφωνήσει.",
+   "s": "Κλείνουμε το σημείο όπου ήταν ο παλιός πίνακας, με καπάκι ή όπως έχουμε πει.",
+   "c": "Κλείσιμο θέσης παλιού πίνακα.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.handover.old-box",
+    "hash": "85c9a06d46ed",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.preparation.new-route": {
+   "section": "preparation",
+   "n": "Περνάμε την παροχή από τον μετρητή και τις γραμμές του σπιτιού ως τη νέα θέση.",
+   "s": "Φέρνουμε το καλώδιο από τον μετρητή και τα καλώδια του σπιτιού ως εκεί που θα μπει ο πίνακας.",
+   "c": "Παροχή και γραμμές ως τη νέα θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.preparation.new-route",
+    "hash": "30ef45643ee5",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.preparation.recess": {
+   "section": "preparation",
+   "n": "Ανοίγουμε την εσοχή στον τοίχο για το χωνευτό ερμάριο.",
+   "s": "Σκάβουμε τον τοίχο για να χωνέψει μέσα το κουτί του πίνακα.",
+   "c": "Εσοχή για χωνευτό ερμάριο.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.preparation.recess",
+    "hash": "811713a5da4b",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.preparation.upgrade-check": {
+   "section": "preparation",
+   "n": "Ελέγχουμε την κατάσταση του υπάρχοντος πίνακα, τις συνδέσεις και τη γείωσή του.",
+   "s": "Κοιτάμε σε τι κατάσταση είναι ο πίνακας που υπάρχει, τις συνδέσεις του και τη γείωση.",
+   "c": "Έλεγχος υπάρχοντος πίνακα.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.preparation.upgrade-check",
+    "hash": "0481f1b05a93",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.prerequisites.new-place": {
+   "section": "prerequisites",
+   "n": "Να έχουμε συμφωνήσει τη νέα θέση του πίνακα, σε σημείο στεγνό και εύκολα προσβάσιμο.",
+   "s": "Να έχουμε αποφασίσει μαζί πού θα μπει ο πίνακας: σε στεγνό σημείο που τον φτάνετε εύκολα.",
+   "c": "Συμφωνημένη, στεγνή, προσβάσιμη θέση.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.prerequisites.new-place",
+    "hash": "009b1ef22e3c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.prerequisites.three-phase": {
+   "section": "prerequisites",
+   "n": "Τριφασική παροχή από τον διαχειριστή του δικτύου, με τον αντίστοιχο μετρητή.",
+   "s": "Το σπίτι να έχει τριφασικό ρεύμα από το δίκτυο, με τον μετρητή του.",
+   "c": "Τριφασική παροχή και μετρητής.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.prerequisites.three-phase",
+    "hash": "9906dc5af9e0",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.prerequisites.upgrade-space": {
+   "section": "prerequisites",
+   "n": "Χώρος στο υπάρχον ερμάριο για τις νέες ασφάλειες ή το ρελέ, ή συμφωνία για μεγαλύτερο ερμάριο.",
+   "s": "Να χωράνε στο κουτί του πίνακα οι καινούργιες ασφάλειες, αλλιώς να έχουμε πει ότι μπαίνει μεγαλύτερο κουτί.",
+   "c": "Χώρος στο ερμάριο ή μεγαλύτερο.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.prerequisites.upgrade-space",
+    "hash": "7ef631637a63",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.steps.balance": {
+   "section": "steps",
+   "n": "Μοιράζουμε τις γραμμές στις τρεις φάσεις, ώστε να φορτώνονται όσο πιο ισόποσα γίνεται.",
+   "s": "Χωρίζουμε τις γραμμές στις τρεις φάσεις, ώστε να έχει η καθεμιά περίπου το ίδιο φορτίο.",
+   "c": "Ισοκατανομή στις τρεις φάσεις.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.steps.balance",
+    "hash": "5f635f13b443",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.steps.upgrade-add": {
+   "section": "steps",
+   "n": "Τοποθετούμε τις νέες ασφάλειες ή το ρελέ διαρροής στη ράγα του πίνακα.",
+   "s": "Βάζουμε τις καινούργιες ασφάλειες ή τον διακόπτη προστασίας στον πίνακα.",
+   "c": "Νέες ασφάλειες ή ρελέ στη ράγα.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.steps.upgrade-add",
+    "hash": "987fbe07b23c",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.steps.upgrade-connect": {
+   "section": "steps",
+   "n": "Συνδέουμε τις νέες γραμμές και, όπου χρειάζεται, ξαναμοιράζουμε τις υπάρχουσες.",
+   "s": "Ενώνουμε τις καινούργιες γραμμές και, αν πρέπει, αλλάζουμε θέση σε κάποιες παλιές.",
+   "c": "Σύνδεση νέων γραμμών.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.steps.upgrade-connect",
+    "hash": "12ca46b982d7",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.x.earth": {
+   "section": "checks",
+   "n": "Ελέγχουμε τη γείωση του σπιτιού και σας λέμε αν χρειάζεται βελτίωση.",
+   "s": "Κοιτάμε τη γείωση όλου του σπιτιού και σας λέμε αν θέλει να φτιαχτεί.",
+   "c": "Έλεγχος γείωσης σπιτιού.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.x.earth",
+    "hash": "4675b0d9bf73",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.x.spare": {
+   "section": "steps",
+   "n": "Αφήνουμε κενές θέσεις στο ερμάριο για γραμμές που ίσως προστεθούν αργότερα.",
+   "s": "Αφήνουμε άδειες θέσεις στο κουτί, για να μπουν εύκολα αργότερα κι άλλες ασφάλειες.",
+   "c": "Κενές θέσεις για μελλοντικές γραμμές.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.x.spare",
+    "hash": "3b13a5b7317d",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  },
+  "panel.x.surge": {
+   "section": "steps",
+   "n": "Προσθέτουμε προστασία από υπερτάσεις στον πίνακα, όπου έχει συμφωνηθεί.",
+   "s": "Αν το έχουμε πει, βάζουμε στον πίνακα προστασία για τους κεραυνούς και τις απότομες αυξήσεις του ρεύματος.",
+   "c": "Αντικεραυνική προστασία, αν συμφωνήθηκε.",
+   "source": "new",
+   "review": {
+    "key": "sc:panel.x.surge",
+    "hash": "259db80f81f3",
+    "reviewed": false,
+    "reviewer": null,
+    "reviewed_at": null
+   }
+  }
+ },
+ "licensedNote": "Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία."
+}

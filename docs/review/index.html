@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος κειμένων</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+
+table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}td.n{font-variant-numeric:tabular-nums}
+@media (max-width:520px){.opt{display:none}th,td{padding:8px 6px;font-size:14px}}</style></head><body><main>
+<h1>Έλεγχος κειμένων ανάλυσης</h1>
+<p class="lede">Ένα υλικό τη φορά. Η εφαρμογή χρησιμοποιεί μόνο τα εγκεκριμένα· οι σημερινές αναλύσεις δουλεύουν πάντα, όπως σήμερα.</p>
+<table><tr><th>Υλικό</th><th>Περιπτ.</th><th>Νέες</th><th class="opt">Σημεία</th><th>Εγκρίσεις</th></tr>
+<tr><td><a href="wc.html">1. Λεκάνη</a></td><td class="n">27</td><td class="n">24</td><td class="n opt">65</td><td class="n">0/94</td></tr>
+<tr><td><a href="mixer.html">2. Μπαταρία</a></td><td class="n">20</td><td class="n">15</td><td class="n opt">97</td><td class="n">0/118</td></tr>
+<tr><td><a href="tile.html">3. Πλακάκι</a></td><td class="n">18</td><td class="n">10</td><td class="n opt">70</td><td class="n">0/87</td></tr>
+<tr><td><a href="basin.html">4. Νιπτήρας</a></td><td class="n">18</td><td class="n">16</td><td class="n opt">33</td><td class="n">0/53</td></tr>
+<tr><td><a href="shower.html">5. Ντουζιέρα</a></td><td class="n">9</td><td class="n">4</td><td class="n opt">40</td><td class="n">0/52</td></tr>
+<tr><td><a href="heater.html">6. Θερμοσίφωνας</a></td><td class="n">17</td><td class="n">15</td><td class="n opt">49</td><td class="n">0/69</td></tr>
+<tr><td><a href="pipe-water.html">7. Σωλήνες νερού</a></td><td class="n">12</td><td class="n">10</td><td class="n opt">43</td><td class="n">0/57</td></tr>
+<tr><td><a href="socket.html">8. Πρίζα ή διακόπτης</a></td><td class="n">12</td><td class="n">8</td><td class="n opt">27</td><td class="n">0/39</td></tr>
+<tr><td><a href="paint.html">9. Βάψιμο</a></td><td class="n">6</td><td class="n">2</td><td class="n opt">40</td><td class="n">0/47</td></tr>
+<tr><td><a href="vanity.html">10. Έπιπλο μπάνιου</a></td><td class="n">18</td><td class="n">16</td><td class="n opt">33</td><td class="n">0/52</td></tr>
+<tr><td><a href="demolition.html">11. Αποξήλωση</a></td><td class="n">8</td><td class="n">6</td><td class="n opt">35</td><td class="n">0/45</td></tr>
+<tr><td><a href="cabin.html">12. Καμπίνα ντουζιέρας</a></td><td class="n">12</td><td class="n">10</td><td class="n opt">31</td><td class="n">0/44</td></tr>
+<tr><td><a href="pipe-drain.html">13. Σωλήνες αποχέτευσης</a></td><td class="n">8</td><td class="n">6</td><td class="n opt">39</td><td class="n">0/49</td></tr>
+<tr><td><a href="angle-valve.html">14. Γωνιακός διακόπτης</a></td><td class="n">2</td><td class="n">1</td><td class="n opt">19</td><td class="n">0/22</td></tr>
+<tr><td><a href="siphon.html">15. Σιφόνι</a></td><td class="n">7</td><td class="n">3</td><td class="n opt">39</td><td class="n">0/46</td></tr>
+<tr><td><a href="sink.html">16. Νεροχύτης</a></td><td class="n">6</td><td class="n">5</td><td class="n opt">30</td><td class="n">0/38</td></tr>
+<tr><td><a href="bathtub.html">17. Μπανιέρα</a></td><td class="n">8</td><td class="n">7</td><td class="n opt">33</td><td class="n">0/43</td></tr>
+<tr><td><a href="waterproof.html">18. Στεγάνωση</a></td><td class="n">6</td><td class="n">3</td><td class="n opt">55</td><td class="n">0/64</td></tr>
+<tr><td><a href="door.html">19. Εσωτερική πόρτα</a></td><td class="n">13</td><td class="n">11</td><td class="n opt">48</td><td class="n">0/63</td></tr>
+<tr><td><a href="cable.html">20. Ηλεκτρική γραμμή (καλώδιο)</a></td><td class="n">9</td><td class="n">5</td><td class="n opt">29</td><td class="n">0/37</td></tr>
+<tr><td><a href="panel.html">21. Ηλεκτρολογικός πίνακας</a></td><td class="n">10</td><td class="n">8</td><td class="n opt">32</td><td class="n">0/43</td></tr>
+<tr><td><a href="light.html">22. Φωτιστικό</a></td><td class="n">8</td><td class="n">3</td><td class="n opt">63</td><td class="n">0/73</td></tr>
+<tr><td><a href="showerset.html">23. Σετ ντους</a></td><td class="n">4</td><td class="n">2</td><td class="n opt">21</td><td class="n">0/25</td></tr>
+<tr><td><a href="tank-ext.html">24. Εξωτερικό καζανάκι</a></td><td class="n">4</td><td class="n">3</td><td class="n opt">24</td><td class="n">0/29</td></tr>
+<tr><td><a href="cistern-repair.html">25. Μηχανισμός ή φλοτέρ καζανακιού</a></td><td class="n">9</td><td class="n">3</td><td class="n opt">20</td><td class="n">0/25</td></tr>
+<tr><td><a href="tap.html">26. Βρύση</a></td><td class="n">4</td><td class="n">2</td><td class="n opt">19</td><td class="n">0/23</td></tr>
+<tr><td><a href="main-valve.html">27. Κεντρικός διακόπτης νερού</a></td><td class="n">4</td><td class="n">3</td><td class="n opt">19</td><td class="n">0/24</td></tr>
+<tr><td><a href="manifold.html">28. Συλλέκτης νερού</a></td><td class="n">4</td><td class="n">3</td><td class="n opt">28</td><td class="n">0/33</td></tr>
+<tr><td><a href="pressure.html">29. Δοκιμή πίεσης</a></td><td class="n">2</td><td class="n">1</td><td class="n opt">25</td><td class="n">0/28</td></tr>
+<tr><td><a href="plaster.html">30. Σοβάς</a></td><td class="n">10</td><td class="n">6</td><td class="n opt">38</td><td class="n">0/49</td></tr>
+<tr><td><a href="drywall.html">31. Ψευδοροφή</a></td><td class="n">9</td><td class="n">6</td><td class="n opt">46</td><td class="n">0/56</td></tr>
+<tr><td><a href="screed.html">32. Εξομάλυνση δαπέδου</a></td><td class="n">4</td><td class="n">3</td><td class="n opt">36</td><td class="n">0/42</td></tr>
+<tr><td><a href="generic.html">33. Γενικές κατηγορίες</a></td><td class="n">24</td><td class="n">24</td><td class="n opt">288</td><td class="n">0/312</td></tr>
+</table></main></body></html>

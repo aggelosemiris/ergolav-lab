@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Έλεγχος: Ηλεκτρική γραμμή (καλώδιο)</title><style>
+:root{--bg:#F4F4F1;--paper:#FFFFFF;--ink:#1A1D21;--dim:#5E646B;--line:#D9DBD5;--pen:#2140A8;--pen-soft:#E3E8F7;--ok:#1E7A4C;--ok-soft:#E1F2E8;--warn:#A35A00;--warn-soft:#FBEBD2;--new:#6B3FA0;--new-soft:#EFE7F8;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}}
+:root[data-theme="dark"]{--bg:#15171A;--paper:#1F2226;--ink:#EDEEEA;--dim:#A2A8AE;--line:#34383D;--pen:#8FA6F2;--pen-soft:#243056;--ok:#6CCB97;--ok-soft:#183324;--warn:#F0B35C;--warn-soft:#3A2C16;--new:#C7A6F0;--new-soft:#2E2340}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:16px 16px 120px}
+main{max-width:1100px;margin:0 auto}
+a{color:var(--pen)}
+h1{font-size:24px;line-height:1.2}
+.lede{color:var(--dim);max-width:70ch;margin-top:4px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.bar label{font-size:13px;color:var(--dim);display:flex;gap:6px;align-items:center}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{width:100%;min-height:60px;margin-top:6px}
+button{font:inherit;cursor:pointer;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font-weight:600}
+button.primary{background:var(--pen);border-color:var(--pen);color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.progress{font-size:13px;color:var(--dim);margin-left:auto}
+h2{font-size:18px;margin:26px 0 8px}
+.case{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.case>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.case>summary::-webkit-details-marker{display:none}
+.case>summary b{font-size:16px}
+.case .lbl{color:var(--dim);font-size:13px;flex-basis:100%}
+.state{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-left:auto}
+.state.ok{background:var(--ok-soft);color:var(--ok)}.state.fix{background:var(--warn-soft);color:var(--warn)}.state.todo{background:var(--pen-soft);color:var(--pen)}.state.base{background:var(--bg);color:var(--dim)}
+.body{padding:0 14px 14px}
+.meta{font-size:13px;color:var(--dim)}
+.sec{margin-top:12px}
+.sec h3{font-size:14px;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.row>div{min-width:0;overflow-wrap:anywhere}
+.row .v small{display:block;font-size:11px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.row .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .tag{font-size:11px;border-radius:6px;padding:0 6px}
+.tag.new{background:var(--new-soft);color:var(--new)}.tag.cur{background:var(--bg);color:var(--dim)}
+.decide{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.decide .on.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.decide .on.fix{background:var(--warn);border-color:var(--warn);color:#fff}
+.decide textarea{flex-basis:100%}
+.decide .what{font-size:13px;color:var(--dim)}
+.small{font-size:13px}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.case[open]>.body{animation:in .15s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style></head><body><main>
+<p class="small"><a href="index.html">← Όλα τα υλικά</a></p>
+<h1>Έλεγχος κειμένων: Ηλεκτρική γραμμή (καλώδιο)</h1>
+<p class="lede">Άνοιξε κάθε περίπτωση. Για κάθε σημείο: κανονική | απλή | σύντομη. Η εφαρμογή χρησιμοποιεί μόνο ό,τι εγκρίνεις. Οι αποφάσεις μένουν σε αυτόν τον browser· στο τέλος πάτα «Εξαγωγή» και στείλε το αρχείο.</p>
+
+<div class="bar">
+  <label>Ελέγχει <input id="reviewer" autocomplete="name" placeholder="Το όνομά σου"></label>
+  <label>Δείξε <select id="filter"><option value="all">όλες</option><option value="todo">χωρίς απόφαση</option><option value="fix">για διόρθωση</option></select></label>
+  <button type="button" id="approveSc">Εγκρίνω τις απλές/σύντομες των ανοιχτών</button>
+  <button type="button" class="primary" id="export">Εξαγωγή αποφάσεων</button>
+  <span class="progress" id="progress"></span>
+</div>
+<div id="cases"></div>
+</main>
+<script id="data" type="application/json">{"material":"cable","name":"Ηλεκτρική γραμμή (καλώδιο)","cases":[{"id":"cable:newline.chased","label":"Νέα γραμμή (π.χ. κουζίνα, κλιματιστικό) · Σε σωλήνα μέσα στον τοίχο (σκάψιμο)","answers":{"scope":"newline","route":"chased"},"source":"base","task":"elec-wiring","title":"Νέα γραμμή ή αντικατάσταση καλωδίωσης","duration":"ενδεικτικά 3–8 ώρες ανά γραμμή, ανάλογα με το μήκος και τα σημεία","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","elec-wiring.prerequisites.3"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2","elec-wiring.preparation.3"],"steps":["elec-wiring.steps.1","elec-wiring.steps.2","elec-wiring.steps.3","elec-wiring.steps.4"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["elec-wiring.handover.1","elec-wiring.handover.2"]}},{"id":"cable:newline.existing","label":"Νέα γραμμή (π.χ. κουζίνα, κλιματιστικό) · Μέσα από τις υπάρχουσες σωληνώσεις","answers":{"scope":"newline","route":"existing"},"source":"base","task":"elec-wiring","title":"Νέα γραμμή ή αντικατάσταση καλωδίωσης","duration":"ενδεικτικά 3–8 ώρες ανά γραμμή, ανάλογα με το μήκος και τα σημεία","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","elec-wiring.prerequisites.3"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2","elec-wiring.preparation.3"],"steps":["elec-wiring.steps.1","elec-wiring.steps.2","elec-wiring.steps.3","elec-wiring.steps.4"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["elec-wiring.handover.1","elec-wiring.handover.2"]}},{"id":"cable:newline.surface","label":"Νέα γραμμή (π.χ. κουζίνα, κλιματιστικό) · Εξωτερικά σε κανάλι","answers":{"scope":"newline","route":"surface"},"source":"new","title":"Νέα ηλεκτρική γραμμή σε εξωτερικό κανάλι","duration":"ενδεικτικά 2–6 ώρες ανά γραμμή","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","cable.prerequisites.surface-route"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2"],"steps":["cable.steps.channel","cable.steps.channel-wire","elec-wiring.steps.2","elec-wiring.steps.3"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["cable.handover.route-note","elec-wiring.handover.2"]},"review":{"key":"case:cable:newline.surface","hash":"126e559a810e","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable:rewire.chased","label":"Αλλαγή παλιάς καλωδίωσης · Σε σωλήνα μέσα στον τοίχο (σκάψιμο)","answers":{"scope":"rewire","route":"chased"},"source":"base","task":"elec-wiring","title":"Νέα γραμμή ή αντικατάσταση καλωδίωσης","duration":"ενδεικτικά 3–8 ώρες ανά γραμμή, ανάλογα με το μήκος και τα σημεία","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","elec-wiring.prerequisites.3"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2","elec-wiring.preparation.3"],"steps":["elec-wiring.steps.1","elec-wiring.steps.2","elec-wiring.steps.3","elec-wiring.steps.4"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["elec-wiring.handover.1","elec-wiring.handover.2"]}},{"id":"cable:rewire.existing","label":"Αλλαγή παλιάς καλωδίωσης · Μέσα από τις υπάρχουσες σωληνώσεις","answers":{"scope":"rewire","route":"existing"},"source":"base","task":"elec-wiring","title":"Νέα γραμμή ή αντικατάσταση καλωδίωσης","duration":"ενδεικτικά 3–8 ώρες ανά γραμμή, ανάλογα με το μήκος και τα σημεία","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","elec-wiring.prerequisites.3"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2","elec-wiring.preparation.3"],"steps":["elec-wiring.steps.1","elec-wiring.steps.2","elec-wiring.steps.3","elec-wiring.steps.4"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["elec-wiring.handover.1","elec-wiring.handover.2"]}},{"id":"cable:rewire.surface","label":"Αλλαγή παλιάς καλωδίωσης · Εξωτερικά σε κανάλι","answers":{"scope":"rewire","route":"surface"},"source":"new","title":"Αντικατάσταση καλωδίωσης σε εξωτερικό κανάλι","duration":"ενδεικτικά 2–6 ώρες ανά γραμμή","licensed":true,"sections":{"prerequisites":["elec-wiring.prerequisites.1","elec-wiring.prerequisites.2","cable.prerequisites.surface-route"],"preparation":["elec-wiring.preparation.1","cable.preparation.old-out","elec-wiring.preparation.2"],"steps":["cable.steps.channel","cable.steps.channel-wire","elec-wiring.steps.2","elec-wiring.steps.3"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","elec-wiring.checks.3"],"handover":["cable.handover.route-note","elec-wiring.handover.2"]},"review":{"key":"case:cable:rewire.surface","hash":"078c34b36b4d","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable:extend.chased","label":"Προέκταση ή μεταφορά σημείου · Σε σωλήνα μέσα στον τοίχο (σκάψιμο)","answers":{"scope":"extend","route":"chased"},"source":"new","title":"Προέκταση ή μεταφορά ηλεκτρικού σημείου","duration":"ενδεικτικά 1–3 ώρες ανά σημείο","licensed":true,"sections":{"prerequisites":["cable.prerequisites.extend-point","cable.prerequisites.load-check","elec-wiring.prerequisites.3"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2","elec-wiring.preparation.3"],"steps":["cable.steps.junction","elec-wiring.steps.1","elec-wiring.steps.2","elec-wiring.steps.4"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","cable.checks.same-breaker"],"handover":["elec-wiring.handover.1","elec-wiring.handover.2"]},"review":{"key":"case:cable:extend.chased","hash":"a7ea47c82224","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable:extend.existing","label":"Προέκταση ή μεταφορά σημείου · Μέσα από τις υπάρχουσες σωληνώσεις","answers":{"scope":"extend","route":"existing"},"source":"new","title":"Προέκταση ή μεταφορά ηλεκτρικού σημείου μέσα από υπάρχουσες σωληνώσεις","duration":"ενδεικτικά 1–3 ώρες ανά σημείο","licensed":true,"sections":{"prerequisites":["cable.prerequisites.extend-point","cable.prerequisites.load-check"],"preparation":["elec-wiring.preparation.1","cable.preparation.pull-check"],"steps":["cable.steps.junction","cable.steps.pull","elec-wiring.steps.2"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","cable.checks.same-breaker"],"handover":["cable.handover.route-note","elec-wiring.handover.2"]},"review":{"key":"case:cable:extend.existing","hash":"5722b347eacb","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable:extend.surface","label":"Προέκταση ή μεταφορά σημείου · Εξωτερικά σε κανάλι","answers":{"scope":"extend","route":"surface"},"source":"new","title":"Προέκταση ή μεταφορά ηλεκτρικού σημείου σε εξωτερικό κανάλι","duration":"ενδεικτικά 1–3 ώρες ανά σημείο","licensed":true,"sections":{"prerequisites":["cable.prerequisites.extend-point","cable.prerequisites.load-check"],"preparation":["elec-wiring.preparation.1","elec-wiring.preparation.2"],"steps":["cable.steps.junction","cable.steps.channel","cable.steps.channel-wire","elec-wiring.steps.2"],"checks":["elec-wiring.checks.1","elec-wiring.checks.2","cable.checks.same-breaker"],"handover":["cable.handover.route-note","elec-wiring.handover.2"]},"review":{"key":"case:cable:extend.surface","hash":"6b426e15e0a3","reviewed":false,"reviewer":null,"reviewed_at":null}}],"extras":[{"id":"cable.x.close-old","section":"steps","when":{"scope":["extend"]},"review":{"key":"extra:cable:cable.x.close-old","hash":"9ec1da13c4b6","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable.x.rcd","section":"steps","when":{"scope":["newline","rewire"]},"review":{"key":"extra:cable:cable.x.rcd","hash":"f274588db1e3","reviewed":false,"reviewer":null,"reviewed_at":null}},{"id":"cable.x.data","section":"steps","when":null,"review":{"key":"extra:cable:cable.x.data","hash":"0ec8a6204751","reviewed":false,"reviewer":null,"reviewed_at":null}}],"items":{"cable.checks.same-breaker":{"section":"checks","n":"Κατεβάζουμε την ασφάλεια της γραμμής: κόβει και το νέο σημείο.","s":"Κατεβάζουμε την ασφάλεια της γραμμής: σβήνει και το καινούργιο σημείο.","c":"Η ασφάλεια κόβει και το νέο σημείο.","source":"new","review":{"key":"sc:cable.checks.same-breaker","hash":"255b6a5d5483","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.handover.route-note":{"section":"handover","n":"Σας γράφουμε ποια σημεία τροφοδοτεί η γραμμή και ποια ασφάλεια τα κόβει.","s":"Σας σημειώνουμε ποιες πρίζες και φώτα είναι σε αυτή τη γραμμή και ποια ασφάλεια τα κλείνει.","c":"Σημείωμα: σημεία και ασφάλεια.","source":"new","review":{"key":"sc:cable.handover.route-note","hash":"83ba702cfb80","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.preparation.old-out":{"section":"preparation","n":"Αποσυνδέουμε την παλιά καλωδίωση και τη βγάζουμε, όπου είναι προσβάσιμη.","s":"Ξεβιδώνουμε τα παλιά καλώδια και τα βγάζουμε, όπου μπορούμε να τα φτάσουμε.","c":"Αφαίρεση παλιάς καλωδίωσης.","source":"new","review":{"key":"sc:cable.preparation.old-out","hash":"b25b8fdd1001","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.preparation.pull-check":{"section":"preparation","n":"Ελέγχουμε ότι στον υπάρχοντα σωλήνα χωράει και περνάει το νέο καλώδιο.","s":"Κοιτάμε ότι ο σωλήνας που υπάρχει ήδη στον τοίχο έχει χώρο για το καινούργιο καλώδιο.","c":"Έλεγχος χώρου στον σωλήνα.","source":"new","review":{"key":"sc:cable.preparation.pull-check","hash":"44e67b022679","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.prerequisites.extend-point":{"section":"prerequisites","n":"Να έχουμε συμφωνήσει από ποιο σημείο ξεκινά η προέκταση και πού θα μπει το νέο σημείο.","s":"Να ξέρουμε από πού θα πάρουμε ρεύμα και πού ακριβώς θα μπει η καινούργια πρίζα, διακόπτης ή φωτιστικό.","c":"Αρχή και θέση νέου σημείου.","source":"new","review":{"key":"sc:cable.prerequisites.extend-point","hash":"49d4606c85e9","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.prerequisites.load-check":{"section":"prerequisites","n":"Η γραμμή από την οποία παίρνουμε ρεύμα να αντέχει και το νέο σημείο, μαζί με όσα ήδη τροφοδοτεί.","s":"Η γραμμή που θα επεκτείνουμε να σηκώνει και το καινούργιο σημείο, μαζί με όσα έχει ήδη.","c":"Γραμμή που αντέχει το νέο φορτίο.","source":"new","review":{"key":"sc:cable.prerequisites.load-check","hash":"2d2e524f348e","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.prerequisites.surface-route":{"section":"prerequisites","n":"Να έχουμε συμφωνήσει τη διαδρομή του καναλιού πάνω στους τοίχους, ώστε να φαίνεται όσο λιγότερο γίνεται.","s":"Να έχουμε αποφασίσει μαζί από πού θα περάσει το πλαστικό κανάλι στους τοίχους, για να φαίνεται όσο πιο λίγο γίνεται.","c":"Συμφωνημένη διαδρομή καναλιού.","source":"new","review":{"key":"sc:cable.prerequisites.surface-route","hash":"5935d4a5474b","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.steps.channel":{"section":"steps","n":"Βιδώνουμε το πλαστικό κανάλι στους τοίχους, ίσιο, με τα ειδικά εξαρτήματα στις γωνίες.","s":"Βιδώνουμε ίσια το πλαστικό κανάλι στους τοίχους και βάζουμε τα ειδικά κομμάτια στις γωνίες.","c":"Κανάλι στους τοίχους, με γωνίες.","source":"new","review":{"key":"sc:cable.steps.channel","hash":"5e2bcb3dac30","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.steps.channel-wire":{"section":"steps","n":"Περνάμε μέσα στο κανάλι τα καλώδια, στη διατομή που χρειάζεται το φορτίο, και κλείνουμε το καπάκι.","s":"Βάζουμε μέσα στο κανάλι καλώδια όσο χοντρά χρειάζονται για τις συσκευές και κλείνουμε το καπάκι του.","c":"Καλώδια στο κανάλι, καπάκι.","source":"new","review":{"key":"sc:cable.steps.channel-wire","hash":"3c00a95ae6ba","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.steps.junction":{"section":"steps","n":"Χρησιμοποιούμε ή τοποθετούμε κουτί διακλάδωσης στο σημείο από όπου ξεκινά η προέκταση.","s":"Βρίσκουμε ή βάζουμε κουτί, εκεί που ενώνουμε το καινούργιο καλώδιο με το παλιό.","c":"Κουτί διακλάδωσης στην αρχή.","source":"new","review":{"key":"sc:cable.steps.junction","hash":"619f20329cdd","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.steps.pull":{"section":"steps","n":"Τραβάμε το νέο καλώδιο μέσα από τον υπάρχοντα σωλήνα με ατσαλίνα.","s":"Περνάμε το καινούργιο καλώδιο μέσα από τον σωλήνα που υπάρχει, με ένα ειδικό σύρμα που το τραβάει.","c":"Τράβηγμα καλωδίου με ατσαλίνα.","source":"new","review":{"key":"sc:cable.steps.pull","hash":"5ebb6a86a5bd","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.x.close-old":{"section":"steps","n":"Κλείνουμε το παλιό σημείο με τυφλό καπάκι, όταν το σημείο μεταφέρεται.","s":"Αν μεταφέρουμε την πρίζα ή τον διακόπτη, κλείνουμε την παλιά θέση με ένα απλό καπάκι.","c":"Τυφλό καπάκι στο παλιό σημείο.","source":"new","review":{"key":"sc:cable.x.close-old","hash":"1d9a4e1b00df","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.x.data":{"section":"steps","n":"Περνάμε μαζί και καλώδιο δικτύου ή κεραίας, όπου έχει συμφωνηθεί.","s":"Αν το έχουμε πει, περνάμε στην ίδια διαδρομή και καλώδιο για ίντερνετ ή τηλεόραση.","c":"Καλώδιο δικτύου ή κεραίας, αν συμφωνήθηκε.","source":"new","review":{"key":"sc:cable.x.data","hash":"bf68797c6e70","reviewed":false,"reviewer":null,"reviewed_at":null}},"cable.x.rcd":{"section":"steps","n":"Προσθέτουμε διακόπτη διαφυγής στη γραμμή, όπου δεν υπάρχει στον πίνακα.","s":"Αν ο πίνακας δεν έχει, βάζουμε διακόπτη που κόβει το ρεύμα όταν κάτι πάει στραβά, για προστασία από ηλεκτροπληξία.","c":"Διακόπτης διαφυγής, όπου λείπει.","source":"new","review":{"key":"sc:cable.x.rcd","hash":"1b1e562bf050","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.checks.1":{"section":"checks","n":"Μετράμε με όργανο τη μόνωση της γραμμής και τη συνέχεια της γείωσης.","s":"Μετράμε με όργανο ότι τα καλώδια είναι καλά μονωμένα και ότι η γείωση φτάνει παντού.","c":"Μέτρηση μόνωσης και γείωσης.","source":"current","review":{"key":"sc:elec-wiring.checks.1","hash":"16107d29c3dc","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.checks.2":{"section":"checks","n":"Δοκιμάζουμε κάθε σημείο της γραμμής με όργανο και με συσκευή.","s":"Δοκιμάζουμε κάθε σημείο με όργανο και με μια συσκευή.","c":"Δοκιμή κάθε σημείου.","source":"current","review":{"key":"sc:elec-wiring.checks.2","hash":"da774340527a","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.checks.3":{"section":"checks","n":"Κατεβάζουμε την ασφάλεια: κόβει όλη τη γραμμή και μόνο αυτήν.","s":"Κατεβάζουμε την ασφάλεια: σβήνει όλη η γραμμή και τίποτα άλλο.","c":"Η ασφάλεια κόβει μόνο αυτή τη γραμμή.","source":"current","review":{"key":"sc:elec-wiring.checks.3","hash":"8b5ee07b497d","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.handover.1":{"section":"handover","n":"Σας δίνουμε φωτογραφίες ή σκίτσο με τις διαδρομές, τραβηγμένα πριν κλείσουν τα αυλάκια.","s":"Σας δίνουμε φωτογραφίες ή σχέδιο από πού περνούν τα καλώδια, πριν κλείσουν οι τοίχοι.","c":"Φωτογραφίες ή σκίτσο διαδρομών.","source":"current","review":{"key":"sc:elec-wiring.handover.1","hash":"788433de7284","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.handover.2":{"section":"handover","n":"Καθαρίζουμε τη σκόνη και τα μπάζα.","s":"Σκουπίζουμε τη σκόνη και μαζεύουμε τα μπάζα.","c":"Καθάρισμα σκόνης και μπαζών.","source":"current","review":{"key":"sc:elec-wiring.handover.2","hash":"d6fe5f09b87f","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.preparation.1":{"section":"preparation","n":"Κόβουμε το ρεύμα στη γραμμή και ελέγχουμε με όργανο ότι δεν υπάρχει τάση.","s":"Κατεβάζουμε την ασφάλεια και ελέγχουμε με όργανο ότι δεν έχει ρεύμα.","c":"Διακοπή και έλεγχος τάσης.","source":"current","review":{"key":"sc:elec-wiring.preparation.1","hash":"4ae6f3adbe26","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.preparation.2":{"section":"preparation","n":"Σημαδεύουμε τις διαδρομές οριζόντια και κάθετα, ώστε στο μέλλον να ξέρουμε πού περνούν τα καλώδια.","s":"Σημαδεύουμε από πού θα περάσουν τα καλώδια, μόνο ίσια πάνω-κάτω και δεξιά-αριστερά, για να ξέρουμε πού είναι στο μέλλον.","c":"Σημάδεμα διαδρομών.","source":"current","review":{"key":"sc:elec-wiring.preparation.2","hash":"e00dd9c231b5","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.preparation.3":{"section":"preparation","n":"Ανοίγουμε αυλάκια και κουτιά, ή χρησιμοποιούμε τις υπάρχουσες σωληνώσεις όπου γίνεται.","s":"Σκάβουμε τον τοίχο για τα καλώδια και τα κουτιά, ή περνάμε από σωλήνες που υπάρχουν, όπου γίνεται.","c":"Αυλάκια και κουτιά, ή υπάρχοντες σωλήνες.","source":"current","review":{"key":"sc:elec-wiring.preparation.3","hash":"debb79b18836","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.prerequisites.1":{"section":"prerequisites","n":"Να έχουμε συμφωνήσει ποια σημεία θα τροφοδοτεί η γραμμή και ποιες συσκευές θα συνδεθούν σε αυτήν.","s":"Να έχουμε πει ποια σημεία θα παίρνουν ρεύμα από τη γραμμή και ποιες συσκευές θα μπουν σε αυτήν.","c":"Συμφωνημένα σημεία και συσκευές.","source":"current","review":{"key":"sc:elec-wiring.prerequisites.1","hash":"0e2f2b877190","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.prerequisites.2":{"section":"prerequisites","n":"Πρόσβαση στον πίνακα και ελεύθερη θέση για νέα ασφάλεια.","s":"Να φτάνουμε τον πίνακα και να υπάρχει χώρος για μια ακόμα ασφάλεια.","c":"Πρόσβαση και θέση στον πίνακα.","source":"current","review":{"key":"sc:elec-wiring.prerequisites.2","hash":"544030e54010","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.prerequisites.3":{"section":"prerequisites","n":"Αν θα ανοιχτούν τοίχοι, να έχει συμφωνηθεί ποιος κλείνει και βάφει τα αυλάκια.","s":"Αν σκάψουμε τοίχους, να έχουμε πει ποιος θα κλείσει και θα βάψει τα σκαψίματα.","c":"Ποιος κλείνει και βάφει τα αυλάκια.","source":"current","review":{"key":"sc:elec-wiring.prerequisites.3","hash":"312832464995","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.steps.1":{"section":"steps","n":"Περνάμε σωλήνα σπιράλ και μέσα του τα καλώδια, στη διατομή που χρειάζεται το φορτίο της γραμμής.","s":"Περνάμε σπιράλ σωλήνα και μέσα του καλώδια όσο χοντρά χρειάζονται για τις συσκευές.","c":"Σπιράλ και καλώδια στη σωστή διατομή.","source":"current","review":{"key":"sc:elec-wiring.steps.1","hash":"ef33f288a089","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.steps.2":{"section":"steps","n":"Συνδέουμε τα καλώδια στα κουτιά διακλάδωσης και στα σημεία (πρίζες, διακόπτες, φωτιστικά).","s":"Ενώνουμε τα καλώδια στα κουτιά και στις πρίζες, στους διακόπτες και στα φωτιστικά.","c":"Συνδέσεις σε κουτιά και σημεία.","source":"current","review":{"key":"sc:elec-wiring.steps.2","hash":"f33b24d79799","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.steps.3":{"section":"steps","n":"Συνδέουμε τη γραμμή σε δική της ασφάλεια στον πίνακα και βάζουμε ετικέτα.","s":"Βάζουμε τη γραμμή σε δική της ασφάλεια στον πίνακα και της κολλάμε ετικέτα.","c":"Δική της ασφάλεια, με ετικέτα.","source":"current","review":{"key":"sc:elec-wiring.steps.3","hash":"38addabd4442","reviewed":false,"reviewer":null,"reviewed_at":null}},"elec-wiring.steps.4":{"section":"steps","n":"Κλείνουμε τα αυλάκια με γύψο, έτοιμα για βάψιμο.","s":"Κλείνουμε τα σκαψίματα με γύψο, έτοιμα για βάψιμο.","c":"Κλείσιμο αυλακιών με γύψο.","source":"current","review":{"key":"sc:elec-wiring.steps.4","hash":"e8d23bfb6a54","reviewed":false,"reviewer":null,"reviewed_at":null}}},"licensedNote":"Η εργασία αυτή γίνεται, όπως ορίζει ο νόμος, από αδειούχο ή πιστοποιημένο επαγγελματία.","sections":[{"key":"prerequisites","title":"Τι χρειάζεται πριν ξεκινήσουμε"},{"key":"preparation","title":"Προεργασία"},{"key":"steps","title":"Στάδια τοποθέτησης"},{"key":"checks","title":"Έλεγχοι πριν την παράδοση"},{"key":"handover","title":"Καθαρισμός και παράδοση"}]}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const KEY = 'ergolav-review:' + D.material;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = {reviewer: '', decisions: {}};
+try { S = Object.assign(S, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} paint(); };
+$('reviewer').value = S.reviewer || '';
+$('reviewer').oninput = e => { S.reviewer = e.target.value; save(); };
+// Αποφάσεις: μόνο για το κείμενο που φαίνεται (ίδιο αποτύπωμα)· ό,τι άλλαξε από τότε ξαναζητά έλεγχο.
+const keys = {};
+for(const c of D.cases) if(c.review) keys[c.review.key] = c.review;
+for(const [, it] of Object.entries(D.items)) keys[it.review.key] = it.review;
+for(const x of D.extras) keys[x.review.key] = x.review;
+const verdict = k => { const d = S.decisions[k]; return d && d.hash === keys[k].hash ? d.verdict : (keys[k].reviewed ? 'ok' : null); };
+const decideHtml = (k, what) => {
+  const d = S.decisions[k] && S.decisions[k].hash === keys[k].hash ? S.decisions[k] : null, v = verdict(k);
+  return '<div class="decide" data-key="' + esc(k) + '"><span class="what">' + what + '</span>'
+    + '<button type="button" class="ok' + (v === 'ok' ? ' on' : '') + '" data-v="ok" aria-pressed="' + (v === 'ok') + '">Εγκρίνω</button>'
+    + '<button type="button" class="fix' + (v === 'fix' ? ' on' : '') + '" data-v="fix" aria-pressed="' + (v === 'fix') + '">Θέλει διόρθωση</button>'
+    + '<textarea placeholder="Τι να διορθωθεί;" aria-label="Σχόλιο"' + (v === 'fix' ? '' : ' hidden') + '>' + esc(d && d.comment || '') + '</textarea></div>';
+};
+const item = (id, withSc) => {
+  const it = D.items[id];
+  return '<div class="row" data-item="' + esc(id) + '">'
+    + '<div class="v"><small>Κανονική <span class="tag ' + (it.source === 'new' ? 'new">νέο' : 'cur">σημερινό') + '</span></small>' + esc(it.n) + '</div>'
+    + '<div class="v"><small>Απλή</small>' + esc(it.s) + '</div>'
+    + '<div class="v"><small>Σύντομη</small>' + esc(it.c) + '</div>'
+    + (withSc ? '<div class="acts">' + decideHtml(it.review.key, 'Απλή και σύντομη:') + '</div>' : '') + '</div>';
+};
+const body = c => {
+  let h = '<p class="meta">Περίπτωση: ' + esc(c.label) + ' · ' + esc(c.duration) + (c.task ? ' · κείμενο: ' + esc(c.task) : '') + '</p>';
+  if(c.licensed) h += '<p class="note">' + esc(D.licensedNote) + '</p>';
+  if(c.safety) h += '<p class="note">Ασφάλεια: ' + esc(c.safety) + '</p>';
+  for(const s of D.sections){ const ids = c.sections[s.key] || []; if(!ids.length) continue;
+    h += '<div class="sec"><h3>' + esc(s.title) + '</h3>' + ids.map(id => item(id, true)).join('') + '</div>'; }
+  if(c.review) h += decideHtml(c.review.key, c.source === 'existing' ? 'Η περίπτωση (έτοιμο κείμενο):' : 'Η περίπτωση (σύνθεση και νέα κείμενα):');
+  return h;
+};
+const groups = [['base', 'Βασικές περιπτώσεις (σημερινές αναλύσεις)', 'Τα κείμενα δεν αλλάζουν· ελέγχεις μόνο την απλή και τη σύντομη εκδοχή.'],
+  ['existing', 'Περιπτώσεις με έτοιμο κείμενο', 'Από τις 96 γραμμένες αναλύσεις.'], ['new', D.material === 'generic' ? 'Κατηγορίες' : 'Νέες περιπτώσεις', '']];
+let html = '';
+for(const [src, title, sub] of groups){
+  const list = D.cases.filter(c => c.source === src); if(!list.length) continue;
+  html += '<h2>' + title + ' (' + list.length + ')</h2>' + (sub ? '<p class="small meta">' + sub + '</p>' : '');
+  for(const c of list) html += '<details class="case" data-case="' + esc(c.id) + '"><summary><b>' + esc(c.title) + '</b><span class="state" data-state="' + esc(c.id) + '"></span><span class="lbl">' + esc(c.label) + '</span></summary><div class="body"></div></details>';
+}
+if(D.extras.length){
+  html += '<h2>Επιπλέον βήματα για το «Λείπει κάτι» (' + D.extras.length + ')</h2>';
+  html += '<div class="case" style="padding:0 14px 14px">' + D.extras.map(x => '<div class="sec"><h3>' + esc((D.sections.find(s => s.key === x.section) || {}).title || x.section)
+    + (x.when ? ' · <span class="meta">μόνο όταν ' + esc(Object.entries(x.when).map(([k, v]) => k + ' = ' + v.join(' ή ')).join(', ')) + '</span>' : '') + '</h3>'
+    + item(x.id, true) + decideHtml(x.review.key, 'Να μπαίνει ως επιπλέον βήμα:') + '</div>').join('') + '</div>';
+}
+$('cases').innerHTML = html;
+// Το σώμα κάθε περίπτωσης φτιάχνεται όταν ανοίξει (οι σελίδες έχουν εκατοντάδες σημεία).
+document.querySelectorAll('details.case').forEach(d => d.addEventListener('toggle', () => {
+  const b = d.querySelector('.body'); if(d.open && !b.innerHTML) b.innerHTML = body(D.cases.find(c => c.id === d.dataset.case));
+}));
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.decide button'); if(!btn) return;
+  const k = btn.closest('.decide').dataset.key, v = btn.dataset.v, prev = S.decisions[k];
+  S.decisions[k] = {verdict: v, hash: keys[k].hash, comment: v === 'fix' ? (prev && prev.comment || '') : ''};
+  save();
+});
+document.addEventListener('input', e => {
+  const box = e.target.closest('.decide'); if(!box || e.target.tagName !== 'TEXTAREA') return;
+  const k = box.dataset.key; S.decisions[k] = Object.assign({verdict: 'fix', hash: keys[k].hash}, S.decisions[k], {comment: e.target.value});
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+});
+function paint(){
+  // Ίδιο σημείο σε πολλές περιπτώσεις: η απόφαση φαίνεται παντού.
+  document.querySelectorAll('.decide').forEach(box => {
+    const v = verdict(box.dataset.key);
+    box.querySelectorAll('button').forEach(b => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    box.querySelector('textarea').hidden = v !== 'fix';
+  });
+  for(const c of D.cases){
+    const el = document.querySelector('[data-state="' + CSS.escape(c.id) + '"]'); if(!el) continue;
+    const ks = [...(c.review ? [c.review.key] : []), ...Object.values(c.sections).flat().map(id => D.items[id].review.key)];
+    const vs = ks.map(verdict), fix = vs.includes('fix'), done = vs.every(v => v === 'ok');
+    el.className = 'state ' + (fix ? 'fix' : done ? 'ok' : 'todo');
+    el.textContent = fix ? 'θέλει διόρθωση' : done ? 'εγκρίθηκε' : vs.filter(Boolean).length + '/' + vs.length;
+  }
+  const all = Object.keys(keys), dec = all.filter(k => verdict(k));
+  $('progress').textContent = dec.length + ' από ' + all.length + ' αποφάσεις · ' + all.filter(k => verdict(k) === 'fix').length + ' για διόρθωση';
+}
+document.addEventListener('toggle', paint, true);
+$('filter').onchange = e => {
+  const f = e.target.value;
+  document.querySelectorAll('details.case').forEach(d => {
+    const st = d.querySelector('.state').className;
+    d.classList.toggle('hidden', f === 'todo' ? /\b(ok)\b/.test(st) : f === 'fix' ? !/\bfix\b/.test(st) : false);
+  });
+};
+$('export').onclick = () => {
+  if(!S.reviewer.trim()){ $('reviewer').focus(); alert('Γράψε πρώτα το όνομά σου (ποιος ελέγχει).'); return; }
+  const decisions = Object.entries(S.decisions).filter(([k, d]) => keys[k] && d.hash === keys[k].hash).map(([key, d]) => ({key, hash: d.hash, verdict: d.verdict, comment: d.comment || ''}));
+  const file = {format: 'ergolav-reviews', version: 1, material: D.material, reviewer: S.reviewer.trim(), exported_at: new Date().toISOString(), decisions};
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], {type: 'application/json'}));
+  a.download = 'ergolav-elegxos-' + D.material + '-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+$('approveSc').onclick = () => {
+  // Γρήγορα: όσες απλές/σύντομες δεν έχουν απόφαση, στις ανοιχτές περιπτώσεις.
+  document.querySelectorAll('details.case[open] .row .decide').forEach(box => { const k = box.dataset.key; if(!verdict(k)) S.decisions[k] = {verdict: 'ok', hash: keys[k].hash, comment: ''}; });
+  save();
+};
+paint();
+</script>
+</body></html>

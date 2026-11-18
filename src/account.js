@@ -467,6 +467,9 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
       return {error: ''};
     },
 
+    /** Ο client της βάσης για τον συνδεδεμένο χρήστη (συγχρονισμός του «Άλλαξέ το»)· null χωρίς σύνδεση. */
+    async db(){ return enabled && user ? {client: await c(), userId: user.id} : null; },
+
     // ── Στοιχεία επιχείρησης ──
     async remote(){
       const {data, error} = await (await c()).from('profiles').select('business_name,specialty,phone,logo_path').eq('id', user.id).maybeSingle();
