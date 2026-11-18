@@ -16,4 +16,8 @@ psql=("$bin/psql" -h "$dir" -p "$port" -U postgres -v ON_ERROR_STOP=1 -q -X)
 "${psql[@]}" -f "$here/../migrations/20261116000000_auth_profiles.sql"   # ξανατρέξιμο
 "${psql[@]}" -f "$here/../migrations/20261117000000_has_password.sql"
 "${psql[@]}" -f "$here/../migrations/20261117000000_has_password.sql"   # ξανατρέξιμο
+"${psql[@]}" -f "$here/../migrations/20261118000000_allaxe_bot.sql"
+"${psql[@]}" -f "$here/../migrations/20261118000000_allaxe_bot.sql"   # ξανατρέξιμο
+"${psql[@]}" -f "$here/../migrations/20261119000000_bot_metrics_strict.sql"
+"${psql[@]}" -f "$here/../migrations/20261119000000_bot_metrics_strict.sql"   # ξανατρέξιμο
 "${psql[@]}" -t -A -f "$here/rls.sql" | tail -1
