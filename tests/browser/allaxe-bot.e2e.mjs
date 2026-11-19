@@ -58,7 +58,8 @@ async function quoteToAnalysis(p, say){
   await p.click('#anOpen'); await p.waitForSelector('#s-analysis.on');
   await waitCta(p, /^Στείλε και τα δύο PDF$/);
 }
-const W = '#apdf [data-task="plumb-wc-wall-hung"]';
+// Μόνο η ζωντανή οθόνη: μετά από κάθε αλλαγή το PDF ξαναφτιάχνεται και το html2pdf βάζει για λίγο ένα αντίγραφο του #apdf στο body.
+const W = '#s-analysis #apdf [data-task="plumb-wc-wall-hung"]';
 const lastBot = p => p.$$eval('#botLog .msg.bot', els => els.at(-1)?.textContent);
 const opts = p => p.$$eval('#botLog .bot-opts', b => [...(b.at(-1)?.querySelectorAll('button:not(:disabled)') || [])].map(e => e.textContent));
 async function say(p, label){
