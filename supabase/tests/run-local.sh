@@ -20,4 +20,7 @@ psql=("$bin/psql" -h "$dir" -p "$port" -U postgres -v ON_ERROR_STOP=1 -q -X)
 "${psql[@]}" -f "$here/../migrations/20261118000000_allaxe_bot.sql"   # ξανατρέξιμο
 "${psql[@]}" -f "$here/../migrations/20261119000000_bot_metrics_strict.sql"
 "${psql[@]}" -f "$here/../migrations/20261119000000_bot_metrics_strict.sql"   # ξανατρέξιμο
+"${psql[@]}" -f "$here/../migrations/20261120000000_price_monitoring.sql"
+"${psql[@]}" -f "$here/../migrations/20261120000000_price_monitoring.sql"   # ξανατρέξιμο
 "${psql[@]}" -t -A -f "$here/rls.sql" | tail -1
+"${psql[@]}" -t -A -f "$here/price-rls.sql" | tail -1
