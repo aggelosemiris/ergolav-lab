@@ -7,11 +7,10 @@ do $$ begin
   -- Η εβδομαδιαία ενημέρωση τιμών γράφει ως service_role (παρακάμπτει το RLS, όπως στο Supabase).
   if not exists (select from pg_roles where rolname = 'service_role') then create role service_role nologin bypassrls; end if;
 end $$;
--- Όπως το Supabase: το service_role έχει όλα τα δικαιώματα στους νέους πίνακες/ακολουθίες/συναρτήσεις του public.
+-- Όπως το project του ergolav: ό,τι φτιάχνει ο postgres ΔΕΝ δίνει αυτόματα δικαιώματα (ούτε στο service_role,
+-- ούτε εκτέλεση συναρτήσεων). Κάθε migration δίνει ρητά ό,τι χρειάζεται — αλλιώς τα tests πρέπει να αποτύχουν.
 grant usage on schema public to service_role;
-alter default privileges in schema public grant all on tables to service_role;
-alter default privileges in schema public grant all on sequences to service_role;
-alter default privileges in schema public grant execute on functions to service_role;
+alter default privileges in schema public revoke execute on functions from public;
 
 create schema if not exists auth;
 create table if not exists auth.users (
