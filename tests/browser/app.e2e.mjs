@@ -6,6 +6,8 @@ const PHOTO = fs.realpathSync(new URL('../stress/fixtures/01-normal.jpg', import
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
 const ctx = await b.newContext({viewport:{width:400,height:860}, acceptDownloads: true});
 const p = await ctx.newPage();
+// Χωρίς αναγνώριση φωνής: ο headless Chromium κάποιες φορές έχει webkitSpeechRecognition και τότε το μικρόφωνο ακούει αντί να ανοίξει για γράψιμο.
+await p.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; });
 const errs = [], csp = [], external = [];
 p.on('pageerror', e => errs.push(e.message));
 p.on('console', m => { if(/Content Security Policy|Refused to/i.test(m.text())) csp.push(m.text().slice(0, 160)); });
@@ -583,6 +585,7 @@ await p2.close();
 
 // ── Χαλασμένο localStorage: η εφαρμογή ανοίγει, δείχνει τη φόρμα, ο αριθμός ξεκινά από 1 ──
 const p3 = await ctx.newPage();
+await p3.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; });
 const errs3 = [];
 p3.on('pageerror', e => errs3.push(e.message));
 await p3.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());

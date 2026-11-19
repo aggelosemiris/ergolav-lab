@@ -12,6 +12,8 @@ const PROFILE = JSON.stringify({name: 'Δοκιμή Τεχνική', trade: 'Υ�
 async function page({viewport = {width: 400, height: 860}, profile = true, init} = {}){
   const ctx = await b.newContext({viewport, acceptDownloads: true});
   const p = await ctx.newPage();
+  // Χωρίς αναγνώριση φωνής: ο headless Chromium κάποιες φορές έχει webkitSpeechRecognition και τότε το μικρόφωνο ακούει αντί να ανοίξει για γράψιμο.
+  await p.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; });
   p.errs = []; p.csp = []; p.external = [];
   p.on('pageerror', e => p.errs.push(e.message));
   p.on('console', m => { if(/Content Security Policy|Refused to/i.test(m.text())) p.csp.push(m.text().slice(0, 140)); });
