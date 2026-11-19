@@ -63,8 +63,8 @@ async function openAnalysis(p){
   await p.click('#anOpen'); await p.waitForSelector('#s-analysis.on');
   await waitCta(p, /^Στείλε και τα δύο PDF$/);
 }
-const tags = p => p.$$eval('#apdf .an-case', els => els.map(e => e.textContent));
-const titles = p => p.$$eval('#apdf h3', els => els.map(e => e.textContent.replace(/^\d+\.\s*/, '')));
+const tags = p => p.$$eval('#s-analysis #apdf .an-case', els => els.map(e => e.textContent));
+const titles = p => p.$$eval('#s-analysis #apdf h3', els => els.map(e => e.textContent.replace(/^\d+\.\s*/, '')));
 const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμηση, και μια μπαταρία νιπτήρα';
 
 {
@@ -86,7 +86,7 @@ const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμ
   });
   ok('η ετικέτα ΔΕΝ μπαίνει στο PDF (οι τίτλοι μπαίνουν)', inPdf && !inPdf.tag && inPdf.title, JSON.stringify(inPdf));
   // Πάτημα σε βήμα: με το flag ανοίγει το bot χωρίς AI, ποτέ το «Άλλαξέ το» με AI.
-  await p.locator('#apdf li[data-sel="steps"]').first().click();
+  await p.locator('#s-analysis #apdf li[data-sel="steps"]').first().click();
   await p.click('.sel-go');
   ok('πάτημα σε βήμα → το bot χωρίς AI, όχι το «Άλλαξέ το» με AI', await p.isVisible('#botDialog[open]') && !(await p.isVisible('#rwDialog[open]')));
   await p.keyboard.press('Escape');
@@ -95,7 +95,7 @@ const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμ
   await p.screenshot({path: process.env.SHOT_DIR ? `${process.env.SHOT_DIR}/allaxe-pick-390.png` : '/dev/null', fullPage: false}).catch(() => {});
 
   // Αποστολή (κατέβασμα) → η προσφορά «Στάλθηκε». Μετά μπαίνει κανόνας· η σταλμένη κρατά ΑΚΡΙΒΩΣ την ανάλυσή της.
-  const pdfText = () => p.$eval('#apdf', e => { const c = e.cloneNode(true); c.querySelectorAll('button').forEach(b => b.remove()); return c.innerText; });
+  const pdfText = () => p.$eval('#s-analysis #apdf', e => { const c = e.cloneNode(true); c.querySelectorAll('button').forEach(b => b.remove()); return c.innerText; });
   const before = await pdfText();
   await p.evaluate(() => { navigator.canShare = () => false; });
   await p.click('#ctaBtn'); await p.waitForSelector('#sheet.on');
@@ -109,7 +109,7 @@ const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμ
   await p.click('#navBack'); await p.waitForSelector('#s-pdf.on');
   await p.waitForTimeout(800);
   await openAnalysis(p);
-  ok('σταλμένη προσφορά: ίδια ανάλυση, ίδιες ετικέτες, παρά τον νέο κανόνα· χωρίς «Άλλαξέ το»', await pdfText() === before && !(await p.$('#apdf .an-change')));
+  ok('σταλμένη προσφορά: ίδια ανάλυση, ίδιες ετικέτες, παρά τον νέο κανόνα· χωρίς «Άλλαξέ το»', await pdfText() === before && !(await p.$('#s-analysis #apdf .an-change')));
 
   // Νέα προσφορά: ο κανόνας περίπτωσης και ο κανόνας λόγου μπαίνουν.
   await makeQuote(p, SAY);
@@ -117,7 +117,7 @@ const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμ
   const t2 = await tags(p);
   ok('νέα προσφορά με τον κανόνα: «Σε νέα θέση · Κρεμαστή · Μπροστά…», από τον κανόνα σου, απλά λόγια',
     (await titles(p))[0] === caseTitle('wc:new.hung.front') && /^Λεκάνη: Σε νέα θέση · Κρεμαστή · Μπροστά.* · από τον κανόνα σου · απλά λόγια$/.test(t2[0]), t2[0]);
-  const firstItem = await p.textContent('#apdf [data-task="plumb-wc-wall-hung"] li');
+  const firstItem = await p.textContent('#s-analysis #apdf [data-task="plumb-wc-wall-hung"] li');
   ok('απλά λόγια σε κάθε σημείο που έχει εγκεκριμένη απλή εκδοχή',
     Object.values(ALL.items).some(it => it.s && firstItem.startsWith(it.s)), firstItem);
 
@@ -140,7 +140,7 @@ for(const [w, h, scheme] of [[360, 780, 'dark'], [1280, 900, 'light']]){
   await makeQuote(p, SAY);
   await openAnalysis(p);
   const over = await p.evaluate(() => document.documentElement.scrollWidth - innerWidth);
-  const box = await p.locator('#apdf .an-case').first().boundingBox();
+  const box = await p.locator('#s-analysis #apdf .an-case').first().boundingBox();
   ok(`${w}px ${scheme}: χωρίς οριζόντια κύλιση, η ετικέτα μέσα στη σελίδα`, over <= 0 && box && box.x >= 0 && box.x + box.width <= w, `overflow ${over}`);
   if(process.env.SHOT_DIR) await p.screenshot({path: `${process.env.SHOT_DIR}/allaxe-pick-${w}-${scheme}.png`});
   await ctx.close();
@@ -154,7 +154,7 @@ for(const [w, h, scheme] of [[360, 780, 'dark'], [1280, 900, 'light']]){
   await openAnalysis(p);
   ok('flag false: καμία ετικέτα, η σημερινή ανάλυση (κρεμαστή λεκάνη)',
     !(await tags(p)).length && (await titles(p))[0] === 'Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού', (await titles(p)).join(' | '));
-  await p.locator('#apdf li[data-sel="steps"]').first().click();
+  await p.locator('#s-analysis #apdf li[data-sel="steps"]').first().click();
   ok('flag false: το πάτημα σε βήμα δείχνει το «Άλλαξέ το» όπως σήμερα', await p.isVisible('.sel-go'));
   ok('flag false: κανένα σφάλμα σελίδας', !p.errs.length, p.errs.join(' | '));
   await ctx.close();

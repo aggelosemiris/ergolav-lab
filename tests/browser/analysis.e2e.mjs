@@ -75,18 +75,18 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
 
   await p.click('#anOpen'); await p.waitForSelector('#s-analysis.on');
   await waitCta(p, /^Στείλε και τα δύο PDF$/);
-  const head = await p.textContent('#apdf .pdf-head');
+  const head = await p.textContent('#s-analysis #apdf .pdf-head');
   ok('PDF ανάλυσης στο ίδιο στυλ: λογότυπο/αρχικά, όνομα, τηλέφωνο, αριθμός, ημερομηνία, τίτλος',
     /ΝΠ/.test(head) && /Νίκος Παπαδάκης/.test(head) && /Τηλ\. 6912345678/.test(head) && /Αρ\.\s*1/.test(head) && /\d+\/\d+\/\d{4}/.test(head)
-    && await p.textContent('#apdf h2') === 'Ανάλυση εργασιών', head.replace(/\s+/g, ' '));
-  const tasks = await p.$$eval('#apdf h3', els => els.map(e => e.textContent));
+    && await p.textContent('#s-analysis #apdf h2') === 'Ανάλυση εργασιών', head.replace(/\s+/g, ' '));
+  const tasks = await p.$$eval('#s-analysis #apdf h3', els => els.map(e => e.textContent));
   ok('μία ενότητα ανά εργασία, με τη σειρά της προσφοράς· λεκάνη + καζανάκι μαζί, σπιράλ και κόλλα στην εργασία τους',
     tasks.join(' | ') === '1. Τοποθέτηση κρεμαστής λεκάνης με καζανάκι εντοιχισμού | 2. Τοποθέτηση μπαταρίας νιπτήρα | 3. Επικόλληση πλακιδίων τοίχου'
-    && /Σπιράλ/.test(await p.textContent('#apdf [data-task="plumb-mixer-basin"] .an-for')), tasks.join(' | '));
+    && /Σπιράλ/.test(await p.textContent('#s-analysis #apdf [data-task="plumb-mixer-basin"] .an-for')), tasks.join(' | '));
   ok('γραμμές χωρίς ανάλυση: καμία εδώ (η λίστα κρυφή)', !(await p.isVisible('#anWithout')));
 
   // «Άλλαξέ το» με φωνή: πάτημα σε βήμα → κουμπί → γρήγορη επιλογή → μικρόφωνο → Ξαναγράψ' το → Κράτα το νέο
-  const step = p.locator('#apdf [data-task="plumb-wc-wall-hung"] li[data-sel="steps"]').nth(2);
+  const step = p.locator('#s-analysis #apdf [data-task="plumb-wc-wall-hung"] li[data-sel="steps"]').nth(2);
   const before = (await step.textContent()).trim();
   const t0 = Date.now();
   await step.click();
@@ -129,14 +129,14 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
 
   // Ολόκληρη ενότητα, «Λάθος σειρά», και ο κανόνας μπαίνει στο επόμενο αίτημα
   p.reply = null;
-  await p.click('#apdf [data-task="plumb-mixer-basin"] h4[data-sel="checks"]');
+  await p.click('#s-analysis #apdf [data-task="plumb-mixer-basin"] h4[data-sel="checks"]');
   await p.click('.sel-go'); await p.waitForSelector('#rwDialog[open]');
   ok('πάτημα σε ενότητα: όλα τα στοιχεία της τονισμένα', (await p.$$('#rwSel mark')).length === 4);
   await p.click('#rwQuick button:has-text("Λάθος σειρά")');
   await p.click('#rwGo'); await p.waitForSelector('#rw-result:not([hidden])');
   ok('ο κανόνας ύφους μπαίνει σε κάθε επόμενο αίτημα', p.requests.at(-1).body.style_rules.join() === 'Πιο απλά λόγια' && p.requests.at(-1).body.target.scope === 'section');
   await p.click('#rwAbort');
-  ok('«Άκυρο»: τίποτα δεν αλλάζει', !(await p.isVisible('#rwDialog[open]')) && /Ανοίγουμε σιγά/.test(await p.textContent('#apdf [data-task="plumb-mixer-basin"] li[data-sel="checks"]')));
+  ok('«Άκυρο»: τίποτα δεν αλλάζει', !(await p.isVisible('#rwDialog[open]')) && /Ανοίγουμε σιγά/.test(await p.textContent('#s-analysis #apdf [data-task="plumb-mixer-basin"] li[data-sel="checks"]')));
 
   // Αποστολή: φύλλο με κατέβασμα / WhatsApp / Viber / Email, και τα δύο PDF
   await p.click('#ctaBtn');
@@ -152,7 +152,7 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
   // Επόμενη προσφορά με την ίδια εργασία: η εκδοχή του τεχνίτη· «Επαναφορά» → η αρχική
   await makeQuote(p, 'λεκάνη κρεμαστή και καζανάκι εντοιχισμού', 'Μαρία Κ.');
   await p.click('#anOpen'); await waitCta(p, /^Στείλε και τα δύο PDF$/);
-  const step2 = p.locator('#apdf li[data-sel="steps"]').nth(2);
+  const step2 = p.locator('#s-analysis #apdf li[data-sel="steps"]').nth(2);
   ok('νέα προσφορά: χρησιμοποιείται η εκδοχή του τεχνίτη', /^Ενώνουμε το νερό/.test(await step2.textContent()));
   await p.click('#anMine [data-reset]'); await p.click('#anMine [data-reset]');
   await waitCta(p, /^Στείλε και τα δύο PDF$/);
@@ -193,8 +193,8 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
   await ctx.setOffline(true);
   await p.click('#anOpen');
   await waitCta(p, /^Στείλε και τα δύο PDF$/);
-  ok('offline: το PDF με τις υπάρχουσες αναλύσεις βγαίνει', /Τοποθέτηση μπαταρίας νιπτήρα/.test(await p.textContent('#apdf h3')));
-  await p.click('#apdf li[data-sel="steps"]'); await p.click('.sel-go');
+  ok('offline: το PDF με τις υπάρχουσες αναλύσεις βγαίνει', /Τοποθέτηση μπαταρίας νιπτήρα/.test(await p.textContent('#s-analysis #apdf h3')));
+  await p.click('#s-analysis #apdf li[data-sel="steps"]'); await p.click('.sel-go');
   await p.click('#rwQuick button:has-text("Πιο σύντομο")'); await p.click('#rwGo');
   await p.waitForSelector('#rwError:not([hidden])');
   ok('offline: «Χρειάζεται σύνδεση», χωρίς αίτημα', /^Χρειάζεται σύνδεση/.test(await p.textContent('#rwError')) && p.requests.length === 0, await p.textContent('#rwError'));
@@ -224,7 +224,7 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
   await p.route('**/src/config.js', r => r.fulfill({contentType: 'text/javascript', body: "export const REWRITE_URL = '';"}));
   await makeQuote(p, 'μια μπαταρία νιπτήρα', '');
   await p.click('#anOpen'); await waitCta(p, /^Στείλε και τα δύο PDF$/);
-  await p.click('#apdf li[data-sel="steps"]'); await p.click('.sel-go');
+  await p.click('#s-analysis #apdf li[data-sel="steps"]'); await p.click('.sel-go');
   await p.click('#rwQuick button:has-text("Πιο σύντομο")'); await p.click('#rwGo');
   await p.waitForSelector('#rwError:not([hidden])');
   ok('χωρίς REWRITE_URL: «δεν έχει ρυθμιστεί ακόμα»', /δεν έχει ρυθμιστεί/.test(await p.textContent('#rwError')));

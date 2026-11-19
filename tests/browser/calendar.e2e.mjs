@@ -17,6 +17,13 @@ const mk = (no, client, sched, extra = {}) => ({no, at: Date.parse('2026-11-01T1
   vatRate: 24, profile: PROFILE, ...sched, ...extra});
 const S = (scheduled_date, scheduled_time = null, duration_days = 1, status = 'sent') => ({scheduled_date, scheduled_time, duration_days, status});
 
+// Χωρίς αναγνώριση φωνής: το μικρόφωνο ανοίγει κατευθείαν το κείμενο για γράψιμο. Το showPicker() μετριέται
+// (window.picks) αντί να ανοίγει τον επιλογέα του browser. Μπαίνει σε κάθε σελίδα, και σε όσες ανοίγουν αργότερα.
+const stubs = p => p.addInitScript(() => {
+  window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
+  window.picks = [];
+  HTMLInputElement.prototype.showPicker = function(){ window.picks.push(this.type); };
+});
 async function page({quotes = null, width = 390, height = 844, scheme = 'light', at = NOW, mobile = false} = {}){
   const ctx = await b.newContext({viewport: {width, height}, colorScheme: scheme, acceptDownloads: true, ...(mobile && {isMobile: true, hasTouch: true})});
   const p = await ctx.newPage();
@@ -24,12 +31,8 @@ async function page({quotes = null, width = 390, height = 844, scheme = 'light',
   p.on('pageerror', e => p.errs.push(e.message));
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
   await p.clock.setFixedTime(at);
-  // Χωρίς αναγνώριση φωνής: το μικρόφωνο ανοίγει κατευθείαν το κείμενο για γράψιμο. Το showPicker() μετριέται
-  // (window.picks) αντί να ανοίγει τον επιλογέα του browser.
+  await stubs(p);
   await p.addInitScript(({profile, quotes}) => {
-    window.SpeechRecognition = window.webkitSpeechRecognition = undefined;
-    window.picks = [];
-    HTMLInputElement.prototype.showPicker = function(){ window.picks.push(this.type); };
     if(sessionStorage.seeded) return;
     sessionStorage.seeded = '1';
     localStorage.clear();
@@ -142,7 +145,7 @@ const hitAt = (p, chip) => p.evaluate(sel => { const c = document.querySelector(
   ok('Viber: το PDF κατεβαίνει, «Το PDF κατέβηκε», ίδια ροή με πριν', /^Prosfora-1-Giorgos/.test(file.suggestedFilename()) && await p.textContent('#doneTitle') === 'Το PDF κατέβηκε', file.suggestedFilename());
   ok('μετά την αποστολή: «Στάλθηκε»', (await byNo(p, 1)).status === 'sent');
   // Ο browser των τεστ δεν έχει Viber: το viber:// αφήνει ανοιχτό το «άνοιγμα εφαρμογής» που τρώει τα πατήματα — νέα καρτέλα.
-  { const old = p; p = await old.context().newPage(); p.errs = old.errs; p.on('pageerror', e => p.errs.push(e.message));
+  { const old = p; p = await old.context().newPage(); await stubs(p); p.errs = old.errs; p.on('pageerror', e => p.errs.push(e.message));
     await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort()); await p.clock.setFixedTime(NOW); await old.close(); }
   await openCal(p);
   ok('«📅 Ημερολόγιο (1)» → ανοίγει στον Νοέμβριο, σήμερα τονισμένη και επιλεγμένη', await p.textContent('#calTitle') === 'Νοέμβριος 2026' &&

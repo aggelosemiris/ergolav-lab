@@ -11,6 +11,8 @@ const PROFILE = JSON.stringify({name: 'Νίκος Παπαδάκης', trade: '�
 async function page({viewport = {width: 400, height: 860}, init} = {}){
   const ctx = await b.newContext({viewport});
   const p = await ctx.newPage();
+  // Χωρίς αναγνώριση φωνής: ο headless Chromium κάποιες φορές έχει webkitSpeechRecognition και τότε το μικρόφωνο ακούει αντί να ανοίξει για γράψιμο.
+  await p.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; });
   p.errs = [];
   p.on('pageerror', e => p.errs.push(e.message));
   await p.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());

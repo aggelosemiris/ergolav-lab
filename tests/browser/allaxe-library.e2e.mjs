@@ -66,8 +66,8 @@ async function say(p, label){
   await p.waitForTimeout(150);
 }
 async function type(p, text){ await p.fill('#botText', text); await p.click('.bot-send'); await p.waitForTimeout(150); }
-const titles = p => p.$$eval('#apdf h3', els => els.map(e => e.textContent.replace(/^\d+\.\s*/, '')));
-const tagOf = (p, i) => p.$$eval('#apdf .an-case', els => els.map(e => e.textContent)).then(t => t[i]);
+const titles = p => p.$$eval('#s-analysis #apdf h3', els => els.map(e => e.textContent.replace(/^\d+\.\s*/, '')));
+const tagOf = (p, i) => p.$$eval('#s-analysis #apdf .an-case', els => els.map(e => e.textContent)).then(t => t[i]);
 
 {
   const ctx = await b.newContext({viewport: {width: 390, height: 860}});
@@ -123,8 +123,8 @@ const tagOf = (p, i) => p.$$eval('#apdf .an-case', els => els.map(e => e.textCon
   await say(p, 'Κράτα το'); await say(p, 'Κλείσε');
   const t3 = await titles(p);
   ok('και τα δύο μπήκαν: σετ ντους (επιλογή σου) και τζάκι (γραμμένη από σένα), χωρίς κενές ενότητες',
-    t3.includes('Τζάκι ηλεκτρικό') && t3.length === 2 && /γραμμένη από σένα/.test((await p.$$eval('#apdf .an-case', e => e.map(x => x.textContent))).join('|'))
-    && await p.$eval('#apdf [data-task="lib:τζακι ηλεκτρικο"]', s => !s.querySelector('.an-dur') && s.querySelectorAll('h4').length === 3), t3.join(' | '));
+    t3.includes('Τζάκι ηλεκτρικό') && t3.length === 2 && /γραμμένη από σένα/.test((await p.$$eval('#s-analysis #apdf .an-case', e => e.map(x => x.textContent))).join('|'))
+    && await p.$eval('#s-analysis #apdf [data-task="lib:τζακι ηλεκτρικο"]', s => !s.querySelector('.an-dur') && s.querySelectorAll('h4').length === 3), t3.join(' | '));
   ok('χωρίς ίντερνετ: το PDF βγαίνει', await p.textContent('#ctaBtn') === 'Στείλε και τα δύο PDF');
   await ctx.setOffline(false);
 
