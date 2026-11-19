@@ -12,7 +12,8 @@ let installationPanel=null;
 import { mountAnalysis } from './analysis-ui.js';
 let analysisPanel = null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
-import { tiers, priceKey, history, remember, ageLabel, isStale } from './prices.js';
+import { tiers, priceKey, history, remember, ageLabel, isStale, loadAll } from './prices.js';
+import { registerCustom, migrateCustom, refFor, refStatus, offersFor, createPriceSync } from './price-watch.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
 import { fitImage } from './image.js';
 import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes } from './history.js';
@@ -498,6 +499,7 @@ function buildLines(text, warning){
   // Νέα ανάλυση = νέα εργασία: ό,τι ειπώθηκε («εργασία 1.200 ευρώ»), αλλιώς η πρόταση του καταλόγου.
   LABOR = r.labor?.cents ?? null; laborVoice = LABOR; laborAsk = r.labor?.ask ?? null; laborBad = false;
   show('s-lines','Έλεγχος');
+  priceSync()?.then(r => { if(r && $('s-lines').classList.contains('on')) renderLines(); });
   renderLines();
 }
 function renderLines(){
@@ -620,7 +622,7 @@ function renderLines(){
             <button class="hi" data-c="${h.c}"><span class="num">${eur(h.c)}</span><span>${ageLabel(h.at)}${isStale(h.at) ? ' · <b>έλεγξε αν άλλαξε</b>' : ''}</span></button>`).join('')}
           </div>
           <div class="sug-act"><button data-a="keep">Κράτα την</button><button data-a="cancel">Άκυρο</button></div>
-        </div>` : ''}` : ''}`;
+        </div>` : ''}${refHtml(l, key, per)}` : ''}`;
       // Τύπος/μέγεθος: αλλάζει όνομα, κωδικό και τιμή καταλόγου (οι προτάσεις ξαναϋπολογίζονται· η δική του
       // τιμή για αυτόν τον κωδικό φαίνεται στο «Άλλη τιμή», όχι αυτόματα). Η δική του περιγραφή σβήνει: θα έλεγε άλλο είδος.
       const choose = o => {
@@ -628,6 +630,7 @@ function renderLines(){
         checkedCount++; renderLines();
       };
       el.querySelectorAll('[data-opt]').forEach(b => b.onclick = () => choose(l.options[+b.dataset.opt]));
+      bindRef(el, l, key);
       el.querySelectorAll('[data-near]').forEach(b => b.onclick = () => choose(l.options[+b.dataset.near]));
       // Άλλο μέγεθος = άλλο είδος: παίρνει το μέγεθος που ειπώθηκε, χωρίς κωδικό καταλόγου, και η τιμή γράφεται με το χέρι
       // (οι προτάσεις τιμής του καταλόγου κρύβονται — είναι για άλλο μέγεθος).
@@ -723,6 +726,7 @@ function renderLines(){
           if(readL) Object.assign(l, {lab: toCents(rl.value), labDraft: undefined});
           Object.assign(l, {mat: cents, tier: 'custom', customOpen: false, customDraft: ''});
           remember(key, cents);
+          if(l.added){ registerCustom(l, key); priceSync(true); }   // εκτός καταλόγου → αυτόματα στον εβδομαδιαίο έλεγχο τιμών
           checkedCount++; renderLines();
         };
         el.querySelector('[data-a="cancel"]').onclick = () => {
@@ -882,6 +886,41 @@ function pdfMode(fromHistory){
 
 // ─── Ημερολόγιο (πρώην ιστορικό): οι προσφορές της συσκευής στη μέρα που πάει ο τεχνίτης ───
 // Οι παλιές προσφορές (πριν από το ημερολόγιο) μπαίνουν στη μέρα δημιουργίας τους· αντίγραφο πρώτα, μία φορά.
+// ── Τιμές προμηθευτών (εβδομαδιαίος έλεγχος, src/price-watch.js): μόνο ενημέρωση· ο τεχνίτης αποφασίζει ──
+const priceSync = createPriceSync(() => authUi?.db?.() ?? null);
+migrateCustom(loadAll());
+function refHtml(l, key, per){
+  const r = refFor(key), status = refStatus(r);
+  if(!r || (!status && !(r.cents > 0))) return '';
+  const using = l.tier === 'custom' && l.mat === r.cents;
+  return `<div class="refp">${r.cents > 0 ? `<div class="refp-top"><span>Τιμή αγοράς προμηθευτών</span><span class="num"><b>${eur(r.cents)}</b><small>/${per} χωρίς ΦΠΑ</small></span></div>` : ''}
+    ${status ? `<small class="refp-st">${esc(status)}</small>` : ''}
+    ${r.cents > 0 ? `<div class="refp-act">${using ? '<small>Τη χρησιμοποιείς σε αυτή τη γραμμή.</small>' : '<button class="linkbtn" data-a="ref-use">Βάλ’ αυτή την τιμή</button>'}${r.id ? '<button class="linkbtn" data-a="ref-more" aria-expanded="false">Σύγκριση</button>' : ''}</div><div class="refp-list" hidden></div>` : ''}</div>`;
+}
+function bindRef(el, l, key){
+  const r = refFor(key);
+  const use = el.querySelector('[data-a="ref-use"]'), more = el.querySelector('[data-a="ref-more"]');
+  if(use) use.onclick = () => {
+    Object.assign(l, {mat: r.cents, tier: 'custom', customOpen: false, customDraft: ''});
+    remember(key, r.cents);
+    if(l.added) registerCustom(l, key);
+    checkedCount++; renderLines();
+  };
+  if(more) more.onclick = async () => {
+    const box = el.querySelector('.refp-list'), open = box.hidden;
+    box.hidden = !open; more.setAttribute('aria-expanded', String(open));
+    if(!open || box.dataset.loaded) return;
+    box.textContent = 'Φορτώνω…';
+    try {
+      const db = await authUi?.db?.();
+      const list = db ? await offersFor(db, r.id) : [];
+      box.dataset.loaded = '1';
+      box.innerHTML = list.length ? `<ul>${list.map(o => `<li><span><b>${esc(o.supplier_id)}</b> · <a href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">${esc(o.name)}</a>${o.promo ? ' <small>(ήταν σε προσφορά· μετρά η κανονική τιμή)</small>' : ''}</span><span class="num">${eur(o.unit_cents)}<small>/${esc(l.unit)}</small></span></li>`).join('')}</ul><small>Κανονικές τιμές, ανά μονάδα, χωρίς ΦΠΑ. Η εικόνα κάθε προμηθευτή: ${list[0] ? new Date(list[0].retrieved_at).toLocaleDateString('el-GR') : ''}.</small>`
+        : db ? 'Δεν υπάρχουν τιμές για σύγκριση αυτή τη στιγμή.' : 'Η σύγκριση θέλει σύνδεση στον λογαριασμό.';
+    } catch { box.textContent = 'Δεν φόρτωσε η σύγκριση. Δοκίμασε ξανά με σήμα.'; delete box.dataset.loaded; }
+  };
+}
+priceSync();
 migrateQuotes();
 const syncHistoryButton = () => {
   const n = listQuotes().length;

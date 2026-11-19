@@ -1,0 +1,47 @@
+# Εβδομαδιαία ενημέρωση τιμών προμηθευτών (χωρίς AI). Βλ. docs/PRICE_MONITORING.md.
+# Μία φορά: Settings → Secrets and variables → Actions → New repository secret:
+#   SUPABASE_URL               (π.χ. https://<project>.supabase.co)
+#   SUPABASE_SERVICE_ROLE_KEY  (Supabase → Project Settings → API → service_role· ΠΟΤΕ στο repo ή στην εφαρμογή)
+# Και η migration supabase/migrations/20261120000000_price_monitoring.sql στο SQL editor του Supabase.
+name: Weekly supplier prices
+on:
+  schedule:
+    - cron: '17 2 * * 1'        # κάθε Δευτέρα 02:17 UTC (04:17/05:17 ώρα Ελλάδας), εκτός ωρών αιχμής των sites
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: weekly-prices          # δεύτερη εκτέλεση περιμένει· η βάση έχει και δικό της κλείδωμα (price_run_start)
+  cancel-in-progress: false
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit tests
+        run: npm test
+      # Cache των σελίδων (λήξη 6 ημερών μέσα στον fetcher): αν μια εκτέλεση διακοπεί, η επόμενη συνεχίζει χωρίς νέα αιτήματα.
+      - uses: actions/cache@v4
+        with:
+          path: tools/prices/.cache
+          key: prices-cache-${{ github.run_id }}
+          restore-keys: prices-cache-
+      - name: Ενημέρωση τιμών
+        if: env.SUPABASE_URL != '' && env.SUPABASE_SERVICE_ROLE_KEY != ''
+        run: node tools/prices/run.mjs --store supabase --report prices-report.md
+      - name: Χωρίς ρυθμίσεις Supabase
+        if: env.SUPABASE_URL == '' || env.SUPABASE_SERVICE_ROLE_KEY == ''
+        run: echo "::warning::Λείπουν τα secrets SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY — η ενημέρωση τιμών δεν έτρεξε."
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prices-report
+          path: prices-report.md
+          if-no-files-found: ignore

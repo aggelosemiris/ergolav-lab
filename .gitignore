@@ -17,3 +17,7 @@ data/cache/
 # Supabase CLI (τοπικά: project ref, εκδόσεις)
 supabase/.temp/
 supabase/.branches/
+
+# Εβδομαδιαία ενημέρωση τιμών: cache σελίδων και τοπικά δεδομένα (tools/prices/)
+tools/prices/.cache/
+tools/prices/.data/
