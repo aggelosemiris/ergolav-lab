@@ -21,6 +21,8 @@ const CONFIG = fs.readFileSync(new URL('../../src/config.js', import.meta.url), 
 const caseTitle = id => res[id.split(':')[0]].out.cases.find(c => c.id === id).title;
 const PROFILE = JSON.stringify({name: 'Νίκος Παπαδάκης', trade: 'Υδραυλικός', phone: '6912345678'});
 
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch({...(process.env.CHROMIUM_PATH && {executablePath: process.env.CHROMIUM_PATH})});
 async function page(ctx, {flag = true} = {}){
   const p = await ctx.newPage();
@@ -68,7 +70,7 @@ const titles = p => p.$$eval('#s-analysis #apdf h3', els => els.map(e => e.textC
 const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμηση, και μια μπαταρία νιπτήρα';
 
 {
-  const ctx = await b.newContext({viewport: {width: 390, height: 860}, acceptDownloads: true});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 860}, acceptDownloads: true});
   const p = await page(ctx);
   await makeQuote(p, SAY);
   await openAnalysis(p);
@@ -135,7 +137,7 @@ const SAY = 'Αλλαγή λεκάνης κρεμαστής σε ξηρά δόμ
 
 // Κινητό 360px σκούρο και desktop φωτεινό: η ετικέτα χωράει, χωρίς οριζόντια κύλιση.
 for(const [w, h, scheme] of [[360, 780, 'dark'], [1280, 900, 'light']]){
-  const ctx = await b.newContext({viewport: {width: w, height: h}, colorScheme: scheme});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: w, height: h}, colorScheme: scheme});
   const p = await page(ctx);
   await makeQuote(p, SAY);
   await openAnalysis(p);
@@ -148,7 +150,7 @@ for(const [w, h, scheme] of [[360, 780, 'dark'], [1280, 900, 'light']]){
 
 // Flag false: ακριβώς όπως πριν — καμία ετικέτα, η σημερινή ανάλυση, το «Άλλαξέ το» με AI στη θέση του.
 {
-  const ctx = await b.newContext({viewport: {width: 390, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 860}});
   const p = await page(ctx, {flag: false});
   await makeQuote(p, SAY);
   await openAnalysis(p);

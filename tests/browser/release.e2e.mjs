@@ -3,6 +3,8 @@
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/release.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
 const results = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
@@ -10,7 +12,7 @@ const PROFILE = JSON.stringify({name: 'Δοκιμή Τεχνική', trade: 'Υ�
 
 // Νέα σελίδα με καταγραφή σφαλμάτων, CSP και εξωτερικών αιτημάτων· προαιρετικά αποθηκευμένα στοιχεία.
 async function page({viewport = {width: 400, height: 860}, profile = true, init} = {}){
-  const ctx = await b.newContext({viewport, acceptDownloads: true});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport, acceptDownloads: true});
   const p = await ctx.newPage();
   // Χωρίς αναγνώριση φωνής: ο headless Chromium κάποιες φορές έχει webkitSpeechRecognition και τότε το μικρόφωνο ακούει αντί να ανοίξει για γράψιμο.
   await p.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; });

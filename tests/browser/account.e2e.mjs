@@ -10,6 +10,8 @@ const CONFIG_SRC = fs.readFileSync(new URL('../../src/config.js', import.meta.ur
 const SB = CONFIG_SRC.match(/SUPABASE_URL = '([^']+)'/)[1];
 const REF = new URL(SB).hostname.split('.')[0];
 const SHOTS = process.env.SHOTS || '';            // φάκελος για στιγμιότυπα (προαιρετικό)
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath: process.env.CHROMIUM_PATH} : {});
 const results = [], leaked = [], allPages = [];
 const ok = (name, cond, detail = '') => { results.push({name, pass: !!cond}); console.log(`${cond ? '✓' : '✗'} ${name}${detail ? ' — ' + detail : ''}`); };
@@ -96,7 +98,7 @@ async function supabase(route){
 const reqs = (path, grant) => server.reqs.filter(r => r.path === path && (!grant || r.search.includes('grant_type=' + grant)));
 
 async function page({auth = true, viewport = {width: 390, height: 844}, ctx, siteKey = '0x4AAAAAAAtestSiteKey000000', turnstile = 'ok', scheme = 'light', clock = false} = {}){
-  ctx = ctx || await b.newContext({viewport, colorScheme: scheme});
+  ctx = ctx || await b.newContext({serviceWorkers: 'block', viewport, colorScheme: scheme});
   const p = await ctx.newPage();
   allPages.push(p);
   p.errs = []; p.logs = [];
@@ -156,7 +158,7 @@ try {
   }
 
   // ── 1. Χωρίς σύνδεση: ΜΟΝΟ η οθόνη σύνδεσης (υπάρχων χρήστης με δεδομένα στη συσκευή) ──
-  const ctx1 = await b.newContext({viewport: {width: 390, height: 844}});
+  const ctx1 = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 844}});
   const p1 = await page({ctx: ctx1});
   await seed(p1, {...APP, 'ergolav.profile': JSON.stringify({name: 'Παλιά Συσκευή ΟΕ', trade: 'Ηλεκτρολόγος'})});
   await p1.goto(BASE); await p1.waitForSelector('#s-login.on');

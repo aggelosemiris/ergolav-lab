@@ -176,7 +176,7 @@ CAPTCHA (Cloudflare Turnstile) σε εγγραφή, σύνδεση και επα
   ισχύει — ευθύνη του τεχνίτη / του λογιστή του. Τα 13% / 6% για ανακαινίσεις δεν έχουν ελεγχθεί.
 - **Εξαρτήσεις:** όλος ο κώδικας σερβίρεται από τον ίδιο server (`vendor/`: Anthropic SDK 0.129.0,
   html2pdf.js — MIT). CSP: scripts μόνο από τον ίδιο server, δίκτυο μόνο προς Google Gemini / Anthropic.
-  Εξωτερικό μένει μόνο το CSS/γραμματοσειρά Google Fonts (όχι κώδικας).
+  Και η γραμματοσειρά (Commissioner, OFL) είναι στο `vendor/fonts/`. Χωρίς σήμα: [`docs/offline.md`](docs/offline.md).
 - **iframe:** το meta CSP **δεν** υποστηρίζει `frame-ancestors`. Γι' αυτό: έλεγχος σε JS (η εφαρμογή δεν τρέχει μέσα
   σε ξένο iframe) + αρχείο `_headers` με `frame-ancestors 'none'` για hosts που το διαβάζουν (Netlify/Cloudflare
   Pages). Το GitHub Pages αγνοεί το `_headers`.

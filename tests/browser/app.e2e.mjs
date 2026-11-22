@@ -213,7 +213,7 @@ ok('#P PDF: πρώτη προσφορά της συσκευής = Αρ. 1', awai
 ok('#P PDF: άδειος πελάτης → «Προς: —»', (await p.textContent('#pdf .who')).trim() === 'Προς: —');
 // PDF: υλικά ανά γραμμή, η εργασία ΜΙΑ φορά στα σύνολα.
 const eurN = t => Number(t.replace(/[^\d,]/g, '').replace(',', '.'));
-const rows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => [...tr.children].map(td => td.textContent)));
+const rows = await p.$$eval('#s-pdf #pdf table tr:not(:has(th))', trs => trs.map(tr => [...tr.children].map(td => td.textContent)));
 const sumRow = async name => eurN(await p.$eval('#pdf .sum', (e, n) => [...e.children].find(d => d.firstChild.textContent.startsWith(n))?.lastChild.textContent ?? '0', name));
 ok('#B PDF: στήλες μόνο Περιγραφή + Υλικό (η εργασία δεν είναι στήλη)', rows.length > 0 && rows.every(r => r.length === 2) && (await p.$$eval('#pdf th', t => t.map(x => x.textContent))).join() === 'Περιγραφή,Υλικό');
 const matLines = rows.reduce((a, r) => a + eurN(r[1]), 0);
@@ -262,7 +262,7 @@ ok('#B γραμμή μόνο εργασίας: «στην εργασία», χω
 ok('#B η πρόταση περιέχει την εργασία της αποξήλωσης (250 + 2 × 35 = 320)', await p.locator('#laborBox [data-p="labor"]').inputValue() === '320', await p.locator('#laborBox [data-p="labor"]').inputValue());
 await p.click('#ctaBtn');
 await p.waitForSelector('#s-pdf.on');
-const rows2 = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => [...tr.children].map(td => td.textContent)));
+const rows2 = await p.$$eval('#s-pdf #pdf table tr:not(:has(th))', trs => trs.map(tr => [...tr.children].map(td => td.textContent)));
 ok('#P δεύτερη προσφορά = Αρ. 2', await qno() === '2', await qno());
 // αλλαγή από την κεφαλίδα: ίδια φόρμα, συμπληρωμένη· μετά πίσω στο PDF, με τα νέα στοιχεία και τον ΙΔΙΟ αριθμό
 await p.click('#brand');
@@ -370,7 +370,7 @@ await hc.locator('[data-p="eqty"]').fill('2');
 await hc.locator('[data-a="qty-keep"]').click();
 ok('#Q «2» → 2 τεμ., 680,00 €, ξεκλειδώνει', /2 τεμ\./.test(await hc.locator('[data-a="qty-edit"]').textContent()) && await lnSum(hc) === 680 && await p.locator('#ctaBtn').isEnabled());
 await p.click('#ctaBtn'); await p.waitForSelector('#s-pdf.on');
-const pdfRows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => tr.textContent.replace(/\s+/g, ' ')));
+const pdfRows = await p.$$eval('#s-pdf #pdf table tr:not(:has(th))', trs => trs.map(tr => tr.textContent.replace(/\s+/g, ' ')));
 ok('#T #D #Q το PDF: δική του περιγραφή, 2 τεμ., 680,00 €', pdfRows.length === 1 && /Θερμοσίφωνας Nobel 120 λ\./.test(pdfRows[0]) && /2 τεμ\./.test(pdfRows[0]) && /680,00/.test(pdfRows[0]), pdfRows.join(' | '));
 
 // ── Κατανάλωση: κόλλα / αρμόστοκος ──
@@ -453,7 +453,7 @@ const sock = p.locator('.ln:has(.ln-name:text-is("Πρίζα σούκο χωνε
 await sock.locator('[data-d="-1"]').click();
 ok('#Z από 2 σε 1 με το −, μετά «Αφαίρεση» (ποτέ 0)', /1 τεμ\./.test(await sock.locator('[data-a="qty-edit"]').textContent()) && await sock.locator('[data-a="remove"]').count() === 1);
 await p.click('#ctaBtn'); await p.waitForSelector('#s-pdf.on');
-const longRows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => tr.querySelector('.q').textContent));
+const longRows = await p.$$eval('#s-pdf #pdf table tr:not(:has(th))', trs => trs.map(tr => tr.querySelector('.q').textContent));
 ok('#L PDF: 18 υλικά + κόλλα + αρμόστοκος = 20 γραμμές, καμία με ποσότητα 0', longRows.length === 20 && longRows.every(q => !/^0\s/.test(q)), longRows.join(' | '));
 ok('#L PDF: εργασία 1.200,00 €, ΦΠΑ 24%', /Εργασία\s*1\.200,00 €/.test(await p.textContent('#pdf')) && /ΦΠΑ 24%/.test(await p.textContent('#pdf')));
 
@@ -508,7 +508,7 @@ ok('#U αλλαγή μονάδας → «1 μ.»', /1 μ\./.test(await rop.locat
 await rop.locator('select[data-p="unit"]').selectOption('τεμ.');
 await p.click('#ctaBtn'); await p.waitForSelector('#s-pdf.on');
 await p.waitForFunction(() => document.getElementById('ctaBtn').textContent === 'Στείλε στον πελάτη', null, {timeout: 30000});
-const ropRows = await p.$$eval('#pdf table tr:not(:has(th))', trs => trs.map(tr => tr.textContent.replace(/\s+/g, ' ')));
+const ropRows = await p.$$eval('#s-pdf #pdf table tr:not(:has(th))', trs => trs.map(tr => tr.textContent.replace(/\s+/g, ' ')));
 ok('#U το «Ροπ» βγαίνει στο PDF (1 τεμ., 15,00 €)', ropRows.some(r => /Ροπ/.test(r) && /1 τεμ\./.test(r) && /15,00/.test(r)), ropRows.join(' | '));
 // δεύτερη προσφορά: η τιμή που έγραψε για το «Ροπ» προτείνεται (δεν μπαίνει μόνη της)· «Σβήσε» → φεύγει και ξεκλειδώνει
 await p.goto('http://127.0.0.1:8087/');

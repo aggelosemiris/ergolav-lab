@@ -23,10 +23,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # Το npm test ελέγχει και ότι το sw.js (λίστα + VERSION) ταιριάζει με τα αρχεία: αλλιώς ΔΕΝ γίνεται deploy.
       - name: Unit tests
         run: npm test
       - name: Μόνο τα αρχεία της εφαρμογής (όχι tests/fixtures)
-        run: mkdir _site && cp -r index.html src vendor media legal .nojekyll _headers _site/
+        run: mkdir _site && cp -r index.html src vendor media legal sw.js manifest.webmanifest icons .nojekyll _headers _site/
       - name: Αριθμός έκδοσης στα αρχεία (οι browsers κρατούσαν παλιά αρχεία του κινητού)
         run: |
           V=${GITHUB_SHA::7}

@@ -21,6 +21,7 @@ import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
 import { authGate } from './account.js';
+import { registerSW, takeDraft } from './offline.js';
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -1097,3 +1098,17 @@ async function goBack(){
 }
 $('navBack').onclick = goBack;
 syncBack(document.querySelector('.screen.on')?.id);
+
+// ─── Χωρίς σήμα (src/offline.js): service worker και νέα έκδοση μόνο με «Ανανέωση», που σώζει πρώτα το πρόχειρο ───
+// Πρόχειρο = κείμενο + πελάτης της προσφοράς που γράφεται. Αφού βγει PDF, η προσφορά είναι ήδη στο ιστορικό.
+registerSW({bar: $('updateBar'), draft: () => {
+  const cur = document.querySelector('.screen.on')?.id;
+  if(authLocked || quoteNo != null || !['s-listen', 's-lines'].includes(cur)) return null;
+  return {screen: cur, client: $('client').value, text: cur === 's-listen' ? transcript.textContent : lastText};
+}});
+const draft = authLocked ? null : takeDraft();
+if(draft){
+  $('client').value = draft.client;
+  if(draft.screen === 's-lines') buildLines(draft.text);
+  else review(draft.text, 'Η εφαρμογή ενημερώθηκε. Το κείμενό σου είναι εδώ.');
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ergolav",
+  "short_name": "ergolav",
+  "description": "Προσφορά επί τόπου, και χωρίς σήμα.",
+  "lang": "el",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#E6E7E3",
+  "theme_color": "#E6E7E3",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

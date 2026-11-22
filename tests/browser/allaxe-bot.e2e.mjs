@@ -23,6 +23,8 @@ const CONFIG = fs.readFileSync(new URL('../../src/config.js', import.meta.url), 
 const caseTitle = id => res[id.split(':')[0]].out.cases.find(c => c.id === id).title;
 const PROFILE = JSON.stringify({name: 'Νίκος Παπαδάκης', trade: 'Υδραυλικός', phone: '6912345678'});
 
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch({...(process.env.CHROMIUM_PATH && {executablePath: process.env.CHROMIUM_PATH})});
 async function page(ctx){
   const p = await ctx.newPage();
@@ -72,7 +74,7 @@ const titleOf = p => p.$eval(`${W} h3`, e => e.textContent.replace(/^\d+\.\s*/, 
 const stepsOf = (p, key) => p.$$eval(`${W} li[data-sel="${key}"]`, els => els.map(e => e.textContent));
 
 {
-  const ctx = await b.newContext({viewport: {width: 390, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 860}});
   const p = await page(ctx);
   await quoteToAnalysis(p, 'λεκάνη κρεμαστή και μια μπαταρία νιπτήρα');
 
@@ -210,7 +212,7 @@ const stepsOf = (p, key) => p.$$eval(`${W} li[data-sel="${key}"]`, els => els.ma
 
 // Κινητό 360 σκούρο: το πάνελ χωράει, κουμπιά ≥ 44px, το πεδίο κειμένου ορατό
 {
-  const ctx = await b.newContext({viewport: {width: 360, height: 740}, colorScheme: 'dark', hasTouch: true});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 360, height: 740}, colorScheme: 'dark', hasTouch: true});
   const p = await page(ctx);
   await quoteToAnalysis(p, 'λεκάνη κρεμαστή');
   await openTaskBot(p);
@@ -228,7 +230,7 @@ const stepsOf = (p, key) => p.$$eval(`${W} li[data-sel="${key}"]`, els => els.ma
 }
 // Desktop φωτεινό: στιγμιότυπο της κάρτας περίπτωσης
 {
-  const ctx = await b.newContext({viewport: {width: 1280, height: 900}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 1280, height: 900}});
   const p = await page(ctx);
   await quoteToAnalysis(p, 'λεκάνη κρεμαστή');
   await openTaskBot(p);

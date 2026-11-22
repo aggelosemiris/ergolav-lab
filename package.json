@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server/app.mjs",
     "test": "node --test test/*.test.js",
+    "sw:manifest": "node tools/sw-manifest.mjs",
     "test:stress": "node tests/stress/run.mjs",
     "test:stress:scale": "node tests/stress/scale80k.mjs",
     "test:stress:live": "node tests/stress/run-live.mjs",
