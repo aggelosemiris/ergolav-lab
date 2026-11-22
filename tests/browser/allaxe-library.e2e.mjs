@@ -18,6 +18,8 @@ const ALL = appData(map, Object.fromEntries(Object.entries(res).map(([k, r]) => 
 const CONFIG = fs.readFileSync(new URL('../../src/config.js', import.meta.url), 'utf8').replace('export const AUTH_ENABLED = true;', 'export const AUTH_ENABLED = false;');
 const PROFILE = JSON.stringify({name: 'Νίκος Παπαδάκης', trade: 'Υδραυλικός', phone: '6912345678'});
 
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch({...(process.env.CHROMIUM_PATH && {executablePath: process.env.CHROMIUM_PATH})});
 async function page(ctx, {flag = true, data = ALL} = {}){
   const p = await ctx.newPage();
@@ -70,7 +72,7 @@ const titles = p => p.$$eval('#s-analysis #apdf h3', els => els.map(e => e.textC
 const tagOf = (p, i) => p.$$eval('#s-analysis #apdf .an-case', els => els.map(e => e.textContent)).then(t => t[i]);
 
 {
-  const ctx = await b.newContext({viewport: {width: 390, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 860}});
   const p = await page(ctx);
   await quoteToAnalysis(p, 'δύο σίτες και λεκάνη κρεμαστή');
   const box = await p.textContent('#anWithout');
@@ -143,7 +145,7 @@ const tagOf = (p, i) => p.$$eval('#s-analysis #apdf .an-case', els => els.map(e 
 
 // «Υπάρχει πλέον έτοιμη ανάλυση…»: το είδος μπήκε στον χάρτη (promoted) → ερώτηση μία φορά.
 {
-  const ctx = await b.newContext({viewport: {width: 360, height: 780}, colorScheme: 'dark'});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 360, height: 780}, colorScheme: 'dark'});
   const p = await page(ctx, {data: {...ALL, promoted: {'σιτεσ': 'cabin'}}});
   await p.goto(BASE);
   await p.evaluate(() => localStorage.setItem('ergolav.library', JSON.stringify({'σιτεσ': {name: 'Σίτες', kind: 'own', updated: 1,
@@ -166,7 +168,7 @@ const tagOf = (p, i) => p.$$eval('#s-analysis #apdf .an-case', els => els.map(e 
 
 // Flag false: όπως πριν — οι σίτες στη λίστα «Χωρίς ανάλυση», κανένα «Φτιάξε ανάλυση».
 {
-  const ctx = await b.newContext({viewport: {width: 390, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 390, height: 860}});
   const p = await page(ctx, {flag: false});
   await quoteToAnalysis(p, 'δύο σίτες και λεκάνη κρεμαστή');
   ok('flag false: «Χωρίς ανάλυση · δεν μπαίνουν στο PDF» με τις σίτες, χωρίς [Φτιάξε ανάλυση]',

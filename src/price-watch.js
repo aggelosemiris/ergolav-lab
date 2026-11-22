@@ -110,13 +110,16 @@ export function refStatus(r, fmtDate = t => new Date(t).toLocaleDateString('el-G
 }
 
 /** Συγχρονισμός στο παρασκήνιο, το πολύ μία φορά ανά every· σφάλματα αγνοούνται (ξαναδοκιμάζει αργότερα). */
+export const SYNC_TIMEOUT_MS = 30000;
+const withTimeout = (p, ms) => { let t; return Promise.race([p, new Promise((_, no) => { t = setTimeout(no, ms); })]).finally(() => clearTimeout(t)); };
 export function createPriceSync(getDb, {every = 6 * 3600e3, now = () => Date.now()} = {}){
   let last = -Infinity, running = null;                  // η πρώτη κλήση τρέχει πάντα
   return function run(force = false){
     if(running || (!force && now() - last < every)) return running;
     last = now();
     running = (async () => {
-      try { const db = await getDb?.(); if(!db) return null; const pushed = await pushCustom(db); const refs = await pullRefs(db, now()); return {pushed, refs}; }
+      // Χρονικό όριο: με κακό σήμα ένα αίτημα μπορεί να κρέμεται· τότε ο επόμενος γύρος ξεκινά κανονικά.
+      try { const db = await getDb?.(); if(!db) return null; return await withTimeout((async () => ({pushed: await pushCustom(db), refs: await pullRefs(db, now())}))(), SYNC_TIMEOUT_MS); }
       catch { return null; }
       finally { running = null; }
     })();

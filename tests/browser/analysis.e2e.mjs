@@ -3,6 +3,8 @@
 // Εκτέλεση: npm start &  και  PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tests/browser/analysis.e2e.mjs
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const BASE = process.env.APP_URL || 'http://127.0.0.1:8087/';
+// serviceWorkers: 'block' — το test κάνει route σε αρχεία της εφαρμογής (src/, vendor/)· με τον service worker (sw.js)
+// θα έρχονταν από την cache του και το route δεν θα έπιανε. Ο service worker ελέγχεται στα υπόλοιπα tests.
 const b = await chromium.launch({...(process.env.CHROMIUM_PATH && {executablePath: process.env.CHROMIUM_PATH}),
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream']});
 const results = [];
@@ -63,7 +65,7 @@ async function makeQuote(p, say, client = CLIENT, onPdf = async () => {}){
 const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμού, μια μπαταρία νιπτήρα, δέκα τετραγωνικά πλακάκι τοίχου και δύο σπιράλ';
 
 {
-  const ctx = await b.newContext({viewport: {width: 400, height: 860}, acceptDownloads: true});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 400, height: 860}, acceptDownloads: true});
   const p = await page(ctx);
   let ghostOpened = null;
   // Αμέσως μόλις φανεί η προεπισκόπηση, όπως το 2ο πάτημα ενός διπλού στο «Έλεγξα»: δεν ανοίγει την ανάλυση.
@@ -187,7 +189,7 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
 
 {
   // Χωρίς σήμα: το PDF της ανάλυσης βγαίνει· το «Άλλαξέ το» λέει «Χρειάζεται σύνδεση»
-  const ctx = await b.newContext({viewport: {width: 400, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 400, height: 860}});
   const p = await page(ctx);
   await makeQuote(p, 'μια μπαταρία νιπτήρα', '');
   await ctx.setOffline(true);
@@ -214,7 +216,7 @@ const SAY = 'λεκάνη κρεμαστή, καζανάκι εντοιχισμ�
 
 {
   // Από το ιστορικό δεν βγαίνει ανάλυση (κρατά μόνο το PDF)· χωρίς ρύθμιση υπηρεσίας: το λέει
-  const ctx = await b.newContext({viewport: {width: 400, height: 860}});
+  const ctx = await b.newContext({serviceWorkers: 'block', viewport: {width: 400, height: 860}});
   const p = await page(ctx);
   await makeQuote(p, 'μια μπαταρία νιπτήρα', '');
   await p.goto(BASE); await p.click('#historyOpen'); await p.locator('.q-open[data-no="1"]').click();

@@ -67,12 +67,12 @@ export function createService({root=repo,stateFile=path.join(repo,'.service-data
    if(route==='/owner.js')return serve(path.join(repo,'server','owner.js'),'text/javascript; charset=utf-8');
    const decoded=decodeURIComponent(route),relative=decoded==='/'?'index.html':decoded.slice(1);
    if(relative.split('/').some(part=>part.startsWith('.')))return json(res,404,{error:'Δεν βρέθηκε.'});
-   if(!['index.html','favicon.ico'].includes(relative)&&!/^((src|vendor|media|legal)\/[a-zA-Z0-9_.\/-]+)$/.test(relative))return json(res,404,{error:'Δεν βρέθηκε.'});
+   if(!['index.html','favicon.ico','sw.js','manifest.webmanifest'].includes(relative)&&!/^((src|vendor|media|legal|icons)\/[a-zA-Z0-9_.\/-]+)$/.test(relative))return json(res,404,{error:'Δεν βρέθηκε.'});
    const file=path.resolve(root,relative);if(!file.startsWith(path.resolve(root)+path.sep))return json(res,403,{error:'Μη επιτρεπτό αρχείο.'});
    // Δοκιμές της ροής χωρίς λογαριασμό (--auth off): ο υποχρεωτικός λογαριασμός κλειστός ΜΟΝΟ σε αυτόν τον server δοκιμών.
    // Το GitHub Pages σερβίρει πάντα το src/config.js όπως είναι.
    if(authOff&&relative==='src/config.js'&&fs.existsSync(file)){const src=fs.readFileSync(file,'utf8').replace(/export const AUTH_ENABLED = true/,'export const AUTH_ENABLED = false');res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-cache'});return res.end(req.method==='HEAD'?undefined:src)}
-   const type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.mp4':'video/mp4','.woff2':'font/woff2'}[path.extname(file)]||'application/octet-stream';return serve(file,type);
+   const type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.mp4':'video/mp4','.woff2':'font/woff2','.webmanifest':'application/manifest+json','.txt':'text/plain; charset=utf-8'}[path.extname(file)]||'application/octet-stream';return serve(file,type);
    function serve(file,type){if(!fs.existsSync(file)||!fs.statSync(file).isFile())return json(res,404,{error:'Δεν βρέθηκε.'});res.writeHead(200,{'Content-Type':type,'Cache-Control':'no-cache'});if(req.method==='HEAD')res.end();else fs.createReadStream(file).pipe(res)}
   }catch(e){if(!res.headersSent)json(res,400,{error:e.message||'Η υπηρεσία δεν ολοκλήρωσε το αίτημα.'});else res.end()}
  });
