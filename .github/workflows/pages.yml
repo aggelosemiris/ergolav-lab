@@ -9,15 +9,15 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read     # το deploy-pages διαβάζει τη λίστα artifacts του run
 concurrency:
   group: pages
   cancel-in-progress: true
+# Δύο jobs, όπως στο επίσημο πρότυπο του GitHub: από τις 19/11 το deploy-pages στο ΙΔΙΟ job, 1″ μετά το ανέβασμα,
+# δεν έβρισκε το artifact («Found 0 artifact(s)»)· το deploy ξεκινά πλέον αφού ολοκληρωθεί το build.
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,5 +41,12 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
