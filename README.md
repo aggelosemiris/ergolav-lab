@@ -235,6 +235,7 @@ PLAYWRIGHT_MODULE=... node tests/browser/flow-timing.e2e.mjs   # πατήματ�
 | `src/calendar-ui.js` | Η οθόνη «Ημερολόγιο» |
 | `src/account.js` | Λογαριασμός (Supabase): σύνδεση, κωδικός email, αποσύνδεση, διαγραφή, μεταφορά προφίλ |
 | `src/account-ui.js` | Οθόνες «Σύνδεση ή εγγραφή», «Ο λογαριασμός μου», «Ποια στοιχεία κρατάς;» |
+| `sw.js`, `src/offline.js`, `src/net.js`, `src/storage-guard.js`, `src/offline-ui.js` | Λειτουργία χωρίς σήμα, νέα έκδοση (`npm run sw:manifest`), γεμάτη μνήμη: [`docs/offline.md`](docs/offline.md) |
 
 ## Σημειώσεις
 

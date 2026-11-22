@@ -75,3 +75,25 @@ test('χωρίς https: καμία εγγραφή', async () => {
   assert.equal(await registerSW({win: f.win}), null);
   assert.equal(f.reg.args, undefined);
 });
+
+test('πρώτη εγκατάσταση → onReady (μία φορά)· νέα έκδοση από άλλη καρτέλα → όχι', async () => {
+  const f = fakeWin();
+  f.reg.waiting = null; f.sw.controller = null;
+  let ready = 0;
+  await registerSW({win: f.win, bar: f.bar, onReady: () => ready++});
+  f.listeners.controllerchange();
+  f.listeners.controllerchange();
+  assert.equal(ready, 1);
+});
+
+test('canLeave() = false (προσφορά που δεν χώρεσε και δεν στάλθηκε): η «Ανανέωση» δεν κάνει τίποτα', async () => {
+  const f = fakeWin();
+  let leave = false;
+  await registerSW({win: f.win, bar: f.bar, canLeave: () => leave});
+  f.btn.onclick();
+  assert.deepEqual(f.posted, [], 'καμία νέα έκδοση');
+  assert.equal(f.reloads(), 0);
+  leave = true;
+  f.btn.onclick();
+  assert.deepEqual(f.posted, ['skipWaiting']);
+});

@@ -4,12 +4,14 @@ const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const isAndroid = /Android/i.test(navigator.userAgent);
 
 export const micSupported = !!SR;
+// Σφάλμα «network» ή χωρίς σήμα: η φωνή του browser θέλει internet· η προσφορά βγαίνει κανονικά με κείμενο.
+export const VOICE_OFFLINE = 'Χωρίς σήμα η φωνή δεν δουλεύει. Γράψε τη δουλειά και η προσφορά θα βγει κανονικά.';
 
 const ERRORS = {
   'not-allowed': 'Δεν έχω πρόσβαση στο μικρόφωνο. Επίτρεψέ το από τις ρυθμίσεις του browser.',
   'service-not-allowed': 'Ο browser δεν επιτρέπει αναγνώριση φωνής εδώ.',
   'audio-capture': 'Δεν βρέθηκε μικρόφωνο.',
-  'network': 'Η αναγνώριση φωνής θέλει σύνδεση στο internet.',
+  'network': VOICE_OFFLINE,
   'language-not-supported': 'Ο browser δεν υποστηρίζει ελληνικά για φωνή.',
 };
 

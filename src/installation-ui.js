@@ -2,6 +2,7 @@ import {materialSnapshot} from './installation.js';
 import {serviceStatus,serviceAnalysis,completeJob,releaseJob} from './service-client.js';
 import {makePdf,download} from './share.js';
 import {fitImage} from './image.js';
+import {online,NO_NET} from './net.js';
 // Φωτογραφίες εργασίας στο συνοδευτικό PDF: μόνο τοπικά (δεν στέλνονται στην υπηρεσία AI), έως MAX_PHOTOS.
 export const MAX_PHOTOS=12;
 const $=id=>document.getElementById(id);
@@ -48,6 +49,7 @@ export function mountInstallation(getQuote,{onReady=()=>{},onDiscard=()=>{},onSh
   output.append(element('p',`Δημιουργία: ${data.provider==='openai'?'OpenAI':'Gemini'} (${data.model}). Οι τιμές και τα σύνολα της προσφοράς παραμένουν ανεξάρτητα από αυτό το έγγραφο.`,'install-notice'));
  }
  generate.onclick=async()=>{
+  if(!online()){status.textContent=NO_NET;return}   // AI: μόνο με σήμα (docs/offline.md)
   if(controller||pdfBusy)return;const run=++generation;controller=new AbortController();generate.disabled=true;save.disabled=true;prepare.disabled=true;prepare.hidden=false;share.hidden=true;onDiscard();discard();review.checked=false;$('installPreview').hidden=true;$('installCancel').hidden=false;progress('Σύνδεση με την υπηρεσία ergolav…');progressTimer=setInterval(paintProgress,1000);$('installSetupProvider').disabled=true;$('installSetupKey').disabled=true;
   try{const quote=getQuote(),items=materialSnapshot(quote.lines),setup=serviceInfo?.configured?undefined:{provider:$('installSetupProvider').value,apiKey:$('installSetupKey').value};
    const data=await serviceAnalysis(items,{setup,signal:controller.signal,onProgress:text=>{if(run===generation)progress(text)}});

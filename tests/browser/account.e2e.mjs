@@ -476,9 +476,10 @@ try {
     const q = await page();
     await q.goto(BASE); await q.waitForSelector('#s-login.on'); await ready(q);
     await q.context().setOffline(true);
-    await q.fill('#inEmail', 'neo.email@example.com'); await q.fill('#inPw', 'kati12345'); await q.click('#lgSubmit');
-    await q.waitForFunction(() => !document.getElementById('lgError').hidden, null, {timeout: 20000});
-    ok('χωρίς ίντερνετ → «Δεν υπάρχει σύνδεση στο ίντερνετ…»', /Δεν υπάρχει σύνδεση στο ίντερνετ/.test(await text(q, '#lgError')));
+    await q.fill('#inEmail', 'neo.email@example.com'); await q.fill('#inPw', 'kati12345');
+    // docs/offline.md: χωρίς σήμα η σύνδεση είναι απενεργοποιημένη από πριν (όχι πάτημα που αποτυγχάνει).
+    await q.waitForFunction(() => !document.getElementById('lgNet').hidden, null, {timeout: 20000});
+    ok('χωρίς ίντερνετ → «Χρειάζεται σύνδεση στο internet», «Σύνδεση» κλειδωμένο', /Χρειάζεται σύνδεση στο internet/.test(await text(q, '#lgNet')) && await q.isDisabled('#lgSubmit'));
     await q.context().close();
   }
 

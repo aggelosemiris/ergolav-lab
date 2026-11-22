@@ -6,6 +6,9 @@
 // - Πριν από το reload σώζεται το πρόχειρο (κείμενο, πελάτης, οθόνη) στο sessionStorage· διαβάζεται μία φορά.
 
 export const DRAFT = 'ergolav.draft';
+// Διακόπτης ανάγκης (docs/offline.md → «Απενεργοποίηση»): false = καμία εγγραφή· ο service worker αυτού του scope
+// απεγγράφεται και οι caches του σβήνονται. Μαζί: cp tools/sw-off.js sw.js.
+export const SW_ENABLED = true;
 const SCREENS = new Set(['s-listen', 's-lines']);
 const MAX_TEXT = 20000;
 const UPDATE_EVERY = 3600e3;          // έλεγχος για νέα έκδοση όταν ξαναγυρίζει στην εφαρμογή, το πολύ ανά ώρα
@@ -40,10 +43,13 @@ export function takeDraft(win = globalThis){
 
 /**
  * draft(): {text, client, screen} της προσφοράς που γράφεται τώρα, ή null. bar: το στοιχείο της μπάρας με κουμπί
- * [data-update]. Επιστρέφει Promise με το registration (ή null).
+ * [data-update]. onReady(): τέλος της πρώτης εγκατάστασης (η εφαρμογή δουλεύει πλέον και χωρίς σήμα).
+ * canLeave(): false = μην ξαναφορτώσεις (π.χ. προσφορά που δεν χώρεσε στη μνήμη και δεν στάλθηκε).
+ * Επιστρέφει Promise με το registration (ή null).
  */
-export function registerSW({draft = () => null, bar = null, win = globalThis} = {}){
+export function registerSW({draft = () => null, bar = null, onReady = () => {}, canLeave = () => true, win = globalThis} = {}){
   if(!canRegister(win)) return Promise.resolve(null);
+  if(!SW_ENABLED) return unregisterSW(win);
   const sw = win.navigator.serviceWorker, doc = win.document;
   let wanted = false, waiting = null, last = Date.now(), had = !!sw.controller;
   // Η πρώτη εγκατάσταση κάνει «claim» τη σελίδα (controllerchange): εκεί δεν ξαναφορτώνουμε. Νέα έκδοση που μπήκε
@@ -51,11 +57,12 @@ export function registerSW({draft = () => null, bar = null, win = globalThis} = 
   sw.addEventListener('controllerchange', () => {
     if(wanted) return win.location.reload();
     if(had) offer(null);
+    else { try { onReady(); } catch {} }
     had = true;
   });
 
   function reload(){
-    if(wanted) return;
+    if(wanted || !canLeave()) return;
     wanted = true;
     saveDraft(draft(), win);
     if(waiting && waiting.state !== 'activated' && waiting.state !== 'redundant'){
@@ -88,4 +95,14 @@ export function registerSW({draft = () => null, bar = null, win = globalThis} = 
     });
     return reg;
   }).catch(() => null);
+}
+
+/** Απενεργοποίηση: απεγγραφή του service worker ΑΥΤΟΥ του scope και σβήσιμο των caches του. Τα δεδομένα μένουν. */
+export async function unregisterSW(win = globalThis){
+  try {
+    const scope = new URL('./', win.location.href).href, prefix = `ergolav-${new URL(scope).pathname}-`;
+    for(const r of await win.navigator.serviceWorker.getRegistrations()) if(r.scope === scope) await r.unregister();
+    for(const name of await win.caches.keys()) if(name.startsWith(prefix)) await win.caches.delete(name);
+  } catch {}
+  return null;
 }

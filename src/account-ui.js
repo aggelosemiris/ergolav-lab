@@ -9,6 +9,7 @@ import { createAccount, MSG, needsLatin, passwordCheck, validEmail, throttleText
 import { getLogo, initials, loadProfile } from './profile.js';
 import { loadTurnstile, mountWidget } from './turnstile.js';
 import * as CONFIG from './config.js';
+import { online, onNet, NO_NET } from './net.js';
 
 const SITE_KEY = CONFIG.TURNSTILE_SITE_KEY || '';
 export const RESEND_S = 60;          // «Στείλε ξανά» μετά από τόσα δευτερόλεπτα
@@ -29,6 +30,11 @@ const FIELDS = {
 const TITLES = {in: 'Σύνδεση', up: 'Νέος λογαριασμός', confirm: 'Επιβεβαίωση email', forgot: 'Ξέχασα τον κωδικό', reset: 'Νέος κωδικός'};
 const SUBMIT = {in: 'Σύνδεση', up: 'Δημιουργία λογαριασμού', confirm: 'Επιβεβαίωση', forgot: 'Στείλε μου κωδικό', reset: 'Αποθήκευση και σύνδεση'};
 const LEDE = 'Ο λογαριασμός κρατά τα στοιχεία της επιχείρησής σου και το λογότυπο σε κάθε κινητό σου.';
+// Χωρίς σήμα: ό,τι θέλει τον server κλειδώνει (η τοπική αποσύνδεση όχι). «Συνδέθηκε ποτέ εδώ;» για το σωστό μήνυμα.
+export const SEEN = 'ergolav.account.seen';
+export const FIRST_TIME = 'Την πρώτη φορά σε αυτή τη συσκευή η σύνδεση θέλει σήμα. Μετά το ergolav δουλεύει και χωρίς σήμα.';
+const NET_LOGIN = ['lgGoogle', 'lgSubmit', 'lgResend', 'inConfirm'];
+const NET_ACCOUNT = ['acctPwOpen', 'acctPwSave', 'acctEmOpen', 'acctEmSend', 'acctEmVerify', 'acctSignOutAll', 'acctDelete', 'acctDelYes', 'acctDelGoogle'];
 
 /**
  * show/cta: της εφαρμογής. here(): «θυμήσου πού είμαι» → συνάρτηση που γυρίζει εκεί.
@@ -38,7 +44,7 @@ const LEDE = 'Ο λογαριασμός κρατά τα στοιχεία της 
  * onLockChange(locked): η εφαρμογή κλειδώνει/ξεκλειδώνει τις οθόνες της.
  */
 export function mountAccount({show, cta, here, home = () => {}, busy = () => false, onProfileChange = () => {},
-  needProfile = () => {}, onLockChange = () => {}, account = createAccount()}){
+  needProfile = () => {}, onLockChange = () => {}, onLogin = () => {}, account = createAccount()}){
   if(!account.enabled) return {enabled: false, locked: () => false, canBack: () => true, back: () => false, profileSaved: async () => ({error: ''}), db: async () => null};
 
   let returnTo = null, mode = 'in', email = '', locked = false, resume = null, lockedUser = null;
@@ -128,7 +134,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
       ready: () => !SITE_KEY || !!w?.token(),
       reset(){ w?.reset(); onChange(); },
       async ensure(){
-        if(!SITE_KEY || w || loading) return onChange();
+        if(!SITE_KEY || w || loading || !online()) return onChange();
         loading = true;
         $(boxId).hidden = false;
         msg(noteId, 'Έλεγχος ασφαλείας…');
@@ -167,7 +173,24 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     $('lgResend').disabled = left > 0 || !lgCaptcha.ready();
     $('lgResend').textContent = left > 0 ? `Στείλε ξανά (${left}″)` : 'Στείλε ξανά';
     $('inConfirm').disabled = !lgCaptcha.ready();
+    syncNet();
   }
+  // Χωρίς σήμα: κουμπιά που θέλουν τον server κλειδωμένα, με το μήνυμα. Πρώτη φορά σε αυτή τη συσκευή: γιατί.
+  const seen = () => { try { return !!localStorage.getItem(SEEN); } catch { return false; } };
+  function syncNet(){
+    const off = !online();
+    if(off){ [...NET_LOGIN, ...NET_ACCOUNT].forEach(id => { if($(id)) $(id).disabled = true; }); }
+    msg('lgNet', off ? (locked && !seen() ? `${NO_NET}. ${FIRST_TIME}` : NO_NET) : '');
+    msg('acctNet', off ? NO_NET : '');
+  }
+  onNet(v => {
+    if(v){
+      ['lgGoogle', ...NET_ACCOUNT].forEach(id => { if($(id) && !pending) $(id).disabled = false; });
+      syncDel();
+      if(current() === 's-login') lgCaptcha.ensure();
+    }
+    syncSubmit();
+  });
   // Αντίστροφες μετρήσεις (στείλε ξανά, αναμονή μετά από λάθος κωδικούς): ένα ρολόι για όλες.
   setInterval(() => {
     if(current() !== 's-login') return;
@@ -340,6 +363,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     const back = resume && (!lockedUser || lockedUser === u?.id) ? resume : null;
     resume = null; lockedUser = null;
     setLocked(false);
+    try { onLogin(); } catch {}
     const r = await account.syncProfile();
     if(r.action === 'downloaded') onProfileChange();
     if(r.action === 'conflict') return openChoice(r.local, r.remote, back);
@@ -394,6 +418,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     clearErrs($('s-account')); hidePasswords();
     msg('acctStatus', status); msg('acctError', error);
     show('s-account', 'Λογαριασμός');
+    syncNet();
     cta(null);
     if(del) openDelete();
   }
@@ -478,7 +503,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
   // Google ΚΑΙ κωδικός → οποιοδήποτε από τα δύο.
   const syncDel = () => {
     if(pending) return;
-    $('acctDelYes').disabled = !reauthDone && hasPw && (!val('acctDelPw') || !delCaptcha.ready());
+    $('acctDelYes').disabled = !online() || (!reauthDone && hasPw && (!val('acctDelPw') || !delCaptcha.ready()));
   };
   async function openDelete(){
     if(pending) return;
@@ -530,7 +555,9 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     setLocked(true);
     openLogin({error: MSG.relogin});
   }
-  account.onChange(u => { if(u) lastUserId = u.id; });
+  const markSeen = u => { if(u) try { localStorage.setItem(SEEN, '1'); } catch {} };
+  account.onChange(u => { if(u){ lastUserId = u.id; markSeen(u); } });
+  markSeen(account.user());
   account.onLock(reason => { lockedUser = lastUserId; lock(reason); });
 
   // ── Άνοιγμα ──

@@ -87,13 +87,16 @@ export async function syncAll({client, userId}){
 }
 
 /** Συγχρονισμός στο παρασκήνιο, το πολύ μία φορά το λεπτό· σφάλματα αγνοούνται (ξαναδοκιμάζει την επόμενη φορά). */
+export const SYNC_TIMEOUT_MS = 30000;
+const withTimeout = (p, ms) => { let t; return Promise.race([p, new Promise((_, no) => { t = setTimeout(no, ms); })]).finally(() => clearTimeout(t)); };
 export function createSync(getDb, {every = 60000, now = () => Date.now()} = {}){
   let last = 0, running = null;
   return async function run(force = false){
     if(running || (!force && now() - last < every)) return running;
     last = now();
     running = (async () => {
-      try { const db = await getDb?.(); return db ? await syncAll(db) : null; }
+      // Χρονικό όριο: με κακό σήμα ένα αίτημα μπορεί να κρέμεται· τότε ο επόμενος γύρος ξεκινά κανονικά.
+      try { const db = await getDb?.(); return db ? await withTimeout(syncAll(db), SYNC_TIMEOUT_MS) : null; }
       catch { return null; }
       finally { running = null; }
     })();

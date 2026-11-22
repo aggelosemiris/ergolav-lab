@@ -10,6 +10,7 @@
 // ποτέ σφάλμα φόρτωσης που θα σταματούσε όλη την εφαρμογή.
 import * as CONFIG from './config.js';
 import { loadProfile, saveProfile, getLogo, backupProfile } from './profile.js';
+import { online as netOnline } from './net.js';
 
 export const LIB_URL = 'vendor/supabase-2.118.0.js';
 export const BUCKET = 'logos';
@@ -76,7 +77,8 @@ export const needsLatin = (pw = '') => /\p{Script=Greek}/u.test(pw) && !/[A-Za-z
 export const configured = (c = CONFIG) =>
   /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(c.SUPABASE_URL || '') && !!c.SUPABASE_ANON_KEY && c.SUPABASE_ANON_KEY !== 'your-anon-key';
 
-const isOnline = win => !(win?.navigator && win.navigator.onLine === false);
+// Σήμα: ο browser (navigator.onLine) ΚΑΙ ό,τι έμαθε το net.js από αιτήματα που απέτυχαν.
+const isOnline = win => !(win?.navigator && win.navigator.onLine === false) && netOnline();
 // Χωρίς απάντηση σε τόσο χρόνο (κακό σήμα): μήνυμα «χωρίς ίντερνετ» αντί για κουμπί που περιμένει για πάντα.
 export const TIMEOUT_MS = 15000;
 function timeout(p, ms = TIMEOUT_MS){
@@ -168,11 +170,27 @@ export function sameProfile(local, remote){
 /** Ο λογαριασμός έχει στοιχεία επιχείρησης; (η γραμμή φτιάχνεται άδεια με την εγγραφή) */
 export const remoteHasProfile = r => !!norm(r?.business_name);
 
+/**
+ * fetch για τη βιβλιοθήκη: απάντηση του /auth/v1/ που ΔΕΝ είναι JSON (σελίδα Wi-Fi ξενοδοχείου, «captive portal»)
+ * γίνεται σφάλμα δικτύου. Αλλιώς η βιβλιοθήκη θα τη θεωρούσε απόρριψη του token και θα έσβηνε τη συνεδρία: ο τεχνίτης
+ * θα αποσυνδεόταν χωρίς να έχει πραγματικά σήμα.
+ */
+export function authFetch(cfg, win = globalThis){
+  const auth = `${cfg.SUPABASE_URL}/auth/v1/`;
+  return async (input, init) => {
+    const r = await win.fetch(input, init);
+    const url = typeof input === 'string' ? input : input?.url || '';
+    if(url.startsWith(auth) && r.status !== 204 && !/json/i.test(r.headers.get('content-type') || '')) throw new TypeError('Failed to fetch (όχι JSON)');
+    return r;
+  };
+}
+
 /** Φορτώνει τη βιβλιοθήκη από το vendor/ (ίδιο site, όπως ζητά η CSP) μόνο όταν χρειαστεί. */
 export function loadClient(cfg, win = globalThis){
   return new Promise((ok, fail) => {
     const make = () => win.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, {
       auth: {flowType: 'pkce', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true},
+      global: {fetch: authFetch(cfg, win)},
     });
     if(win.supabase?.createClient) return ok(make());
     const s = win.document.createElement('script');
@@ -253,6 +271,8 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
         cl.auth.onAuthStateChange((ev, session) => {
           const u = summarize(session?.user);
           // Η συνεδρία έληξε ή ανακλήθηκε (π.χ. «Αποσύνδεση από όλες τις συσκευές» αλλού) ΧΩΡΙΣ να το ζητήσει εδώ.
+          // Χωρίς σήμα ΠΟΤΕ: ο τεχνίτης δεν αποσυνδέεται επειδή δεν βρήκε τον server.
+          if(ev === 'SIGNED_OUT' && !expectSignOut && user && !isOnline(win)) return;
           if(ev === 'SIGNED_OUT' && !expectSignOut && user){ user = null; emit(); lockListeners.forEach(f => { try { f('expired'); } catch {} }); return; }
           if(u && (u.id !== user?.id || u.email !== user?.email || u.confirmed !== user?.confirmed)){ user = u; emit(); }
         });
@@ -468,7 +488,8 @@ export function createAccount({config = CONFIG, getClient = c => loadClient(c), 
     },
 
     /** Ο client της βάσης για τον συνδεδεμένο χρήστη (συγχρονισμός του «Άλλαξέ το»)· null χωρίς σύνδεση. */
-    async db(){ return enabled && user ? {client: await c(), userId: user.id} : null; },
+    // Χωρίς σήμα: null (οι συγχρονισμοί στο παρασκήνιο δεν ξεκινούν καν, ούτε περιμένουν).
+    async db(){ return enabled && user && isOnline(win) ? {client: await c(), userId: user.id} : null; },
 
     // ── Στοιχεία επιχείρησης ──
     async remote(){

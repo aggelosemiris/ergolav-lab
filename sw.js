@@ -9,7 +9,7 @@
 // - Νέα έκδοση: περιμένει μέχρι να πατήσει ο τεχνίτης «Ανανέωση» (μήνυμα 'skipWaiting' από το src/offline.js).
 
 // <precache> — γράφεται από το `npm run sw:manifest`· μην το αλλάζεις με το χέρι.
-const VERSION = 'f93def8b209c';
+const VERSION = '214225e806df';
 const FILES = [
   'icons/apple-touch-icon.png',
   'icons/icon-192.png',
@@ -46,7 +46,9 @@ const FILES = [
   'src/installation-ui.js',
   'src/installation.js',
   'src/mic.js',
+  'src/net.js',
   'src/number.js',
+  'src/offline-ui.js',
   'src/offline.js',
   'src/parse.js',
   'src/photo.js',
@@ -60,6 +62,7 @@ const FILES = [
   'src/share.js',
   'src/similar.js',
   'src/statistics.js',
+  'src/storage-guard.js',
   'src/tasks.js',
   'src/turnstile.js',
   'src/when-ui.js',

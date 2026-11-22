@@ -188,7 +188,11 @@ h1{font-size:30px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:
 .chip.q{background:var(--warn-soft);color:var(--warn)}
 [hidden]{display:none!important}
 .linkbtn{font-size:14px;color:var(--pen);text-decoration:underline;min-height:44px;padding:0 8px}
-.updbar{display:flex;align-items:center;justify-content:center;gap:4px;margin:8px 16px 0;padding:2px 12px;border-radius:10px;background:var(--pen-soft);color:var(--ink);font-size:14px}
+.topbar{margin:8px 16px 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 8px;padding:6px 12px;border-radius:10px;background:var(--pen-soft);color:var(--ink);font-size:14px;line-height:1.4;text-align:center}
+.topbar .linkbtn{min-height:36px}
+.topbar.ok{background:var(--ok);color:var(--paper)}
+.topbar.warn{background:var(--warn-soft);color:var(--ink)}
+.net-note{color:var(--dim);font-size:14px;line-height:1.5;margin:10px 0}
 .row-alt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .shot{display:block;width:100%;max-height:260px;object-fit:contain;border-radius:14px;background:var(--paper);border:1px solid var(--line);margin:8px 0 12px}
 .shot.redact{touch-action:none;cursor:crosshair;max-height:none;height:auto}
@@ -574,8 +578,15 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 </head>
 <body>
 <div id="app">
-  <!-- Νέα έκδοση (src/offline.js): μπαίνει μόνο με το πάτημα· πριν σώζεται το πρόχειρο -->
-  <div class="updbar" id="updateBar" role="status" hidden><span>Υπάρχει νέα έκδοση ·</span><button class="linkbtn" type="button" data-update>Ανανέωση</button></div>
+  <!-- Ενδείξεις χωρίς σήμα (src/offline-ui.js, src/net.js) και νέα έκδοση (src/offline.js) -->
+  <div class="topbars">
+    <div class="topbar" id="netBar" role="status" hidden>Χωρίς σήμα · όλα αποθηκεύονται στο κινητό</div>
+    <div class="topbar ok" id="readyBar" role="status" hidden>Έτοιμο: το ergolav δουλεύει πλέον και χωρίς σήμα ✓</div>
+    <div class="topbar warn" id="storageBar" role="alert" hidden><span id="storageText"></span><button class="linkbtn" type="button" data-close="storageBar">Εντάξει</button></div>
+    <div class="topbar" id="iosBar" role="status" hidden><span>Πρόσθεσέ το στην αρχική οθόνη για να δουλεύει χωρίς σήμα και να μη σβηστούν οι προσφορές. <small>Κοινοποίηση → «Προσθήκη στην οθόνη Αφετηρίας».</small></span><button class="linkbtn" type="button" data-close="iosBar">Εντάξει</button></div>
+    <!-- Νέα έκδοση: μπαίνει μόνο με το πάτημα· πριν σώζεται το πρόχειρο -->
+    <div class="topbar" id="updateBar" role="status" hidden><span>Υπάρχει νέα έκδοση ·</span><button class="linkbtn" type="button" data-update>Ανανέωση</button></div>
+  </div>
   <header>
     <div class="head-l">
       <!-- Πίσω: μία οθόνη πίσω, σε κάθε οθόνη εκτός από την αρχική. Λογική: goBack() στο src/app.js -->
@@ -621,6 +632,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     <section class="screen" id="s-login">
       <h1 id="lgTitle">Σύνδεση</h1>
       <p class="lede" id="lgLede">Ο λογαριασμός κρατά τα στοιχεία της επιχείρησής σου και το λογότυπο σε κάθε κινητό σου.</p>
+      <p class="net-note" id="lgNet" role="status" hidden></p>
       <div class="notice" id="lgError" role="alert" hidden></div>
       <p class="acct-ok" id="lgStatus" role="status" hidden></p>
       <!-- Αρχή: Google + καρτέλες -->
@@ -710,6 +722,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
     <section class="screen" id="s-account">
       <h1>Ο λογαριασμός μου</h1>
       <p class="acct-ok" id="acctStatus" role="status" hidden></p>
+      <p class="net-note" id="acctNet" role="status" hidden></p>
       <div class="notice" id="acctError" role="alert" hidden></div>
       <div class="field"><span class="flabel">Συνδεδεμένος ως</span><b class="acct-email" id="acctEmail"></b>
         <small class="hint" id="acctVia"></small></div>
@@ -800,6 +813,7 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
         <button class="ghost" id="historyOpen">📅 Ημερολόγιο</button><button class="ghost" id="quotesOpen">📋 Προσφορές</button>
       </div>
       <div class="alt"><button class="ghost" id="statsOpen">📊 Στατιστικά επιχείρησης</button></div>
+      <div class="alt"><button class="ghost" id="installApp" type="button" hidden>📲 Βάλ’ το στην αρχική οθόνη</button></div>
       <div class="alt"><button class="ghost" id="photo">📷 Ή φωτογράφισε τις σημειώσεις σου</button></div>
       <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
       <div class="alt" style="margin-top:10px"><button class="linkbtn" id="keySettings" hidden>🔑 Κλειδί ανάγνωσης: αλλαγή ή διαγραφή</button></div>

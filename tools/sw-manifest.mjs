@@ -20,6 +20,9 @@ export const EXCLUDE = new Map([
 const NOT_APP = new Set(['.nojekyll', '_headers', 'sw.js']);
 export const BEGIN = '// <precache> — γράφεται από το `npm run sw:manifest`· μην το αλλάζεις με το χέρι.';
 export const END = '// </precache>';
+// Το sw.js είναι ο διακόπτης ανάγκης (tools/sw-off.js): καμία λίστα, κανένα VERSION.
+export const OFF_MARK = '// ergolav-sw: off';
+export const isOff = sw => sw.startsWith(OFF_MARK);
 
 /** Τα αρχεία/φάκελοι που αντιγράφει το pages.yml στο _site. */
 export function deployed(root = ROOT){
@@ -72,6 +75,7 @@ export function readSw(sw){
 if(process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)){
   const swPath = path.join(ROOT, 'sw.js');
   const sw = fs.readFileSync(swPath, 'utf8');
+  if(isOff(sw)){ console.log('sw.js: ο service worker είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ (tools/sw-off.js)· τίποτα να γραφτεί.'); process.exit(0); }
   const manifest = buildManifest();
   const next = render(sw, manifest);
   for(const s of manifest.skipped) console.log(`έξω: ${s.file} (${(s.bytes / 1024).toFixed(0)} KB) — ${s.reason}`);

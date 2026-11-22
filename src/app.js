@@ -4,7 +4,7 @@ if(window.top !== window.self){
   throw new Error('framed');
 }
 import { parse, calcParts, lineFor } from './parse.js';
-import { createMic, micSupported } from './mic.js';
+import { createMic, micSupported, VOICE_OFFLINE } from './mic.js';
 import { readNotes, shrink, getKey, setKey, forgetKey, canRememberKey, isKeyRemembered, keyProvider } from './photo.js';
 import { makePdf, shareFiles, download } from './share.js';
 import { mountInstallation } from './installation-ui.js';
@@ -22,6 +22,14 @@ import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
 import { authGate } from './account.js';
 import { registerSW, takeDraft } from './offline.js';
+import { watchNet, online, probe, NO_NET } from './net.js';
+import { guardStorage, askPersist } from './storage-guard.js';
+import { mountOfflineUi } from './offline-ui.js';
+
+// ─── Χωρίς σήμα (docs/offline.md): σήμα, γεμάτη μνήμη και ενδείξεις επάνω — πριν από οτιδήποτε άλλο ───
+watchNet();
+const offlineUi = mountOfflineUi();
+guardStorage({onFull: () => offlineUi.full()});
 
 // Πιλοτικό: δεν στέλνουμε φωτογραφίες σε τρίτους. Με true ξανανοίγει η ροή φωτογραφίας (κουμπί, κάλυψη, key).
 const PHOTO_ENABLED = false;
@@ -172,7 +180,7 @@ const mic = createMic({
     const bars = wave.children;
     for(let i=0;i<bars.length;i++) bars[i].style.height = (8 + levels[i]*52) + 'px';
   },
-  onError(msg){ review(transcript.textContent, msg); },
+  onError(msg){ if(msg === VOICE_OFFLINE) probe(); review(transcript.textContent, msg); },
 });
 
 function renderChips(text){
@@ -198,6 +206,8 @@ async function startListening(initial = ''){
     review(initial, 'Αυτός ο browser δεν έχει αναγνώριση φωνής. Γράψε τι χρειάζεται — ή άνοιξέ το σε Chrome ή Safari.');
     return;
   }
+  // Η αναγνώριση φωνής του browser θέλει συνήθως internet: χωρίς σήμα, κατευθείαν στο κείμενο (ο parser είναι τοπικός).
+  if(!online()) return review(initial, VOICE_OFFLINE);
   show('s-listen','Ακούω');
   notice('');
   $('shot').hidden = true;
@@ -277,7 +287,7 @@ const shot = $('shot');
 let pendingPhoto = null;
 
 $('photo').hidden = !PHOTO_ENABLED;
-$('photo').onclick = () => { if(PHOTO_ENABLED) getKey() ? $('photoInput').click() : openKey(); };
+$('photo').onclick = () => { if(!PHOTO_ENABLED) return; if(!online()){ $('micNote').textContent = NO_NET; return; } getKey() ? $('photoInput').click() : openKey(); };
 $('photoInput').onchange = async e => {
   const file = e.target.files[0];
   e.target.value = '';
@@ -857,6 +867,7 @@ function buildPdf(){
   if(quoteNo == null) quoteNo = takeQuoteNo();
   SHOWN = quoteData();
   SHOWN.unsaved = !saveQuote(SHOWN);
+  if(!SHOWN.unsaved) askPersist();           // μία φορά: «μη σβήνεις τα δεδομένα» (docs/offline.md)
   show('s-pdf','Προεπισκόπηση');
   pdfMode(false);
   renderPdf(SHOWN);
@@ -911,6 +922,7 @@ function bindRef(el, l, key){
     const box = el.querySelector('.refp-list'), open = box.hidden;
     box.hidden = !open; more.setAttribute('aria-expanded', String(open));
     if(!open || box.dataset.loaded) return;
+    if(!online()){ box.textContent = NO_NET; return; }
     box.textContent = 'Φορτώνω…';
     try {
       const db = await authUi?.db?.();
@@ -928,12 +940,12 @@ const syncHistoryButton = () => {
   $('startNav').hidden = !n;
   $('quotesOpen').textContent = `📋 Προσφορές (${n})`;
 };
-const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => location.reload(), onChange: syncHistoryButton});
+const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => fresh(), onChange: syncHistoryButton});
 $('historyOpen').onclick = () => calendar.open({view: 'month'});
 $('quotesOpen').onclick = () => calendar.open({view: 'list'});
 $('statsOpen').onclick = () => calendar.open({view: 'stats'});
 $('histBack').onclick = () => calendar.open({reset: false});     // πίσω εκεί που ήταν (μήνας, μέρα, προβολή)
-$('histNew').onclick = () => location.reload();
+$('histNew').onclick = () => fresh();
 syncHistoryButton();
 
 // ─── 5 : αποστολή ────────────────────────────────────────────
@@ -988,7 +1000,7 @@ async function sendPdf(){
   shareSelection=companionFile?[pdfFile,companionFile]:[pdfFile];
   const extra=shareSelection.length===2;
   const res=await shareFiles(shareSelection,{title:`Προσφορά ${SHOWN.no} — ${clientName()}`,text:shareText()+(extra?' Μαζί επισυνάπτεται η αναλυτική περιγραφή εργασιών.':'')});
-  if(res==='shared'){markSent();done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);}
+  if(res==='shared'){SHOWN.sent=true;markSent();done('Στάλθηκε',extra?`Η προσφορά και η ανάλυση εργασιών έφυγαν μαζί για ${clientName()}.`:`Η προσφορά έφυγε για ${clientName()}.`);}
   else if(res==='unsupported')openSheet();
 }
 
@@ -1007,8 +1019,10 @@ document.querySelectorAll('[data-send]').forEach(b => b.onclick = () => {
   const files=shareSelection.length?shareSelection:[pdfFile],extra=files.length===2;
   const how = b.dataset.send, text = encodeURIComponent(shareText()+(extra?' Επισυνάπτω και την αναλυτική περιγραφή εργασιών.':''));
   files.forEach(download);
+  SHOWN.sent = true;
   markSent();   // κατέβηκε για να σταλεί (Viber, WhatsApp, email ή με το χέρι): δεν μαθαίνουμε αν έφυγε, το θεωρούμε σταλμένο
-  if(how === 'whatsapp') window.open(`https://wa.me/?text=${text}`, '_blank');
+  // Χωρίς σήμα το wa.me (ιστοσελίδα) δεν ανοίγει: κατευθείαν η εφαρμογή του WhatsApp.
+  if(how === 'whatsapp'){ if(online()) window.open(`https://wa.me/?text=${text}`, '_blank'); else location.href = `whatsapp://send?text=${text}`; }
   if(how === 'viber') location.href = `viber://forward?text=${text}`;
   if(how === 'email') location.href = `mailto:?subject=${encodeURIComponent(pdfFile.name.replace(/\.pdf$/, ''))}&body=${text}`;
   done(extra?'Τα δύο PDF ετοιμάστηκαν για λήψη':'Το PDF κατέβηκε',extra?'Επισύναψε την προσφορά και την ανάλυση στο ίδιο μήνυμα. Αν ο browser μπλοκάρει τη δεύτερη λήψη, πάτησε αποστολή ξανά και κατέβασέ τα ένα-ένα.':how==='download'?'Βρίσκεται στις Λήψεις. Στείλε το στον πελάτη από όποια εφαρμογή θέλεις.':'Επισύναψε το PDF από τις Λήψεις στο μήνυμα που άνοιξε.');
@@ -1024,7 +1038,7 @@ function done(title, text){
   cta(null);
 }
 $('resend').onclick = () => { if(pdfFile) sendPdf(); };
-$('again').onclick = ()=> location.reload();
+$('again').onclick = () => fresh();
 
 $('downloadOfferOnly').onclick=()=>{if(pdfFile)download(pdfFile)};
 $('downloadAnalysisOnly').onclick=()=>{if(companionFile)download(companionFile)};
@@ -1055,6 +1069,7 @@ syncRulesButton();
 // ─── Λογαριασμός (μόνο με AUTH_ENABLED στο src/config.js· αλλιώς τίποτα δεν αλλάζει) ───
 const account = authUi = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
   needProfile: () => openProfile(null),
+  onLogin: () => offlineUi.iosHint(),
   onLockChange: v => { authLocked = v; renderBrand(); },
   onProfileChange: () => {
     PROFILE = loadProfile();
@@ -1076,7 +1091,7 @@ async function goBack(){
     // Πάντα στην αρχική με το μικρόφωνο — όχι ξανά στον έλεγχο. Αν έχει ήδη βγει PDF (έχει αριθμό, ίσως και στάλθηκε),
     // η αρχική ανοίγει ως ΝΕΑ προσφορά: αλλιώς η επόμενη υπαγόρευση θα έπαιρνε τον ίδιο αριθμό και θα έσβηνε την
     // προηγούμενη από το ιστορικό. Ερώτηση μόνο για κείμενο που δεν έχει γίνει ακόμα προσφορά.
-    if(quoteNo != null) return location.reload();
+    if(quoteNo != null) return fresh();
     if(t && listenFrom !== 'lines' && !confirm('Πίσω στην αρχή; Το κείμενο που έγραψες θα σβηστεί.')) return review(t);
     return toStart();
   }
@@ -1101,7 +1116,7 @@ syncBack(document.querySelector('.screen.on')?.id);
 
 // ─── Χωρίς σήμα (src/offline.js): service worker και νέα έκδοση μόνο με «Ανανέωση», που σώζει πρώτα το πρόχειρο ───
 // Πρόχειρο = κείμενο + πελάτης της προσφοράς που γράφεται. Αφού βγει PDF, η προσφορά είναι ήδη στο ιστορικό.
-registerSW({bar: $('updateBar'), draft: () => {
+registerSW({bar: $('updateBar'), onReady: () => offlineUi.ready(), canLeave: () => leaveOk(), draft: () => {
   const cur = document.querySelector('.screen.on')?.id;
   if(authLocked || quoteNo != null || !['s-listen', 's-lines'].includes(cur)) return null;
   return {screen: cur, client: $('client').value, text: cur === 's-listen' ? transcript.textContent : lastText};
@@ -1112,3 +1127,16 @@ if(draft){
   if(draft.screen === 's-lines') buildLines(draft.text);
   else review(draft.text, 'Η εφαρμογή ενημερώθηκε. Το κείμενό σου είναι εδώ.');
 }
+
+// Γεμάτη μνήμη (QuotaExceededError): η προσφορά που δεν αποθηκεύτηκε μένει στη μνήμη μέχρι να σταλεί — καμία
+// επαναφόρτωση δεν τη σβήνει χωρίς ερώτηση.
+const atRisk = () => !!SHOWN && SHOWN.unsaved && !SHOWN.sent && !SHOWN.fromHistory;
+let leaving = false;          // ο τεχνίτης απάντησε ήδη «Συνέχεια»: όχι δεύτερη ερώτηση από τον browser
+function leaveOk(){
+  if(!atRisk()) return true;
+  return leaving = confirm('Η προσφορά δεν αποθηκεύτηκε στο κινητό (γέμισε η μνήμη) και δεν έχει σταλεί. Αν συνεχίσεις, θα χαθεί. Συνέχεια;');
+}
+function fresh(){ if(leaveOk()) location.reload(); }
+window.addEventListener('beforeunload', e => { if(atRisk() && !leaving){ e.preventDefault(); e.returnValue = ''; } });
+// Συνδεδεμένος από πριν (πριν υπάρξει η οδηγία): μία φορά και σε αυτόν, στο Safari του iPhone.
+if(!authLocked && account.enabled && authGate().required) offlineUi.iosHint();

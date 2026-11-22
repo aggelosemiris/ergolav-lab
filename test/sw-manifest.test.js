@@ -6,17 +6,30 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { ROOT, MAX_BYTES, buildManifest, readSw, render, deployed } from '../tools/sw-manifest.mjs';
+import { ROOT, MAX_BYTES, buildManifest, readSw, render, deployed, isOff, OFF_MARK } from '../tools/sw-manifest.mjs';
+import { SW_ENABLED } from '../src/offline.js';
 
 const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const FIX = 'τρέξε `npm run sw:manifest` και κάνε commit το sw.js';
+// Διακόπτης ανάγκης (tools/sw-off.js στη θέση του sw.js): τα tests της λίστας δεν ισχύουν, ισχύει το «μαζί».
+const OFF = isOff(read('sw.js'));
+const on = OFF ? test.skip : test;
 
-test('sw.js: η λίστα του precache ταιριάζει με τα αρχεία στον δίσκο', () => {
+test('διακόπτης ανάγκης: sw.js και SW_ENABLED (src/offline.js) αλλάζουν ΜΑΖΙ', () => {
+  assert.equal(SW_ENABLED, !OFF, OFF ? 'το sw.js είναι το tools/sw-off.js: βάλε SW_ENABLED = false' : 'SW_ENABLED = false θέλει και cp tools/sw-off.js sw.js');
+  const off = read('tools/sw-off.js');
+  assert.ok(off.startsWith(OFF_MARK));
+  assert.match(off, /const prefix = `ergolav-\$\{new URL\(self\.registration\.scope\)\.pathname\}-`;/, 'σβήνει μόνο τις caches αυτού του scope');
+  assert.match(off, /registration\.unregister\(\)/);
+  assert.ok(!/localStorage|indexedDB/.test(off.replace(/^\/\/.*$/gm, '')), 'τα δεδομένα της εφαρμογής δεν αγγίζονται');
+});
+
+on('sw.js: η λίστα του precache ταιριάζει με τα αρχεία στον δίσκο', () => {
   const now = buildManifest(), sw = readSw(read('sw.js'));
   assert.deepEqual(sw.files, now.files, `η λίστα του sw.js είναι παλιά — ${FIX}`);
 });
 
-test('sw.js: το VERSION ταιριάζει με τα περιεχόμενα (αλλαγή σε οποιοδήποτε αρχείο = νέο VERSION)', () => {
+on('sw.js: το VERSION ταιριάζει με τα περιεχόμενα (αλλαγή σε οποιοδήποτε αρχείο = νέο VERSION)', () => {
   const now = buildManifest(), sw = readSw(read('sw.js'));
   assert.equal(sw.version, now.version, `το VERSION του sw.js είναι παλιό — ${FIX}`);
   assert.equal(render(read('sw.js'), now), read('sw.js'), `το sw.js δεν είναι όπως το γράφει το εργαλείο — ${FIX}`);
@@ -54,7 +67,7 @@ test('sw-manifest: αρχεία πάνω από 2 MB και dotfiles μένου�
   fs.rmSync(dir, {recursive: true});
 });
 
-test('sw.js: μόνο GET του ίδιου origin/scope, caches μόνο «ergolav-» του scope, κανένα reload χωρίς πάτημα', () => {
+on('sw.js: μόνο GET του ίδιου origin/scope, caches μόνο «ergolav-» του scope, κανένα reload χωρίς πάτημα', () => {
   const sw = read('sw.js');
   assert.match(sw, /request\.method !== 'GET'\) return;/);
   assert.match(sw, /url\.origin !== SCOPE\.origin \|\| !url\.pathname\.startsWith\(SCOPE\.pathname\)\) return;/);
