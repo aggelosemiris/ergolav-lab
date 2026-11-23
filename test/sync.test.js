@@ -204,7 +204,12 @@ test('history: ensureIds δίνει id σε παλιές προσφορές μί
   const ids = h.listQuotes().map(q => q.id);
   assert.ok(ids.every(id => h.UUID.test(id)));
   assert.equal(h.ensureIds(), 0, 'δεύτερη φορά: τίποτα');
-  assert.deepEqual(h.listQuotes().map(q => q.id), ids, 'σταθερά');
+  const junk = JSON.stringify([{no: 1}, 'x', null]);
+  env({[h.STORE]: junk});
+  assert.equal(h.ensureIds(), 0, 'άκυρες εγγραφές: δεν αγγίζονται');
+  assert.equal(data[h.STORE], junk);
+  env({[h.STORE]: JSON.stringify([quote(2), quote(1)])}); h.ensureIds();
+  assert.equal(h.listQuotes().length, 2);
   const other = '11111111-2222-4333-8444-555555555555';
   h.applyRemote([{id: other, updated: Date.now(), data: quote(2, {client: 'Από το άλλο κινητό'})}]);
   assert.equal(h.listQuotes().length, 3, 'και οι δύο «Αρ. 2» μένουν');

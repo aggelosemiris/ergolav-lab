@@ -169,7 +169,8 @@ export function ensureIds(){
   if(!Array.isArray(data)) return 0;
   let n = 0;
   const out = data.map(q => {
-    if(!q || typeof q !== 'object' || Array.isArray(q) || (typeof q.id === 'string' && UUID.test(q.id))) return q;
+    // Μόνο έγκυρες προσφορές· ό,τι άλλο (σκουπίδια, μισές εγγραφές) μένει ΑΚΡΙΒΩΣ όπως ήταν, όπως στη μετάπτωση.
+    if(!q || typeof q !== 'object' || Array.isArray(q) || (typeof q.id === 'string' && UUID.test(q.id)) || !clean(q)) return q;
     n++;
     return {...q, id: newId(), ...(!(Number.isFinite(q.updated) && q.updated > 0) && Number.isFinite(q.at) && {updated: q.at})};
   });
