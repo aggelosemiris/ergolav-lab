@@ -1,0 +1,31 @@
+# trade: gypsosanida | Γυψοσανίδα / ξηρά δόμηση | γυψοσανιδάς
+
+## Πλάκες
+board-standard | Γυψοσανίδα κανονική | τ.μ. | γυψοσανίδα, gypsum board, Knauf, Siniat, Rigips, Gyproc, GKB | 9,5 mm; 12,5 mm; 15 mm; 120×200; 120×250; 120×300 | drywall-board
+board-moisture | Γυψοσανίδα ανθυγρή (πράσινη) | τ.μ. | ανθυγρή, πράσινη, H2, GKBI, moisture resistant | 12,5 mm; 120×200; 120×250 | drywall-board
+board-fire | Γυψοσανίδα πυράντοχη (κόκκινη/ροζ) | τ.μ. | πυράντοχη, πυράντοχη γυψοσανίδα, GKF, DF, fire board | 12,5 mm; 15 mm | drywall-board
+board-acoustic | Γυψοσανίδα ηχομονωτική / διάτρητη | τ.μ. | ηχομονωτική, διάτρητη, acoustic board, Diamant | 12,5 mm | drywall-board
+cement-board | Τσιμεντοσανίδα | τ.μ. | τσιμεντοσανίδα, Aquapanel, cement board, Knauf Aquapanel, Cetris | 12,5 mm; 120×90; 120×240 | cement-board
+gypsum-fiber | Γυψοϊνοσανίδα | τ.μ. | γυψοϊνοσανίδα, Fermacell, fiber gypsum | 10; 12,5 mm |
+ceiling-tiles | Πλάκες ορυκτών ινών ψευδοροφής (60×60) | τ.μ. | πλάκες ψευδοροφής, ορυκτών ινών, Armstrong, ψευδοροφή 60×60 | 60×60; ορατός σκελετός; κρυφός |
+osb-board | Πλάκα OSB (για ξηρά δόμηση) | τ.μ. | OSB, OSB3 | 12; 15; 18 mm | wood-panels
+
+## Σκελετός
+stud | Ορθοστάτης (κολόνα) γυψοσανίδας | μ. | ορθοστάτης, κολόνα, CW, stud | CW 50; CW 75; CW 100; 0,6 mm; 3 μ.; 4 μ. | drywall-profile
+track | Στρωτήρας (οδηγός) | μ. | στρωτήρας, οδηγός, UW, runner | UW 50; UW 75; UW 100; 3 μ. | drywall-profile
+ceiling-channel | Κανάλι οροφής (CD) και οδηγός (UD) | μ. | κανάλι οροφής, CD 60/27, UD 28/27, ceiling profile | CD 60×27; UD 28×27; 3 μ.; 4 μ. | drywall-ceiling
+hanger | Αναρτήσεις και ντίζες | τεμ. | ανάρτηση, ντίζα, ανάρτηση ταχείας, direct hanger, Nonius | ντίζα 1 μ.; ταχείας ανάρτησης; ευθεία ανάρτηση | drywall-ceiling
+connector-ceiling | Σύνδεσμοι καναλιών (σταυροί, μούφες) | τεμ. | σταυρός, σύνδεσμος CD, μούφα, cross connector | σταυρός CD; μούφα CD | drywall-ceiling
+grid-t | Σκελετός ψευδοροφής ορατός (T24) | μ. | Τ24, κύριος οδηγός, δευτερεύων, περιμετρικό L | 3,6 μ.; 1,2 μ.; 0,6 μ.; L 3 μ. | drywall-ceiling
+corner-bead | Γωνιόκρανο γυψοσανίδας | μ. | γωνιόκρανο, corner bead, μεταλλικό, χάρτινο-μεταλλικό | 2,5 μ.; 3 μ. | drywall-consumable
+
+## Αναλώσιμα
+screws-drywall | Βίδες γυψοσανίδας | συσκευασία | βίδες γυψοσανίδας, TN, φωσφατωμένες, drywall screws | 25; 35; 45 mm; 1000 τεμ. | drywall-consumable
+screws-metal | Βίδες λαμαρίνας (σκελετού) | συσκευασία | βίδες σκελετού, LN, βιδάκια μετάλλου | 9,5 mm; 1000 τεμ. | drywall-consumable
+anchors | Βύσματα οροφής / καρφωτά | συσκευασία | καρφωτά βύσματα, βύσματα οροφής, nailing anchors | 6×40; 6×60 |
+joint-tape | Ταινία αρμών (χάρτινη / υαλοπλέγματος) | τεμ. | ταινία αρμών, χαρτοταινία γυψοσανίδας, fiber tape | χάρτινη 75 μ.; υαλοπλέγματος 45/90 μ. | drywall-consumable
+joint-compound | Στόκος αρμών γυψοσανίδας | σακί | στόκος αρμών, Uniflott, joint filler, Knauf | 5; 25 κιλά; σκόνη; έτοιμος | drywall-consumable
+mineral-wool-partition | Πετροβάμβακας/υαλοβάμβακας για χωρίσματα | τ.μ. | πετροβάμβακας, υαλοβάμβακας, ηχομόνωση χωρισμάτων | 5 εκ.; 7,5 εκ.; πάπλωμα; πλάκα | ins-mineral-wool
+sealing-tape | Ταινία στεγάνωσης περιμετρική (αφρώδης) | τεμ. | ταινία στεγάνωσης, φιτίλι, sealing band | 50; 70; 95 mm × 30 μ. |
+access-panel | Θυρίδα επίσκεψης | τεμ. | θυρίδα, καπάκι επίσκεψης, access panel | 20×20; 30×30; 40×40; 60×60 |
+drywall-primer | Αστάρι γυψοσανίδας | λίτρο | αστάρι γυψοσανίδας, Tiefengrund | 5; 10 λ. | paint-primer
