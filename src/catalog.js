@@ -178,7 +178,7 @@ export const CATALOG = [
     per:{from:'tile', rate:0.4, unit:'kg', waste:10, pack:5}},
   {id:'waterproof', keywords:['στεγανωσ','στεγανωτ'], name:'Στεγάνωση δαπέδου μπάνιου', code:'ΚΩΔ. 95300', unit:'τ.μ.', mat:600, lab:800},
   {id:'screed', keywords:['αυτοεπιπεδ','εξομαλυν','γεμισμ'], name:'Εξομάλυνση δαπέδου (αυτοεπιπεδούμενο)', code:'ΚΩΔ. 95400', unit:'τ.μ.', mat:500, lab:800},
-  {id:'plaster', keywords:['σοβασ','σοβατ'], name:'Σοβάς', code:'ΚΩΔ. 95500', unit:'τ.μ.', mat:400, lab:1200},
+  {id:'plaster', keywords:['σοβασ','σοβατ'], notWords:['σοβατεπ'], name:'Σοβάς', code:'ΚΩΔ. 95500', unit:'τ.μ.', mat:400, lab:1200},
   {id:'drywall', keywords:['γυψοσανιδ','ψευδοροφ'], name:'Ψευδοροφή γυψοσανίδας', code:'ΚΩΔ. 96100', unit:'τ.μ.', mat:1200, lab:1800},
   {id:'paint', keywords:['βαψιμ','βαφ'], notWords:['βαφτισ','βαφτιστ'], en:['paint','painting'], name:'Βάψιμο τοίχων πλαστικό', unit:'τ.μ.', def:1,
     options:[

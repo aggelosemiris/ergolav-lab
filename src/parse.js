@@ -138,7 +138,9 @@ function attributes(tokens){
     const last = b ? b.end : u ? a.end + 1 : half ? a.end + 1 : -1;
     if(last < 0) continue;
     for(let k = i; k <= last; k++) at.add(k);
-    if(!half) sizes.push(b ? dimSize(i, a.n, b.n) : {at: i, kind: u[0], v: [Math.round(a.n * u[2] * 100) / 100], label: u[0] === 'inch' ? `${fmtNum(a.n)}"` : u[0] === 'amp' ? `${fmtNum(a.n)}A` : `${fmtNum(a.n)} ${u[1]}`});
+    if(!half) sizes.push(b ? dimSize(i, a.n, b.n) : {at: i, kind: u[0], v: [Math.round(a.n * u[2] * 100) / 100], label: u[0] === 'inch' ? `${fmtNum(a.n)}"` : u[0] === 'amp' ? `${fmtNum(a.n)}A` : `${fmtNum(a.n)} ${u[1]}`,
+      // «λίτρα» είναι και μονάδα ποσότητας: μέγεθος μόνο για υλικό με τέτοιους τύπους (θερμοσίφωνας 80 λ.), αλλιώς ποσότητα.
+      ...(!b && unitOf(tokens[a.end + 1]) && {soft: [i, last]})});
     i = last;
   }
   return {at, sizes};
@@ -231,18 +233,21 @@ function makeLine(item, qty, tokens, qtyMissing, {dim, said} = {}){
 }
 
 // Συντομογραφίες σημειώσεων («12 μ.», «τ.μ.», «τεμ.») — η τελεία τους δεν κλείνει φράση.
-const ABBR = /(^|[\s\d])(τ\.\s?μ|τμ|μ|τεμ|τεμαχ|μετ|κιλ|λιτ|σακ|κουτ|εκ|χιλ|κ)\./gi;   // «κ. Νικολάου»: όχι τέλος φράσης
+const ABBR = /(^|[\s\d])(τ\.\s?μ|κ\.\s?μ|τμ|μ|τεμ|τεμαχ|μετ|κιλ|λιτ|σακ|κουτ|ρολ|εκ|χιλ|κ)\./gi;   // «κ. Νικολάου»: όχι τέλος φράσης
 
 // Μονάδες που μπορεί να ακολουθούν την ποσότητα (κανονικοποιημένες ρίζες → εμφάνιση).
 const UNIT_WORDS = [[/^(μ|μετρ|μετ|m|meters?|metres?)$|^μετρ/, 'μ.'], [/^(τμ|τετραγων|sqm|m2)/, 'τ.μ.'], [/^(τεμ|pcs|pieces?)/, 'τεμ.'], [/^σακ/, 'σακί'],
-  [/^(κιλ|kg)/, 'kg'], [/^λιτ/, 'λ.'], [/^κουτ/, 'κουτί'], [/^(ζευγ|ζευγαρ)/, 'ζεύγος']];
+  [/^(κιλ|kg)/, 'kg'], [/^λιτ/, 'λ.'], [/^κουτ/, 'κουτί'], [/^(ζευγ|ζευγαρ)/, 'ζεύγος'], [/^(κυβικ|κμ$|m3$)/, 'κ.μ.'], [/^ρολ(α|ο|ων)?$/, 'ρολό']];
 const unitOf = tok => UNIT_WORDS.find(([re]) => re.test(tok))?.[1];
-const wordTok = w => norm(w).replace(/[«»"'().,;:!?]/g, '');
+// Η τελεία και το κόμμα φεύγουν, εκτός αν είναι υποδιαστολή («2,5», «2.5»): αλλιώς το «2,5» γινόταν 25.
+const wordTok = w => norm(w).replace(/[«»"'();:!?]/g, '').replace(/(?<!\d)[.,]|[.,](?!\d)/g, '');
+// «1.500»: 1,5 ή 1.500; Η ποσότητα μένει όπως διαβάζεται (1,5) αλλά η γραμμή ρωτάει.
+const dotAmbig = t => /^\d{1,3}\.\d{3}$/.test(t || '');
 
 // Λέξεις που δεν κάνουν μια φράση υλικό: άρθρα/προθέσεις, και ό,τι δείχνει ώρα, ημέρα, ποσό, τηλέφωνο, διεύθυνση,
 // πρόσωπο («στις 10 το πρωί», «σε 3 μέρες», «οδός Ερμού 25», «κύριος Νικολάου»).
 const STOP = new Set(['για','τον','την','τη','το','τα','του','τησ','των','στο','στη','στην','στον','στα','στουσ','στισ','σε','με','απο',
-  'ο','η','οι','ενα','ενασ','μια','θα','να','πιο','ακομα','ακομη','ολα','ολο','αλλο','αλλα','που','πωσ','οτι','κι']);
+  'ο','η','οι','ενα','ενασ','μια','θα','να','πιο','ακομα','ακομη','ολα','ολο','αλλο','αλλα','που','πωσ','οτι','κι','μαζι']);
 const NOISE = /^(ωρα|ωρεσ|ωρων|πρωι|απογευμ|βραδ|μεσημερ|λεπτ|μερα|μερεσ|ημερ|εβδομαδ|μηνα|μηνεσ|τηλ|κινητ|οδοσ|οδο$|λεωφ|οροφ|κυρ|ευρω|eur|φπα|ποσοστ|εργασ|αυριο|σημερα|μεθαυριο|χθεσ|δευτερ|τριτη|τεταρτη|πεμπτ|παρασκευ|σαββατ|κυριακ|ιανουαρ|φεβρουαρ|μαρτ|απριλ|μαιου|μαιοσ|ιουν|ιουλ|αυγουστ|σεπτεμβρ|οκτωβρ|νοεμβρ|δεκεμβρ)/;
 // Λέξεις που δεν είναι μέρος του ονόματος υλικού («θέλω ροπ» → «Ροπ», «επίσης σιφόνι»).
 const ASK_WORDS = new Set(['θελω','θελουμε','θελει','βαλε','βαλτε','βαζουμε','βαλουμε','βαζω','χρειαζεται','χρειαζονται','χρειαζομαι',
@@ -286,12 +291,14 @@ export function scrub(seg){
 // χωρίς τιμή, για να τη συμπληρώσει ή να τη σβήσει ο χρήστης (ποτέ σιωπηλά χαμένο). Ποσότητα που δεν ειπώθηκε = 1.
 function unknownLine(raw){
   const seg = scrub(raw);
-  let qty = null, unit = '';
-  const words = seg.split(/\s+/), toks = words.map(wordTok);
+  let qty = null, unit = '', qtyTok = '';
+  const words = seg.split(/\s+/), toks = words.map(wordTok), skip = new Set();
   const rest = words.filter((w, k) => {
+    if(skip.has(k)) return false;
     const t = toks[k];
-    const n = /^\d+(?:[.,]\d+)?$/.test(t) || isWordNumber(t) || isLatin(t) ? toNumber(t, toks[k + 1]) : null;
-    if(n != null && qty == null){ qty = n; return false; }
+    // Σύνθετος αριθμός από λέξεις («είκοσι πέντε μέτρα σίτα» = 25, όχι 20 + «πέντε» στο όνομα).
+    const a = qty == null && (/^\d+(?:[.,]\d+)?$/.test(t) || isWordNumber(t) || isLatin(t)) ? numAt(toks, k) : null;
+    if(a){ qty = a.n; qtyTok = t; for(let j = k + 1; j <= a.end; j++) skip.add(j); return false; }
     const u = t.length <= 12 && unitOf(t);
     if(u && !unit && qty != null){ unit = u; return false; }
     return true;
@@ -301,9 +308,15 @@ function unknownLine(raw){
   const nouns = rest.map(wordTok).filter(t => /\p{L}{2,}/u.test(t) && !STOP.has(t) && !FILLER.has(t) && !CORR.has(t) && !NEG.has(t) && !ASK_WORDS.has(t));
   // «όχι σίτες», «χωρίς ντουλάπι»: άρνηση — όχι προϊόν. Το «όχι» δεν γίνεται ποτέ όνομα είδους.
   const keep = nouns.length > 0 && !toks.some(t => NOISE.test(t)) && !NEG.has(toks.find(Boolean) || '');
-  return checkQty({id:'unknown', name: name ? name[0].toUpperCase() + name.slice(1) : seg, said: seg.replace(/[.,;:!?]+$/, ''),
-    unit: unit || (keep ? 'τεμ.' : ''), qty: qty ?? 1, mat:0, lab:0, unknown:true, keep});
+  // Αριθμός χωρίς μονάδα: μέτρα αν το υλικό μετριέται σε μήκος (σωλήνας, καλώδιο, προφίλ…), αλλιώς τεμάχια.
+  const linear = qty != null && nouns.some(t => LINEAR.test(t));
+  const line = {id:'unknown', name: name ? name[0].toUpperCase() + name.slice(1) : seg, said: seg.replace(/[.,;:!?]+$/, ''),
+    unit: unit || (keep ? (linear ? 'μ.' : 'τεμ.') : ''), qty: qty ?? 1, mat:0, lab:0, unknown:true, keep};
+  if(dotAmbig(qtyTok)) Object.assign(line, {qtyWhy: 'dot', qtyWord: qtyTok});
+  return checkQty(line);
 }
+// Υλικά που μετριούνται σε μήκος (ρίζες, και μέσα σε σύνθετες λέξεις: «χαλκοσωλήνας», «αλουμινοπροφίλ»).
+const LINEAR = /σωλην|καλωδι|προφιλ|σοβατεπ|πηχ(ακ|η|εισ|εσ)|^ραγ(α|εσ|ων)$|καναλ(ι|ια|ακι)|κορνιζ|μπορντουρ|υδρορρο|ρειθρ|^λουκι|συρμα|κορδον|καδρον|δοκαρ/;
 
 /** Ποσό εργασίας από φράση με «εργασία»: {cents} ή {ask} όταν ο αριθμός είναι ασαφής· null αν δεν ειπώθηκε ποσό.
  *  ΜΟΝΟ εδώ (φωνή + «ευρώ/€»): τελεία και ακριβώς 3 ψηφία = χιλιάδες («1.200 ευρώ» → 1200). Αλλού αυστηρά όπως number.js. */
@@ -357,16 +370,70 @@ export function calcParts(line, lines){
   return {src: total, srcUnit: c.srcUnit, rate, waste: c.waste, pack: c.pack, unit: c.unit, qty};
 }
 
+// «δύο και μισό μέτρα», «δύο μέτρα και μισό» → «2,5 μέτρα»: αλλιώς το «και» χώριζε τη φράση και έμενε μόνο το «μισό».
+function halves(text){
+  const parts = text.split(/(\s+)/), wi = parts.map((_, k) => k).filter(k => k % 2 === 0 && parts[k]);
+  const toks = wi.map(k => wordTok(parts[k]));
+  for(let j = 1; j < toks.length - 1; j++){
+    if(toks[j] !== 'και' || !/^μισ[οηα]$/.test(toks[j + 1])) continue;
+    const ne = unitOf(toks[j - 1]) && j >= 2 ? j - 2 : j - 1;
+    let st = ne;
+    if(/^\d+$/.test(toks[ne])) st = ne;
+    else if(isWordNumber(toks[ne])) while(st > 0 && isWordNumber(toks[st - 1])) st--;
+    else continue;
+    const a = numAt(toks, st);
+    if(!a || a.end !== ne || a.n % 1) continue;
+    parts[wi[st]] = fmtNum(a.n + 0.5);
+    for(let k = st + 1; k <= ne; k++) parts[wi[k]] = '';
+    const tail = parts[wi[j + 1]].match(/[.,;:!?]+$/)?.[0] || '';
+    parts[wi[j]] = ''; parts[wi[j + 1]] = tail;
+  }
+  return parts.join('').replace(/[ \t]+([.,;:!?])/g, '$1').replace(/[ \t]{2,}/g, ' ');
+}
+
+// Λέξη που ανήκει στο υλικό στα αριστερά: τύπος/χαρακτηριστικό του («μπαταρία με ντους»), ή το ένα περιέχει το άλλο
+// («νιπτήρας με έπιπλο»). Τότε το «με» δεν χωρίζει και η λέξη δεν γίνεται δεύτερη γραμμή.
+const kindOf = (left, tok) => !!left && [...(left.options || []), ...(left.qualifiers || [])].some(o => hasAny([tok], o.kw || []));
+const partOf = (left, tok, right) => kindOf(left, tok) ||
+  (!!left && !!right && (left.includes?.includes(right.id) || right.includes?.includes(left.id)));
+const isNoun = t => /\p{L}{2,}/u.test(t || '') && !STOP.has(t) && !FILLER.has(t) && !ASK_WORDS.has(t) && !NOISE.test(t) &&
+  !unitOf(t) && toNumber(t) == null && !DIM_SEP.has(t);
+
+// «με» πριν από ποσότητα με υλικό («ντουλάπι με 2 μεντεσέδες», «μπαταρία με 2,5 μέτρα σωλήνα») ή πριν από άλλο υλικό
+// του καταλόγου: νέα φράση, όπως το «και». Δεν χωρίζει όταν ο αριθμός είναι μέγεθος («πίνακας με 12 θέσεις»,
+// «θερμοσίφωνας με 80 λίτρα», «με 2 χέρια») ή όταν η λέξη ανήκει στο υλικό (partOf).
+function splitWith(seg){
+  const words = seg.split(/\s+/), toks = words.map(wordTok), cuts = [];
+  const qtyAt = j => {
+    const a = numAt(toks, j);
+    if(!a) return false;
+    const u = toks[a.end + 1] || '', size = SIZE_UNIT[u.replace(/\.$/, '')];
+    if(DIM_SEP.has(u) || (size && !unitOf(u))) return false;
+    return isNoun(toks[a.end + (unitOf(u) ? 2 : 1)]);
+  };
+  for(let k = 1; k < toks.length - 1; k++){
+    if(toks[k] !== 'με') continue;
+    const at = toks[k - 1] === 'μαζι' ? k - 1 : k;
+    if(!toks.slice(cuts.at(-1) ?? 0, at).some(isNoun)) continue;
+    const left = toks.slice(0, k).map((_, m) => findItem(toks, m)).filter(Boolean);
+    const right = findItem(toks, k + 1);
+    if(left.some(l => partOf(l, toks[k + 1], right))) continue;
+    if(qtyAt(k + 1) || right) cuts.push(at);
+  }
+  return [0, ...cuts].map((c, n) => words.slice(c, cuts[n] ?? words.length).join(' ')).filter(Boolean);
+}
+
 export function parse(text){
-  text = cleanText(text);
+  text = halves(cleanText(text));
   const lines = [], unknown = [];
   let title = '', correcting = false, lastLine = null, prevCorr = false, labor = null;
-  for(const rawSeg of text.split(SPLIT).flatMap(s => s ? splitCorrection(s.trim()) : [])){
+  for(const rawSeg of text.split(SPLIT).flatMap(s => s ? splitCorrection(s.trim()) : []).flatMap(splitWith)){
     const seg = rawSeg.trim();
     if(!seg) continue;
-    // Η κάθετος χωρίζει λέξεις, εκτός από ίντσες («3/4»).
-    const tokens = norm(seg).split(/[\s\-–—]+/).flatMap(t => /^\d\/\d{1,2}"?$/.test(t) ? [t] : t.split('/'))
+    // Η κάθετος χωρίζει λέξεις, εκτός από ίντσες («3/4»). Τα words είναι οι ίδιες λέξεις όπως γράφτηκαν (με τόνους).
+    const tokenize = s => s.split(/[\s\-–—]+/).flatMap(t => /^\d\/\d{1,2}"?$/.test(t) ? [t] : t.split('/'))
       .map(t => t.replace(/[«»'()]/g, '').replace(/"(?!$)/g, '')).filter(Boolean);
+    const tokens = tokenize(norm(seg)), words = tokenize(seg);
     // «Εργασία 1.200 ευρώ»: ποσό για την εργασία της δουλειάς — όχι γραμμή υλικού.
     if(tokens.some(t => t.startsWith('εργασ')) && !tokens.some((_, k) => findItem(tokens, k))){
       const a = laborAmount(tokens);
@@ -376,6 +443,12 @@ export function parse(text){
     const attr = attributes(tokens);
     const used = new Set(attr.at), seen = new Set(), saidQty = new Map(), inclQty = new Set();
     const items = tokens.map((_, k) => used.has(k) ? null : findItem(tokens, k));
+    for(const s of attr.sizes.filter(s => s.soft)){
+      const owner = items.find((it, k) => it && k > s.soft[1]) ?? items.findLast((it, k) => it && k < s.at);
+      if(owner?.options?.some(o => optSizes(o).some(z => z.kind === s.kind))) continue;
+      for(let k = s.soft[0]; k <= s.soft[1]; k++) used.delete(k);
+      attr.sizes.splice(attr.sizes.indexOf(s), 1);
+    }
     // Υλικό που το περιέχει ήδη άλλο υλικό της ίδιας φράσης («νιπτήρας με έπιπλο») δεν χρεώνεται χωριστά.
     const included = new Set(items.flatMap((it, k) =>
       it && !tokens.slice(Math.max(0, k - 3), k).some(t => NEG.has(t)) ? it.includes || [] : []));
@@ -407,6 +480,10 @@ export function parse(text){
       }
       const item = findItem(tokens, i);
       if(!item) continue;
+      // Λέξη-τύπος του υλικού λίγο πριν («μπαταρία με ντους», «μπαταρία για νεροχύτη»): ανήκει σε εκείνο, όχι νέα γραμμή.
+      const p = items.findLastIndex((it, k) => it && k < i);
+      if(pending == null && p >= 0 && i - p <= 3 && kindOf(items[p], tokens[i]) &&
+        !tokens.slice(p + 1, i).some(t => toNumber(t) != null)) continue;
       // Άρνηση λίγο πριν το υλικό, χωρίς αριθμό ανάμεσα → το υλικό ΔΕΝ μπαίνει (και βγαίνει αν είχε μπει).
       const negated = pending == null && tokens.slice(Math.max(0, i - 3), i).some(t => NEG.has(t));
       if(negated){
@@ -425,22 +502,43 @@ export function parse(text){
       found++;
       // Διατομή που λέγεται σκέτη αμέσως μετά («καλώδιο 2,5»): τύπος, όχι ποσότητα — μόνο αν υπάρχει ακριβώς στον κατάλογο
       // και δεν ακολουθεί μονάδα ποσότητας («καλώδιο 4 μέτρα» = 4 μ.).
+      // Και «καλώδιο 2,5 τετραγωνικά»: τετραγωνικά χιλιοστά της διατομής, όχι τ.μ. καλωδίου.
       let bare;
       const bn = used.has(i + 1) || !tokens[i + 1] ? null : toNumber(tokens[i + 1], tokens[i + 2]);
-      if(bn != null && !unitOf(tokens[i + 2] || '') && item.options?.some(o => o.sec === bn)){
+      const bu = unitOf(tokens[i + 2] || '');
+      if(bn != null && (!bu || (bu === 'τ.μ.' && item.unit !== 'τ.μ.')) && item.options?.some(o => o.sec === bn)){
         bare = {kind: 'sec', v: [bn], label: fmtNum(bn)};
         used.add(i + 1);
+        if(bu) used.add(i + 2);
       }
-      // Ειπώθηκε μονάδα αμέσως μετά τον αριθμό («δέκα μέτρα», «σωλήνας 12 μ.»);
-      let unitSaid = pending != null && !!unitOf(tokens[lastNum + 1] || '');
-      // Ποσότητα μετά το υλικό («σωλήνας 12 μέτρα»): ψάχνουμε μέχρι το επόμενο υλικό.
+      // Η ποσότητα και η μονάδα αμέσως μετά από αυτή («δέκα μέτρα», «σωλήνας 12 μ.»).
+      let numFrom = pendingAt, numTo = lastNum;
+      // Ποσότητα μετά το υλικό («σωλήνας 12 μέτρα»): ψάχνουμε μέχρι το επόμενο υλικό. Αριθμός που ακολουθείται
+      // (με ή χωρίς μονάδα) από άλλο υλικό είναι εκείνου: «μπαταρία 2,5 μέτρα σωλήνα» = 2,5 μ. σωλήνας.
       if(pending == null){
         for(let j = i + 1; j < tokens.length && !findItem(tokens, j); j++){
           if(used.has(j)) continue;
           // Και σύνθετος αριθμός από λέξεις («αρμόστοκος είκοσι εννέα σακιά» = 29· ήταν σιωπηλά 20).
           const a = numAt(tokens, j);
-          if(a){ pending = a.n; unitSaid = !!unitOf(tokens[a.end + 1] || ''); for(let k = j; k <= a.end; k++) used.add(k); break; }
+          if(!a) continue;
+          const next = a.end + (unitOf(tokens[a.end + 1] || '') ? 2 : 1);
+          if(tokens[next] && !used.has(next) && findItem(tokens, next)) break;
+          pending = a.n; numFrom = j; numTo = a.end; for(let k = j; k <= a.end; k++) used.add(k);
+          break;
         }
+      }
+      const saidUnit = pending != null ? unitOf(tokens[numTo + 1] || '') : undefined;
+      const unitSaid = !!saidUnit;
+      // Ειπώθηκε άλλη μονάδα από του καταλόγου («1,5 κιλό στόκος» ενώ ο αρμόστοκος είναι σακί, «12 μέτρα σοβατεπί»
+      // ενώ ο σοβάς είναι τ.μ.): ποτέ σιωπηλά 1,5 σακιά ή 12 τ.μ. Η γραμμή μένει όπως ειπώθηκε, εκτός καταλόγου.
+      if(saidUnit && saidUnit !== item.unit && !item.choose){
+        const from = Math.min(numFrom, i);
+        let to = Math.max(numTo + 1, i);
+        while(to + 1 < tokens.length && !used.has(to + 1) && !items[to + 1] && toNumber(tokens[to + 1]) == null) to++;
+        unknown.push(words.slice(from, to + 1).join(' '));
+        for(let k = from; k <= to; k++) used.add(k);
+        pending = null;
+        continue;
       }
       const qtyMissing = pending == null;
       saidQty.set(item, saidQty.get(item) || !qtyMissing);
@@ -451,6 +549,7 @@ export function parse(text){
         ? {dim: sizeFor(i, attr.sizes.filter(d => d.kind === 'dim'))?.label}
         : {said: bare ?? sizeFor(i, attr.sizes)});
       line.mentions = [mention];
+      if(!qtyMissing && dotAmbig(tokens[numFrom])) Object.assign(line, {qtyWhy: 'dot', qtyWord: tokens[numFrom]});
       // «τρία καλώδια»: αριθμός χωρίς μονάδα σε είδος που μετριέται σε μ./τ.μ. — κρατάμε τον αριθμό, ρωτάμε.
       if(!qtyMissing && !unitSaid && NEEDS_UNIT.has(line.unit)) line.qtyWhy = 'unit';
       // «εικοσιπεν μέτρα»: ποσότητα που δεν διαβάστηκε — ποτέ σιωπηλά 1, ούτε σε τεμάχια.

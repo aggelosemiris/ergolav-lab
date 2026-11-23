@@ -448,9 +448,10 @@ const qtyAsk = l =>
   l.qtyWhy === 'unread' ? `Δεν κατάλαβα την ποσότητα («${esc(l.qtyWord)}») — γράψε πόσα (${esc(l.unit)}):`
   : l.qtyWhy === 'unit' ? `Είπες ${fmtQty(l.qty)} χωρίς μονάδα — είναι ${fmtQty(l.qty)} ${esc(l.unit)};`
   : l.qtyWhy === 'corr' ? `Είπες «${esc(l.qtyWord)}» — έλεγξε την ποσότητα (${esc(l.unit)}):`
+  : l.qtyWhy === 'dot' ? `Είπες «${esc(l.qtyWord)}»: ${esc(l.qtyWord.replace('.', ',').replace(/,?0+$/, ''))} ή ${esc(l.qtyWord.replace('.', ''))}; Γράψε την ποσότητα (${esc(l.unit)}):`
   : l.qtyMissing ? `Δεν είπες ποσότητα (${esc(l.unit)}) — γράψε πόσα:` : `${fmtQty(l.qty)} ${esc(l.unit)}; Φαίνεται πολύ — έλεγξε την ποσότητα:`;
 // Μονάδες για υλικό εκτός καταλόγου (ό,τι ειπώθηκε, αλλιώς τεμ.).
-const UNITS = ['τεμ.', 'μ.', 'τ.μ.', 'σακί', 'kg', 'λ.', 'κουτί', 'ζεύγος', 'κατ.'];
+const UNITS = ['τεμ.', 'μ.', 'τ.μ.', 'κ.μ.', 'σακί', 'kg', 'λ.', 'κουτί', 'ρολό', 'ζεύγος', 'κατ.'];
 // Ανοιχτό πεδίο (τιμή, ποσότητα, περιγραφή) ή άκυρη κατανάλωση = η γραμμή δεν έχει ελεγχθεί ακόμα.
 // Ποσότητα 0 δεν μπαίνει ποτέ στο PDF: κλειδώνει μέχρι να διορθωθεί ή να αφαιρεθεί η γραμμή.
 function unresolved(){ return LINES.filter(l=>l.flag || l.suggest || needsQty(l) || l.sizeCheck || l.unknown || l.dupAsk || needsPrice(l) || !(l.qty > 0) || l.customOpen || l.qtyOpen || l.descOpen || l.calcBad).length; }
