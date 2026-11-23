@@ -38,7 +38,7 @@ robots.txt, WooCommerce Store API (`/wp-json/wc/store/v1/products`) και όρ�
 Δόθηκε πρόσβαση δικτύου και ελέγχθηκαν με τον ίδιο τρόπο (robots.txt, Store API, όροι, ένα αίτημα κάθε 2″, ως `ergolav-price-bot`).
 Όλοι **απενεργοποιημένοι** μέχρι την έγκρισή σου.
 
-### Επιτρέπουν ανάγνωση (12)
+### Επιτρέπουν ανάγνωση (12 — από αυτούς οι 4 χωρίς σελίδα όρων μένουν εκτός)
 
 | Ειδικότητα | Προμηθευτής | robots.txt | Δομημένη ροή | Όροι | Σημείωση |
 |---|---|---|---|---|---|
@@ -63,6 +63,10 @@ robots.txt, WooCommerce Store API (`/wp-json/wc/store/v1/products`) και όρ�
 | zalonis.eu | το robots.txt κλείνει ονομαστικά ClaudeBot, CCBot, Amazonbot: δεν θέλουν bots· Store API 403 |
 | fotovoltaika.gr | robots.txt `Disallow: /` για όλους· 403 |
 | eshops.gr | 403· κλείνει ClaudeBot, GPTBot |
+
+**Απόφαση 23/11:** jerotech, homeville, portes-koufomata και balamoti (δεν βρέθηκε σελίδα όρων) **μένουν εκτός** μέχρι τον
+έλεγχο με το χέρι (`SPECIALISTS_PENDING_TERMS`). Όσοι κλείνουν το bot ή τα AI bots (zalonis κ.ά.) μένουν σωστά εκτός· καμία
+παράκαμψη, ποτέ.
 
 Σύνολο: **23 επιτρέπουν** (9 με Store API, έτοιμοι χωρίς νέο κώδικα), **8 απορρίπτονται**. Χωρίς κατάλληλο προμηθευτή μένουν τα
 **σιδηρουργικά** και, στην πράξη, τα **κουφώματα αλουμινίου** (μόνο πόρτες στο portes-koufomata).

@@ -109,7 +109,7 @@ test('κανόνες v2: κάθε συνώνυμο υπάρχει στο είδ�
     const it = items.get(r.from);
     assert.ok(it, `${code}: άγνωστο είδος λίστας ${r.from}`);
     const words = [it.name, ...it.synonyms].map(norm);
-    for(const list of Object.values(r.alt || {})) for(const s of list) assert.ok(words.some(w => w.includes(norm(s))), `${code}: «${s}» δεν είναι στο ${r.from}`);
+    for(const list of [...Object.values(r.alt || {}), r.any || []]) for(const s of list) assert.ok(words.some(w => w.includes(norm(s))), `${code}: «${s}» δεν είναι στο ${r.from}`);
     for(const list of [...Object.values(r.extra || {}), r.anyExtra || []]) for(const s of list) assert.ok(!words.some(w => w.includes(norm(s))), `${code}: «${s}» είναι ήδη στη λίστα — μετακίνησέ το στο alt`);
   }
 });
@@ -152,6 +152,13 @@ test('ταίριασμα v2: γραφές προμηθευτών που πριν
   assert.equal(ok('panel|ΚΩΔ. 63036', 'Πινακεσ N36-Alfa 36 Θεσεων 3 Σειρων Πλαστικοι Επιτοιχοι Με Διαφανη Πλαστικη Πορτα', false), false);
   assert.equal(ok('panel|ΚΩΔ. 63036', 'Πόρτα για πίνακα 36 θέσεων πλαστική'), false);
   assert.equal(ok('tap|ΚΩΔ. 71010', 'Βρύση μπαλκονιού αντιπαγωτική 1/2″ σφαιρική με ρακόρ RIDA'), true);
+  // PP ≠ PVC: χωριστό είδος, μόνο με ρητό «PP»/«πολυπροπυλένιο»
+  const pp = () => { const p = catalogProducts(undefined, {v2: true}).find(x => x.ref === 'materials:pipe-drain-pp|Φ110'); return specFor(p, p.rule); };
+  assert.equal(matchItem(pp(), {name: 'Σωλήνας αποχέτευσης PP Φ110 3m'}).ok, true);
+  assert.equal(matchItem(pp(), {name: 'Σωλήνας Valsir Αποχέτευσης Φ110x300cm'}).ok, false);
+  assert.equal(matchItem(pp(), {name: 'Σωλήνας αποχέτευσης PVC Φ110 ανα μέτρο'}).ok, false);
+  assert.equal(ok('pipe|ΚΩΔ. 41110', 'Σωλήνας αποχέτευσης PP Φ110 3m'), false);
+  assert.equal(catalogProducts().some(x => x.ref.startsWith('materials:')), false, 'χωρίς v2 δεν προστίθεται');
   // διάμετρος σωλήνα με μήκος δεν γίνεται «διάσταση»
   assert.deepEqual(attributes('Σωλήνας Valsir Αποχέτευσης Φ.110X200cm', true).diam, ['110']);
   assert.equal(attributes('Σωλήνας Valsir Αποχέτευσης Φ.110X200cm', true).size, undefined);

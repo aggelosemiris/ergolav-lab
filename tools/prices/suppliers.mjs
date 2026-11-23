@@ -102,9 +102,6 @@ export const SPECIALISTS = [
     measured: m('2026-11-23', 'επιτρέπει σελίδες προϊόντων· κλειστά φίλτρα, αναζήτηση, offset (2.447 κανόνες)· κλειστό το Amazonbot',
       'χωρίς Store API → adapter σελίδων (ISO-8859-7)', '17/11: ρήτρα πν. ιδιοκτησίας (/protection)', 'γενικό· ηλεκτρολογικά, κλιματιστικά')},
   // ── Δεύτερος γύρος (23/11/2026, βράδυ): οι 16 που δεν είχαν ελεγχθεί λόγω δικτύου ──
-  {id: 'jerotech', name: 'Jerotech', base_url: 'https://jerotech.eu', vat: 'retail-law', enabled: false, trades: ['dapeda'], ...woo(),
-    measured: m('2026-11-23', 'επιτρέπει', 'Store API: 209 προϊόντα· 100/100 με regular_price',
-      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'SPC, laminate, LVT, σοβατεπί')},
   {id: 'strati', name: 'Strati', base_url: 'https://strati.gr', vat: 'retail-law', enabled: false, trades: ['dapeda'], ...woo(),
     measured: m('2026-11-23', 'επιτρέπει', 'Store API: 1.384 προϊόντα· 100/100 με regular_price',
       'ρήτρα πν. ιδιοκτησίας (/oroi-proypotheseis/)· τίποτα για bots', 'χαλιά, σοβατεπί PVC, δάπεδα')},
@@ -114,18 +111,9 @@ export const SPECIALISTS = [
   {id: 'kouremenos', name: 'Kouremenos', base_url: 'https://kouremenos.net', vat: 'retail-law', enabled: false, trades: ['vafes', 'oikodomika'], ...woo(),
     measured: m('2026-11-23', 'χωρίς κανόνες (τίποτα κλειστό)', 'Store API: 751 προϊόντα· 85/100 με regular_price',
       'ρήτρα πν. ιδιοκτησίας· τίποτα για bots', 'πλαστικά/ακρυλικά χρώματα, εργαλεία βαφής')},
-  {id: 'homeville', name: 'Homeville', base_url: 'https://homeville.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika'], ...woo(),
-    measured: m('2026-11-23', 'επιτρέπει (κλειστό το /*product_cat=*)', 'Store API: 362.933 προϊόντα (πολύ μεγάλο για πλήρη ανάγνωση)',
-      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'κυρίως έπιπλα· λίγα υλικά ξυλουργού')},
   {id: 'marmara-billis', name: 'Marmara Billis', base_url: 'https://www.marmara-billis.gr', vat: 'retail-law', enabled: false, trades: ['marmara'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API (404) → adapter σελίδων',
       'ρήτρα πν. ιδιοκτησίας (/content/22/oroi-xrisis-/)· τίποτα για bots', 'μάρμαρα, πάγκοι, σκαλοπάτια')},
-  {id: 'portes-koufomata', name: 'Portes-Koufomata', base_url: 'https://www.portes-koufomata.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika', 'koufomata'], method: 'html',
-    measured: m('2026-11-23', 'επιτρέπει με Crawl-delay: 10 (ένα αίτημα κάθε 10″, αργό)', 'χωρίς Store API → adapter σελίδων',
-      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'εσωτερικές πόρτες, πόρτες ασφαλείας, κουφώματα')},
-  {id: 'balamoti', name: 'Balamoti', base_url: 'https://balamoti.gr', vat: 'retail-law', enabled: false, trades: ['vafes', 'xylourgika'], method: 'html',
-    measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API → adapter σελίδων',
-      'βρέθηκε μόνο πολιτική απορρήτου, όχι όροι χρήσης (να ελεγχθεί με το χέρι)', 'βερνίκια, χρώματα ξύλου, σιδηρικά')},
   {id: 'mykipos', name: 'MyKipos', base_url: 'https://mykipos.gr', vat: 'retail-law', enabled: false, trades: ['kipos-ardeusi'], ...woo(),
     measured: m('2026-11-23', 'επιτρέπει', 'Store API: 94 προϊόντα· 93 με regular_price',
       'ρήτρα πν. ιδιοκτησίας (/oroi-xrisis/)· τίποτα για bots', 'σπόροι, λάστιχα, ανταλλακτικά· μικρός κατάλογος')},
@@ -140,7 +128,26 @@ export const SPECIALISTS = [
       'όροι συναλλαγών (/oroi-sinallagon/)· τίποτα για bots ή πν. ιδιοκτησία', 'μπαταρίες, inverter, ΦΒ')},
 ];
 
-/** Ελέγχθηκαν και ΔΕΝ προτείνονται, με τον λόγο (μέτρηση 23/11/2026). */
+/**
+ * Επιτρέπουν ανάγνωση (robots.txt), αλλά δεν βρέθηκε σελίδα όρων χρήσης. ΜΕΝΟΥΝ ΕΚΤΟΣ μέχρι να ελεγχθούν οι όροι με το χέρι
+ * από τον υπεύθυνο (απόφαση 23/11/2026). Δεν τους διαβάζει κανένα εργαλείο.
+ */
+export const SPECIALISTS_PENDING_TERMS = [
+  {id: 'jerotech', name: 'Jerotech', base_url: 'https://jerotech.eu', vat: 'retail-law', enabled: false, trades: ['dapeda'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει', 'Store API: 209 προϊόντα· 100/100 με regular_price',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'SPC, laminate, LVT, σοβατεπί')},
+  {id: 'homeville', name: 'Homeville', base_url: 'https://homeville.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει (κλειστό το /*product_cat=*)', 'Store API: 362.933 προϊόντα (πολύ μεγάλο για πλήρη ανάγνωση)',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'κυρίως έπιπλα· λίγα υλικά ξυλουργού')},
+  {id: 'portes-koufomata', name: 'Portes-Koufomata', base_url: 'https://www.portes-koufomata.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika', 'koufomata'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει με Crawl-delay: 10 (ένα αίτημα κάθε 10″, αργό)', 'χωρίς Store API → adapter σελίδων',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'εσωτερικές πόρτες, πόρτες ασφαλείας, κουφώματα')},
+  {id: 'balamoti', name: 'Balamoti', base_url: 'https://balamoti.gr', vat: 'retail-law', enabled: false, trades: ['vafes', 'xylourgika'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API → adapter σελίδων',
+      'βρέθηκε μόνο πολιτική απορρήτου, όχι όροι χρήσης (να ελεγχθεί με το χέρι)', 'βερνίκια, χρώματα ξύλου, σιδηρικά')},
+];
+
+/** Ελέγχθηκαν και ΔΕΝ προτείνονται, με τον λόγο (μέτρηση 23/11/2026). Σωστά εκτός: καμία παράκαμψη μπλοκαρίσματος ή robots.txt, ποτέ. */
 export const SPECIALISTS_REJECTED = [
   {id: 'karag', base_url: 'https://karag.gr', reason: 'το Store API επιστρέφει κενή λίστα: δεν δείχνει τιμές online (κατάλογος χωρίς τιμές)'},
   {id: 'doikas', base_url: 'https://www.doikas.com', reason: 'Store API με 61.681 προϊόντα αλλά 0/100 με τιμή· κυρίως επαγγελματικός εξοπλισμός κουζίνας'},
