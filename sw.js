@@ -9,7 +9,7 @@
 // - Νέα έκδοση: περιμένει μέχρι να πατήσει ο τεχνίτης «Ανανέωση» (μήνυμα 'skipWaiting' από το src/offline.js).
 
 // <precache> — γράφεται από το `npm run sw:manifest`· μην το αλλάζεις με το χέρι.
-const VERSION = '81e4b44926a2';
+const VERSION = 'f648add2c482';
 const FILES = [
   'icons/apple-touch-icon.png',
   'icons/ergolav-logo.jpg',
@@ -64,6 +64,7 @@ const FILES = [
   'src/similar.js',
   'src/statistics.js',
   'src/storage-guard.js',
+  'src/sync.js',
   'src/tasks.js',
   'src/turnstile.js',
   'src/when-ui.js',

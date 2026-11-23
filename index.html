@@ -98,6 +98,10 @@ header.auth .brand b,header.auth .brand span{display:block;white-space:nowrap;ov
 .acct-del p{margin:8px 0;line-height:1.5}
 .acct-wipe{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:12px 0;line-height:1.4}
 .acct-wipe input{width:22px;height:22px;flex:none}
+.acct-wipe.off{opacity:.55}
+#acctOutBox p{margin:12px 0 4px;line-height:1.45}
+.sync-state{margin:2px 0 8px;font-size:13px;color:var(--dim)}
+.sync-state[data-state="ok"]{color:var(--ok)}
 .primary.danger-bg{background:var(--err)}
 .pchoice{display:grid;gap:12px;margin-top:20px}
 .pchoice .pc{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
@@ -767,6 +771,13 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       </div>
 
       <button class="ghost wide" id="acctSignOut" type="button">Αποσύνδεση</button>
+      <!-- Με συγχρονισμό προσφορών (QUOTES_SYNC_ENABLED): τι γίνεται με τις προσφορές της συσκευής. Λογική: src/account-ui.js -->
+      <div class="card acct-box" id="acctOutBox" hidden>
+        <p id="acctOutNote" role="status"></p>
+        <label class="acct-wipe" id="acctOutWipeRow"><input type="checkbox" id="acctOutWipe"> Σβήσε τις προσφορές από αυτή τη συσκευή (μένουν στον λογαριασμό σου)</label>
+        <button class="primary" id="acctOutYes" type="button">Αποσύνδεση</button>
+        <button class="ghost wide" id="acctOutNo" type="button">Άκυρο</button>
+      </div>
       <button class="ghost wide" id="acctSignOutAll" type="button">Αποσύνδεση από όλες τις συσκευές</button>
       <button class="linkbtn danger" id="acctDelete" type="button">Διαγραφή λογαριασμού</button>
       <div class="card acct-del" id="acctDelBox" hidden>
@@ -830,6 +841,8 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
           <button type="button" data-view="month" aria-pressed="true">Μήνας</button><button type="button" data-view="list" aria-pressed="false">Λίστα</button><button type="button" data-view="stats" aria-pressed="false">Στατιστικά</button>
         </div>
       </div>
+      <!-- Συγχρονισμός προσφορών (QUOTES_SYNC_ENABLED): «✓ Συγχρονίστηκε» ή «Θα συγχρονιστεί όταν έχεις σήμα» -->
+      <p class="sync-state" id="syncState" role="status" hidden></p>
       <p class="cal-msg" id="calMsg" role="status" hidden></p>
       <div id="calMonth">
         <div class="cal-nav">

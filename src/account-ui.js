@@ -44,8 +44,8 @@ const NET_ACCOUNT = ['acctPwOpen', 'acctPwSave', 'acctEmOpen', 'acctEmSend', 'ac
  * onLockChange(locked): η εφαρμογή κλειδώνει/ξεκλειδώνει τις οθόνες της.
  */
 export function mountAccount({show, cta, here, home = () => {}, busy = () => false, onProfileChange = () => {},
-  needProfile = () => {}, onLockChange = () => {}, onLogin = () => {}, account = createAccount()}){
-  if(!account.enabled) return {enabled: false, locked: () => false, canBack: () => true, back: () => false, profileSaved: async () => ({error: ''}), db: async () => null};
+  needProfile = () => {}, onLockChange = () => {}, onLogin = () => {}, quotes = null, account = createAccount()}){
+  if(!account.enabled) return {enabled: false, locked: () => false, canBack: () => true, back: () => false, profileSaved: async () => ({error: ''}), db: async () => null, userId: () => null};
 
   let returnTo = null, mode = 'in', email = '', locked = false, resume = null, lockedUser = null;
   let lastUserId = account.user()?.id || null;
@@ -415,6 +415,7 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     ['acctPwBox', 'acctEmBox', 'acctEmCodeWrap', 'acctDelBox'].forEach(id => { $(id).hidden = true; });
     ['acctPwCur', 'acctPw', 'acctPw2', 'acctEm', 'acctEmCode', 'acctDelPw'].forEach(id => { $(id).value = ''; });
     $('acctWipe').checked = false;
+    $('acctOutBox').hidden = true;
     clearErrs($('s-account')); hidePasswords();
     msg('acctStatus', status); msg('acctError', error);
     show('s-account', 'Λογαριασμός');
@@ -477,12 +478,38 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     openAccount({status: 'Το email άλλαξε.'});
   };
 
+  // Αποσύνδεση αυτής της συσκευής. Με συγχρονισμό προσφορών (quotes): πρώτα ένας τελευταίος γύρος (αν υπάρχει σήμα) και
+  // ερώτηση για τις προσφορές της συσκευής — όπως το «σβήσε και τα δεδομένα» της διαγραφής. Ό,τι δεν έχει ανέβει ακόμα
+  // ΔΕΝ σβήνεται ποτέ (το κουτάκι κλειδώνει).
+  async function signOutHere(wipe = false){
+    const done = working($('acctSignOut'), 'Αποσύνδεση…');
+    await account.signOut();       // μόνο αυτή η συσκευή
+    done();
+    if(wipe) quotes?.wipe();
+    signedOut(wipe ? 'Αποσυνδέθηκες. Οι προσφορές σβήστηκαν από αυτή τη συσκευή· είναι στον λογαριασμό σου.'
+      : 'Αποσυνδέθηκες. Οι προσφορές σου έμειναν σε αυτή τη συσκευή.');
+  }
   $('acctSignOut').onclick = async () => {
     if(pending) return;
-    const done = working($('acctSignOut'), 'Αποσύνδεση…');
-    await account.signOut();       // μόνο αυτή η συσκευή· τα δεδομένα της εφαρμογής μένουν
-    done();
-    signedOut('Αποσυνδέθηκες. Οι προσφορές σου έμειναν σε αυτή τη συσκευή.');
+    if(!quotes) return signOutHere();
+    if(!$('acctOutBox').hidden) return;
+    if(online()){ const done = working($('acctSignOut'), 'Συγχρονισμός…'); try { await quotes.flush(); } catch {} done(); }
+    const left = quotes.pending();
+    $('acctOutNote').textContent = left
+      ? `${left === 1 ? '1 αλλαγή στις προσφορές δεν έχει' : `${left} αλλαγές στις προσφορές δεν έχουν`} ανέβει ακόμα στον λογαριασμό. Μένουν σε αυτή τη συσκευή και ανεβαίνουν όταν ξανασυνδεθείς με σήμα.`
+      : 'Όλες οι προσφορές σου είναι και στον λογαριασμό.';
+    $('acctOutWipe').checked = false;
+    $('acctOutWipe').disabled = left > 0;
+    $('acctOutWipeRow').classList.toggle('off', left > 0);
+    $('acctOutBox').hidden = false;
+    $('acctOutYes').focus();
+  };
+  $('acctOutNo').onclick = () => { $('acctOutBox').hidden = true; };
+  $('acctOutYes').onclick = async () => {
+    if(pending) return;
+    const wipe = $('acctOutWipe').checked && !$('acctOutWipe').disabled && !quotes.pending();
+    $('acctOutBox').hidden = true;
+    await signOutHere(wipe);
   };
   $('acctSignOutAll').onclick = async () => {
     if(pending) return;
@@ -593,6 +620,8 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
     },
     profileSaved: () => account.profileSaved(),
     db: () => account.db(),
+    /** Ο συνδεδεμένος χρήστης (και χωρίς σήμα, από τη συνεδρία της συσκευής) ή null. */
+    userId: () => account.user()?.id ?? null,
   };
 }
 

@@ -22,3 +22,8 @@ export const TURNSTILE_SITE_KEY = '0x4AAAAAAGEQsmQ8gtAQ0mHi';
 // false: η εφαρμογή είναι ακριβώς όπως πριν. true: η ανάλυση κάθε εργασίας διαλέγεται από επιλογή/κανόνα/φωνή/βασική,
 // με ετικέτα μόνο στην οθόνη, και η εφαρμογή ΔΕΝ καλεί ποτέ τον worker (REWRITE_URL) ή οποιοδήποτε AI.
 export const ALLAXE_BOT_ENABLED = true;
+
+// Συγχρονισμός προσφορών με τον λογαριασμό (Φάση 3) — βλ. docs/sync.md.
+// false: οι προσφορές μένουν μόνο στη συσκευή, όπως πριν. true ΜΟΝΟ αφού τρέξει στη Supabase η migration
+// supabase/migrations/20261123000000_quotes.sql (και ενημερωθεί το Απόρρητο: οι προσφορές ανεβαίνουν στον λογαριασμό).
+export const QUOTES_SYNC_ENABLED = false;

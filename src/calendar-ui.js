@@ -26,7 +26,11 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
   const root = $('s-history');
   let view = (() => { try { const saved = localStorage.getItem(VIEW); return ['list', 'stats'].includes(saved) ? saved : 'month'; } catch { return 'month'; } })();
   let y, m, sel, quotes = [], msgTimer = 0, swipedAt = 0, lastFocus = null;
-  const find = no => quotes.find(q => q.no === no);
+  // Κλειδί προσφοράς: το id (σταθερό, μοναδικό και σε δύο κινητά)· ο αριθμός μόνο για ό,τι δεν έχει ακόμα id.
+  const keyOf = q => q.id ?? q.no;
+  const find = key => quotes.find(q => keyOf(q) === key);
+  const ref = q => `data-no="${q.no}"${q.id ? ` data-id="${q.id}"` : ''}`;
+  const keyFrom = el => el.dataset.id || +el.dataset.no;
   const t = () => today(now());
 
   // ── Σχεδίαση
@@ -111,21 +115,21 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
       : q.scheduled_date ? `${q.duration_days} μέρες, ως ${longDate(endOf(q), now())}` : `${q.duration_days} μέρες`;
     const acts = none ? `
       <div class="cal-quick" role="group" aria-label="Βάλε μέρα"><span>Βάλε μέρα:</span>
-        <button type="button" class="wchip" data-quick="0" data-no="${q.no}">Σήμερα</button>
-        <button type="button" class="wchip" data-quick="1" data-no="${q.no}">Αύριο</button>
-        ${dateChip('Άλλη μέρα', `data-pick="${q.no}"`)}
+        <button type="button" class="wchip" data-quick="0" ${ref(q)}>Σήμερα</button>
+        <button type="button" class="wchip" data-quick="1" ${ref(q)}>Αύριο</button>
+        ${dateChip('Άλλη μέρα', `data-pick="${q.no}"${q.id ? ` data-pick-id="${q.id}"` : ''}`)}
       </div>` : '';
     return `<div class="q-item cal-q st-${q.status}${q.scheduled_from_created ? ' faint' : ''}">
-      <button type="button" class="q-open" data-a="open" data-no="${q.no}">
+      <button type="button" class="q-open" data-a="open" ${ref(q)}>
         ${time ? `<span class="cal-time num">${time}</span>` : ''}
         <span class="cal-main"><b>${name ? esc(name) : 'Χωρίς όνομα πελάτη'}</b>
           <small>${[area && esc(area), `Αρ. ${q.no}`, list && q.title && esc(q.title)].filter(Boolean).join(' · ')}</small>
           <small class="cal-st"><i class="dot"></i>${STATUS[q.status]}${span ? ` · <span class="nw">${esc(span)}</span>` : ''}${q.scheduled_from_created ? ' · <em class="cal-created nw">ημ. δημιουργίας</em>' : ''}</small></span>
         <span class="num cal-sum">${eur(q.sum.total)}</span></button>${acts}
       <div class="cal-acts">
-        ${none ? '' : `<button type="button" data-a="date" data-no="${q.no}" aria-label="Άλλαξε ημερομηνία">📅 Ημερομηνία</button>`}
-        <button type="button" data-a="status" data-no="${q.no}" aria-label="Άλλαξε κατάσταση"><i class="dot"></i>Κατάσταση</button>
-        <button type="button" class="q-del" data-a="del" data-no="${q.no}" aria-label="Σβήσε την προσφορά ${q.no}">Σβήσε</button>
+        ${none ? '' : `<button type="button" data-a="date" ${ref(q)} aria-label="Άλλαξε ημερομηνία">📅 Ημερομηνία</button>`}
+        <button type="button" data-a="status" ${ref(q)} aria-label="Άλλαξε κατάσταση"><i class="dot"></i>Κατάσταση</button>
+        <button type="button" class="q-del" data-a="del" ${ref(q)} aria-label="Σβήσε την προσφορά ${q.no}">Σβήσε</button>
       </div></div>`;
   }
 
@@ -159,7 +163,7 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
   root.addEventListener('click', e => {
     const b = e.target.closest('button');
     if(!b || !root.contains(b)) return;
-    const no = +b.dataset.no, a = b.dataset.a;
+    const no = keyFrom(b), a = b.dataset.a;
     if(b.dataset.day){
       if(Date.now() - swipedAt < 400) return;          // το δάχτυλο σηκώθηκε σε μέρα μετά από swipe: όχι πάτημα
       goTo(b.dataset.day); return renderMonth();
@@ -179,12 +183,13 @@ export function mountCalendar({show, cta, onOpen, onNew, onChange = () => {}, no
     if(a === 'del'){
       // Σβήσιμο σε δύο πατήματα (χωρίς παράθυρο): το πρώτο ρωτάει «Σίγουρα;».
       if(!b.classList.contains('sure')){ b.classList.add('sure'); b.textContent = 'Σίγουρα;'; return; }
-      deleteQuote(no); message(`Η προσφορά ${no} σβήστηκε.`); render(); onChange();
+      const n = find(no)?.no ?? no;
+      deleteQuote(no); message(`Η προσφορά ${n} σβήστηκε.`); render(); onChange();
     }
   });
   // «Άλλη μέρα» σε προσφορά χωρίς ημερομηνία: ό,τι διαλέξει στον επιλογέα του κινητού.
   root.addEventListener('change', e => {
-    const no = +e.target.dataset?.pick;
+    const no = e.target.dataset?.pickId || +e.target.dataset?.pick;
     if(no && /^\d{4}-\d\d-\d\d$/.test(e.target.value)) setSchedule(no, {scheduled_date: e.target.value});
   });
 
