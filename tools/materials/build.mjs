@@ -86,6 +86,18 @@ export function markdown({rows, unusedTax, catalogVariants, taxonomyTypes}, date
   return out.join('\n');
 }
 
+/**
+ * Ένα CSV ανά ειδικότητα για έλεγχο από τεχνικό (data/reports/materials-review/<id>.csv).
+ * Ελληνικό Excel: διαχωριστικό «;» και BOM ώστε να ανοίγει σωστά με διπλό κλικ (και στο Google Sheets).
+ */
+export const REVIEW_COLUMNS = ['Ομάδα', 'Είδος', 'Παραλλαγές', 'Μονάδα', 'Συνώνυμα', 'Σωστό (ναι/όχι)', 'Τι λείπει'];
+export function reviewCsv(trade){
+  const cell = v => /[";\n,]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  const rows = [REVIEW_COLUMNS, ...trade.groups.flatMap(g => g.items.map(i =>
+    [g.name, i.name, i.variants.join(' · '), i.unit, i.synonyms.join(', '), '', '']))];
+  return '\ufeff' + rows.map(r => r.map(cell).join(';')).join('\r\n') + '\r\n';
+}
+
 if(path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)){
   const data = readLists();
   if(data.errors.length){ console.error(data.errors.join('\n')); process.exit(1); }
@@ -95,5 +107,8 @@ if(path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)){
   fs.writeFileSync(path.join(ROOT, 'data', 'materials.json'), JSON.stringify({generated: date, units: UNITS,
     trades: data.trades.map(({file, ...t}) => t)}, null, 1) + '\n');
   fs.writeFileSync(path.join(ROOT, 'data', 'reports', 'materials.md'), markdown(s, date));
+  const reviewDir = path.join(ROOT, 'data', 'reports', 'materials-review');
+  fs.mkdirSync(reviewDir, {recursive: true});
+  for(const t of data.trades) fs.writeFileSync(path.join(reviewDir, `${t.id}.csv`), reviewCsv(t));
   for(const r of s.rows) console.log(`${r.name.padEnd(28)} είδη ${String(r.items).padStart(3)} · παραλλαγές ${String(r.variants).padStart(4)} · στο taxonomy ${r.itemsInTaxonomy}`);
 }

@@ -82,6 +82,43 @@ export const SPECIALISTS = [
   {id: 'e-shop', name: 'e-shop.gr', base_url: 'https://www.e-shop.gr', vat: 'retail-law', enabled: false, trades: ['ilektrologika', 'klimatismos'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει σελίδες προϊόντων· κλειστά φίλτρα, αναζήτηση, offset (2.447 κανόνες)· κλειστό το Amazonbot',
       'χωρίς Store API → adapter σελίδων (ISO-8859-7)', '17/11: ρήτρα πν. ιδιοκτησίας (/protection)', 'γενικό· ηλεκτρολογικά, κλιματιστικά')},
+  // ── Δεύτερος γύρος (23/11/2026, βράδυ): οι 16 που δεν είχαν ελεγχθεί λόγω δικτύου ──
+  {id: 'jerotech', name: 'Jerotech', base_url: 'https://jerotech.eu', vat: 'retail-law', enabled: false, trades: ['dapeda'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει', 'Store API: 209 προϊόντα· 100/100 με regular_price',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'SPC, laminate, LVT, σοβατεπί')},
+  {id: 'strati', name: 'Strati', base_url: 'https://strati.gr', vat: 'retail-law', enabled: false, trades: ['dapeda'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει', 'Store API: 1.384 προϊόντα· 100/100 με regular_price',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-proypotheseis/)· τίποτα για bots', 'χαλιά, σοβατεπί PVC, δάπεδα')},
+  {id: 'dapeda-net', name: 'Dapeda.net', base_url: 'https://dapeda.net', vat: 'retail-law', enabled: false, trades: ['dapeda'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει σελίδες· ΚΛΕΙΣΤΟ το /wp-json/ → όχι Store API', 'Store API υπάρχει (385) αλλά το robots το κλείνει → μόνο adapter σελίδων',
+      'ρήτρα πν. ιδιοκτησίας (/terms/)· τίποτα για bots', 'laminate, SPC, ξύλινα δάπεδα')},
+  {id: 'kouremenos', name: 'Kouremenos', base_url: 'https://kouremenos.net', vat: 'retail-law', enabled: false, trades: ['vafes', 'oikodomika'], ...woo(),
+    measured: m('2026-11-23', 'χωρίς κανόνες (τίποτα κλειστό)', 'Store API: 751 προϊόντα· 85/100 με regular_price',
+      'ρήτρα πν. ιδιοκτησίας· τίποτα για bots', 'πλαστικά/ακρυλικά χρώματα, εργαλεία βαφής')},
+  {id: 'homeville', name: 'Homeville', base_url: 'https://homeville.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει (κλειστό το /*product_cat=*)', 'Store API: 362.933 προϊόντα (πολύ μεγάλο για πλήρη ανάγνωση)',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'κυρίως έπιπλα· λίγα υλικά ξυλουργού')},
+  {id: 'marmara-billis', name: 'Marmara Billis', base_url: 'https://www.marmara-billis.gr', vat: 'retail-law', enabled: false, trades: ['marmara'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API (404) → adapter σελίδων',
+      'ρήτρα πν. ιδιοκτησίας (/content/22/oroi-xrisis-/)· τίποτα για bots', 'μάρμαρα, πάγκοι, σκαλοπάτια')},
+  {id: 'portes-koufomata', name: 'Portes-Koufomata', base_url: 'https://www.portes-koufomata.gr', vat: 'retail-law', enabled: false, trades: ['xylourgika', 'koufomata'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει με Crawl-delay: 10 (ένα αίτημα κάθε 10″, αργό)', 'χωρίς Store API → adapter σελίδων',
+      'σελίδα όρων δεν βρέθηκε από την αρχική (να ελεγχθεί με το χέρι)', 'εσωτερικές πόρτες, πόρτες ασφαλείας, κουφώματα')},
+  {id: 'balamoti', name: 'Balamoti', base_url: 'https://balamoti.gr', vat: 'retail-law', enabled: false, trades: ['vafes', 'xylourgika'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API → adapter σελίδων',
+      'βρέθηκε μόνο πολιτική απορρήτου, όχι όροι χρήσης (να ελεγχθεί με το χέρι)', 'βερνίκια, χρώματα ξύλου, σιδηρικά')},
+  {id: 'mykipos', name: 'MyKipos', base_url: 'https://mykipos.gr', vat: 'retail-law', enabled: false, trades: ['kipos-ardeusi'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει', 'Store API: 94 προϊόντα· 93 με regular_price',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-xrisis/)· τίποτα για bots', 'σπόροι, λάστιχα, ανταλλακτικά· μικρός κατάλογος')},
+  {id: 'e-agro', name: 'e-Agro', base_url: 'https://www.e-agro.gr', vat: 'retail-law', enabled: false, trades: ['kipos-ardeusi'], ...woo(),
+    measured: m('2026-11-23', 'επιτρέπει (κλειστά AhrefsBot, BLEXBot)', 'Store API: 3.908 προϊόντα· 100/100 με regular_price',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-chrisis/)· τίποτα για bots', 'άρδευση, εργαλεία, ψεκαστικά, λιπάσματα')},
+  {id: 'garafas', name: 'Garafas', base_url: 'https://www.garafas.gr', vat: 'retail-law', enabled: false, trades: ['kipos-ardeusi'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API → adapter σελίδων',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-xrisis/)· τίποτα για bots', 'άρδευση, γεωργικά')},
+  {id: 'energybatteries', name: 'Energy Batteries', base_url: 'https://energybatteries.gr', vat: 'retail-law', enabled: false, trades: ['iliaka-fv'], method: 'html',
+    measured: m('2026-11-23', 'επιτρέπει', 'Store API: HTTP 403 → adapter σελίδων (η αρχική απαντά 200)',
+      'όροι συναλλαγών (/oroi-sinallagon/)· τίποτα για bots ή πν. ιδιοκτησία', 'μπαταρίες, inverter, ΦΒ')},
 ];
 
 /** Ελέγχθηκαν και ΔΕΝ προτείνονται, με τον λόγο (μέτρηση 23/11/2026). */
@@ -90,16 +127,11 @@ export const SPECIALISTS_REJECTED = [
   {id: 'doikas', base_url: 'https://www.doikas.com', reason: 'Store API με 61.681 προϊόντα αλλά 0/100 με τιμή· κυρίως επαγγελματικός εξοπλισμός κουζίνας'},
   {id: 'doukas', base_url: 'https://www.doukas.com.gr', reason: 'Store API με τιμή 0 (κατάλογος χωρίς τιμές)'},
   {id: 'panpower', base_url: 'https://panpower.eu', reason: 'HTTP 403 στο bot (και στο robots.txt)'},
+  {id: 'e-metallon', base_url: 'https://e-metallon.gr', reason: 'HTTP 403 στο bot (αρχική και Store API)'},
+  {id: 'zalonis', base_url: 'https://zalonis.eu', reason: 'το robots.txt κλείνει ονομαστικά ClaudeBot, CCBot, Amazonbot κ.ά. (θέλουν να μη διαβάζονται από bots)· Store API 403'},
+  {id: 'fotovoltaika', base_url: 'https://www.fotovoltaika.gr', reason: 'robots.txt: Disallow: / για όλους· HTTP 403'},
+  {id: 'eshops', base_url: 'https://www.eshops.gr', reason: 'HTTP 403· το robots.txt κλείνει ClaudeBot, GPTBot, PerplexityBot'},
 ];
 
-/** Υποψήφιοι που ΔΕΝ ελέγχθηκαν: το περιβάλλον του ελέγχου δεν είχε πρόσβαση στο δίκτυό τους (23/11/2026). */
-export const SPECIALISTS_UNCHECKED = [
-  {id: 'jerotech', base_url: 'https://jerotech.eu', trades: ['dapeda']}, {id: 'strati', base_url: 'https://strati.gr', trades: ['dapeda']},
-  {id: 'dapeda-net', base_url: 'https://dapeda.net', trades: ['dapeda']}, {id: 'kouremenos', base_url: 'https://kouremenos.net', trades: ['vafes', 'oikodomika']},
-  {id: 'e-metallon', base_url: 'https://e-metallon.gr', trades: ['xylourgika', 'sidirourgika']}, {id: 'homeville', base_url: 'https://homeville.gr', trades: ['xylourgika']},
-  {id: 'zalonis', base_url: 'https://zalonis.eu', trades: ['xylourgika', 'koufomata']}, {id: 'marmara-billis', base_url: 'https://www.marmara-billis.gr', trades: ['marmara']},
-  {id: 'portes-koufomata', base_url: 'https://www.portes-koufomata.gr', trades: ['xylourgika', 'koufomata']}, {id: 'balamoti', base_url: 'https://balamoti.gr', trades: ['vafes', 'xylourgika']},
-  {id: 'mykipos', base_url: 'https://mykipos.gr', trades: ['kipos-ardeusi']}, {id: 'e-agro', base_url: 'https://e-agro.gr', trades: ['kipos-ardeusi']},
-  {id: 'garafas', base_url: 'https://garafas.gr', trades: ['kipos-ardeusi']}, {id: 'energybatteries', base_url: 'https://energybatteries.gr', trades: ['iliaka-fv']},
-  {id: 'fotovoltaika', base_url: 'https://www.fotovoltaika.gr', trades: ['iliaka-fv']}, {id: 'eshops', base_url: 'https://www.eshops.gr', trades: ['iliaka-fv']},
-];
+/** Υποψήφιοι που δεν ελέγχθηκαν ακόμη (μετά τον 2ο γύρο της 23/11/2026: κανένας). */
+export const SPECIALISTS_UNCHECKED = [];
