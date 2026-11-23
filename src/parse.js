@@ -1,5 +1,5 @@
 // Μετατρέπει ελεύθερη ομιλία («δώδεκα μέτρα σωλήνα και μια λεκάνη…») ή σημειώσεις σε γραμμές προσφοράς.
-import { CATALOG, TITLE_WORDS } from './catalog.js';
+import { CATALOG, WORK_WORDS, ROOM_WORDS } from './catalog.js';
 import { parseAmount, toCents } from './number.js';
 
 export const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ς/g, 'σ');
@@ -164,6 +164,7 @@ function nearest(item, said){
 // Keywords σε φωνητική μορφή (υπολογίζονται μία φορά).
 const PH = new Map(CATALOG.map(c => [c, {
   kw: c.keywords.map(k => phon(k).split('+')), not: (c.notWords || []).map(phon), after: (c.notAfter || []).map(phon), before: (c.notBefore || []).map(phon),
+  ctx: new Map(Object.entries(c.context || {}).map(([k, need]) => [phon(k), need.map(phon)])),
 }]));
 // Keywords δύο λέξεων («σετ ντους»): η δεύτερη λέξη ανήκει στο ίδιο υλικό και δεν πιάνει δικό της.
 const PAIRS = [...PH.values()].flatMap(p => p.kw.filter(k => k.length > 1));
@@ -172,9 +173,12 @@ function findItem(tokens, i){
   const tok = phon(g(tokens[i])), prev = phon(g(tokens[i-1] || '')), next = [tokens[i+1], tokens[i+2]].filter(Boolean).map(t => phon(g(t)));
   const en = isLatin(tokens[i]) ? tokens[i] : null;
   if(PAIRS.some(([a, b]) => prev.startsWith(a) && tok.startsWith(b))) return undefined;
+  let all;                                                                   // όλη η φράση, για keywords με context
+  const inPhrase = need => (all ??= tokens.map(t => phon(g(t)))).some(t => need.some(w => t.startsWith(w)));
   return CATALOG.find(c => {
     const p = PH.get(c);
-    const hit = (en && c.en?.includes(en)) || p.kw.some(([a, b]) => tok.startsWith(a) && (!b || (next[0] || '').startsWith(b)));
+    const hit = (en && c.en?.includes(en)) || p.kw.some(([a, b]) => tok.startsWith(a) && (!b || (next[0] || '').startsWith(b)) &&
+      (!p.ctx.has(a) || inPhrase(p.ctx.get(a))));
     return hit && !p.not.some(w => tok.startsWith(w)) && !p.after.some(k => prev.startsWith(k)) &&
       !p.before.some(k => next.some(n => n.startsWith(k)));
   });
@@ -318,6 +322,19 @@ function laborAmount(tokens){
     if(a) return {cents: Math.round(a.n * 100)};
   }
   return null;
+}
+
+// Γενική πτώση (ουδ./θηλ./πληθ.): «μπάνιου», «μπάνιων», «κουζίνας», «κουζινών».
+const GENITIVE = /(ου|ων|ασ|ησ)$/;
+const isContent = t => /\p{L}{2,}/u.test(t) && !STOP.has(t) && !FILLER.has(t) && !ASK_WORDS.has(t) && !CORR.has(t) && !NEG.has(t) &&
+  !NOISE.test(t) && toNumber(t) == null && !unitOf(t);
+/** Φράση χωρίς υλικό που περιγράφει τη δουλειά: λέξη εργασίας («ανακαίνιση»), ή χώρος που δεν προσδιορίζει
+ *  σε γενική ένα ουσιαστικό πριν από αυτόν («καθρέφτης μπάνιου» είναι προϊόν, «μπάνιο ξενώνα» τίτλος). */
+function isTitle(seg){
+  const toks = scrub(seg).split(/\s+/).map(wordTok).filter(Boolean);
+  if(hasAny(toks, WORK_WORDS)) return true;
+  const r = toks.findIndex(t => hasAny([t], ROOM_WORDS));
+  return r >= 0 && !(GENITIVE.test(toks[r]) && toks.slice(0, r).some(isContent));
 }
 
 /** Γραμμή για υλικό του καταλόγου (π.χ. όταν ο χρήστης διάλεξε «Ντουζιέρα» αντί για «σετ ντους»). */
@@ -517,7 +534,7 @@ export function parse(text){
     if(found) continue;
     if(tokens.every(t => FILLER.has(t) || CORR.has(t) || NEG.has(t))) continue;   // «όχι, συγγνώμη», «λοιπόν»
     const onlyQty = tokens.every(t => toNumber(t) != null || unitOf(t));
-    if(!title && pending == null && hasAny(tokens, TITLE_WORDS)) title = scrub(seg).replace(/[.,;:!?]+$/, '');
+    if(!title && pending == null && isTitle(seg)) title = scrub(seg).replace(/[.,;:!?]+$/, '');
     else if(!onlyQty && (tokens.length >= 2 || pending != null || tokens[0].length >= 2)) unknown.push(seg);
   }
 
