@@ -4,9 +4,11 @@
 //   node tools/prices/run.mjs --store file:prices.json    (τοπικά, χωρίς Supabase)
 // Επιλογές: --only praktiker,toolcase · --cache <φάκελος> (εξ ορισμού tools/prices/.cache) · --report <αρχείο.md>
 //           --users <αρχείο.json> (προϊόντα χρηστών για δοκιμή με αρχείο: [{user_id, key, name, unit, …}])
+//           --v2 (δοκιμή με τις νέες λίστες υλικών, σαν MATERIALS_V2_ENABLED = true· μόνο με --store file:)
 import fs from 'node:fs'; import path from 'node:path'; import {fileURLToPath} from 'node:url';
 import { createFetcher } from './fetch.mjs';
-import { SUPPLIERS, ALTERNATES } from './suppliers.mjs';
+import { activeSuppliers } from './suppliers.mjs';
+import { MATERIALS_V2_ENABLED } from '../../src/config.js';
 import { runOnce } from './engine.mjs';
 import { createMemoryStore } from './stores/memory.mjs';
 import { createSupabaseStore } from './stores/supabase.mjs';
@@ -17,6 +19,8 @@ const args = process.argv.slice(2), opt = (k, d) => args.includes(k) ? args[args
 const log = m => console.log(`[${new Date().toISOString().slice(11, 19)}] ${m}`);
 
 const storeArg = opt('--store', 'file:' + path.join(here, '.data', 'prices.json'));
+const v2 = MATERIALS_V2_ENABLED || args.includes('--v2');
+if(args.includes('--v2') && storeArg === 'supabase'){ console.error('--v2: μόνο για δοκιμή με --store file:'); process.exit(2); }
 let store;
 if(storeArg === 'supabase') store = createSupabaseStore({url: process.env.SUPABASE_URL, serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY, log});
 else {
@@ -29,11 +33,11 @@ else {
   }
 }
 const only = opt('--only')?.split(',');
-const suppliers = [...SUPPLIERS, ...ALTERNATES].filter(s => !only || only.includes(s.id));
+const suppliers = activeSuppliers({v2}).filter(s => !only || only.includes(s.id));
 const fetcher = createFetcher({cacheDir: opt('--cache', path.join(here, '.cache')), log});
 
 const t0 = Date.now();
-const result = await runOnce({store, suppliers, fetcher, log});
+const result = await runOnce({store, suppliers, fetcher, log, v2});
 if(result.skipped) process.exit(0);
 const {stats} = result;
 log(`τέλος σε ${Math.round((Date.now() - t0) / 1000)}″ · αιτήματα ${fetcher.stats.requests} (cache ${fetcher.stats.cached}, επαναλήψεις ${fetcher.stats.retries})`);

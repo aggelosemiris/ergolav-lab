@@ -12,6 +12,7 @@ import { norm, phon } from './parse.js';
 import { stem } from './similar.js';
 
 export const VERSION = 1;            // αλλάζει όταν αλλάζουν οι κανόνες (μπαίνει στο match_key)
+export const VERSION_V2 = 2;         // κανόνες με τις νέες λίστες υλικών (MATERIALS_V2): δικό τους match_key
 export const VAT = 0.24;              // ΦΠΑ λιανικής (οι τιμές του καταλόγου είναι χωρίς ΦΠΑ)
 
 // ── κείμενο ──
@@ -60,14 +61,33 @@ const num = s => String(Number(s));
  *   inch: «3/4» · l: λίτρα · kg: κιλά · cm: μήκος/πλάτος σε εκ. · out: έξοδοι/κυκλώματα · pos: θέσεις πίνακα
  *   a: αμπέρ · ma: mA · poles: πόλοι (1P, 3P+N) · trough: γούρνες · btu · ml · w: watt · kw
  */
-export function attributes(text){ return parseAttributes(text).attrs; }
+export function attributes(text, v2 = false){ return parseAttributes(text, v2).attrs; }
 /** Το κείμενο χωρίς τα μετρήσιμα χαρακτηριστικά («Κόλλα πλακιδίων 25 κιλά» → «κόλλα πλακιδίων»): οι λέξεις μονάδων
  *  δεν είναι λέξεις του είδους — το μέγεθος ελέγχεται ως χαρακτηριστικό. */
-export const withoutAttributes = text => parseAttributes(text).rest;
-function parseAttributes(text){
+export const withoutAttributes = (text, v2 = false) => parseAttributes(text, v2).rest;
+const POLES_WORD = {μονοπολικ: '1', διπολικ: '2', τριπολικ: '3', τετραπολικ: '4'};
+function parseAttributes(text, v2 = false){
   let t = clean(text);
   const out = {};
   const add = (k, v) => { (out[k] ??= []).includes(v) || out[k].push(v); };
+  if(v2){
+    // MATERIALS_V2 — μόνο ρητές γραφές που οι προμηθευτές χρησιμοποιούν:
+    //  διάμετρος και μήκος σωλήνα: «Φ.110X200cm» = Φ110, μήκος 2 μ. (το μήκος το διαβάζει το packLength)
+    t = t.replace(/(?:φ|ø)\.?\s?(\d{2,3})x(?=\d{2,4}\s?(?:cm|εκ)(?![α-ωa-z0-9]))/g, (m, d) => (add('diam', num(d)), ' '));
+    //  διάμετρος με πάχος τοιχώματος: «Φ25 x 4,2», «Φ.16x2» (σωλήνες/εξαρτήματα)
+    t = t.replace(/(?:φ|ø)\.?\s?(\d{2,3})x\d{1,2}(?:\.\d)?(?:\s?mm)?(?![\dx])/g, (m, d) => (add('diam', num(d)), ' '));
+    //  «Ρελέ διαρροής 2x40A» = 2 πόλοι, 40 A (πριν από τη διατομή: «3x16A» δεν είναι καλώδιο 3x16)
+    t = t.replace(new RegExp(`\\b([1-4])x(\\d{1,3})\\s?a${E}`, 'g'), (m, p, a) => (add('poles', p), add('a', num(a)), ' '));
+    //  «Διπολικό», «Τετραπολικό»
+    t = t.replace(new RegExp(`(?<![α-ωa-z])(μονοπολικ|διπολικ|τριπολικ|τετραπολικ)${W}`, 'g'), (m, w) => (add('poles', POLES_WORD[w]), ' '));
+    //  μικροαυτόματος «C16», «B10» (καμπύλη + αμπέρ) — ΜΟΝΟ αν το όνομα λέει ότι είναι μικροαυτόματος/MCB
+    if(/\bmcb\b|μικροαυτοματ/.test(t)) t = t.replace(new RegExp(`\\b[bcd](\\d{1,2})${E}`, 'g'), (m, a) => (add('a', num(a)), ' '));
+    //  διαστάσεις με κολλητή μονάδα: «170x70cm», «60x120cm», «80x80x5.5cm» (το απλό \b δεν πιάνει «70cm»)
+    t = t.replace(new RegExp(`\\b(\\d{2,3})x(\\d{2,3})(?:x\\d{1,3}(?:\\.\\d+)?)?\\s?(?:cm|εκ)${E}`, 'g'),
+      (m, a, b) => Number(a) >= 15 && Number(b) >= 15 ? (add('size', `${num(a)}x${num(b)}`), ' ') : m);
+    //  «4 Παροχών» = 4 έξοδοι (συλλέκτες)
+    t = t.replace(new RegExp(`${N}(\\d{1,2})\\s?παροχ${W}`, 'g'), (m, v) => (add('out', num(v)), ' '));
+  }
   t = t.replace(new RegExp(`\\b([2-5])x(\\d+(?:\\.\\d+)?)(?:\\s?(?:mm2|mm²|τετ${W}))?(?![\\dx.])`, 'g'), (m, a, b) => SECTIONS.has(num(b)) ? (add('sec', `${a}x${num(b)}`), ' ') : m);
   t = t.replace(/(?:φ|ø|Ø)\.?\s?(\d{2,3})(?:\s?mm)?\b/g, (m, d) => (add('diam', num(d)), ' '));   // Φ16, Φ 16, Φ.16mm
   t = t.replace(/\b(\d{2})x(\d(?:\.\d)?)\s?mm\b/g, (m, d) => (add('diam', num(d)), ' '));
@@ -92,12 +112,17 @@ function parseAttributes(text){
   return {attrs: out, rest: t};
 }
 
-/** Μήκος συσκευασίας σε μέτρα («κουλούρα 100m», «ρολό 50 μέτρα»). null αν δεν γράφεται με βεβαιότητα. */
-export function packLength(text){
-  const m = clean(text).match(new RegExp(`\\b(\\d{1,3}(?:\\.\\d+)?)\\s?(?:m|μ|μετρ${W})${E}`, 'g'));
-  if(!m || m.length !== 1) return null;                 // δύο διαφορετικά μήκη → αμφίσημο
-  const v = Number(m[0].match(/[\d.]+/)[0]);
-  return v > 0 ? v : null;
+/** Μήκος συσκευασίας σε μέτρα («κουλούρα 100m», «ρολό 50 μέτρα»). null αν δεν γράφεται με βεβαιότητα.
+ *  v2: και μήκος σωλήνα σε εκ. («Φ110x300cm», «-200cm»), ΜΟΝΟ αν δεν υπάρχει μήκος σε μέτρα και είναι ένα και ≥ 50 εκ. */
+export function packLength(text, v2 = false){
+  const c = clean(text);
+  const m = c.match(new RegExp(`\\b(\\d{1,3}(?:\\.\\d+)?)\\s?(?:m|μ|μετρ${W})${E}`, 'g'));
+  if(m && m.length !== 1) return null;                  // δύο διαφορετικά μήκη → αμφίσημο
+  if(m){ const v = Number(m[0].match(/[\d.]+/)[0]); return v > 0 ? v : null; }
+  if(!v2) return null;
+  // «-200cm», « 250cm», «Φ.110x200cm» — όχι «170x70cm» (διάσταση)
+  const cm = [...c.matchAll(new RegExp(`(?:^|[\\s\\-]|(?<=[φø]\\.?\\s?\\d{2,3})x)(\\d{2,4})\\s?(?:cm|εκ)${E}`, 'g'))].map(x => Number(x[1]));
+  return cm.length === 1 && cm[0] >= 50 ? cm[0] / 100 : null;
 }
 /** «τιμή ανά μέτρο», «/μ», «/m»: ο προμηθευτής γράφει ότι η τιμή είναι ανά μέτρο. */
 const PER_METER = /(?:ανα|τιμη ανα|price per)\s?(?:μετρο|m)(?![α-ωa-z])|\/\s?(?:μ|m|μετρο)(?![α-ωa-z0-9])/;
@@ -146,9 +171,9 @@ export function codesIn(text){
  *         δεν ταιριάζει — αλλιώς θα ανακατεύονταν διαφορετικά μεγέθη στον ίδιο μέσο όρο.
  */
 export function specFor(product, rule = {}){
-  const name = String(product.name ?? '');
-  const all = rule.all ? rule.all.map(root) : [...new Set(stemsOf(withoutAttributes(name)))];
-  const single = text => Object.fromEntries(Object.entries(attributes(text)).filter(([, v]) => v.length === 1).map(([k, v]) => [k, v[0]]));
+  const name = String(product.name ?? ''), v2 = !!rule.v2;
+  const all = rule.all ? rule.all.map(root) : [...new Set(stemsOf(withoutAttributes(name, v2)))];
+  const single = text => Object.fromEntries(Object.entries(attributes(text, v2)).filter(([, v]) => v.length === 1).map(([k, v]) => [k, v[0]]));
   const attrs = rule.attrs ?? {...single(product.said ?? ''), ...single(name)};
   const spec = {
     unit: unitOf(rule.unit ?? product.unit),
@@ -157,6 +182,13 @@ export function specFor(product, rule = {}){
     brand: product.brand ? root(product.brand) : null,
     strict: !!product.strict,
   };
+  if(v2){
+    // Συνώνυμα (νέες λίστες): μια ρίζα του «all» καλύπτεται και από ΟΛΕΣ τις ρίζες μιας εναλλακτικής φράσης
+    // (π.χ. «πολυστρωματικ» ή «pex»+«al» από το «PEX-AL-PEX»). Τα χαρακτηριστικά και τα «none» ισχύουν πάντα.
+    spec.v2 = true;
+    spec.first = (rule.first || []).map(root);
+    spec.alt = Object.fromEntries(Object.entries(rule.alt || {}).map(([r, phrases]) => [root(r), phrases.map(p => [...new Set(stemsOf(p))]).filter(p => p.length)]));
+  }
   spec.key = matchKey(spec);
   return spec;
 }
@@ -177,7 +209,8 @@ export function unitOf(u){
 /** Σταθερό κλειδί: ίδια προδιαγραφή = ίδια αναζήτηση για όλους τους χρήστες (μία φορά, όχι ανά χρήστη). */
 export function matchKey(spec){
   const a = Object.keys(spec.attrs).sort().map(k => `${k}=${spec.attrs[k]}`).join(',');
-  return [`v${VERSION}${spec.strict ? 's' : ''}`, spec.unit, [...spec.all].sort().join('+') + (spec.order?.length ? '>' + spec.order.join('>') : ''), (spec.any || []).slice().sort().join('|'), a, spec.gtin || '', spec.mpn || '', spec.brand || ''].join(';');
+  const alt = spec.v2 ? Object.keys(spec.alt || {}).sort().map(r => `${r}=${spec.alt[r].map(p => p.join('+')).join('/')}`).join(',') + (spec.first?.length ? '^' + spec.first.join('|') : '') : '';
+  return [`v${spec.v2 ? VERSION_V2 : VERSION}${spec.strict ? 's' : ''}`, spec.unit, [...spec.all].sort().join('+') + (spec.order?.length ? '>' + spec.order.join('>') : ''), (spec.any || []).slice().sort().join('|'), a, spec.gtin || '', spec.mpn || '', spec.brand || '', ...(alt ? [alt] : [])].join(';');
 }
 /** Αρκετά συγκεκριμένη προδιαγραφή για αναζήτηση; (μία λέξη χωρίς χαρακτηριστικό ή αναγνωριστικό = πολύ γενικό). */
 export const specific = spec => !!(spec.gtin || spec.mpn) || spec.all.length >= 2 || (spec.all.length >= 1 && Object.keys(spec.attrs).length >= 1);
@@ -198,16 +231,24 @@ export function matchItem(spec, item){
     return {ok: true, method: 'mpn'};
   }
   const stems = wordsOf(`${name} ${item.brand ?? ''}`);
-  for(const r of spec.all) if(!hasRoot(stems, r)) return {ok: false, reason: `missing:${r}`};
+  const viaAlt = new Set();
+  for(const r of spec.all) if(!hasRoot(stems, r)){
+    if(spec.alt?.[r]?.some(p => p.every(x => hasRoot(stems, x)))){ viaAlt.add(r); continue; }
+    return {ok: false, reason: `missing:${r}`};
+  }
   if(spec.any?.length && !spec.any.some(r => hasRoot(stems, r))) return {ok: false, reason: 'missing-any'};
   for(const r of spec.none) if(hasRoot(stems, r)) return {ok: false, reason: `excluded:${r}`};
-  if(spec.order?.length){
+  if(spec.order?.length && !spec.order.some(r => viaAlt.has(r))){
     const seq = wordsInOrder(`${name}`), pos = r => seq.findIndex(w => w === r || (r.length >= 3 && w.startsWith(r)));
     const first = Math.max(...spec.order.map(pos)), others = spec.all.filter(r => !spec.order.includes(r)).map(pos).filter(i => i >= 0);
     if(spec.order.some(r => pos(r) < 0) || others.some(i => i < first)) return {ok: false, reason: 'head-not-first'};
   }
+  if(spec.first?.length){
+    const w0 = wordsInOrder(name)[0] || '';
+    if(!spec.first.some(r => w0 === r || (r.length >= 3 && w0.startsWith(r)))) return {ok: false, reason: 'head-not-first'};
+  }
   if(spec.brand && !hasRoot(stems, spec.brand)) return {ok: false, reason: 'brand-differs'};
-  const at = attributes(name);
+  const at = attributes(name, spec.v2);
   for(const [k, v] of Object.entries(spec.attrs)){
     const have = at[k] || (k === 'cm' && at.size ? at.size.map(s => s.split('x')[0]) : null);
     if(!have) return {ok: false, reason: `no-${k}`};
@@ -244,7 +285,7 @@ export function unitPrice(spec, offer){
   }
   if(spec.unit === 'm'){
     if(PER_METER.test(clean(offer.name))) return {cents: exVat(offer.regularCents), basis: 'priced-per-m'};
-    const len = packLength(offer.name);
+    const len = packLength(offer.name, spec.v2);
     if(!len) return {error: 'pack-length-unknown'};
     return {cents: exVat(Math.round(offer.regularCents / len)), basis: `pack-${len}m`};
   }
