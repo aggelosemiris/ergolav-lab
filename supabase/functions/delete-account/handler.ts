@@ -11,6 +11,8 @@ export const ALLOWED_ORIGINS = [
 ];
 
 export const BUCKET = 'logos';
+// «Ο πίνακας δεν υπάρχει»: PostgREST (PGRST205) ή Postgres (42P01).
+const NO_TABLE = ['PGRST205', '42P01'];
 // Η διαγραφή θέλει ΠΡΟΣΦΑΤΗ επιβεβαίωση ταυτότητας: η τελευταία σύνδεση (κωδικός, Google, κωδικός email) μέσα σε
 // τόσα δευτερόλεπτα. Το JWT το γράφει στο «amr» (μέθοδος + χρόνος). Παλιό token (π.χ. κλεμμένο) → 403.
 export const REAUTH_MAX_AGE_S = 600;
@@ -29,6 +31,10 @@ type Admin = {
   auth: {
     getUser(jwt: string): Promise<{ data: { user: { id: string } | null }; error: unknown }>;
     admin: { deleteUser(id: string): Promise<{ error: unknown }> };
+  };
+  // Ο πίνακας quotes (Φάση 3): delete().eq('user_id', uid).
+  from(table: string): {
+    delete(): { eq(column: string, value: string): Promise<{ error: { code?: string } | null }> };
   };
   storage: {
     from(bucket: string): {
@@ -83,6 +89,10 @@ export async function handle(req: Request, admin: Admin, allowed: string[] = ALL
       const { error: rmError } = await admin.storage.from(BUCKET).remove(files);
       if (rmError) throw new Error('remove_failed');
     }
+    // Μετά οι προσφορές (Φάση 3). Το «on delete cascade» θα τις έπαιρνε κι αυτές· το κάνουμε ρητά ώστε μια αλλαγή
+    // στο σχήμα να μην αφήσει ποτέ στοιχεία πελατών. Αν ο πίνακας δεν υπάρχει ακόμα (η migration δεν έτρεξε), συνεχίζει.
+    const { error: qError } = await admin.from('quotes').delete().eq('user_id', uid);
+    if (qError && !NO_TABLE.includes(String(qError.code ?? ''))) throw new Error('quotes_failed');
     const { error: delError } = await admin.auth.admin.deleteUser(uid);
     if (delError) throw new Error('delete_failed');
   } catch (e) {

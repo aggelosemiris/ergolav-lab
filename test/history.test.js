@@ -34,7 +34,12 @@ test('αποθήκευση, η νεότερη πρώτη, ανάκτηση ακ�
   env();
   for(const n of [1, 3, 2]) assert.equal(h.saveQuote(quote(n)), true);
   assert.deepEqual(h.listQuotes().map(q => q.no), [3, 2, 1]);
-  assert.deepEqual(h.getQuote(2), quote(2));
+  const {id, updated, ...same} = h.getQuote(2);
+  assert.deepEqual(same, quote(2));
+  assert.match(id, h.UUID, 'σταθερό id (uuid) για τον συγχρονισμό');
+  assert.ok(updated > 0, 'πότε άλλαξε');
+  h.saveQuote({...quote(2), client: 'Νέος'});
+  assert.equal(h.getQuote(2).id, id, 'νέο PDF της ίδιας προσφοράς: ίδιο id');
 });
 
 test('ίδιος αριθμός ξανά (ξαναφτιάχτηκε το PDF) → ενημέρωση, όχι διπλή εγγραφή', () => {
@@ -216,8 +221,10 @@ test('αλλαγή ημερομηνίας/κατάστασης: μόνο αυτ�
   assert.equal(h.getQuote(1).scheduled_from_created, true, 'αλλαγή μόνο κατάστασης: η μέρα μένει «ημ. δημιουργίας»');
   assert.equal(h.updateQuote(1, {scheduled_date: '2026-12-01', scheduled_time: '08:00', duration_days: 3}), true);
   const {scheduled_from_created, ...base} = q1;
-  assert.deepEqual(h.getQuote(1), {...base, status: 'won', scheduled_date: '2026-12-01', scheduled_time: '08:00', duration_days: 3},
-    'αλλάζουν μόνο ημερομηνία, ώρα, διάρκεια, κατάσταση· η σήμανση φεύγει');
+  const {updated, ...after} = h.getQuote(1);
+  assert.deepEqual(after, {...base, status: 'won', scheduled_date: '2026-12-01', scheduled_time: '08:00', duration_days: 3},
+    'αλλάζουν μόνο ημερομηνία, ώρα, διάρκεια, κατάσταση (και πότε άλλαξε)· η σήμανση φεύγει');
+  assert.ok(updated > 0);
   assert.equal(h.updateQuote(1, {scheduled_date: null}), true);
   assert.equal(h.getQuote(1).scheduled_date, null, 'και πίσω στο «Χωρίς ημερομηνία»');
   assert.equal(h.updateQuote(1, {client: 'άλλος', sum: {}}), true, 'πεδία εκτός ημερομηνίας/κατάστασης αγνοούνται');

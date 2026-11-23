@@ -1,6 +1,11 @@
 // Ιστορικό προσφορών της συσκευής: ό,τι γράφτηκε στο PDF (αριθμός, πελάτης, γραμμές, σύνολα), για να το ξαναδεί
 // και να το ξαναστείλει ο τεχνίτης, και πότε πάει στον πελάτη (ημερολόγιο). Η αποθήκευση δεν σπάει ποτέ την εφαρμογή:
-// ό,τι δεν διαβάζεται σωστά αγνοείται (όπως στο prices.js). Τα δεδομένα μένουν μόνο σε αυτή τη συσκευή.
+// ό,τι δεν διαβάζεται σωστά αγνοείται (όπως στο prices.js). Η οθόνη διαβάζει ΠΑΝΤΑ από εδώ (localStorage)· ο
+// συγχρονισμός με τον λογαριασμό (src/sync.js) γίνεται στο παρασκήνιο.
+//
+// Ταυτότητα: κάθε προσφορά έχει σταθερό id (uuid) — ο αριθμός (no) είναι μετρητής ανά συσκευή και σε δύο κινητά
+// μπορεί να επαναληφθεί. updated = πότε άλλαξε τελευταία (ms), για «η νεότερη αλλαγή κερδίζει». Οι συναρτήσεις που
+// δέχονται «κλειδί» παίρνουν id (string) ή no (αριθμό· για ό,τι δεν έχει ακόμα id).
 import { athensDate, isDate, isTime, isDays } from './dates.js';
 
 export const STORE = 'ergolav.quotes';
@@ -10,6 +15,20 @@ export const MAX_BACKUPS = 2;
 // Κατάσταση: draft = έγινε PDF αλλά δεν στάλθηκε· sent = στάλθηκε· won = κλείστηκε· lost = χάθηκε.
 export const STATUSES = ['draft', 'sent', 'won', 'lost'];
 const SCHEDULE = ['scheduled_date', 'scheduled_time', 'duration_days', 'status'];
+// Σβησμένες προσφορές που δεν έχει μάθει ακόμα ο λογαριασμός: [{id, at}] (το σβήσιμο είναι deleted_at, όχι διαγραφή).
+export const DELETED = 'ergolav.quotes.deleted';
+export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+
+/** Νέο uuid v4 (crypto.randomUUID ή, σε παλιό browser, getRandomValues). */
+export function newId(){
+  const c = globalThis.crypto;
+  if(typeof c?.randomUUID === 'function') return c.randomUUID();
+  const b = c.getRandomValues(new Uint8Array(16));
+  b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+  const h = [...b].map(x => x.toString(16).padStart(2, '0')).join('');
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+}
+const match = key => typeof key === 'string' ? q => q.id === key : q => q.no === key;
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
 const isCents = v => Number.isInteger(v) && v >= 0 && v < 1e11;
@@ -31,8 +50,9 @@ function fromCreated(q){
   return Object.fromEntries(Object.entries(add).filter(([k]) => !has(q, k)));
 }
 
-/** Καθαρισμένη εγγραφή ή null αν δεν στέκει (ποτέ μισή προσφορά στο ιστορικό). */
-function clean(q){
+/** Καθαρισμένη εγγραφή ή null αν δεν στέκει (ποτέ μισή προσφορά στο ιστορικό). Χρησιμοποιείται και για ό,τι
+ *  έρχεται από τον λογαριασμό (μη αξιόπιστο). */
+export function clean(q){
   if(!q || typeof q !== 'object' || !Number.isSafeInteger(q.no) || q.no < 1 || !Number.isFinite(q.at) || q.at <= 0) return null;
   const s = q.sum || {};
   if(!['mat', 'lab', 'net', 'vat', 'total'].every(k => isCents(s[k])) || !Number.isFinite(q.vatRate) || !Array.isArray(q.rows)) return null;
@@ -40,7 +60,9 @@ function clean(q){
     .map(r => ({name: str(r.name), qty: r.qty, unit: str(r.unit, 20), mat: r.mat}));
   if(rows.length !== q.rows.length) return null;
   const p = q.profile || {};
-  return {no: q.no, at: q.at, title: str(q.title), client: str(q.client), rows,
+  return {...(typeof q.id === 'string' && UUID.test(q.id) && {id: q.id}),
+    ...(Number.isFinite(q.updated) && q.updated > 0 && {updated: q.updated}),
+    no: q.no, at: q.at, title: str(q.title), client: str(q.client), rows,
     sum: {mat: s.mat, lab: s.lab, net: s.net, vat: s.vat, total: s.total}, vatRate: q.vatRate,
     profile: {name: str(p.name, 80), trade: str(p.trade, 80), phone: str(p.phone, 30), ...(/^[0-9a-f]{8}$/.test(p.logo) && {logo: p.logo})},
     ...cleanSchedule(q)};
@@ -52,8 +74,10 @@ function stored(){
     const raw = storage()?.getItem(STORE);
     const data = raw ? JSON.parse(raw) : [];
     if(!Array.isArray(data)) return [];
+    // Μία εγγραφή ανά id· όσες δεν έχουν ακόμα id (παλιές), μία ανά αριθμό.
     const seen = new Set();
-    return data.map(clean).filter(q => q && !seen.has(q.no) && seen.add(q.no)).sort((a, b) => b.no - a.no);
+    return data.map(clean).filter(q => { const k = q?.id ?? `no:${q?.no}`; return q && !seen.has(k) && seen.add(k); })
+      .sort((a, b) => b.no - a.no || (b.updated || b.at) - (a.updated || a.at));
   } catch { return []; }
 }
 
@@ -63,32 +87,106 @@ export function listQuotes(){
   return stored().map(q => has(q, 'scheduled_date') ? q : {...q, ...fromCreated(q)});
 }
 
-export const getQuote = no => listQuotes().find(q => q.no === no) ?? null;
+/** Η προσφορά με αυτό το κλειδί (id ή no). */
+export const getQuote = key => listQuotes().find(match(key)) ?? null;
 
 function write(list){
   try { const s = storage(); if(!s) return false; s.setItem(STORE, JSON.stringify(list.slice(0, MAX_QUOTES))); return true; }
   catch { return false; }
 }
 
-/** Αποθηκεύει (ή ενημερώνει, αν ξαναφτιάχτηκε το PDF της ίδιας προσφοράς). false αν η συσκευή δεν την κράτησε. */
-export function saveQuote(q){
+/** Αποθηκεύει (ή ενημερώνει, αν ξαναφτιάχτηκε το PDF της ίδιας προσφοράς). false αν η συσκευή δεν την κράτησε.
+ *  Ίδια προσφορά = ίδιο id· χωρίς id (παλιός κώδικας): ίδιος αριθμός, και κρατά το id που είχε. */
+export function saveQuote(q, now = Date.now()){
   const c = clean(q);
   if(!c) return false;
-  return write([c, ...stored().filter(x => x.no !== c.no)].sort((a, b) => b.no - a.no));
+  const list = stored(), same = c.id ? match(c.id) : x => x.no === c.no && !x.id;
+  const prev = c.id ? list.find(same) : list.find(x => x.no === c.no);
+  c.id ??= prev?.id ?? newId();
+  c.updated = now;
+  return write([c, ...list.filter(x => x.id !== c.id && !(c.id && same(x)) && !(prev && x === prev))].sort((a, b) => b.no - a.no));
 }
 
-export function deleteQuote(no){
-  return write(stored().filter(q => q.no !== no));
+/** Σβήνει από τη συσκευή· ο λογαριασμός το μαθαίνει στον επόμενο συγχρονισμό (deleted_at). */
+export function deleteQuote(key, now = Date.now()){
+  const list = stored(), q = list.find(match(key));
+  if(!q) return write(list);                    // τίποτα να σβήσει· false μόνο αν η συσκευή δεν γράφει
+  if(q.id) addDeleted([{id: q.id, at: now}]);
+  return write(list.filter(x => x !== q));
+}
+
+// ── Σβησμένες, για τον συγχρονισμό ──
+export function listDeleted(){
+  try {
+    const d = JSON.parse(storage()?.getItem(DELETED) || '[]');
+    return Array.isArray(d) ? d.filter(x => x && UUID.test(x.id) && Number.isFinite(x.at)) : [];
+  } catch { return []; }
+}
+function writeDeleted(d){ try { const s = storage(); if(!d.length) s?.removeItem(DELETED); else s?.setItem(DELETED, JSON.stringify(d)); } catch {} }
+function addDeleted(items){
+  const m = new Map(listDeleted().map(x => [x.id, x]));
+  for(const x of items) if(!m.has(x.id) || m.get(x.id).at < x.at) m.set(x.id, x);
+  writeDeleted([...m.values()].slice(-2000));
+}
+/** Ο λογαριασμός τα έμαθε: φεύγουν από τη λίστα (μόνο αν δεν ξανασβήστηκαν στο μεταξύ). */
+export function clearDeleted(items){
+  const done = new Map(items.map(x => [x.id, x.at]));
+  writeDeleted(listDeleted().filter(x => !(done.has(x.id) && done.get(x.id) >= x.at)));
+}
+
+/**
+ * Αλλαγές από τον λογαριασμό: [{id, data, updated (ms), deleted (ms|null)}]. Τα data είναι ΜΗ αξιόπιστα: περνούν από
+ * το clean(), και το id της γραμμής είναι αυτό που μετράει. Η νεότερη αλλαγή κερδίζει (ίδια ώρα: μένει η τοπική).
+ * Επιστρέφει {applied, ids} (τα id που άλλαξαν στη συσκευή).
+ */
+export function applyRemote(rows){
+  const list = stored(), byId = new Map(list.filter(q => q.id).map(q => [q.id, q]));
+  const del = new Map(listDeleted().map(x => [x.id, x.at]));
+  const ids = [];
+  let changed = false;
+  for(const r of rows){
+    if(!r || typeof r.id !== 'string' || !UUID.test(r.id) || !Number.isFinite(r.updated)) continue;
+    const local = byId.get(r.id), localAt = local ? (local.updated || local.at) : (del.get(r.id) ?? -1);
+    if(r.updated <= localAt) continue;
+    if(r.deleted){
+      if(local){ byId.delete(r.id); changed = true; ids.push(r.id); }
+      continue;
+    }
+    const c = clean({...(r.data && typeof r.data === 'object' ? r.data : {}), id: r.id, updated: r.updated});
+    if(!c) continue;
+    byId.set(r.id, c); changed = true; ids.push(r.id);
+  }
+  if(!changed) return {applied: 0, ids, ok: true};
+  const ok = write([...byId.values(), ...list.filter(q => !q.id)].sort((a, b) => b.no - a.no));
+  return {applied: ids.length, ids, ok};
+}
+
+/** Δίνει id (και updated) σε όσες αποθηκευμένες προσφορές δεν έχουν· μία φορά, στο άνοιγμα. Μόνο προσθέτει πεδία. */
+export function ensureIds(){
+  const s = storage();
+  let data;
+  try { data = JSON.parse(s?.getItem(STORE) || '[]'); } catch { return 0; }
+  if(!Array.isArray(data)) return 0;
+  let n = 0;
+  const out = data.map(q => {
+    // Μόνο έγκυρες προσφορές· ό,τι άλλο (σκουπίδια, μισές εγγραφές) μένει ΑΚΡΙΒΩΣ όπως ήταν, όπως στη μετάπτωση.
+    if(!q || typeof q !== 'object' || Array.isArray(q) || (typeof q.id === 'string' && UUID.test(q.id)) || !clean(q)) return q;
+    n++;
+    return {...q, id: newId(), ...(!(Number.isFinite(q.updated) && q.updated > 0) && Number.isFinite(q.at) && {updated: q.at})};
+  });
+  if(!n) return 0;
+  try { s.setItem(STORE, JSON.stringify(out)); return n; } catch { return 0; }
 }
 
 /** Αλλάζει μόνο ημερομηνία, ώρα, διάρκεια ή κατάσταση μιας προσφοράς (από το ημερολόγιο)· τίποτα άλλο.
  *  Μόλις ο τεχνίτης ορίσει ημερομηνία, η «ημ. δημιουργίας» σβήνει. false αν δεν υπάρχει ή δεν αποθηκεύτηκε. */
-export function updateQuote(no, patch){
-  const list = stored(), i = list.findIndex(q => q.no === no);
+export function updateQuote(key, patch, now = Date.now()){
+  const list = stored(), i = list.findIndex(match(key));
   if(i < 0 || !patch || typeof patch !== 'object') return false;
   const q = has(list[i], 'scheduled_date') ? {...list[i]} : {...list[i], ...fromCreated(list[i])};
   for(const k of SCHEDULE) if(has(patch, k)) q[k] = patch[k];
   if(['scheduled_date', 'scheduled_time', 'duration_days'].some(k => has(patch, k))) delete q.scheduled_from_created;
+  q.updated = now;
   const c = clean(q);
   if(!c) return false;
   list[i] = c;

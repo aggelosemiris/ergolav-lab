@@ -7,6 +7,12 @@ export const OFFER_COLS = ['price_product_id', 'supplier_id', 'supplier_product_
   'unit_cents', 'unit_basis', 'promo', 'verification', 'verification_reason', 'match_method', 'retrieved_at', 'last_success_at', 'seen_run'];
 const pick = (r, cols) => Object.fromEntries(cols.map(c => [c, r[c] ?? null]));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Τα headers του κλειδιού. Νέα κλειδιά της Supabase (sb_secret_…): ΜΟΝΟ «apikey» — δεν είναι JWT, και ως Bearer
+// τα απορρίπτει ο server. Παλιό service_role JWT (ξεκινά με «eyJ»): και «Authorization: Bearer».
+export function authHeaders(key){
+  const k = String(key || '');
+  return k.startsWith('eyJ') ? {apikey: k, Authorization: `Bearer ${k}`} : {apikey: k};
+}
 const chunk = (a, n) => Array.from({length: Math.ceil(a.length / n)}, (_, i) => a.slice(i * n, i * n + n));
 
 export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries = 3, log = () => {}}){
@@ -16,7 +22,7 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
     for(let attempt = 0; ; attempt++){
       let r, err;
       try {
-        r = await fetchImpl(base + path, {method, headers: {apikey: serviceKey, Authorization: `Bearer ${serviceKey}`,
+        r = await fetchImpl(base + path, {method, headers: {...authHeaders(serviceKey),
           'Content-Type': 'application/json', ...(prefer ? {Prefer: prefer} : {})}, body: body == null ? undefined : JSON.stringify(body),
           signal: AbortSignal.timeout(60000)});
       } catch(e){ err = e; }

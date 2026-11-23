@@ -16,13 +16,16 @@ import { tiers, priceKey, history, remember, ageLabel, isStale, loadAll } from '
 import { registerCustom, migrateCustom, refFor, refStatus, offersFor, createPriceSync } from './price-watch.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
 import { fitImage } from './image.js';
-import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes } from './history.js';
+import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes, ensureIds, newId } from './history.js';
+import { createQuoteSync, wipeLocalQuotes } from './sync.js';
 import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
 import { authGate } from './account.js';
 import { registerSW, takeDraft } from './offline.js';
-import { watchNet, online, probe, NO_NET } from './net.js';
+import { watchNet, online, probe, onNet, NO_NET } from './net.js';
+import * as CONFIG from './config.js';
+const QUOTES_SYNC_ENABLED = CONFIG.QUOTES_SYNC_ENABLED === true;
 import { guardStorage, askPersist } from './storage-guard.js';
 import { mountOfflineUi } from './offline-ui.js';
 
@@ -82,7 +85,9 @@ function notice(msg){ $('notice').hidden = !msg; $('notice').textContent = msg |
 
 // ─── 0 : στοιχεία επιχείρησης — μία φορά, μετά από την κεφαλίδα ─────
 // Αριθμός προσφοράς: δίνεται στο πρώτο PDF αυτής της προσφοράς (νέο PDF της ίδιας προσφοράς κρατά τον ίδιο).
-let PROFILE = loadProfile(), quoteNo = null, profileBack = null;
+// quoteId: το σταθερό id (uuid) της προσφοράς που φτιάχνεται — ίδιο σε κάθε νέο PDF της και σε κάθε κινητό (docs/sync.md).
+let PROFILE = loadProfile(), quoteNo = null, quoteId = null, profileBack = null;
+let quoteSync = null;      // ο συγχρονισμός των προσφορών· στήνεται μετά τον λογαριασμό (πιο κάτω)
 // Λογότυπο: id αποθηκευμένου ή (μόνο στη μνήμη, αν η συσκευή δεν το χώρεσε) data URL· αλλιώς τα αρχικά.
 const logoSrc = v => typeof v === 'string' && v.startsWith('data:image/') ? v : getLogo(v);
 const logoHtml = (name, logo) => { const src = logoSrc(logo); return src ? `<img src="${esc(src)}" alt="">` : esc(initials(name)); };
@@ -823,10 +828,10 @@ let SHOWN = null;
 // Ημερομηνία (δεν τυπώνεται στο PDF): ό,τι έδειχνε το «Πότε πας;» όταν έφυγε από την αρχική οθόνη. Κατάσταση: «Πρόχειρη»
 // μέχρι να σταλεί· νέο PDF της ίδιας προσφοράς κρατά την κατάσταση που είχε.
 function quoteData(){
-  return {no: quoteNo, at: Date.now(), title: TITLE, client: $('client').value.trim(), vatRate, sum: sums(),
+  return {id: quoteId, no: quoteNo, at: Date.now(), title: TITLE, client: $('client').value.trim(), vatRate, sum: sums(),
     rows: okLines().map(l => ({name: l.desc || l.name, qty: l.qty, unit: l.unit, mat: matOf(l)})),
     profile: {name: PROFILE.name, trade: PROFILE.trade, phone: PROFILE.phone, ...(PROFILE.logo && {logo: PROFILE.logo})},
-    ...when.value(), status: getQuote(quoteNo)?.status ?? 'draft'};
+    ...when.value(), status: getQuote(quoteId)?.status ?? 'draft'};
 }
 // Κεφαλίδα του PDF (λογότυπο, στοιχεία, αριθμός, ημερομηνία): ίδια στην προσφορά και στην ανάλυση εργασιών.
 function pdfHead(q){
@@ -864,9 +869,10 @@ function buildPdf(){
   analysisPanel?.reset();
   // Χωρίς στοιχεία επιχείρησης δεν βγαίνει PDF: πρώτα η φόρμα, μετά το PDF.
   if(!PROFILE) return openProfile(buildPdf);
-  if(quoteNo == null) quoteNo = takeQuoteNo();
+  if(quoteNo == null){ quoteNo = takeQuoteNo(); quoteId = newId(); }
   SHOWN = quoteData();
   SHOWN.unsaved = !saveQuote(SHOWN);
+  if(!SHOWN.unsaved) quoteSync?.changed(quoteId);   // ανεβαίνει στον λογαριασμό στο παρασκήνιο
   if(!SHOWN.unsaved) askPersist();           // μία φορά: «μη σβήνεις τα δεδομένα» (docs/offline.md)
   show('s-pdf','Προεπισκόπηση');
   pdfMode(false);
@@ -875,8 +881,9 @@ function buildPdf(){
 }
 // Προσφορά από το ιστορικό: ίδιο PDF (ίδιος αριθμός, ημερομηνία, στοιχεία), για να το ξαναδεί ή να το ξαναστείλει.
 // Η «Ανάλυση εργασιών με AI» αφορά την προσφορά που φτιάχνεται τώρα, γι' αυτό εδώ δεν εμφανίζεται.
-function openSaved(no){
-  const q = getQuote(no);
+// key: το id της προσφοράς (ή ο αριθμός, για ό,τι δεν έχει ακόμα id).
+function openSaved(key){
+  const q = getQuote(key);
   if(!q) return calendar.open();
   companionFile=null;shareSelection=[];
   installationPanel?.reset();
@@ -935,12 +942,14 @@ function bindRef(el, l, key){
 }
 priceSync();
 migrateQuotes();
+ensureIds();          // σταθερό id σε κάθε αποθηκευμένη προσφορά (μία φορά· docs/sync.md)
 const syncHistoryButton = () => {
   const n = listQuotes().length;
   $('startNav').hidden = !n;
   $('quotesOpen').textContent = `📋 Προσφορές (${n})`;
 };
-const calendar = mountCalendar({show, cta, onOpen: no => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(no); }, onNew: () => fresh(), onChange: syncHistoryButton});
+const calendar = mountCalendar({show, cta, onOpen: key => { $('histBack').textContent = calendar.view === 'list' ? '← Προσφορές' : '← Ημερολόγιο'; openSaved(key); }, onNew: () => fresh(),
+  onChange: () => { syncHistoryButton(); quoteSync?.changed(); }});
 $('historyOpen').onclick = () => calendar.open({view: 'month'});
 $('quotesOpen').onclick = () => calendar.open({view: 'list'});
 $('statsOpen').onclick = () => calendar.open({view: 'stats'});
@@ -992,8 +1001,9 @@ function quoteCta(){
 
 // Στάλθηκε: η «Πρόχειρη» γίνεται «Στάλθηκε». Ποτέ δεν πειράζει «Κλείστηκε»/«Χάθηκε» (ξαναστάλθηκε μια παλιά).
 function markSent(){
-  if(SHOWN?.unsaved || getQuote(SHOWN?.no)?.status !== 'draft') return;
-  if(updateQuote(SHOWN.no, {status: 'sent'})) SHOWN.status = 'sent';
+  const key = SHOWN?.id ?? SHOWN?.no;
+  if(SHOWN?.unsaved || getQuote(key)?.status !== 'draft') return;
+  if(updateQuote(key, {status: 'sent'})){ SHOWN.status = 'sent'; quoteSync?.changed(SHOWN.id); }
 }
 async function sendPdf(){
   if(!pdfFile)return;
@@ -1047,7 +1057,7 @@ installationPanel=mountInstallation(()=>({number:quoteNo,lines:okLines().map(l=>
 // Ανάλυση εργασιών (δεύτερο PDF) από τις έτοιμες αναλύσεις, με «Άλλαξέ το» και «Οι κανόνες μου».
 analysisPanel = mountAnalysis({
   show, cta,
-  quote: () => ({no: SHOWN.no, at: SHOWN.at, client: SHOWN.client, profile: SHOWN.profile, lines: okLines(), status: getQuote(SHOWN.no)?.status ?? SHOWN.status, voice: lastText}),
+  quote: () => ({no: SHOWN.no, at: SHOWN.at, client: SHOWN.client, profile: SHOWN.profile, lines: okLines(), status: getQuote(SHOWN.id ?? SHOWN.no)?.status ?? SHOWN.status, voice: lastText}),
   head: () => pdfHead(SHOWN),
   fileName: () => `Analysi-Ergasion-${SHOWN.no}-${greeklish(clientName())}`.replace(/[^\w.-]+/g, '-').replace(/-+$/, '') + '.pdf',
   quoteFile,
@@ -1069,7 +1079,8 @@ syncRulesButton();
 // ─── Λογαριασμός (μόνο με AUTH_ENABLED στο src/config.js· αλλιώς τίποτα δεν αλλάζει) ───
 const account = authUi = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
   needProfile: () => openProfile(null),
-  onLogin: () => offlineUi.iosHint(),
+  onLogin: () => { offlineUi.iosHint(); quoteSync?.run(); },
+  quotes: QUOTES_SYNC_ENABLED ? {pending: () => quoteSync?.pending() ?? 0, flush: () => quoteSync?.run(), wipe: () => { wipeLocalQuotes(); syncHistoryButton(); }} : null,
   onLockChange: v => { authLocked = v; renderBrand(); },
   onProfileChange: () => {
     PROFILE = loadProfile();
@@ -1077,6 +1088,30 @@ const account = authUi = mountAccount({show, cta, here: returnHere, home: () => 
     // Πρώτο άνοιγμα σε νέο κινητό: η φόρμα στοιχείων δεν χρειάζεται πια.
     if(document.querySelector('.screen.on')?.id === 's-profile' && PROFILE && !profileBack) toStart();
   }});
+
+// ─── Συγχρονισμός προσφορών (Φάση 3, μόνο με QUOTES_SYNC_ENABLED· docs/sync.md) ───
+// Η οθόνη διαβάζει πάντα το localStorage· εδώ μόνο το παρασκήνιο: στο άνοιγμα, όταν γυρίσει το σήμα, όταν ο τεχνίτης
+// ξαναγυρίσει στην εφαρμογή, και λίγο μετά από κάθε αλλαγή. Χωρίς σήμα ή χωρίς σύνδεση: τίποτα.
+quoteSync = QUOTES_SYNC_ENABLED && account.enabled ? createQuoteSync({
+  getDb: () => account.db(),
+  userId: () => account.userId?.() ?? null,
+  onState: st => {
+    const el = $('syncState');
+    el.hidden = st === 'off';
+    el.dataset.state = st;
+    el.textContent = st === 'ok' ? '✓ Συγχρονίστηκε' : 'Θα συγχρονιστεί όταν έχεις σήμα';
+  },
+  onPulled: () => {
+    syncHistoryButton();
+    if(document.querySelector('.screen.on')?.id === 's-history') calendar.open({reset: false});
+  },
+}) : null;
+if(quoteSync){
+  quoteSync.settle();
+  quoteSync.run();
+  onNet(on => { if(on) quoteSync.run(); });
+  document.addEventListener('visibilitychange', () => { if(!document.hidden) quoteSync.run(); });
+}
 
 // ─── «Πίσω»: μία οθόνη πίσω, χωρίς να χαθεί τίποτα ───────────
 // Στις οθόνες που έχουν ήδη δικό τους «← Πίσω» κάνει ακριβώς το ίδιο. Από το PDF πίσω στον έλεγχο, οι γραμμές μένουν

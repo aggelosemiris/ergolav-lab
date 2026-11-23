@@ -9,14 +9,18 @@ const jwtAged = (age, method = 'password') => `${b64({alg: 'HS256'})}.${b64({sub
 
 const A = '00000000-0000-4000-8000-00000000000a';
 const FRESH = jwtAged(60), OLD = jwtAged(REAUTH_MAX_AGE_S + 60);
-function fakeAdmin({users = {[FRESH]: A, [OLD]: A, 'jwt-a': A}, files = {[A]: ['logo-1.jpg', 'logo-2.png']}, failDelete = false} = {}){
-  const log = {deleted: [], removed: []};
-  return {log, auth: {
+function fakeAdmin({users = {[FRESH]: A, [OLD]: A, 'jwt-a': A}, files = {[A]: ['logo-1.jpg', 'logo-2.png']}, failDelete = false, quotesError = null} = {}){
+  const log = {deleted: [], removed: [], quotes: [], order: []};
+  return {log, from: table => ({delete: () => ({eq: async (col, val) => {
+    log.order.push('quotes');
+    if(quotesError) return {error: quotesError};
+    log.quotes.push(`${table}:${col}=${val}`); return {error: null};
+  }})}), auth: {
     getUser: async jwt => users[jwt] ? {data: {user: {id: users[jwt]}}, error: null} : {data: {user: null}, error: {status: 401}},
-    admin: {deleteUser: async id => { if(failDelete) return {error: {status: 500}}; log.deleted.push(id); return {error: null}; }},
+    admin: {deleteUser: async id => { log.order.push('user'); if(failDelete) return {error: {status: 500}}; log.deleted.push(id); return {error: null}; }},
   }, storage: {from: bucket => ({
     list: async (prefix, {offset}) => ({data: offset ? [] : (files[prefix] || []).map(name => ({name})), error: null}),
-    remove: async paths => { log.removed.push(...paths.map(p => `${bucket}:${p}`)); return {error: null}; },
+    remove: async paths => { log.order.push('files'); log.removed.push(...paths.map(p => `${bucket}:${p}`)); return {error: null}; },
   })}};
 }
 const req = (opts = {}) => new Request('https://x.supabase.co/functions/v1/delete-account', {method: 'POST', ...opts,
@@ -33,12 +37,32 @@ test('διαγραφή: σβήνει ΜΟΝΟ τον χρήστη του JWT, π
   assert.deepEqual(admin.log.removed, [`logos:${A}/logo-1.jpg`, `logos:${A}/logo-2.png`]);
 });
 
+test('διαγραφή: σβήνει και τις προσφορές του (quotes) — ΜΟΝΟ του ίδιου χρήστη, πριν από τον λογαριασμό', async () => {
+  const admin = fakeAdmin();
+  const res = await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}, body: JSON.stringify({user_id: 'άλλος'})}), admin);
+  assert.equal(res.status, 200);
+  assert.deepEqual(admin.log.quotes, [`quotes:user_id=${A}`]);
+  assert.deepEqual(admin.log.order, ['files', 'quotes', 'user']);
+});
+
+test('προσφορές που δεν σβήνονται → 500 και ο λογαριασμός ΔΕΝ σβήνεται· πίνακας που δεν υπάρχει ακόμα → συνεχίζει', async () => {
+  const bad = fakeAdmin({quotesError: {code: '42501', message: 'permission denied'}});
+  const res = await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}}), bad);
+  assert.equal(res.status, 500);
+  assert.deepEqual(bad.log.deleted, [], 'ο χρήστης μένει: καμία μισή διαγραφή');
+  for(const code of ['PGRST205', '42P01']){
+    const before = fakeAdmin({quotesError: {code}});
+    assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}}), before)).status, 200, code);
+    assert.deepEqual(before.log.deleted, [A]);
+  }
+});
+
 test('χωρίς JWT ή με άκυρο JWT: 401, τίποτα δεν σβήνεται', async () => {
   for(const headers of [{}, {Authorization: 'Bearer'}, {Authorization: 'Bearer bogus-token'}]){
     const admin = fakeAdmin();
     const res = await handleAt(req({headers}), admin);
     assert.equal(res.status, 401, JSON.stringify(headers));
-    assert.deepEqual(admin.log, {deleted: [], removed: []});
+    assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: []});
   }
 });
 
@@ -78,7 +102,7 @@ test('διαγραφή μόνο με ΠΡΟΣΦΑΤΗ επιβεβαίωση τ�
   const res = await handleAt(req({headers: {Authorization: `Bearer ${OLD}`}}), admin);
   assert.equal(res.status, 403);
   assert.deepEqual(await res.json(), {error: 'reauth_required'});
-  assert.deepEqual(admin.log, {deleted: [], removed: []});
+  assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: []});
   const google = jwtAged(30, 'oauth');
   const a2 = fakeAdmin({users: {[google]: A}});
   assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${google}`}}), a2)).status, 200, 'πρόσφατη σύνδεση Google');
