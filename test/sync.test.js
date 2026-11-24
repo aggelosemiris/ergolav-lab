@@ -217,3 +217,22 @@ test('history: ensureIds δίνει id σε παλιές προσφορές μί
   assert.equal(h.updateQuote(other, {status: 'won'}), true, 'αλλαγή με id: μόνο αυτή');
   assert.equal(h.listQuotes().filter(q => q.no === 2 && q.status === 'won').length, 1);
 });
+
+test('αλλαγή ή σβήσιμο στο ΙΔΙΟ χιλιοστό με την εκδοχή που ανέβηκε: δεν χάνεται (ήταν η αιτία του ασταθούς «χωρίς σήμα»)', async () => {
+  const srv = server();
+  h.saveQuote(quote(7), 5000);
+  const id = h.getQuote(7).id;
+  await s.syncQuotes(db(srv, A));
+  assert.equal(s.pendingCount(A), 0);
+  h.updateQuote(id, {status: 'won'}, 5000);                 // ίδιο χιλιοστό με την εκδοχή που ανέβηκε
+  assert.equal(h.getQuote(id).updated, 5001, '+1 ms, ώστε να είναι νεότερη');
+  assert.equal(s.pendingCount(A), 1, 'περιμένει να ανέβει');
+  await s.syncQuotes(db(srv, A));
+  assert.equal(srv.rows.get(id).data.status, 'won');
+  h.deleteQuote(id, 5001);                                  // σβήσιμο στο ίδιο χιλιοστό με την τελευταία αλλαγή
+  assert.equal(s.pendingCount(A), 1, 'το σβήσιμο περιμένει να ανέβει');
+  await s.syncQuotes(db(srv, A));
+  assert.ok(srv.rows.get(id).deleted_at);
+  h.saveQuote({...quote(8)}, 9000); h.updateQuote(h.getQuote(8).id, {status: 'lost'}, 8000);
+  assert.equal(h.getQuote(8).updated, 8000, 'παλιότερος χρόνος (π.χ. από άλλη συσκευή) μένει ως έχει');
+});
