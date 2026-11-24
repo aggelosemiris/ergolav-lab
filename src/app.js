@@ -927,16 +927,30 @@ function refLine(r, status){
   const how = r.status === 'verified' ? `${r.n} ${r.n === 1 ? 'προμηθευτής' : 'προμηθευτές'}` : 'λίγες τιμές στον τελευταίο έλεγχο';
   return `${esc(d.text)} · ${esc(how)}${d.check ? ' · <b class="chk">έλεγξέ την</b>' : ''}`;
 }
+// MATERIALS_V2: τιμές των λιστών υλικών (src/material-prices.json) για γραμμές εκτός καταλόγου. Φορτώνονται ΜΟΝΟ με το flag
+// (δυναμικό import + fetch, έξω από το precache)· χωρίς το flag δεν κατεβαίνει τίποτα. Ίδια μονάδα με τη γραμμή, αλλιώς τίποτα.
+let materialPrices = null, materialLookup = null;
+if(CONFIG.MATERIALS_V2_ENABLED){
+  Promise.all([import('./material-prices.js'), fetch('src/material-prices.json').then(r => r.ok ? r.json() : null)])
+    .then(([m, data]) => { materialLookup = m.materialRefFor; materialPrices = data; if($('s-lines').classList.contains('on')) renderLines(); })
+    .catch(() => {});
+}
+function refOf(l, key){
+  const r = refFor(key);
+  if(r || !l.added || !materialLookup || !materialPrices) return r;
+  const m = materialLookup(materialPrices, `${l.desc || l.name} ${l.said || ''}`);
+  return m && m.unit === l.unit ? m : null;
+}
 function refHtml(l, key, per){
-  const r = refFor(key), status = refStatus(r), line = refLine(r, status);
+  const r = refOf(l, key), status = refStatus(r), line = refLine(r, status);
   if(!r || (!status && !(r.cents > 0))) return '';
   const using = l.tier === 'custom' && l.mat === r.cents;
-  return `<div class="refp">${r.cents > 0 ? `<div class="refp-top"><span>Τιμή αγοράς προμηθευτών</span><span class="num"><b>${eur(r.cents)}</b><small>/${per} χωρίς ΦΠΑ</small></span></div>` : ''}
+  return `<div class="refp">${r.cents > 0 ? `<div class="refp-top"><span>Τιμή αγοράς προμηθευτών${r.label ? ' <small>(λίστα υλικών)</small>' : ''}</span><span class="num"><b>${eur(r.cents)}</b><small>/${per} χωρίς ΦΠΑ</small></span></div>` : ''}
     ${line ? `<small class="refp-st">${line}</small>` : ''}
     ${r.cents > 0 ? `<div class="refp-act">${using ? '<small>Τη χρησιμοποιείς σε αυτή τη γραμμή.</small>' : '<button class="linkbtn" data-a="ref-use">Βάλ’ αυτή την τιμή</button>'}${r.id ? '<button class="linkbtn" data-a="ref-more" aria-expanded="false">Σύγκριση</button>' : ''}</div><div class="refp-list" hidden></div>` : ''}</div>`;
 }
 function bindRef(el, l, key){
-  const r = refFor(key);
+  const r = refOf(l, key);
   const use = el.querySelector('[data-a="ref-use"]'), more = el.querySelector('[data-a="ref-more"]');
   if(use) use.onclick = () => {
     Object.assign(l, {mat: r.cents, tier: 'custom', customOpen: false, customDraft: '', ownAt: null});

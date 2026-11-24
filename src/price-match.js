@@ -46,7 +46,7 @@ export function wordsOf(text){
 const wordsInOrder = text => clean(text).replace(/[^a-z0-9α-ω\s]/g, ' ').split(/\s+/).filter(w => w.length >= 2 && !/\d/.test(w)).map(phon);
 /** Ρίζα για σύγκριση (ίδια επεξεργασία με τα stemsOf). */
 export const root = w => phon(stem(clean(w)));
-const hasRoot = (words, r) => words.some(s => s === r || (r.length >= 3 && s.startsWith(r)));
+const hasRoot = (words, r) => words.some(words.near ? s => words.near(s, r) : s => s === r || (r.length >= 3 && s.startsWith(r)));
 
 // ── χαρακτηριστικά ──
 // Στη JavaScript τα \b και \w δεν ξέρουν ελληνικά: όριο λέξης και γράμματα λέξης γράφονται ρητά.
@@ -98,6 +98,7 @@ function parseAttributes(text, v2 = false){
   for(const [k, re] of [
     ['btu', `${N}(\\d{1,2}\\.\\d{3}|\\d{4,5})\\s?btu${E}`],
     ['ml', `${N}(\\d{2,4})\\s?ml${E}`],
+    ...(v2 ? [['w', `${N}(\\d{2,4})\\s?wp${E}`], ['ka', `\\b(\\d{1,2}(?:\\.\\d)?)\\s?ka${E}`]] : []),
     ['kw', `\\b(\\d+(?:\\.\\d+)?)\\s?kw${E}`],
     ['w', `${N}(\\d{1,4})\\s?(?:w|watt)${E}`],
     ['l', `${N}(\\d{1,3})\\s?(?:lt|ltr|l|λιτρ${W}|λ)${E}`],
@@ -230,12 +231,36 @@ export function matchItem(spec, item){
     if(spec.brand && !hasRoot(wordsOf(`${item.brand ?? ''} ${name}`), spec.brand)) return {ok: false, reason: 'brand-differs'};
     return {ok: true, method: 'mpn'};
   }
-  const stems = wordsOf(`${name} ${item.brand ?? ''}`);
+  let stems = wordsOf(`${name} ${item.brand ?? ''}`);
+  if(spec.materials){
+    // Λίστες υλικών (αυστηρότερα): (α) μόνο οι λέξεις ΠΡΙΝ από το «για/for» λένε τι είναι το προϊόν («Γωνία … για σωλήνα»
+    // δεν είναι σωλήνας)· (β) η ρίζα ταιριάζει με λέξη, όχι με αρχή σύνθετης λέξης («τσιμέντο» ≠ «τσιμεντοκονίαμα»).
+    // (γ) ό,τι ακολουθεί το «με/with» είναι συστατικό («Μπαλαντέζα με καλώδιο» ≠ καλώδιο): οι λέξεις του ΕΙΔΟΥΣ μετρούν
+    // μόνο πριν από αυτό· οι λέξεις και τα μεγέθη της παραλλαγής ελέγχονται σε όλο το όνομα.
+    const head = clean(name).split(/(?<![α-ωa-z])(?:για|for|με|with)(?![α-ωa-z])/)[0];
+    const near = (s, r) => s === r || (r.length >= 3 && s.startsWith(r) && s.length - r.length <= 3);
+    stems = Object.assign(wordsOf(`${head} ${item.brand ?? ''}`), {near});
+    var fullStems = Object.assign(wordsOf(name), {near});
+  }
   const viaAlt = new Set();
-  for(const r of spec.all) if(!hasRoot(stems, r)){
+  // v2 (λίστες υλικών): ολόκληρο το όνομα του είδους ΜΠΟΡΕΙ να αντικατασταθεί από ένα συνώνυμο της λίστας (allAlt: όλες
+  // οι λέξεις του συνωνύμου), και οι λέξεις της παραλλαγής που δεν είναι μέγεθος (must) πρέπει να υπάρχουν πάντα.
+  const viaSet = spec.allAlt?.length && !spec.all.every(r => hasRoot(stems, r)) && spec.allAlt.some(p => p.every(x => hasRoot(stems, x)));
+  if(!viaSet) for(const r of spec.all) if(!hasRoot(stems, r)){
     if(spec.alt?.[r]?.some(p => p.every(x => hasRoot(stems, x)))){ viaAlt.add(r); continue; }
     return {ok: false, reason: `missing:${r}`};
   }
+  if(viaSet) for(const r of spec.order || []) viaAlt.add(r);
+  if(spec.materials){
+    // (δ) η λέξη του είδους είναι μία από τις 3 πρώτες ελληνικές λέξεις («Ηλεκτρικός Θερμοσίφωνας», «Gloria ΝΤΟΥΖΙΕΡΑ»).
+    // Αργότερα (συνήθως σε γενική: «Σωλήνας αλουμινίου κουρτίνας ντουζιέρας») περιγράφει, δεν είναι το προϊόν.
+    const greek = clean(name).match(/[α-ω]{2,}/g) || [];
+    const roots = viaSet ? spec.allAlt.find(p => p.every(x => hasRoot(stems, x))) : spec.all;
+    const early = Object.assign(greek.slice(0, 3).map(w => phon(w)).flatMap(w => [w, ...stemsOf(w)]), {near: stems.near});
+    if(greek.length && roots.some(r => /[α-ω]/.test(r)) && !roots.some(r => hasRoot(early, r))) return {ok: false, reason: 'head-not-early'};
+  }
+  for(const r of spec.must || []) if(!hasRoot(fullStems ?? stems, r)) return {ok: false, reason: `missing-variant:${r}`};
+  if(spec.nums?.length){ const c = clean(name); for(const n of spec.nums) if(!new RegExp(`(?<![\\d.a-zα-ω])${n.replace('.', '\\.')}(?![\\d]|\\.\\d)`).test(c)) return {ok: false, reason: `missing-number:${n}`}; }
   if(spec.any?.length && !spec.any.some(r => hasRoot(stems, r))) return {ok: false, reason: 'missing-any'};
   for(const r of spec.none) if(hasRoot(stems, r)) return {ok: false, reason: `excluded:${r}`};
   if(spec.order?.length && !spec.order.some(r => viaAlt.has(r))){

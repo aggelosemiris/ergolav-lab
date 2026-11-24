@@ -10,6 +10,7 @@
 import { wooItems } from './adapters/woo.mjs';
 import { praktikerItems } from './adapters/praktiker.mjs';
 import { vrontinosItems, magentoItems } from './adapters/html.mjs';
+import { wooHtmlItems, journalItems, prestaItems, eshopItems } from './adapters/shops.mjs';
 
 const woo = (path) => ({method: 'woo-store-api', items: ({fetcher, supplier, log}) => wooItems({base: supplier.base_url, path, fetcher, log})});
 
@@ -80,25 +81,30 @@ export const SPECIALISTS = [
   {id: 'vogiatzakis', name: 'Vogiatzakis', base_url: 'https://www.vogiatzakis.gr', vat: 'retail-law', enabled: false, trades: ['vafes'], ...woo(),
     measured: m('2026-11-23', 'ΔΕΝ ξαναμετρήθηκε: ανακατεύθυνση στο www (εκτός δικτύου του ελέγχου)· 17/11 (data/sites.md): επιτρέπει',
       'Store API: 1.525 προϊόντα· 79/100 με regular_price', 'ρήτρα πν. ιδιοκτησίας (data/sites.md)', 'χρώματα, εργαλεία οικοδομής, είδη σπιτιού')},
-  {id: 'thermogroup', name: 'Thermogroup', base_url: 'https://thermogroup.gr', vat: 'retail-law', enabled: false, trades: ['thermansi'], method: 'html',
-    measured: m('2026-11-23', 'επιτρέπει (μόνο wp-admin κλειστό)', 'χωρίς Store API (404) → χρειάζεται adapter σελίδων',
-      'ρήτρα πν. ιδιοκτησίας· εξαιρείται η μεμονωμένη αποθήκευση για προσωπική χρήση', 'λέβητες, σώματα, ενδοδαπέδια, αντλίες θερμότητας')},
   {id: 'tehnothermiki', name: 'Τεχνοθερμική', base_url: 'https://tehnothermiki.gr', vat: 'retail-law', enabled: false, trades: ['thermansi'], method: 'html',
     measured: m('2026-11-23', 'δεν έχει robots.txt (404 → τίποτα κλειστό)', 'χωρίς Store API (404) → adapter σελίδων',
       'δεν διαβάστηκαν (ο σύνδεσμος οδηγεί σε http χωρίς DNS)· 17/11: ρήτρα πν. ιδιοκτησίας', 'αντλίες θερμότητας, θέρμανση')},
-  {id: 'paintcity', name: 'PaintCity', base_url: 'https://paintcity.gr', vat: 'retail-law', enabled: false, trades: ['vafes', 'plakakia', 'oikodomika'], method: 'html',
-    measured: m('2026-11-23', 'επιτρέπει (μόνο wp-admin κλειστό)', 'χωρίς Store API (404) → adapter σελίδων',
-      'σελίδα όρων δεν βρέθηκε από την αρχική· 17/11: ρήτρα πν. ιδιοκτησίας', 'χρώματα, κόλλες, δομικά')},
-  {id: 'kaxirismonotika', name: 'Kaxiris Monotika', base_url: 'https://kaxirismonotika.gr', vat: 'retail-law', enabled: false, trades: ['monoseis', 'gypsosanida', 'plakakia'], method: 'html',
+  // Β (24/11): adapter PrestaShop· 1η σελίδα δείγματος: 12/12 με ρητή τιμή (product-price content=…).
+  {id: 'kaxirismonotika', name: 'Kaxiris Monotika', base_url: 'https://kaxirismonotika.gr', vat: 'retail-law', enabled: false, trades: ['monoseis', 'gypsosanida', 'plakakia'],
+    method: 'presta-category-pages', items: ({fetcher, supplier, log}) => prestaItems({fetcher, log, base: supplier.base_url, categories: [
+      '/153-γυψοσανιδες-ψευδοροφες', '/110-thermomonosi', '/157-συγχρονα-δομικα-και-διακοσμητικα-υλικα', '/834-domika-proionta', '/231-χρωματα']}),
     measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστές οι παράμετροι ?order= ?n= ?tag= (PrestaShop)', 'χωρίς Store API (PrestaShop) → adapter σελίδων',
       'σελίδα όρων δεν βρέθηκε από την αρχική· 17/11: ρήτρα πν. ιδιοκτησίας', 'μονωτικά, στεγανωτικά, γυψοσανίδες, κόλλες')},
   {id: 'e-papasideris', name: 'e-Papasideris', base_url: 'https://e-papasideris.gr', vat: 'retail-law', enabled: false, trades: ['oikodomika', 'sovades', 'vafes', 'gypsosanida'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστά ?page=, sort, order, limit, filter_*', 'χωρίς Store API (OpenCart) → adapter σελίδων',
       '17/11: ρήτρα πν. ιδιοκτησίας', 'χρώματα, δόμηση, γυψοσανίδες, τσιμεντοσανίδες· σελιδοποίηση κλειστή → μόνο 1η σελίδα κατηγορίας')},
-  {id: 'e-plakakia', name: 'e-Plakakia', base_url: 'https://e-plakakia.com', vat: 'retail-law', enabled: false, trades: ['plakakia'], method: 'html',
-    measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστά ?page=, sort, order, limit, filter_*', 'χωρίς Store API (OpenCart) → adapter σελίδων',
+  // Β (24/11): adapter OpenCart/Journal3 (ίδιο θέμα με το palousis, όπου ελέγχθηκε). ΔΕΝ μετρήθηκε ζωντανά: σερβίρει από το
+  // www.e-plakakia.com, που δεν είναι στο δίκτυο του περιβάλλοντος ελέγχου. ?page= κλειστό → μόνο 1η σελίδα κάθε κατηγορίας.
+  {id: 'e-plakakia', name: 'e-Plakakia', base_url: 'https://www.e-plakakia.com', vat: 'retail-law', enabled: false, trades: ['plakakia'],
+    method: 'journal-category-pages', items: ({fetcher, supplier, log}) => journalItems({fetcher, log, base: supplier.base_url, maxPages: 1, categories: [
+      '/index.php?route=product/category&path=119', '/index.php?route=product/category&path=159',
+      '/index.php?route=product/category&path=178', '/index.php?route=product/category&path=179']}),
+    measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστά ?page=, sort, order, limit, filter_*', 'χωρίς Store API (OpenCart/Journal3) → adapter σελίδων· 24/11: www εκτός δικτύου ελέγχου',
       'δεν βρέθηκε σελίδα όρων (ίδιο και 17/11)', 'πλακάκια· σελιδοποίηση κλειστή → μόνο 1η σελίδα κατηγορίας')},
-  {id: 'e-shop', name: 'e-shop.gr', base_url: 'https://www.e-shop.gr', vat: 'retail-law', enabled: false, trades: ['ilektrologika', 'klimatismos'], method: 'html',
+  // Β (24/11): adapter λίστας (ISO-8859-7). «ΠΤΛ» = προτεινόμενη τιμή λιανικής του κατασκευαστή, όχι κανονική του
+  // καταστήματος → τα προϊόντα σε προσφορά μένουν μη επαληθευμένα. Κυρίως λάμπες/φωτιστικά· όχι υλικά εγκατάστασης (ΝΥΜ, πρίζες).
+  {id: 'e-shop', name: 'e-shop.gr', base_url: 'https://www.e-shop.gr', vat: 'retail-law', enabled: false, trades: ['ilektrologika', 'klimatismos'],
+    method: 'eshop-category-pages', items: ({fetcher, log}) => eshopItems({fetcher, log, categories: ['/lampes-fotismou', '/fotistika', '/fotismos']}),
     measured: m('2026-11-23', 'επιτρέπει σελίδες προϊόντων· κλειστά φίλτρα, αναζήτηση, offset (2.447 κανόνες)· κλειστό το Amazonbot',
       'χωρίς Store API → adapter σελίδων (ISO-8859-7)', '17/11: ρήτρα πν. ιδιοκτησίας (/protection)', 'γενικό· ηλεκτρολογικά, κλιματιστικά')},
   // ── Δεύτερος γύρος (23/11/2026, βράδυ): οι 16 που δεν είχαν ελεγχθεί λόγω δικτύου ──
@@ -126,6 +132,19 @@ export const SPECIALISTS = [
   {id: 'energybatteries', name: 'Energy Batteries', base_url: 'https://energybatteries.gr', vat: 'retail-law', enabled: false, trades: ['iliaka-fv'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει', 'Store API: HTTP 403 → adapter σελίδων (η αρχική απαντά 200)',
       'όροι συναλλαγών (/oroi-sinallagon/)· τίποτα για bots ή πν. ιδιοκτησία', 'μπαταρίες, inverter, ΦΒ')},
+  // ── Γ (24/11/2026): δεύτερος προμηθευτής για είδη μπάνιου ──
+  {id: 'oikeiaoikia', name: 'Οικεία Οικία', base_url: 'https://www.oikeiaoikia.gr', vat: 'retail-law', enabled: false, trades: ['ydravlika', 'plakakia'],
+    method: 'woo-html-category-pages', items: ({fetcher, supplier, log}) => wooHtmlItems({fetcher, log, base: supplier.base_url, categories: [
+      '/product-category/niptires/', '/product-category/ntouzieres-kampines/', '/product-category/mpanieres/', '/product-category/eidi-ygieinis/',
+      '/product-category/mpataries/', '/product-category/thermansi-ydraulika/']}),
+    measured: m('2026-11-24', 'επιτρέπει (κλειστά ?filter_, ?per_page=, ?orderby=, ?min/max_price=)', 'WooCommerce χωρίς Store API (404) → σελίδες· /page/N/ επιτρέπεται· δείγμα: 24/24 με ρητή τιμή (<del>/<ins>)',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-proipotheseis/)· τίποτα για bots', 'νιπτήρες, ντουζιέρες/καμπίνες (Gloria), μπανιέρες, μπαταρίες')},
+  {id: 'palousis', name: 'Palousis', base_url: 'https://www.palousis.gr', vat: 'retail-law', enabled: false, trades: ['ydravlika', 'plakakia'],
+    method: 'journal-category-pages', items: ({fetcher, supplier, log}) => journalItems({fetcher, log, base: supplier.base_url, categories: [
+      '/νιπτήρες', '/ντουζιέρες', '/καμπίνες', '/μπανιέρες', '/λεκάνες', '/καζανάκια', '/νεροχύτες', '/μπαταρίες-μπάνιου', '/μπαταρίες-κουζίνας',
+      '/θερμοσίφωνες-boiler', '/κόλλες', '/αρμοί']}),
+    measured: m('2026-11-24', 'επιτρέπει (κλειστά search, tag, &sort, &order, &limit)', 'OpenCart/Journal3 → σελίδες· ?page=N επιτρέπεται· δείγμα: 12/12 με ρητή τιμή (price-normal ή price-old/new)· γράφει και «Προ ΦΠΑ»',
+      'ρήτρα πν. ιδιοκτησίας (/όροι-χρήσης)· τίποτα για bots', 'είδη μπάνιου (Karag, Sanitec, Gloria…), πλακάκια, κόλλες')},
 ];
 
 /**
@@ -145,6 +164,9 @@ export const SPECIALISTS_PENDING_TERMS = [
   {id: 'balamoti', name: 'Balamoti', base_url: 'https://balamoti.gr', vat: 'retail-law', enabled: false, trades: ['vafes', 'xylourgika'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει', 'χωρίς Store API → adapter σελίδων',
       'βρέθηκε μόνο πολιτική απορρήτου, όχι όροι χρήσης (να ελεγχθεί με το χέρι)', 'βερνίκια, χρώματα ξύλου, σιδηρικά')},
+  {id: 'pylarinos', name: 'Pylarinos', base_url: 'https://pylarinos.gr', vat: 'retail-law', enabled: false, trades: ['ydravlika'], method: 'html',
+    measured: m('2026-11-24', 'επιτρέπει (κλειστοί μόνο φάκελοι του Joomla)', 'Joomla/VirtueMart χωρίς ροή → θα χρειαστεί adapter σελίδων',
+      'ο σύνδεσμος «Όροι και προϋποθέσεις» οδηγεί σε πολιτική απορρήτου (να ελεγχθεί με το χέρι)', 'υδραυλικά, πολυστρωματικοί σωλήνες')},
 ];
 
 /** Ελέγχθηκαν και ΔΕΝ προτείνονται, με τον λόγο (μέτρηση 23/11/2026). Σωστά εκτός: καμία παράκαμψη μπλοκαρίσματος ή robots.txt, ποτέ. */
@@ -157,6 +179,10 @@ export const SPECIALISTS_REJECTED = [
   {id: 'zalonis', base_url: 'https://zalonis.eu', reason: 'το robots.txt κλείνει ονομαστικά ClaudeBot, CCBot, Amazonbot κ.ά. (θέλουν να μη διαβάζονται από bots)· Store API 403'},
   {id: 'fotovoltaika', base_url: 'https://www.fotovoltaika.gr', reason: 'robots.txt: Disallow: / για όλους· HTTP 403'},
   {id: 'eshops', base_url: 'https://www.eshops.gr', reason: 'HTTP 403· το robots.txt κλείνει ClaudeBot, GPTBot, PerplexityBot'},
+  // 24/11/2026
+  {id: 'thermogroup', base_url: 'https://thermogroup.gr', reason: 'δεν δείχνει τιμές online: ούτε στις κατηγορίες ούτε στη σελίδα προϊόντος («ζητήστε προσφορά»)'},
+  {id: 'paintcity', base_url: 'https://paintcity.gr', reason: 'κρύβει τις τιμές: κενές στις κατηγορίες και στη σελίδα προϊόντος· υπάρχουν μόνο στα δομημένα δεδομένα, χωρίς διάκριση κανονικής/προσφοράς → δεν επαληθεύονται'},
+  {id: 'dedegkikas', base_url: 'https://dedegkikas.gr', reason: 'TLS: ο server στέλνει μόνο το δικό του πιστοποιητικό χωρίς το ενδιάμεσο (Sectigo DV R36) → δεν επαληθεύεται· ο έλεγχος TLS δεν απενεργοποιείται. Ξανά, αν διορθώσει την αλυσίδα'},
 ];
 
 /** Υποψήφιοι που δεν ελέγχθηκαν ακόμη (μετά τον 2ο γύρο της 23/11/2026: κανένας). */
