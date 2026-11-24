@@ -95,6 +95,10 @@ function write(list){
   catch { return false; }
 }
 
+// Η χρονοσφραγίδα μιας αλλαγής ΔΕΝ ισούται ποτέ με την προηγούμενη της ίδιας προσφοράς: ο συγχρονισμός θεωρεί «ανεβασμένο»
+// ό,τι έχει updated <= της εκδοχής που ανέβηκε, άρα μια αλλαγή στο ίδιο χιλιοστό θα χανόταν. Ίση → +1 ms· όλα τα άλλα ως έχουν.
+const after = (prev, now) => Number.isFinite(prev) && now === prev ? now + 1 : now;
+
 /** Αποθηκεύει (ή ενημερώνει, αν ξαναφτιάχτηκε το PDF της ίδιας προσφοράς). false αν η συσκευή δεν την κράτησε.
  *  Ίδια προσφορά = ίδιο id· χωρίς id (παλιός κώδικας): ίδιος αριθμός, και κρατά το id που είχε. */
 export function saveQuote(q, now = Date.now()){
@@ -103,7 +107,7 @@ export function saveQuote(q, now = Date.now()){
   const list = stored(), same = c.id ? match(c.id) : x => x.no === c.no && !x.id;
   const prev = c.id ? list.find(same) : list.find(x => x.no === c.no);
   c.id ??= prev?.id ?? newId();
-  c.updated = now;
+  c.updated = after(prev?.updated ?? prev?.at, now);
   return write([c, ...list.filter(x => x.id !== c.id && !(c.id && same(x)) && !(prev && x === prev))].sort((a, b) => b.no - a.no));
 }
 
@@ -111,7 +115,7 @@ export function saveQuote(q, now = Date.now()){
 export function deleteQuote(key, now = Date.now()){
   const list = stored(), q = list.find(match(key));
   if(!q) return write(list);                    // τίποτα να σβήσει· false μόνο αν η συσκευή δεν γράφει
-  if(q.id) addDeleted([{id: q.id, at: now}]);
+  if(q.id) addDeleted([{id: q.id, at: after(q.updated ?? q.at, now)}]);
   return write(list.filter(x => x !== q));
 }
 
@@ -186,7 +190,7 @@ export function updateQuote(key, patch, now = Date.now()){
   const q = has(list[i], 'scheduled_date') ? {...list[i]} : {...list[i], ...fromCreated(list[i])};
   for(const k of SCHEDULE) if(has(patch, k)) q[k] = patch[k];
   if(['scheduled_date', 'scheduled_time', 'duration_days'].some(k => has(patch, k))) delete q.scheduled_from_created;
-  q.updated = now;
+  q.updated = after(list[i].updated ?? list[i].at, now);
   const c = clean(q);
   if(!c) return false;
   list[i] = c;
