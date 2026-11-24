@@ -9,6 +9,7 @@
 //   ## <ομάδα>
 //   id | όνομα | μονάδα | συνώνυμα (με κόμμα) | παραλλαγές (με «;») | τύπος του data/taxonomy.json (ή κενό)
 import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url';
+import { variantProducts, withUnits } from '../../src/material-prices.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(here, '..', '..');
@@ -98,6 +99,39 @@ export function reviewCsv(trade){
   return '\ufeff' + rows.map(r => r.map(cell).join(';')).join('\r\n') + '\r\n';
 }
 
+/**
+ * Οι ΓΕΝΙΚΕΣ παραλλαγές (δεν ορίζουν ένα προϊόν, άρα δεν τιμολογούνται: src/material-prices.js) για να τις κάνουν πιο
+ * συγκεκριμένες οι τεχνικοί: data/reports/materials-review/<id>-genikes.csv. Ίδιοι κανόνες με την τιμολόγηση.
+ */
+export const GENERIC_COLUMNS = ['Ομάδα', 'Είδος', 'Παραλλαγή', 'Γιατί δεν αρκεί', 'Παράδειγμα πιο συγκεκριμένης γραφής', 'Πιο συγκεκριμένα (γράψτε εδώ)'];
+export const GENERIC_WHY = {'range-variant': 'εύρος τιμών (πολλά προϊόντα σε μία γραμμή)',
+  'variant-without-size': 'χωρίς μέγεθος, ενώ το είδος έχει μεγέθη', 'variant-unparsed': 'αριθμός χωρίς μονάδα ή χωρίς αναγνωρίσιμο μέγεθος'};
+export function genericVariants(materials, tradeId){
+  const byKey = new Map(variantProducts(materials).map(p => [p.key, p]));
+  const t = materials.trades.find(x => x.id === tradeId), out = [];
+  for(const g of t.groups) for(const it of g.items){
+    const full = withUnits(it.variants), sized = full.find(v => byKey.get(`${it.id}|${it.variants[full.indexOf(v)]}`)?.skip == null && /\d/.test(v));
+    it.variants.forEach((v, j) => {
+      const p = byKey.get(`${it.id}|${v}`);
+      if(!GENERIC_WHY[p?.skip]) return;
+      // εύρος → η πρώτη τιμή με τη μονάδα της τελευταίας («2–3,5 μ.» → «2 μ.», «24/50 λ.» → «24 λ.», «1P 6A–40A» → «1P 6A»)
+      const first = v.replace(/(\d+(?:[.,]\d+)?)\s*([A-Za-zα-ω%°]{0,3})((?:\s*(?:–|-|έως|εως|ως|\/)\s*\d+(?:[.,]\d+)?\s*[A-Za-zα-ω%°]{0,3})+)/i,
+        (m, n, u, rest) => u ? `${n}${u}` : `${n}${(rest.match(/([A-Za-zα-ω%°]{1,3})\s*$/i) || [, ''])[1] ? ' ' + rest.match(/([A-Za-zα-ω%°]{1,3})\s*$/i)[1] : ''}`);
+      const name = it.name.replace(/\s*\([^)]*\)/g, '');
+      const example = p.skip === 'range-variant' ? `μία γραμμή ανά συνηθισμένη τιμή, π.χ. «${first.trim()}» και οι υπόλοιπες χωριστά`
+        : p.skip === 'variant-without-size' ? `ολόκληρο το προϊόν, π.χ. «${name} ${sized && !/\d/.test(v) ? sized + ' ' : ''}${full[j]}»`
+        : /[A-Za-zα-ω]\d|\d[A-Za-zα-ω]/i.test(v) ? `ολόκληρο το προϊόν, π.χ. «${name} ${sized ? sized + ' ' : ''}${v}»`
+        : `με μονάδα, π.χ. «${full[j] !== v ? full[j] : v + ' mm'}»`;
+      out.push([g.name, it.name, v, GENERIC_WHY[p.skip], example, '']);
+    });
+  }
+  return out;
+}
+export function genericCsv(materials, tradeId){
+  const cell = v => /[";\n,]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  return '\ufeff' + [GENERIC_COLUMNS, ...genericVariants(materials, tradeId)].map(r => r.map(cell).join(';')).join('\r\n') + '\r\n';
+}
+
 if(path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)){
   const data = readLists();
   if(data.errors.length){ console.error(data.errors.join('\n')); process.exit(1); }
@@ -110,5 +144,7 @@ if(path.resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)){
   const reviewDir = path.join(ROOT, 'data', 'reports', 'materials-review');
   fs.mkdirSync(reviewDir, {recursive: true});
   for(const t of data.trades) fs.writeFileSync(path.join(reviewDir, `${t.id}.csv`), reviewCsv(t));
+  const json = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'materials.json'), 'utf8'));
+  for(const t of data.trades) fs.writeFileSync(path.join(reviewDir, `${t.id}-genikes.csv`), genericCsv(json, t.id));
   for(const r of s.rows) console.log(`${r.name.padEnd(28)} είδη ${String(r.items).padStart(3)} · παραλλαγές ${String(r.variants).padStart(4)} · στο taxonomy ${r.itemsInTaxonomy}`);
 }
