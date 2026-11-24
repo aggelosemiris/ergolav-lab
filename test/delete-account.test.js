@@ -9,9 +9,9 @@ const jwtAged = (age, method = 'password') => `${b64({alg: 'HS256'})}.${b64({sub
 
 const A = '00000000-0000-4000-8000-00000000000a';
 const FRESH = jwtAged(60), OLD = jwtAged(REAUTH_MAX_AGE_S + 60);
-function fakeAdmin({users = {[FRESH]: A, [OLD]: A, 'jwt-a': A}, files = {[A]: ['logo-1.jpg', 'logo-2.png']}, failDelete = false, quotesError = null} = {}){
-  const log = {deleted: [], removed: [], quotes: [], order: []};
-  return {log, from: table => ({delete: () => ({eq: async (col, val) => {
+function fakeAdmin({users = {[FRESH]: A, [OLD]: A, 'jwt-a': A}, files = {[A]: ['logo-1.jpg', 'logo-2.png']}, failDelete = false, quotesError = null, rpcError = null} = {}){
+  const log = {deleted: [], removed: [], quotes: [], order: [], rpc: []};
+  return {log, rpc: async (fn, args) => { log.order.push(fn); if(rpcError) return {error: rpcError}; log.rpc.push([fn, args]); return {error: null}; }, from: table => ({delete: () => ({eq: async (col, val) => {
     log.order.push('quotes');
     if(quotesError) return {error: quotesError};
     log.quotes.push(`${table}:${col}=${val}`); return {error: null};
@@ -42,7 +42,7 @@ test('διαγραφή: σβήνει και τις προσφορές του (qu
   const res = await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}, body: JSON.stringify({user_id: 'άλλος'})}), admin);
   assert.equal(res.status, 200);
   assert.deepEqual(admin.log.quotes, [`quotes:user_id=${A}`]);
-  assert.deepEqual(admin.log.order, ['files', 'quotes', 'user']);
+  assert.deepEqual(admin.log.order, ['files', 'quotes', 'forget_tech_prices', 'user']);
 });
 
 test('προσφορές που δεν σβήνονται → 500 και ο λογαριασμός ΔΕΝ σβήνεται· πίνακας που δεν υπάρχει ακόμα → συνεχίζει', async () => {
@@ -62,7 +62,7 @@ test('χωρίς JWT ή με άκυρο JWT: 401, τίποτα δεν σβήνε
     const admin = fakeAdmin();
     const res = await handleAt(req({headers}), admin);
     assert.equal(res.status, 401, JSON.stringify(headers));
-    assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: []});
+    assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: [], rpc: []});
   }
 });
 
@@ -102,8 +102,23 @@ test('διαγραφή μόνο με ΠΡΟΣΦΑΤΗ επιβεβαίωση τ�
   const res = await handleAt(req({headers: {Authorization: `Bearer ${OLD}`}}), admin);
   assert.equal(res.status, 403);
   assert.deepEqual(await res.json(), {error: 'reauth_required'});
-  assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: []});
+  assert.deepEqual(admin.log, {deleted: [], removed: [], quotes: [], order: [], rpc: []});
   const google = jwtAged(30, 'oauth');
   const a2 = fakeAdmin({users: {[google]: A}});
   assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${google}`}}), a2)).status, 200, 'πρόσφατη σύνδεση Google');
+});
+
+test('διαγραφή: σβήνει και τις τιμές από τεχνικούς (forget_tech_prices) του ίδιου χρήστη, πριν από τον λογαριασμό', async () => {
+  const admin = fakeAdmin();
+  assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}}), admin)).status, 200);
+  assert.deepEqual(admin.log.rpc, [['forget_tech_prices', {p_uid: A}]]);
+  // αποτυχία → 500 και ο λογαριασμός μένει (καμία μισή διαγραφή)· η συνάρτηση δεν υπάρχει ακόμα → συνεχίζει
+  const bad = fakeAdmin({rpcError: {code: '55000'}});
+  assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}}), bad)).status, 500);
+  assert.deepEqual(bad.log.deleted, []);
+  for(const code of ['PGRST202', '42883']){
+    const before = fakeAdmin({rpcError: {code}});
+    assert.equal((await handleAt(req({headers: {Authorization: `Bearer ${FRESH}`}}), before)).status, 200, code);
+    assert.deepEqual(before.log.deleted, [A]);
+  }
 });

@@ -64,6 +64,7 @@ function show(id, step){
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id));
   // Η «Αναίρεση» αφορά μόνο την οθόνη ελέγχου: σε άλλη οθόνη (π.χ. PDF που ήδη φτιάχτηκε) δεν μένει.
   if(id !== 's-lines') $('toast').hidden = true;
+  if(id === 's-account') techAccount();
   $('step').textContent = step;
   window.scrollTo({top:0});
   syncBack(id);
@@ -516,6 +517,7 @@ function buildLines(text, warning){
   LABOR = r.labor?.cents ?? null; laborVoice = LABOR; laborAsk = r.labor?.ask ?? null; laborBad = false;
   show('s-lines','Έλεγχος');
   priceSync()?.then(r => { if(r && $('s-lines').classList.contains('on')) renderLines(); });
+  techSync(); techAskShow();
   renderLines();
 }
 function renderLines(){
@@ -639,7 +641,7 @@ function renderLines(){
             <button class="hi" data-c="${h.c}"><span class="num">${eur(h.c)}</span><span>${ageLabel(h.at)}${(CONFIG.MATERIALS_V2_ENABLED ? ageDays(h.at) > CHECK_DAYS : isStale(h.at)) ? ' · <b>έλεγξε αν άλλαξε</b>' : ''}</span></button>`).join('')}
           </div>
           <div class="sug-act"><button data-a="keep">Κράτα την</button><button data-a="cancel">Άκυρο</button></div>
-        </div>` : ''}${refHtml(l, key, per)}` : ''}`;
+        </div>` : ''}${refHtml(l, key, per)}${techHtml(l, per)}` : ''}`;
       // Τύπος/μέγεθος: αλλάζει όνομα, κωδικό και τιμή καταλόγου (οι προτάσεις ξαναϋπολογίζονται· η δική του
       // τιμή για αυτόν τον κωδικό φαίνεται στο «Άλλη τιμή», όχι αυτόματα). Η δική του περιγραφή σβήνει: θα έλεγε άλλο είδος.
       const choose = o => {
@@ -744,6 +746,7 @@ function renderLines(){
           Object.assign(l, {mat: cents, tier: 'custom', customOpen: false, customDraft: '', ownAt: null});
           remember(key, cents);
           if(l.added){ registerCustom(l, key); priceSync(true); }   // εκτός καταλόγου → αυτόματα στον εβδομαδιαίο έλεγχο τιμών
+          techAfterKeep(l, cents);                                    // TECH_PRICES_ENABLED: μόνο με συγκατάθεση
           checkedCount++; renderLines();
         };
         el.querySelector('[data-a="cancel"]').onclick = () => {
@@ -941,6 +944,94 @@ function refOf(l, key){
   const m = materialLookup(materialPrices, `${l.desc || l.name} ${l.said || ''}`);
   return m && m.unit === l.unit ? m : null;
 }
+// ── Τιμές από τεχνικούς (TECH_PRICES_ENABLED, docs/technician-prices.md) ──
+// Χωρίς το flag: τίποτα δεν φορτώνεται, τίποτα δεν φαίνεται, τίποτα δεν στέλνεται. Με το flag: μόνο συνδεδεμένοι, μόνο με
+// ρητή συγκατάθεση (ερώτηση μία φορά, τη 2η «δική μου τιμή» σε υλικό της λίστας· διακόπτης στον λογαριασμό).
+var tech = null, techKeys = null, techBusy = null;     // var: η show() μπορεί να κληθεί πριν από αυτή τη γραμμή
+if(CONFIG.TECH_PRICES_ENABLED){
+  Promise.all([import('./tech-prices.js'), fetch('src/material-keys.json').then(r => r.ok ? r.json() : null)])
+    .then(([m, keys]) => { tech = m; techKeys = keys; bindTech(); techSync(); })
+    .catch(() => {});
+}
+const signedIn = () => !!authUi?.userId?.();
+const techKeyOf = l => tech && techKeys ? tech.matchVariant(techKeys, `${l.desc || l.name} ${l.said || ''}`, l.unit) : null;
+function techStat(l){ if(!tech || !signedIn()) return null; const k = techKeyOf(l); return k ? tech.statFor(k) : null; }
+function techSync(){
+  if(!tech) return null;
+  if(!signedIn()){ tech.forgetStats(); return null; }          // χωρίς λογαριασμό δεν φαίνονται οι μέσες τιμές
+  if(techBusy || !online()) return techBusy;
+  techBusy = (async () => {
+    try { const db = await authUi.db(); if(db){ await tech.pullConsent(db); await tech.flush(db); await tech.pullStats(db); } }
+    catch {} finally { techBusy = null; }
+    if($('s-lines').classList.contains('on')) renderLines();
+  })();
+  return techBusy;
+}
+function techAfterKeep(l, cents){
+  if(!tech) return;
+  const key = techKeyOf(l);
+  if(!key) return;
+  tech.noteKeep(); tech.enqueue(key, l.unit, cents);
+  techSync(); techAskShow();
+}
+function techAskShow(){
+  if(!tech) return;
+  $('techAsk').hidden = !(signedIn() && tech.shouldAsk(tech.load()));
+}
+function techHtml(l, per){
+  const st = techStat(l);
+  if(!st) return '';
+  const when = st.at ? new Date(st.at).toLocaleDateString('el-GR', {month: 'numeric', year: 'numeric'}) : '';
+  return `<div class="refp tech"><div class="refp-top"><span>Μέση τιμή από τεχνικούς</span><span class="num"><b>${eur(st.cents)}</b><small>/${per} χωρίς ΦΠΑ</small></span></div>
+    <small class="refp-st">${esc(tech.BAND_TEXT[st.band] || '')}${st.region ? ' · ' + esc(tech.regionName(st.region)) : ''}${when ? ' · τιμή από ' + esc(when) : ''}</small>
+    <div class="refp-act">${l.tier === 'custom' && l.mat === st.cents ? '<small>Τη χρησιμοποιείς σε αυτή τη γραμμή.</small>' : '<button class="linkbtn" data-a="tech-use">Βάλ’ αυτή την τιμή</button>'}</div></div>`;
+}
+function techAccount(){
+  const box = $('techBox');
+  box.hidden = !(tech && signedIn());
+  if(box.hidden) return;
+  const s = tech.load(), sel = $('techRegion');
+  $('techTitle').textContent = 'Τιμές από τεχνικούς';
+  $('techText').textContent = tech.CONSENT_TEXT.body;
+  $('techOn').checked = s.consent === true;
+  if(sel.options.length === 1) for(const [code, name] of tech.REGIONS) sel.add(new Option(name, code));
+  sel.value = s.region || '';
+  $('techRegionWrap').hidden = s.consent !== true;
+  $('techStatus').textContent = '';
+}
+let techBound = false;
+function bindTech(){
+  if(techBound) return; techBound = true;
+  $('techAskTitle').textContent = tech.CONSENT_TEXT.title;
+  $('techAskText').textContent = tech.CONSENT_TEXT.body;
+  const consent = async (on, region) => {
+    if(!online()) throw new Error('offline');
+    const db = await authUi.db(); if(!db) throw new Error('signed-out');
+    await tech.setConsent(db, on, region);
+  };
+  $('techYes').onclick = async () => {
+    try {
+      await consent(true, null);
+      // οι δικές του τιμές αυτής της προσφοράς (όχι οι «Βάλ’ αυτή την τιμή») μπαίνουν τώρα στην ουρά
+      for(const l of LINES) if(l.tier === 'custom' && l.mat > 0 && !l.ownAt){ const k = techKeyOf(l); if(k) tech.enqueue(k, l.unit, l.mat); }
+      $('techAsk').hidden = true; techSync();
+    } catch { $('techAskText').textContent = 'Δεν αποθηκεύτηκε (χρειάζεται σήμα και σύνδεση). Θα σε ξαναρωτήσουμε.'; }
+  };
+  $('techNo').onclick = () => { tech.decline(); $('techAsk').hidden = true; };
+  $('techOn').onchange = async () => {
+    const on = $('techOn').checked;
+    $('techStatus').textContent = on ? 'Αποθήκευση…' : 'Σβήνονται οι τιμές που έστειλες…';
+    try {
+      await consent(on, on ? $('techRegion').value || null : null);
+      $('techStatus').textContent = on ? 'Ενεργό. Ευχαριστούμε!' : 'Έκλεισε. Όλες οι τιμές που έστειλες σβήστηκαν.';
+      $('techRegionWrap').hidden = !on;
+    } catch { $('techOn').checked = !on; $('techStatus').textContent = 'Δεν έγινε: χρειάζεται σήμα και σύνδεση.'; }
+  };
+  $('techRegion').onchange = async () => {
+    try { await consent(true, $('techRegion').value || null); $('techStatus').textContent = 'Η περιφέρεια αποθηκεύτηκε.'; }
+    catch { $('techStatus').textContent = 'Δεν έγινε: χρειάζεται σήμα και σύνδεση.'; }
+  };
+}
 function refHtml(l, key, per){
   const r = refOf(l, key), status = refStatus(r), line = refLine(r, status);
   if(!r || (!status && !(r.cents > 0))) return '';
@@ -950,6 +1041,12 @@ function refHtml(l, key, per){
     ${r.cents > 0 ? `<div class="refp-act">${using ? '<small>Τη χρησιμοποιείς σε αυτή τη γραμμή.</small>' : '<button class="linkbtn" data-a="ref-use">Βάλ’ αυτή την τιμή</button>'}${r.id ? '<button class="linkbtn" data-a="ref-more" aria-expanded="false">Σύγκριση</button>' : ''}</div><div class="refp-list" hidden></div>` : ''}</div>`;
 }
 function bindRef(el, l, key){
+  const tu = el.querySelector('[data-a="tech-use"]'), ts = tu && techStat(l);
+  if(tu && ts) tu.onclick = () => {                  // η μέση τιμή ΔΕΝ ξαναστέλνεται ως «δική του» (δεν περνά από το «Κράτα την»)
+    Object.assign(l, {mat: ts.cents, tier: 'custom', customOpen: false, customDraft: '', ownAt: null});
+    remember(key, ts.cents);
+    checkedCount++; renderLines();
+  };
   const r = refOf(l, key);
   const use = el.querySelector('[data-a="ref-use"]'), more = el.querySelector('[data-a="ref-more"]');
   if(use) use.onclick = () => {
