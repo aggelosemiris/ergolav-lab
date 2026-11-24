@@ -34,3 +34,9 @@ export const QUOTES_SYNC_ENABLED = false;
 // «τιμή από…»/«έλεγξέ την» δίπλα στην τιμή προμηθευτών, και η δική σου τιμή για είδη εκτός καταλόγου προτείνεται αυτόματα.
 // Το parser της εφαρμογής (src/parse.js) ΔΕΝ αλλάζει σε καμία περίπτωση.
 export const MATERIALS_V2_ENABLED = false;
+
+// «Τιμές από τεχνικούς» — βλ. docs/technician-prices.md. false: τίποτα δεν φορτώνεται, φαίνεται ή στέλνεται.
+// true ΜΟΝΟ αφού: (1) τρέξει η migration supabase/migrations/20261125000000_tech_prices.sql, (2) μπει το μυστικό
+// «tech_price_pepper» στο Vault, (3) τρέξει το supabase/seed/tech-price-keys.sql, (4) εγκριθούν από τον δικηγόρο και
+// μπουν το απόρρητο και οι όροι (προσχέδιο: docs/privacy-tech-prices-draft.md), (5) αναπτυχθεί η νέα delete-account.
+export const TECH_PRICES_ENABLED = false;

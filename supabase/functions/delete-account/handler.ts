@@ -13,6 +13,8 @@ export const ALLOWED_ORIGINS = [
 export const BUCKET = 'logos';
 // «Ο πίνακας δεν υπάρχει»: PostgREST (PGRST205) ή Postgres (42P01).
 const NO_TABLE = ['PGRST205', '42P01'];
+// Η συνάρτηση δεν υπάρχει ακόμα (η migration των τιμών τεχνικών δεν έτρεξε): τίποτα να σβηστεί.
+const NO_FUNCTION = ['PGRST202', '42883'];
 // Η διαγραφή θέλει ΠΡΟΣΦΑΤΗ επιβεβαίωση ταυτότητας: η τελευταία σύνδεση (κωδικός, Google, κωδικός email) μέσα σε
 // τόσα δευτερόλεπτα. Το JWT το γράφει στο «amr» (μέθοδος + χρόνος). Παλιό token (π.χ. κλεμμένο) → 403.
 export const REAUTH_MAX_AGE_S = 600;
@@ -36,6 +38,8 @@ type Admin = {
   from(table: string): {
     delete(): { eq(column: string, value: string): Promise<{ error: { code?: string } | null }> };
   };
+  // Τιμές από τεχνικούς: forget_tech_prices(p_uid) σβήνει όλες τις τιμές του (ψευδώνυμα) και τη συγκατάθεσή του.
+  rpc(fn: string, args: Record<string, unknown>): Promise<{ error: { code?: string } | null }>;
   storage: {
     from(bucket: string): {
       list(prefix: string, opts: { limit: number; offset: number }): Promise<{ data: { name: string }[] | null; error: unknown }>;
@@ -93,6 +97,9 @@ export async function handle(req: Request, admin: Admin, allowed: string[] = ALL
     // στο σχήμα να μην αφήσει ποτέ στοιχεία πελατών. Αν ο πίνακας δεν υπάρχει ακόμα (η migration δεν έτρεξε), συνεχίζει.
     const { error: qError } = await admin.from('quotes').delete().eq('user_id', uid);
     if (qError && !NO_TABLE.includes(String(qError.code ?? ''))) throw new Error('quotes_failed');
+    // Οι τιμές από τεχνικούς δεν συνδέονται με τον λογαριασμό (μόνο ψευδώνυμο): σβήνονται ΠΡΙΝ φύγει το uid.
+    const { error: tError } = await admin.rpc('forget_tech_prices', { p_uid: uid });
+    if (tError && !NO_FUNCTION.includes(String(tError.code ?? ''))) throw new Error('tech_prices_failed');
     const { error: delError } = await admin.auth.admin.deleteUser(uid);
     if (delError) throw new Error('delete_failed');
   } catch (e) {

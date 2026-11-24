@@ -733,6 +733,15 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="field"><span class="flabel">Συνδεδεμένος ως</span><b class="acct-email" id="acctEmail"></b>
         <small class="hint" id="acctVia"></small></div>
       <p class="privacy">Οι προσφορές, το ημερολόγιο και οι τιμές μένουν σε αυτή τη συσκευή και δεν σβήνονται με την αποσύνδεση.</p>
+      <!-- Τιμές από τεχνικούς (TECH_PRICES_ENABLED): συγκατάθεση, περιφέρεια, ανάκληση. Λογική: src/app.js + src/tech-prices.js -->
+      <div class="card acct-box" id="techBox" hidden>
+        <b id="techTitle"></b>
+        <p class="privacy" id="techText"></p>
+        <label class="acct-wipe"><input type="checkbox" id="techOn"> Μοιράσου ανώνυμα τις τιμές μου</label>
+        <div class="field" id="techRegionWrap" hidden><label for="techRegion">Περιφέρεια (προαιρετικό)</label>
+          <select id="techRegion"><option value="">Να μη φαίνεται</option></select></div>
+        <p class="privacy" id="techStatus" role="status"></p>
+      </div>
 
       <button class="ghost wide" id="acctPwOpen" type="button">Κωδικός πρόσβασης</button>
       <div class="card acct-box" id="acctPwBox" hidden>
@@ -897,6 +906,12 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <h1>Έλεγξε και διόρθωσε</h1>
       <p class="lede">Ενδεικτικές τιμές αγοράς (εκτίμηση, χωρίς ΦΠΑ) — όχι ακόμα από προμηθευτή. Έλεγξέ τες πριν τη στείλεις.</p>
       <div class="notice" id="linesNotice" role="alert" hidden></div>
+      <!-- Τιμές από τεχνικούς (TECH_PRICES_ENABLED): ερώτηση συγκατάθεσης, μία φορά. Λογική: src/app.js -->
+      <div class="card tech-ask" id="techAsk" hidden>
+        <b id="techAskTitle"></b>
+        <p class="privacy" id="techAskText"></p>
+        <div class="sug-act"><button id="techYes" type="button">Ναι, μοιράσου</button><button id="techNo" type="button">Όχι τώρα</button></div>
+      </div>
       <div class="row-alt"><button class="ghost" id="editText">✏️ Διόρθωσε το κείμενο</button></div>
       <p class="privacy" style="margin-top:6px">Αν γυρίσεις στο κείμενο, οι επιλογές τιμής αυτής της οθόνης ξαναρχίζουν.</p>
       <div class="lines" id="lines"></div>

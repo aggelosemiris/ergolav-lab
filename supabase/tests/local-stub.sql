@@ -52,3 +52,10 @@ begin
 end $$;
 drop trigger if exists protect_objects_delete on storage.objects;
 create trigger protect_objects_delete before delete on storage.objects for each statement execute function storage.protect_delete();
+
+-- Τιμές από τεχνικούς (migration 20261125000000_tech_prices.sql): pgcrypto στο σχήμα extensions και Vault, όπως στο Supabase.
+create schema if not exists extensions;
+create extension if not exists pgcrypto schema extensions;
+create schema if not exists vault;
+create table if not exists vault.secrets (name text primary key, secret text not null);
+create or replace view vault.decrypted_secrets as select name, secret as decrypted_secret from vault.secrets;
