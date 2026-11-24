@@ -76,6 +76,52 @@ export const BY_CODE = {
   'ΚΩΔ. 64140': {all: ['ρελε', 'διαφυγ'], none: [], attrs: {a: '40', ma: '30', poles: '2'}},
 };
 
+/**
+ * MATERIALS_V2: συμπληρώματα κανόνων από τις νέες λίστες υλικών (data/materials/*.txt). Ισχύουν ΜΟΝΟ με το flag (ή --v2).
+ *   from: το είδος της λίστας από όπου προέρχονται τα συνώνυμα (το test/materials-v2.test.js ελέγχει ότι υπάρχουν εκεί).
+ *   alt:  {ρίζα του κανόνα: [συνώνυμα της λίστας]} — η ρίζα καλύπτεται και από ΟΛΕΣ τις λέξεις ενός συνωνύμου.
+ *   extra: συνώνυμα που ΔΕΝ είναι ακόμη στη λίστα (τα γράφουν οι προμηθευτές)· προτείνονται στους τεχνικούς για προσθήκη.
+ *   any / anyExtra: επιπλέον λέξεις για το «any» του κανόνα (any: από τη λίστα· anyExtra: όπως το extra, πρόταση).
+ *   first / dropNone: το όνομα του προμηθευτή ΑΡΧΙΖΕΙ με τη λέξη του είδους, αντί για αποκλεισμό λέξης που έχει και άλλη χρήση.
+ *   none: επιπλέον λέξεις αποκλεισμού (αυστηρότητα: «καλούπι για σωλήνες PPR» δεν είναι σωλήνας, το NYMHY δεν είναι ΝΥΜ).
+ * Κάθε προϊόν του καταλόγου με v2 έχει επίσης τους νέους κανόνες χαρακτηριστικών (src/price-match.js, parseAttributes).
+ */
+export const V2_RULES = {
+  'ΚΩΔ. 40216': {from: 'pipe-multilayer', alt: {'πολυστρωματικός': ['PEX-AL-PEX', 'PERT-AL-PERT']}, none: ['καλουπ', 'μηχανημ']},
+  'ΚΩΔ. 40220': {from: 'pipe-multilayer', alt: {'πολυστρωματικός': ['PEX-AL-PEX', 'PERT-AL-PERT']}, none: ['καλουπ', 'μηχανημ']},
+  'ΚΩΔ. 40226': {from: 'pipe-multilayer', alt: {'πολυστρωματικός': ['PEX-AL-PEX', 'PERT-AL-PERT']}, none: ['καλουπ', 'μηχανημ']},
+  'ΚΩΔ. 40320': {from: 'pipe-ppr', none: ['καλουπ', 'μηχανημ', 'συγκολλησ']},
+  'ΚΩΔ. 40325': {from: 'pipe-ppr', none: ['καλουπ', 'μηχανημ', 'συγκολλησ']},
+  // PVC ≠ PP (απόφαση 23/11): ο σωλήνας PP είναι χωριστό είδος με δική του τιμή (V2_PRODUCTS)
+  'ΚΩΔ. 41050': {from: 'pipe-drain', none: ['καλουπ', 'μηχανημ', 'pp', 'πολυπροπυλεν']},
+  'ΚΩΔ. 41110': {from: 'pipe-drain', none: ['καλουπ', 'μηχανημ', 'pp', 'πολυπροπυλεν']},
+  ...Object.fromEntries(['64010', '64016', '64020', '64025'].map(c => [`ΚΩΔ. ${c}`,
+    {from: 'breaker-mcb', alt: {'μικροαυτόματος': ['MCB']}, none: ['rcbo', 'διαρρο', 'διαφορ', 'afdd']}])),
+  // «Συνδυασμός ρελέ διαρροής» = ρελέ + μικροαυτόματος (RCBO)· «ηλεκτρομαγνητικό» = τύπου B (άλλο προϊόν, ×5 τιμή)
+  'ΚΩΔ. 64140': {from: 'breaker-rcd', alt: {'διαφυγής': ['διαφορικό', 'RCD', 'RCCB', 'διαρροής']},
+    none: ['rcbo', 'afdd', 'mcb', 'μικροαυτοματ', 'συνδυασμ', 'συνδ', 'ηλεκτρομαγνητ']},
+  ...Object.fromEntries(['27002', '27003', '27004', '27006'].map(c => [`ΚΩΔ. ${c}`,
+    {from: 'manifold', alt: {'συλλέκτης': ['κολεκτέρ']}, none: ['ενδοδαπ', 'ροομετρ', 'ντουλαπ', 'κουτ']}])),
+  // «Ρακόρ σετ» = άγνωστο πλήθος τεμαχίων → όχι
+  ...Object.fromEntries(['42216', '42220', '42226'].map(c => [`ΚΩΔ. ${c}`, {from: 'pipe-multilayer', none: ['σετ']}])),
+  // «Βρύση μπαλκονιού» = βρύση κήπου/εξωτερική (toolcase)
+  'ΚΩΔ. 71010': {from: 'tap-simple', any: ['μπαλκονιού']},
+  // «Πίνακες N36 … με διάφανη πλαστική πόρτα»: η «πόρτα» είναι του πίνακα. Αντί να αποκλείεται, ο «πίνακας» πρέπει να
+  // είναι η πρώτη λέξη (μια «Πόρτα για πίνακα» μένει έξω).
+  ...Object.fromEntries(['63012', '63024', '63036'].map(c => [`ΚΩΔ. ${c}`, {from: 'el-panel', first: ['πινακ'], dropNone: ['πορτ']}])),
+  ...Object.fromEntries(['61015', '61025', '61040', '61060'].map(c => [`ΚΩΔ. ${c}`, {from: 'cable-nym', none: ['nymhy', 'ευκαμπτ']}])),
+};
+
+/**
+ * MATERIALS_V2: είδη που ΔΕΝ είναι (ακόμη) στον κατάλογο της εφαρμογής αλλά τιμολογούνται από τις νέες λίστες.
+ * Σωλήνας αποχέτευσης PP: χωριστή παραλλαγή με δική της τιμή (απόφαση 23/11: όχι συνώνυμο του PVC). Ταιριάζει ΜΟΝΟ
+ * όταν το όνομα λέει ρητά «PP» ή «πολυπροπυλένιο» (το «Valsir Αποχέτευσης» χωρίς υλικό δεν αρκεί).
+ */
+export const V2_PRODUCTS = [
+  {ref: 'materials:pipe-drain-pp|Φ110', name: 'Σωλήνας αποχέτευσης PP Φ110', unit: 'μ.', from: 'pipe-drain-pp',
+    rule: {all: ['σωλην', 'αποχετευσ'], any: ['pp', 'πολυπροπυλεν'], none: [...PIPE_NONE, 'pvc', 'καλουπ', 'μηχανημ'], attrs: {diam: '110'}}},
+];
+
 /** Το κλειδί τιμής ενός είδους, ίδιο με το priceKey της εφαρμογής (src/prices.js): «id|κωδικός». */
 export const refOf = (item, option) => `${item.id}|${option?.code || item.code || item.name}`;
 
@@ -83,7 +129,7 @@ export const refOf = (item, option) => `${item.id}|${option?.code || item.code |
  * Όλες οι παραλλαγές του καταλόγου ως προϊόντα για παρακολούθηση τιμών. Διαβάζεται κάθε φορά από τον κατάλογο:
  * ό,τι προστεθεί στο src/catalog.js μπαίνει αυτόματα στον επόμενο έλεγχο (με κανόνα από το όνομα, αν δεν έχει δικό του).
  */
-export function catalogProducts(catalog = CATALOG){
+export function catalogProducts(catalog = CATALOG, {v2 = false} = {}){
   const out = [];
   for(const item of catalog){
     for(const option of item.options || [null]){
@@ -104,9 +150,21 @@ export function catalogProducts(catalog = CATALOG){
         };
         if(own?.attrs && Object.keys(own.attrs).length === 0) rule.attrs = {};
       }
+      if(v2 && rule){
+        const x = V2_RULES[option?.code ?? item.code] ?? null;
+        const alt = {};
+        for(const src of [x?.alt, x?.extra]) for(const [r, list] of Object.entries(src || {})) (alt[r] ??= []).push(...list);
+        rule = {...rule, v2: true, alt, none: [...new Set([...rule.none, ...(x?.none || [])])].filter(w => !(x?.dropNone || []).includes(w)),
+          any: [...rule.any, ...(x?.any || []), ...(x?.anyExtra || [])], first: x?.first || []};
+        // οι διαστάσεις/πόλοι/έξοδοι ξαναδιαβάζονται με τους κανόνες v2 (π.χ. «170x70cm»), όσα δεν όρισε ρητά ο κανόνας
+        const auto2 = specFor({name, unit: item.unit}, {v2: true});
+        if(!(own?.attrs && Object.keys(own.attrs).length === 0)) rule.attrs = {...auto2.attrs, ...(own?.attrs ?? {})};
+      }
       out.push({ref: refOf(item, option), source: 'catalog', name, unit: item.unit, kind, rule,
         catalogCents: option?.mat ?? item.mat ?? 0});
     }
   }
+  if(v2) for(const p of V2_PRODUCTS) out.push({ref: p.ref, source: 'catalog', name: p.name, unit: p.unit, kind: 'product',
+    rule: {...p.rule, unit: p.unit, order: [], v2: true, alt: {}, first: []}, catalogCents: 0});
   return out;
 }

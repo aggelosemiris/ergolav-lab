@@ -60,7 +60,12 @@ function candidates(spec, idx){
   const roots = spec.all.length ? spec.all : spec.any;
   if(!roots.length) return new Set();
   const r = [...roots].sort((a, b) => b.length - a.length)[0];
-  return idx.byPrefix.get(r.slice(0, 3)) || new Set();
+  const found = idx.byPrefix.get(r.slice(0, 3)) || new Set();
+  // v2: η ρίζα μπορεί να καλύπτεται από συνώνυμο («μικροαυτόματος» = «MCB») → και τα προϊόντα του συνωνύμου
+  if(!spec.alt?.[r]?.length) return found;
+  const out = new Set(found);
+  for(const p of spec.alt[r]){ const w = [...p].sort((a, b) => b.length - a.length)[0]; for(const i of idx.byPrefix.get(w.slice(0, 3)) || []) out.add(i); }
+  return out;
 }
 
 /** Οι προσφορές ενός προμηθευτή για ένα προϊόν (επαληθευμένες και μη, με τον λόγο). */
@@ -90,7 +95,7 @@ export function offersFor(entry, supplier, items, idx){
  * Μία εβδομαδιαία εκτέλεση. store: βλ. stores/*.mjs · suppliers: SUPPLIERS · fetcher: fetch.mjs.
  * Επιστρέφει τα στατιστικά (και τα γράφει στο price_runs).
  */
-export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog}){
+export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog, v2 = false}){
   const runId = await store.startRun();
   if(runId == null){ log('Τρέχει ήδη άλλη εκτέλεση: τίποτα δεν έγινε.'); return {skipped: true}; }
   const t0 = now(), iso = () => now().toISOString();
@@ -99,7 +104,7 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
   try {
     // ── 2. απογραφή ──
     const userProducts = await store.loadUserProducts();
-    const inventory = buildInventory({catalog, userProducts});
+    const inventory = buildInventory({catalog: catalog ?? catalogProducts(undefined, {v2}), userProducts});
     await store.releaseCatalogRefs(inventory.filter(e => e.catalogRef).map(e => ({catalog_ref: e.catalogRef, match_key: e.key})));
     const ids = await store.upsertProducts(inventory.map(e => ({match_key: e.key, catalog_ref: e.catalogRef, source: e.source,
       name: e.name, unit: e.unit, kind: e.kind, spec: e.spec})));

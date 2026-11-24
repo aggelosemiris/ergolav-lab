@@ -5,6 +5,7 @@
 // 2. Οι τιμές αναφοράς (διάμεσος επαληθευμένων κανονικών τιμών προμηθευτών, χωρίς ΦΠΑ) έρχονται από τον λογαριασμό και
 //    κρατιούνται στη συσκευή (φαίνονται και χωρίς σήμα). Δεν αλλάζουν ποτέ μόνες τους τιμή γραμμής ή προσφοράς:
 //    ο τεχνίτης βλέπει και αποφασίζει. Οι αποθηκευμένες προσφορές κρατούν τις τιμές με τις οποίες φτιάχτηκαν.
+import * as CONFIG from './config.js';   // namespace: ένα παλιό/μερικό config.js χωρίς το flag = κλειστό
 export const CUSTOM = 'ergolav.customProducts';
 export const REFS = 'ergolav.refPrices';
 export const MAX_CUSTOM = 500;
@@ -109,17 +110,50 @@ export function refStatus(r, fmtDate = t => new Date(t).toLocaleDateString('el-G
   return 'Θα ελεγχθεί στον επόμενο εβδομαδιαίο έλεγχο τιμών.';
 }
 
+// ── MATERIALS_V2: ημερομηνία τιμής και η δική σου τιμή για είδη εκτός καταλόγου ──
+export const CHECK_DAYS = 30;          // τιμή παλαιότερη από τόσο: διακριτικό «έλεγξέ την»
+const DAY = 86400e3;
+/** «τιμή από 23/11/2026» και αν θέλει έλεγχο (παλαιότερη από CHECK_DAYS). null χωρίς ημερομηνία. */
+export function priceDate(at, now = Date.now(), fmtDate = t => new Date(t).toLocaleDateString('el-GR')){
+  if(!(Number.isFinite(at) && at > 0)) return null;
+  return {text: `τιμή από ${fmtDate(at)}`, check: now - at > CHECK_DAYS * DAY};
+}
+
+/** Η δική του τιμή για είδος εκτός καταλόγου (γράφτηκε μία φορά σε προηγούμενη προσφορά): {cents, lab, at} ή null. */
+export function ownPrice(key){
+  const p = customProducts()[key];
+  return p && Number.isInteger(p.cents) && p.cents > 0 && Number.isFinite(p.at) ? {cents: p.cents, lab: Number.isInteger(p.lab) && p.lab > 0 ? p.lab : 0, at: p.at} : null;
+}
+
+/**
+ * Φέρνει από τον λογαριασμό (user_products) τις δικές του τιμές, ώστε να προτείνονται και σε άλλη συσκευή.
+ * Η πιο πρόσφατη αλλαγή κερδίζει· ό,τι έσβησε στον λογαριασμό δεν ξαναγράφεται εδώ. Δεν αγγίζει τη βάση.
+ */
+export async function pullOwn({client}){
+  const {data, error} = await client.from('user_products').select('key,name,said,unit,user_price_cents,user_labor_cents,updated_at').eq('deleted', false);
+  if(error) throw error;
+  const all = customProducts(); let n = 0;
+  for(const r of data || []){
+    const at = Date.parse(r.updated_at) || 0;
+    if(!r.key || !(Number.isInteger(r.user_price_cents) && r.user_price_cents > 0) || (all[r.key]?.at >= at)) continue;
+    all[r.key] = {name: String(r.name || '').slice(0, 200), said: r.said ?? null, unit: String(r.unit || 'τεμ.').slice(0, 20),
+      cents: r.user_price_cents, lab: Number.isInteger(r.user_labor_cents) ? r.user_labor_cents : null, at}; n++;
+  }
+  if(n) write(CUSTOM, Object.fromEntries(Object.entries(all).sort((a, b) => b[1].at - a[1].at).slice(0, MAX_CUSTOM)));
+  return n;
+}
+
 /** Συγχρονισμός στο παρασκήνιο, το πολύ μία φορά ανά every· σφάλματα αγνοούνται (ξαναδοκιμάζει αργότερα). */
 export const SYNC_TIMEOUT_MS = 30000;
 const withTimeout = (p, ms) => { let t; return Promise.race([p, new Promise((_, no) => { t = setTimeout(no, ms); })]).finally(() => clearTimeout(t)); };
-export function createPriceSync(getDb, {every = 6 * 3600e3, now = () => Date.now()} = {}){
+export function createPriceSync(getDb, {every = 6 * 3600e3, now = () => Date.now(), v2 = CONFIG.MATERIALS_V2_ENABLED === true} = {}){
   let last = -Infinity, running = null;                  // η πρώτη κλήση τρέχει πάντα
   return function run(force = false){
     if(running || (!force && now() - last < every)) return running;
     last = now();
     running = (async () => {
       // Χρονικό όριο: με κακό σήμα ένα αίτημα μπορεί να κρέμεται· τότε ο επόμενος γύρος ξεκινά κανονικά.
-      try { const db = await getDb?.(); if(!db) return null; return await withTimeout((async () => ({pushed: await pushCustom(db), refs: await pullRefs(db, now())}))(), SYNC_TIMEOUT_MS); }
+      try { const db = await getDb?.(); if(!db) return null; return await withTimeout((async () => ({pushed: await pushCustom(db), refs: await pullRefs(db, now()), ...(v2 ? {own: await pullOwn(db)} : {})}))(), SYNC_TIMEOUT_MS); }
       catch { return null; }
       finally { running = null; }
     })();

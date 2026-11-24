@@ -12,8 +12,8 @@ let installationPanel=null;
 import { mountAnalysis } from './analysis-ui.js';
 let analysisPanel = null;
 import { parseAmount, toCents, formatEur, formatQty } from './number.js';
-import { tiers, priceKey, history, remember, ageLabel, isStale, loadAll } from './prices.js';
-import { registerCustom, migrateCustom, refFor, refStatus, offersFor, createPriceSync } from './price-watch.js';
+import { tiers, priceKey, history, remember, ageLabel, isStale, ageDays, loadAll } from './prices.js';
+import { registerCustom, migrateCustom, refFor, refStatus, offersFor, createPriceSync, priceDate, ownPrice, CHECK_DAYS } from './price-watch.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
 import { fitImage } from './image.js';
 import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes, ensureIds, newId } from './history.js';
@@ -506,7 +506,7 @@ function buildLines(text, warning){
   // Ό,τι δεν είναι υλικό (τηλέφωνο, όνομα, ώρα, ποσό σε ευρώ, φράση χωρίς ποσότητα) δεν γίνεται κάρτα.
   // Υλικό εκτός καταλόγου = κανονική γραμμή προϊόντος χωρίς τιμή (added): τιμή με το χέρι ή «Σβήσε».
   const found = r.lines.filter(l => !l.unknown || l.keep).map(l => !l.unknown ? l :
-    Object.assign(l, {unknown: false, added: true, code: '', mat: 0, lab: 0, customOpen: true}));
+    ownSuggest(Object.assign(l, {unknown: false, added: true, code: '', mat: 0, lab: 0, customOpen: true})));
   if(!found.length){
     notice('Δεν βρήκα κανένα υλικό. Πες ή γράψε π.χ. «δέκα μέτρα σωλήνα».');
     return;
@@ -597,6 +597,7 @@ function renderLines(){
         <div class="ln-top"><span class="ln-name">${esc(l.desc || l.name)}</span><span class="ln-sum num">${l.mat > 0 ? eur(matOf(l)) : 'στην εργασία'}</span></div>
         <div class="ln-meta">${l.desc ? `${esc(l.name)} · ` : ''}${esc(l.code)} <button class="linkbtn" data-a="desc-edit">Άλλαξε περιγραφή</button>${l.added ? ` <button class="linkbtn" data-a="remove-line">Σβήσε</button>` : ''}</div>
         ${needsPrice(l) ? `<div class="ask">Δεν είναι στον κατάλογο — βάλε τιμή ή σβήσ' το</div>` : ''}
+        ${l.ownAt && l.tier === 'custom' && !l.customOpen ? ownHtml(l) : ''}
         ${l.added && l.lab > 0 && !l.customOpen ? `<p class="hint">Εργασία: ${fmtQty(l.qty)} × ${eur(l.lab)} = ${eur(Math.round(l.qty * l.lab))} · μπαίνει στην «Εργασία για όλη τη δουλειά»${LABOR != null ? ' (εκεί έχεις γράψει δικό σου ποσό· δες την πρόταση)' : ''}</p>` : ''}
         ${l.descOpen ? `
         <div class="prices"><label>Περιγραφή στο PDF<input data-p="desc" maxlength="120" autocomplete="off" value="${esc(l.desc || l.name)}"></label></div>
@@ -635,7 +636,7 @@ function renderLines(){
           <div class="prices"><label>Τιμή υλικού € ανά ${per}<input inputmode="decimal" data-p="cmat" placeholder="0,00" value="${esc(l.customDraft || (l.added && l.tier === 'custom' ? centsText(l.mat) : ''))}"><small class="parsed" data-o="cmat"></small></label>
             ${l.added ? `<label>Εργασία € ανά ${per} <span class="for">(προαιρετικό)</span><input inputmode="decimal" data-p="clab" placeholder="0,00" value="${esc(l.labDraft ?? (l.lab ? centsText(l.lab) : ''))}"><small class="parsed" data-o="clab"></small></label>` : ''}</div>
           <div class="hist" data-hist ${hist.length && !l.customDraft ? '' : 'hidden'}>${hist.map(h => `
-            <button class="hi" data-c="${h.c}"><span class="num">${eur(h.c)}</span><span>${ageLabel(h.at)}${isStale(h.at) ? ' · <b>έλεγξε αν άλλαξε</b>' : ''}</span></button>`).join('')}
+            <button class="hi" data-c="${h.c}"><span class="num">${eur(h.c)}</span><span>${ageLabel(h.at)}${(CONFIG.MATERIALS_V2_ENABLED ? ageDays(h.at) > CHECK_DAYS : isStale(h.at)) ? ' · <b>έλεγξε αν άλλαξε</b>' : ''}</span></button>`).join('')}
           </div>
           <div class="sug-act"><button data-a="keep">Κράτα την</button><button data-a="cancel">Άκυρο</button></div>
         </div>` : ''}${refHtml(l, key, per)}` : ''}`;
@@ -740,7 +741,7 @@ function renderLines(){
           if(rl.error) return;
           const cents = toCents(r.value);
           if(readL) Object.assign(l, {lab: toCents(rl.value), labDraft: undefined});
-          Object.assign(l, {mat: cents, tier: 'custom', customOpen: false, customDraft: ''});
+          Object.assign(l, {mat: cents, tier: 'custom', customOpen: false, customDraft: '', ownAt: null});
           remember(key, cents);
           if(l.added){ registerCustom(l, key); priceSync(true); }   // εκτός καταλόγου → αυτόματα στον εβδομαδιαίο έλεγχο τιμών
           checkedCount++; renderLines();
@@ -908,19 +909,37 @@ function pdfMode(fromHistory){
 // ── Τιμές προμηθευτών (εβδομαδιαίος έλεγχος, src/price-watch.js): μόνο ενημέρωση· ο τεχνίτης αποφασίζει ──
 const priceSync = createPriceSync(() => authUi?.db?.() ?? null);
 migrateCustom(loadAll());
+// MATERIALS_V2: είδος εκτός καταλόγου που έχει ξαναγράψει με δική του τιμή → η τιμή του προτείνεται αυτόματα (με την
+// ημερομηνία της)· αλλάζει με «Άλλη τιμή». Χωρίς το flag: όπως πριν (κενό πεδίο, οι παλιές τιμές ως κουμπιά).
+function ownSuggest(l){
+  if(!CONFIG.MATERIALS_V2_ENABLED) return l;
+  const own = ownPrice(priceKey(l));
+  return own ? Object.assign(l, {mat: own.cents, lab: own.lab, tier: 'custom', customOpen: false, ownAt: own.at}) : l;
+}
+function ownHtml(l){
+  const d = priceDate(l.ownAt);
+  return d ? `<p class="hint">Η δική σου τιμή · ${esc(d.text)}${d.check ? ' · <b class="chk">έλεγξέ την</b>' : ''}</p>` : '';
+}
+/** Γραμμή κατάστασης της τιμής προμηθευτών· με MATERIALS_V2: «τιμή από …» και «έλεγξέ την» μετά από 30 ημέρες. */
+function refLine(r, status){
+  const d = CONFIG.MATERIALS_V2_ENABLED && r?.cents > 0 ? priceDate(r.at) : null;
+  if(!d) return status ? esc(status) : '';
+  const how = r.status === 'verified' ? `${r.n} ${r.n === 1 ? 'προμηθευτής' : 'προμηθευτές'}` : 'λίγες τιμές στον τελευταίο έλεγχο';
+  return `${esc(d.text)} · ${esc(how)}${d.check ? ' · <b class="chk">έλεγξέ την</b>' : ''}`;
+}
 function refHtml(l, key, per){
-  const r = refFor(key), status = refStatus(r);
+  const r = refFor(key), status = refStatus(r), line = refLine(r, status);
   if(!r || (!status && !(r.cents > 0))) return '';
   const using = l.tier === 'custom' && l.mat === r.cents;
   return `<div class="refp">${r.cents > 0 ? `<div class="refp-top"><span>Τιμή αγοράς προμηθευτών</span><span class="num"><b>${eur(r.cents)}</b><small>/${per} χωρίς ΦΠΑ</small></span></div>` : ''}
-    ${status ? `<small class="refp-st">${esc(status)}</small>` : ''}
+    ${line ? `<small class="refp-st">${line}</small>` : ''}
     ${r.cents > 0 ? `<div class="refp-act">${using ? '<small>Τη χρησιμοποιείς σε αυτή τη γραμμή.</small>' : '<button class="linkbtn" data-a="ref-use">Βάλ’ αυτή την τιμή</button>'}${r.id ? '<button class="linkbtn" data-a="ref-more" aria-expanded="false">Σύγκριση</button>' : ''}</div><div class="refp-list" hidden></div>` : ''}</div>`;
 }
 function bindRef(el, l, key){
   const r = refFor(key);
   const use = el.querySelector('[data-a="ref-use"]'), more = el.querySelector('[data-a="ref-more"]');
   if(use) use.onclick = () => {
-    Object.assign(l, {mat: r.cents, tier: 'custom', customOpen: false, customDraft: ''});
+    Object.assign(l, {mat: r.cents, tier: 'custom', customOpen: false, customDraft: '', ownAt: null});
     remember(key, r.cents);
     if(l.added) registerCustom(l, key);
     checkedCount++; renderLines();

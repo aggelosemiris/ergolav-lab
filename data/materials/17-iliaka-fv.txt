@@ -1,0 +1,24 @@
+# trade: iliaka-fv | Ηλιακά / φωτοβολταϊκά | ηλεκτρολόγος / εγκαταστάτης ΦΒ
+
+## Φωτοβολταϊκά
+pv-panel | Φωτοβολταϊκό πάνελ | τεμ. | φωτοβολταϊκό, πάνελ, PV module, μονοκρυσταλλικό, half-cut, bifacial, TOPCon, Jinko, Longi, Trina, JA Solar | 400; 450; 500; 550; 600 Wp; μονοπρόσωπο; bifacial; μαύρο πλαίσιο |
+pv-inverter | Inverter δικτύου (net metering) | τεμ. | inverter, αντιστροφέας, μετατροπέας, on-grid, Huawei, SMA, Fronius, SolarEdge, Growatt | 3; 5; 6; 8; 10 kW; μονοφασικός; τριφασικός |
+pv-hybrid | Υβριδικός inverter | τεμ. | υβριδικός, hybrid inverter, Deye, Huawei SUN2000, Victron | 3; 5; 6; 8; 10; 12 kW; μονοφασικός; τριφασικός |
+pv-offgrid | Inverter / φορτιστής αυτόνομου (off-grid) | τεμ. | αυτόνομο, off-grid inverter, Victron MultiPlus, inverter charger | 1,2; 3; 5 kVA; 12/24/48 V |
+pv-battery | Μπαταρία λιθίου (LiFePO4) για ΦΒ | τεμ. | μπαταρία λιθίου, LiFePO4, αποθήκευση, Pylontech, BYD, Huawei LUNA, Deye | 2,4; 5; 5,12; 10; 15 kWh; χαμηλής τάσης 48V; υψηλής τάσης |
+pv-battery-lead | Μπαταρία μολύβδου (AGM / Gel / OPzS) | τεμ. | μπαταρία βαθιάς εκφόρτισης, AGM, Gel, OPzS | 100; 150; 200 Ah; 12V; 2V |
+pv-charge-controller | Ρυθμιστής φόρτισης (MPPT / PWM) | τεμ. | ρυθμιστής φόρτισης, MPPT, charge controller, Victron SmartSolar | 20; 30; 50; 100 A |
+pv-mounting | Βάσεις στήριξης πάνελ (κεραμοσκεπής / ταράτσας / τριγωνικές) | τεμ. | βάσεις φωτοβολταϊκών, ράγες, σφιγκτήρες, άγκιστρα κεραμιδιών, τριγωνικές βάσεις | ράγα 4,2 μ.; end clamp; mid clamp; άγκιστρο; τρίγωνο 15°/30° |
+pv-cable | Καλώδιο ΦΒ (solar cable H1Z2Z2-K) | μ. | solar cable, καλώδιο φωτοβολταϊκών, H1Z2Z2-K | 4 mm²; 6 mm²; κόκκινο; μαύρο |
+pv-connector | Βύσματα MC4 | ζεύγος | MC4, βύσμα φωτοβολταϊκού, Y διακλάδωση MC4 | απλό; Y |
+pv-dc-protection | Πίνακας προστασίας DC/AC (ασφάλειες, αντικεραυνικά) | τεμ. | πίνακας DC, ασφαλειοθήκη DC, αντικεραυνικό DC, SPD | 1 string; 2 strings |
+pv-meter | Smart meter / μετρητής παραγωγής | τεμ. | smart meter, μετρητής ενέργειας inverter | μονοφασικός; τριφασικός |
+pv-optimizer | Optimizer πάνελ | τεμ. | optimizer, SolarEdge, Huawei optimizer, Tigo | 450; 600 W |
+
+## Ηλιακά θερμικά
+solar-heater | Ηλιακός θερμοσίφωνας (συμπαγής) | τεμ. | ηλιακός, ηλιακός θερμοσίφωνας, solar water heater | 120; 160; 200; 300 λ.; διπλής; τριπλής ενέργειας | solar-heater
+solar-collector | Ηλιακός συλλέκτης (επίπεδος / κενού) | τεμ. | συλλέκτης, επίπεδος συλλέκτης, σωλήνες κενού, evacuated tube | 2; 2,5 τ.μ.; κενού 20/30 σωλήνων | solar-heater
+solar-station | Σταθμός κυκλοφορίας ηλιακών (εξαναγκασμένη) | τεμ. | ηλιακός σταθμός, solar station, κυκλοφορητής ηλιακών | με ελεγκτή |
+solar-fluid | Υγρό ηλιακών (αντιψυκτικό) | λίτρο | υγρό ηλιακού, γλυκόλη, solar fluid | 5; 10; 20 λ. | heat-antifreeze
+solar-element | Αντίσταση / θερμοστάτης ηλιακού | τεμ. | αντίσταση ηλιακού, θερμοστάτης ηλιακού | 3 kW; 4 kW | heater-element
+solar-base | Βάση ηλιακού (ταράτσας / κεραμοσκεπής) | τεμ. | βάση ηλιακού, βάση ταράτσας | 160 λ.; 200 λ. |
