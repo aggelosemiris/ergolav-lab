@@ -160,8 +160,13 @@ bot), kostelidis (403 στο robots.txt), ergo-tel (503). Δεν παρακάμ�
 Η εφαρμογή διαβάζει το αρχείο **μόνο με το flag** (δυναμικό import + fetch, έξω από το precache) και προτείνει την τιμή σε γραμμή εκτός
 καταλόγου, όταν ταιριάζει με βεβαιότητα και έχει την ίδια μονάδα («Τιμή αγοράς προμηθευτών (λίστα υλικών)»).
 
-Προμηθευτές ειδικοτήτων με adapter σελίδων (`tools/prices/adapters/shops.mjs`: WooCommerce HTML, OpenCart/Journal3, PrestaShop,
-e-shop.gr), όλοι **απενεργοποιημένοι**: kaxirismonotika, e-shop, e-plakakia, oikeiaoikia, palousis. Κάλυψη 24/11: `data/reports/material-prices-2026-11-24.md`.
+**Από 24/11/2026 στην εβδομαδιαία εκτέλεση** (έγκριση): kaxirismonotika, oikeiaoikia, palousis — ίδιος bot, ένα αίτημα κάθε 2″ ανά
+site, robots.txt. Το workflow τρέχει με `node --max-http-header-size=65536` (το palousis στέλνει headers ~21 KB· με το προεπιλεγμένο
+όριο του Node 5 κατηγορίες αποτύγχαναν). Ο fetcher δεν ξαναδοκιμάζει τέτοια μόνιμα σφάλματα. Ο pylarinos μένει εκτός μέχρι τον έλεγχο
+των όρων. Δοκιμή χωρίς βάση (24/11): επαληθευμένη τιμή αναφοράς 29 → 40 (χωρίς flag), 38 → 51 με `--v2`· η εκτέλεση διαρκεί ~11′ (palousis).
+
+Οι υπόλοιποι προμηθευτές ειδικοτήτων με adapter σελίδων (`tools/prices/adapters/shops.mjs`: WooCommerce HTML, OpenCart/Journal3, PrestaShop,
+e-shop.gr) μένουν **απενεργοποιημένοι**: e-shop, e-plakakia. Κάλυψη 24/11: `data/reports/material-prices-2026-11-24.md`.
 
 ## Αρχεία
 

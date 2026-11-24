@@ -32,3 +32,13 @@ test('απόφαση 23/11: όσοι δεν έχουν σελίδα όρων μ�
   // όσοι κλείνουν το bot ή τα AI bots: απορρίπτονται
   for(const id of ['zalonis', 'e-metallon', 'fotovoltaika', 'eshops', 'panpower', 'thermogroup', 'paintcity', 'dedegkikas']) assert.ok(SPECIALISTS_REJECTED.some(s => s.id === id), id);
 });
+
+test('απόφαση 24/11: στην εβδομαδιαία εκτέλεση ΜΟΝΟ kaxirismonotika, oikeiaoikia, palousis από τους ειδικοτήτων· pylarinos εκτός', () => {
+  const weekly = SUPPLIERS.filter(s => s.enabled !== false).map(s => s.id);
+  for(const id of ['kaxirismonotika', 'oikeiaoikia', 'palousis']) assert.ok(weekly.includes(id), id);
+  assert.deepEqual(weekly.filter(id => !['praktiker', 'toolcase', 'el-shop', 'paravalos', 'peltekis', 'fabricashop', 'vrontinos', 'meidanis'].includes(id)),
+    ['kaxirismonotika', 'oikeiaoikia', 'palousis']);
+  for(const s of SPECIALISTS) assert.equal(s.enabled, false, s.id);
+  assert.ok(!weekly.includes('pylarinos') && !SPECIALISTS.some(s => s.id === 'pylarinos'));
+  for(const id of ['kaxirismonotika', 'oikeiaoikia', 'palousis']) assert.equal(typeof SUPPLIERS.find(s => s.id === id).items, 'function');
+});

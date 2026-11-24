@@ -14,6 +14,8 @@ import { wooHtmlItems, journalItems, prestaItems, eshopItems } from './adapters/
 
 const woo = (path) => ({method: 'woo-store-api', items: ({fetcher, supplier, log}) => wooItems({base: supplier.base_url, path, fetcher, log})});
 
+/** Μέτρηση ενός προμηθευτή (robots.txt, ροή, όροι). */
+const m = (checked, robots, feed, terms, note = '') => ({checked, robots, feed, terms, note});
 export const SUPPLIERS = [
   {id: 'praktiker', name: 'Praktiker', base_url: 'https://www.praktiker.gr', vat: 'retail-law', method: 'praktiker-category-state',
     // Ομάδες κατηγοριών με είδη ανακαίνισης (οι υπόλοιπες — έπιπλα, κήπος, χριστουγεννιάτικα — δεν διαβάζονται).
@@ -31,6 +33,25 @@ export const SUPPLIERS = [
     items: ({fetcher, log}) => magentoItems({fetcher, log, categories: [
       'https://www.meidanis.gr/el/proionta/kalodia/esoterikon-egkatastaseon',
       'https://www.meidanis.gr/el/proionta/fotistika/esoterikoy-choroy/spot-choneyta']})},
+  // ── Από τους προμηθευτές ειδικοτήτων, ενεργοί από 24/11/2026 (έγκριση): ίδιος bot, ίδιος ρυθμός (ένα αίτημα κάθε 2″ ανά site),
+  // robots.txt. Μέτρηση 24/11: kaxirismonotika 1.430/1.433, oikeiaoikia 3.956/3.957, palousis 1.232/1.258 με ρητή κανονική τιμή.
+  {id: 'kaxirismonotika', name: 'Kaxiris Monotika', base_url: 'https://kaxirismonotika.gr', vat: 'retail-law', trades: ['monoseis', 'gypsosanida', 'plakakia'],
+    method: 'presta-category-pages', items: ({fetcher, supplier, log}) => prestaItems({fetcher, log, base: supplier.base_url, categories: [
+      '/153-γυψοσανιδες-ψευδοροφες', '/110-thermomonosi', '/157-συγχρονα-δομικα-και-διακοσμητικα-υλικα', '/834-domika-proionta', '/231-χρωματα']}),
+    measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστές οι παράμετροι ?order= ?n= ?tag= (PrestaShop)', 'χωρίς Store API (PrestaShop) → adapter σελίδων',
+      'σελίδα όρων δεν βρέθηκε από την αρχική· 17/11: ρήτρα πν. ιδιοκτησίας', 'μονωτικά, στεγανωτικά, γυψοσανίδες, κόλλες')},
+  {id: 'oikeiaoikia', name: 'Οικεία Οικία', base_url: 'https://www.oikeiaoikia.gr', vat: 'retail-law', trades: ['ydravlika', 'plakakia'],
+    method: 'woo-html-category-pages', items: ({fetcher, supplier, log}) => wooHtmlItems({fetcher, log, base: supplier.base_url, categories: [
+      '/product-category/niptires/', '/product-category/ntouzieres-kampines/', '/product-category/mpanieres/', '/product-category/eidi-ygieinis/',
+      '/product-category/mpataries/', '/product-category/thermansi-ydraulika/']}),
+    measured: m('2026-11-24', 'επιτρέπει (κλειστά ?filter_, ?per_page=, ?orderby=, ?min/max_price=)', 'WooCommerce χωρίς Store API (404) → σελίδες· /page/N/ επιτρέπεται· δείγμα: 24/24 με ρητή τιμή (<del>/<ins>)',
+      'ρήτρα πν. ιδιοκτησίας (/oroi-proipotheseis/)· τίποτα για bots', 'νιπτήρες, ντουζιέρες/καμπίνες (Gloria), μπανιέρες, μπαταρίες')},
+  {id: 'palousis', name: 'Palousis', base_url: 'https://www.palousis.gr', vat: 'retail-law', trades: ['ydravlika', 'plakakia'],
+    method: 'journal-category-pages', items: ({fetcher, supplier, log}) => journalItems({fetcher, log, base: supplier.base_url, categories: [
+      '/νιπτήρες', '/ντουζιέρες', '/καμπίνες', '/μπανιέρες', '/λεκάνες', '/καζανάκια', '/νεροχύτες', '/μπαταρίες-μπάνιου', '/μπαταρίες-κουζίνας',
+      '/θερμοσίφωνες-boiler', '/κόλλες', '/αρμοί']}),
+    measured: m('2026-11-24', 'επιτρέπει (κλειστά search, tag, &sort, &order, &limit)', 'OpenCart/Journal3 → σελίδες· ?page=N επιτρέπεται· δείγμα: 12/12 με ρητή τιμή (price-normal ή price-old/new)· γράφει και «Προ ΦΠΑ»',
+      'ρήτρα πν. ιδιοκτησίας (/όροι-χρήσης)· τίποτα για bots', 'είδη μπάνιου (Karag, Sanitec, Gloria…), πλακάκια, κόλλες')},
 ];
 
 /** Εναλλακτικοί: ρυθμισμένοι αλλά εκτός, με τον λόγο (απάντησαν 403/503 στο bot στη μέτρηση). Μπαίνουν με enabled: true. */
@@ -67,7 +88,6 @@ export const V2_OVERRIDES = {
 // Μέτρηση: robots.txt, WooCommerce Store API (/wp-json/wc/store/v1/products) και όροι χρήσης, με τον δηλωμένο bot
 // (ergolav-price-bot), ένα αίτημα κάθε 2″. «Όροι: ρήτρα πν. ιδιοκτησίας» = απαγορεύουν αναπαραγωγή/αναδημοσίευση του
 // περιεχομένου, όχι την ανάγνωση· ίδια περίπτωση με τους σημερινούς προμηθευτές (data/sites.md, «⚠️»).
-const m = (checked, robots, feed, terms, note = '') => ({checked, robots, feed, terms, note});
 export const SPECIALISTS = [
   {id: 'climaver', name: 'Climaver', base_url: 'https://climaver.gr', vat: 'retail-law', enabled: false, trades: ['klimatismos'], ...woo(),
     measured: m('2026-11-23', 'επιτρέπει (User-agent: *, μόνο wp-admin και add-to-cart κλειστά)', 'Store API: 126 προϊόντα· 77/100 με regular_price',
@@ -84,12 +104,6 @@ export const SPECIALISTS = [
   {id: 'tehnothermiki', name: 'Τεχνοθερμική', base_url: 'https://tehnothermiki.gr', vat: 'retail-law', enabled: false, trades: ['thermansi'], method: 'html',
     measured: m('2026-11-23', 'δεν έχει robots.txt (404 → τίποτα κλειστό)', 'χωρίς Store API (404) → adapter σελίδων',
       'δεν διαβάστηκαν (ο σύνδεσμος οδηγεί σε http χωρίς DNS)· 17/11: ρήτρα πν. ιδιοκτησίας', 'αντλίες θερμότητας, θέρμανση')},
-  // Β (24/11): adapter PrestaShop· 1η σελίδα δείγματος: 12/12 με ρητή τιμή (product-price content=…).
-  {id: 'kaxirismonotika', name: 'Kaxiris Monotika', base_url: 'https://kaxirismonotika.gr', vat: 'retail-law', enabled: false, trades: ['monoseis', 'gypsosanida', 'plakakia'],
-    method: 'presta-category-pages', items: ({fetcher, supplier, log}) => prestaItems({fetcher, log, base: supplier.base_url, categories: [
-      '/153-γυψοσανιδες-ψευδοροφες', '/110-thermomonosi', '/157-συγχρονα-δομικα-και-διακοσμητικα-υλικα', '/834-domika-proionta', '/231-χρωματα']}),
-    measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστές οι παράμετροι ?order= ?n= ?tag= (PrestaShop)', 'χωρίς Store API (PrestaShop) → adapter σελίδων',
-      'σελίδα όρων δεν βρέθηκε από την αρχική· 17/11: ρήτρα πν. ιδιοκτησίας', 'μονωτικά, στεγανωτικά, γυψοσανίδες, κόλλες')},
   {id: 'e-papasideris', name: 'e-Papasideris', base_url: 'https://e-papasideris.gr', vat: 'retail-law', enabled: false, trades: ['oikodomika', 'sovades', 'vafes', 'gypsosanida'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει σελίδες· κλειστά ?page=, sort, order, limit, filter_*', 'χωρίς Store API (OpenCart) → adapter σελίδων',
       '17/11: ρήτρα πν. ιδιοκτησίας', 'χρώματα, δόμηση, γυψοσανίδες, τσιμεντοσανίδες· σελιδοποίηση κλειστή → μόνο 1η σελίδα κατηγορίας')},
@@ -132,19 +146,6 @@ export const SPECIALISTS = [
   {id: 'energybatteries', name: 'Energy Batteries', base_url: 'https://energybatteries.gr', vat: 'retail-law', enabled: false, trades: ['iliaka-fv'], method: 'html',
     measured: m('2026-11-23', 'επιτρέπει', 'Store API: HTTP 403 → adapter σελίδων (η αρχική απαντά 200)',
       'όροι συναλλαγών (/oroi-sinallagon/)· τίποτα για bots ή πν. ιδιοκτησία', 'μπαταρίες, inverter, ΦΒ')},
-  // ── Γ (24/11/2026): δεύτερος προμηθευτής για είδη μπάνιου ──
-  {id: 'oikeiaoikia', name: 'Οικεία Οικία', base_url: 'https://www.oikeiaoikia.gr', vat: 'retail-law', enabled: false, trades: ['ydravlika', 'plakakia'],
-    method: 'woo-html-category-pages', items: ({fetcher, supplier, log}) => wooHtmlItems({fetcher, log, base: supplier.base_url, categories: [
-      '/product-category/niptires/', '/product-category/ntouzieres-kampines/', '/product-category/mpanieres/', '/product-category/eidi-ygieinis/',
-      '/product-category/mpataries/', '/product-category/thermansi-ydraulika/']}),
-    measured: m('2026-11-24', 'επιτρέπει (κλειστά ?filter_, ?per_page=, ?orderby=, ?min/max_price=)', 'WooCommerce χωρίς Store API (404) → σελίδες· /page/N/ επιτρέπεται· δείγμα: 24/24 με ρητή τιμή (<del>/<ins>)',
-      'ρήτρα πν. ιδιοκτησίας (/oroi-proipotheseis/)· τίποτα για bots', 'νιπτήρες, ντουζιέρες/καμπίνες (Gloria), μπανιέρες, μπαταρίες')},
-  {id: 'palousis', name: 'Palousis', base_url: 'https://www.palousis.gr', vat: 'retail-law', enabled: false, trades: ['ydravlika', 'plakakia'],
-    method: 'journal-category-pages', items: ({fetcher, supplier, log}) => journalItems({fetcher, log, base: supplier.base_url, categories: [
-      '/νιπτήρες', '/ντουζιέρες', '/καμπίνες', '/μπανιέρες', '/λεκάνες', '/καζανάκια', '/νεροχύτες', '/μπαταρίες-μπάνιου', '/μπαταρίες-κουζίνας',
-      '/θερμοσίφωνες-boiler', '/κόλλες', '/αρμοί']}),
-    measured: m('2026-11-24', 'επιτρέπει (κλειστά search, tag, &sort, &order, &limit)', 'OpenCart/Journal3 → σελίδες· ?page=N επιτρέπεται· δείγμα: 12/12 με ρητή τιμή (price-normal ή price-old/new)· γράφει και «Προ ΦΠΑ»',
-      'ρήτρα πν. ιδιοκτησίας (/όροι-χρήσης)· τίποτα για bots', 'είδη μπάνιου (Karag, Sanitec, Gloria…), πλακάκια, κόλλες')},
 ];
 
 /**

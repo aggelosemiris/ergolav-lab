@@ -39,3 +39,20 @@ test('CSV για τους τεχνικούς: ένα ανά ειδικότητα
     assert.equal(lines.length - 1, t.groups.flatMap(g => g.items).length);
   }
 });
+
+test('CSV γενικών παραλλαγών για τους τεχνικούς: ενημερωμένα, ένα ανά ειδικότητα, ακριβώς όσες δεν τιμολογούνται (633)', async () => {
+  const { genericCsv, GENERIC_COLUMNS } = await import('../tools/materials/build.mjs');
+  const { variantProducts } = await import('../src/material-prices.js');
+  const json = JSON.parse(fs.readFileSync(new URL('../data/materials.json', import.meta.url), 'utf8'));
+  const generic = variantProducts(json).filter(p => ['range-variant', 'variant-without-size', 'variant-unparsed'].includes(p.skip)).length;
+  let rows = 0;
+  for(const t of json.trades){
+    const csv = fs.readFileSync(new URL(`../data/reports/materials-review/${t.id}-genikes.csv`, import.meta.url), 'utf8');
+    assert.equal(csv, genericCsv(json, t.id), `${t.id}-genikes.csv: τρέξε node tools/materials/build.mjs`);
+    const lines = csv.replace(/^﻿/, '').trim().split('\r\n');
+    assert.equal(lines[0], GENERIC_COLUMNS.join(';'));
+    rows += lines.length - 1;
+  }
+  assert.equal(rows, generic);
+  assert.equal(rows, 633);
+});

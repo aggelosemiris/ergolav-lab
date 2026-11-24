@@ -78,14 +78,17 @@ export function createFetcher({cacheDir, ttlMs = 6 * 86400e3, minDelayMs = 2000,
         const gap = s.last + s.delay - now(); if(gap > 0) await wait(gap);
         let row, err;
         try { row = await raw(url, accept); } catch(e){ err = e; } finally { s.last = now(); stats.requests++; }
-        const temporary = err || [500, 502, 504, 429, 503].includes(row.status);
+        // Σφάλμα που δεν διορθώνεται με επανάληψη (π.χ. headers πάνω από το όριο του Node): καμία νέα προσπάθεια,
+        // ώστε να μη στέλνουμε άσκοπα αιτήματα στο site.
+        const permanent = err && ['UND_ERR_HEADERS_OVERFLOW', 'UND_ERR_RESPONSE_EXCEEDED_MAX_SIZE'].includes(err.cause?.code);
+        const temporary = !permanent && (err || [500, 502, 504, 429, 503].includes(row.status));
         if(temporary && attempt < retries){
           const ra = Number(row?.retryAfter);
           const ms = Number.isFinite(ra) && ra > 0 ? Math.min(ra * 1000, 120000) : backoffMs * 2 ** attempt;
-          stats.retries++; log(`νέα προσπάθεια σε ${Math.round(ms / 1000)}″: ${url} (${err ? err.name : 'HTTP ' + row.status})`);
+          stats.retries++; log(`νέα προσπάθεια σε ${Math.round(ms / 1000)}″: ${url} (${err ? err.cause?.code || err.name : 'HTTP ' + row.status})`);
           await wait(ms); continue;
         }
-        if(err) throw err;
+        if(err){ if(permanent) log(`${url}: ${err.cause.code} (τρέξε το node με --max-http-header-size=65536)`); throw err; }
         if([401, 403, 429, 503].includes(row.status) ||
            (row.status === 200 && CHALLENGE.test(row.body.slice(0, 20000)) && !/application\/json/.test(row.contentType))){
           s.blocked = row.status === 200 ? 'σελίδα CAPTCHA/προστασίας' : `HTTP ${row.status}`; stats.blocked++;
