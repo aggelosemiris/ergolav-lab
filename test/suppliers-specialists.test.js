@@ -25,10 +25,10 @@ test('δεν μπαίνουν στην εβδομαδιαία εκτέλεση �
 
 test('απόφαση 23/11: όσοι δεν έχουν σελίδα όρων μένουν εκτός, χωριστά, μέχρι τον έλεγχο με το χέρι', async () => {
   const { SPECIALISTS_PENDING_TERMS } = await import('../tools/prices/suppliers.mjs');
-  assert.deepEqual(SPECIALISTS_PENDING_TERMS.map(s => s.id).sort(), ['balamoti', 'homeville', 'jerotech', 'portes-koufomata']);
+  assert.deepEqual(SPECIALISTS_PENDING_TERMS.map(s => s.id).sort(), ['balamoti', 'homeville', 'jerotech', 'portes-koufomata', 'pylarinos']);
   for(const s of SPECIALISTS_PENDING_TERMS) assert.equal(s.enabled, false);
   const active = new Set(SPECIALISTS.map(s => s.id));
   for(const s of SPECIALISTS_PENDING_TERMS) assert.ok(!active.has(s.id), s.id);
   // όσοι κλείνουν το bot ή τα AI bots: απορρίπτονται
-  for(const id of ['zalonis', 'e-metallon', 'fotovoltaika', 'eshops', 'panpower']) assert.ok(SPECIALISTS_REJECTED.some(s => s.id === id), id);
+  for(const id of ['zalonis', 'e-metallon', 'fotovoltaika', 'eshops', 'panpower', 'thermogroup', 'paintcity', 'dedegkikas']) assert.ok(SPECIALISTS_REJECTED.some(s => s.id === id), id);
 });

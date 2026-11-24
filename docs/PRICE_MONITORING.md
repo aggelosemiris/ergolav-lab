@@ -148,10 +148,27 @@ bot), kostelidis (403 στο robots.txt), ergo-tel (503). Δεν παρακάμ�
 Δοκιμή 23/11/2026 (ίδια cache, χωρίς βάση): επαληθευμένη τιμή αναφοράς **29 → 38** από τα 92 είδη λιανικής· με τουλάχιστον μία
 επαληθευμένη τιμή προμηθευτή 50 → 68. Ανάλυση ανά είδος: `data/reports/price-coverage-2026-11-23.md`.
 
+## Τιμές για όλες τις παραλλαγές των λιστών υλικών (MATERIALS_V2)
+
+`node tools/prices/materials-prices.mjs --cache <φάκελος> [--with-specialists] [--report <αρχείο.md>]` τιμολογεί τις 1.773 παραλλαγές
+του `data/materials.json` και γράφει το `src/material-prices.json` (λίγα KB). **Δεν** είναι μέρος της εβδομαδιαίας εκτέλεσης και δεν
+γράφει στη βάση. Ίδιοι κανόνες: μόνο ρητή κανονική τιμή, σωστή μονάδα/συσκευασία (και ανά κιλό/λίτρο από ρητό μέγεθος), επαληθευμένη
+με ≥ 2 προμηθευτές **ή ≥ 3 διαφορετικά προϊόντα**, διάμεσος, χωρίς ΦΠΑ, με ημερομηνία. Επιπλέον αυστηρότητα για τις λίστες (`src/material-prices.js`,
+τεστ: `test/material-prices.test.js`): λέξεις πριν από «για/με», λέξη είδους στις 3 πρώτες, όχι αρχή σύνθετης λέξης, αριθμοί παραλλαγής
+αυτούσιοι, όχι εύρος ή παραλλαγή χωρίς μέγεθος, όχι μεγάλη διασπορά τιμών.
+
+Η εφαρμογή διαβάζει το αρχείο **μόνο με το flag** (δυναμικό import + fetch, έξω από το precache) και προτείνει την τιμή σε γραμμή εκτός
+καταλόγου, όταν ταιριάζει με βεβαιότητα και έχει την ίδια μονάδα («Τιμή αγοράς προμηθευτών (λίστα υλικών)»).
+
+Προμηθευτές ειδικοτήτων με adapter σελίδων (`tools/prices/adapters/shops.mjs`: WooCommerce HTML, OpenCart/Journal3, PrestaShop,
+e-shop.gr), όλοι **απενεργοποιημένοι**: kaxirismonotika, e-shop, e-plakakia, oikeiaoikia, palousis. Κάλυψη 24/11: `data/reports/material-prices-2026-11-24.md`.
+
 ## Αρχεία
 
 - `src/price-match.js` — κανονικοποίηση, χαρακτηριστικά, αντιστοίχιση, μονάδες, διάμεσος (τεστ: `test/price-match.test.js`).
 - `src/price-rules.js` — κανόνες ανά είδος του καταλόγου (και `V2_RULES`).
+- `tools/prices/materials-prices.mjs`, `src/material-prices.js` — τιμές για όλες τις παραλλαγές των λιστών υλικών.
+- `tools/prices/adapters/shops.mjs` — adapters σελίδων για προμηθευτές ειδικοτήτων (τεστ: `test/price-shops.test.js`).
 - `tools/prices/coverage.mjs` — ανάλυση κάλυψης ανά είδος από την cache (χωρίς βάση, χωρίς αιτήματα).
 - `src/price-watch.js` — εφαρμογή: καταγραφή προϊόντων εκτός καταλόγου, συγχρονισμός, τιμές αναφοράς (τεστ: `test/price-watch.test.js`).
 - `tools/prices/` — fetcher, adapters (`woo`, `praktiker`, `html`), `suppliers.mjs`, `engine.mjs`, `stores/`, `run.mjs`, `report.mjs`

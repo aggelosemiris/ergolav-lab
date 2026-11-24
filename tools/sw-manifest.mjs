@@ -16,6 +16,7 @@ export const MAX_BYTES = 2 * 1024 * 1024;
 // Ανεβαίνουν, αλλά δεν τα χρειάζεται η εφαρμογή χωρίς σήμα.
 export const EXCLUDE = new Map([
   ['media/ergolav-social-x065.mp4', 'βίντεο για τα social· δεν το χρησιμοποιεί η εφαρμογή'],
+  ['src/material-prices.json', 'τιμές λιστών υλικών: μόνο με MATERIALS_V2_ENABLED (αλλιώς δεν το ζητά η εφαρμογή)'],
 ]);
 const NOT_APP = new Set(['.nojekyll', '_headers', 'sw.js']);
 export const BEGIN = '// <precache> — γράφεται από το `npm run sw:manifest`· μην το αλλάζεις με το χέρι.';
