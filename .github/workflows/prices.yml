@@ -1,5 +1,5 @@
 # Εβδομαδιαία ενημέρωση τιμών προμηθευτών (χωρίς AI). Βλ. docs/PRICE_MONITORING.md.
-# Μία φορά: Settings → Secrets and variables → Actions → New repository secret:
+# Ρύθμιση: Settings → Environments → prices → Environment secrets:
 #   SUPABASE_URL               (π.χ. https://<project>.supabase.co)
 #   SUPABASE_SERVICE_ROLE_KEY  (Supabase → Project Settings → API → service_role· ΠΟΤΕ στο repo ή στην εφαρμογή)
 # Και η migration supabase/migrations/20261120000000_price_monitoring.sql στο SQL editor του Supabase.
@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   prices:
+    environment: prices
     runs-on: ubuntu-latest
     timeout-minutes: 300
     # Το service_role key ΜΟΝΟ στο βήμα της ενημέρωσης: όχι στα tests, όχι στα actions (checkout, cache, artifact).
