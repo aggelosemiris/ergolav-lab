@@ -8,7 +8,7 @@ workers_dev = true
 
 [vars]
 # CORS: μόνο από εδώ γίνονται δεκτά αιτήματα (χωρισμένα με κόμμα, χωρίς / στο τέλος).
-ALLOWED_ORIGIN = "https://aggelosemiris.github.io"
+ALLOWED_ORIGIN = "https://aggelosemiris.github.io,https://ergolav.github.io"
 MODEL = "claude-opus-5-5"
 EFFORT = "low"
 # Όρια αιτημάτων: ανά συσκευή και ανά IP την ώρα, και συνολικά την ημέρα (προστασία κόστους).

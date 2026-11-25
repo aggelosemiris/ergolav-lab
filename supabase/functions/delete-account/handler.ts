@@ -6,6 +6,8 @@
 // Οι διευθύνσεις της εφαρμογής, σε ΜΙΑ λίστα: εδώ μπαίνει αργότερα και το δικό μας domain.
 export const ALLOWED_ORIGINS = [
   'https://aggelosemiris.github.io',
+  // Νέα διεύθυνση μετά τη μεταφορά του repo στον οργανισμό ergolav (ergolav.github.io/ergolav-lab).
+  'https://ergolav.github.io',
   'http://localhost:8087',
   'http://127.0.0.1:8087',
 ];

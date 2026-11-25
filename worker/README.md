@@ -74,7 +74,7 @@
 
 | Ρύθμιση | Προεπιλογή | Τι κάνει |
 |---|---|---|
-| `ALLOWED_ORIGIN` | `https://aggelosemiris.github.io` | Από πού δέχεται αιτήματα (CORS). Πολλά, με κόμμα. |
+| `ALLOWED_ORIGIN` | `https://aggelosemiris.github.io,https://ergolav.github.io` | Από πού δέχεται αιτήματα (CORS). Πολλά, με κόμμα. |
 | `MODEL` | `claude-opus-5-5` | Το μοντέλο του Claude. |
 | `EFFORT` | `low` | Πόσο «σκέφτεται» το μοντέλο. Το `low` κρατά τη διόρθωση γρήγορη. |
 | `RATE_DEVICE_PER_HOUR` | `30` | Αιτήματα ανά συσκευή την ώρα. |
