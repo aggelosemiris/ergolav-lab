@@ -1,0 +1,19 @@
+name: Pull request tests
+on:
+  pull_request:
+    branches: [lab]
+permissions:
+  contents: read
+jobs:
+  tests:
+    name: Lab unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
