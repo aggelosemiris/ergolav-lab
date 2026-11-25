@@ -11,6 +11,7 @@
 import { catalogProducts } from '../../src/price-rules.js';
 import { specFor, specific, matchItem, unitPrice, reference, median, wordsOf, gtin, codesIn, modelCode } from '../../src/price-match.js';
 import { stripPersonal } from '../../src/rewrite-client.js';
+import { createHash } from 'node:crypto';
 
 export const FRESH_DAYS = 21;          // τιμή προμηθευτή παλαιότερη από τόσο δεν μετρά στην τιμή αναφοράς
 // Έλεγχος αληθοφάνειας: τιμή ανά μονάδα που απέχει πάνω από τόσες φορές από τη γνωστή τιμή (ενδεικτική του καταλόγου ή
@@ -68,6 +69,37 @@ function candidates(spec, idx){
   return out;
 }
 
+// Το supplier_product_id χωρά ως 120 χαρακτήρες. Όταν ο adapter δεν βρίσκει αριθμό προϊόντος, το id είναι το URL· τα
+// ελληνικά URL (π.χ. palousis) είναι URL-encoded, 6 χαρακτήρες ανά γράμμα, οπότε το κόψιμο στους 120 έκανε δύο διαφορετικά
+// προϊόντα ίδιο κλειδί (Postgres 21000 στο upsert). Τα ids ως 120 μένουν ίδια (δεν αλλάζουν τα υπάρχοντα κλειδιά)·
+// τα μεγαλύτερα γίνονται σταθερό hash του πλήρους id.
+export const OFFER_ID_MAX = 120;
+export function offerProductId(id){
+  const s = String(id);
+  return s.length <= OFFER_ID_MAX ? s : `h:${createHash('sha1').update(s).digest('hex')}`;
+}
+
+const offerKey = o => `${o.price_product_id}|${o.supplier_id}|${o.supplier_product_id}`;
+const RANK = {verified: 0, 'unit-mismatch': 1, unverified: 2};
+const rank = o => RANK[o.verification] ?? 3;
+/** true αν η a προτιμάται από τη b: verified > unit-mismatch > unverified, μετά του τρέχοντος run, μετά η μικρότερη τιμή μονάδας. */
+function preferred(a, b, runId){
+  if(rank(a) !== rank(b)) return rank(a) < rank(b);
+  const ca = a.seen_run === runId, cb = b.seen_run === runId;
+  if(ca !== cb) return ca;
+  return (a.unit_cents ?? Infinity) < (b.unit_cents ?? Infinity);
+}
+/** Μία γραμμή ανά (price_product_id, supplier_id, supplier_product_id): το upsert της Postgres δεν δέχεται δύο στο ίδιο πακέτο. */
+export function dedupeOffers(rows, runId){
+  const best = new Map();
+  for(const r of rows){
+    const k = offerKey(r), had = best.get(k);
+    if(!had || preferred(r, had, runId)) best.set(k, r);
+  }
+  const kept = [...best.values()];
+  return {rows: kept, dropped: rows.length - kept.length};
+}
+
 /** Οι προσφορές ενός προμηθευτή για ένα προϊόν (επαληθευμένες και μη, με τον λόγο). */
 export function offersFor(entry, supplier, items, idx){
   if(entry.kind !== 'product') return [];
@@ -83,7 +115,7 @@ export function offersFor(entry, supplier, items, idx){
       else if(entry.anchorCents && (unit.cents * PLAUSIBLE < entry.anchorCents || unit.cents > entry.anchorCents * PLAUSIBLE)){ verification = 'unverified'; reason = 'implausible-vs-anchor'; }
       else { verification = 'verified'; reason = null; }
     }
-    out.push({supplier_id: supplier.id, supplier_product_id: String(it.id).slice(0, 120), url: it.url, name: it.name.slice(0, 300),
+    out.push({supplier_id: supplier.id, supplier_product_id: offerProductId(it.id), url: it.url, name: it.name.slice(0, 300),
       regular_cents: verification === 'verified' ? it.regularCents : (it.regularCents ?? null), vat_included: supplier.vatIncluded,
       vat_basis: supplier.vat, unit_cents: verification === 'verified' ? unit.cents : null, unit_basis: unit?.basis ?? null, promo: !!it.promo,
       verification, verification_reason: reason ? String(reason).slice(0, 120) : null, match_method: m.method});
@@ -99,7 +131,7 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
   const runId = await store.startRun();
   if(runId == null){ log('Τρέχει ήδη άλλη εκτέλεση: τίποτα δεν έγινε.'); return {skipped: true}; }
   const t0 = now(), iso = () => now().toISOString();
-  const stats = {run: runId, started: t0.toISOString(), suppliers: {}, products: {}, offers: {verified: 0, promoRegular: 0, unverified: 0, unitMismatch: 0}};
+  const stats = {run: runId, started: t0.toISOString(), suppliers: {}, products: {}, offers: {verified: 0, promoRegular: 0, unverified: 0, unitMismatch: 0, duplicatesDropped: 0}};
   const beat = setInterval(() => store.heartbeat(runId).catch(() => {}), 60e3);
   try {
     // ── 2. απογραφή ──
@@ -161,7 +193,10 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
     const seen = new Set(rows.map(o => `${o.price_product_id}|${o.supplier_id}|${o.supplier_product_id}`));
     for(const o of existing) if(okSuppliers.has(o.supplier_id) && !seen.has(`${o.price_product_id}|${o.supplier_id}|${o.supplier_product_id}`) && o.verification !== 'unverified')
       rows.push({...o, verification: 'unverified', verification_reason: 'not-listed', seen_run: runId});
-    const saved = await store.upsertOffers(rows);
+    const unique = dedupeOffers(rows, runId);
+    stats.offers.duplicatesDropped = unique.dropped;
+    if(unique.dropped) log(`Προσφορές: πετάχτηκαν ${unique.dropped} διπλές (ίδιο προϊόν, προμηθευτής και κωδικός προμηθευτή).`);
+    const saved = await store.upsertOffers(unique.rows);
     for(const o of saved){
       if(o.verification !== 'verified' || o.seen_run !== runId) continue;
       const prev = prevByKey.get(`${o.price_product_id}|${o.supplier_id}|${o.supplier_product_id}`);
