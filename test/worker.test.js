@@ -85,6 +85,23 @@ test('CORS: preflight μόνο για το domain της εφαρμογής· ά
   assert.equal(d.calls.length, 0);
 });
 
+test('CORS: το wrangler.toml δέχεται και την παλιά και τη νέα διεύθυνση (ergolav.github.io), όχι όσες απλώς μοιάζουν', async () => {
+  const allowed = fs.readFileSync(new URL('../worker/wrangler.toml', import.meta.url), 'utf8').match(/^ALLOWED_ORIGIN = "([^"]*)"/m)[1];
+  const e = {ALLOWED_ORIGIN: allowed, ANTHROPIC_API_KEY: 'test-key'};
+  for(const origin of ['https://aggelosemiris.github.io', 'https://ergolav.github.io']){
+    const pre = await handle(req(null, {origin, method: 'OPTIONS', device: null}), {env: e, ...deps()});
+    assert.equal(pre.status, 204, origin);
+    assert.equal(pre.headers.get('Access-Control-Allow-Origin'), origin);
+  }
+  for(const origin of ['https://ergolav.github.io.evil.example', 'https://evil-ergolav.github.io', 'http://ergolav.github.io']){
+    const d = deps();
+    const res = await handle(req(payload(), {origin}), {env: e, ...d});
+    assert.equal(res.status, 403, origin);
+    assert.equal(res.headers.get('Access-Control-Allow-Origin'), null);
+    assert.equal(d.calls.length, 0);
+  }
+});
+
 test('λάθη πριν το AI: διαδρομή, μέθοδος, κλειδί, συσκευή, μέγεθος, JSON, περιεχόμενο', async () => {
   const d = deps();
   const status = async (r, e = env) => { const res = await handle(r, {env: e, ...d}); return [res.status, (await body(res))?.error]; };

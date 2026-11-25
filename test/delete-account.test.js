@@ -80,6 +80,13 @@ test('CORS: μόνο οι διευθύνσεις της λίστας· OPTIONS �
   assert.equal(pre.status, 204);
   assert.equal(pre.headers.get('Access-Control-Allow-Origin'), 'http://localhost:8087');
   assert.equal((await handle(new Request('https://x/f', {method: 'GET'}), fakeAdmin())).status, 405);
+  // νέα διεύθυνση του οργανισμού ergolav: δεκτή, αλλά όχι διευθύνσεις που απλώς μοιάζουν
+  assert.equal(corsHeaders('https://ergolav.github.io')['Access-Control-Allow-Origin'], 'https://ergolav.github.io');
+  for(const o of ['https://ergolav.github.io.evil.example', 'https://evil-ergolav.github.io', 'http://ergolav.github.io', 'https://ergolav.github.io/'])
+    assert.equal(corsHeaders(o)['Access-Control-Allow-Origin'], undefined, o);
+  const preNew = await handle(new Request('https://x/f', {method: 'OPTIONS', headers: {Origin: 'https://ergolav.github.io'}}), fakeAdmin());
+  assert.equal(preNew.status, 204);
+  assert.equal(preNew.headers.get('Access-Control-Allow-Origin'), 'https://ergolav.github.io');
   // νέο domain = μία γραμμή στη λίστα
   assert.equal(corsHeaders('https://ergolav.gr', [...ALLOWED_ORIGINS, 'https://ergolav.gr'])['Access-Control-Allow-Origin'], 'https://ergolav.gr');
 });
