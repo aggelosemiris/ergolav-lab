@@ -1,0 +1,8 @@
+# Αλλαγές στα σημεία ασφαλείας θέλουν review από τον υπεύθυνο υποδομής/ασφάλειας (docs/security/threat-model.md).
+# Ισχύει μόνο με ruleset στο `lab` που έχει «Require review from Code Owners».
+# @69299f9gj2-svg = Φίλιππος (CTO). Χρειάζεται δικαίωμα write στο repo, αλλιώς το GitHub αγνοεί τη γραμμή.
+/supabase/        @69299f9gj2-svg @aggelosemiris
+/.github/         @69299f9gj2-svg @aggelosemiris
+/src/account*     @69299f9gj2-svg @aggelosemiris
+/src/sync*        @69299f9gj2-svg @aggelosemiris
+/_headers         @69299f9gj2-svg @aggelosemiris
