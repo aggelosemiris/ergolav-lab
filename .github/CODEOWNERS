@@ -1,0 +1,8 @@
+# Αλλαγές στα σημεία ασφαλείας θέλουν review από τον υπεύθυνο υποδομής/ασφάλειας (docs/security/threat-model.md).
+# Ισχύει μόνο με ruleset στο `lab` που έχει «Require review from Code Owners».
+# TODO: πρόσθεσε δίπλα το GitHub username του Φίλιππου (CTO), π.χ. «@aggelosemiris @<username>».
+/supabase/        @aggelosemiris
+/.github/         @aggelosemiris
+/src/account*     @aggelosemiris
+/src/sync*        @aggelosemiris
+/_headers         @aggelosemiris
