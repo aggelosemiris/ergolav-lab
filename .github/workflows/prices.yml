@@ -15,6 +15,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   prices:
+    # Τα SUPABASE_* είναι ΜΟΝΟ στο environment «prices», που δέχεται μόνο το branch lab (Settings → Environments).
+    # Ο φρουρός κόβει και το «Run workflow» από άλλο branch πριν ζητηθεί το environment. Βλ. docs/security (H1).
+    if: github.ref == 'refs/heads/lab'
     environment: prices
     runs-on: ubuntu-latest
     timeout-minutes: 300
