@@ -65,3 +65,29 @@ test('ανανέωση κατά URL, διατήρηση προηγούμενης
   assert.equal((await run(9, [feed(a, 1500)])).changed, 0);
   assert.equal(displayedCatalogPrice(search.products.find(([id]) => still.product_id === id), [still]).cents, 1490);
 });
+
+test('τιμή άλλου προμηθευτή μόνο για σαφή πλήρη ταυτότητα μοντέλου', async () => {
+  const same = 'Μπόιλερ ACME XT123 80 L';
+  const variant = 'Μπόιλερ ACME XT123 160 L';
+  const ambiguous = 'Βάνα ACME AB456 3/4';
+  const {supply: catalog, search: searchCatalog} = buildProductCatalog([
+    make('closed', 'one', same, {brand: 'ACME'}),
+    make('closed', 'two', variant, {brand: 'ACME'}),
+    make('closed', 'three', ambiguous, {brand: 'ACME'}),
+  ]);
+  const store = createMemoryStore();
+  const item = (slug, name) => ({name, url: `https://new.example/${slug}`, verification: 'verified', regularCents: 1599});
+  const results = [{s: {id: 'new'}, status: 'available', items: [
+    item('one', same),
+    item('two', 'Μπόιλερ ACME XT123 160 L συσκευασία 2 τεμ.'),
+    item('three', ambiguous),
+    item('four', ambiguous),
+  ]}];
+  const run = await refreshCatalog({catalog, searchCatalog, results, store, fetcher: {}, at: '2026-11-27T00:00:00Z'});
+  assert.equal(run.fromAlternateSource, 1);
+  assert.equal(run.verified, 1);
+  assert.equal(run.withoutVerified, 2);
+  const [price] = store.db.product_catalog_prices;
+  assert.equal(price.supplier_id, 'new');
+  assert.equal(price.product_id, searchCatalog.products.find(row => row[1] === same)[0]);
+});

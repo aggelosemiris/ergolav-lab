@@ -13,7 +13,7 @@ import { runOnce } from './engine.mjs';
 import { createMemoryStore } from './stores/memory.mjs';
 import { createSupabaseStore } from './stores/supabase.mjs';
 import { report } from './report.mjs';
-import { loadSupplyCatalog } from '../catalog/product-catalog.mjs';
+import { loadSupplyCatalog, loadSearchCatalog } from '../catalog/product-catalog.mjs';
 import { refreshCatalog } from './catalog-refresh.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -40,8 +40,9 @@ const fetcher = createFetcher({cacheDir: opt('--cache', path.join(here, '.cache'
 
 const t0 = Date.now();
 const catalog = loadSupplyCatalog();
+const searchCatalog = loadSearchCatalog();
 const result = await runOnce({store, suppliers, fetcher, log, v2,
-  refreshProductCatalog: ({results, at}) => refreshCatalog({catalog, results, at, store, fetcher, only, log})});
+  refreshProductCatalog: ({results, at}) => refreshCatalog({catalog, searchCatalog, results, at, store, fetcher, only, log})});
 if(result.skipped) process.exit(0);
 const {stats} = result;
 log(`τέλος σε ${Math.round((Date.now() - t0) / 1000)}″ · αιτήματα ${fetcher.stats.requests} (cache ${fetcher.stats.cached}, επαναλήψεις ${fetcher.stats.retries})`);
