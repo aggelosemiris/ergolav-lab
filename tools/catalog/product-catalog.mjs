@@ -156,6 +156,10 @@ export function buildProductCatalog(rawRows, sources = {}){
   };
 }
 
+export function loadSearchCatalog(){
+  return JSON.parse(gunzipSync(readFileSync(searchFile)));
+}
+
 export function loadSupplyCatalog(){
   return JSON.parse(gunzipSync(readFileSync(sourceFile)));
 }

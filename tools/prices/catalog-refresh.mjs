@@ -1,5 +1,6 @@
 // Ίδιος κατάλογος με την αναζήτηση. Μαζική ανάγνωση, ποτέ ένα αίτημα για κάθε προϊόν.
 import {supplierListingKey} from '../catalog/product-catalog.mjs';
+import {clean, codesIn} from '../../src/price-match.js';
 import {SITES} from '../catalog/sites.mjs';
 import {wooItems} from './adapters/woo.mjs';
 import {magentoItems, vrontinosItems} from './adapters/html.mjs';
@@ -7,6 +8,8 @@ import {praktikerItems} from './adapters/praktiker.mjs';
 import {journalItems, prestaItems, wooHtmlItems} from './adapters/shops.mjs';
 import {SPECIALISTS_PENDING_TERMS, SPECIALISTS_REJECTED} from './suppliers.mjs';
 
+// Τα προϊόντα μένουν στον κατάλογο. Για αυτές τις πηγές αναζητούμε τιμή σε ενεργούς προμηθευτές.
+const alternateOnly = new Set(['homeville', 'youbath', 'mafou', 'epipla1']);
 const aliases = {kaxiris: 'kaxirismonotika', mylonas: 'mylonasergaleia', papasideris: 'e-papasideris', billis: 'marmara-billis'};
 const host = value => new URL(value).hostname.replace(/^www\./, '');
 const sourceById = new Map(SITES.map(site => [site.id, site]));
@@ -60,7 +63,57 @@ function observations(site, items){
   return seen;
 }
 
-export async function refreshCatalog({catalog, results, fetcher, store, at, only, log = () => {}}){
+// Ίδιος πλήρης τίτλος με κωδικό μοντέλου. Διατηρούμε αριθμούς, μέγεθος και περιγραφή
+// συσκευασίας. Αν ο τίτλος δείχνει σε δύο προϊόντα ή δύο URL του ίδιου προμηθευτή, παραλείπεται.
+function modelTitle(name){
+  if(!codesIn(name).some(code => /[A-Z]{2,}/.test(code) && /[0-9]{3,}/.test(code))) return null;
+  return clean(name);
+}
+
+function alternateOffers(searchCatalog, sources, offersBySupplier, verified, at){
+  const catalogByTitle = new Map();
+  for(const [id, title, brand, , names] of searchCatalog?.products ?? []){
+    for(const name of [title, ...names]){
+      const key = modelTitle(name);
+      if(!key) continue;
+      const previous = catalogByTitle.get(key);
+      catalogByTitle.set(key, previous === undefined || previous?.id === id ? {id, brand: clean(brand)} : null);
+    }
+  }
+
+  const rows = [];
+  for(const {site, items, priceByUrl} of sources){
+    const knownUrls = new Set((offersBySupplier.get(site) ?? []).map(({url}) => supplierListingKey(site, `https://${url}`)));
+    const urlsByTitle = new Map();
+    for(const item of items){
+      if(!item.name) continue;
+      const key = modelTitle(item.name);
+      if(!key || !catalogByTitle.get(key)) continue;
+      const url = supplierListingKey(site, item.url);
+      if(!url) continue;
+      const previous = urlsByTitle.get(key);
+      urlsByTitle.set(key, previous === undefined || previous?.url === url ? {url, brand: clean(item.brand)} : null);
+    }
+    const matches = new Map();
+    for(const [key, listing] of urlsByTitle){
+      const product = catalogByTitle.get(key);
+      if(!listing || verified.has(product.id) || knownUrls.has(listing.url)) continue;
+      if(product.brand && listing.brand && product.brand !== listing.brand) continue;
+      const price = priceByUrl.get(listing.url);
+      if(!price || price.conflict) continue;
+      const previous = matches.get(product.id);
+      matches.set(product.id, previous === undefined || previous?.url === listing.url ? {url: listing.url, price} : null);
+    }
+    for(const [product_id, match] of matches){
+      if(!match) continue;
+      const {cents, kind: price_kind} = match.price;
+      rows.push({product_id, supplier_id: site, cents, price_kind, verified_at: at});
+    }
+  }
+  return rows;
+}
+
+export async function refreshCatalog({catalog, searchCatalog, results, fetcher, store, at, only, log = () => {}}){
   const offersBySupplier = new Map();
   for(const [productId, offers] of catalog.products){
     for(const [site, url] of offers){
@@ -85,12 +138,20 @@ export async function refreshCatalog({catalog, results, fetcher, store, at, only
   };
   const budget = new Map();
 
-  const updates = await Promise.all([...offersBySupplier].map(async ([site, offers]) => {
+  const freshSources = [];
+  const activeSites = new Set([...offersBySupplier.keys(), ...results.filter(r => r.items?.length)
+    .map(r => Object.keys(aliases).find(site => aliases[site] === r.s.id) ?? r.s.id)]);
+  const updates = await Promise.all([...activeSites].map(async site => {
+    const offers = offersBySupplier.get(site) ?? [];
     const id = aliases[site] || site;
     const result = bySupplier.get(id);
     const rows = [];
     const coverage = suppliers[site] = {listings: offers.length, seen: 0, verified: 0, reason: null};
     for(const offer of offers) checked.add(offer.productId);
+    if(alternateOnly.has(site)){
+      coverage.reason = 'αναζήτηση τιμής σε εναλλακτικούς προμηθευτές';
+      return rows;
+    }
     if(only && !only.includes(id) && !only.includes(site)){
       coverage.reason = 'εκτός φίλτρου εκτέλεσης';
       return rows;
@@ -104,6 +165,7 @@ export async function refreshCatalog({catalog, results, fetcher, store, at, only
       } catch(e){ coverage.reason = e.message; }
     }
     const priceByUrl = observations(site, items);
+    if(items.length) freshSources.push({site, items, priceByUrl});
     const byProduct = new Map();
     for(const {productId, url} of offers){
       const key = supplierListingKey(site, `https://${url}`);
@@ -123,6 +185,14 @@ export async function refreshCatalog({catalog, results, fetcher, store, at, only
     coverage.reason ??= result?.reason || extra.reason || (!items.length ? 'δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή' : null);
     return rows;
   }));
+  const alternatives = alternateOffers(searchCatalog, freshSources, offersBySupplier, verified, at);
+  const fromAlternateSource = new Set();
+  for(const row of alternatives){
+    fromAlternateSource.add(row.product_id);
+    verified.add(row.product_id);
+    seen.add(row.product_id);
+  }
+  updates.push(alternatives);
   for(const rows of updates){
     if(!rows.length) continue;
     const result = await store.publishCatalogPrices(rows);
@@ -131,5 +201,5 @@ export async function refreshCatalog({catalog, results, fetcher, store, at, only
     for(const id of result.changed) changed.add(id);
   }
   return {total: catalog.products.length, checked: checked.size, seen: seen.size, verified: verified.size,
-    withoutVerified: checked.size - verified.size, offersChanged, newOffers, changed: changed.size, suppliers};
+    withoutVerified: checked.size - verified.size, fromAlternateSource: fromAlternateSource.size, offersChanged, newOffers, changed: changed.size, suppliers};
 }
