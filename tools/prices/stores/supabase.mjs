@@ -57,6 +57,15 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
   const upsert = (table, rows, conflict) => req('POST', `/${table}?on_conflict=${conflict}`, rows, 'resolution=merge-duplicates,return=representation');
 
   return {
+    async publishCatalogPrices(rows){
+      const result = {new: 0, changed: []};
+      for(const part of chunk(rows, 500)){
+        const published = await req('POST', '/rpc/publish_product_catalog_prices', {p_rows: part});
+        result.new += published.new;
+        result.changed.push(...published.changed);
+      }
+      return result;
+    },
     async startRun(stale = 120){ return req('POST', '/rpc/price_run_start', {p_stale_minutes: stale}); },
     async heartbeat(id){ await req('PATCH', `/price_runs?id=eq.${id}`, {heartbeat_at: new Date().toISOString()}); },
     async finishRun(id, status, stats, error = null){ await req('PATCH', `/price_runs?id=eq.${id}`, {status, stats, error, finished_at: new Date().toISOString()}); },
