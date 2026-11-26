@@ -127,7 +127,7 @@ export function offersFor(entry, supplier, items, idx){
  * Μία εβδομαδιαία εκτέλεση. store: βλ. stores/*.mjs · suppliers: SUPPLIERS · fetcher: fetch.mjs.
  * Επιστρέφει τα στατιστικά (και τα γράφει στο price_runs).
  */
-export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog, v2 = false}){
+export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog, v2 = false, refreshProductCatalog}){
   const runId = await store.startRun();
   if(runId == null){ log('Τρέχει ήδη άλλη εκτέλεση: τίποτα δεν έγινε.'); return {skipped: true}; }
   const t0 = now(), iso = () => now().toISOString();
@@ -250,6 +250,7 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
     await store.updateProducts(updates);
     await store.insertReferenceHistory(refHistory);
     stats.products = {...stats.products, ...counts, referenceChanges: refHistory.length};
+    if(refreshProductCatalog) stats.productCatalog = await refreshProductCatalog({results, at: iso()});
     stats.finished = iso();
     const failed = Object.values(stats.suppliers).filter(s => s.status !== 'available').length;
     await store.finishRun(runId, failed ? 'partial' : 'done', stats);

@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Εργαλεία ανάγνωσης καταλόγων
+        run: npm ci --prefix tools/catalog
       - name: Unit tests
         run: npm test
       # Cache των σελίδων (λήξη 6 ημερών μέσα στον fetcher): αν μια εκτέλεση διακοπεί, η επόμενη συνεχίζει χωρίς νέα αιτήματα.
