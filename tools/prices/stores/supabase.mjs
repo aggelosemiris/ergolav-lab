@@ -3,6 +3,7 @@
 // Τα δικαιώματα και οι κανόνες ακεραιότητας είναι στη βάση (supabase/migrations/20261120000000_price_monitoring.sql):
 // μοναδικά κλειδιά, κλείδωμα εκτέλεσης (price_run_start), trigger που απαγορεύει αλλαγή της τιμής του χρήστη.
 // Τα πεδία μιας τιμής προμηθευτή, ίδια σε κάθε εγγραφή (το PostgREST θέλει ομοιόμορφες γραμμές σε μαζική εισαγωγή).
+import { offerUrl } from '../offer-url.mjs';
 export const OFFER_COLS = ['price_product_id', 'supplier_id', 'supplier_product_id', 'url', 'name', 'regular_cents', 'vat_included', 'vat_basis',
   'unit_cents', 'unit_basis', 'promo', 'verification', 'verification_reason', 'match_method', 'retrieved_at', 'last_success_at', 'seen_run'];
 const pick = (r, cols) => Object.fromEntries(cols.map(c => [c, r[c] ?? null]));
@@ -30,7 +31,18 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
       if(temporary && attempt < retries){ log(`Supabase: νέα προσπάθεια (${err ? err.name : r.status}) ${method} ${path.split('?')[0]}`); await sleep(1500 * 2 ** attempt); continue; }
       if(err) throw err;
       const text = await r.text();
-      if(!r.ok) throw new Error(`Supabase ${method} ${path.split('?')[0]}: HTTP ${r.status} ${text.slice(0, 300)}`);
+      if(!r.ok){
+        // Το details μπορεί να περιέχει ολόκληρη εγγραφή και να κρύψει το message με το όνομα του κανόνα.
+        // Κρατάμε μόνο κωδικό/μήνυμα, χωρίς details ή hint και χωρίς το κλειδί της υπηρεσίας.
+        let summary = 'Μη δομημένη απάντηση σφάλματος';
+        try {
+          const e = JSON.parse(text);
+          summary = [typeof e?.code === 'string' ? e.code.slice(0, 20) : '',
+            typeof e?.message === 'string' ? e.message : ''].filter(Boolean).join(' ') || summary;
+        } catch {}
+        summary = summary.replaceAll(serviceKey, '[κρυφό]').slice(0, 600);
+        throw new Error(`Supabase ${method} ${path.split('?')[0]}: HTTP ${r.status} ${summary}`);
+      }
       return text ? JSON.parse(text) : null;
     }
   }
@@ -78,7 +90,9 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
     },
     async upsertOffers(rows){
       const out = [];
-      for(const part of chunk(rows.map(r => pick(r, OFFER_COLS)), 500)) out.push(...await upsert('supplier_offers', part, 'price_product_id,supplier_id,supplier_product_id'));
+      // Όλο το πακέτο ελέγχεται πριν από το πρώτο αίτημα. Το id μένει αυτούσιο, αλλάζει μόνο η αναπαράσταση του URL.
+      const prepared = rows.map(r => pick({...r, url: offerUrl(r.url)}, OFFER_COLS));
+      for(const part of chunk(prepared, 500)) out.push(...await upsert('supplier_offers', part, 'price_product_id,supplier_id,supplier_product_id'));
       return out;
     },
     async insertHistory(rows){ for(const part of chunk(rows, 500)) await req('POST', '/supplier_price_history', part, 'return=minimal'); },

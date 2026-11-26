@@ -35,3 +35,23 @@ test('authHeaders: μόνο το πρόθεμα eyJ κάνει Bearer', () => {
   assert.deepEqual(authHeaders('sb_publishable_abc'), {apikey: 'sb_publishable_abc'});
   assert.deepEqual(authHeaders('eyJabc'), {apikey: 'eyJabc', Authorization: 'Bearer eyJabc'});
 });
+
+test('σφάλμα βάσης: το message με τον κανόνα φαίνεται ακόμα και μετά από μεγάλο details, χωρίς περιεχόμενο εγγραφής', async () => {
+  const key = 'fake-secret-not-for-logs';
+  const store = createSupabaseStore({url: 'https://abc.supabase.co', serviceKey: key, fetchImpl: async () => ({
+    ok: false, status: 400, text: async () => JSON.stringify({code: '23514', details: 'ιδιωτικό-πεδίο'.repeat(100),
+      hint: 'ιδιωτικό-hint', message: 'new row violates check constraint "supplier_offers_url_check" ' + key})
+  })});
+  await assert.rejects(store.startRun(), e => {
+    assert.match(e.message, /HTTP 400 23514.*supplier_offers_url_check/);
+    assert.ok(!e.message.includes('ιδιωτικό-πεδίο') && !e.message.includes('ιδιωτικό-hint') && !e.message.includes(key));
+    return true;
+  });
+});
+
+test('μη δομημένο σφάλμα: δεν γράφει HTML, κλειδιά ή άλλα δεδομένα της απάντησης', async () => {
+  const store = createSupabaseStore({url: 'https://abc.supabase.co', serviceKey: 'fake-secret', fetchImpl: async () => ({
+    ok: false, status: 400, text: async () => '<html>fake-secret ιδιωτικό-πεδίο</html>'
+  })});
+  await assert.rejects(store.startRun(), /HTTP 400 Μη δομημένη απάντηση σφάλματος$/);
+});

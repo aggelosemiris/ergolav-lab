@@ -133,5 +133,29 @@ do $$ declare n int; begin
 end $$;
 reset role;
 
+-- ── Ελληνικά URL: η πλήρης Unicode μορφή χωρά χωρίς χαλάρωση του κανόνα των 600 χαρακτήρων ──
+set local role service_role;
+do $$ declare c text; u text := 'https://www.palousis.gr/' || repeat('α', 100) || '/νεροχύτης'; begin
+  begin
+    update public.supplier_offers set url = 'https://www.palousis.gr/' || repeat('%CE%B1', 100) || '/sink';
+    raise exception 'FAIL: κωδικοποιημένο URL >600 έγινε δεκτό';
+  exception when check_violation then
+    get stacked diagnostics c = constraint_name;
+    if c <> 'supplier_offers_url_check' then raise exception 'FAIL: λάθος κανόνας URL: %', c; end if;
+  end;
+  update public.supplier_offers set url = u;
+  if not exists (select from public.supplier_offers where url = u) then raise exception 'FAIL: Unicode URL δεν αποθηκεύτηκε ολόκληρο'; end if;
+  update public.supplier_offers set url = 'https://x/' || repeat('a', 590);
+  begin
+    update public.supplier_offers set url = 'https://x/' || repeat('a', 591);
+    raise exception 'FAIL: URL 601 χαρακτήρων έγινε δεκτό';
+  exception when check_violation then null; end;
+  begin
+    update public.supplier_offers set url = 'http://example.invalid/sink';
+    raise exception 'FAIL: μη HTTPS URL έγινε δεκτό';
+  exception when check_violation then null; end;
+end $$;
+reset role;
+
 select 'PRICE RLS OK' as result;
 rollback;
