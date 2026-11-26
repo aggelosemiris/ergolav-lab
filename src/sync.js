@@ -10,11 +10,10 @@
 // Κάθε προσφορά ανήκει σε έναν λογαριασμό (OWNERS): προσφορές άλλου χρήστη της ίδιας συσκευής δεν ανεβαίνουν ποτέ
 // σε λάθος λογαριασμό. Όσες δεν ανήκουν σε κανέναν (φτιάχτηκαν πριν από τον συγχρονισμό) τις παίρνει ο πρώτος που
 // συγχρονίζει σε αυτή τη συσκευή: «πρώτη σύνδεση με τοπικές προσφορές → ανεβαίνουν», χωρίς διπλότυπα (ίδιο id).
-import { listQuotes, listDeleted, clearDeleted, applyRemote, UUID, STORE, DELETED } from './history.js';
+import { listQuotes, listDeleted, clearDeleted, applyRemote, UUID, STORE, DELETED, OWNERS, owners, removeOwned } from './history.js';
 import { lastQuoteNo, COUNTER } from './profile.js';
 
 export const STATE = 'ergolav.sync.quotes';     // {[userId]: {cursor, pushed: {id: updated}}}
-export const OWNERS = 'ergolav.sync.owners';    // {id: userId}
 export const PAGE = 500;
 export const CHUNK = 200;
 export const SYNC_TIMEOUT_MS = 30000;
@@ -29,7 +28,7 @@ function userState(uid){
   return {cursor: typeof s.cursor === 'string' ? s.cursor : EPOCH, pushed: s.pushed && typeof s.pushed === 'object' ? s.pushed : {}};
 }
 function saveUserState(uid, s){ const all = readJson(STATE); all[uid] = s; writeJson(STATE, all); }
-export const owners = () => readJson(OWNERS);
+export { OWNERS, owners };
 function setOwners(ids, uid){
   if(!ids.length) return;
   const o = owners();
@@ -116,9 +115,16 @@ export async function syncQuotes({client, userId}){
   return out;
 }
 
-/** Σβήνει από τη συσκευή τις προσφορές (και ό,τι κρατά ο συγχρονισμός)· για «αποσύνδεση και σβήσε από τη συσκευή». */
-export function wipeLocalQuotes(){
-  for(const k of [STORE, DELETED, STATE, OWNERS]) try { storage()?.removeItem(k); } catch {}
+/** Σβήνει από τη συσκευή τις προσφορές (και ό,τι κρατά ο συγχρονισμός)· για «αποσύνδεση και σβήσε από τη συσκευή».
+ *  Με uid: ΜΟΝΟ του λογαριασμού που αποσυνδέεται· οι προσφορές άλλου λογαριασμού στην ίδια συσκευή μένουν (H4).
+ *  Χωρίς uid: όλα, όπως πριν. */
+export function wipeLocalQuotes(uid){
+  if(!uid){ for(const k of [STORE, DELETED, STATE, OWNERS]) try { storage()?.removeItem(k); } catch {} return; }
+  const left = removeOwned(uid);
+  const all = readJson(STATE);
+  delete all[uid];
+  if(Object.keys(all).length) writeJson(STATE, all); else try { storage()?.removeItem(STATE); } catch {}
+  if(!left) for(const k of [STORE, DELETED, OWNERS]) try { storage()?.removeItem(k); } catch {}
 }
 
 const withTimeout = (p, ms) => { let t; return Promise.race([p, new Promise((_, no) => { t = setTimeout(() => no(new Error('timeout')), ms); })]).finally(() => clearTimeout(t)); };

@@ -16,12 +16,12 @@ import { tiers, priceKey, history, remember, ageLabel, isStale, ageDays, loadAll
 import { registerCustom, migrateCustom, refFor, refStatus, offersFor, createPriceSync, priceDate, ownPrice, CHECK_DAYS } from './price-watch.js';
 import { loadProfile, saveProfile, initials, takeQuoteNo, getLogo } from './profile.js';
 import { fitImage } from './image.js';
-import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes, ensureIds, newId } from './history.js';
+import { listQuotes, getQuote, saveQuote, updateQuote, migrateQuotes, ensureIds, newId, setViewer, claimUnowned } from './history.js';
 import { createQuoteSync, wipeLocalQuotes } from './sync.js';
 import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
-import { authGate } from './account.js';
+import { authGate, storedSession } from './account.js';
 import { registerSW, takeDraft } from './offline.js';
 import { watchNet, online, probe, onNet, NO_NET } from './net.js';
 import * as CONFIG from './config.js';
@@ -1209,15 +1209,27 @@ syncRulesButton();
 // ─── Λογαριασμός (μόνο με AUTH_ENABLED στο src/config.js· αλλιώς τίποτα δεν αλλάζει) ───
 const account = authUi = mountAccount({show, cta, here: returnHere, home: () => toStart(), busy: () => mic.listening,
   needProfile: () => openProfile(null),
-  onLogin: () => { offlineUi.iosHint(); quoteSync?.run(); },
-  quotes: QUOTES_SYNC_ENABLED ? {pending: () => quoteSync?.pending() ?? 0, flush: () => quoteSync?.run(), wipe: () => { wipeLocalQuotes(); syncHistoryButton(); }} : null,
-  onLockChange: v => { authLocked = v; renderBrand(); },
+  onLogin: () => { viewerChanged(); offlineUi.iosHint(); quoteSync?.run(); },
+  quotes: QUOTES_SYNC_ENABLED ? {pending: () => quoteSync?.pending() ?? 0, flush: () => quoteSync?.run(), wipe: uid => { wipeLocalQuotes(uid); syncHistoryButton(); }} : null,
+  onLockChange: v => { authLocked = v; renderBrand(); viewerChanged(); },
   onProfileChange: () => {
     PROFILE = loadProfile();
     renderBrand();
     // Πρώτο άνοιγμα σε νέο κινητό: η φόρμα στοιχείων δεν χρειάζεται πια.
     if(document.querySelector('.screen.on')?.id === 's-profile' && PROFILE && !profileBack) toStart();
   }});
+
+// ─── Κοινή συσκευή (εύρημα H4): κάθε λογαριασμός βλέπει μόνο τις δικές του προσφορές ───
+// Ο συνδεδεμένος: από τη βιβλιοθήκη, ή (στο άνοιγμα, πριν φορτώσει) από την αποθηκευμένη συνεδρία. Όσες προσφορές δεν
+// ανήκουν σε κανέναν (πριν από τους λογαριασμούς) τις παίρνει ο πρώτος που συνδέεται. Χωρίς λογαριασμό: όλες, όπως πριν.
+// authUi (όχι account): το onLockChange μπορεί να κληθεί μέσα στο mountAccount, πριν οριστεί το account.
+function viewerChanged(){
+  if(!authUi?.enabled) return;
+  const uid = authUi.userId?.() ?? storedSession()?.user?.id ?? null;
+  if(uid) claimUnowned(uid);
+  syncHistoryButton();
+}
+if(account.enabled){ setViewer(() => account.userId?.() ?? storedSession()?.user?.id ?? null); viewerChanged(); }
 
 // ─── Συγχρονισμός προσφορών (Φάση 3, μόνο με QUOTES_SYNC_ENABLED· docs/sync.md) ───
 // Η οθόνη διαβάζει πάντα το localStorage· εδώ μόνο το παρασκήνιο: στο άνοιγμα, όταν γυρίσει το σήμα, όταν ο τεχνίτης
