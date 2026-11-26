@@ -1,6 +1,7 @@
 // Αποθήκευση σε μνήμη/αρχείο JSON με την ΙΔΙΑ διεπαφή και τους ΙΔΙΟΥΣ κανόνες με τη βάση (μοναδικά κλειδιά,
 // κλείδωμα εκτέλεσης, η τιμή του χρήστη δεν αλλάζει). Για τα τεστ και για τοπική εκτέλεση χωρίς Supabase.
 import fs from 'node:fs';
+import { offerUrl } from '../offer-url.mjs';
 
 export function createMemoryStore({file = null, data = null, now = () => new Date()} = {}){
   const db = data || (file && fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null) || {};
@@ -52,7 +53,8 @@ export function createMemoryStore({file = null, data = null, now = () => new Dat
     async loadProducts(ids){ const s = new Set(ids); return clone(db.price_products.filter(p => s.has(p.id))); },
     async upsertOffers(rows){
       const out = [];
-      for(const r of rows){
+      const prepared = rows.map(r => ({...r, url: offerUrl(r.url)}));
+      for(const r of prepared){
         if(r.verification === 'verified' && !(r.regular_cents > 0 && r.unit_cents > 0)) throw new Error('check: verified χωρίς τιμή');
         let o = db.supplier_offers.find(x => x.price_product_id === r.price_product_id && x.supplier_id === r.supplier_id && x.supplier_product_id === r.supplier_product_id);
         const {id, ...rest} = clone(r);
