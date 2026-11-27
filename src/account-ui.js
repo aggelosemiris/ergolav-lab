@@ -483,9 +483,10 @@ export function mountAccount({show, cta, here, home = () => {}, busy = () => fal
   // ΔΕΝ σβήνεται ποτέ (το κουτάκι κλειδώνει).
   async function signOutHere(wipe = false){
     const done = working($('acctSignOut'), 'Αποσύνδεση…');
+    const uid = account.user()?.id ?? null;     // πριν την αποσύνδεση: σβήνονται ΜΟΝΟ οι δικές του (κοινή συσκευή)
     await account.signOut();       // μόνο αυτή η συσκευή
     done();
-    if(wipe) quotes?.wipe();
+    if(wipe) quotes?.wipe(uid);
     signedOut(wipe ? 'Αποσυνδέθηκες. Οι προσφορές σβήστηκαν από αυτή τη συσκευή· είναι στον λογαριασμό σου.'
       : 'Αποσυνδέθηκες. Οι προσφορές σου έμειναν σε αυτή τη συσκευή.');
   }

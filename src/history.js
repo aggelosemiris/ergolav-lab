@@ -81,10 +81,53 @@ function stored(){
   } catch { return []; }
 }
 
-/** Όλες οι προσφορές, η νεότερη πρώτη. Κάθε μία έχει ημερομηνία: όσες δεν πέρασαν ακόμα μετάπτωση (π.χ. δεν χώρεσε
- *  το αντίγραφο) φαίνονται στη μέρα δημιουργίας τους, όπως θα τις έβαζε η μετάπτωση — καμία δεν χάνεται. */
+// ── Ποιος βλέπει (κοινή συσκευή, εύρημα H4) ──
+// Κάθε προσφορά ανήκει στον λογαριασμό που τη δημιούργησε ({id: userId}, το ίδιο κλειδί με τον συγχρονισμό, src/sync.js).
+// Η οθόνη δείχνει ΜΟΝΟ τις προσφορές του συνδεδεμένου· χωρίς σύνδεση, μόνο όσες δεν ανήκουν σε κανέναν. Οι προσφορές
+// ενός άλλου λογαριασμού μένουν στη συσκευή (δεν σβήνονται, δεν ανεβαίνουν σε λάθος λογαριασμό) αλλά δεν φαίνονται.
+// Χωρίς setViewer (εφαρμογή χωρίς λογαριασμό): όλες, όπως πριν.
+export const OWNERS = 'ergolav.sync.owners';    // {id: userId}
+let viewerOf = null;
+/** fn() → userId του συνδεδεμένου ή null· null (αντί για fn) = χωρίς λογαριασμούς, χωρίς φίλτρο. */
+export function setViewer(fn){ viewerOf = typeof fn === 'function' ? fn : null; }
+function viewer(){
+  if(!viewerOf) return undefined;
+  try { const v = viewerOf(); return typeof v === 'string' && v ? v : null; } catch { return null; }
+}
+export function owners(){
+  try { const v = JSON.parse(storage()?.getItem(OWNERS) || '{}'); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }
+  catch { return {}; }
+}
+function claimIds(ids, uid){
+  if(!uid || !ids.length) return;
+  const o = owners();
+  let changed = false;
+  for(const id of ids) if(typeof id === 'string' && UUID.test(id) && !o[id]){ o[id] = uid; changed = true; }
+  if(changed) try { storage()?.setItem(OWNERS, JSON.stringify(o)); } catch {}
+}
+/** Όσες προσφορές της συσκευής δεν ανήκουν σε κανέναν (φτιάχτηκαν πριν από τους λογαριασμούς) τις παίρνει ο uid:
+ *  ο πρώτος που συνδέεται σε αυτή τη συσκευή, όπως και στον συγχρονισμό. Οι επόμενοι δεν τις βλέπουν. */
+export const claimUnowned = uid => claimIds(stored().map(q => q.id), uid);
+
+/** Σβήνει από τη συσκευή ΜΟΝΟ τις προσφορές (και τα σβησμένα) του uid· όσες ανήκουν σε άλλον λογαριασμό μένουν.
+ *  Επιστρέφει πόσες έμειναν στη συσκευή. */
+export function removeOwned(uid){
+  const o = owners(), mine = id => !!id && o[id] === uid;
+  const left = stored().filter(q => !mine(q.id));
+  write(left);
+  writeDeleted(listDeleted().filter(d => !mine(d.id)));
+  for(const id of Object.keys(o)) if(o[id] === uid) delete o[id];
+  try { const s = storage(); if(Object.keys(o).length) s?.setItem(OWNERS, JSON.stringify(o)); else s?.removeItem(OWNERS); } catch {}
+  if(!left.length) try { storage()?.removeItem(STORE); } catch {}
+  return left.length;
+}
+
+/** Όλες οι προσφορές που βλέπει ο συνδεδεμένος, η νεότερη πρώτη. Κάθε μία έχει ημερομηνία: όσες δεν πέρασαν ακόμα
+ *  μετάπτωση (π.χ. δεν χώρεσε το αντίγραφο) φαίνονται στη μέρα δημιουργίας τους, όπως θα τις έβαζε η μετάπτωση. */
 export function listQuotes(){
-  return stored().map(q => has(q, 'scheduled_date') ? q : {...q, ...fromCreated(q)});
+  const uid = viewer(), o = uid === undefined ? null : owners();
+  const seen = !o ? () => true : q => (q.id && o[q.id] || null) === uid;
+  return stored().filter(seen).map(q => has(q, 'scheduled_date') ? q : {...q, ...fromCreated(q)});
 }
 
 /** Η προσφορά με αυτό το κλειδί (id ή no). */
@@ -108,7 +151,9 @@ export function saveQuote(q, now = Date.now()){
   const prev = c.id ? list.find(same) : list.find(x => x.no === c.no);
   c.id ??= prev?.id ?? newId();
   c.updated = after(prev?.updated ?? prev?.at, now);
-  return write([c, ...list.filter(x => x.id !== c.id && !(c.id && same(x)) && !(prev && x === prev))].sort((a, b) => b.no - a.no));
+  const ok = write([c, ...list.filter(x => x.id !== c.id && !(c.id && same(x)) && !(prev && x === prev))].sort((a, b) => b.no - a.no));
+  if(ok) claimIds([c.id], viewer());             // νέα προσφορά: ανήκει σε όποιον είναι συνδεδεμένος
+  return ok;
 }
 
 /** Σβήνει από τη συσκευή· ο λογαριασμός το μαθαίνει στον επόμενο συγχρονισμό (deleted_at). */
