@@ -39,3 +39,7 @@ psql=("$bin/psql" -h "$dir" -p "$port" -U postgres -v ON_ERROR_STOP=1 -q -X)
 "${psql[@]}" -f "$here/../migrations/20261127000000_product_catalog_prices_report_read.sql"
 "${psql[@]}" -f "$here/../migrations/20261127000000_product_catalog_prices_report_read.sql"   # ξανατρέξιμο
 "${psql[@]}" -t -A -f "$here/product-catalog-prices-rls.sql" | tail -1
+# Όλες οι migrations εφαρμοσμένες: το migration-status.sql (που τρέχει και σε dev/prod) πρέπει να δώσει μόνο true.
+status="$("${psql[@]}" -t -A -F '|' -f "$here/migration-status.sql")"
+if grep -q '|f$' <<<"$status"; then echo "FAIL: migration-status"; grep '|f$' <<<"$status"; exit 1; fi
+echo "MIGRATIONS OK"
