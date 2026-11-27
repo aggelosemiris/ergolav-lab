@@ -26,16 +26,16 @@ test('εργασία τιμών: ποτέ δημόσιο κλειδί (publishab
   assert.throws(() => serverKey({SUPABASE_SECRET_KEY: 'κάτι-άλλο'}), /Άγνωστη μορφή/);
 });
 
-test('delete-account: πρώτα το κλειδί «edge-functions» από το SUPABASE_SECRET_KEYS, αλλιώς το παλιό· ποτέ το «default»', () => {
+test('delete-account: πρώτα το κλειδί «edge_functions» από το SUPABASE_SECRET_KEYS, αλλιώς το παλιό· ποτέ το «default»', () => {
   const env = o => name => o[name];
-  assert.equal(EDGE_KEY_NAME, 'edge-functions');
-  const keys = JSON.stringify({default: 'sb_secret_fakeDefault000000000000', 'edge-functions': SECRET_EDGE, 'github-prices': SECRET_PRICES});
+  assert.equal(EDGE_KEY_NAME, 'edge_functions');
+  const keys = JSON.stringify({default: 'sb_secret_fakeDefault000000000000', 'edge_functions': SECRET_EDGE, 'github_prices': SECRET_PRICES});
   assert.deepEqual(adminKey(env({SUPABASE_SECRET_KEYS: keys, SUPABASE_SERVICE_ROLE_KEY: LEGACY})), {key: SECRET_EDGE, kind: 'sb_secret'});
   // Χωρίς δικό της κλειδί: το παλιό (όχι το default, όχι κλειδί άλλης χρήσης).
-  const others = JSON.stringify({default: 'sb_secret_fakeDefault000000000000', 'github-prices': SECRET_PRICES});
+  const others = JSON.stringify({default: 'sb_secret_fakeDefault000000000000', 'github_prices': SECRET_PRICES});
   assert.deepEqual(adminKey(env({SUPABASE_SECRET_KEYS: others, SUPABASE_SERVICE_ROLE_KEY: LEGACY})), {key: LEGACY, kind: 'service_role (παλιό JWT)'});
   assert.equal(adminKey(env({SUPABASE_SECRET_KEYS: '{χαλασμένο', SUPABASE_SERVICE_ROLE_KEY: LEGACY})).key, LEGACY);
-  assert.equal(adminKey(env({SUPABASE_SECRET_KEYS: JSON.stringify({'edge-functions': 'sb_publishable_x'}), SUPABASE_SERVICE_ROLE_KEY: LEGACY})).key, LEGACY);
+  assert.equal(adminKey(env({SUPABASE_SECRET_KEYS: JSON.stringify({'edge_functions': 'sb_publishable_x'}), SUPABASE_SERVICE_ROLE_KEY: LEGACY})).key, LEGACY);
   assert.throws(() => adminKey(env({SUPABASE_SECRET_KEYS: others})), /κανένα μυστικό κλειδί/);
 });
 

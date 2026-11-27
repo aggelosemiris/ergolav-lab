@@ -14,9 +14,9 @@ export const ALLOWED_ORIGINS = [
 
 // Το μυστικό κλειδί της function (docs/security/keys.md). Η Supabase δίνει στις functions το SUPABASE_SECRET_KEYS
 // (JSON {όνομα: sb_secret_…}) και, όσο ζουν τα παλιά κλειδιά, το SUPABASE_SERVICE_ROLE_KEY. Πρώτα το δικό της κλειδί
-// με όνομα «edge-functions» (ανακαλείται χωρίς να πειράξει κανένα άλλο), αλλιώς το παλιό: η μετάβαση γίνεται χωρίς
+// με όνομα «edge_functions» (ανακαλείται χωρίς να πειράξει κανένα άλλο), αλλιώς το παλιό: η μετάβαση γίνεται χωρίς
 // διακοπή και με επιστροφή αν κάτι πάει στραβά. Ποτέ το «default» ή κλειδί άλλης χρήσης.
-export const EDGE_KEY_NAME = 'edge-functions';
+export const EDGE_KEY_NAME = 'edge_functions';
 export function adminKey(get: (name: string) => string | undefined): {key: string, kind: string} {
   let named = '';
   try {
@@ -26,7 +26,7 @@ export function adminKey(get: (name: string) => string | undefined): {key: strin
   if(named.startsWith('sb_secret_')) return {key: named, kind: 'sb_secret'};
   const legacy = get('SUPABASE_SERVICE_ROLE_KEY') || '';
   if(legacy) return {key: legacy, kind: 'service_role (παλιό JWT)'};
-  throw new Error('delete-account: κανένα μυστικό κλειδί (edge-functions ή service_role)');
+  throw new Error('delete-account: κανένα μυστικό κλειδί (edge_functions ή service_role)');
 }
 
 export const BUCKET = 'logos';
