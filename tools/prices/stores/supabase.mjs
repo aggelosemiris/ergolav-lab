@@ -1,5 +1,5 @@
-// Αποθήκευση στο Supabase μέσω PostgREST (REST API), με το service_role key — ΜΟΝΟ από τα secrets του GitHub Actions
-// (SUPABASE_SERVICE_ROLE_KEY), ποτέ στο repo ή στην εφαρμογή. Χωρίς εξαρτήσεις: σκέτο fetch.
+// Αποθήκευση στο Supabase μέσω PostgREST (REST API), με μυστικό κλειδί — ΜΟΝΟ από τα secrets του GitHub Actions
+// (SUPABASE_SECRET_KEY, ή το παλιό SUPABASE_SERVICE_ROLE_KEY· βλ. serverKey), ποτέ στο repo ή στην εφαρμογή. Χωρίς εξαρτήσεις: σκέτο fetch.
 // Τα δικαιώματα και οι κανόνες ακεραιότητας είναι στη βάση (supabase/migrations/20261120000000_price_monitoring.sql):
 // μοναδικά κλειδιά, κλείδωμα εκτέλεσης (price_run_start), trigger που απαγορεύει αλλαγή της τιμής του χρήστη.
 // Τα πεδία μιας τιμής προμηθευτή, ίδια σε κάθε εγγραφή (το PostgREST θέλει ομοιόμορφες γραμμές σε μαζική εισαγωγή).
@@ -14,10 +14,28 @@ export function authHeaders(key){
   const k = String(key || '');
   return k.startsWith('eyJ') ? {apikey: k, Authorization: `Bearer ${k}`} : {apikey: k};
 }
+/** Το κλειδί της εβδομαδιαίας εργασίας (docs/security/keys.md): πρώτα το δικό της sb_secret_… (SUPABASE_SECRET_KEY,
+ *  όνομα «github-prices» στη Supabase), αλλιώς το παλιό service_role JWT, ώστε η μετάβαση να γίνει χωρίς διακοπή.
+ *  Ποτέ δημόσιο κλειδί (publishable/anon): με αυτό η εργασία θα αποτύγχανε σιωπηλά στο RLS. Επιστρέφει και το είδος
+ *  (για το log, ΧΩΡΙΣ την τιμή). */
+export function serverKey(env = process.env){
+  const secret = String(env.SUPABASE_SECRET_KEY || '').trim(), legacy = String(env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+  const key = secret || legacy;
+  if(!key) return {key: '', kind: 'none'};
+  if(key.startsWith('sb_publishable_')) throw new Error('Δημόσιο κλειδί (sb_publishable_) αντί για μυστικό: βάλε το sb_secret_ της εργασίας');
+  if(key.startsWith('eyJ')){
+    let role = '';
+    try { role = JSON.parse(Buffer.from(key.split('.')[1], 'base64url').toString()).role; } catch {}
+    if(role !== 'service_role') throw new Error(`Κλειδί JWT με ρόλο «${role || '?'}» αντί για service_role`);
+    return {key, kind: 'service_role (παλιό JWT)'};
+  }
+  if(!key.startsWith('sb_secret_')) throw new Error('Άγνωστη μορφή κλειδιού: περιμένω sb_secret_… ή service_role JWT');
+  return {key, kind: secret ? 'sb_secret' : 'sb_secret (στο παλιό όνομα secret)'};
+}
 const chunk = (a, n) => Array.from({length: Math.ceil(a.length / n)}, (_, i) => a.slice(i * n, i * n + n));
 
 export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries = 3, log = () => {}}){
-  if(!url || !serviceKey) throw new Error('Λείπουν SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY');
+  if(!url || !serviceKey) throw new Error('Λείπουν SUPABASE_URL / SUPABASE_SECRET_KEY');
   const base = url.replace(/\/+$/, '') + '/rest/v1';
   async function req(method, path, body, prefer){
     for(let attempt = 0; ; attempt++){

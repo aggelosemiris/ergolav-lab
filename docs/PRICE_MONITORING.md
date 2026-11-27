@@ -103,8 +103,9 @@ bot), kostelidis (403 στο robots.txt), ergo-tel (503). Δεν παρακάμ�
    `supabase/migrations/20261121000000_price_service_role_grants.sql`. Η δεύτερη χρειάζεται γιατί στο project ό,τι
    φτιάχνει ο postgres δεν δίνει αυτόματα δικαιώματα στο service_role (χωρίς αυτήν: «permission denied» στο
    `price_run_start`). Έλεγχος: `supabase/tests/price-rls.sql` → «PRICE RLS OK».
-2. GitHub → Settings → Secrets and variables → Actions: `SUPABASE_URL` και `SUPABASE_SERVICE_ROLE_KEY`
-   (Supabase → Project Settings → API → service_role). Το κλειδί αυτό **ποτέ** στο repo ή στην εφαρμογή. Στο
+2. GitHub → Settings → Environments → `prices` → Environment secrets: `SUPABASE_URL` και `SUPABASE_SERVICE_ROLE_KEY`
+   (τιμή: το secret key `github-prices` από Supabase → Settings → API Keys, `sb_secret_…`· μέχρι τη μετάβαση γίνεται δεκτό
+   και το παλιό service_role JWT, βλ. `docs/security/keys.md`). Το κλειδί αυτό **ποτέ** στο repo ή στην εφαρμογή. Στο
    workflow το βλέπει μόνο το βήμα «Ενημέρωση τιμών» (όχι τα tests ή τα actions).
 3. Το workflow τρέχει από το προεπιλεγμένο branch (`lab`) μετά το merge.
 

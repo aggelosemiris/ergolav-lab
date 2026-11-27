@@ -1,10 +1,13 @@
 // Edge Function «delete-account» (Supabase, Deno). Λογική: ./handler.ts.
-// Το SUPABASE_URL και το SUPABASE_SERVICE_ROLE_KEY τα δίνει το ίδιο το Supabase στις functions του project.
-// Το service_role key υπάρχει ΜΟΝΟ εδώ (στα secrets της function) — ποτέ στην εφαρμογή ή στο git.
+// Το SUPABASE_URL και τα κλειδιά (SUPABASE_SECRET_KEYS, και όσο ζουν τα παλιά το SUPABASE_SERVICE_ROLE_KEY) τα δίνει
+// το ίδιο το Supabase στις functions του project. Ποιο κλειδί: adminKey στο ./handler.ts (docs/security/keys.md).
+// Το μυστικό κλειδί υπάρχει ΜΟΝΟ εδώ — ποτέ στην εφαρμογή ή στο git.
 import { createClient } from 'npm:@supabase/supabase-js@2.118.0';
-import { handle } from './handler.ts';
+import { handle, adminKey } from './handler.ts';
 
-const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, {
+const { key, kind } = adminKey(name => Deno.env.get(name));
+console.log(JSON.stringify({event: 'delete-account-start', key: kind}));   // μόνο το είδος, ποτέ η τιμή
+const admin = createClient(Deno.env.get('SUPABASE_URL')!, key, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
