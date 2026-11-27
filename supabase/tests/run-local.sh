@@ -36,4 +36,6 @@ psql=("$bin/psql" -h "$dir" -p "$port" -U postgres -v ON_ERROR_STOP=1 -q -X)
 "${psql[@]}" -t -A -f "$here/tech-prices-rls.sql" | tail -1
 "${psql[@]}" -f "$here/../migrations/20261126000000_product_catalog_prices.sql"
 "${psql[@]}" -f "$here/../migrations/20261126000000_product_catalog_prices.sql"   # ξανατρέξιμο
+"${psql[@]}" -f "$here/../migrations/20261127000000_product_catalog_prices_report_read.sql"
+"${psql[@]}" -f "$here/../migrations/20261127000000_product_catalog_prices_report_read.sql"   # ξανατρέξιμο
 "${psql[@]}" -t -A -f "$here/product-catalog-prices-rls.sql" | tail -1

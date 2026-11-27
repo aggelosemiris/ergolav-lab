@@ -4,7 +4,7 @@
   "networkRequests": 0,
   "before": {
     "variant": "before",
-    "ms": 684,
+    "ms": 1385,
     "counters": {
       "requests": 2,
       "cached": 1,
@@ -49,7 +49,7 @@
   },
   "after": {
     "variant": "after",
-    "ms": 4998,
+    "ms": 6455,
     "counters": {
       "requests": 2,
       "cached": 1,

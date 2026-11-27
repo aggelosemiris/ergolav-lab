@@ -57,18 +57,21 @@ function supplemental(id, source, alreadyFetched){
 function observations(site, items, at, startedAt){
   const seen = new Map();
   const valid = cents => Number.isInteger(cents) && cents > 0 && cents <= 2147483647;
+  const start = Date.parse(startedAt);
   for(const item of items){
     const url = supplierListingKey(site, item.url);
     if(!url) continue;
-    const observedAt = item.observedAt ?? at;
+    const observedAt = item.observedAt ?? (item.fromCache ? null : at);
     const observedTime = Date.parse(observedAt);
-    const fresh = !item.fromCache && observedTime >= Date.parse(startedAt);
+    // Οι συμπληρωματικές πηγές διαβάζονται αφού αρχίσει το refresh, με δικό τους χρόνο παρατήρησης.
+    const timestampValid = Number.isFinite(observedTime) && (item.fromCache || observedTime >= start);
+    const fresh = timestampValid && !item.fromCache;
     const marketMismatch = item.market && item.market !== 'GR' || item.currency && item.currency !== 'EUR';
-    const reason = marketMismatch ? 'market-or-currency' : item.reason || 'no-verifiable-price';
+    const reason = !timestampValid ? 'invalid-observation-time' : marketMismatch ? 'market-or-currency' : item.reason || 'no-verifiable-price';
     const regular = item.verification === 'verified' && valid(item.regularCents);
     const priced = regular || valid(item.listedCents);
     const candidate = {url: item.url, observedAt, fresh, item,
-      cents: !marketMismatch && priced && Number.isFinite(observedTime) ? (regular ? item.regularCents : item.listedCents) : null,
+      cents: !marketMismatch && priced && timestampValid ? (regular ? item.regularCents : item.listedCents) : null,
       kind: regular ? 'regular' : 'listed', reason};
     const previous = seen.get(url);
     if(!previous || previous.fresh !== candidate.fresh && candidate.fresh
@@ -157,7 +160,7 @@ function alternateOffers(searchCatalog, sources, offersBySupplier, directFresh, 
   return rows;
 }
 
-export async function refreshCatalog({catalog, searchCatalog, results, fetcher, store, at, startedAt = at, only, onCoverage, log = () => {}}){
+export async function refreshCatalog({catalog, searchCatalog, results, fetcher, store, at, startedAt = at, finishedAt = () => at, only, onCoverage, log = () => {}}){
   const offersBySupplier = new Map();
   for(const [productId, offers] of catalog.products){
     for(const [site, url] of offers){
@@ -235,7 +238,8 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
         byProduct.set(productId, price);
     }
     for(const [productId, price] of byProduct) rows.push({productId, site, price, method: 'supplier-url'});
-    coverage.reason ??= result?.reason || extra.reason || (!items.length ? 'δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή' : null);
+    coverage.reason = [...new Set([result?.reason, extra.reason, coverage.reason].filter(Boolean))].join(' · ')
+      || (!items.length ? 'δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή' : null);
     coverage.status = coverage.reason ? (items.length ? 'partial' : 'unavailable') : 'available';
     return rows;
   }));
@@ -265,6 +269,8 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     if(price.fresh) fresh.add(productId);
   }
   updates.push(alternatives);
+  // Το snapshot λαμβάνεται με το κλείδωμα της εκτέλεσης, πριν από την πρώτη δημοσίευση τιμής καταλόγου.
+  const prior = onCoverage ? await store.loadCatalogPrices() : null;
   const offers = new Map();
   for(const rows of updates){
     if(!rows.length) continue;
@@ -283,6 +289,6 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     withoutVerified: checked.size - fresh.size,
     fromAlternateSource: new Set(alternatives.filter(r => r.price.fresh).map(r => r.productId)).size,
     fromConfirmedListing: confirmed.filter(r => r.price.fresh).length, offersChanged, newOffers, changed: changed.size, suppliers};
-  if(onCoverage) await onCoverage({stats, catalog, searchCatalog, offers, rejections, seen, fresh, verified, startedAt, at});
+  if(onCoverage) await onCoverage({stats, catalog, searchCatalog, offers, rejections, seen, fresh, verified, prior, startedAt, at: finishedAt()});
   return stats;
 }

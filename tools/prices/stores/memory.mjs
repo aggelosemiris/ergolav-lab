@@ -18,6 +18,7 @@ export function createMemoryStore({file = null, data = null, now = () => new Dat
 
   return {
     db,
+    async loadCatalogPrices(){ return clone(db.product_catalog_prices); },
     async publishCatalogPrices(rows){
       const result = {new: 0, changed: []};
       for(const row of rows){

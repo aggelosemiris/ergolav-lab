@@ -3,6 +3,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
 import { createFetcher } from '../tools/prices/fetch.mjs';
 
 const robots = () => new Response('User-agent: *\nAllow: /\n', {status: 200, headers: {'content-type': 'text/plain'}});
@@ -60,4 +64,44 @@ test('δεν ξαναδοκιμάζει νωρίτερα από το Retry-After
   await assert.rejects(f.get('https://shop.example/start'), {name: 'Blocked'});
   assert.equal(pages, 1);
   assert.equal(f.stats.retries, 0);
+});
+
+test('σελίδα προστασίας στη θέση του robots.txt σταματά τη συλλογή', async () => {
+  const urls = [];
+  const f = createFetcher({wait: async () => {}, fetchImpl: async url => {
+    urls.push(url);
+    return new Response('<!doctype html><title>Just a moment...</title>', {headers: {'content-type': 'text/html'}});
+  }});
+  await assert.rejects(f.get('https://shop.example/products'), {name: 'Blocked'});
+  assert.deepEqual(urls, ['https://shop.example/robots.txt']);
+});
+
+test('δεν ακολουθεί ανακατεύθυνση του robots.txt σε άλλο host', async () => {
+  const urls = [];
+  const f = createFetcher({wait: async () => {}, fetchImpl: async (url, init) => {
+    urls.push(url);
+    assert.equal(init.redirect, 'manual');
+    return new Response('', {status: 302, headers: {location: 'https://other.example/robots.txt'}});
+  }});
+  await assert.rejects(f.get('https://shop.example/products'), {name: 'Blocked'});
+  assert.deepEqual(urls, ['https://shop.example/robots.txt']);
+});
+
+test('η cache δεν δίνει σελίδα με απαγορευμένο τελικό URL ούτε εμφανίζει στοιχεία του URL στο μήνυμα', async t => {
+  const cacheDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prices-cache-'));
+  t.after(() => fs.rmSync(cacheDir, {recursive: true, force: true}));
+  const url = 'https://shop.example/open';
+  const now = Date.parse('2026-11-27T10:00:00Z');
+  fs.mkdirSync(path.join(cacheDir, 'shop.example'));
+  fs.writeFileSync(path.join(cacheDir, 'shop.example', createHash('sha1').update(url).digest('hex') + '.json.gz'), gzipSync(JSON.stringify({
+    date: new Date(now).toISOString(), status: 200, body: 'product', finalUrl: 'https://shop.example/closed?key=private-token',
+  })));
+  const urls = [];
+  const f = createFetcher({cacheDir, now: () => now, wait: async () => {}, fetchImpl: async request => {
+    urls.push(request);
+    return new Response('User-agent: *\nDisallow: /closed');
+  }});
+  await assert.rejects(f.get(url), {name: 'Disallowed', message: 'robots.txt: https://shop.example'});
+  assert.deepEqual(urls, ['https://shop.example/robots.txt']);
+  assert.equal(f.stats.cached, 0);
 });

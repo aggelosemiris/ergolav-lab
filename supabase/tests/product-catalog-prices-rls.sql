@@ -9,6 +9,12 @@ begin
   if public.publish_product_catalog_prices(item) <> '{"new":1,"changed":[]}'::jsonb then
     raise exception 'Αποτυχία πρώτης καταχώρισης';
   end if;
+  if (select cents from public.product_catalog_prices where supplier_id = 'test') is distinct from 1900 then
+    raise exception 'Η εργασία δεν μπορεί να διαβάσει την προηγούμενη τιμή για την αναφορά';
+  end if;
+  if has_table_privilege('public.product_catalog_prices', 'INSERT, UPDATE, DELETE') then
+    raise exception 'Η εργασία απέκτησε δικαίωμα απευθείας εγγραφής';
+  end if;
   if public.publish_product_catalog_prices(item) <> '{"new":0,"changed":[]}'::jsonb then
     raise exception 'Η επανάληψη της ίδιας παρατήρησης έγραψε αλλαγή';
   end if;

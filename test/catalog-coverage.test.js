@@ -43,6 +43,12 @@ test('έγκυρη σελίδα πριν από 403 αποθηκεύεται, η
   assert.equal(store.db.price_runs.at(-1).status, 'partial');
   assert.equal(stats.productCatalog.verified, 1);
   assert.deepEqual([coverage.groups.shop.fresh, coverage.groups.shop.cached, coverage.groups.shop.rejected, coverage.groups.shop.notFound], [1,0,0,1]);
+  assert.equal(coverage.previousOnly, 1);
+  assert.equal(coverage.groups.shop.previousOnly, 1);
+  assert.equal(coverage.products.find(p => p.id === missed).previousPrice.storedAt, previous);
+  assert.equal(coverage.products.find(p => p.state === 'fresh').previousPrice, null);
+  assert.equal(coverage.products.find(p => p.state === 'fresh').matches[0].observationSource, 'network');
+  assert.equal(coverage.suppliers.shop.status, 'partial');
   assert.equal(store.db.product_catalog_prices.find(p => p.product_id === missed).verified_at, previous);
   assert.equal(store.db.product_catalog_prices.length, 2);
 });
@@ -62,8 +68,28 @@ test('cache, απόρριψη και μη εύρεση μετρούν χωρισ
   assert.deepEqual([summary.total, summary.verified, summary.verifiedFromCache, summary.rejected, summary.notFound], [4,1,1,1,1]);
   assert.equal(coverage.products.find(r => r.state === 'rejected').rejections[0].reason, 'variable-prices');
   assert.equal(coverage.products.find(r => r.state === 'cached').matches[0].observedAt, previous);
+  assert.equal(coverage.products.find(r => r.state === 'cached').matches[0].observationSource, 'cache');
   assert.equal(store.db.product_catalog_prices.filter(p => p.verified_at === previous).length, 1);
   assert.equal((await run()).newOffers, 0);
+});
+
+test('cache χωρίς χρονοσήμανση απορρίπτεται και η μη διαθέσιμη απογραφή βάσης δεν μετρά ως μηδέν', async () => {
+  const source = raw('shop', 'cached', 'Βάνα ACME XT123');
+  const entries = seed([source]);
+  const store = createMemoryStore({now});
+  store.loadCatalogPrices = async () => null;
+  const results = [{s: {id: 'shop'}, status: 'available', items: [
+    {url: source.url, name: source.name, fromCache: true, verification: 'verified', regularCents: 1200},
+  ]}];
+  let coverage;
+  const stats = await refreshCatalog({...entries, results, store, fetcher: {}, at: startedAt,
+    onCoverage: data => { coverage = catalogCoverage(data); }});
+  assert.equal(stats.verified, 0);
+  assert.equal(stats.verifiedFromCache, 0);
+  assert.equal(coverage.products[0].rejections[0].reason, 'invalid-observation-time');
+  assert.equal(store.db.product_catalog_prices.length, 0);
+  assert.equal(coverage.priorAvailable, false);
+  assert.equal(coverage.groups.shop.previousOnly, null);
 });
 
 test('ταίριασμα τίτλου με μάρκα και μοντέλο περνά μόνο με συμβατή μονάδα, χώρα και προδιαγραφές', async () => {

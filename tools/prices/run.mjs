@@ -46,10 +46,11 @@ const searchCatalog = loadSearchCatalog();
 const coverageFile = opt('--coverage');
 const result = await runOnce({store, suppliers, fetcher, log, v2,
   refreshProductCatalog: ({results, at, startedAt}) => refreshCatalog({
-    catalog, searchCatalog, results, at, startedAt, store, fetcher, only, log,
+    catalog, searchCatalog, results, at, startedAt, finishedAt: () => new Date().toISOString(), store, fetcher, only, log,
     onCoverage: coverageFile ? snapshot => {
       const coverage = catalogCoverage(snapshot);
       snapshot.stats.origins = coverage.groups;
+      snapshot.stats.previousOnly = coverage.previousOnly;
       fs.writeFileSync(coverageFile, gzipSync(JSON.stringify(coverage)));
     } : undefined,
   })});
