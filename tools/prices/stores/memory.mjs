@@ -5,7 +5,7 @@ import { offerUrl } from '../offer-url.mjs';
 
 export function createMemoryStore({file = null, data = null, now = () => new Date()} = {}){
   const db = data || (file && fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null) || {};
-  for(const t of ['suppliers', 'price_products', 'user_products', 'supplier_offers', 'supplier_price_history', 'price_reference_history', 'price_runs']) db[t] ??= [];
+  for(const t of ['suppliers', 'price_products', 'user_products', 'supplier_offers', 'supplier_price_history', 'price_reference_history', 'price_runs', 'product_catalog_prices']) db[t] ??= [];
   db.seq ??= {};
   const next = t => (db.seq[t] = (db.seq[t] || 0) + 1);
   const save = () => { if(file){ fs.writeFileSync(file + '.tmp', JSON.stringify(db)); fs.renameSync(file + '.tmp', file); } };
@@ -13,8 +13,30 @@ export function createMemoryStore({file = null, data = null, now = () => new Dat
   const clone = x => JSON.parse(JSON.stringify(x));
   const USER_FIELDS = ['user_price_cents', 'user_labor_cents', 'name', 'unit', 'deleted', 'updated_at', 'user_id', 'key'];
 
+  const catalogKey = row => row.product_id + ':' + row.supplier_id;
+  const catalogPrices = new Map(db.product_catalog_prices.map(row => [catalogKey(row), row]));
+
   return {
     db,
+    async loadCatalogPrices(){ return clone(db.product_catalog_prices); },
+    async publishCatalogPrices(rows){
+      const result = {new: 0, changed: []};
+      for(const row of rows){
+        const key = catalogKey(row), before = catalogPrices.get(key);
+        if(before && Date.parse(before.verified_at) >= Date.parse(row.verified_at)) continue;
+        if(!before){
+          result.new++;
+          const added = clone(row);
+          catalogPrices.set(key, added);
+          db.product_catalog_prices.push(added);
+        } else {
+          if(before.cents !== row.cents) result.changed.push(row.product_id);
+          Object.assign(before, clone(row));
+        }
+      }
+      save();
+      return result;
+    },
     async startRun(staleMinutes = 120){
       for(const r of db.price_runs) if(r.status === 'running' && now() - new Date(r.heartbeat_at) > staleMinutes * 60e3)
         Object.assign(r, {status: 'aborted', finished_at: iso(), error: 'χωρίς σημείο ζωής: θεωρήθηκε διακομμένη'});

@@ -1,0 +1,715 @@
+{
+  "workflow": "https://github.com/ergolav/ergolav-lab/actions/runs/46036043165",
+  "requestCounts": {
+    "durationSeconds": 61,
+    "network": 2,
+    "cache": 1888,
+    "retries": 0
+  },
+  "observations": {
+    "catalog": 109067,
+    "legacyVerified": 35437,
+    "notLocated": 72886,
+    "rejected": 744
+  },
+  "byOriginal": {
+    "toolcase": {
+      "products": 8210,
+      "legacyVerified": 8025,
+      "gap": 185,
+      "gapArchive": 185,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 182,
+      "gapSpecs": 97,
+      "gapRepeatedTitle": 0
+    },
+    "vrontinos": {
+      "products": 1441,
+      "legacyVerified": 707,
+      "gap": 734,
+      "gapArchive": 734,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 394,
+      "gapRepeatedTitle": 2
+    },
+    "paravalos": {
+      "products": 3397,
+      "legacyVerified": 3286,
+      "gap": 111,
+      "gapArchive": 106,
+      "gapNoArchive": 5,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 58,
+      "gapRepeatedTitle": 2
+    },
+    "climaver": {
+      "products": 115,
+      "legacyVerified": 81,
+      "gap": 34,
+      "gapArchive": 0,
+      "gapNoArchive": 34,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 7,
+      "gapRepeatedTitle": 2
+    },
+    "vogiatzakis": {
+      "products": 316,
+      "legacyVerified": 125,
+      "gap": 191,
+      "gapArchive": 188,
+      "gapNoArchive": 3,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 40,
+      "gapRepeatedTitle": 0
+    },
+    "el-shop": {
+      "products": 10817,
+      "legacyVerified": 10788,
+      "gap": 29,
+      "gapArchive": 6,
+      "gapNoArchive": 23,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 29,
+      "gapSpecs": 12,
+      "gapRepeatedTitle": 0
+    },
+    "youbath": {
+      "products": 19910,
+      "legacyVerified": 0,
+      "gap": 19910,
+      "gapArchive": 19907,
+      "gapNoArchive": 3,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 12400,
+      "gapRepeatedTitle": 81
+    },
+    "homeville": {
+      "products": 30685,
+      "legacyVerified": 1,
+      "gap": 30684,
+      "gapArchive": 30683,
+      "gapNoArchive": 1,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 18086,
+      "gapRepeatedTitle": 16381
+    },
+    "meidanis": {
+      "products": 3723,
+      "legacyVerified": 1544,
+      "gap": 2179,
+      "gapArchive": 2179,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 1117,
+      "gapRepeatedTitle": 16
+    },
+    "jerotech": {
+      "products": 118,
+      "legacyVerified": 0,
+      "gap": 118,
+      "gapArchive": 118,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 112,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 9
+    },
+    "xromatopolio": {
+      "products": 352,
+      "legacyVerified": 0,
+      "gap": 352,
+      "gapArchive": 250,
+      "gapNoArchive": 102,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 138,
+      "gapRepeatedTitle": 0
+    },
+    "krono-shop": {
+      "products": 77,
+      "legacyVerified": 0,
+      "gap": 77,
+      "gapArchive": 77,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 22
+    },
+    "praktiker": {
+      "products": 9630,
+      "legacyVerified": 9328,
+      "gap": 302,
+      "gapArchive": 302,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 130,
+      "gapRepeatedTitle": 3
+    },
+    "doukas": {
+      "products": 17,
+      "legacyVerified": 0,
+      "gap": 17,
+      "gapArchive": 0,
+      "gapNoArchive": 17,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 3
+    },
+    "balamoti": {
+      "products": 214,
+      "legacyVerified": 0,
+      "gap": 214,
+      "gapArchive": 209,
+      "gapNoArchive": 5,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 96,
+      "gapRepeatedTitle": 41
+    },
+    "ktec": {
+      "products": 158,
+      "legacyVerified": 0,
+      "gap": 158,
+      "gapArchive": 0,
+      "gapNoArchive": 158,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 137,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 8
+    },
+    "ikea": {
+      "products": 1247,
+      "legacyVerified": 0,
+      "gap": 1247,
+      "gapArchive": 43,
+      "gapNoArchive": 1204,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 157,
+      "gapRepeatedTitle": 987
+    },
+    "kaxiris": {
+      "products": 1454,
+      "legacyVerified": 0,
+      "gap": 1454,
+      "gapArchive": 0,
+      "gapNoArchive": 1454,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 918,
+      "gapRepeatedTitle": 4
+    },
+    "billis": {
+      "products": 163,
+      "legacyVerified": 0,
+      "gap": 163,
+      "gapArchive": 162,
+      "gapNoArchive": 1,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 43,
+      "gapRepeatedTitle": 0
+    },
+    "thermogroup": {
+      "products": 124,
+      "legacyVerified": 0,
+      "gap": 124,
+      "gapArchive": 0,
+      "gapNoArchive": 124,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 0
+    },
+    "kostelidis": {
+      "products": 590,
+      "legacyVerified": 0,
+      "gap": 590,
+      "gapArchive": 543,
+      "gapNoArchive": 47,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 219,
+      "gapRepeatedTitle": 2
+    },
+    "e-metallon": {
+      "products": 304,
+      "legacyVerified": 0,
+      "gap": 304,
+      "gapArchive": 16,
+      "gapNoArchive": 288,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 55,
+      "gapRepeatedTitle": 0
+    },
+    "fabricashop": {
+      "products": 555,
+      "legacyVerified": 545,
+      "gap": 10,
+      "gapArchive": 0,
+      "gapNoArchive": 10,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 6,
+      "gapRepeatedTitle": 0
+    },
+    "e-dimakis": {
+      "products": 1927,
+      "legacyVerified": 0,
+      "gap": 1927,
+      "gapArchive": 1927,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 1184,
+      "gapRepeatedTitle": 824
+    },
+    "mafou": {
+      "products": 5692,
+      "legacyVerified": 2,
+      "gap": 5690,
+      "gapArchive": 5689,
+      "gapNoArchive": 1,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 1854,
+      "gapRepeatedTitle": 70
+    },
+    "strati": {
+      "products": 584,
+      "legacyVerified": 577,
+      "gap": 7,
+      "gapArchive": 7,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 7,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 0
+    },
+    "tehnothermiki": {
+      "products": 301,
+      "legacyVerified": 0,
+      "gap": 301,
+      "gapArchive": 281,
+      "gapNoArchive": 20,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 128,
+      "gapRepeatedTitle": 12
+    },
+    "kouremenos": {
+      "products": 64,
+      "legacyVerified": 28,
+      "gap": 36,
+      "gapArchive": 19,
+      "gapNoArchive": 17,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 17,
+      "gapRepeatedTitle": 1
+    },
+    "easy-parts": {
+      "products": 113,
+      "legacyVerified": 107,
+      "gap": 6,
+      "gapArchive": 0,
+      "gapNoArchive": 6,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 1,
+      "gapRepeatedTitle": 0
+    },
+    "papasideris": {
+      "products": 395,
+      "legacyVerified": 0,
+      "gap": 395,
+      "gapArchive": 395,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 254,
+      "gapRepeatedTitle": 1
+    },
+    "dapeda": {
+      "products": 373,
+      "legacyVerified": 0,
+      "gap": 373,
+      "gapArchive": 373,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 7
+    },
+    "mylonas": {
+      "products": 7,
+      "legacyVerified": 6,
+      "gap": 1,
+      "gapArchive": 1,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 1,
+      "gapRepeatedTitle": 0
+    },
+    "paintcity": {
+      "products": 251,
+      "legacyVerified": 0,
+      "gap": 251,
+      "gapArchive": 0,
+      "gapNoArchive": 251,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 202,
+      "gapRepeatedTitle": 0
+    },
+    "peltekis": {
+      "products": 304,
+      "legacyVerified": 287,
+      "gap": 17,
+      "gapArchive": 17,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 13,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 0
+    },
+    "epipla1": {
+      "products": 5420,
+      "legacyVerified": 0,
+      "gap": 5420,
+      "gapArchive": 5420,
+      "gapNoArchive": 0,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 18
+    },
+    "portes-koufomata": {
+      "products": 19,
+      "legacyVerified": 0,
+      "gap": 19,
+      "gapArchive": 14,
+      "gapNoArchive": 5,
+      "gapStructuredSku": 0,
+      "gapStructuredMpn": 0,
+      "gapStructuredEan": 0,
+      "gapBranded": 0,
+      "gapSpecs": 0,
+      "gapRepeatedTitle": 4
+    }
+  },
+  "supplierListings": {
+    "balamoti": {
+      "listings": 214,
+      "reason": "εκκρεμεί έλεγχος όρων",
+      "seen": 0,
+      "verified": 0
+    },
+    "billis": {
+      "listings": 163,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "climaver": {
+      "listings": 115,
+      "reason": null,
+      "seen": 115,
+      "verified": 81
+    },
+    "dapeda": {
+      "listings": 373,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "doukas": {
+      "listings": 17,
+      "reason": "Store API με τιμή 0 (κατάλογος χωρίς τιμές)",
+      "seen": 0,
+      "verified": 0
+    },
+    "e-dimakis": {
+      "listings": 1927,
+      "reason": "HTTP 403 στο bot (19/11/2026)",
+      "seen": 0,
+      "verified": 0
+    },
+    "e-metallon": {
+      "listings": 304,
+      "reason": "HTTP 403 στο bot (αρχική και Store API)",
+      "seen": 0,
+      "verified": 0
+    },
+    "easy-parts": {
+      "listings": 113,
+      "reason": null,
+      "seen": 113,
+      "verified": 107
+    },
+    "el-shop": {
+      "listings": 10817,
+      "reason": null,
+      "seen": 10817,
+      "verified": 10788
+    },
+    "epipla1": {
+      "listings": 5420,
+      "reason": "αναζήτηση τιμής σε εναλλακτικούς προμηθευτές",
+      "seen": 0,
+      "verified": 0
+    },
+    "fabricashop": {
+      "listings": 555,
+      "reason": null,
+      "seen": 552,
+      "verified": 545
+    },
+    "homeville": {
+      "listings": 30685,
+      "reason": "αναζήτηση τιμής σε εναλλακτικούς προμηθευτές",
+      "seen": 0,
+      "verified": 0
+    },
+    "ikea": {
+      "listings": 1247,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "jerotech": {
+      "listings": 118,
+      "reason": "εκκρεμεί έλεγχος όρων",
+      "seen": 0,
+      "verified": 0
+    },
+    "kaxiris": {
+      "listings": 1454,
+      "reason": "μπλοκάρει το bot: kaxirismonotika.gr: HTTP 403",
+      "seen": 0,
+      "verified": 0
+    },
+    "kostelidis": {
+      "listings": 590,
+      "reason": "HTTP 403 στο robots.txt (19/11/2026)",
+      "seen": 0,
+      "verified": 0
+    },
+    "kouremenos": {
+      "listings": 64,
+      "reason": null,
+      "seen": 64,
+      "verified": 28
+    },
+    "krono-shop": {
+      "listings": 77,
+      "reason": null,
+      "seen": 0,
+      "verified": 0
+    },
+    "ktec": {
+      "listings": 158,
+      "reason": null,
+      "seen": 158,
+      "verified": 0
+    },
+    "mafou": {
+      "listings": 5692,
+      "reason": "αναζήτηση τιμής σε εναλλακτικούς προμηθευτές",
+      "seen": 0,
+      "verified": 0
+    },
+    "meidanis": {
+      "listings": 3723,
+      "reason": "www.meidanis.gr: HTTP 403",
+      "seen": 1544,
+      "verified": 1544
+    },
+    "mylonas": {
+      "listings": 7,
+      "reason": null,
+      "seen": 7,
+      "verified": 6
+    },
+    "oikeiaoikia": {
+      "listings": 0,
+      "reason": null,
+      "seen": 0,
+      "verified": 0
+    },
+    "paintcity": {
+      "listings": 251,
+      "reason": "κρύβει τις τιμές: κενές στις κατηγορίες και στη σελίδα προϊόντος· υπάρχουν μόνο στα δομημένα δεδομένα, χωρίς διάκριση κανονικής/προσφοράς → δεν επαληθεύονται",
+      "seen": 0,
+      "verified": 0
+    },
+    "palousis": {
+      "listings": 0,
+      "reason": null,
+      "seen": 0,
+      "verified": 0
+    },
+    "papasideris": {
+      "listings": 395,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "paravalos": {
+      "listings": 3397,
+      "reason": null,
+      "seen": 3292,
+      "verified": 3285
+    },
+    "peltekis": {
+      "listings": 304,
+      "reason": null,
+      "seen": 304,
+      "verified": 287
+    },
+    "portes-koufomata": {
+      "listings": 19,
+      "reason": "εκκρεμεί έλεγχος όρων",
+      "seen": 0,
+      "verified": 0
+    },
+    "praktiker": {
+      "listings": 9639,
+      "reason": null,
+      "seen": 9575,
+      "verified": 9328
+    },
+    "strati": {
+      "listings": 584,
+      "reason": null,
+      "seen": 577,
+      "verified": 577
+    },
+    "tehnothermiki": {
+      "listings": 301,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "thermogroup": {
+      "listings": 124,
+      "reason": "δεν δείχνει τιμές online: ούτε στις κατηγορίες ούτε στη σελίδα προϊόντος («ζητήστε προσφορά»)",
+      "seen": 0,
+      "verified": 0
+    },
+    "toolcase": {
+      "listings": 8210,
+      "reason": null,
+      "seen": 8045,
+      "verified": 8025
+    },
+    "vogiatzakis": {
+      "listings": 316,
+      "reason": null,
+      "seen": 316,
+      "verified": 125
+    },
+    "vrontinos": {
+      "listings": 1441,
+      "reason": null,
+      "seen": 707,
+      "verified": 707
+    },
+    "xromatopolio": {
+      "listings": 352,
+      "reason": "δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή",
+      "seen": 0,
+      "verified": 0
+    },
+    "youbath": {
+      "listings": 19910,
+      "reason": "αναζήτηση τιμής σε εναλλακτικούς προμηθευτές",
+      "seen": 0,
+      "verified": 0
+    }
+  }
+}
