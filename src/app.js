@@ -29,6 +29,7 @@ import * as CONFIG from './config.js';
 const QUOTES_SYNC_ENABLED = CONFIG.QUOTES_SYNC_ENABLED === true;
 import { guardStorage, askPersist } from './storage-guard.js';
 import { mountOfflineUi } from './offline-ui.js';
+import { esc } from './html.js';
 
 // ─── Χωρίς σήμα (docs/offline.md): σήμα, γεμάτη μνήμη και ενδείξεις επάνω — πριν από οτιδήποτε άλλο ───
 watchNet();
@@ -51,7 +52,6 @@ let LABOR = null, laborBad = false;
 // ask = ακούστηκε ποσό αλλά είναι ασαφές («1.5 ευρώ») — δεν μπαίνει, το κουμπί κλειδώνει μέχρι να γραφτεί.
 let laborVoice = null, laborAsk = null;
 const eur = c => (c/100).toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmtQty = formatQty;   // ίδια ακρίβεια (3 δεκαδικά) με την είσοδο της ποσότητας
 const $ = id => document.getElementById(id);
 let started = 0, checkedCount = 0, lastText = '', listenFrom = 'start';   // listenFrom: από πού ήρθε στο κείμενο

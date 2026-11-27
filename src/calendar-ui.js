@@ -6,9 +6,9 @@ import { today, addDays, longDate, daysBetween } from './dates.js';
 import { monthGrid, shiftMonth, monthOf, byDay, pickDay, listOrder, undated, splitClient, endOf } from './calendar.js';
 import { mountWhen, nativeDatePicker, dateChip } from './when-ui.js';
 import { statisticsMarkup } from './statistics.js';
+import { esc } from './html.js';
 
 const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const eur = c => (c / 100).toLocaleString('el-GR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €';
 export const STATUS = {draft: 'Πρόχειρη', sent: 'Στάλθηκε', won: 'Κλείστηκε', lost: 'Χάθηκε'};
 const CHOICES = ['sent', 'won', 'lost'];        // «Άλλαξε κατάσταση»· η «Πρόχειρη» μπαίνει μόνο από την εφαρμογή
