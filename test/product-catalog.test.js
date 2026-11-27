@@ -91,3 +91,25 @@ test('τιμή άλλου προμηθευτή μόνο για σαφή πλήρ
   assert.equal(price.supplier_id, 'new');
   assert.equal(price.product_id, searchCatalog.products.find(row => row[1] === same)[0]);
 });
+
+test('η δεύτερη εγγραφή Casa Ivory παίρνει τη νέα τιμή μόνο από το επιβεβαιωμένο SKU', async () => {
+  const target = '1343acd2e9a38a22eb0748a6';
+  const source = '95067bbd8d6bb6f173778f45';
+  const catalog = loadSupplyCatalog();
+  catalog.products = catalog.products.filter(([id]) => id === target || id === source);
+  assert.equal(catalog.products.length, 2);
+  const url = 'https://' + catalog.products.find(([id]) => id === source)[1][0][1];
+  const run = async sku => {
+    const store = createMemoryStore();
+    const results = [{s: {id: 'paravalos'}, status: 'available',
+      items: [{url, sku, verification: 'verified', regularCents: 1900}]}];
+    const stats = await refreshCatalog({catalog, results, store, fetcher: {}, at: '2026-11-27T00:00:00Z'});
+    return {stats, prices: store.db.product_catalog_prices};
+  };
+  const matched = await run('0260120711');
+  assert.equal(matched.stats.fromConfirmedListing, 1);
+  assert.equal(matched.prices.find(p => p.product_id === target)?.cents, 1900);
+  const changedSku = await run('0260129999');
+  assert.equal(changedSku.stats.fromConfirmedListing, 0);
+  assert.equal(changedSku.prices.some(p => p.product_id === target), false);
+});
