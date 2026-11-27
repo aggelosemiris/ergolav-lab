@@ -12,6 +12,23 @@ export const ALLOWED_ORIGINS = [
   'http://127.0.0.1:8087',
 ];
 
+// Το μυστικό κλειδί της function (docs/security/keys.md). Η Supabase δίνει στις functions το SUPABASE_SECRET_KEYS
+// (JSON {όνομα: sb_secret_…}) και, όσο ζουν τα παλιά κλειδιά, το SUPABASE_SERVICE_ROLE_KEY. Πρώτα το δικό της κλειδί
+// με όνομα «edge-functions» (ανακαλείται χωρίς να πειράξει κανένα άλλο), αλλιώς το παλιό: η μετάβαση γίνεται χωρίς
+// διακοπή και με επιστροφή αν κάτι πάει στραβά. Ποτέ το «default» ή κλειδί άλλης χρήσης.
+export const EDGE_KEY_NAME = 'edge-functions';
+export function adminKey(get: (name: string) => string | undefined): {key: string, kind: string} {
+  let named = '';
+  try {
+    const all = JSON.parse(get('SUPABASE_SECRET_KEYS') || '{}');
+    if(all && typeof all === 'object' && typeof all[EDGE_KEY_NAME] === 'string') named = all[EDGE_KEY_NAME];
+  } catch { /* χαλασμένο JSON: σαν να μην υπάρχει */ }
+  if(named.startsWith('sb_secret_')) return {key: named, kind: 'sb_secret'};
+  const legacy = get('SUPABASE_SERVICE_ROLE_KEY') || '';
+  if(legacy) return {key: legacy, kind: 'service_role (παλιό JWT)'};
+  throw new Error('delete-account: κανένα μυστικό κλειδί (edge-functions ή service_role)');
+}
+
 export const BUCKET = 'logos';
 // «Ο πίνακας δεν υπάρχει»: PostgREST (PGRST205) ή Postgres (42P01).
 const NO_TABLE = ['PGRST205', '42P01'];

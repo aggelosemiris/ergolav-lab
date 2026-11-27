@@ -1,6 +1,6 @@
 // Εβδομαδιαία ενημέρωση τιμών: μία εκτέλεση. Τρέχει από το GitHub Actions (.github/workflows/prices.yml) κάθε 7 ημέρες.
 //
-//   node tools/prices/run.mjs --store supabase            (παραγωγή: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+//   node tools/prices/run.mjs --store supabase            (παραγωγή: SUPABASE_URL, SUPABASE_SECRET_KEY ή το παλιό SUPABASE_SERVICE_ROLE_KEY)
 //   node tools/prices/run.mjs --store file:prices.json    (τοπικά, χωρίς Supabase)
 // Επιλογές: --only praktiker,toolcase · --cache <φάκελος> (εξ ορισμού tools/prices/.cache) · --report <αρχείο.md> · --coverage <αρχείο.json.gz>
 //           --users <αρχείο.json> (προϊόντα χρηστών για δοκιμή με αρχείο: [{user_id, key, name, unit, …}])
@@ -13,7 +13,7 @@ import { activeSuppliers } from './suppliers.mjs';
 import { MATERIALS_V2_ENABLED } from '../../src/config.js';
 import { runOnce } from './engine.mjs';
 import { createMemoryStore } from './stores/memory.mjs';
-import { createSupabaseStore } from './stores/supabase.mjs';
+import { createSupabaseStore, serverKey } from './stores/supabase.mjs';
 import { report } from './report.mjs';
 import { loadSupplyCatalog, loadSearchCatalog } from '../catalog/product-catalog.mjs';
 import { refreshCatalog } from './catalog-refresh.mjs';
@@ -26,7 +26,11 @@ const storeArg = opt('--store', 'file:' + path.join(here, '.data', 'prices.json'
 const v2 = MATERIALS_V2_ENABLED || args.includes('--v2');
 if(args.includes('--v2') && storeArg === 'supabase'){ console.error('--v2: μόνο για δοκιμή με --store file:'); process.exit(2); }
 let store;
-if(storeArg === 'supabase') store = createSupabaseStore({url: process.env.SUPABASE_URL, serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY, log});
+if(storeArg === 'supabase'){
+  const {key, kind} = serverKey(process.env);
+  log(`Supabase: κλειδί ${kind}`);                      // μόνο το είδος, ποτέ η τιμή
+  store = createSupabaseStore({url: process.env.SUPABASE_URL, serviceKey: key, log});
+}
 else {
   const file = storeArg.replace(/^file:/, ''); fs.mkdirSync(path.dirname(path.resolve(file)), {recursive: true});
   store = createMemoryStore({file});

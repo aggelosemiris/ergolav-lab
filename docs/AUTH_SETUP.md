@@ -125,8 +125,9 @@ npx supabase link --project-ref <το-project-ref>        # το «abcdefghijkl�
 npx supabase functions deploy delete-account
 ```
 
-- **Secrets:** το `SUPABASE_URL` και το `SUPABASE_SERVICE_ROLE_KEY` τα δίνει **αυτόματα** το Supabase σε κάθε function
-  του project. Δεν χρειάζεται να ορίσεις τίποτα, και το service_role key δεν περνά ποτέ από τα χέρια σου ή από το git.
+- **Secrets:** το `SUPABASE_URL` και τα κλειδιά (`SUPABASE_SECRET_KEYS` και, όσο ζουν τα παλιά, `SUPABASE_SERVICE_ROLE_KEY`)
+  τα δίνει **αυτόματα** το Supabase σε κάθε function του project. Η `delete-account` χρησιμοποιεί το secret key με όνομα
+  `edge-functions`, αλλιώς το παλιό (βλ. `docs/security/keys.md`). Κανένα κλειδί δεν περνά από τα χέρια σου ή από το git.
   Τα βλέπεις στο **Edge Functions → Secrets**.
 - Άφησε ενεργό το **Verify JWT** (προεπιλογή): η κλήση χωρίς έγκυρη σύνδεση απορρίπτεται πριν φτάσει στον κώδικα.
 - Νέο domain στο μέλλον: μία γραμμή στη λίστα `ALLOWED_ORIGINS` του `supabase/functions/delete-account/handler.ts`
