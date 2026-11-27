@@ -18,11 +18,12 @@ export function createMemoryStore({file = null, data = null, now = () => new Dat
 
   return {
     db,
+    async loadCatalogPrices(){ return clone(db.product_catalog_prices); },
     async publishCatalogPrices(rows){
       const result = {new: 0, changed: []};
       for(const row of rows){
         const key = catalogKey(row), before = catalogPrices.get(key);
-        if(before && before.verified_at >= row.verified_at) continue;
+        if(before && Date.parse(before.verified_at) >= Date.parse(row.verified_at)) continue;
         if(!before){
           result.new++;
           const added = clone(row);

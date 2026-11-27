@@ -2,10 +2,12 @@
 //
 //   node tools/prices/run.mjs --store supabase            (παραγωγή: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 //   node tools/prices/run.mjs --store file:prices.json    (τοπικά, χωρίς Supabase)
-// Επιλογές: --only praktiker,toolcase · --cache <φάκελος> (εξ ορισμού tools/prices/.cache) · --report <αρχείο.md>
+// Επιλογές: --only praktiker,toolcase · --cache <φάκελος> (εξ ορισμού tools/prices/.cache) · --report <αρχείο.md> · --coverage <αρχείο.json.gz>
 //           --users <αρχείο.json> (προϊόντα χρηστών για δοκιμή με αρχείο: [{user_id, key, name, unit, …}])
 //           --v2 (δοκιμή με τις νέες λίστες υλικών, σαν MATERIALS_V2_ENABLED = true· μόνο με --store file:)
 import fs from 'node:fs'; import path from 'node:path'; import {fileURLToPath} from 'node:url';
+import { gzipSync } from 'node:zlib';
+import { catalogCoverage } from './catalog-coverage.mjs';
 import { createFetcher } from './fetch.mjs';
 import { activeSuppliers } from './suppliers.mjs';
 import { MATERIALS_V2_ENABLED } from '../../src/config.js';
@@ -41,8 +43,17 @@ const fetcher = createFetcher({cacheDir: opt('--cache', path.join(here, '.cache'
 const t0 = Date.now();
 const catalog = loadSupplyCatalog();
 const searchCatalog = loadSearchCatalog();
+const coverageFile = opt('--coverage');
 const result = await runOnce({store, suppliers, fetcher, log, v2,
-  refreshProductCatalog: ({results, at}) => refreshCatalog({catalog, searchCatalog, results, at, store, fetcher, only, log})});
+  refreshProductCatalog: ({results, at, startedAt}) => refreshCatalog({
+    catalog, searchCatalog, results, at, startedAt, finishedAt: () => new Date().toISOString(), store, fetcher, only, log,
+    onCoverage: coverageFile ? snapshot => {
+      const coverage = catalogCoverage(snapshot);
+      snapshot.stats.origins = coverage.groups;
+      snapshot.stats.previousOnly = coverage.previousOnly;
+      fs.writeFileSync(coverageFile, gzipSync(JSON.stringify(coverage)));
+    } : undefined,
+  })});
 if(result.skipped) process.exit(0);
 const {stats} = result;
 log(`τέλος σε ${Math.round((Date.now() - t0) / 1000)}″ · αιτήματα ${fetcher.stats.requests} (cache ${fetcher.stats.cached}, επαναλήψεις ${fetcher.stats.retries})`);
@@ -50,7 +61,7 @@ for(const [id, s] of Object.entries(stats.suppliers)) log(`  ${id.padEnd(12)} ${
 log(`  προϊόντα: ${JSON.stringify(stats.products)}`);
 if(stats.productCatalog){
   const c = stats.productCatalog;
-  log(`  κατάλογος αναζήτησης: ${c.total} προϊόντα · ${c.verified} με επαληθευμένη τιμή · ${c.changed} με αλλαγή`);
+  log(`  κατάλογος αναζήτησης: ${c.total} προϊόντα · ${c.verified} με νέα επαληθευμένη τιμή · ${c.verifiedFromCache} μόνο από cache · ${c.changed} με αλλαγή`);
 }
 const out = opt('--report');
 if(out){ fs.writeFileSync(out, report({stats, updates: result.updates, fetcherStats: fetcher.stats, store})); log(`αναφορά: ${out}`); }

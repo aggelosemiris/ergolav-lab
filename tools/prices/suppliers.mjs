@@ -12,7 +12,7 @@ import { praktikerItems } from './adapters/praktiker.mjs';
 import { vrontinosItems, magentoItems } from './adapters/html.mjs';
 import { wooHtmlItems, journalItems, prestaItems, eshopItems } from './adapters/shops.mjs';
 
-const woo = (path) => ({method: 'woo-store-api', items: ({fetcher, supplier, log}) => wooItems({base: supplier.base_url, path, fetcher, log})});
+const woo = (path) => ({method: 'woo-store-api', items: ({fetcher, supplier, partial}) => wooItems({base: supplier.base_url, path, fetcher, partial})});
 
 /** Μέτρηση ενός προμηθευτή (robots.txt, ροή, όροι). */
 const m = (checked, robots, feed, terms, note = '') => ({checked, robots, feed, terms, note});

@@ -34,14 +34,15 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
       if(!r.ok){
         // Το details μπορεί να περιέχει ολόκληρη εγγραφή και να κρύψει το message με το όνομα του κανόνα.
         // Κρατάμε μόνο κωδικό/μήνυμα, χωρίς details ή hint και χωρίς το κλειδί της υπηρεσίας.
-        let summary = 'Μη δομημένη απάντηση σφάλματος';
+        let summary = 'Μη δομημένη απάντηση σφάλματος', code = null;
         try {
           const e = JSON.parse(text);
-          summary = [typeof e?.code === 'string' ? e.code.slice(0, 20) : '',
-            typeof e?.message === 'string' ? e.message : ''].filter(Boolean).join(' ') || summary;
+          code = typeof e?.code === 'string' && /^(?:[A-Z0-9]{5}|PGRST\d{3})$/.test(e.code) ? e.code : null;
+          const constraint = e?.message?.match?.(/\bconstraint "([a-z_][a-z0-9_]{0,62})"/i)?.[1];
+          summary = [code, constraint].filter(Boolean).join(' ') || summary;
         } catch {}
         summary = summary.replaceAll(serviceKey, '[κρυφό]').slice(0, 600);
-        throw new Error(`Supabase ${method} ${path.split('?')[0]}: HTTP ${r.status} ${summary}`);
+        throw Object.assign(new Error(`Supabase ${method} ${path.split('?')[0]}: HTTP ${r.status} ${summary}`), {status: r.status, code});
       }
       return text ? JSON.parse(text) : null;
     }
@@ -57,6 +58,14 @@ export function createSupabaseStore({url, serviceKey, fetchImpl = fetch, retries
   const upsert = (table, rows, conflict) => req('POST', `/${table}?on_conflict=${conflict}`, rows, 'resolution=merge-duplicates,return=representation');
 
   return {
+    async loadCatalogPrices(){
+      try {
+        return await getAll('/product_catalog_prices?select=product_id,supplier_id,cents,price_kind,verified_at&order=product_id,supplier_id');
+      } catch(error){
+        if(error.status === 403 && error.code === '42501') return null;
+        throw error;
+      }
+    },
     async publishCatalogPrices(rows){
       const result = {new: 0, changed: []};
       for(const part of chunk(rows, 500)){

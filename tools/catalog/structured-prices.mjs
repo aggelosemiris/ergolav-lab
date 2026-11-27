@@ -1,6 +1,7 @@
 // Εναλλακτική για εγκεκριμένες σελίδες καταλόγου χωρίς ειδικό adapter.
 // Μόνο ρητή τιμή EUR ενός Offer· ποτέ εύρος, προτεινόμενη τιμή κατασκευαστή ή τιμή από κείμενο σελίδας.
 import {load} from 'cheerio';
+import {gtin} from '../../src/price-match.js';
 import {nextPage} from './html-adapters.mjs';
 
 const typeIs = (value, type) => [value].flat().some(t => typeof t === 'string' && t.split('/').at(-1) === type);
@@ -24,7 +25,11 @@ export function structuredOffers($, base){
         url = new URL(offer.url || value.url || value['@id'], base);
         if(url.protocol !== 'https:' || hostOf(url) !== hostOf(base)) return;
       } catch { return; }
-      out.push({url: url.href, listedCents: cents});
+      out.push({url: url.href, listedCents: cents, currency: offer.priceCurrency,
+        name: typeof value.name === 'string' ? value.name : null,
+        brand: typeof value.brand === 'string' ? value.brand : value.brand?.name ?? null,
+        gtin: gtin(value.gtin14 || value.gtin13 || value.gtin12 || value.gtin8 || value.gtin),
+        mpn: value.mpn ?? null, sku: value.sku ?? null});
       return;
     }
     visit(value['@graph']);
@@ -37,11 +42,12 @@ export function structuredOffers($, base){
   return out;
 }
 
-export async function* structuredPriceItems({categories, fetcher, log}){
+export async function* structuredPriceItems({categories, fetcher, log, partial = () => {}}){
   const seen = new Set();
   for(const category of categories){
     let page = category;
-    for(let n = 0; page && n < 80 && !seen.has(page); n++){
+    let visited = 0;
+    for(; page && visited < 80 && !seen.has(page); visited++){
       seen.add(page);
       try {
         const response = await fetcher.get(page);
@@ -56,5 +62,6 @@ export async function* structuredPriceItems({categories, fetcher, log}){
         break;
       }
     }
+    if(visited === 80 && page) partial(`Δομημένη ροή: όριο σελιδοποίησης για ${category}`);
   }
 }
