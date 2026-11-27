@@ -4,7 +4,7 @@
 begin;
 
 -- Μυστικό ΜΟΝΟ για το τεστ (στο Supabase μπαίνει στο Vault από τον διαχειριστή· ποτέ στο repo).
-insert into vault.secrets (name, secret) values ('tech_price_pepper', repeat('t', 64));
+select vault.create_secret(repeat('t', 64), 'tech_price_pepper', 'Temporary test secret; rolled back');
 insert into auth.users (id, email, aud, role)
   select ('00000000-0000-4000-8000-00000000c00' || i)::uuid, 'tp' || i || '@example.invalid', 'authenticated', 'authenticated'
     from generate_series(1, 8) i;

@@ -58,4 +58,12 @@ create schema if not exists extensions;
 create extension if not exists pgcrypto schema extensions;
 create schema if not exists vault;
 create table if not exists vault.secrets (name text primary key, secret text not null);
+-- Official Vault API used by the live RLS test; this stub stores test data only.
+create or replace function vault.create_secret(new_secret text, new_name text default null, new_description text default '')
+returns uuid language plpgsql as $$
+declare secret_id uuid := gen_random_uuid();
+begin
+  insert into vault.secrets(name, secret) values (coalesce(new_name, secret_id::text), new_secret);
+  return secret_id;
+end $$;
 create or replace view vault.decrypted_secrets as select name, secret as decrypted_secret from vault.secrets;
