@@ -139,7 +139,7 @@ test('πριν ανοίξει ο λογαριασμός: πραγματική δ
     assert.ok(/Προσωρινό κείμενο, υπό νομικό έλεγχο/.test(html));
     assert.ok(/script-src 'none'/.test(html), 'οι σελίδες δεν τρέχουν κώδικα');
   }
-  assert.ok(/Φρανκφούρτη/.test(legal[1]) && /μόνο στη συσκευή σου/.test(legal[1]) && /Διαγραφή λογαριασμού/.test(legal[1]));
+  assert.ok(/Φρανκφούρτη/.test(legal[1]) && /Διαγραφή λογαριασμού/.test(legal[1]));   // τι ανεβαίνει: test/privacy.test.js
   if(!cfg.AUTH_ENABLED) return;
   assert.ok(acc.configured(cfg), 'AUTH_ENABLED χωρίς πραγματικό SUPABASE_URL / anon key');
   assert.ok(!/your-project-ref/.test(fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8')));
