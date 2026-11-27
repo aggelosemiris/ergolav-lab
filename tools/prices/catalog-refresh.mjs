@@ -10,6 +10,13 @@ import {SPECIALISTS_PENDING_TERMS, SPECIALISTS_REJECTED} from './suppliers.mjs';
 
 // Τα προϊόντα μένουν στον κατάλογο. Για αυτές τις πηγές αναζητούμε τιμή σε ενεργούς προμηθευτές.
 const alternateOnly = new Set(['homeville', 'youbath', 'mafou', 'epipla1']);
+// Ίδιο SKU, τεχνικά χαρακτηριστικά και μονάδα (τ.μ.) στις δύο σελίδες του Παράβαλου.
+const confirmedListings = [{
+  productId: '1343acd2e9a38a22eb0748a6',
+  supplier: 'paravalos',
+  url: 'https://paravalos.gr/plakaki-granitis-kasa-aivori-60x120cm-mat-rectified-protis-poiotitas/',
+  sku: '0260120711',
+}];
 const aliases = {kaxiris: 'kaxirismonotika', mylonas: 'mylonasergaleia', papasideris: 'e-papasideris', billis: 'marmara-billis'};
 const host = value => new URL(value).hostname.replace(/^www\./, '');
 const sourceById = new Map(SITES.map(site => [site.id, site]));
@@ -185,6 +192,20 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     coverage.reason ??= result?.reason || extra.reason || (!items.length ? 'δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή' : null);
     return rows;
   }));
+  const confirmed = [];
+  for(const {productId, supplier, url, sku} of confirmedListings){
+    if(!checked.has(productId) || verified.has(productId)) continue;
+    const source = freshSources.find(row => row.site === supplier);
+    if(!source) continue;
+    const key = supplierListingKey(supplier, url);
+    const items = source.items.filter(item => supplierListingKey(supplier, item.url) === key);
+    if(!items.length || items.some(item => item.sku !== sku)) continue;
+    const price = source.priceByUrl.get(key);
+    if(!price || price.conflict) continue;
+    confirmed.push({product_id: productId, supplier_id: supplier, cents: price.cents, price_kind: price.kind, verified_at: at});
+    verified.add(productId);
+    seen.add(productId);
+  }
   const alternatives = alternateOffers(searchCatalog, freshSources, offersBySupplier, verified, at);
   const fromAlternateSource = new Set();
   for(const row of alternatives){
@@ -192,7 +213,7 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     verified.add(row.product_id);
     seen.add(row.product_id);
   }
-  updates.push(alternatives);
+  updates.push(confirmed, alternatives);
   for(const rows of updates){
     if(!rows.length) continue;
     const result = await store.publishCatalogPrices(rows);
@@ -201,5 +222,5 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     for(const id of result.changed) changed.add(id);
   }
   return {total: catalog.products.length, checked: checked.size, seen: seen.size, verified: verified.size,
-    withoutVerified: checked.size - verified.size, fromAlternateSource: fromAlternateSource.size, offersChanged, newOffers, changed: changed.size, suppliers};
+    withoutVerified: checked.size - verified.size, fromAlternateSource: fromAlternateSource.size, fromConfirmedListing: confirmed.length, offersChanged, newOffers, changed: changed.size, suppliers};
 }
