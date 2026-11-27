@@ -1,7 +1,8 @@
 // Ίδιος κατάλογος με την αναζήτηση. Μαζική ανάγνωση, ποτέ ένα αίτημα για κάθε προϊόν.
 import {supplierListingKey} from '../catalog/product-catalog.mjs';
-import {clean, codesIn} from '../../src/price-match.js';
+import {clean, codesIn, modelCode} from '../../src/price-match.js';
 import {SITES} from '../catalog/sites.mjs';
+import {readSupplier} from './read-supplier.mjs';
 import {wooItems} from './adapters/woo.mjs';
 import {magentoItems, vrontinosItems} from './adapters/html.mjs';
 import {praktikerItems} from './adapters/praktiker.mjs';
@@ -53,38 +54,69 @@ function supplemental(id, source, alreadyFetched){
   return {};
 }
 
-function observations(site, items){
+function observations(site, items, at, startedAt){
   const seen = new Map();
   const valid = cents => Number.isInteger(cents) && cents > 0 && cents <= 2147483647;
   for(const item of items){
     const url = supplierListingKey(site, item.url);
     if(!url) continue;
+    const observedAt = item.observedAt ?? at;
+    const observedTime = Date.parse(observedAt);
+    const fresh = !item.fromCache && observedTime >= Date.parse(startedAt);
+    const marketMismatch = item.market && item.market !== 'GR' || item.currency && item.currency !== 'EUR';
+    const reason = marketMismatch ? 'market-or-currency' : item.reason || 'no-verifiable-price';
     const regular = item.verification === 'verified' && valid(item.regularCents);
-    const candidate = regular ? {cents: item.regularCents, kind: 'regular'}
-      : valid(item.listedCents) ? {cents: item.listedCents, kind: 'listed'} : null;
+    const priced = regular || valid(item.listedCents);
+    const candidate = {url: item.url, observedAt, fresh, item,
+      cents: !marketMismatch && priced && Number.isFinite(observedTime) ? (regular ? item.regularCents : item.listedCents) : null,
+      kind: regular ? 'regular' : 'listed', reason};
     const previous = seen.get(url);
-    if(!previous || (candidate?.kind === 'regular' && previous.kind === 'listed')) seen.set(url, candidate);
-    else if(candidate?.kind === previous.kind && candidate.cents !== previous.cents)
-      seen.set(url, {...previous, conflict: true});
+    if(!previous || previous.fresh !== candidate.fresh && candidate.fresh
+      || previous.fresh === candidate.fresh && (previous.cents == null && candidate.cents != null
+        || candidate.kind === 'regular' && candidate.cents != null && previous.kind === 'listed')){
+      seen.set(url, candidate);
+    } else if(candidate.fresh === previous.fresh && candidate.cents != null && previous.cents != null
+      && candidate.kind === previous.kind && candidate.cents !== previous.cents){
+      seen.set(url, {...previous, conflict: true, reason: 'conflicting-observations'});
+    }
   }
   return seen;
 }
 
-// Ίδιος πλήρης τίτλος με κωδικό μοντέλου. Διατηρούμε αριθμούς, μέγεθος και περιγραφή
-// συσκευασίας. Αν ο τίτλος δείχνει σε δύο προϊόντα ή δύο URL του ίδιου προμηθευτή, παραλείπεται.
+// Ο πλήρης τίτλος είναι ευρετήριο υποψηφίων. Το μέγεθος, η ισχύς και τα IP δεν είναι κωδικοί.
 function modelTitle(name){
-  if(!codesIn(name).some(code => /[A-Z]{2,}/.test(code) && /[0-9]{3,}/.test(code))) return null;
+  if(!productCodes(name).length) return null;
   return clean(name);
 }
 
-function alternateOffers(searchCatalog, sources, offersBySupplier, verified, at){
+function productCodes(name){
+  return codesIn(name).filter(c => /[A-Z]{2,}/.test(c) && /[0-9]{3,}/.test(c)
+    && !/^(?:[0-9]+(?:X[0-9]+)*(?:MM|CM|ML|LM|KG|BTU|W|K|MA|HZ)|(?:IP|LED)[0-9]+)$/.test(c));
+}
+
+function verifiedIdentity(product, item){
+  const brand = clean(product.brand), suppliedBrand = clean(item.brand);
+  if(brand && suppliedBrand && brand !== suppliedBrand) return false;
+  const knownBrand = brand || suppliedBrand;
+  if(!knownBrand || !(brand && suppliedBrand) && !(` ${product.title} `).includes(` ${knownBrand} `)) return false;
+  if(clean(item.unit) !== clean(product.unit)) return false;
+  if(item.unitPriceUnit && product.unit && clean(item.unitPriceUnit) !== clean(product.unit)) return false;
+  const codes = productCodes(product.title);
+  const explicitModel = modelCode(item.mpn);
+  if(explicitModel && !codes.includes(explicitModel)) return false;
+  // Ο κατάλογος προκύπτει από αρχείο χωρίς δομημένο SKU/EAN. Η αποδοχή βασίζεται στη μάρκα
+  // και στον κωδικό μέσα στον πλήρη τίτλο που ταιριάζει, ποτέ στο SKU του άλλου εμπόρου.
+  return codes.length === 1;
+}
+
+function alternateOffers(searchCatalog, sources, offersBySupplier, directFresh, verified, reject){
   const catalogByTitle = new Map();
-  for(const [id, title, brand, , names] of searchCatalog?.products ?? []){
+  for(const [id, title, brand, unit, names] of searchCatalog?.products ?? []){
     for(const name of [title, ...names]){
       const key = modelTitle(name);
       if(!key) continue;
       const previous = catalogByTitle.get(key);
-      catalogByTitle.set(key, previous === undefined || previous?.id === id ? {id, brand: clean(brand)} : null);
+      catalogByTitle.set(key, previous === undefined || previous?.id === id ? {id, brand, unit, title: key} : null);
     }
   }
 
@@ -95,32 +127,37 @@ function alternateOffers(searchCatalog, sources, offersBySupplier, verified, at)
     for(const item of items){
       if(!item.name) continue;
       const key = modelTitle(item.name);
-      if(!key || !catalogByTitle.get(key)) continue;
+      if(!key || !catalogByTitle.has(key)) continue;
       const url = supplierListingKey(site, item.url);
       if(!url) continue;
       const previous = urlsByTitle.get(key);
-      urlsByTitle.set(key, previous === undefined || previous?.url === url ? {url, brand: clean(item.brand)} : null);
+      urlsByTitle.set(key, previous === undefined || previous === url ? url : null);
     }
     const matches = new Map();
-    for(const [key, listing] of urlsByTitle){
+    for(const [key, url] of urlsByTitle){
       const product = catalogByTitle.get(key);
-      if(!listing || verified.has(product.id) || knownUrls.has(listing.url)) continue;
-      if(product.brand && listing.brand && product.brand !== listing.brand) continue;
-      const price = priceByUrl.get(listing.url);
-      if(!price || price.conflict) continue;
+      if(!product || directFresh.has(product.id)) continue;
+      if(!url){ reject(product.id, site, null, 'ambiguous-listing'); continue; }
+      if(knownUrls.has(url)) continue;
+      const price = priceByUrl.get(url);
+      if(price?.cents == null || price.conflict){ reject(product.id, site, price?.url ?? null, price?.reason || 'no-verifiable-price'); continue; }
+      if(modelTitle(price.item.name) !== key || !verifiedIdentity(product, price.item)){
+        reject(product.id, site, price.url, 'identity-or-unit');
+        continue;
+      }
+      if(verified.has(product.id) && !price.fresh) continue;
       const previous = matches.get(product.id);
-      matches.set(product.id, previous === undefined || previous?.url === listing.url ? {url: listing.url, price} : null);
+      matches.set(product.id, previous === undefined || previous?.url === url ? {url, price} : null);
     }
-    for(const [product_id, match] of matches){
-      if(!match) continue;
-      const {cents, kind: price_kind} = match.price;
-      rows.push({product_id, supplier_id: site, cents, price_kind, verified_at: at});
+    for(const [productId, match] of matches){
+      if(!match){ reject(productId, site, null, 'ambiguous-listing'); continue; }
+      rows.push({productId, site, price: match.price, method: 'brand-model-full-title'});
     }
   }
   return rows;
 }
 
-export async function refreshCatalog({catalog, searchCatalog, results, fetcher, store, at, only, log = () => {}}){
+export async function refreshCatalog({catalog, searchCatalog, results, fetcher, store, at, startedAt = at, only, onCoverage, log = () => {}}){
   const offersBySupplier = new Map();
   for(const [productId, offers] of catalog.products){
     for(const [site, url] of offers){
@@ -130,6 +167,12 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
   }
   const suppliers = {};
   const checked = new Set(), seen = new Set(), verified = new Set(), changed = new Set();
+  const rejections = new Map();
+  const reject = (id, supplier, url, reason) => {
+    seen.add(id);
+    if(!rejections.has(id)) rejections.set(id, []);
+    rejections.get(id).push({supplier, url, reason});
+  };
   let offersChanged = 0, newOffers = 0;
   const bySupplier = new Map(results.map(r => [r.s.id, r]));
   // Η συμπληρωματική ανάγνωση είναι περιορισμένη στον χρόνο του job και στον ρυθμό του κοινού fetcher.
@@ -153,25 +196,27 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     const id = aliases[site] || site;
     const result = bySupplier.get(id);
     const rows = [];
-    const coverage = suppliers[site] = {listings: offers.length, seen: 0, verified: 0, reason: null};
+    const coverage = suppliers[site] = {listings: offers.length, seen: 0, verified: 0, verifiedFromCache: 0, reason: null};
     for(const offer of offers) checked.add(offer.productId);
     if(alternateOnly.has(site)){
       coverage.reason = 'αναζήτηση τιμής σε εναλλακτικούς προμηθευτές';
+      coverage.status = 'disabled';
       return rows;
     }
     if(only && !only.includes(id) && !only.includes(site)){
       coverage.reason = 'εκτός φίλτρου εκτέλεσης';
+      coverage.status = 'excluded';
       return rows;
     }
     const items = [...(result?.items || [])];
     const source = catalog.sources[site];
-    const extra = result?.status === 'unavailable' ? {} : supplemental(site, source, Boolean(result));
+    const extra = result?.status === 'unavailable' || result?.fatal ? {} : supplemental(site, source, Boolean(result));
     if(extra.items){
-      try {
-        for await (const item of extra.items({fetcher: enhancedFetcher, log})) items.push(item);
-      } catch(e){ coverage.reason = e.message; }
+      const supplement = await readSupplier({supplier: {id: site}, fetcher: enhancedFetcher, items: extra.items, at, log});
+      items.push(...supplement.items);
+      coverage.reason = supplement.reason;
     }
-    const priceByUrl = observations(site, items);
+    const priceByUrl = observations(site, items, at, startedAt);
     if(items.length) freshSources.push({site, items, priceByUrl});
     const byProduct = new Map();
     for(const {productId, url} of offers){
@@ -180,16 +225,18 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
       coverage.seen++;
       seen.add(productId);
       const price = priceByUrl.get(key);
-      if(!price || price.conflict) continue;
-      coverage.verified++;
+      if(price.cents == null || price.conflict){ reject(productId, site, price.url, price.reason); continue; }
+      if(price.fresh) coverage.verified++;
+      else coverage.verifiedFromCache++;
       verified.add(productId);
       const previous = byProduct.get(productId);
-      if(!previous || (price.kind === 'regular' && previous.kind !== 'regular')
-        || (price.kind === previous.kind && price.cents < previous.cents)) byProduct.set(productId, price);
+      if(!previous || price.fresh && !previous.fresh || price.fresh === previous.fresh
+        && (price.kind === 'regular' && previous.kind !== 'regular' || price.kind === previous.kind && price.cents < previous.cents))
+        byProduct.set(productId, price);
     }
-    for(const [product_id, {cents, kind: price_kind}] of byProduct)
-      rows.push({product_id, supplier_id: site, cents, price_kind, verified_at: at});
+    for(const [productId, price] of byProduct) rows.push({productId, site, price, method: 'supplier-url'});
     coverage.reason ??= result?.reason || extra.reason || (!items.length ? 'δεν υπάρχει διαθέσιμη ροή τιμών για την πηγή' : null);
+    coverage.status = coverage.reason ? (items.length ? 'partial' : 'unavailable') : 'available';
     return rows;
   }));
   const confirmed = [];
@@ -201,26 +248,41 @@ export async function refreshCatalog({catalog, searchCatalog, results, fetcher, 
     const items = source.items.filter(item => supplierListingKey(supplier, item.url) === key);
     if(!items.length || items.some(item => item.sku !== sku)) continue;
     const price = source.priceByUrl.get(key);
-    if(!price || price.conflict) continue;
-    confirmed.push({product_id: productId, supplier_id: supplier, cents: price.cents, price_kind: price.kind, verified_at: at});
+    if(price?.cents == null || price.conflict) continue;
+    confirmed.push({productId, site: supplier, price, method: 'confirmed-supplier-sku'});
     verified.add(productId);
     seen.add(productId);
   }
-  const alternatives = alternateOffers(searchCatalog, freshSources, offersBySupplier, verified, at);
-  const fromAlternateSource = new Set();
-  for(const row of alternatives){
-    fromAlternateSource.add(row.product_id);
-    verified.add(row.product_id);
-    seen.add(row.product_id);
+  updates.push(confirmed);
+  const fresh = new Set();
+  for(const rows of updates){
+    for(const {productId, price} of rows) if(price.fresh) fresh.add(productId);
   }
-  updates.push(confirmed, alternatives);
+  const alternatives = alternateOffers(searchCatalog, freshSources, offersBySupplier, fresh, verified, reject);
+  for(const {productId, price} of alternatives){
+    verified.add(productId);
+    seen.add(productId);
+    if(price.fresh) fresh.add(productId);
+  }
+  updates.push(alternatives);
+  const offers = new Map();
   for(const rows of updates){
     if(!rows.length) continue;
-    const result = await store.publishCatalogPrices(rows);
+    for(const row of rows){
+      if(!offers.has(row.productId)) offers.set(row.productId, []);
+      offers.get(row.productId).push(row);
+    }
+    const result = await store.publishCatalogPrices(rows.map(({productId, site, price}) =>
+      ({product_id: productId, supplier_id: site, cents: price.cents, price_kind: price.kind, verified_at: price.observedAt})));
     newOffers += result.new;
     offersChanged += result.changed.length;
     for(const id of result.changed) changed.add(id);
   }
-  return {total: catalog.products.length, checked: checked.size, seen: seen.size, verified: verified.size,
-    withoutVerified: checked.size - verified.size, fromAlternateSource: fromAlternateSource.size, fromConfirmedListing: confirmed.length, offersChanged, newOffers, changed: changed.size, suppliers};
+  const stats = {total: catalog.products.length, checked: checked.size, seen: seen.size, verified: fresh.size,
+    verifiedFromCache: verified.size - fresh.size, rejected: seen.size - verified.size, notFound: checked.size - seen.size,
+    withoutVerified: checked.size - fresh.size,
+    fromAlternateSource: new Set(alternatives.filter(r => r.price.fresh).map(r => r.productId)).size,
+    fromConfirmedListing: confirmed.filter(r => r.price.fresh).length, offersChanged, newOffers, changed: changed.size, suppliers};
+  if(onCoverage) await onCoverage({stats, catalog, searchCatalog, offers, rejections, seen, fresh, verified, startedAt, at});
+  return stats;
 }

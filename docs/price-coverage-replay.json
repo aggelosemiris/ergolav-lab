@@ -1,0 +1,116 @@
+{
+  "base": "8c363c2",
+  "mode": "offline-frozen-fixture",
+  "networkRequests": 0,
+  "before": {
+    "variant": "before",
+    "ms": 684,
+    "counters": {
+      "requests": 2,
+      "cached": 1,
+      "retries": 0
+    },
+    "status": "partial",
+    "catalog": {
+      "total": 109067,
+      "checked": 109067,
+      "seen": 1,
+      "verified": 1,
+      "withoutVerified": 109066,
+      "fromAlternateSource": 0,
+      "fromConfirmedListing": 0,
+      "offersChanged": 0,
+      "newOffers": 1,
+      "changed": 0,
+      "suppliers": {
+        "paravalos": {
+          "listings": 3397,
+          "seen": 0,
+          "verified": 0,
+          "reason": "μπλοκάρει το bot: paravalos.gr: HTTP 403"
+        },
+        "el-shop": {
+          "listings": 10817,
+          "seen": 1,
+          "verified": 1,
+          "reason": null
+        }
+      }
+    },
+    "prices": [
+      {
+        "product_id": "5d221c238b6b464143c4edec",
+        "supplier_id": "el-shop",
+        "cents": 2343,
+        "price_kind": "regular",
+        "verified_at": "2026-11-27T17:00:00.000Z"
+      }
+    ]
+  },
+  "after": {
+    "variant": "after",
+    "ms": 4998,
+    "counters": {
+      "requests": 2,
+      "cached": 1,
+      "retries": 0
+    },
+    "status": "partial",
+    "catalog": {
+      "total": 109067,
+      "checked": 109067,
+      "seen": 3,
+      "verified": 2,
+      "verifiedFromCache": 1,
+      "rejected": 0,
+      "notFound": 109064,
+      "withoutVerified": 109065,
+      "fromAlternateSource": 0,
+      "fromConfirmedListing": 1,
+      "offersChanged": 0,
+      "newOffers": 3,
+      "changed": 0,
+      "suppliers": {
+        "paravalos": {
+          "listings": 3397,
+          "seen": 1,
+          "verified": 1,
+          "verifiedFromCache": 0,
+          "reason": "μπλοκάρει το bot: paravalos.gr: HTTP 403",
+          "status": "partial"
+        },
+        "el-shop": {
+          "listings": 10817,
+          "seen": 1,
+          "verified": 0,
+          "verifiedFromCache": 1,
+          "reason": null,
+          "status": "available"
+        }
+      }
+    },
+    "prices": [
+      {
+        "product_id": "95067bbd8d6bb6f173778f45",
+        "supplier_id": "paravalos",
+        "cents": 1900,
+        "price_kind": "regular",
+        "verified_at": "2026-11-27T17:00:00.000Z"
+      },
+      {
+        "product_id": "5d221c238b6b464143c4edec",
+        "supplier_id": "el-shop",
+        "cents": 2343,
+        "price_kind": "regular",
+        "verified_at": "2026-11-25T17:00:00.000Z"
+      },
+      {
+        "product_id": "1343acd2e9a38a22eb0748a6",
+        "supplier_id": "paravalos",
+        "cents": 1900,
+        "price_kind": "regular",
+        "verified_at": "2026-11-27T17:00:00.000Z"
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@ export function report({stats, updates, fetcherStats}){
   L.push('Τιμές αναφοράς: διάμεσος των **επαληθευμένων κανονικών** τιμών (όχι προσφορές), ανά μονάδα, **χωρίς ΦΠΑ**.', '');
   L.push('## Προμηθευτές', '', '| Προμηθευτής | Κατάσταση | Προϊόντα που διαβάστηκαν | Με επαληθευμένη κανονική τιμή | Σε προσφορά | Αντιστοιχίσεις | Λόγος |', '|---|---|---|---|---|---|---|');
   for(const [id, s] of Object.entries(stats.suppliers))
-    L.push(`| ${id} | ${s.status === 'available' ? '✅ διαθέσιμος' : '❌ μη διαθέσιμος'} | ${s.items} | ${s.verified} | ${s.promo} | ${s.matched} | ${s.reason || ''} |`);
+    L.push(`| ${id} | ${s.status === 'available' ? '✅ διαθέσιμος' : s.status === 'partial' ? '⚠️ μερική συλλογή' : '❌ μη διαθέσιμος'} | ${s.items} | ${s.verified} | ${s.promo} | ${s.matched} | ${s.reason || ''} |`);
   const p = stats.products, o = stats.offers;
   L.push('', '## Σύνολα', '',
     `- Προϊόντα στον έλεγχο: **${p.total}** (κατάλογος ${p.catalog}, από χρήστες ${p.user} με ${p.userRecords} εγγραφές χρηστών· νέες συνδέσεις ${p.linkedNow}).`,
@@ -22,11 +22,20 @@ export function report({stats, updates, fetcherStats}){
     L.push('', '## Ενιαίος κατάλογος αναζήτησης', '',
       `- Μοναδικά προϊόντα: **${c.total}** · εξετάστηκαν: **${c.checked}** · βρέθηκαν σε ροή προμηθευτή: **${c.seen}**.`,
       `- Με νέα επαληθευμένη τιμή λιανικής σε αυτή την εκτέλεση: **${c.verified}** · χωρίς νέα επαλήθευση: **${c.withoutVerified}**.`,
+      `- Μόνο επαληθευμένη παρατήρηση από cache: **${c.verifiedFromCache ?? 0}** · απορρίφθηκαν: **${c.rejected ?? 0}** · δεν εντοπίστηκαν: **${c.notFound ?? 0}**.`,
       `- Με τιμή από εναλλακτικό προμηθευτή: **${c.fromAlternateSource ?? 0}** · με τιμή από ταυτοποιημένη καταχώριση: **${c.fromConfirmedListing ?? 0}**.`,
       `- Προϊόντα με αλλαγή σε υφιστάμενη τιμή: **${c.changed}** · επιμέρους αλλαγές τιμής προμηθευτή: ${c.offersChanged} · πρώτες επαληθεύσεις προμηθευτή: ${c.newOffers}.`,
-      '', '| Προμηθευτής | Καταχωρίσεις | Βρέθηκαν | Επαληθεύτηκαν | Λόγος |', '|---|---:|---:|---:|---|');
+      '', '| Προμηθευτής | Καταχωρίσεις | Βρέθηκαν | Νέες επαληθεύσεις | Επαληθεύσεις από cache | Κατάσταση | Λόγος |', '|---|---:|---:|---:|---:|---|---|');
     for(const [site, s] of Object.entries(c.suppliers).sort())
-      L.push(`| ${site} | ${s.listings} | ${s.seen} | ${s.verified} | ${(s.reason || '').replace(/[|\r\n]/g, ' ')} |`);
+      L.push(`| ${site} | ${s.listings} | ${s.seen} | ${s.verified} | ${s.verifiedFromCache ?? 0} | ${s.status ?? "—"} | ${(s.reason || '').replace(/[|\r\n]/g, ' ')} |`);
+    if(c.origins){
+      L.push('', '### Κάλυψη ανά κύριο αρχικό προμηθευτή', '',
+        '| Αρχικός προμηθευτής | Σύνολο | Νέα | Μόνο cache | Απορρίψεις | Δεν βρέθηκαν | Αρχική τιμή | Χωρίς αρχική τιμή | Παρατηρημένος SKU/MPN/EAN | Μάρκα | Προδιαγραφές | Κοινός τίτλος |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+      for(const [site, s] of Object.entries(c.origins).sort())
+        L.push(`| ${site} | ${s.total} | ${s.fresh} | ${s.cached} | ${s.rejected} | ${s.notFound} | ${s.archived} | ${s.noArchived} | ${s.observedIdentifiers} | ${s.brand} | ${s.specs} | ${s.repeatedTitle} |`);
+      L.push('', 'Η αρχική τιμή είναι ξεχωριστό χαρακτηριστικό και μπορεί να συνυπάρχει με οποιαδήποτε κατάσταση κάλυψης.');
+    }
   }
   L.push('', '## Είδη', '', '| Είδος | Μονάδα | Αναφορά | Κατάσταση | Προμηθευτές | Σημείωση |', '|---|---|---|---|---|---|');
   const unit = {piece: 'τεμ.', m: 'μ.', m2: 'τ.μ.', bag: 'σακί', other: '—'};

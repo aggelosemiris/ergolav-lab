@@ -28,3 +28,36 @@ test('το workflow τρέχει με όριο headers 64 KB', () => {
   const yml = fs.readFileSync(new URL('../.github/workflows/prices.yml', import.meta.url), 'utf8');
   assert.match(yml, /node --max-http-header-size=65536 tools\/prices\/run\.mjs --store supabase/);
 });
+
+test('δύο ταυτόχρονα αιτήματα περιμένουν το robots.txt και δεν διαβάζουν απαγορευμένη σελίδα', async () => {
+  let sent = 0;
+  const f = createFetcher({wait: async () => {}, fetchImpl: async url => {
+    if(url.endsWith('/robots.txt')) return new Response('User-agent: *\nDisallow: /closed');
+    sent++;
+    return new Response('ok');
+  }});
+  const r = await Promise.allSettled([f.get('https://shop.example/closed'), f.get('https://shop.example/closed/2')]);
+  assert.ok(r.every(x => x.status === 'rejected' && x.reason.name === 'Disallowed'));
+  assert.equal(sent, 0);
+  assert.equal(f.stats.requests, 1);
+});
+
+test('ελέγχει τους κανόνες για τον προορισμό ανακατεύθυνσης πριν τον επισκεφθεί', async () => {
+  const urls = [];
+  const f = createFetcher({wait: async () => {}, fetchImpl: async url => {
+    urls.push(url);
+    return url.endsWith('/robots.txt') ? new Response('User-agent: *\nDisallow: /closed')
+      : new Response('', {status: 302, headers: {location: '/closed'}});
+  }});
+  await assert.rejects(f.get('https://shop.example/open'), {name: 'Disallowed'});
+  assert.deepEqual(urls, ['https://shop.example/robots.txt', 'https://shop.example/open']);
+});
+
+test('δεν ξαναδοκιμάζει νωρίτερα από το Retry-After του προμηθευτή', async () => {
+  let pages = 0;
+  const f = createFetcher({wait: async () => {}, fetchImpl: async url => url.endsWith('/robots.txt') ? robots() :
+    (++pages, new Response('', {status: 429, headers: {'retry-after': '600'}}))});
+  await assert.rejects(f.get('https://shop.example/start'), {name: 'Blocked'});
+  assert.equal(pages, 1);
+  assert.equal(f.stats.retries, 0);
+});
