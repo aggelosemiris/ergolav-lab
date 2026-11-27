@@ -21,6 +21,7 @@ import { createQuoteSync, wipeLocalQuotes } from './sync.js';
 import { mountWhen } from './when-ui.js';
 import { mountCalendar } from './calendar-ui.js';
 import { mountAccount } from './account-ui.js';
+import { mountProductCatalog } from './product-catalog-ui.js';
 import { authGate } from './account.js';
 import { registerSW, takeDraft } from './offline.js';
 import { watchNet, online, probe, onNet, NO_NET } from './net.js';
@@ -1246,6 +1247,12 @@ if(quoteSync){
 // ─── «Πίσω»: μία οθόνη πίσω, χωρίς να χαθεί τίποτα ───────────
 // Στις οθόνες που έχουν ήδη δικό τους «← Πίσω» κάνει ακριβώς το ίδιο. Από το PDF πίσω στον έλεγχο, οι γραμμές μένουν
 // όπως τις άφησε (καμία νέα ανάλυση). Από το κείμενο πάντα στην αρχική. Κείμενο που θα σβηνόταν: ερώτηση.
+const productCatalog = mountProductCatalog({screen: $('s-product-catalog'), db: () => authUi?.db() ?? null});
+$('productCatalogOpen').onclick = () => {
+  show('s-product-catalog', 'Κατάλογος');
+  cta(null);
+  if(!authLocked) void productCatalog.open();
+};
 function toStart(){ show('s-start', 'Νέα προσφορά'); cta(null); when.refresh(); syncHistoryButton(); }
 function toLines(){ show('s-lines', 'Έλεγχος'); renderLines(); }
 async function goBack(){
@@ -1269,7 +1276,7 @@ async function goBack(){
   }
   if(cur === 's-analysis') return $('anBack').click();
   if(cur === 's-rules') return $('rulesBack').click();
-  if(cur === 's-history') return toStart();
+  if(cur === 's-history' || cur === 's-product-catalog') return toStart();
   if(cur === 's-profile'){
     const back = profileBack; profileBack = null;
     if(!PROFILE) return back ? toLines() : undefined;     // χωρίς στοιχεία δεν βγαίνει PDF: πίσω στον έλεγχο

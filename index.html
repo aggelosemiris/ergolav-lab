@@ -514,6 +514,9 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
 .seg button{min-height:44px;padding:0 14px;border-radius:10px;font-size:15px;font-weight:600;color:var(--dim)}
 .seg button[aria-pressed="true"]{background:var(--pen-soft);color:var(--pen)}
 .cal-msg{margin-top:8px;font-size:14px;font-weight:600;color:var(--ok)}
+.product-results{list-style:none;padding:0;text-align:left}
+.product-results li{border-bottom:1px solid var(--line);padding:12px 0;overflow-wrap:anywhere}
+.product-results p{margin:4px 0 0}
 .cal-nav{display:flex;align-items:center;gap:2px;margin-top:10px}
 .cal-nav b{flex:1;text-align:center;font-size:18px;font-weight:700;min-width:0}
 .cal-arrow{width:44px;height:44px;border-radius:12px;font-size:28px;line-height:1;flex:none}
@@ -834,12 +837,25 @@ details.an-side li b{display:inline;font-size:14px;color:var(--ink)}
       <div class="start-nav" id="startNav" hidden>
         <button class="ghost" id="historyOpen">📅 Ημερολόγιο</button><button class="ghost" id="quotesOpen">📋 Προσφορές</button>
       </div>
+      <div class="alt"><button class="ghost" id="productCatalogOpen" type="button">Κατάλογος προϊόντων</button></div>
       <div class="alt"><button class="ghost" id="statsOpen">📊 Στατιστικά επιχείρησης</button></div>
       <div class="alt"><button class="ghost" id="installApp" type="button" hidden>📲 Βάλ’ το στην αρχική οθόνη</button></div>
       <div class="alt"><button class="ghost" id="photo">📷 Ή φωτογράφισε τις σημειώσεις σου</button></div>
       <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
       <div class="alt" style="margin-top:10px"><button class="linkbtn" id="keySettings" hidden>🔑 Κλειδί ανάγνωσης: αλλαγή ή διαγραφή</button></div>
       <div class="alt" style="margin-top:6px"><button class="linkbtn" id="rulesOpen" hidden>Οι κανόνες μου</button></div>
+    </section>
+
+    <section class="screen" id="s-product-catalog">
+      <h1>Κατάλογος προϊόντων</h1>
+      <div class="field">
+        <label for="productSearch">Αναζήτηση προϊόντος</label>
+        <input id="productSearch" type="search" maxlength="120" placeholder="Όνομα, μάρκα, κωδικός ή μέγεθος" autocomplete="off">
+      </div>
+      <p role="status"></p>
+      <ul class="product-results"></ul>
+      <div class="alt"><button class="ghost" data-retry type="button" hidden>Δοκίμασε ξανά</button></div>
+      <div class="alt"><button class="ghost" data-more type="button" hidden>Περισσότερα προϊόντα</button></div>
     </section>
 
     <!-- ΗΜΕΡΟΛΟΓΙΟ (πρώην ιστορικό): οι προσφορές της συσκευής στη μέρα που πάει ο τεχνίτης. Κώδικας: src/calendar-ui.js -->

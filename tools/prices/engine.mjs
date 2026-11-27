@@ -1,3 +1,4 @@
+import { readSupplier } from './read-supplier.mjs';
 // Ο πυρήνας της εβδομαδιαίας ενημέρωσης τιμών. Χωρίς AI: κανόνες αντιστοίχισης (src/price-match.js), κανόνες
 // καταλόγου (src/price-rules.js) και οι adapters των προμηθευτών (suppliers.mjs).
 //
@@ -118,7 +119,8 @@ export function offersFor(entry, supplier, items, idx){
     out.push({supplier_id: supplier.id, supplier_product_id: offerProductId(it.id), url: it.url, name: it.name.slice(0, 300),
       regular_cents: verification === 'verified' ? it.regularCents : (it.regularCents ?? null), vat_included: supplier.vatIncluded,
       vat_basis: supplier.vat, unit_cents: verification === 'verified' ? unit.cents : null, unit_basis: unit?.basis ?? null, promo: !!it.promo,
-      verification, verification_reason: reason ? String(reason).slice(0, 120) : null, match_method: m.method});
+      verification, verification_reason: reason ? String(reason).slice(0, 120) : null, match_method: m.method,
+      observedAt: it.observedAt});
   }
   return out;
 }
@@ -127,7 +129,7 @@ export function offersFor(entry, supplier, items, idx){
  * Μία εβδομαδιαία εκτέλεση. store: βλ. stores/*.mjs · suppliers: SUPPLIERS · fetcher: fetch.mjs.
  * Επιστρέφει τα στατιστικά (και τα γράφει στο price_runs).
  */
-export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog, v2 = false}){
+export async function runOnce({store, suppliers, fetcher, now = () => new Date(), log = () => {}, catalog, v2 = false, refreshProductCatalog}){
   const runId = await store.startRun();
   if(runId == null){ log('Τρέχει ήδη άλλη εκτέλεση: τίποτα δεν έγινε.'); return {skipped: true}; }
   const t0 = now(), iso = () => now().toISOString();
@@ -152,16 +154,7 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
     const results = await Promise.all(suppliers.map(async s => {
       const sup = {...s, vatIncluded: true};
       if(s.enabled === false) return {s: sup, status: 'unavailable', reason: s.reason || 'απενεργοποιημένος', items: []};
-      const items = [];
-      try {
-        for await (const it of s.items({fetcher, supplier: s, log})) items.push(it);
-        if(!items.length) return {s: sup, status: 'unavailable', reason: 'καμία τιμή προϊόντος δεν διαβάστηκε', items};
-        return {s: sup, status: 'available', items};
-      } catch(e){
-        const reason = e.name === 'Blocked' ? `μπλοκάρει το bot: ${e.message}` : `σφάλμα: ${e.message}`;
-        log(`${s.id}: ${reason} (διαβάστηκαν ${items.length} προϊόντα πριν)`);
-        return {s: sup, status: 'unavailable', reason, items: [], partialItems: items.length};
-      }
+      return readSupplier({supplier: sup, fetcher, at: iso(), log});
     }));
 
     // ── 4. αντιστοίχιση και αποθήκευση ──
@@ -169,20 +162,24 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
     const prevByKey = new Map(existing.map(o => [`${o.price_product_id}|${o.supplier_id}|${o.supplier_product_id}`, o]));
     const rows = [], history = [];
     const okSuppliers = new Set();
-    for(const {s, status, reason, items, partialItems} of results){
+    for(const {s, status, reason, items, usedCache} of results){
       const st = {status, reason: reason || null, items: items.length, verified: items.filter(i => i.verification === 'verified').length,
-        promo: items.filter(i => i.promo).length, partialItems, matched: 0};
+        promo: items.filter(i => i.promo).length, partialItems: status === 'partial' ? items.length : undefined, matched: 0};
       stats.suppliers[s.id] = st;
-      await store.setSupplierStatus({id: s.id, status, status_reason: reason || null, last_run_at: iso(),
+      await store.setSupplierStatus({id: s.id, status: status === 'partial' ? 'available' : status, status_reason: status === 'partial' ? `Μερική συλλογή: ${reason}`.slice(0, 300) : reason || null, last_run_at: iso(),
         ...(status === 'available' ? {last_ok_at: iso(), items_seen: items.length} : {})});
-      if(status !== 'available') continue;
-      okSuppliers.add(s.id);
+      if(!items.length) continue;
+      if(status === 'available' && !usedCache && s.method === 'woo-store-api') okSuppliers.add(s.id);
       const idx = indexItems(items);
       for(const e of inventory){
         for(const o of offersFor(e, s, items, idx)){
           const prev = prevByKey.get(`${e.id}|${o.supplier_id}|${o.supplier_product_id}`);
-          rows.push({...o, price_product_id: e.id, retrieved_at: iso(), seen_run: runId,
-            last_success_at: o.verification === 'verified' ? iso() : prev?.last_success_at ?? null});
+          const observedAt = o.observedAt ?? iso();
+          if(prev?.retrieved_at && Date.parse(observedAt) < Date.parse(prev.retrieved_at)) continue;
+          if(status === 'partial' && prev?.verification === 'verified' && o.verification !== 'verified') continue;
+          const {observedAt: _pageTime, ...offer} = o;
+          rows.push({...offer, price_product_id: e.id, retrieved_at: observedAt, seen_run: runId,
+            last_success_at: o.verification === 'verified' ? observedAt : prev?.last_success_at ?? null});
           st.matched++;
           if(o.verification === 'verified'){ stats.offers.verified++; if(o.promo) stats.offers.promoRegular++; }
           else if(o.verification === 'unit-mismatch') stats.offers.unitMismatch++; else stats.offers.unverified++;
@@ -233,9 +230,13 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
         counts[matched ? 'matched' : 'unmatched']++;
       }
       if(ref.status === 'verified'){
-        Object.assign(u, {reference_cents: ref.cents, reference_status: 'verified', reference_at: iso(), reference_suppliers: ref.n, reference_detail: ref.suppliers});
+        const referenceAt = fresh.reduce((latest, offer) => {
+          if(!Object.hasOwn(ref.suppliers, offer.supplier_id)) return latest;
+          return !latest || Date.parse(latest) < Date.parse(offer.last_success_at) ? offer.last_success_at : latest;
+        }, null);
+        Object.assign(u, {reference_cents: ref.cents, reference_status: 'verified', reference_at: referenceAt, reference_suppliers: ref.n, reference_detail: ref.suppliers});
         if(prev.reference_cents !== ref.cents || prev.reference_status !== 'verified')
-          refHistory.push({price_product_id: e.id, reference_cents: ref.cents, suppliers: ref.n, observed_at: iso(), run_id: runId});
+          refHistory.push({price_product_id: e.id, reference_cents: ref.cents, suppliers: ref.n, observed_at: referenceAt, run_id: runId});
         counts.verifiedReference++;
       } else {
         // Ποτέ 0 και ποτέ μαντεψιά: μένει η τελευταία έγκυρη τιμή, με την ημερομηνία της, και αλλάζει μόνο το status.
@@ -250,9 +251,11 @@ export async function runOnce({store, suppliers, fetcher, now = () => new Date()
     await store.updateProducts(updates);
     await store.insertReferenceHistory(refHistory);
     stats.products = {...stats.products, ...counts, referenceChanges: refHistory.length};
+    if(refreshProductCatalog) stats.productCatalog = await refreshProductCatalog({results, at: iso(), startedAt: stats.started});
     stats.finished = iso();
-    const failed = Object.values(stats.suppliers).filter(s => s.status !== 'available').length;
-    await store.finishRun(runId, failed ? 'partial' : 'done', stats);
+    const partialRun = Object.values(stats.suppliers).some(s => s.status !== 'available')
+      || Object.values(stats.productCatalog?.suppliers ?? {}).some(s => ['partial', 'unavailable', 'disabled'].includes(s.status));
+    await store.finishRun(runId, partialRun ? 'partial' : 'done', stats);
     return {stats, inventory, updates};
   } catch(e){
     await store.finishRun(runId, 'failed', stats, String(e?.stack || e).slice(0, 2000)).catch(() => {});

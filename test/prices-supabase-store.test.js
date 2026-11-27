@@ -40,13 +40,32 @@ test('σφάλμα βάσης: το message με τον κανόνα φαίνε�
   const key = 'fake-secret-not-for-logs';
   const store = createSupabaseStore({url: 'https://abc.supabase.co', serviceKey: key, fetchImpl: async () => ({
     ok: false, status: 400, text: async () => JSON.stringify({code: '23514', details: 'ιδιωτικό-πεδίο'.repeat(100),
-      hint: 'ιδιωτικό-hint', message: 'new row violates check constraint "supplier_offers_url_check" ' + key})
+      hint: 'ιδιωτικό-hint', message: 'new row violates check constraint "supplier_offers_url_check" private@example.com ' + key})
   })});
   await assert.rejects(store.startRun(), e => {
     assert.match(e.message, /HTTP 400 23514.*supplier_offers_url_check/);
     assert.ok(!e.message.includes('ιδιωτικό-πεδίο') && !e.message.includes('ιδιωτικό-hint') && !e.message.includes(key));
+    assert.ok(!e.message.includes('private@example.com'));
     return true;
   });
+});
+
+test('απογραφή προηγούμενων τιμών, με σταθερή σειρά και ρητή έλλειψη δικαιώματος', async () => {
+  const calls = [];
+  const key = 'fake-secret-not-for-logs';
+  const store = createSupabaseStore({url: 'https://abc.supabase.co', serviceKey: key, fetchImpl: async (url, opts) => {
+    calls.push([new URL(url), opts.method]);
+    return calls.length === 1 ? new Response(JSON.stringify(Array.from({length: 1000}, (_, i) => ({product_id: String(i)}))))
+      : new Response('[]');
+  }});
+  assert.equal((await store.loadCatalogPrices()).length, 1000);
+  assert.deepEqual(calls.map(([url, method]) => [url.pathname, url.searchParams.get('order'), url.searchParams.get('offset'), method]), [
+    ['/rest/v1/product_catalog_prices', 'product_id,supplier_id', '0', 'GET'],
+    ['/rest/v1/product_catalog_prices', 'product_id,supplier_id', '1000', 'GET'],
+  ]);
+  const beforeMigration = createSupabaseStore({url: 'https://abc.supabase.co', serviceKey: key, fetchImpl: async () =>
+    new Response('{"code":"42501","message":"permission denied"}', {status: 403})});
+  assert.equal(await beforeMigration.loadCatalogPrices(), null);
 });
 
 test('μη δομημένο σφάλμα: δεν γράφει HTML, κλειδιά ή άλλα δεδομένα της απάντησης', async () => {
