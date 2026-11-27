@@ -20,11 +20,11 @@ import { QUICK, MESSAGES, personalFrom, rewriteRequest, applyRewrite, rewriteSec
 import { createMic, micSupported } from './mic.js';
 import { makePdf } from './share.js';
 import { formatQty } from './number.js';
+import { esc } from './html.js';
 
 // Μόνο ρητό true ανοίγει το bot· config χωρίς τη σημαία (π.χ. παλιό ή mock) = όπως πριν.
 const ALLAXE_BOT_ENABLED = CONFIG.ALLAXE_BOT_ENABLED === true;
 const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const FOOT = 'Η ανάλυση περιγράφει τη συνήθη σειρά εργασιών για τα είδη της προσφοράς. Αν στον χώρο σας χρειαστεί κάποια αλλαγή, θα σας το πούμε πριν γίνει. Τιμές και όροι είναι αυτοί της προσφοράς.';
 const ordered = key => !!SECTIONS.find(s => s.key === key)?.ordered;
 const list = (key, texts, li = t => esc(t), start = 1) => {

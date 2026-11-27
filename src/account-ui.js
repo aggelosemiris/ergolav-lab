@@ -10,12 +10,12 @@ import { getLogo, initials, loadProfile } from './profile.js';
 import { loadTurnstile, mountWidget } from './turnstile.js';
 import * as CONFIG from './config.js';
 import { online, onNet, NO_NET } from './net.js';
+import { esc } from './html.js';
 
 const SITE_KEY = CONFIG.TURNSTILE_SITE_KEY || '';
 export const RESEND_S = 60;          // «Στείλε ξανά» μετά από τόσα δευτερόλεπτα
 
 const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const SCREENS = ['s-login', 's-account', 's-pchoice'];
 const STRENGTH = {weak: 'Αδύναμος', good: 'Καλός', strong: 'Δυνατός'};
 
