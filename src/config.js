@@ -26,7 +26,9 @@ export const ALLAXE_BOT_ENABLED = true;
 // Συγχρονισμός προσφορών με τον λογαριασμό (Φάση 3) — βλ. docs/sync.md.
 // false: οι προσφορές μένουν μόνο στη συσκευή, όπως πριν. true ΜΟΝΟ αφού τρέξει στη Supabase η migration
 // supabase/migrations/20261123000000_quotes.sql (και ενημερωθεί το Απόρρητο: οι προσφορές ανεβαίνουν στον λογαριασμό).
-export const QUOTES_SYNC_ENABLED = true;
+// 27/11: ξανά false — ο πίνακας quotes δεν υπάρχει ακόμα στο prod (PGRST205). Ανοίγει μόλις τρέξει η migration
+// 20261123000000_quotes.sql με «QUOTES RLS OK» και περάσει η δοκιμή του docs/sync-phone-test.md.
+export const QUOTES_SYNC_ENABLED = false;
 
 // Νέες λίστες υλικών ανά ειδικότητα (data/materials/*.txt) στην εβδομαδιαία ενημέρωση τιμών — βλ. docs/PRICE_MONITORING.md.
 // false: ΑΚΡΙΒΩΣ η σημερινή συμπεριφορά (κανόνες αντιστοίχισης, προμηθευτές, οθόνη τιμών, «Άλλη τιμή»). true: συνώνυμα και
