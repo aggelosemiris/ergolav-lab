@@ -114,7 +114,10 @@ async function page({auth = true, viewport = {width: 390, height: 844}, ctx, sit
       reset(id){ const o = this.w[id]; setTimeout(() => o.callback('ts-token-' + (++this.n)), 30); }};`}));
   await p.route('**/src/config.js', async r => {
     const res = await r.fetch();
+    // Συγχρονισμός προσφορών κλειστός: εδώ ελέγχεται ο λογαριασμός· ο συγχρονισμός (και η αποσύνδεση με ερώτηση για
+    // τις προσφορές) στο sync.e2e.mjs.
     const src = (await res.text()).replace(/export const AUTH_ENABLED = (true|false)/, `export const AUTH_ENABLED = ${auth}`)
+      .replace(/export const QUOTES_SYNC_ENABLED = (true|false)/, 'export const QUOTES_SYNC_ENABLED = false')
       .replace(/export const SUPABASE_ANON_KEY = '[^']*'/, "export const SUPABASE_ANON_KEY = 'test-anon-key'")
       .replace(/export const TURNSTILE_SITE_KEY = '[^']*'/, `export const TURNSTILE_SITE_KEY = '${siteKey}'`);
     return r.fulfill({response: res, body: src});
