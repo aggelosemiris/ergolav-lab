@@ -9,7 +9,7 @@
 // - Νέα έκδοση: περιμένει μέχρι να πατήσει ο τεχνίτης «Ανανέωση» (μήνυμα 'skipWaiting' από το src/offline.js).
 
 // <precache> — γράφεται από το `npm run sw:manifest`· μην το αλλάζεις με το χέρι.
-const VERSION = 'cc15824839ae';
+const VERSION = '403144d88b91';
 const FILES = [
   'icons/apple-touch-icon.png',
   'icons/ergolav-logo.jpg',
@@ -58,6 +58,7 @@ const FILES = [
   'src/price-rules.js',
   'src/price-watch.js',
   'src/prices.js',
+  'src/product-catalog-ui.js',
   'src/profile.js',
   'src/rewrite-client.js',
   'src/service-client.js',

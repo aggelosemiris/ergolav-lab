@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Εργαλεία ανάγνωσης καταλόγων
+        run: npm ci --prefix tools/catalog
       - name: Unit tests
         run: npm test
       # Cache των σελίδων (λήξη 6 ημερών μέσα στον fetcher): αν μια εκτέλεση διακοπεί, η επόμενη συνεχίζει χωρίς νέα αιτήματα.
@@ -43,7 +45,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         # Μερικά sites (palousis) στέλνουν headers ~21 KB, πάνω από το όριο 16 KB του Node (UND_ERR_HEADERS_OVERFLOW).
-        run: node --max-http-header-size=65536 tools/prices/run.mjs --store supabase --report prices-report.md
+        run: node --max-http-header-size=65536 tools/prices/run.mjs --store supabase --report prices-report.md --coverage catalog-coverage.json.gz
       - name: Χωρίς ρυθμίσεις Supabase
         if: env.HAS_SUPABASE != 'true'
         run: echo "::warning::Λείπουν τα secrets SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY — η ενημέρωση τιμών δεν έτρεξε."
@@ -52,4 +54,10 @@ jobs:
         with:
           name: prices-report
           path: prices-report.md
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalog-coverage
+          path: catalog-coverage.json.gz
           if-no-files-found: ignore
